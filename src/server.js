@@ -9,7 +9,10 @@ app.use('/.netlify/functions/server', router);
 
 router.get('/', (req, res) => {
   res.send('GET request to the Serverless App homepage');
-  // res.json({ data: 'Hello World' });
+});
+
+router.get('/json', (req, res) => {
+  res.json({ data: 'Hello World' });
 });
 
 // In order to alow lambda to run exporting handler function
