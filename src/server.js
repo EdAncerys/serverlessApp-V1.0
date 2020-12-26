@@ -4,7 +4,8 @@ const serverless = require('serverless-http');
 const app = express();
 
 app.get('/', (req, res) => {
-  res.json({ data: 'Hello World' });
+  res.send('GET request to the homepage');
+  // res.json({ data: 'Hello World' });
 });
 
 // In order to alow lambda to run exporting handler function

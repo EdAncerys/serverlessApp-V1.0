@@ -4,7 +4,8 @@
   "description": "serverlessAppWithExpress",
   "main": "./src/server.js",
   "scripts": {
-    "start": "node ./src/server.js"
+    "start": "node ./src/server.js",
+    "server": "nodemon ./src/server.js"
   },
   "author": "",
   "license": "ISC",
@@ -12,5 +13,8 @@
     "express": "^4.17.1",
     "netlify-lambda": "^2.0.2",
     "serverless-http": "^2.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "latest"
   }
 }
