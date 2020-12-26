@@ -2,8 +2,10 @@
   "name": "serverlessapp-v1.0",
   "version": "1.0.0",
   "description": "serverlessAppWithExpress",
-  "main": "app.js",
-  "scripts": {},
+  "main": "./src/server.js",
+  "scripts": {
+    "start": "node ./src/server.js"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
