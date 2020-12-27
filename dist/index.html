@@ -7,5 +7,11 @@
   </head>
   <body>
     <h1>Serverless App</h1>
+
+    <form action="/.netlify/functions/login" method="post">
+      <input placeholder="Username" name="username" type="text" />
+      <input placeholder="Password" name="password" type="text" />
+      <button id="btn" type="submit">Submit</button>
+    </form>
   </body>
 </html>
