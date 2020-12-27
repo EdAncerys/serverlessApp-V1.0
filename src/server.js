@@ -7,11 +7,10 @@ const router = express.Router();
 // Middleware
 app.use('/.netlify/functions/server', router);
 
-app.use(express.static(__dirname + '/dist'));
+// View engine via ejs - able to render static file
+app.set('views', __dirname + '/../dist');
+app.set('view engine', 'html');
 app.engine('html', require('ejs').renderFile);
-// app.set('views', __dirname + '/public/views');
-// app.engine('html', require('ejs').renderFile);
-// app.set('view engine', 'html');
 
 // Routes
 router.get('/', (req, res) => {
