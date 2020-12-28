@@ -11,17 +11,23 @@ const logger = require('./logger');
 // Init Middleware
 app.use(express.static(path.join(__dirname, '../dist'))); // Set static folder
 app.use('/.netlify/functions/server', router); // Set route end point
+// Setting view engine + body parser
+app.set('views', __dirname + '/../dist');
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
 app.use(
   bodyParser.urlencoded({
-    extended: false,
+    extended: true,
   })
-); // Body parser
+);
 app.use(bodyParser.json());
+
 app.use(logger);
 
 // Routes
 app.get('/route', (req, res) => {
-  res.sendFile(path.join(__dirname, '../dist', 'index.html'));
+  // res.sendFile(path.join(__dirname, '../dist', 'index.html'));
+  res.render('index.html', { form: 'login form' });
 });
 // router.get('/', (req, res) => {
 //   res.send('GET request to the Serverless App homepage');
