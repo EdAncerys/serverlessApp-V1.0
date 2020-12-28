@@ -17,9 +17,9 @@ app.use(
 app.use(bodyParser.json());
 
 // Routes
-// app.get('/', (req, res) => {
-//   res.sendFile(path.join(__dirname, '../dist/index.html'));
-// });
+app.get('/c', (req, res) => {
+  res.sendFile(path.join(__dirname, '../dist', 'contact.html'));
+});
 router.get('/', (req, res) => {
   res.send('GET request to the Serverless App homepage');
 });
