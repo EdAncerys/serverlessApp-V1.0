@@ -29,26 +29,26 @@ app.get('/route', (req, res) => {
   // res.sendFile(path.join(__dirname, '../dist', 'index.html'));
   res.render('index.html', { form: 'login form' });
 });
-// router.get('/', (req, res) => {
-//   res.send('GET request to the Serverless App homepage');
-// });
-// router.get('/json', (req, res) => {
-//   res.json({ data: 'Hello World' });
-// });
-// router.get('/index', (req, res) => {
-//   res.render('index.html', { form: 'login form' });
-// });
-// router.post('/submit', (req, res) => {
-//   if (req.body) {
-//     const { username, password } = req.body;
-//     console.log(username, password);
-//   } else {
-//     console.log('error');
-//   }
-//   // console.log('submiting...', { username: username, password: password });
-//   // res.send('login');
-//   res.render('index.html', { form: 'login form' });
-// });
+router.get('/', (req, res) => {
+  res.send('GET request to the Serverless App homepage');
+});
+router.get('/json', logger, (req, res) => {
+  res.json({ data: 'Hello World' });
+});
+router.get('/index', (req, res) => {
+  res.render('index.html', { form: 'login form' });
+});
+router.post('/submit', (req, res) => {
+  if (req.body) {
+    const { username, password } = req.body;
+    console.log(username, password);
+  } else {
+    console.log('error');
+  }
+  // console.log('submiting...', { username: username, password: password });
+  // res.send('login');
+  res.redirect('index.html', { form: 'login form' });
+});
 
 // In order to alow lambda to run - exporting handler function
 module.exports = app;
