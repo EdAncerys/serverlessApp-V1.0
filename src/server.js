@@ -25,19 +25,23 @@ app.use(bodyParser.json());
 app.use(logger);
 
 // Routes
-app.get('/route', (req, res) => {
-  // res.sendFile(path.join(__dirname, '../dist', 'index.html'));
-  res.render('index.html', { form: 'login form' });
-});
-router.get('/', (req, res) => {
-  res.send('GET request to the Serverless App homepage');
-});
-router.get('/json', logger, (req, res) => {
+app.get('/hello', (req, res) => {
   res.json({ data: 'Hello World' });
 });
-router.get('/index', (req, res) => {
-  res.render('index.html', { form: 'login form' });
+app.get('/route', (req, res) => {
+  // res.sendFile(path.join(__dirname, '../dist', 'index.html'));
+  res.json({ data: 'This is A Route' });
 });
+router.get('/', (req, res) => {
+  res.send('GET request from / ');
+});
+router.get('/homePage', logger, (req, res) => {
+  res.send('GET request from /homePage ');
+});
+router.get('/index', (req, res) => {
+  res.send('GET request from /index ');
+});
+
 router.post('/submit', (req, res) => {
   if (req.body) {
     const { username, password } = req.body;
