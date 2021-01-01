@@ -45,13 +45,16 @@ router.get('/index', (req, res) => {
 router.post('/submit', (req, res) => {
   if (req.body) {
     const { username, password } = req.body;
+    res.send(`POST request ${username} ${password}`);
+
     console.log(username, password);
   } else {
+    res.send(`error`);
+
     console.log('error');
   }
   // console.log('submiting...', { username: username, password: password });
   // res.send('login');
-  res.redirect('index.html', { form: 'login form' });
 });
 
 // In order to alow lambda to run - exporting handler function
