@@ -8,6 +8,8 @@
   `https://www.npmjs.com/get-npm`
 - Install all dependencies
   `$ npm install`
+- Run Script
+  `$ npm run-script lambda-serve`
 - Start the server
   `$ npm start` run or nodemon
-- Navigate to [http://localhost:5000](http://localhost:5000) in your browser.
+- Navigate to [http://localhost:9000](http://localhost:9000) in your browser.
