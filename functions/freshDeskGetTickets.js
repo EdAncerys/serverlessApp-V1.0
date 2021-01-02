@@ -41,15 +41,6 @@ exports.handler = function (event, context, callback) {
       });
   };
 
-  async function makeGetRequest() {
-    let res = await axios.get('http://webcode.me');
-
-    let data = res.data;
-    console.log(data);
-  }
-
-  makeGetRequest();
-
   // Make sure method is GET
   if (event.httpMethod == 'GET') {
     getFreshDeskTickets();

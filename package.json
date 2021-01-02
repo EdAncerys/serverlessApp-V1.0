@@ -13,8 +13,8 @@
   "dependencies": {
     "dotenv": "latest",
     "axios": "latest",
-    "ejs": "latest",
     "netlify-lambda": "latest",
+    "ejs": "latest",
     "path": "latest"
   },
   "devDependencies": {

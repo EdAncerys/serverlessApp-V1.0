@@ -21,15 +21,16 @@
     <form
       id="formElement"
       class="container"
-      method="get"
+      method="GET"
       action="http://localhost:9000/lambda"
     >
-      <input type="submit" value="lambda" required />
+      <input type="text" placeholder="lambda" />
+      <input type="submit" value="lambda" />
     </form>
     <form
       id="formElement"
       class="container"
-      method="get"
+      method="POST"
       action="http://localhost:9000/freshDeskGetTickets"
     >
       <input type="submit" value="freshDeskGetTickets" required />
@@ -37,9 +38,7 @@
     <div class="msg">
       <h2>Thank You!</h2>
     </div>
-    <div>
-      <p>{data}}</p>
-    </div>
     <p id="data"></p>
+    <p><%= body %></p>
   </body>
 </html>
