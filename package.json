@@ -10,9 +10,12 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "dotenv": "latest",
+    "node-fetch": "latest",
+    "netlify-lambda": "latest"
+  },
   "devDependencies": {
-    "netlify-lambda": "^2.0.2",
     "nodemon": "latest"
   }
 }
