@@ -1,7 +1,7 @@
-const fetch = require('node-fetch'); // Fetch module
+const axios = require('axios'); // Axios module
 require('dotenv').config(); // Enabling to load Environment variables from a .env File
 
-exports.handler = async function (event, context, callback) {
+exports.handler = function (event, context, callback) {
   let PATH = '/api/v2/tickets';
   const URL = `https://${process.env.FD_ENDPOINT}.freshdesk.com/${PATH}`;
   const ENCODING_METHOD = 'base64';
@@ -9,26 +9,38 @@ exports.handler = async function (event, context, callback) {
     'Basic ' +
     new Buffer.from(process.env.API_KEY + ':' + 'X').toString(ENCODING_METHOD);
 
-  const defaultOptions = {
-    method: 'GET',
-    mode: 'cors',
-    headers: {
-      Authorization: AUTHORIZATION_KEY,
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-    },
+  // Send user response
+  const headers = {
+    Authorization: AUTHORIZATION_KEY,
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers':
+      'Origin, X-Requested-With, Content-Type, Accept',
+  };
+  const send = (body) => {
+    callback(null, {
+      statusCode: 200,
+      headers: headers,
+      body: JSON.stringify(body),
+    });
   };
 
-  try {
-    await fetch(URL, defaultOptions)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log('Loading FreshSDesk Data: ', data);
-        // res.json({ msg: data });
+  // Perform API call
+  const getUsers = () => {
+    axios
+      .get(URL, { headers: headers })
+      .then((res) => {
+        console.log('Response object');
+        send(res.data);
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+        send(err);
       });
-  } catch (error) {
-    const errorMsg = error.message;
-    console.log(errorMsg);
-    // res.json({ msg: errorMsg });
+  };
+
+  // Make sure method is GET
+  if (event.httpMethod == 'GET') {
+    console.log('fetching data from GET...');
+    getUsers();
   }
 };
