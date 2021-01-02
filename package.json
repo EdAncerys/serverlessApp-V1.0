@@ -13,7 +13,9 @@
   "dependencies": {
     "dotenv": "latest",
     "axios": "latest",
-    "netlify-lambda": "latest"
+    "ejs": "latest",
+    "netlify-lambda": "latest",
+    "path": "latest"
   },
   "devDependencies": {
     "nodemon": "latest"

@@ -1,18 +1,9 @@
-const fetchUsers = async () =>
-  await (await fetch('http://localhoast:5500/freshDeskGetTickets')).json();
+const headers = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Headers':
+    'Origin, X-Requested-With, Content-Type, Accept',
+};
 
-fetchUsers().then((data) => {
-  console.log(data);
-  // userList = document.querySelector('#users');
+const data = 'hello';
 
-  // data.forEach((user) => {
-  //   const li = document.createElement('li');
-  //   li.className = 'list-group-item';
-  //   const link = document.createElement('a');
-  //   link.appendChild(document.createTextNode(user.login));
-  //   link.href = user.html_url;
-  //   link.target = '_blank';
-  //   li.appendChild(link);
-  //   userList.appendChild(li);
-  // });
-});
+document.querySelector('#data').innerHTML = data;

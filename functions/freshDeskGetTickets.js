@@ -16,7 +16,8 @@ exports.handler = function (event, context, callback) {
     'Access-Control-Allow-Headers':
       'Origin, X-Requested-With, Content-Type, Accept',
   };
-  const send = (body) => {
+
+  const sendResponse = (body) => {
     callback(null, {
       statusCode: 200,
       headers: headers,
@@ -25,22 +26,32 @@ exports.handler = function (event, context, callback) {
   };
 
   // Perform API call
-  const getUsers = () => {
+  const getFreshDeskTickets = () => {
     axios
       .get(URL, { headers: headers })
       .then((res) => {
-        console.log('Response object');
-        send(res.data);
+        console.log(res.headers.date);
+        console.log(res.headers.status);
+        // console.log(res.data);
+        sendResponse(res.data);
       })
       .catch((err) => {
         console.log(err.response.data);
-        send(err);
+        sendResponse(err);
       });
   };
 
+  async function makeGetRequest() {
+    let res = await axios.get('http://webcode.me');
+
+    let data = res.data;
+    console.log(data);
+  }
+
+  makeGetRequest();
+
   // Make sure method is GET
   if (event.httpMethod == 'GET') {
-    console.log('fetching data from GET...');
-    getUsers();
+    getFreshDeskTickets();
   }
 };
