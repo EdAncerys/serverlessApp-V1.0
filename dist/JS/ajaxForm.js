@@ -1,19 +1,22 @@
 $(function () {
   $('form').submit(function (e) {
     const form = $(this);
-    const name = $('#name').val();
-    const email = $('#email').val();
+    const lambda = $('#lambda').val();
 
     $.ajax({
       type: form.attr('method'),
       url: form.attr('action'),
       data: form.serialize(),
     })
-      .done(function () {
+      .done(function (res) {
         // code if form was successfully sent
+        const data = res;
+        document.querySelector('#data').innerHTML = data;
+
         $('#formElement').trigger('reset').hide(); //reset form
         $('.msg').show();
         console.log(`Form Submitted Successfully`);
+        console.log(data, lambda);
       })
       .fail(function (error) {
         // code if form was failed

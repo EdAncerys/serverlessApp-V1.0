@@ -4,10 +4,11 @@ exports.handler = function (event, context, callback) {
     'Access-Control-Allow-Headers':
       'Origin, X-Requested-With, Content-Type, Accept',
   };
-  console.log('Lambda Submitted...');
   callback(null, {
     statusCode: 200,
     headers: headers,
-    body: 'Hello World',
+    body: 'Lambda Page Data',
   });
+
+  console.log('Lambda Submitted...');
 };
