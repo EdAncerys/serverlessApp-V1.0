@@ -50,13 +50,13 @@ $(document).ready(function () {
       // data: JSON.stringify(headers),
       data: 'headers',
 
-      success: function (data) {
+      success: function (res) {
         console.log('Submission was successful.');
         console.log(data);
       },
-      error: function (data) {
+      error: function (error) {
         console.log('An error occurred.');
-        console.log(data);
+        console.log(error);
       },
     });
   });

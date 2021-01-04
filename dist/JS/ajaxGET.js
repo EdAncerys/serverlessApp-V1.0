@@ -10,8 +10,8 @@ $(document).ready(function () {
         type: form.attr('method'),
         url: form.attr('action'),
         data: form.serialize(),
-      })
-        .done(function (res) {
+
+        success: function (res) {
           let response;
 
           if (formID === 'lambdaForm') {
@@ -38,10 +38,12 @@ $(document).ready(function () {
 
           console.log('From ID: ' + formID);
           console.log('RESPONSE: ' + res);
-        })
-        .fail(function (error) {
+        },
+        error: function (error) {
+          console.log('An error occurred.');
           console.log(error.statusText);
-        });
+        },
+      });
     });
   });
 });
