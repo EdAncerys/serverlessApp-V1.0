@@ -11,6 +11,14 @@ body {
   margin: 50px;
   padding: 20px;
 }
+.msgText {
+  display: grid;
+  justify-content: center;
+  justify-items: center;
+}
 .msg {
+  display: none;
+}
+#data {
   display: none;
 }

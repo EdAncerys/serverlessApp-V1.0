@@ -12,18 +12,32 @@ $(document).ready(function () {
         data: form.serialize(),
       })
         .done(function (res) {
-          const ticketNum = 0;
-          const responseJSON = JSON.parse(res);
-          const subject = responseJSON.subject;
-          const description = responseJSON.description;
-          const email = responseJSON.email;
-          const ticket = `<h3>Subject ${subject}</h3> <br/>
-                          <h3>Subject ${description}</h3> <br/>`;
+          let response;
 
-          document.querySelector('#data').innerHTML = res; // Render Response Object
+          if (formID === 'lambdaForm') {
+            response = JSON.parse(res).body;
+            $('#lambdaForm').hide();
+          }
+
+          if (formID === 'freshDeskForm') {
+            const ticketNum = 0;
+            const { subject, requester_id, created_at } = JSON.parse(res)[
+              ticketNum
+            ];
+            response = `<div class='msgText'>Last Submitted Ticked To freshDesk</div> <br />
+                        Subject: ${subject} <br/>
+                        requester_id: ${requester_id} <br/>
+                        created_at: ${created_at} <br/>`;
+            $('#freshDeskForm').hide();
+            // response = JSON.stringify(JSON.parse(res)[0]);
+          }
+
+          $('#data').show();
+          $('.msg').show();
+          document.querySelector('#data').innerHTML = response; // Render Response Object
 
           console.log('From ID: ' + formID);
-          console.log('RESPONSE: ' + typeof res);
+          console.log('RESPONSE: ' + res);
         })
         .fail(function (error) {
           console.log(error.statusText);
