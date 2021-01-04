@@ -4,11 +4,14 @@ exports.handler = function (event, context, callback) {
     'Access-Control-Allow-Headers':
       'Origin, X-Requested-With, Content-Type, Accept',
   };
+
+  const body = { body: 'Hello World' };
+
   callback(null, {
     statusCode: 200,
     headers: headers,
-    body: 'Lambda Page Data',
+    body: JSON.stringify(body),
   });
 
-  console.log('Lambda Submitted...');
+  console.log('Lambda Submitted... ' + body);
 };

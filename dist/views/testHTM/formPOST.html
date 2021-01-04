@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link type="text/css" rel="stylesheet" href="../../style/testStyle.css" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"
+      defer
+    ></script>
+    <script src="../../JS/ajaxPOST.js" defer></script>
+
+    <title>Fresh Desk Post</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Fresh Desk Post</h1>
+    </div>
+
+    <!-- Test GET lambda Data -->
+    <form
+      id="lambdaForm"
+      class="container"
+      method="POST"
+      action="http://localhost:9000/lambdaPOST"
+    >
+      <input type="text" name="name" placeholder="name" />
+      <input type="submit" value="lambdaGET" />
+    </form>
+
+    <!-- Submit freshDeskTicket -->
+    <form
+      id="freshDeskForm"
+      class="container"
+      method="POST"
+      action="http://localhost:9000/freshDeskSubmitTicket"
+    >
+      <input type="text" name="name" placeholder="name" required />
+      <input type="text" name="email" placeholder="email" required />
+      <input type="text" name="subject" placeholder="subject" required />
+      <input
+        type="text"
+        name="description"
+        placeholder="description"
+        required
+      />
+      <input type="submit" value="freshDeskSubmitTicket" required />
+    </form>
+
+    <div class="msg">
+      <h2>Thank You!</h2>
+    </div>
+    <p id="data"></p>
+  </body>
+</html>

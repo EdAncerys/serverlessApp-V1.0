@@ -3,7 +3,6 @@ require('dotenv').config(); // Enabling to load Environment variables from a .en
 
 exports.handler = function (event, context, callback) {
   const { name, email, subject, description } = JSON.stringify(event.body);
-  console.log(name, email);
 
   let PATH = '/api/v2/tickets';
   const URL = `https://${process.env.FD_ENDPOINT}.freshdesk.com/${PATH}`;
@@ -13,11 +12,17 @@ exports.handler = function (event, context, callback) {
     new Buffer.from(process.env.API_KEY + ':' + 'X').toString(ENCODING_METHOD);
 
   // Send user response
+  const method = { method: 'POST' };
   const headers = {
     Authorization: AUTHORIZATION_KEY,
+    'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers':
       'Origin, X-Requested-With, Content-Type, Accept',
+  };
+  const body = {
+    body:
+      '{ "description": "Details about the issue...", "subject": "Support Needed...", "email": "tom@outerspace.com", "priority": 1, "status": 2, "cc_emails": ["ram@freshdesk.com","diana@freshdesk.com"] }',
   };
 
   const sendResponse = (body) => {
@@ -31,7 +36,7 @@ exports.handler = function (event, context, callback) {
   // Perform API call
   const getFreshDeskTickets = () => {
     axios
-      .get(URL, { headers: headers })
+      .post(URL, { headers: headers })
       .then((res) => {
         console.log(res.headers.date);
         console.log(res.headers.status);
