@@ -1,5 +1,5 @@
 exports.handler = function (event, context, callback) {
-  const parsedBody = JSON.parse(event.body);
+  const parsedBody = event.body;
 
   const headers = {
     'Access-Control-Allow-Origin': '*',
@@ -7,10 +7,11 @@ exports.handler = function (event, context, callback) {
     'Access-Control-Allow-Headers':
       'Origin, X-Requested-With, Content-Type, Accept',
   };
+
   callback(null, {
     statusCode: 200,
     headers: headers,
-    body: JSON.stringify(parsedBody),
+    body: parsedBody,
   });
 
   console.log('Lambda Submitted...');
