@@ -10,7 +10,9 @@ exports.handler = function (event, context, callback) {
     },
   });
 
-  // const { contactFormName, contactFormEmail, contactFormSubject } = event.body;
+  // const { contactFormName, contactFormEmail, contactFormSubject } = JSON.parse(
+  //   event.body
+  // );
   const body = event.body;
   // const contactFormName = 'contactFormName';
   // const contactFormEmail = 'contactFormEmail';
@@ -28,9 +30,9 @@ exports.handler = function (event, context, callback) {
     to: process.env.MAILING_LIST, // replace with your mailing list
     subject: process.env.SUBJECT + new Date().toLocaleString(),
     text: body,
-    html: `<p>Customer Contact Name: <span style="color: red">${'name'}</span></p>
-      <p>Email: <span style="color: red">${'email'}</span></p>
-      <p>Subject: <br />${'subject'}</p>`,
+    // html: `<p>Customer Contact Name: <span style="color: red">${'name'}</span></p>
+    //   <p>Email: <span style="color: red">${'email'}</span></p>
+    //   <p>Subject: <br />${'subject'}</p>`,
   };
 
   transporter.sendMail(mailOptions, (error, info) => {
