@@ -13,5 +13,5 @@ exports.handler = function (event, context, callback) {
     body: JSON.stringify(body),
   });
 
-  console.log('Lambda Submitted... ' + body);
+  console.log('Lambda Submitted... ' + JSON.stringify(body));
 };

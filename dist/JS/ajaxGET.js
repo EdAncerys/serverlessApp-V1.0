@@ -21,9 +21,7 @@ $(document).ready(function () {
 
           if (formID === 'freshDeskForm') {
             const ticketNum = 0;
-            const { subject, requester_id, created_at } = JSON.parse(res)[
-              ticketNum
-            ];
+            const { subject, requester_id, created_at } = res[ticketNum];
             response = `<div class='msgText'>Last Submitted Ticked To freshDesk</div> <br />
                         Subject: ${subject} <br/>
                         requester_id: ${requester_id} <br/>
@@ -37,7 +35,7 @@ $(document).ready(function () {
           document.querySelector('#data').innerHTML = response; // Render Response Object
 
           console.log('From ID: ' + formID);
-          console.log('RESPONSE: ' + res);
+          console.log('RESPONSE: ' + response);
         },
         error: function (error) {
           console.log('An error occurred.');

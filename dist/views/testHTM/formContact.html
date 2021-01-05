@@ -11,30 +11,19 @@
     ></script>
     <script src="../../JS/ajaxPOST.js" defer></script>
 
-    <title>Fresh Desk Submit Ticket</title>
+    <title>Fresh Desk Post</title>
   </head>
   <body>
     <a href="./formGET.html">
       <button>GET Page</button>
     </a>
-    <a href="./formContact.html">
-      <button>Contact Page</button>
+    <a href="./formPOST.html">
+      <button>POST Page</button>
     </a>
 
     <div class="container">
-      <h1>FreshDesk Submit Ticket</h1>
+      <h1>Contact</h1>
     </div>
-
-    <!-- Test GET lambda Data -->
-    <form
-      id="lambdaForm"
-      class="container"
-      method="POST"
-      action="http://localhost:9000/lambdaPOST"
-    >
-      <input id="lambdaName" type="text" name="name" placeholder="name" />
-      <input type="submit" value="lambdaGET" />
-    </form>
 
     <!-- Submit freshDeskTicket -->
     <form
@@ -62,13 +51,7 @@
         name="subject"
         placeholder="subject"
       />
-      <input
-        id="freshDeskFormDescription"
-        type="text"
-        name="description"
-        placeholder="description"
-      />
-      <input type="submit" value="freshDeskSubmitTicket" />
+      <input type="submit" value="ContactUs" />
     </form>
 
     <div class="msg">

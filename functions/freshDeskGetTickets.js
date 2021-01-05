@@ -2,9 +2,6 @@ const axios = require('axios'); // Axios module
 require('dotenv').config(); // Enabling to load Environment variables from a .env File
 
 exports.handler = function (event, context, callback) {
-  const { name, email, subject, description } = JSON.stringify(event.body);
-  console.log(name, email);
-
   let PATH = '/api/v2/tickets';
   const URL = `https://${process.env.FD_ENDPOINT}.freshdesk.com/${PATH}`;
   const ENCODING_METHOD = 'base64';
@@ -15,6 +12,7 @@ exports.handler = function (event, context, callback) {
   // Send user response
   const headers = {
     Authorization: AUTHORIZATION_KEY,
+    'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers':
       'Origin, X-Requested-With, Content-Type, Accept',
