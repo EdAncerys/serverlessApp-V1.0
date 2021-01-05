@@ -1,65 +1,37 @@
-const axios = require('axios'); // Axios module
+const nodemailer = require('nodemailer');
 require('dotenv').config(); // Enabling to load Environment variables from a .env File
 
 exports.handler = function (event, context, callback) {
-  const {
-    freshDeskFormName,
-    freshDeskFormEmail,
-    freshDeskFormSubject,
-    freshDeskFormDescription,
-  } = event.body;
+  const transporter = nodemailer.createTransport({
+    service: process.env.EMAIL_SERVICE, // replace with service provider
+    auth: {
+      user: process.env.EMAIL_NAME, // replace with your email
+      pass: process.env.EMAIL_PASSWORD, // replace with your password
+    },
+  });
 
-  let PATH = '/api/v2/tickets';
-  const URL = `https://${process.env.FD_ENDPOINT}.freshdesk.com/${PATH}`;
-  const ENCODING_METHOD = 'base64';
-  const AUTHORIZATION_KEY =
-    'Basic ' +
-    new Buffer.from(process.env.API_KEY + ':' + 'X').toString(ENCODING_METHOD);
+  const { name, email, subject } = JSON.parse(event.body);
 
-  // Send user response
-  const headers = {
-    Authorization: AUTHORIZATION_KEY,
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers':
-      'Origin, X-Requested-With, Content-Type, Accept',
-  };
-  const defaultOptions = {
-    description: 'Details about the issue...',
-    subject: 'Support Needed...',
-    email: 'tom@outerspace.com',
-    priority: 1,
-    status: 2,
-    cc_emails: ['ram@freshdesk.com', 'diana@freshdesk.com'],
+  const mailOptions = {
+    from: process.env.EMAIL_NAME, // replace with your email
+    to: process.env.MAILING_LIST, // replace with your mailing list
+    subject: process.env.SUBJECT + new Date().toLocaleString(),
+    html: `<p>Customer Contact Name: <span style="color: red">${name}</span></p>
+      <p>Email: <span style="color: red">${email}</span></p>
+      <p>Message: <br />${subject}</p>`,
   };
 
-  const sendResponse = (body) => {
-    callback(null, {
-      statusCode: 200,
-      headers: headers,
-      body: JSON.stringify(body),
-    });
-  };
-
-  // Perform API call
-  const getFreshDeskTickets = () => {
-    axios
-      .post(URL, defaultOptions, { headers: headers })
-      .then((res) => {
-        console.log('Ticket Created...');
-        console.log(res.headers.date);
-        console.log(res.headers.status);
-        // console.log(res.data);
-        sendResponse(res.data);
-      })
-      .catch((err) => {
-        console.log(err.response.data);
-        sendResponse(err);
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      callback(error);
+      console.log('Error occurs');
+    } else {
+      callback(null, {
+        statusCode: 200,
+        body: event.body,
       });
-  };
-
-  // Make sure method is GET
-  if (event.httpMethod == 'GET') {
-    getFreshDeskTickets();
-  }
+      console.log('Email sent!!!');
+      console.log(event.body);
+    }
+  });
 };
