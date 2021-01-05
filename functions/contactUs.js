@@ -10,15 +10,27 @@ exports.handler = function (event, context, callback) {
     },
   });
 
-  const { name, email, subject } = JSON.parse(event.body);
+  // const { contactFormName, contactFormEmail, contactFormSubject } = event.body;
+  const body = event.body;
+  // const contactFormName = 'contactFormName';
+  // const contactFormEmail = 'contactFormEmail';
+  // const contactFormSubject = 'contactFormSubject';
+
+  const headers = {
+    'Access-Control-Allow-Origin': '*',
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Headers':
+      'Origin, X-Requested-With, Content-Type, Accept',
+  };
 
   const mailOptions = {
     from: process.env.EMAIL_NAME, // replace with your email
     to: process.env.MAILING_LIST, // replace with your mailing list
     subject: process.env.SUBJECT + new Date().toLocaleString(),
-    html: `<p>Customer Contact Name: <span style="color: red">${name}</span></p>
-      <p>Email: <span style="color: red">${email}</span></p>
-      <p>Message: <br />${subject}</p>`,
+    text: body,
+    html: `<p>Customer Contact Name: <span style="color: red">${'name'}</span></p>
+      <p>Email: <span style="color: red">${'email'}</span></p>
+      <p>Subject: <br />${'subject'}</p>`,
   };
 
   transporter.sendMail(mailOptions, (error, info) => {
@@ -28,10 +40,12 @@ exports.handler = function (event, context, callback) {
     } else {
       callback(null, {
         statusCode: 200,
-        body: event.body,
+        headers,
+        body: body,
       });
+
       console.log('Email sent!!!');
-      console.log(event.body);
+      console.log(body);
     }
   });
 };

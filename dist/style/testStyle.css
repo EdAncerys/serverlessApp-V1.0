@@ -10,6 +10,7 @@ body {
   border-radius: 20px;
   margin: 50px;
   padding: 20px;
+  overflow: hidden;
 }
 .msgText {
   display: grid;

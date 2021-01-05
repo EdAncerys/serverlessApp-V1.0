@@ -9,7 +9,7 @@ exports.handler = function (event, context, callback) {
 
   callback(null, {
     statusCode: 200,
-    headers: headers,
+    headers,
     body: JSON.stringify(body),
   });
 

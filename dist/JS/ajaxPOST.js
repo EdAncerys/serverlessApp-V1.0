@@ -33,7 +33,7 @@ $(document).ready(function () {
           freshDeskFormDescription: freshDeskFormDescription,
         };
       }
-      document.querySelector('#data').innerHTML = 'hello';
+
       $.ajax({
         type: form.attr('method'),
         url: form.attr('action'),
