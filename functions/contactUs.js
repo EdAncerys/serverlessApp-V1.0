@@ -51,3 +51,33 @@ exports.handler = function (event, context, callback) {
     }
   });
 };
+
+// exports.handler = function (event, context, callback) {
+//   const transporter = nodemailer.createTransport({
+//     service: process.env.EMAIL_SERVICE, // replace with service provider
+//     auth: {
+//       user: process.env.EMAIL_NAME, // replace with your email
+//       pass: process.env.EMAIL_PASSWORD, // replace with your password
+//     },
+//   });
+//   console.log(event.body);
+
+//   transporter.sendMail(
+//     {
+//       from: process.env.EMAIL_NAME, // replace with your email
+//       to: process.env.MAILING_LIST, // replace with your mailing list
+//       subject: process.env.SUBJECT + new Date().toLocaleString(),
+//       text: event.body,
+//     },
+//     function (error, info) {
+//       if (error) {
+//         callback(error);
+//       } else {
+//         callback(null, {
+//           statusCode: 200,
+//           body: 'Ok',
+//         });
+//       }
+//     }
+//   );
+// };
