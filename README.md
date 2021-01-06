@@ -8,6 +8,8 @@
   `https://www.npmjs.com/get-npm`
 - Install all dependencies
   `$ npm install`
+- Replace endPoints to run locally
+  `/.netlify/functions/` with `http://localhost:9000/`
 - Run Script to serve lambdas
   `$ npm run-script lambda-serve`
   `Lambdas served on locally on port` [http://localhost:9000](http://localhost:9000)
