@@ -8,8 +8,7 @@
   `https://www.npmjs.com/get-npm`
 - Install all dependencies
   `$ npm install`
-- Run Script
+- Run Script to serve lambdas
   `$ npm run-script lambda-serve`
-- Start the server
-  `$ npm start` run or nodemon
-- Navigate to [http://localhost:9000](http://localhost:9000) in your browser.
+  `Lambdas served on locally on port` [http://localhost:9000](http://localhost:9000)
+- Open .html in ./dist with live server
