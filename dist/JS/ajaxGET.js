@@ -4,7 +4,7 @@ $(document).ready(function () {
     $('form').submit(function (event) {
       event.preventDefault(); // Prevent the form from submitting
 
-      const LAMBDA_END_POINT = 'http://localhost:9000';
+      const LAMBDA_END_POINT = 'http://localhost:9000'; // Change before deploy to Netlify
       const form = $(this);
       const formID = form[0].id;
 
@@ -37,7 +37,7 @@ $(document).ready(function () {
           document.querySelector('#data').innerHTML = response; // Render Response Object
 
           console.log('From ID: ' + formID);
-          console.log('RESPONSE: ' + response);
+          console.log('RESPONSE: ' + res);
         },
         error: function (error) {
           console.log('An error occurred.');
