@@ -3,12 +3,14 @@ $(document).ready(function () {
   $(function () {
     $('form').submit(function (event) {
       event.preventDefault(); // Prevent the form from submitting
+
+      const LAMBDA_END_POINT = 'http://localhost:9000';
       const form = $(this);
       const formID = form[0].id;
 
       $.ajax({
         type: form.attr('method'),
-        url: form.attr('action'),
+        url: LAMBDA_END_POINT + form.attr('action'),
         data: form.serialize(),
 
         success: function (res) {
