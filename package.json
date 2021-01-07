@@ -13,7 +13,7 @@
   "dependencies": {
     "dotenv": "latest",
     "axios": "latest",
-    "netlify-lambda": "latest",
+    "netlify-lambda": "latest"
   },
   "devDependencies": {
     "nodemon": "latest"
