@@ -1,4 +1,2 @@
 [build]
-  command = "npm run-script lambda-serve"
-  publish = "src"
   functions = "lambda"
