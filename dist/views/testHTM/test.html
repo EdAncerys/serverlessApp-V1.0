@@ -6,7 +6,7 @@
       $(document).ready(function () {
         $('button').click(function () {
           $.post(
-            '/.netlify/functions/lambdaPOST',
+            'http://localhost:9000/lambdaPOST',
             {
               name: 'Donald Duck',
               city: 'Duckburg',
