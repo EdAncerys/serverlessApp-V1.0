@@ -11,6 +11,7 @@ function freshDeskTickets(ev) {
   ev.preventDefault();
   const URL = '/ndg/tickets';
   console.log('Fetching freshDeskTickets...');
+
   fetch(URL)
     .then((resp) => resp.json())
     .then((data) => {
@@ -24,8 +25,9 @@ function freshDeskTickets(ev) {
       main.innerHTML = `<h4>Last 4 tickets out of ${length}</h4>
                         <br/>
                         <ul>${content}</ul>`;
-      console.log(data[0]);
+
       console.log('Done...Total: ' + length);
+      console.log(data);
     })
     .catch((err) => {
       let main = document.querySelector('main');
@@ -56,7 +58,6 @@ function submitTicket(ev) {
 
   const headers = {
     'Content-Type': 'application/json',
-    // Authorization: 'Basic bzZVQnJHZWVYR3VBTHJtZVJ0UE06WA==',
   };
 
   const config = {
@@ -69,8 +70,12 @@ function submitTicket(ev) {
     .then((resp) => resp.json())
     .then((data) => {
       let main = document.querySelector('main');
-      // const body = JSON.parse(data);
-      main.innerHTML = `<h4>${data.description}</h4>`;
+      main.innerHTML = `<h4>Ticket Submitted</h4>`;
+      // Reset values
+      // document.getElementById('name').innerHTML = '';
+      // document.getElementById('email').innerHTML = '';
+      // document.getElementById('subject').innerHTML = '';
+      // document.getElementById('description').innerHTML = '';
       console.log(data);
       console.log('Done...');
     })

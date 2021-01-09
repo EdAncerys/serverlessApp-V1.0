@@ -9,7 +9,7 @@
       integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
       crossorigin="anonymous"
     />
-    <script defer src="../js/main.js"></script>
+    <script defer src="../js/contactUs.js"></script>
     <link rel="stylesheet" href="../css/main.css" />
     <title>NDG</title>
   </head>
@@ -18,7 +18,9 @@
       <h1>NDG Technology</h1>
     </header>
     <nav>
-      <a href="/" class="btn btn-warning" role="button">Reload</a>
+      <a href="./contactForm.html" class="btn btn-warning" role="button"
+        >Reload</a
+      >
       <a href="../../index.html" class="btn btn-info" role="button"
         >Main Page</a
       >
@@ -54,19 +56,30 @@
           <label for="description">Description:</label><br />
           <input
             class="input-group-text"
-            type="text"
+            type="textarea"
             id="description"
             name="description"
           /><br /><br />
 
           <input
-            id="submitTicket"
+            id="contactUs"
             class="btn btn-info"
             type="submit"
             value="Contact"
           />
         </form>
+        <main class="displayCenter">
+          <h2>...</h2>
+        </main>
       </div>
     </div>
+
+    <script>
+      function getURL() {
+        alert('The URL of this page is: ' + window.location.href);
+      }
+    </script>
+
+    <button type="button" onclick="getURL();">Get Page URL</button>
   </body>
 </html>
