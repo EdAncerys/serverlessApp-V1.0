@@ -21,3 +21,8 @@
   from = "/ndg/contactUs"
   to = "/.netlify/functions/nodeMailer"
   status = 200
+
+[[redirects]]
+  from = "/ndg/broadband"
+  to = "/.netlify/functions/icuk"
+  status = 200
