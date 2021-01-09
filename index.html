@@ -9,6 +9,7 @@
       integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
       crossorigin="anonymous"
     />
+    <script defer src="js/main.js"></script>
     <link rel="stylesheet" href="css/main.css" />
     <title>NDG</title>
   </head>
@@ -17,15 +18,23 @@
       <h1>NDG Technology</h1>
     </header>
     <nav>
-      <button id="freshDeskTickets" type="button" class="btn btn-primary">
-        GET freshDeskTickets
-      </button>
+      <a href="/" class="btn btn-warning" role="button">Reload</a>
+      <a href="#link" class="btn btn-info" role="button">Link To Page</a>
     </nav>
     <div class="displayCenter">
-      <main>
-        <h2>Loading Data...</h2>
-      </main>
+      <div class="wrapper">
+        <div class="form">
+          <h2>Form...</h2>
+        </div>
+        <div class="tickets">
+          <main>
+            <button id="freshDeskTickets" type="button" class="btn btn-primary">
+              GET freshDeskTickets
+            </button>
+            <h2>Loading Data...</h2>
+          </main>
+        </div>
+      </div>
     </div>
-    <script src="js/main.js"></script>
   </body>
 </html>

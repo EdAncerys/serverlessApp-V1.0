@@ -7,9 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "axios": "latest",
     "dotenv": "latest",
-    "node-fetch": "latest",
-    "axios": "latest"
+    "node-fetch": "latest"
   },
   "repository": {
     "type": "git",
