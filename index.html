@@ -24,7 +24,46 @@
     <div class="displayCenter">
       <div class="wrapper">
         <div class="form">
-          <h2>Form...</h2>
+          <form id="submitForm" action="/">
+            <label for="name">Name:</label><br />
+            <input
+              class="input-group-text"
+              type="text"
+              id="name"
+              name="name"
+            /><br />
+
+            <label for="email">email:</label><br />
+            <input
+              class="input-group-text"
+              type="text"
+              id="email"
+              name="email"
+            /><br />
+
+            <label for="subject">Subject:</label><br />
+            <input
+              class="input-group-text"
+              type="text"
+              id="subject"
+              name="subject"
+            /><br />
+
+            <label for="description">Description:</label><br />
+            <input
+              class="input-group-text"
+              type="text"
+              id="description"
+              name="description"
+            /><br /><br />
+
+            <input
+              id="submitTicket"
+              class="btn btn-info"
+              type="submit"
+              value="Submit Ticket"
+            />
+          </form>
         </div>
         <div class="tickets">
           <main>
