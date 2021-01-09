@@ -12,9 +12,12 @@ function freshDeskTickets(ev) {
     .then((resp) => resp.json())
     .then((content) => {
       let main = document.querySelector('main');
-      main.innerHTML = `<h2>${content[0]}</h2>`;
+      main.innerHTML = `<h2>${content}</h2>`;
+      console.log('Done...');
     })
-    .catch((err) => console.error);
+    .catch((err) => {
+      console.log(JSON.stringify(err));
+    });
 }
 
 function getYes(ev) {

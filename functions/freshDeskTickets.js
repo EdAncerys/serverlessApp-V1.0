@@ -69,8 +69,13 @@ exports.handler = async function (event, context, callback) {
   let res = await fetch(URL, headers);
   let data = await res.json();
 
+  // callback(null, {
+  //   statusCode: 200,
+  //   body: JSON.stringify(data),
+  // });
+
   callback(null, {
     statusCode: 200,
-    body: JSON.stringify(data),
+    body: 'Hello World',
   });
 };

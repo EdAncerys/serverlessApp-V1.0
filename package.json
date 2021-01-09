@@ -1,14 +1,15 @@
 {
-  "name": "netlify_lambda",
+  "name": "NDG Technology",
   "version": "1.0.0",
-  "description": "netlify_lambda_demo",
+  "description": "NDG Technology Web App",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "dotenv": "latest",
-    "node-fetch": "latest"
+    "node-fetch": "latest",
+    "axios": "latest"
   },
   "repository": {
     "type": "git",
