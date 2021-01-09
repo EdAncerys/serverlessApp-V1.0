@@ -2,7 +2,14 @@ const axios = require('axios'); // Axios module
 require('dotenv').config(); // Enabling to load Environment variables from a .env File
 
 exports.handler = function (event, context, callback) {
-  let PATH = 'api/v2/tickets';
+  const {
+    freshDeskFormName,
+    freshDeskFormEmail,
+    freshDeskFormSubject,
+    freshDeskFormDescription,
+  } = event.body;
+
+  let PATH = '/api/v2/tickets';
   const URL = `https://${process.env.FD_ENDPOINT}.freshdesk.com/${PATH}`;
   const ENCODING_METHOD = 'base64';
   const AUTHORIZATION_KEY =
@@ -17,6 +24,14 @@ exports.handler = function (event, context, callback) {
     'Access-Control-Allow-Headers':
       'Origin, X-Requested-With, Content-Type, Accept',
   };
+  const defaultOptions = {
+    description: 'Details about the issue...',
+    subject: 'Support Needed...',
+    email: 'tom@outerspace.com',
+    priority: 1,
+    status: 2,
+    cc_emails: ['ram@freshdesk.com', 'diana@freshdesk.com'],
+  };
 
   const sendResponse = (body) => {
     callback(null, {
@@ -29,8 +44,9 @@ exports.handler = function (event, context, callback) {
   // Perform API call
   const getFreshDeskTickets = () => {
     axios
-      .get(URL, { headers: headers })
+      .post(URL, defaultOptions, { headers: headers })
       .then((res) => {
+        console.log('Ticket Created...');
         console.log(res.headers.date);
         console.log(res.headers.status);
         // console.log(res.data);
@@ -43,7 +59,7 @@ exports.handler = function (event, context, callback) {
   };
 
   // Make sure method is GET
-  if (event.httpMethod == 'GET') {
+  if (event.httpMethod == 'POST') {
     getFreshDeskTickets();
   }
 };

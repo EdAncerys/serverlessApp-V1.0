@@ -2,6 +2,8 @@ const axios = require('axios'); // Axios module
 require('dotenv').config(); // Enabling to load Environment variables from a .env File
 
 exports.handler = function (event, context, callback) {
+  const body = JSON.parse(event.body);
+
   let PATH = 'api/v2/tickets';
   const URL = `https://${process.env.FD_ENDPOINT}.freshdesk.com/${PATH}`;
   const ENCODING_METHOD = 'base64';
@@ -18,6 +20,17 @@ exports.handler = function (event, context, callback) {
       'Origin, X-Requested-With, Content-Type, Accept',
   };
 
+  const config = {
+    method: 'post',
+    url: URL,
+    headers: {
+      Authorization: AUTHORIZATION_KEY,
+      'Content-Type': 'application/json',
+      Cookie: '_x_w=39_1; _x_m=x_c',
+    },
+    data: body,
+  };
+
   const sendResponse = (body) => {
     callback(null, {
       statusCode: 200,
@@ -26,10 +39,11 @@ exports.handler = function (event, context, callback) {
     });
   };
 
+  console.log('Body', body);
+
   // Perform API call
   const getFreshDeskTickets = () => {
-    axios
-      .get(URL, { headers: headers })
+    axios(config)
       .then((res) => {
         console.log(res.headers.date);
         console.log(res.headers.status);
@@ -37,13 +51,14 @@ exports.handler = function (event, context, callback) {
         sendResponse(res.data);
       })
       .catch((err) => {
+        console.log('error');
         console.log(err.response.data);
-        sendResponse(err);
+        sendResponse(err.response.data);
       });
   };
 
   // Make sure method is GET
-  if (event.httpMethod == 'GET') {
+  if (event.httpMethod == 'POST') {
     getFreshDeskTickets();
   }
 };
