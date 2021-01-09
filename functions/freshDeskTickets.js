@@ -33,7 +33,7 @@ exports.handler = function (event, context, callback) {
       .then((res) => {
         console.log(res.headers.date);
         console.log(res.headers.status);
-        // console.log(res.data);
+        console.log(res.data.length);
         sendResponse(res.data);
       })
       .catch((err) => {

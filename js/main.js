@@ -14,15 +14,18 @@ function freshDeskTickets(ev) {
   fetch(URL)
     .then((resp) => resp.json())
     .then((data) => {
+      const length = data.length;
       let main = document.querySelector('main');
-      let content = data.map((ticket) => {
-        return `<li>ID: ${ticket.requester_id}</li>
+      let content = data.slice(0, 4).map((ticket) => {
+        return `<li>ID: ${ticket.id}</li>
                 <li>Created At: ${ticket.created_at}</li>
-                <li>Subject: ${ticket.subject}</li>
-                <li>Type: ${ticket.type}</li>`;
+                <li>Subject: ${ticket.subject}</li>`;
       });
-      main.innerHTML = `<ul>${content}</ul>`;
-      console.log('Done...');
+      main.innerHTML = `<h4>Last 4 tickets out of ${length}</h4>
+                        <br/>
+                        <ul>${content}</ul>`;
+      console.log(data[0]);
+      console.log('Done...Total: ' + length);
     })
     .catch((err) => {
       let main = document.querySelector('main');
@@ -53,7 +56,7 @@ function submitTicket(ev) {
 
   const headers = {
     'Content-Type': 'application/json',
-    Authorization: 'Basic bzZVQnJHZWVYR3VBTHJtZVJ0UE06WA==',
+    // Authorization: 'Basic bzZVQnJHZWVYR3VBTHJtZVJ0UE06WA==',
   };
 
   const config = {
