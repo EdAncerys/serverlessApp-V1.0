@@ -16,3 +16,8 @@
   from = "/ndg/createTicket"
   to = "/.netlify/functions/createFreshDeskTicket"
   status = 200
+
+[[redirects]]
+  from = "/ndg/contactUs"
+  to = "/.netlify/functions/nodeMailer"
+  status = 200

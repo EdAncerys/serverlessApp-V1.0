@@ -9,7 +9,8 @@
   "dependencies": {
     "axios": "latest",
     "dotenv": "latest",
-    "node-fetch": "latest"
+    "node-fetch": "latest",
+    "nodemailer": "latest"
   },
   "repository": {
     "type": "git",
