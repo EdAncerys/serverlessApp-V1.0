@@ -1,3 +1,13 @@
+# https://docs.netlify.com/configure-builds/file-based-configuration/
+
 [build]
-  publish = "dist/"
-  functions = "lambda"
+  publish = ""
+  # the root website directory
+  command = "echo 'I be building' "
+  # the build command
+  functions = "functions/"
+
+[[redirects]]
+  from = "/ndg/tickets"
+  to = "/.netlify/functions/freshDeskTickets"
+  status = 200
