@@ -45,6 +45,7 @@ nav {
   padding: 0 2rem;
   display: flex;
   justify-content: space-evenly;
+  margin: 5rem;
 }
 main {
 }
