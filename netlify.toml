@@ -1,11 +1,12 @@
 # https://docs.netlify.com/configure-builds/file-based-configuration/
 
 [build]
+  # the root website directory
   publish = "./dist"
   # the root website directory
-  command = "echo 'I'll be building web app...' "
+  command = "echo 'I be building' "
   # the build command
-  functions = "functions"
+  functions = "functions/"
 
 [[redirects]]
   from = "/ndg/tickets"
