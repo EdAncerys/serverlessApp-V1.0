@@ -1,15 +1,14 @@
 {
-  "name": "NDG Technology",
+  "name": "NDG-Technology",
   "version": "1.0.0",
-  "description": "NDG Technology Web App",
   "main": "index.js",
+  "description": "NDG_Technology_Web_App",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "axios": "latest",
     "dotenv": "latest",
-    "js-sha512": "^0.8.0",
     "node-fetch": "latest",
     "nodemailer": "latest"
   },

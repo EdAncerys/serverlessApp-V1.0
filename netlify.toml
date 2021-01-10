@@ -1,11 +1,11 @@
 # https://docs.netlify.com/configure-builds/file-based-configuration/
 
 [build]
-  publish = ""
+  publish = "./dist"
   # the root website directory
-  command = "echo 'I be building' "
+  command = "echo 'I'll be building web app...' "
   # the build command
-  functions = "functions/"
+  functions = "functions"
 
 [[redirects]]
   from = "/ndg/tickets"
@@ -23,6 +23,6 @@
   status = 200
 
 [[redirects]]
-  from = "/ndg/broadband"
-  to = "/.netlify/functions/icuk"
+  from = "/lambdaGET"
+  to = "/.netlify/functions/lambdaGET"
   status = 200
