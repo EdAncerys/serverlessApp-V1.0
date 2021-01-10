@@ -33,6 +33,7 @@ body {
   padding: 0;
   margin: 0;
   min-height: 100vh;
+  margin-bottom: 200px;
 }
 header {
   height: 20vh;
@@ -46,10 +47,6 @@ nav {
   display: flex;
   justify-content: space-evenly;
   margin: 5rem;
-}
-footer {
-  height: 20vh;
-  margin-top: 5vh;
 }
 #message {
   margin: 5rem;

@@ -8,6 +8,8 @@
   # the build command
   functions = "functions/"
 
+# App routing
+
 [[redirects]]
   from = "/ndg/tickets"
   to = "/.netlify/functions/freshDeskTickets"
@@ -31,4 +33,9 @@
 [[redirects]]
   from = "/ndg/broadBand"
   to = "/.netlify/functions/icuk"
+  status = 200
+
+[[redirects]]
+  from = "/ndg/districtID"
+  to = "/.netlify/functions/icukGetDistricID"
   status = 200
