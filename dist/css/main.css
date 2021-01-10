@@ -47,5 +47,16 @@ nav {
   justify-content: space-evenly;
   margin: 5rem;
 }
+footer {
+  height: 20vh;
+  margin-top: 5vh;
+}
+#message {
+  margin: 5rem;
+  display: none;
+}
+.highlightedText {
+  color: rgba(255, 0, 0, 0.607);
+}
 main {
 }

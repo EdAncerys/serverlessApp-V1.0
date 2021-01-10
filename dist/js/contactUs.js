@@ -2,6 +2,22 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('contactUs').addEventListener('click', contactUs);
 });
 
+function handleEmailSubmit() {
+  document.querySelector('#name').value = '';
+  document.querySelector('#email').value = '';
+  document.querySelector('#subject').value = '';
+  document.querySelector('#description').value = '';
+
+  const formContainer = document.querySelector('#formContainer');
+  const msgContainer = document.querySelector('#message');
+  formContainer.style.display = 'none';
+  msgContainer.style.display = 'block';
+  setTimeout(() => {
+    formContainer.style.display = 'block';
+    msgContainer.style.display = 'none';
+  }, 2000);
+}
+
 function contactUs(ev) {
   ev.preventDefault();
   console.log('Sending Email...');
@@ -29,7 +45,9 @@ function contactUs(ev) {
     .then((resp) => resp.json())
     .then((data) => {
       let main = document.querySelector('main');
-      main.innerHTML = `<h4>Email Sent</h4>`;
+      main.innerHTML = `<h4>Thank You Fro Contacting Us <span class='highlightedText'>${body.name}</span></h4>`;
+      // Resets form
+      handleEmailSubmit();
 
       console.log(data);
       console.log('Done...');

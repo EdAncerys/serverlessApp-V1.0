@@ -27,59 +27,55 @@
     </nav>
     <div class="displayCenter">
       <div class="form">
-        <h4>Contact Us</h4>
-        <form id="submitForm" action="/">
-          <label for="name">Name:</label><br />
-          <input
-            class="input-group-text"
-            type="text"
-            id="name"
-            name="name"
-          /><br />
+        <div id="formContainer">
+          <h4>Contact Us</h4>
+          <form id="submitForm" action="/">
+            <label for="name">Name:</label><br />
+            <input
+              class="input-group-text"
+              type="text"
+              id="name"
+              name="name"
+            /><br />
 
-          <label for="email">email:</label><br />
-          <input
-            class="input-group-text"
-            type="text"
-            id="email"
-            name="email"
-          /><br />
+            <label for="email">email:</label><br />
+            <input
+              class="input-group-text"
+              type="text"
+              id="email"
+              name="email"
+            /><br />
 
-          <label for="subject">Subject:</label><br />
-          <input
-            class="input-group-text"
-            type="text"
-            id="subject"
-            name="subject"
-          /><br />
+            <label for="subject">Subject:</label><br />
+            <input
+              class="input-group-text"
+              type="text"
+              id="subject"
+              name="subject"
+            /><br />
 
-          <label for="description">Description:</label><br />
-          <input
-            class="input-group-text"
-            type="textarea"
-            id="description"
-            name="description"
-          /><br /><br />
+            <label for="description">Description:</label><br />
+            <input
+              class="input-group-text"
+              type="textarea"
+              id="description"
+              name="description"
+            /><br /><br />
 
-          <input
-            id="contactUs"
-            class="btn btn-info"
-            type="submit"
-            value="Contact"
-          />
-        </form>
-        <main class="displayCenter">
-          <h2>...</h2>
-        </main>
+            <input
+              id="contactUs"
+              class="btn btn-info"
+              type="submit"
+              value="Contact"
+            />
+          </form>
+        </div>
+        <div id="message">
+          <h4 class="displayCenter">Form Submitted Successfully</h4>
+          <main class="displayCenter"></main>
+        </div>
       </div>
     </div>
-
-    <script>
-      function getURL() {
-        alert('The URL of this page is: ' + window.location.href);
-      }
-    </script>
-
-    <button type="button" onclick="getURL();">Get Page URL</button>
+    <footer></footer>
   </body>
 </html>
