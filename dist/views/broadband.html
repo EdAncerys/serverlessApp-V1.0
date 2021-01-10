@@ -9,7 +9,7 @@
       integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
       crossorigin="anonymous"
     />
-    <script defer src="../JS/contactUs.js"></script>
+    <script defer src="../JS/broadband.js"></script>
     <link rel="stylesheet" href="../css/main.css" />
     <title>NDG</title>
   </head>
@@ -18,7 +18,7 @@
       <h1>NDG Technology</h1>
     </header>
     <nav>
-      <a href="./contactForm.html" class="btn btn-warning" role="button"
+      <a href="./broadband.html" class="btn btn-warning" role="button"
         >Reload</a
       >
       <a href="../../index.html" class="btn btn-info" role="button"
@@ -40,7 +40,9 @@
               name="postCode"
             />
             <span class="input-group-btn">
-              <button class="btn btn-default" type="button">Search</button>
+              <button id="getDistrictID" class="btn btn-default" type="button">
+                Go!
+              </button>
             </span>
           </div>
         </div>
@@ -50,5 +52,8 @@
         </div>
       </div>
     </div>
+    <main class="displayCenter">
+      <h2>...</h2>
+    </main>
   </body>
 </html>

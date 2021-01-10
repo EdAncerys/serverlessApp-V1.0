@@ -3,9 +3,10 @@ require('dotenv').config(); // Enabling to load Environment variables from a .en
 const sha512 = require('js-sha512'); // component to compute the SHA512
 
 exports.handler = function (event, context, callback) {
-  const body = JSON.parse(event.body);
+  const urlPath = event.path;
+  const postCode = urlPath.substr(urlPath.lastIndexOf('/') + 1);
+  console.log(postCode);
 
-  const postCode = body.postCode;
   const API_KEY = '76=more=bank=YARD=19';
   const HASH = sha512('/leasedline/address_results/' + postCode + API_KEY);
   const URL =
@@ -31,9 +32,7 @@ exports.handler = function (event, context, callback) {
     axios
       .get(URL, { headers: headers })
       .then((res) => {
-        console.log(res.headers.date);
-        console.log(res.headers.status);
-        console.log(res.data.length);
+        // console.log(res);
         sendResponse(res.data);
       })
       .catch((err) => {

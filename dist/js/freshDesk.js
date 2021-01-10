@@ -29,7 +29,7 @@ function freshDeskTickets(ev) {
   console.log('Fetching freshDeskTickets...');
 
   fetch(URL)
-    .then((resp) => resp.json())
+    .then((res) => res.json())
     .then((data) => {
       const length = data.length;
       let main = document.querySelector('main');
@@ -83,7 +83,7 @@ function submitTicket(ev) {
   };
 
   fetch(URL, config)
-    .then((resp) => resp.json())
+    .then((res) => res.json())
     .then((data) => {
       let main = document.querySelector('main2');
       main.innerHTML = `<h4>Thank You <span class='highlightedText'>${body.name}</span></h4>`;

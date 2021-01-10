@@ -42,7 +42,7 @@ function contactUs(ev) {
   };
 
   fetch(URL, config)
-    .then((resp) => resp.json())
+    .then((res) => res.json())
     .then((data) => {
       let main = document.querySelector('main');
       main.innerHTML = `<h4>Thank You Fro Contacting Us <span class='highlightedText'>${body.name}</span></h4>`;
