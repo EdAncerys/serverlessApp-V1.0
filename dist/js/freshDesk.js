@@ -7,6 +7,22 @@ document.addEventListener('DOMContentLoaded', () => {
     .addEventListener('click', submitTicket);
 });
 
+function handleTicketSubmit() {
+  document.querySelector('#name').value = '';
+  document.querySelector('#email').value = '';
+  document.querySelector('#subject').value = '';
+  document.querySelector('#description').value = '';
+
+  const formContainer = document.querySelector('#formContainer');
+  const msgContainer = document.querySelector('#message');
+  formContainer.style.display = 'none';
+  msgContainer.style.display = 'block';
+  setTimeout(() => {
+    formContainer.style.display = 'block';
+    msgContainer.style.display = 'none';
+  }, 2000);
+}
+
 function freshDeskTickets(ev) {
   ev.preventDefault();
   const URL = '/ndg/tickets';
@@ -69,13 +85,11 @@ function submitTicket(ev) {
   fetch(URL, config)
     .then((resp) => resp.json())
     .then((data) => {
-      let main = document.querySelector('main');
-      main.innerHTML = `<h4>Ticket Submitted</h4>`;
+      let main = document.querySelector('main2');
+      main.innerHTML = `<h4>Thank You <span class='highlightedText'>${body.name}</span></h4>`;
       // Reset values
-      // document.getElementById('name').innerHTML = '';
-      // document.getElementById('email').innerHTML = '';
-      // document.getElementById('subject').innerHTML = '';
-      // document.getElementById('description').innerHTML = '';
+      handleTicketSubmit();
+
       console.log(data);
       console.log('Done...');
     })
