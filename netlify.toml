@@ -37,5 +37,5 @@
 
 [[redirects]]
   from = "/ndg/districtID"
-  to = "/.netlify/functions/icukGetDistricID"
+  to = "/.netlify/functions/icukGetDistrictID"
   status = 200

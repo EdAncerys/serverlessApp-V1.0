@@ -46,16 +46,4 @@ exports.handler = function (event, context, callback) {
   if (event.httpMethod == 'GET') {
     district_id();
   }
-
-  // const res = {
-  //   hash: HASH,
-  //   url: URL,
-  //   body: body,
-  //   postCode: body.postCode,
-  // };
-  // callback(null, {
-  //   statusCode: 200,
-  //   headers,
-  //   body: JSON.stringify(res),
-  // });
 };
