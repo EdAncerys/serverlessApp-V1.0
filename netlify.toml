@@ -27,3 +27,8 @@
   from = "/lambdaGET"
   to = "/.netlify/functions/lambdaGET"
   status = 200
+
+[[redirects]]
+  from = "/ndg/broadBand"
+  to = "/.netlify/functions/icuk"
+  status = 200
