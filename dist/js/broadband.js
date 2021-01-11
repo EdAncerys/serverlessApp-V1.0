@@ -2,9 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
   document
     .getElementById('getDistrictID')
     .addEventListener('click', getDistrictID);
-
-  let main = document.querySelector('main');
-  main.innerHTML = `<h4>hello</h4>`;
 });
 
 function getDistrictID(ev) {
@@ -20,15 +17,16 @@ function getDistrictID(ev) {
     .then((res) => res.json())
     .then((data) => {
       const msg = document.querySelector('#message');
-      const main = document.querySelector('main');
       msg.style.display = 'block';
+      const main = document.querySelector('main');
 
       let content = data.addresses.map((districtID) => {
-        return `<li>Address ${districtID.address}</li>`;
+        return `<option value="${districtID.address}">${districtID.address}</option>`;
       });
-      main.innerHTML = `<ul>${content}</ul>`;
-      // Resets form
-      // handleEmailSubmit();
+      main.innerHTML = `<label for="districtID">Choose a address:</label>
+                        <select name="districtID" id="districtID">
+                          ${content}
+                        </select>`;
 
       console.log(data.addresses);
       console.log('Done...');
