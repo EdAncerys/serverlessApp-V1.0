@@ -2,6 +2,9 @@ document.addEventListener('DOMContentLoaded', () => {
   document
     .getElementById('getDistrictID')
     .addEventListener('click', getDistrictID);
+  document
+    .getElementById('checkAvailability')
+    .addEventListener('click', checkAvailability);
 });
 
 function getDistrictID(ev) {
@@ -24,11 +27,53 @@ function getDistrictID(ev) {
         return `<option value="${districtID.address}">${districtID.address}</option>`;
       });
       main.innerHTML = `<label for="districtID">Choose a address:</label>
-                        <select name="districtID" id="districtID">
+                        <select name="districtID" id="districtID" style="width:400px">
                           ${content}
-                        </select>`;
+                        </select><br/>
+                        <button id='checkAvailability' class="btn btn-danger" role="button"
+                        >Check Availability</button>`;
 
       console.log(data.addresses);
+      console.log('Done...');
+    })
+    .catch((err) => {
+      let main = document.querySelector('main');
+      main.innerHTML = `<h4>${err}</h4>`;
+      console.log(err);
+    });
+}
+
+function checkAvailability(ev) {
+  ev.preventDefault();
+  console.log('Getting Broadband Deals...');
+
+  const URL = '/ndg/broadbandAvailability';
+  const postCode = document.getElementById('postCode').value;
+  const districtID = document.getElementById('districtID').value;
+
+  const body = {
+    postCode,
+    districtID,
+  };
+  console.log(body);
+
+  const headers = {
+    'Content-Type': 'application/json',
+  };
+
+  const config = {
+    method: 'POST',
+    headers,
+    body: JSON.stringify(body),
+  };
+
+  fetch(URL, config)
+    .then((res) => res.json())
+    .then((data) => {
+      let main = document.querySelector('main');
+      main.innerHTML = `<h4>${data}</h4>`;
+
+      console.log(data);
       console.log('Done...');
     })
     .catch((err) => {

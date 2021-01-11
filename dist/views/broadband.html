@@ -56,13 +56,13 @@
     <script>
       function testFunc() {
         // alert('The URL of this page is: ' + window.location.href);
-        const msg = document.querySelector('#message');
-        const main = document.querySelector('main');
-        msg.style.display = 'block';
-        main.innerHTML = `Hello World`;
+        const postCode = document.getElementById('postCode').value;
+        const districtID = document.getElementById('districtID').value;
+        console.log(postCode);
+        console.log(districtID);
       }
     </script>
 
-    <!-- <button type="button" onclick="testFunc();">Get Page URL</button> -->
+    <button type="button" onclick="testFunc();">Get Page URL</button>
   </body>
 </html>
