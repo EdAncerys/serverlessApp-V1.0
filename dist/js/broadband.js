@@ -2,9 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
   document
     .getElementById('getDistrictID')
     .addEventListener('click', getDistrictID);
-  document
-    .getElementById('checkAvailability')
-    .addEventListener('click', checkAvailability);
 });
 
 function getDistrictID(ev) {
@@ -33,6 +30,9 @@ function getDistrictID(ev) {
                         <button id='checkAvailability' class="btn btn-danger" role="button"
                         >Check Availability</button>`;
 
+      document
+        .getElementById('checkAvailability')
+        .addEventListener('click', checkAvailability);
       console.log(data.addresses);
       console.log('Done...');
     })
@@ -67,18 +67,18 @@ function checkAvailability(ev) {
     body: JSON.stringify(body),
   };
 
-  fetch(URL, config)
-    .then((res) => res.json())
-    .then((data) => {
-      let main = document.querySelector('main');
-      main.innerHTML = `<h4>${data}</h4>`;
+  // fetch(URL, config)
+  //   .then((res) => res.json())
+  //   .then((data) => {
+  //     let main = document.querySelector('main');
+  //     main.innerHTML = `<h4>${data}</h4>`;
 
-      console.log(data);
-      console.log('Done...');
-    })
-    .catch((err) => {
-      let main = document.querySelector('main');
-      main.innerHTML = `<h4>${err}</h4>`;
-      console.log(err);
-    });
+  //     console.log(data);
+  //     console.log('Done...');
+  //   })
+  //   .catch((err) => {
+  //     let main = document.querySelector('main');
+  //     main.innerHTML = `<h4>${err}</h4>`;
+  //     console.log(err);
+  //   });
 }

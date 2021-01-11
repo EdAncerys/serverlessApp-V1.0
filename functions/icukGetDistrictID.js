@@ -4,7 +4,9 @@ const sha512 = require('js-sha512'); // component to compute the SHA512
 
 exports.handler = function (event, context, callback) {
   const urlPath = event.path;
-  const postCode = urlPath.substr(urlPath.lastIndexOf('/') + 1);
+  const postCodeRaw = urlPath.substr(urlPath.lastIndexOf('/') + 1);
+  const postCode = postCodeRaw.replace(/%20/g, '');
+  console.log('postCodeRaw: ' + postCodeRaw);
   console.log('postCode: ' + postCode);
 
   const ICUK_API_KEY = process.env.ICUK_API_KEY;
