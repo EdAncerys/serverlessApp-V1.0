@@ -47,13 +47,22 @@
           </div>
         </div>
         <div id="message">
-          <h4 class="displayCenter">Form Submitted Successfully</h4>
-          <main class="displayCenter"></main>
+          <h4 class="displayCenter">Address For Submitted postCode</h4>
+          <main class="displayCenter">...</main>
         </div>
       </div>
     </div>
-    <main class="displayCenter">
-      <h2>...</h2>
-    </main>
+
+    <script>
+      function testFunc() {
+        // alert('The URL of this page is: ' + window.location.href);
+        const msg = document.querySelector('#message');
+        const main = document.querySelector('main');
+        msg.style.display = 'block';
+        main.innerHTML = `Hello World`;
+      }
+    </script>
+
+    <button type="button" onclick="testFunc();">Get Page URL</button>
   </body>
 </html>
