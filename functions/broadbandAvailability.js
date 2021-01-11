@@ -5,7 +5,7 @@ const sha512 = require('js-sha512'); // component to compute the SHA512
 exports.handler = function (event, context, callback) {
   const { postcode, district_id } = JSON.parse(event.body);
 
-  const API_KEY = '76=more=bank=YARD=19';
+  const ICUK_API_KEY = process.env.ICUK_API_KEY;
   // const URL = `https://api.interdns.co.uk/broadband/availability`;
   const URL =
     'https://api.interdns.co.uk/leasedline/quote/' +
@@ -13,7 +13,7 @@ exports.handler = function (event, context, callback) {
     '/' +
     postcode +
     '/BT_Wholesale/Fibre/none/item100mbits/item';
-  const HASH = sha512(URL + API_KEY);
+  const HASH = sha512(URL + ICUK_API_KEY);
 
   // Send user response
   const headers = {

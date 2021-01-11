@@ -7,8 +7,8 @@ exports.handler = function (event, context, callback) {
   const postCode = urlPath.substr(urlPath.lastIndexOf('/') + 1);
   console.log('postCode: ' + postCode);
 
-  const API_KEY = '76=more=bank=YARD=19';
-  const HASH = sha512('/leasedline/address_results/' + postCode + API_KEY);
+  const ICUK_API_KEY = process.env.ICUK_API_KEY;
+  const HASH = sha512('/leasedline/address_results/' + postCode + ICUK_API_KEY);
   const URL =
     `https://api.interdns.co.uk/leasedline/address_results/` + postCode;
 

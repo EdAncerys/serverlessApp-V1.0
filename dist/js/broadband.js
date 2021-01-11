@@ -48,12 +48,12 @@ function checkAvailability(ev) {
   console.log('Getting Broadband Deals...');
 
   const URL = '/ndg/broadbandAvailability';
-  const postCode = document.getElementById('postCode').value;
-  const districtID = document.getElementById('districtID').value;
+  const postcode = document.getElementById('postCode').value;
+  const district_id = document.getElementById('districtID').value;
 
   const body = {
-    postCode,
-    districtID,
+    postcode,
+    district_id,
   };
   console.log(body);
 
