@@ -9,10 +9,11 @@ exports.handler = function (event, context, callback) {
   console.log('postCodeRaw: ' + postCodeRaw);
   console.log('postCode: ' + postCode);
 
+  const ICUK_URL = process.env.ICUK_URL;
   const ICUK_API_KEY = process.env.ICUK_API_KEY;
-  const HASH = sha512('/leasedline/address_results/' + postCode + ICUK_API_KEY);
-  const URL =
-    `https://api.interdns.co.uk/leasedline/address_results/` + postCode;
+  const ICUK_END_POINT = '/leasedline/address_results/';
+  const HASH = sha512(ICUK_END_POINT + postCode + ICUK_API_KEY);
+  const URL = ICUK_URL + ICUK_END_POINT + postCode;
 
   // Send user response
   const headers = {
@@ -25,6 +26,7 @@ exports.handler = function (event, context, callback) {
   const sendResponse = (body) => {
     callback(null, {
       statusCode: 200,
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body),
     });
   };

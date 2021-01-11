@@ -1,4 +1,3 @@
-const { doesNotMatch } = require('assert');
 const dns = require('dns'); // component to compute the SHA512
 
 exports.handler = function (event, context, callback) {
@@ -14,11 +13,11 @@ exports.handler = function (event, context, callback) {
       callback(error);
       return;
     }
-
     const res = {
       url: URL,
       IP: value,
     };
+    console.log(res);
     callback(null, {
       statusCode: 200,
       headers,
