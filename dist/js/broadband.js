@@ -20,14 +20,14 @@ function getDistrictID(ev) {
     .then((res) => res.json())
     .then((data) => {
       let main = document.querySelector('main');
-      let content = data.map((districtID) => {
-        return `<li>ID: ${districtID.address}</li>`;
-      });
-      main.innerHTML = `<ul>${content}</ul>`;
+      // let content = data.addresses.map((districtID) => {
+      //   return `<li>ID: ${districtID.address}</li>`;
+      // });
+      main.innerHTML = `<ul>${data}</ul>`;
       // Resets form
       // handleEmailSubmit();
 
-      console.log(data);
+      console.log(data.addresses);
       console.log('Done...');
     })
     .catch((err) => {

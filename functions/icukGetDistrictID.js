@@ -5,7 +5,7 @@ const sha512 = require('js-sha512'); // component to compute the SHA512
 exports.handler = function (event, context, callback) {
   const urlPath = event.path;
   const postCode = urlPath.substr(urlPath.lastIndexOf('/') + 1);
-  console.log(postCode);
+  console.log('postCode: ' + postCode);
 
   const API_KEY = '76=more=bank=YARD=19';
   const HASH = sha512('/leasedline/address_results/' + postCode + API_KEY);
