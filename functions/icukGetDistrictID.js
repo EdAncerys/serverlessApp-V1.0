@@ -15,6 +15,8 @@ exports.handler = function (event, context, callback) {
   const HASH = sha512(ICUK_END_POINT + postCode + ICUK_API_KEY);
   const URL = ICUK_URL + ICUK_END_POINT + postCode;
 
+  const TEST_HASH = sha512('/broadband/availability' + ICUK_API_KEY);
+  console.log('Test Hash: ', TEST_HASH);
   // Send user response
   const headers = {
     User: 'icukapi',
@@ -22,7 +24,7 @@ exports.handler = function (event, context, callback) {
     Encryption: 'SHA-512',
     'Content-Type': 'application/json',
   };
-
+  console.log(headers);
   const sendResponse = (body) => {
     callback(null, {
       statusCode: 200,

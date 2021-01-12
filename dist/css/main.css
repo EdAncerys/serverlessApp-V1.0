@@ -8,6 +8,14 @@ html {
   font-weight: 100;
   line-height: 1.6;
 }
+#NDG {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  font-size: 200px;
+  font-weight: bold;
+  height: 100vh;
+}
 .displayCenter {
   display: grid;
   align-items: center;

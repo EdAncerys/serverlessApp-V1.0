@@ -7,10 +7,9 @@ exports.handler = function (event, context, callback) {
 
   const ICUK_URL = process.env.ICUK_URL;
   const ICUK_API_KEY = process.env.ICUK_API_KEY;
-  const ICUK_END_POINT = '/leasedline/address_results/';
+  const ICUK_END_POINT = '/broadband/availability';
   const URL = ICUK_URL + ICUK_END_POINT;
   const HASH = sha512(URL + ICUK_API_KEY);
-  console.log(URL);
 
   // Send user response
   const headers = {
@@ -19,7 +18,6 @@ exports.handler = function (event, context, callback) {
     Encryption: 'SHA-512',
     'Content-Type': 'application/json',
   };
-  console.log(headers);
 
   const body = {
     postcode,
@@ -32,19 +30,17 @@ exports.handler = function (event, context, callback) {
     headers,
     body,
   };
+  console.log('config: ', config);
 
   const sendResponse = (body) => {
     callback(null, {
       statusCode: 200,
-      headers: headers,
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body),
     });
   };
-
-  console.log('Body: ', body);
-
   // Perform API call
-  const getFreshDeskTickets = () => {
+  const broadbandAvailability = () => {
     axios(config)
       .then((res) => {
         console.log(res);
@@ -58,6 +54,6 @@ exports.handler = function (event, context, callback) {
 
   // Make sure method is GET
   if (event.httpMethod == 'POST') {
-    getFreshDeskTickets();
+    broadbandAvailability();
   }
 };
