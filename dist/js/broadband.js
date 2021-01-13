@@ -26,7 +26,7 @@ const handleErrors = (errors) => {
 
 const handleFormValidation = (ev) => {
   ev.preventDefault();
-  let postcode = document.getElementById('postcode').value;
+  let postcode = document.getElementById('postcode').value.replace(/\s/g, '');
   let errors = [];
 
   console.log('Validating From...');
@@ -42,15 +42,12 @@ const handleFormValidation = (ev) => {
     handleErrors(errors);
   } else {
     console.log('Postcode valid...');
-    // getAddress(name, email, subject, description);
+    // getAddress(postcode);
   }
 };
 
-function getAddress(ev) {
-  ev.preventDefault();
-  console.log('Fetching getDistrictIDs...');
-
-  const postCode = document.getElementById('postCode').value;
+function getAddress(postcode) {
+  console.log('Fetching addresses...');
   const URL = '/ndg/districtID/' + postCode;
 
   console.log(URL);
