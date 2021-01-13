@@ -9,6 +9,19 @@ const validateEmail = (email) => {
   return re.test(email);
 };
 
+const handleErrors = (errors) => {
+  console.log('error...');
+  let msg = document.querySelector('msg');
+  document.querySelector('#msg').style.display = 'block';
+  let errorMsg = errors.map((err) => {
+    return `<li class='err'>${err.msg}</li>`;
+  });
+  msg.innerHTML = `<ul>${errorMsg}</ul>`;
+  setTimeout(() => {
+    document.querySelector('#msg').style.display = 'none';
+  }, 2000);
+};
+
 const handleFormValidation = (ev) => {
   ev.preventDefault();
   let name = document.getElementById('name').value;
@@ -26,16 +39,7 @@ const handleFormValidation = (ev) => {
   if (!validateEmail(email)) errors.push({ msg: 'Email not valid' });
 
   if (errors.length > 0) {
-    console.log('error...');
-    let msg = document.querySelector('msg');
-    document.querySelector('#msg').style.display = 'block';
-    let errorMsg = errors.map((err) => {
-      return `<li class='err'>${err.msg}</li>`;
-    });
-    msg.innerHTML = `<ul>${errorMsg}</ul>`;
-    setTimeout(() => {
-      document.querySelector('#msg').style.display = 'none';
-    }, 2000);
+    handleErrors(errors);
   } else {
     console.log('Form submitted successfully...');
     contactUs(name, email, subject, description);
@@ -43,7 +47,7 @@ const handleFormValidation = (ev) => {
 };
 
 const handleSubmission = (name, email, subject, description) => {
-  name = '';
+  document.querySelector('#name').value = '';
   document.querySelector('#email').value = '';
   document.querySelector('#subject').value = '';
   document.querySelector('#description').value = '';
@@ -68,7 +72,6 @@ const contactUs = (name, email, subject, description) => {
     subject,
     description,
   };
-  console.log(body);
 
   const config = {
     method: 'POST',
