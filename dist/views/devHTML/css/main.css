@@ -1,4 +1,4 @@
-@import url('./contactForm.css');
+/* @import url('./contactForm.css'); */
 
 * {
   box-sizing: border-box;
@@ -27,6 +27,10 @@ body {
   display: grid;
   justify-content: center;
 }
+.centerVertically {
+  display: grid;
+  align-items: center;
+}
 header {
   height: 20vh;
   padding: 1rem 2rem;
@@ -37,10 +41,27 @@ header {
   width: 800px;
   height: 800px;
 }
+#form {
+  margin-top: 200px;
+}
+#msg {
+  margin-top: 40px;
+  position: absolute;
+  /* display: none; */
+}
+msg {
+  font-weight: bold;
+  color: rgba(255, 0, 0, 0.6);
+  width: 800px;
+  height: 50px;
+}
+.highlightedText {
+  color: rgba(255, 0, 0, 0.6);
+}
 .colorTest {
   background-color: tomato;
 }
-.wrapper {
+/* .wrapper {
   margin: 2rem;
   display: grid;
   grid-template-columns: repeat(8, 1fr);
@@ -56,10 +77,4 @@ header {
 .tickets {
   grid-area: b;
 }
-#message {
-  margin: 5rem;
-  display: none;
-}
-.highlightedText {
-  color: rgba(255, 0, 0, 0.607);
-}
+ */
