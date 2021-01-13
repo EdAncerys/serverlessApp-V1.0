@@ -46,7 +46,7 @@ const handleFormValidation = (ev) => {
   }
 };
 
-const handleSubmission = (name, email, subject, description) => {
+const handleSubmission = () => {
   document.querySelector('#name').value = '';
   document.querySelector('#email').value = '';
   document.querySelector('#subject').value = '';
@@ -59,7 +59,7 @@ const handleSubmission = (name, email, subject, description) => {
   setTimeout(() => {
     formContainer.style.display = 'block';
     msgContainer.style.display = 'none';
-  }, 2000);
+  }, 3000);
 };
 
 const contactUs = (name, email, subject, description) => {
@@ -81,8 +81,8 @@ const contactUs = (name, email, subject, description) => {
   fetch(URL, config)
     .then((res) => res.json())
     .then((data) => {
-      let main = document.querySelector('msg');
-      main.innerHTML = `<h4>Thank You Fro Contacting Us <span class='highlightedText'>${body.name}</span></h4>`;
+      let msg = document.querySelector('msg');
+      msg.innerHTML = `<h4>Thank You Fro Contacting Us <span class='highlightedText'>${body.name}</span></h4>`;
       // Resets form
       handleSubmission(name, email, subject, description);
 
