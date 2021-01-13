@@ -1,10 +1,52 @@
 document.addEventListener('DOMContentLoaded', () => {
   document
-    .getElementById('getDistrictID')
-    .addEventListener('click', getDistrictID);
+    .getElementById('getAddress')
+    .addEventListener('click', handleFormValidation);
 });
 
-function getDistrictID(ev) {
+const validatePostcode = (postcode) => {
+  postcode = postcode.replace(/\+|\(|\)|\-|\s/gi, '');
+  if (/^[A-Za-z]{1,2}(\d{1,2}|[I])[A-Za-z]? ?\d[A-Za-z]{2}$/.test(postcode))
+    return true;
+  else return false;
+};
+
+const handleErrors = (errors) => {
+  console.log('error...');
+  let msg = document.querySelector('msg');
+  document.querySelector('#msg').style.display = 'block';
+  let errorMsg = errors.map((err) => {
+    return `<li class='err'>${err.msg}</li>`;
+  });
+  msg.innerHTML = `<ul>${errorMsg}</ul>`;
+  setTimeout(() => {
+    document.querySelector('#msg').style.display = 'none';
+  }, 2000);
+};
+
+const handleFormValidation = (ev) => {
+  ev.preventDefault();
+  let postcode = document.getElementById('postcode').value;
+  let errors = [];
+
+  console.log('Validating From...');
+  console.log(postcode);
+
+  if (!postcode) errors.push({ msg: 'Please enter your postcode' });
+
+  if (!validatePostcode(postcode) && postcode)
+    errors.push({ msg: 'Postcode not valid' });
+
+  if (errors.length > 0) {
+    console.log('Postcode not valid...');
+    handleErrors(errors);
+  } else {
+    console.log('Postcode valid...');
+    // getAddress(name, email, subject, description);
+  }
+};
+
+function getAddress(ev) {
   ev.preventDefault();
   console.log('Fetching getDistrictIDs...');
 

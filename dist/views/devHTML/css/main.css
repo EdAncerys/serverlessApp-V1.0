@@ -38,7 +38,7 @@ header {
   color: black;
 }
 .container {
-  width: 800px;
+  width: 600px;
   height: 800px;
 }
 #form {
@@ -60,6 +60,9 @@ msg {
 }
 .colorTest {
   background-color: tomato;
+}
+.inlineBlock {
+  display: inline-block;
 }
 /* .wrapper {
   margin: 2rem;

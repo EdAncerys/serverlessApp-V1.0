@@ -24,50 +24,61 @@
     <header class="displayCenter">
       <h1>NDG Technology</h1>
     </header>
-    <div class="displayCenter">
-      <div class="container">
-        <div id="msg">
-          <msg class="centerVertically"></msg>
-        </div>
-        <div id="form">
-          <h4>Create Ticket</h4>
-          <form id="submitForm" action="/">
-            <label for="name">Name:</label>
-            <input type="text" class="form-control" id="name" name="name" />
-            <label for="email">email:</label>
-            <input type="text" class="form-control" id="email" name="email" />
-            <label for="subject">Subject:</label>
-            <input
-              type="text"
-              class="form-control"
-              id="subject"
-              name="subject"
-            />
-            <label for="description">Description:</label>
-            <textarea
-              class="form-control"
-              id="description"
-              name="description"
-              rows="3"
-            ></textarea>
+    <div class="container">
+      <div class="inlineBlock">
+        <div class="displayCenter">
+          <div class="container">
+            <div id="msg">
+              <msg class="centerVertically"></msg>
+            </div>
+            <div id="form">
+              <h4>Create Ticket</h4>
+              <form id="submitForm" action="/">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" id="name" name="name" />
+                <label for="email">email:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="email"
+                  name="email"
+                />
+                <label for="subject">Subject:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="subject"
+                  name="subject"
+                />
+                <label for="description">Description:</label>
+                <textarea
+                  class="form-control"
+                  id="description"
+                  name="description"
+                  rows="3"
+                ></textarea>
 
-            <input
-              id="submitTicket"
-              class="btn btn-info mt-4"
-              type="submit"
-              value="Submit Ticket"
-            />
-          </form>
+                <input
+                  id="submitTicket"
+                  class="btn btn-info mt-4"
+                  type="submit"
+                  value="Submit Ticket"
+                />
+              </form>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="displayCenter">
-      <div class="container">
-        <button id="freshDeskTickets" type="button" class="btn btn-primary">
-          GET freshDeskTickets
-        </button>
-        <div id="msg">
-          <freshDeskMsg class="centerVertically"></freshDeskMsg>
+      <div class="inlineBlock">
+        <div class="displayCenter">
+          <div class="container">
+            <button id="freshDeskTickets" type="button" class="btn btn-primary">
+              GET freshDeskTickets
+            </button>
+            <div id="msg">
+              <freshDeskMsg class="centerVertically"></freshDeskMsg>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -9,46 +8,45 @@
       integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
       crossorigin="anonymous"
     />
-    <script defer src="../JS/broadband.js"></script>
-    <link rel="stylesheet" href="../css/main.css" />
-    <title>NDG</title>
+    <script defer src="../../JS/broadband.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="../devHTML/css/main.css" />
+    <title>Contact Form</title>
+    <!-- Render Template script -->
+    <script>
+      $(document).ready(() => {
+        $('#navigation').load('./template/navigation.html');
+      });
+    </script>
   </head>
   <body>
+    <div id="navigation"></div>
     <header class="displayCenter">
       <h1>NDG Technology</h1>
     </header>
-    <nav>
-      <a href="./broadband.html" class="btn btn-warning" role="button"
-        >Reload</a
-      >
-      <a href="../../index.html" class="btn btn-info" role="button"
-        >FreshDesk Page</a
-      >
-      <a href="./contactForm.html" class="btn btn-info" role="button"
-        >Contact Page</a
-      >
-    </nav>
     <div class="displayCenter">
-      <div class="form">
-        <div id="formContainer">
-          <h4>Broadband Deals</h4>
-          <div class="input-group">
+      <div class="container">
+        <div id="msg">
+          <msg class="centerVertically"></msg>
+        </div>
+        <div id="form">
+          <h4>Get Broadband Deals</h4>
+          <form id="submitForm" action="/">
+            <label for="name">Postcode:</label>
             <input
               type="text"
               class="form-control"
-              id="postCode"
-              name="postCode"
+              id="postcode"
+              name="postcode"
             />
-            <span class="input-group-btn">
-              <button id="getDistrictID" class="btn btn-default" type="button">
-                Go!
-              </button>
-            </span>
-          </div>
-        </div>
-        <div id="message">
-          <h4 class="displayCenter">Address For Submitted postCode</h4>
-          <main class="displayCenter">...</main>
+
+            <input
+              id="getAddress"
+              class="btn btn-info mt-4"
+              type="submit"
+              value="Go!"
+            />
+          </form>
         </div>
       </div>
     </div>
@@ -63,6 +61,8 @@
       }
     </script>
 
-    <button type="button" onclick="testFunc();">Get Page URL</button>
+    <!-- <button class="btn btn-warning" type="button" onclick="testFunc();">
+      Run Script
+    </button> -->
   </body>
 </html>
