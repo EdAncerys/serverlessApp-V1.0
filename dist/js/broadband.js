@@ -42,32 +42,34 @@ const handleFormValidation = (ev) => {
     handleErrors(errors);
   } else {
     console.log('Postcode valid...');
-    // getAddress(postcode);
+    getAddress(postcode);
   }
 };
 
 function getAddress(postcode) {
   console.log('Fetching addresses...');
-  const URL = '/ndg/districtID/' + postCode;
+  const URL = '/ndg/districtID/' + postcode;
 
   console.log(URL);
 
   fetch(URL)
     .then((res) => res.json())
     .then((data) => {
-      const msg = document.querySelector('#message');
-      msg.style.display = 'block';
-      const main = document.querySelector('main');
+      const msg = document.querySelector('msgBroadband');
+      const addresses = document.querySelector('addresses');
+      const btn = document.querySelector('btnBroadband');
 
-      let content = data.addresses.map((districtID) => {
-        return `<option value="${districtID.address}">${districtID.address}</option>`;
+      let content = data.addresses.map((doorNo) => {
+        return `<option value="${doorNo.address}>${doorNo.address}</option>`;
       });
-      main.innerHTML = `<label for="districtID">Choose a address:</label>
-                        <select name="districtID" id="districtID" style="width:400px">
-                          ${content}
-                        </select><br/>
-                        <button id='checkAvailability' class="btn btn-danger" role="button"
-                        >Check Availability</button>`;
+
+      msg.innerHTML = `<label for="addresses">Choose your address:</label>`;
+      addresses.innerHTML = `<select name="addresses" id="addresses" style="width:600px">
+                              ${content}
+                            </select>`;
+      btn.innerHTML = `<button id='checkAvailability' class="btn btn-danger mt-4" role="button">
+                        Check Availability
+                        </button>`;
 
       document
         .getElementById('checkAvailability')
@@ -76,8 +78,8 @@ function getAddress(postcode) {
       console.log('Done...');
     })
     .catch((err) => {
-      let main = document.querySelector('main');
-      main.innerHTML = `<h4>${err}</h4>`;
+      let msg = document.querySelector('msg');
+      msg.innerHTML = `<h4>${err}</h4>`;
       console.log(err);
     });
 }
