@@ -2,6 +2,9 @@ document.addEventListener('DOMContentLoaded', () => {
   document
     .getElementById('getAddress')
     .addEventListener('click', handleFormValidation);
+
+  // Hardcoded input value
+  document.getElementById('postcode').value = 'LE157GH';
 });
 
 const validatePostcode = (postcode) => {
@@ -48,7 +51,7 @@ const handleFormValidation = (ev) => {
 
 function getAddress(postcode) {
   console.log('Fetching addresses...');
-  const URL = '/ndg/districtID/' + postcode;
+  const URL = '/ndg/getAddresses/' + postcode;
 
   console.log(URL);
 
@@ -59,8 +62,15 @@ function getAddress(postcode) {
       const addresses = document.querySelector('addresses');
       const btn = document.querySelector('btnBroadband');
 
-      let content = data.addresses.map((doorNo) => {
-        return `<option value="${doorNo.address}>${doorNo.address}</option>`;
+      let content = data.addresses.map((address) => {
+        let doorNo =
+          address.thoroughfare_number === null
+            ? address.premises_name
+            : address.thoroughfare_number;
+        let streetName = address.thoroughfare_name;
+        let postTown = address.post_town;
+
+        return `<option value="${address}>${doorNo} ${streetName} ${postTown}</option>`;
       });
 
       msg.innerHTML = `<label for="addresses">Choose your address:</label>`;

@@ -36,11 +36,12 @@
   status = 200
 
 [[redirects]]
+  from = "/ndg/getAddresses/*"
+  to = "/.netlify/functions/icukGetAddresses"
+  status = 200
+  
+[[redirects]]
   from = "/ndg/broadbandAvailability"
   to = "/.netlify/functions/broadbandAvailability"
   status = 200
 
-[[redirects]]
-  from = "/ndg/districtID/*"
-  to = "/.netlify/functions/icukGetDistrictID"
-  status = 200
