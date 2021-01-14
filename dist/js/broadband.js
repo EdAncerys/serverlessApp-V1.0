@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     .addEventListener('click', handleFormValidation);
 
   // Hardcoded input value
-  document.getElementById('postcode').value = 'LE157GH';
+  document.getElementById('postcode').value = 'E163DY';
 });
 
 const validatePostcode = (postcode) => {
@@ -61,6 +61,7 @@ function getAddress(postcode) {
       const msg = document.querySelector('msgBroadband');
       const addresses = document.querySelector('addresses');
       const btn = document.querySelector('btnBroadband');
+      let value = -1;
 
       let content = data.addresses.map((address) => {
         let doorNo =
@@ -70,7 +71,7 @@ function getAddress(postcode) {
         let streetName = address.thoroughfare_name;
         let postTown = address.post_town;
 
-        let address = {
+        let addressDetails = {
           sub_premises: address.sub_premises,
           premises_name: address.premises_name,
           thoroughfare_number: address.thoroughfare_number,
@@ -82,12 +83,12 @@ function getAddress(postcode) {
           district_id: address.district_id,
           nad_key: address.nad_key,
         };
-
-        return `<option id="selectedAddress" value="${address}">${doorNo} ${streetName} ${postTown}</option>`;
+        value += 1;
+        return `<option thoroughfare_number="${address.thoroughfare_number}" value="${value}">${doorNo} ${streetName} ${postTown}</option>`;
       });
 
-      msg.innerHTML = `<label for="addresses">Choose your address:</label>`;
-      addresses.innerHTML = `<select name="addresses" id="addresses" style="width:600px">
+      msg.innerHTML = `<label for="selectedAddress">Choose your address:</label>`;
+      addresses.innerHTML = `<select name="selectedAddress" id="selectedAddress" style="width:600px">
                               ${content}
                             </select>`;
       btn.innerHTML = `<button id='checkAvailability' class="btn btn-danger mt-4" role="button">

@@ -60,15 +60,27 @@
     <script>
       function testFunc() {
         // alert('The URL of this page is: ' + window.location.href);
-        const postCode = document.getElementById('postcode').value;
-        const districtID = document.getElementById('addresses').value;
+        let postCode = document.getElementById('postcode').value;
+        let value = document.getElementById('selectedAddress').value;
+        let data = document
+          .getElementById('selectedAddress')
+          [value].getAttribute('thoroughfare_number');
         console.log(postCode);
-        console.log(districtID);
+        console.log(data);
       }
     </script>
 
     <button class="btn btn-warning" type="button" onclick="testFunc();">
       Run Script
     </button>
+
+    <select
+      onchange="alert(this.options[this.selectedIndex].getAttribute('isred'));"
+      name="myname"
+      class="myclass"
+    >
+      <option isred="A" value="hi">Value A</option>
+      <option isred="B" value="ho">Value B</option>
+    </select>
   </body>
 </html>
