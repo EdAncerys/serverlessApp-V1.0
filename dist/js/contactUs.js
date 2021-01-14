@@ -87,11 +87,13 @@ const contactUs = (name, email, subject, description) => {
       handleSubmission(name, email, subject, description);
 
       console.log(data);
-      console.log('Done...');
+      console.log('Data submitted successfully...');
     })
     .catch((err) => {
       let main = document.querySelector('main');
       main.innerHTML = `<h4>${err}</h4>`;
+
+      console.log('error');
       console.log(err);
     });
 };

@@ -49,7 +49,7 @@ const handleFormValidation = (ev) => {
   }
 };
 
-function getAddress(postcode) {
+const getAddress = (postcode) => {
   console.log('Fetching addresses...');
   const URL = '/ndg/getAddresses/' + postcode;
 
@@ -90,59 +90,93 @@ function getAddress(postcode) {
       addresses.innerHTML = `<select name="selectedAddress" id="selectedAddress" style="width:600px">
                               ${content}
                             </select>`;
-      btn.innerHTML = `<button id='checkAvailability' class="btn btn-danger mt-4" role="button">
+      btn.innerHTML = `<button id='getBroadbandAvailability' class="btn btn-danger mt-4" role="button">
                         Check Availability
                         </button>`;
 
       document
-        .getElementById('checkAvailability')
-        .addEventListener('click', checkAvailability);
-      console.log(data.addresses);
-      console.log('Done...');
+        .getElementById('getBroadbandAvailability')
+        .addEventListener('click', getBroadbandAvailability);
+      // console.log(data.addresses);
+      console.log('Done fetching addresses...');
     })
     .catch((err) => {
       let msg = document.querySelector('msg');
       msg.innerHTML = `<h4>${err}</h4>`;
       console.log(err);
     });
-}
+};
 
-function checkAvailability(ev) {
+function getBroadbandAvailability(ev) {
   ev.preventDefault();
-  console.log('Getting Broadband Deals...');
+  console.log('Getting Broadband Availability...');
 
   const URL = '/ndg/broadbandAvailability';
-  const postcode = document.getElementById('postCode').value;
-  const district_id = document.getElementById('districtID').value;
+  let value = document.getElementById('selectedAddress').value;
+  let sub_premises = document
+    .getElementById('selectedAddress')
+    [value].getAttribute('sub_premises');
+  let premises_name = document
+    .getElementById('selectedAddress')
+    [value].getAttribute('premises_name');
+  let thoroughfare_number = document
+    .getElementById('selectedAddress')
+    [value].getAttribute('thoroughfare_number');
+  let thoroughfare_name = document
+    .getElementById('selectedAddress')
+    [value].getAttribute('thoroughfare_name');
+  let locality = document
+    .getElementById('selectedAddress')
+    [value].getAttribute('locality');
+  let post_town = document
+    .getElementById('selectedAddress')
+    [value].getAttribute('post_town');
+  let county = document
+    .getElementById('selectedAddress')
+    [value].getAttribute('county');
+  let postcode = document
+    .getElementById('selectedAddress')
+    [value].getAttribute('postcode');
+  let district_id = document
+    .getElementById('selectedAddress')
+    [value].getAttribute('district_id');
+  let nad_key = document
+    .getElementById('selectedAddress')
+    [value].getAttribute('nad_key');
 
-  const body = {
+  let body = {
+    sub_premises,
+    premises_name,
+    thoroughfare_number,
+    thoroughfare_name,
+    locality,
+    post_town,
+    county,
     postcode,
     district_id,
+    nad_key,
   };
   console.log(body);
 
-  const headers = {
-    'Content-Type': 'application/json',
-  };
-
   const config = {
     method: 'POST',
-    headers,
     body: JSON.stringify(body),
   };
 
-  // fetch(URL, config)
-  //   .then((res) => res.json())
-  //   .then((data) => {
-  //     let main = document.querySelector('main');
-  //     main.innerHTML = `<h4>${data}</h4>`;
+  fetch(URL, config)
+    .then((res) => res.json())
+    .then((data) => {
+      let broadbandDeals = document.querySelector('broadbandDeals');
+      broadbandDeals.innerHTML = `<h4>${data}</h4>`;
 
-  //     console.log(data);
-  //     console.log('Done...');
-  //   })
-  //   .catch((err) => {
-  //     let main = document.querySelector('main');
-  //     main.innerHTML = `<h4>${err}</h4>`;
-  //     console.log(err);
-  //   });
+      console.log(data);
+      console.log('Data submitted successfully...');
+    })
+    .catch((err) => {
+      let broadbandDeals = document.querySelector('broadbandDeals');
+      broadbandDeals.innerHTML = `<h4>${err}}</h4>`;
+
+      console.log('error');
+      console.log(err);
+    });
 }
