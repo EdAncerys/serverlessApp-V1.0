@@ -107,7 +107,7 @@ const getAddress = (postcode) => {
     });
 };
 
-function getBroadbandAvailability(ev) {
+const getBroadbandAvailability = (ev) => {
   ev.preventDefault();
   console.log('Getting Broadband Availability...');
 
@@ -167,7 +167,17 @@ function getBroadbandAvailability(ev) {
     .then((res) => res.json())
     .then((data) => {
       let broadbandDeals = document.querySelector('broadbandDeals');
-      broadbandDeals.innerHTML = `<h4>${data}</h4>`;
+
+      let content = data.products.map((product) => {
+        return `<div style="margin: 20px; background-color: rgba(4, 0, 0, 0.1)" class="displayCenter">
+                  <h3>${product.name}</h3>
+                  <h6>speed_range: ${product.speed_range}</h6>
+                  <h6>provider: ${product.provider}</h6>
+                  <h6>technology: ${product.technology}</h6>
+                </div>`;
+      });
+
+      broadbandDeals.innerHTML = `<h4>${content}</h4>`;
 
       console.log(data);
       console.log('Data submitted successfully...');
@@ -179,4 +189,4 @@ function getBroadbandAvailability(ev) {
       console.log('error');
       console.log(err);
     });
-}
+};
