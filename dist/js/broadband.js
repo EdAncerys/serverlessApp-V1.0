@@ -71,20 +71,19 @@ function getAddress(postcode) {
         let streetName = address.thoroughfare_name;
         let postTown = address.post_town;
 
-        let addressDetails = {
-          sub_premises: address.sub_premises,
-          premises_name: address.premises_name,
-          thoroughfare_number: address.thoroughfare_number,
-          thoroughfare_name: address.thoroughfare_name,
-          locality: address.locality,
-          post_town: address.post_town,
-          county: address.county,
-          postcode: address.postcode,
-          district_id: address.district_id,
-          nad_key: address.nad_key,
-        };
         value += 1;
-        return `<option thoroughfare_number="${address.thoroughfare_number}" value="${value}">${doorNo} ${streetName} ${postTown}</option>`;
+        return `<option value="${value}"
+                sub_premises="${address.sub_premises}"
+                premises_name="${address.premises_name}" 
+                thoroughfare_number="${address.thoroughfare_number}" 
+                thoroughfare_name="${address.thoroughfare_name}" 
+                locality="${address.locality}" 
+                post_town="${address.post_town}" 
+                county="${address.county}"  
+                postcode="${address.postcode}"  
+                district_id="${address.district_id}"
+                nad_key="${address.nad_key}"    
+                >${doorNo} ${streetName} ${postTown}</option>`;
       });
 
       msg.innerHTML = `<label for="selectedAddress">Choose your address:</label>`;
