@@ -171,16 +171,35 @@ const getBroadbandAvailability = (ev) => {
   fetch(URL, config)
     .then((res) => res.json())
     .then((data) => {
-      // let content = data.products.map((product) => {
-      //   return `<div style="margin: 20px; background-color: rgba(4, 0, 0, 0.1)" class="displayCenter">
-      //             <h3>${product.name}</h3>
-      //             <h6>speed_range: ${product.speed_range}</h6>
-      //             <h6>provider: ${product.provider}</h6>
-      //             <h6>technology: ${product.technology}</h6>
-      //           </div>`;
-      // });
+      let count = -1;
 
-      // broadbandDeals.innerHTML = `<h4>${content}</h4>`;
+      let content = data.products.map((product) => {
+        count += 1;
+        return `<tr style='cursor: pointer'>
+                  <th scope="row">${count}</th>
+                  <td>${product.name}</td>
+                  <td>${product.speed_range}</td>
+                  <td>${product.technology}</td>
+                </tr>`;
+      });
+
+      broadbandDeals.innerHTML = `<h3 class="displayCenter mt-4">Available Broadband Deals</h3>
+                                  <table class="table table-striped table-dark">
+                                    <thead>
+                                    <tr>
+                                      <th scope="col">#</th>
+                                      <th scope="col">Name</th>
+                                      <th scope="col">Speed Range</th>
+                                      <th scope="col">Technology</th>
+                                    </tr>
+                                    </thead>
+                                      <tbody>
+                                        ${content}
+                                      </tbody>
+                                  </table>
+                                  <button id='placeBroadbandOrder' class="btn btn-warning mt-4" role="button">
+                                    Place Order
+                                  </button>`;
 
       console.log(data);
       console.log('Data submitted successfully...');
@@ -192,6 +211,10 @@ const getBroadbandAvailability = (ev) => {
       console.log('error');
       console.log(err);
     });
+};
+
+const placeBroadbandOrder = () => {
+  console.log('Placing Order');
 };
 
 const logAddressData = () => {
