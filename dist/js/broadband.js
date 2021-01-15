@@ -60,8 +60,6 @@ const getAddress = (postcode) => {
     .then((res) => res.json())
     .then((data) => {
       const msg = document.querySelector('msgBroadband');
-      const addresses = document.querySelector('addresses');
-      const btn = document.querySelector('btnBroadband');
       let value = 0;
 
       if (data.addresses.length === 0) {
@@ -92,14 +90,14 @@ const getAddress = (postcode) => {
                 >${doorNo} ${subPremises} ${streetName} ${postTown}</option>`;
         });
 
-        msg.innerHTML = `<label for="selectedAddress">Choose your address:</label>`;
-        addresses.innerHTML = `<select name="selectedAddress" id="selectedAddress" style="width:600px" onChange="logAddressData()">
-                              <option selected disabled hidden>Please Choose Your Address</option>
-                              ${content}
-                            </select>`;
-        btn.innerHTML = `<button id='getBroadbandAvailability' class="btn btn-danger mt-4" role="button">
-                        Check Availability
-                        </button>`;
+        msg.innerHTML = `<h2>Choose your address:</h2>
+                          <select name="selectedAddress" id="selectedAddress" style="width:600px" onChange="logAddressData()">
+                            <option selected disabled hidden>Please Choose Your Address</option>
+                            ${content}
+                          </select>
+                          <button id='getBroadbandAvailability' class="btn btn-danger mt-4" role="button">
+                            Check Availability
+                          </button>`;
 
         document
           .getElementById('getBroadbandAvailability')
