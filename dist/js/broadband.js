@@ -111,6 +111,8 @@ const getAddress = (postcode) => {
 
 const getBroadbandAvailability = (ev) => {
   ev.preventDefault();
+  let broadbandDeals = document.querySelector('broadbandDeals');
+  broadbandDeals.innerHTML = '';
   console.log('Getting Broadband Availability...');
 
   const URL = '/ndg/broadbandAvailability';
@@ -168,8 +170,6 @@ const getBroadbandAvailability = (ev) => {
   fetch(URL, config)
     .then((res) => res.json())
     .then((data) => {
-      let broadbandDeals = document.querySelector('broadbandDeals');
-
       // let content = data.products.map((product) => {
       //   return `<div style="margin: 20px; background-color: rgba(4, 0, 0, 0.1)" class="displayCenter">
       //             <h3>${product.name}</h3>
