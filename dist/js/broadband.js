@@ -29,6 +29,7 @@ const handleErrors = (errors) => {
 
 const handleFormValidation = (ev) => {
   ev.preventDefault();
+  const msg = (document.querySelector('msgBroadband').innerHTML = '');
   let postcode = document.getElementById('postcode').value.replace(/\s/g, '');
   let errors = [];
 
@@ -63,18 +64,21 @@ const getAddress = (postcode) => {
       const btn = document.querySelector('btnBroadband');
       let value = 0;
 
-      let content = data.addresses.map((address) => {
-        let doorNo =
-          address.thoroughfare_number === null
-            ? address.premises_name
-            : address.thoroughfare_number;
-        let subPremises =
-          address.sub_premises === null ? '' : address.sub_premises;
-        let streetName = address.thoroughfare_name;
-        let postTown = address.post_town;
+      if (data.addresses.length === 0) {
+        msg.innerHTML = `<h2>Postcode not valid</h2>`;
+      } else {
+        let content = data.addresses.map((address) => {
+          let doorNo =
+            address.thoroughfare_number === null
+              ? address.premises_name
+              : address.thoroughfare_number;
+          let subPremises =
+            address.sub_premises === null ? '' : address.sub_premises;
+          let streetName = address.thoroughfare_name;
+          let postTown = address.post_town;
 
-        value += 1;
-        return `<option value="${value}"
+          value += 1;
+          return `<option value="${value}"
                 sub_premises="${address.sub_premises}"
                 premises_name="${address.premises_name}" 
                 thoroughfare_number="${address.thoroughfare_number}" 
@@ -86,22 +90,23 @@ const getAddress = (postcode) => {
                 district_id="${address.district_id}"
                 nad_key="${address.nad_key}"    
                 >${doorNo} ${subPremises} ${streetName} ${postTown}</option>`;
-      });
+        });
 
-      msg.innerHTML = `<label for="selectedAddress">Choose your address:</label>`;
-      addresses.innerHTML = `<select name="selectedAddress" id="selectedAddress" style="width:600px" onChange="logAddressData()">
+        msg.innerHTML = `<label for="selectedAddress">Choose your address:</label>`;
+        addresses.innerHTML = `<select name="selectedAddress" id="selectedAddress" style="width:600px" onChange="logAddressData()">
                               <option selected disabled hidden>Please Choose Your Address</option>
                               ${content}
                             </select>`;
-      btn.innerHTML = `<button id='getBroadbandAvailability' class="btn btn-danger mt-4" role="button">
+        btn.innerHTML = `<button id='getBroadbandAvailability' class="btn btn-danger mt-4" role="button">
                         Check Availability
                         </button>`;
 
-      document
-        .getElementById('getBroadbandAvailability')
-        .addEventListener('click', getBroadbandAvailability);
-      // console.log(data.addresses);
-      console.log('Done fetching addresses...');
+        document
+          .getElementById('getBroadbandAvailability')
+          .addEventListener('click', getBroadbandAvailability);
+        // console.log(data.addresses);
+        console.log('Done fetching addresses...');
+      }
     })
     .catch((err) => {
       let msg = document.querySelector('msg');
