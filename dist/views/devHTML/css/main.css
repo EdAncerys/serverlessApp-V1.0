@@ -64,20 +64,6 @@ msg {
 .inlineBlock {
   display: inline-block;
 }
-/* .wrapper {
-  margin: 2rem;
-  display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  gap: 10px;
-  grid-auto-rows: 100px;
-  grid-template-areas:
-    'a a a a b b b b'
-    'a a a a b b b b';
+.broadbandData {
+  cursor: pointer;
 }
-.form {
-  grid-area: a;
-}
-.tickets {
-  grid-area: b;
-}
- */

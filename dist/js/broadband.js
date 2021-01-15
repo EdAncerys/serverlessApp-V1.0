@@ -61,7 +61,7 @@ const getAddress = (postcode) => {
       const msg = document.querySelector('msgBroadband');
       const addresses = document.querySelector('addresses');
       const btn = document.querySelector('btnBroadband');
-      let value = -1;
+      let value = 0;
 
       let content = data.addresses.map((address) => {
         let doorNo =
@@ -175,7 +175,7 @@ const getBroadbandAvailability = (ev) => {
 
       let content = data.products.map((product) => {
         count += 1;
-        return `<tr style='cursor: pointer'>
+        return `<tr class='broadbandData'>
                   <th scope="row">${count}</th>
                   <td>${product.name}</td>
                   <td>${product.speed_range}</td>
@@ -184,7 +184,7 @@ const getBroadbandAvailability = (ev) => {
       });
 
       broadbandDeals.innerHTML = `<h3 class="displayCenter mt-4">Available Broadband Deals</h3>
-                                  <table class="table table-striped table-dark">
+                                  <table class="table table-hover table-dark">
                                     <thead>
                                     <tr>
                                       <th scope="col">#</th>
@@ -197,7 +197,8 @@ const getBroadbandAvailability = (ev) => {
                                         ${content}
                                       </tbody>
                                   </table>
-                                  <button id='placeBroadbandOrder' class="btn btn-warning mt-4" role="button">
+
+                                  <button id='placeBroadbandOrder' class="btn btn-warning mt-4" role="button" onClick="placeBroadbandOrder()">
                                     Place Order
                                   </button>`;
 
