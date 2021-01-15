@@ -90,6 +90,7 @@ const getAddress = (postcode) => {
 
       msg.innerHTML = `<label for="selectedAddress">Choose your address:</label>`;
       addresses.innerHTML = `<select name="selectedAddress" id="selectedAddress" style="width:600px" onChange="logAddressData()">
+                              <option selected disabled hidden>Please Choose Your Address</option>
                               ${content}
                             </select>`;
       btn.innerHTML = `<button id='getBroadbandAvailability' class="btn btn-danger mt-4" role="button">
