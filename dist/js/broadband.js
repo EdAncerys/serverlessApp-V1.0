@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     .addEventListener('click', handleFormValidation);
 
   // Hardcoded input value
-  document.getElementById('postcode').value = 'E163DY';
+  document.getElementById('postcode').value = 'LE15 7GH';
 });
 
 const validatePostcode = (postcode) => {
@@ -68,6 +68,8 @@ const getAddress = (postcode) => {
           address.thoroughfare_number === null
             ? address.premises_name
             : address.thoroughfare_number;
+        let subPremises =
+          address.sub_premises === null ? '' : address.sub_premises;
         let streetName = address.thoroughfare_name;
         let postTown = address.post_town;
 
@@ -83,11 +85,11 @@ const getAddress = (postcode) => {
                 postcode="${address.postcode}"  
                 district_id="${address.district_id}"
                 nad_key="${address.nad_key}"    
-                >${doorNo} ${streetName} ${postTown}</option>`;
+                >${doorNo} ${subPremises} ${streetName} ${postTown}</option>`;
       });
 
       msg.innerHTML = `<label for="selectedAddress">Choose your address:</label>`;
-      addresses.innerHTML = `<select name="selectedAddress" id="selectedAddress" style="width:600px">
+      addresses.innerHTML = `<select name="selectedAddress" id="selectedAddress" style="width:600px" onChange="logAddressData()">
                               ${content}
                             </select>`;
       btn.innerHTML = `<button id='getBroadbandAvailability' class="btn btn-danger mt-4" role="button">
@@ -168,16 +170,16 @@ const getBroadbandAvailability = (ev) => {
     .then((data) => {
       let broadbandDeals = document.querySelector('broadbandDeals');
 
-      let content = data.products.map((product) => {
-        return `<div style="margin: 20px; background-color: rgba(4, 0, 0, 0.1)" class="displayCenter">
-                  <h3>${product.name}</h3>
-                  <h6>speed_range: ${product.speed_range}</h6>
-                  <h6>provider: ${product.provider}</h6>
-                  <h6>technology: ${product.technology}</h6>
-                </div>`;
-      });
+      // let content = data.products.map((product) => {
+      //   return `<div style="margin: 20px; background-color: rgba(4, 0, 0, 0.1)" class="displayCenter">
+      //             <h3>${product.name}</h3>
+      //             <h6>speed_range: ${product.speed_range}</h6>
+      //             <h6>provider: ${product.provider}</h6>
+      //             <h6>technology: ${product.technology}</h6>
+      //           </div>`;
+      // });
 
-      broadbandDeals.innerHTML = `<h4>${content}</h4>`;
+      // broadbandDeals.innerHTML = `<h4>${content}</h4>`;
 
       console.log(data);
       console.log('Data submitted successfully...');
@@ -189,4 +191,52 @@ const getBroadbandAvailability = (ev) => {
       console.log('error');
       console.log(err);
     });
+};
+
+const logAddressData = () => {
+  let value = document.getElementById('selectedAddress').value;
+  let sub_premises = document
+    .getElementById('selectedAddress')
+    [value].getAttribute('sub_premises');
+  let premises_name = document
+    .getElementById('selectedAddress')
+    [value].getAttribute('premises_name');
+  let thoroughfare_number = document
+    .getElementById('selectedAddress')
+    [value].getAttribute('thoroughfare_number');
+  let thoroughfare_name = document
+    .getElementById('selectedAddress')
+    [value].getAttribute('thoroughfare_name');
+  let locality = document
+    .getElementById('selectedAddress')
+    [value].getAttribute('locality');
+  let post_town = document
+    .getElementById('selectedAddress')
+    [value].getAttribute('post_town');
+  let county = document
+    .getElementById('selectedAddress')
+    [value].getAttribute('county');
+  let postcode = document
+    .getElementById('selectedAddress')
+    [value].getAttribute('postcode');
+  let district_id = document
+    .getElementById('selectedAddress')
+    [value].getAttribute('district_id');
+  let nad_key = document
+    .getElementById('selectedAddress')
+    [value].getAttribute('nad_key');
+
+  let body = {
+    sub_premises,
+    premises_name,
+    thoroughfare_number,
+    thoroughfare_name,
+    locality,
+    post_town,
+    county,
+    postcode,
+    district_id,
+    nad_key,
+  };
+  console.log(body);
 };
