@@ -32,14 +32,12 @@ const handleFormValidation = (ev) => {
     document.getElementById('subject').value +
     ' | Created at: ' +
     new Date().toLocaleString();
-  let customerDescription = document.getElementById('description').value;
-
-  let description = `hello`;
+  let description = document.getElementById('description').value;
 
   let errors = [];
 
   console.log('Validating From...');
-  console.log(name, email, subject, customerDescription);
+  console.log(name, email, subject, description);
 
   if (!name || !email || !subject || !description)
     errors.push({ msg: 'Please fill in all fields' });
@@ -78,7 +76,13 @@ const contactUs = (name, email, subject, description) => {
     name,
     email,
     subject,
-    description: `${_contactFormDescriptionHTML()}`,
+    description: `${_contactFormDescriptionHTML(
+      'Customer Contact Form',
+      name,
+      email,
+      subject,
+      description
+    )}`,
   };
 
   const config = {
