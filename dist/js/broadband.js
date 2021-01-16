@@ -8,8 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Hold selection values in file scope
-let oderCustomerName = '';
-let oderCustomerEmail = '';
+let oderCustomerName = 'HardCoded Name value';
+let oderCustomerEmail = 'HardCoded email value';
 let oderSubject = 'Broadband Order';
 let oderPostcode = '';
 let oderAddress = '';
@@ -204,7 +204,7 @@ const getBroadbandAvailability = (ev) => {
         });
 
         broadbandDeals.innerHTML = `<h3 class="displayCenter mt-4">Available Broadband Deals</h3>
-                                  <table class="table table-hover table-dark">
+                                  <table id='broadbandData' class="table table-hover table-dark">
                                     <thead>
                                     <tr>
                                       <th scope="col">#</th>
@@ -216,11 +216,7 @@ const getBroadbandAvailability = (ev) => {
                                       <tbody>
                                         ${content}
                                       </tbody>
-                                  </table>
-
-                                  <button id='placeBroadbandOrder' class="btn btn-warning mt-4" role="button" onClick="placeBroadbandOrder()">
-                                    Place Order
-                                  </button>`;
+                                  </table>`;
 
         console.log(data);
         console.log('Data submitted successfully...');
@@ -236,20 +232,52 @@ const getBroadbandAvailability = (ev) => {
 };
 
 const placeBroadbandOrder = () => {
-  console.log('Placing Order...');
-  console.log(
-    oderCustomerName,
-    oderCustomerEmail,
-    oderSubject,
-    oderPostcode,
-    oderAddress,
-    oderDeal
-  );
+  console.log('Placing Broadband Order...');
+
+  const URL = '/ndg/contactUs';
+  const body = {
+    subject: oderSubject,
+    description: `Name: ${oderCustomerName}
+                  Email: ${oderCustomerEmail}
+                  Postcode: ${oderPostcode}
+                  Address: ${oderAddress}
+                  Broadband Deal: ${oderDeal}`,
+  };
+
+  const config = {
+    method: 'POST',
+    body: JSON.stringify(body),
+  };
+
+  fetch(URL, config)
+    .then((res) => res.json())
+    .then((data) => {
+      let msg = document.querySelector('msg');
+      msg.innerHTML = `<h4>Thank You Fro Contacting Us <span class='highlightedText'>${body.name}</span></h4>`;
+      // Resets form
+      handleSubmission(name, email, subject, description);
+
+      console.log(data);
+      console.log('Data submitted successfully...');
+    })
+    .catch((err) => {
+      let msg = document.querySelector('msg');
+      msg.innerHTML = `<h4>${err}</h4>`;
+
+      console.log('error');
+      console.log(err);
+    });
 };
 
 const handleBroadbandSelection = (event) => {
   console.log('Broadband Deal Selected...');
+  let broadbandOrder = document.querySelector('broadbandOrder');
+  broadbandOrder.innerHTML = `<button id='placeBroadbandOrder' class="btn btn-warning mt-4" role="button" onClick="placeBroadbandOrder()">
+                                Place Order
+                              </button>`;
 
+  console.log(event.target.parentNode);
+  event.target.parentNode.style.backgroundColor = 'gray';
   let rowId = event.target.parentNode.children[0].innerHTML;
   let supplier = event.target.parentNode.children[1].innerHTML;
   let speedRange = event.target.parentNode.children[2].innerHTML;
