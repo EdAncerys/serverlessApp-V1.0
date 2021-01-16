@@ -7,6 +7,14 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('postcode').value = 'LE15 7GH';
 });
 
+// Hold selection values in file scope
+let oderCustomerName = '';
+let oderCustomerEmail = '';
+let oderSubject = 'Broadband Order';
+let oderPostcode = '';
+let oderAddress = '';
+let oderDeal = '';
+
 const validatePostcode = (postcode) => {
   postcode = postcode.replace(/\+|\(|\)|\-|\s/gi, '');
   if (/^[A-Za-z]{1,2}(\d{1,2}|[I])[A-Za-z]? ?\d[A-Za-z]{2}$/.test(postcode))
@@ -49,6 +57,7 @@ const handleFormValidation = (ev) => {
     handleErrors(errors);
   } else {
     console.log('Postcode valid...');
+    oderPostcode = postcode;
     getAddress(postcode);
   }
 };
@@ -124,6 +133,7 @@ const getBroadbandAvailability = (ev) => {
 
   const URL = '/ndg/broadbandAvailability';
   let value = document.getElementById('selectedAddress').value;
+  oderAddress = value;
 
   if (value === 'selectionID') {
     broadbandDeals.innerHTML = '<h4 class="mt-4">Please Choose Address</h4>';
@@ -185,12 +195,12 @@ const getBroadbandAvailability = (ev) => {
 
         let content = data.products.map((product) => {
           count += 1;
-          return `<tr class='broadbandData'>
-                  <th scope="row">${count}</th>
-                  <td>${product.name}</td>
-                  <td>${product.speed_range}</td>
-                  <td>${product.technology}</td>
-                </tr>`;
+          return `<tr class='broadbandData' onClick='handleBroadbandSelection(event)'>
+                    <td scope="row">${count}</td>
+                    <td>${product.name}</td>
+                    <td>${product.speed_range}</td>
+                    <td>${product.technology}</td>
+                  </tr>`;
         });
 
         broadbandDeals.innerHTML = `<h3 class="displayCenter mt-4">Available Broadband Deals</h3>
@@ -198,7 +208,7 @@ const getBroadbandAvailability = (ev) => {
                                     <thead>
                                     <tr>
                                       <th scope="col">#</th>
-                                      <th scope="col">Name</th>
+                                      <th scope="col">Supplier</th>
                                       <th scope="col">Speed Range</th>
                                       <th scope="col">Technology</th>
                                     </tr>
@@ -226,7 +236,33 @@ const getBroadbandAvailability = (ev) => {
 };
 
 const placeBroadbandOrder = () => {
-  console.log('Placing Order');
+  console.log('Placing Order...');
+  console.log(
+    oderCustomerName,
+    oderCustomerEmail,
+    oderSubject,
+    oderPostcode,
+    oderAddress,
+    oderDeal
+  );
+};
+
+const handleBroadbandSelection = (event) => {
+  console.log('Broadband Deal Selected...');
+
+  let rowId = event.target.parentNode.children[0].innerHTML;
+  let supplier = event.target.parentNode.children[1].innerHTML;
+  let speedRange = event.target.parentNode.children[2].innerHTML;
+  let technology = event.target.parentNode.children[3].innerHTML;
+
+  oderDeal = {
+    rowId,
+    supplier,
+    speedRange,
+    technology,
+  };
+
+  console.log(oderDeal);
 };
 
 const logAddressData = () => {
