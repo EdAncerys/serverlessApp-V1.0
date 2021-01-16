@@ -92,7 +92,7 @@ const getAddress = (postcode) => {
 
         msg.innerHTML = `<h2>Choose your address:</h2>
                           <select name="selectedAddress" id="selectedAddress" style="width:600px" onChange="logAddressData()">
-                            <option selected disabled hidden>Please Choose Your Address</option>
+                            <option selected disabled hidden value='selectionID'>Please Choose Your Address</option>
                             ${content}
                           </select>
                           <button id='getBroadbandAvailability' class="btn btn-danger mt-4" role="button">
@@ -121,72 +121,76 @@ const getBroadbandAvailability = (ev) => {
 
   const URL = '/ndg/broadbandAvailability';
   let value = document.getElementById('selectedAddress').value;
-  let sub_premises = document
-    .getElementById('selectedAddress')
-    [value].getAttribute('sub_premises');
-  let premises_name = document
-    .getElementById('selectedAddress')
-    [value].getAttribute('premises_name');
-  let thoroughfare_number = document
-    .getElementById('selectedAddress')
-    [value].getAttribute('thoroughfare_number');
-  let thoroughfare_name = document
-    .getElementById('selectedAddress')
-    [value].getAttribute('thoroughfare_name');
-  let locality = document
-    .getElementById('selectedAddress')
-    [value].getAttribute('locality');
-  let post_town = document
-    .getElementById('selectedAddress')
-    [value].getAttribute('post_town');
-  let county = document
-    .getElementById('selectedAddress')
-    [value].getAttribute('county');
-  let postcode = document
-    .getElementById('selectedAddress')
-    [value].getAttribute('postcode');
-  let district_id = document
-    .getElementById('selectedAddress')
-    [value].getAttribute('district_id');
-  let nad_key = document
-    .getElementById('selectedAddress')
-    [value].getAttribute('nad_key');
 
-  let body = {
-    sub_premises,
-    premises_name,
-    thoroughfare_number,
-    thoroughfare_name,
-    locality,
-    post_town,
-    county,
-    postcode,
-    district_id,
-    nad_key,
-  };
-  console.log(body);
+  if (value === 'selectionID') {
+    broadbandDeals.innerHTML = '<h4 class="mt-4">Please Choose Address</h4>';
+  } else {
+    let sub_premises = document
+      .getElementById('selectedAddress')
+      [value].getAttribute('sub_premises');
+    let premises_name = document
+      .getElementById('selectedAddress')
+      [value].getAttribute('premises_name');
+    let thoroughfare_number = document
+      .getElementById('selectedAddress')
+      [value].getAttribute('thoroughfare_number');
+    let thoroughfare_name = document
+      .getElementById('selectedAddress')
+      [value].getAttribute('thoroughfare_name');
+    let locality = document
+      .getElementById('selectedAddress')
+      [value].getAttribute('locality');
+    let post_town = document
+      .getElementById('selectedAddress')
+      [value].getAttribute('post_town');
+    let county = document
+      .getElementById('selectedAddress')
+      [value].getAttribute('county');
+    let postcode = document
+      .getElementById('selectedAddress')
+      [value].getAttribute('postcode');
+    let district_id = document
+      .getElementById('selectedAddress')
+      [value].getAttribute('district_id');
+    let nad_key = document
+      .getElementById('selectedAddress')
+      [value].getAttribute('nad_key');
 
-  const config = {
-    method: 'POST',
-    body: JSON.stringify(body),
-  };
+    let body = {
+      sub_premises,
+      premises_name,
+      thoroughfare_number,
+      thoroughfare_name,
+      locality,
+      post_town,
+      county,
+      postcode,
+      district_id,
+      nad_key,
+    };
+    console.log(body);
 
-  fetch(URL, config)
-    .then((res) => res.json())
-    .then((data) => {
-      let count = -1;
+    const config = {
+      method: 'POST',
+      body: JSON.stringify(body),
+    };
 
-      let content = data.products.map((product) => {
-        count += 1;
-        return `<tr class='broadbandData'>
+    fetch(URL, config)
+      .then((res) => res.json())
+      .then((data) => {
+        let count = -1;
+
+        let content = data.products.map((product) => {
+          count += 1;
+          return `<tr class='broadbandData'>
                   <th scope="row">${count}</th>
                   <td>${product.name}</td>
                   <td>${product.speed_range}</td>
                   <td>${product.technology}</td>
                 </tr>`;
-      });
+        });
 
-      broadbandDeals.innerHTML = `<h3 class="displayCenter mt-4">Available Broadband Deals</h3>
+        broadbandDeals.innerHTML = `<h3 class="displayCenter mt-4">Available Broadband Deals</h3>
                                   <table class="table table-hover table-dark">
                                     <thead>
                                     <tr>
@@ -205,16 +209,17 @@ const getBroadbandAvailability = (ev) => {
                                     Place Order
                                   </button>`;
 
-      console.log(data);
-      console.log('Data submitted successfully...');
-    })
-    .catch((err) => {
-      let broadbandDeals = document.querySelector('broadbandDeals');
-      broadbandDeals.innerHTML = `<h4>${err}}</h4>`;
+        console.log(data);
+        console.log('Data submitted successfully...');
+      })
+      .catch((err) => {
+        let broadbandDeals = document.querySelector('broadbandDeals');
+        broadbandDeals.innerHTML = `<h4>${err}}</h4>`;
 
-      console.log('error');
-      console.log(err);
-    });
+        console.log('error');
+        console.log(err);
+      });
+  }
 };
 
 const placeBroadbandOrder = () => {
