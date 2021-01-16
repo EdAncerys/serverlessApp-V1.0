@@ -1,7 +1,10 @@
+import * as htmlDes from './_helperFunctions/_contactFormDescriptionHTML.js';
+
 document.addEventListener('DOMContentLoaded', () => {
   document
     .getElementById('contactUs')
     .addEventListener('click', handleFormValidation);
+  htmlDes._contactFormDescriptionHTML('name');
 });
 
 const validateEmail = (email) => {
@@ -97,7 +100,8 @@ const handleFormValidation = (ev) => {
     handleErrors(errors);
   } else {
     console.log('Form submitted successfully...');
-    contactUs(name, email, subject, description);
+    _contactFormDescriptionHTML('name', 'subject');
+    // contactUs(name, email, subject, description);
   }
 };
 
