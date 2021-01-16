@@ -29,7 +29,10 @@ const handleErrors = (errors) => {
 
 const handleFormValidation = (ev) => {
   ev.preventDefault();
-  const msg = (document.querySelector('msgBroadband').innerHTML = '');
+  // Clearing containers if contains values
+  document.querySelector('msgBroadband').innerHTML = '';
+  document.querySelector('broadbandDeals').innerHTML = '';
+
   let postcode = document.getElementById('postcode').value.replace(/\s/g, '');
   let errors = [];
 
