@@ -48,7 +48,7 @@
             />
           </form>
         </div>
-        <div id="msg">
+        <div id="msgBroadband">
           <msgBroadband class="centerVertically"></msgBroadband>
           <broadbandDeals class="centerVertically"></broadbandDeals>
           <broadbandOrder class="centerVertically"></broadbandOrder>
@@ -59,22 +59,19 @@
     <script>
       function testFunc(event) {
         // alert('The URL of this page is: ' + window.location.href);
-        let dataTr = event.target.parentNode;
-        // let dataRes = dataTr.querySelectorAll('td')[0].innerText;
-        console.log(event.target.parentNode);
+        const formContainer = document.getElementById('form');
+        const msgContainer = document.getElementById('msgBroadband');
+        const msg = document.querySelector('msg');
+        formContainer.style.display = 'none';
+        msgContainer.style.display = 'none';
 
-        let content = dataTr.querySelectorAll('td').map((col) => {
-          return `<tr class='broadbandData'>
-                    <td>${col}</td>
-                  </tr>`;
-        });
-
-        let msg = document.querySelector('msgTest');
-        msg.innerHTML = `<table>
-                          </tbody>
-                            ${content}
-                          </tbody>
-                        </table>`;
+        msg.innerHTML = `<h4>Thank You!</h4> 
+                  <h4>Order Been Placed successfully</h4>`;
+        setTimeout(() => {
+          formContainer.style.display = 'block';
+          msgContainer.style.display = 'block';
+          msg.innerHTML = '';
+        }, 3000);
       }
     </script>
 
