@@ -2,9 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
   document
     .getElementById('getAddress')
     .addEventListener('click', handleFormValidation);
-
-  // Hardcoded input value
-  document.getElementById('postcode').value = 'E16 3DY'; // LE15 7GH
 });
 
 // Hold selection values in file scope
