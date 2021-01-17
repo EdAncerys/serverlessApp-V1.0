@@ -10,8 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Hold selection values in file scope
 let oderCustomerName = 'HardCoded Name value';
 let oderCustomerEmail = 'HardCoded email value';
-let oderSubject =
-  'Broadband Order' + ' | Created at: ' + new Date().toLocaleString();
+let oderSubject = '';
 let oderPostcode = '';
 let oderAddress = '';
 let oderDeal = '';
@@ -334,7 +333,8 @@ const getAreaBroadbandAvailability = () => {
 
 const placeBroadbandOrder = () => {
   console.log('Placing Broadband Order...');
-
+  oderSubject =
+    'Broadband Order' + ' | Created at: ' + new Date().toLocaleString();
   let sub_premises =
     oderAddress.sub_premises === 'null' ? '' : oderAddress.sub_premises;
   let premises_name =
@@ -373,6 +373,7 @@ const placeBroadbandOrder = () => {
     ">Selected Broadband Deal</p> 
       <p>Supplier: ${oderDeal.supplier}</p>
       <p>SpeedRange: ${oderDeal.speedRange}</p>
+      <p>Provider: ${oderDeal.provider}</p>
       <p>Technology: ${oderDeal.technology}</p>`
     ),
   };
@@ -411,12 +412,14 @@ const handleBroadbandSelection = (event) => {
   let rowId = event.target.parentNode.children[0].innerHTML;
   let supplier = event.target.parentNode.children[1].innerHTML;
   let speedRange = event.target.parentNode.children[2].innerHTML;
-  let technology = event.target.parentNode.children[3].innerHTML;
+  let provider = event.target.parentNode.children[3].innerHTML;
+  let technology = event.target.parentNode.children[4].innerHTML;
 
   oderDeal = {
     rowId,
     supplier,
     speedRange,
+    provider,
     technology,
   };
 
