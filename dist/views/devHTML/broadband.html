@@ -60,47 +60,35 @@
     <script>
       function testFunc(event) {
         // alert('The URL of this page is: ' + window.location.href);
-        var data = {
-          addresses: [
-            {
-              name: 'user5',
-              id: 5,
-            },
-            {
-              name: 'user2',
-              id: 2,
-            },
-            {
-              name: 'user3',
-              id: 3,
-            },
-            {
-              name: 'user6',
-              id: 6,
-            },
-            // etc
-          ],
-        };
-        console.log(data);
+        let arr = [
+          { number: '1', name: 'A' },
+          { number: '4', name: 'D' },
+          { number: '3', name: 'C' },
+          { number: '2', name: 'B' },
+          // 'A1',
+          // 'A10',
+          // 'A11',
+          // 'A12',
+          // 'A2',
+          // 'A3',
+          // 'A4',
+          // 'B10',
+          // 'B2',
+          // 'F1',
+          // 'F12',
+          // 'F3',
+        ];
 
-        const sortJSONData = (data, prop, asc) => {
-          const sortedJSON = data.addresses.sort((a, b) => {
-            if (asc) {
-              return a[prop] > b[prop] ? 1 : a[prop] < b[prop] ? -1 : 0;
-            } else {
-              return b[prop] > a[prop] ? 1 : b[prop] < a[prop] ? -1 : 0;
-            }
-          });
-          // console.log(sortedJSON);
-          return sortedJSON;
-        };
-        // sortJSONData(data, 'id', true);
-        console.log(sortJSONData(data, 'id', true));
+        let op = arr.map((data) => {
+          console.log(data.name);
+        });
+
+        console.log(op);
       }
     </script>
 
-    <button class="btn btn-warning" type="button" onclick="testFunc();">
+    <!-- <button class="btn btn-warning" type="button" onclick="testFunc();">
       Run Script
-    </button>
+    </button> -->
   </body>
 </html>

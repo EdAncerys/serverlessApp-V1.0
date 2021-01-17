@@ -80,6 +80,13 @@ const handleSubmission = () => {
 };
 
 const sortJSONData = (data, prop, asc) => {
+  // data = data.addresses.map((address) => {
+  //   address.thoroughfare_number = '0' + address.thoroughfare_number;
+  //   console.log(address.thoroughfare_number);
+  //   return address;
+  // });
+  // console.log(data);
+
   const sortedJSON = data.addresses.sort((a, b) => {
     if (asc) {
       return a[prop] > b[prop] ? 1 : a[prop] < b[prop] ? -1 : 0;
@@ -87,7 +94,7 @@ const sortJSONData = (data, prop, asc) => {
       return b[prop] > a[prop] ? 1 : b[prop] < a[prop] ? -1 : 0;
     }
   });
-  console.log(sortedJSON);
+
   return sortedJSON;
 };
 
@@ -106,7 +113,7 @@ const getAddress = (postcode) => {
       if (data.addresses.length === 0) {
         msg.innerHTML = `<h2>Postcode not valid</h2>`;
       } else {
-        let sortedJASON = sortJSONData(data, 'thoroughfare_number', false);
+        let sortedJASON = sortJSONData(data, 'thoroughfare_number', true);
 
         let content = sortedJASON.map((address) => {
           let thoroughfare_number =
