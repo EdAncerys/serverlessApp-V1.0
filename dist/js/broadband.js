@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     .addEventListener('click', handleFormValidation);
 
   // Hardcoded input value
-  document.getElementById('postcode').value = 'LE15 7GH'; // LE15 7GH
+  // document.getElementById('postcode').value = 'LE15 7GH'; // LE15 7GH
 });
 
 // Hold selection values in file scope
@@ -303,21 +303,22 @@ const getAreaBroadbandAvailability = () => {
                   </tr>`;
         });
 
-        broadbandDeals.innerHTML = `<h3 class="displayCenter mt-4 text-warning">Available Area Broadband Deals</h3>
-                                  <table id='broadbandData' class="table table-hover table-dark">
-                                    <thead>
-                                    <tr>
-                                      <th scope="col">#</th>
-                                      <th scope="col">Supplier</th>
-                                      <th scope="col">Speed Range</th>
-                                      <th scope="col">Provider</th>
-                                      <th scope="col">Technology</th>
-                                    </tr>
-                                    </thead>
-                                      <tbody>
-                                        ${content}
-                                      </tbody>
-                                  </table>`;
+        broadbandDeals.innerHTML = `<h3 class="displayCenter mt-4 text-warning">Not Available for Address Provided</h3>
+                                    <h3 class="displayCenter mt-4 text-warning">Available Area Broadband Deals</h3>
+                                    <table id='broadbandData' class="table table-hover table-dark">
+                                      <thead>
+                                      <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Supplier</th>
+                                        <th scope="col">Speed Range</th>
+                                        <th scope="col">Provider</th>
+                                        <th scope="col">Technology</th>
+                                      </tr>
+                                      </thead>
+                                        <tbody>
+                                          ${content}
+                                        </tbody>
+                                    </table>`;
 
         console.log('Data submitted successfully...');
       })
