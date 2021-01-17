@@ -111,7 +111,7 @@ const getAddress = (postcode) => {
       let value = 0;
 
       if (data.addresses.length === 0) {
-        msg.innerHTML = `<h2>Postcode not valid</h2>`;
+        msg.innerHTML = `<h2 class="text-warning">Postcode not valid</h2>`;
       } else {
         let sortedJASON = sortJSONData(data, 'thoroughfare_number', true);
 
@@ -170,7 +170,8 @@ const getBroadbandAvailability = (ev) => {
   let value = document.getElementById('selectedAddress').value;
 
   if (value === 'selectionID') {
-    broadbandDeals.innerHTML = '<h4 class="mt-4">Please Choose Address</h4>';
+    broadbandDeals.innerHTML =
+      '<h4 class="mt-4 text-warning">Please Choose Address</h4>';
   } else {
     let sub_premises = document
       .getElementById('selectedAddress')
@@ -232,7 +233,7 @@ const getBroadbandAvailability = (ev) => {
           const msg = 'No Deals Available for selected address';
           console.log(msg);
           broadbandDeals.innerHTML = `<h4 class="mt-4">${msg}</h4>`;
-          // getAreaBroadbandAvailability();
+          getAreaBroadbandAvailability();
         } else {
           let content = data.products.map((product) => {
             count += 1;
@@ -274,8 +275,7 @@ const getBroadbandAvailability = (ev) => {
   }
 };
 
-const getAreaBroadbandAvailability = (ev) => {
-  ev.preventDefault();
+const getAreaBroadbandAvailability = () => {
   let broadbandDeals = document.querySelector('broadbandDeals');
   broadbandDeals.innerHTML = '';
   console.log('Getting Area Broadband Availability...');
@@ -303,7 +303,7 @@ const getAreaBroadbandAvailability = (ev) => {
                   </tr>`;
         });
 
-        broadbandDeals.innerHTML = `<h3 class="displayCenter mt-4">Available Broadband Deals</h3>
+        broadbandDeals.innerHTML = `<h3 class="displayCenter mt-4 text-warning">Available Area Broadband Deals</h3>
                                   <table id='broadbandData' class="table table-hover table-dark">
                                     <thead>
                                     <tr>
