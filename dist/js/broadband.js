@@ -79,6 +79,18 @@ const handleSubmission = () => {
   }, 3000);
 };
 
+const sortJSONData = (data, prop, asc) => {
+  const sortedJSON = data.addresses.sort((a, b) => {
+    if (asc) {
+      return a[prop] > b[prop] ? 1 : a[prop] < b[prop] ? -1 : 0;
+    } else {
+      return b[prop] > a[prop] ? 1 : b[prop] < a[prop] ? -1 : 0;
+    }
+  });
+  console.log(sortedJSON);
+  return sortedJSON;
+};
+
 const getAddress = (postcode) => {
   console.log('Fetching addresses...');
   const URL = '/ndg/getAddresses/' + postcode;
@@ -94,7 +106,9 @@ const getAddress = (postcode) => {
       if (data.addresses.length === 0) {
         msg.innerHTML = `<h2>Postcode not valid</h2>`;
       } else {
-        let content = data.addresses.map((address) => {
+        let sortedJASON = sortJSONData(data, 'thoroughfare_number', false);
+
+        let content = sortedJASON.map((address) => {
           let thoroughfare_number =
             address.thoroughfare_number === null
               ? address.premises_name
@@ -528,4 +542,16 @@ const _contactFormDescriptionHTML = (
     </tr>
   </table>
 </div>`;
+};
+
+const sortJSON = (data, prop, asc) => {
+  const sortedJSON = data.addresses.sort((a, b) => {
+    if (asc) {
+      return a[prop] > b[prop] ? 1 : a[prop] < b[prop] ? -1 : 0;
+    } else {
+      return b[prop] > a[prop] ? 1 : b[prop] < a[prop] ? -1 : 0;
+    }
+  });
+  console.log(sortedJSON);
+  return sortedJSON;
 };

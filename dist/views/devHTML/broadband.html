@@ -60,33 +60,42 @@
     <script>
       function testFunc(event) {
         // alert('The URL of this page is: ' + window.location.href);
-        var people = [
-          {
-            name: 'user3',
-            id: 1,
-          },
-          {
-            name: 'user1',
-            id: 3,
-          },
-          {
-            name: 'user2',
-            id: 6,
-          },
-          // etc
-        ];
+        var data = {
+          addresses: [
+            {
+              name: 'user5',
+              id: 5,
+            },
+            {
+              name: 'user2',
+              id: 2,
+            },
+            {
+              name: 'user3',
+              id: 3,
+            },
+            {
+              name: 'user6',
+              id: 6,
+            },
+            // etc
+          ],
+        };
+        console.log(data);
 
-        const sortResults = (prop, asc) => {
-          const sortedJSON = people.sort((a, b) => {
+        const sortJSONData = (data, prop, asc) => {
+          const sortedJSON = data.addresses.sort((a, b) => {
             if (asc) {
               return a[prop] > b[prop] ? 1 : a[prop] < b[prop] ? -1 : 0;
             } else {
               return b[prop] > a[prop] ? 1 : b[prop] < a[prop] ? -1 : 0;
             }
           });
-          console.log(sortedJSON);
+          // console.log(sortedJSON);
+          return sortedJSON;
         };
-        sortResults('user', true);
+        // sortJSONData(data, 'id', true);
+        console.log(sortJSONData(data, 'id', true));
       }
     </script>
 
