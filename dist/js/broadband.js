@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     .addEventListener('click', handleFormValidation);
 
   // Hardcoded input value
-  document.getElementById('postcode').value = 'LE15 7GH';
+  document.getElementById('postcode').value = 'E16 3DY'; // LE15 7GH
 });
 
 // Hold selection values in file scope
@@ -95,28 +95,28 @@ const getAddress = (postcode) => {
         msg.innerHTML = `<h2>Postcode not valid</h2>`;
       } else {
         let content = data.addresses.map((address) => {
-          let doorNo =
+          let thoroughfare_number =
             address.thoroughfare_number === null
               ? address.premises_name
               : address.thoroughfare_number;
-          let subPremises =
-            address.sub_premises === null ? '' : address.sub_premises;
-          let streetName = address.thoroughfare_name;
-          let postTown = address.post_town;
+          let thoroughfare_name =
+            address.thoroughfare_name === null ? '' : address.thoroughfare_name;
+          let county = address.county === null ? '' : address.county;
+          let postcode = address.postcode;
 
           value += 1;
           return `<option value="${value}"
-                sub_premises="${address.sub_premises}"
-                premises_name="${address.premises_name}" 
-                thoroughfare_number="${address.thoroughfare_number}" 
-                thoroughfare_name="${address.thoroughfare_name}" 
-                locality="${address.locality}" 
-                post_town="${address.post_town}" 
-                county="${address.county}"  
-                postcode="${address.postcode}"  
-                district_id="${address.district_id}"
-                nad_key="${address.nad_key}"    
-                >${doorNo} ${subPremises} ${streetName} ${postTown}</option>`;
+                  thoroughfare_number="${address.thoroughfare_number}" 
+                  thoroughfare_name="${address.thoroughfare_name}" 
+                  premises_name="${address.premises_name}" 
+                  sub_premises="${address.sub_premises}"
+                  locality="${address.locality}" 
+                  post_town="${address.post_town}" 
+                  county="${address.county}"  
+                  postcode="${address.postcode}"  
+                  district_id="${address.district_id}"
+                  nad_key="${address.nad_key}"    
+                  >${thoroughfare_number} ${thoroughfare_name} ${county} ${postcode}</option>`;
         });
 
         msg.innerHTML = `<h2>Choose your address:</h2>
@@ -195,7 +195,7 @@ const getBroadbandAvailability = (ev) => {
       county,
       postcode,
       district_id,
-      nad_key,
+      nad_key, // nad_key throws exception_type: "InternalApiException"
     };
     console.log(body);
 
@@ -207,19 +207,26 @@ const getBroadbandAvailability = (ev) => {
     fetch(URL, config)
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
+        console.log(data.name);
         let count = -1;
 
-        let content = data.products.map((product) => {
-          count += 1;
-          return `<tr class='broadbandData' onClick='handleBroadbandSelection(event)'>
+        if (data.name === 'Error') {
+          const msg = 'No Deals Available for selected address';
+          console.log(msg);
+          broadbandDeals.innerHTML = `<h4 class="mt-4">${msg}</h4>`;
+        } else {
+          let content = data.products.map((product) => {
+            count += 1;
+            return `<tr class='broadbandData' onClick='handleBroadbandSelection(event)'>
                     <td scope="row">${count}</td>
                     <td>${product.name}</td>
                     <td>${product.speed_range}</td>
                     <td>${product.technology}</td>
                   </tr>`;
-        });
+          });
 
-        broadbandDeals.innerHTML = `<h3 class="displayCenter mt-4">Available Broadband Deals</h3>
+          broadbandDeals.innerHTML = `<h3 class="displayCenter mt-4">Available Broadband Deals</h3>
                                   <table id='broadbandData' class="table table-hover table-dark">
                                     <thead>
                                     <tr>
@@ -234,12 +241,13 @@ const getBroadbandAvailability = (ev) => {
                                       </tbody>
                                   </table>`;
 
-        console.log(data);
-        console.log('Data submitted successfully...');
+          console.log(data);
+          console.log('Data submitted successfully...');
+        }
       })
       .catch((err) => {
         let broadbandDeals = document.querySelector('broadbandDeals');
-        broadbandDeals.innerHTML = `<h4>${err}}</h4>`;
+        broadbandDeals.innerHTML = `<h4 class="mt-4">whoops...something Went Wrong. Please try again...</h4>`;
 
         console.log('error');
         console.log(err);
@@ -263,6 +271,7 @@ const placeBroadbandOrder = () => {
       ? ''
       : oderAddress.thoroughfare_name;
   let locality = oderAddress.locality === 'null' ? '' : oderAddress.locality;
+  let county = oderAddress.county === 'null' ? '' : oderAddress.county;
   let post_town = oderAddress.post_town === 'null' ? '' : oderAddress.post_town;
   let postcode = oderAddress.postcode === 'null' ? '' : oderAddress.postcode;
 
@@ -275,8 +284,16 @@ const placeBroadbandOrder = () => {
       oderCustomerEmail,
       oderSubject,
       `<p>Postcode: ${oderPostcode}</p>
-      <p>Address: ${sub_premises} ${premises_name} ${thoroughfare_number} ${thoroughfare_name} ${locality} ${post_town} ${postcode}</p>
-      <p>Broadband Deal:</p> 
+      <p>Address: ${sub_premises} ${premises_name} ${thoroughfare_number} ${thoroughfare_name} ${locality} ${post_town} ${county} ${postcode}</p>
+      <p  style="
+      color: #d5dde5;
+      background: #1b1e24;
+      font-size: 24px;
+      font-weight: 400;
+      padding: 20px;
+      text-align: center;
+      vertical-align: middle;
+    ">Selected Broadband Deal</p> 
       <p>Supplier: ${oderDeal.supplier}</p>
       <p>SpeedRange: ${oderDeal.speedRange}</p>
       <p>Technology: ${oderDeal.technology}</p>`

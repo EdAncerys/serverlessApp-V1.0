@@ -59,6 +59,7 @@ exports.handler = function (event, context, callback) {
         sendResponse(res.data);
       })
       .catch((err) => {
+        console.log(err.response);
         console.log(err.response.data);
         sendResponse(err);
       });

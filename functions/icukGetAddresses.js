@@ -34,7 +34,8 @@ exports.handler = function (event, context, callback) {
     axios
       .get(URL, { headers: headers })
       .then((res) => {
-        console.log(res.data);
+        console.log(res.data.addresses.length);
+        // res.data.addresses.map((ID) => console.log(ID.district_id));
         sendResponse(res.data);
       })
       .catch((err) => {
