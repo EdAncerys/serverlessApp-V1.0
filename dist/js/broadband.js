@@ -2,6 +2,9 @@ document.addEventListener('DOMContentLoaded', () => {
   document
     .getElementById('getAddress')
     .addEventListener('click', handleFormValidation);
+
+  // Hardcoded input value
+  // document.getElementById('postcode').value = 'LE15 7GH'; // LE15 7GH
 });
 
 // Hold selection values in file scope
@@ -108,7 +111,7 @@ const getAddress = (postcode) => {
       let value = 0;
 
       if (data.addresses.length === 0) {
-        msg.innerHTML = `<h2>Postcode not valid</h2>`;
+        msg.innerHTML = `<h2 class="text-warning">Postcode not valid</h2>`;
       } else {
         let sortedJASON = sortJSONData(data, 'thoroughfare_number', true);
 
@@ -142,13 +145,10 @@ const getAddress = (postcode) => {
                             <option selected disabled hidden value='selectionID'>Please Choose Your Address</option>
                             ${content}
                           </select>
-                          <button id='getBroadbandAvailability' class="btn btn-danger mt-4" role="button">
+                          <button id='getBroadbandAvailability' class="btn btn-danger mt-4" role="button" onClick='getBroadbandAvailability(event)'>
                             Check Availability
                           </button>`;
 
-        document
-          .getElementById('getBroadbandAvailability')
-          .addEventListener('click', getBroadbandAvailability);
         // console.log(data.addresses);
         console.log('Done fetching addresses...');
       }
@@ -170,7 +170,8 @@ const getBroadbandAvailability = (ev) => {
   let value = document.getElementById('selectedAddress').value;
 
   if (value === 'selectionID') {
-    broadbandDeals.innerHTML = '<h4 class="mt-4">Please Choose Address</h4>';
+    broadbandDeals.innerHTML =
+      '<h4 class="mt-4 text-warning">Please Choose Address</h4>';
   } else {
     let sub_premises = document
       .getElementById('selectedAddress')
@@ -226,13 +227,13 @@ const getBroadbandAvailability = (ev) => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        console.log(data.name);
         let count = -1;
 
         if (data.name === 'Error') {
           const msg = 'No Deals Available for selected address';
           console.log(msg);
           broadbandDeals.innerHTML = `<h4 class="mt-4">${msg}</h4>`;
+          getAreaBroadbandAvailability();
         } else {
           let content = data.products.map((product) => {
             count += 1;
@@ -240,6 +241,7 @@ const getBroadbandAvailability = (ev) => {
                     <td scope="row">${count}</td>
                     <td>${product.name}</td>
                     <td>${product.speed_range}</td>
+                    <td>${product.provider}</td>
                     <td>${product.technology}</td>
                   </tr>`;
           });
@@ -251,6 +253,7 @@ const getBroadbandAvailability = (ev) => {
                                       <th scope="col">#</th>
                                       <th scope="col">Supplier</th>
                                       <th scope="col">Speed Range</th>
+                                      <th scope="col">Provider</th>
                                       <th scope="col">Technology</th>
                                     </tr>
                                     </thead>
@@ -259,9 +262,65 @@ const getBroadbandAvailability = (ev) => {
                                       </tbody>
                                   </table>`;
 
-          console.log(data);
           console.log('Data submitted successfully...');
         }
+      })
+      .catch((err) => {
+        let broadbandDeals = document.querySelector('broadbandDeals');
+        broadbandDeals.innerHTML = `<h4 class="mt-4">whoops...something Went Wrong. Please try again...</h4>`;
+
+        console.log('error');
+        console.log(err);
+      });
+  }
+};
+
+const getAreaBroadbandAvailability = () => {
+  let broadbandDeals = document.querySelector('broadbandDeals');
+  broadbandDeals.innerHTML = '';
+  console.log('Getting Area Broadband Availability...');
+
+  const URL = '/ndg/getAreaBroadbandAvailability/' + oderPostcode;
+  let value = document.getElementById('selectedAddress').value;
+
+  if (value === 'selectionID') {
+    broadbandDeals.innerHTML = '<h4 class="mt-4">Please Choose Address</h4>';
+  } else {
+    fetch(URL)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        let count = -1;
+
+        let content = data.products.map((product) => {
+          count += 1;
+          return `<tr class='broadbandData' onClick='handleBroadbandSelection(event)'>
+                    <td scope="row">${count}</td>
+                    <td>${product.name}</td>
+                    <td>${product.speed_range}</td>
+                    <td>${product.provider}</td>
+                    <td>${product.technology}</td>
+                  </tr>`;
+        });
+
+        broadbandDeals.innerHTML = `<h3 class="displayCenter mt-4 text-warning">Not Available for Address Provided</h3>
+                                    <h3 class="displayCenter mt-4 text-warning">Available Area Broadband Deals</h3>
+                                    <table id='broadbandData' class="table table-hover table-dark">
+                                      <thead>
+                                      <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Supplier</th>
+                                        <th scope="col">Speed Range</th>
+                                        <th scope="col">Provider</th>
+                                        <th scope="col">Technology</th>
+                                      </tr>
+                                      </thead>
+                                        <tbody>
+                                          ${content}
+                                        </tbody>
+                                    </table>`;
+
+        console.log('Data submitted successfully...');
       })
       .catch((err) => {
         let broadbandDeals = document.querySelector('broadbandDeals');
