@@ -94,7 +94,7 @@ const contactUs = (name, email, subject, description) => {
     .then((res) => res.json())
     .then((data) => {
       let msg = document.querySelector('msg');
-      msg.innerHTML = `<h4>Thank You Fro Contacting Us <span class='highlightedText'>${body.name}</span></h4>`;
+      msg.innerHTML = `<h4>Thank You For Contacting Us <span class='highlightedText'>${body.name}</span></h4>`;
       // Resets form
       handleSubmission(name, email, subject, description);
 
