@@ -15,6 +15,12 @@ let oderPostcode = '';
 let oderAddress = '';
 let oderDeal = '';
 
+// Broadband providers
+const WBC_21CN = 'WBC_21CN';
+const WBC_20CN = 'WBC_20CN';
+const CABLE_AND_WIRELESS = 'CABLE_AND_WIRELESS';
+const TTB = 'TTB';
+
 const validatePostcode = (postcode) => {
   postcode = postcode.replace(/\+|\(|\)|\-|\s/gi, '');
   if (/^[A-Za-z]{1,2}(\d{1,2}|[I])[A-Za-z]? ?\d[A-Za-z]{2}$/.test(postcode))
@@ -78,15 +84,33 @@ const handleSubmission = () => {
   }, 3000);
 };
 
-const sortJSONData = (data, prop, asc) => {
+const _sortAddresses = (data, prop, asc) => {
+  const sortedJSON = data.addresses.sort((a, b) => {
+    if (asc) {
+      return a[prop] > b[prop] ? 1 : a[prop] < b[prop] ? -1 : 0;
+    } else {
+      return b[prop] > a[prop] ? 1 : b[prop] < a[prop] ? -1 : 0;
+    }
+  });
+
+  return sortedJSON;
+};
+
+const _sortBroadbandData = (data, prop, asc) => {
   // data = data.addresses.map((address) => {
   //   address.thoroughfare_number = '0' + address.thoroughfare_number;
   //   console.log(address.thoroughfare_number);
   //   return address;
   // });
-  // console.log(data);
+  const dataWithPrice = data.products.map((broadband) => {
+    if (broadband.provider === WBC_21CN) broadband.price = 'Price A';
+    else broadband.price = 'Price B';
+    return broadband;
+  });
+  console.log(data);
+  console.log(dataWithPrice);
 
-  const sortedJSON = data.addresses.sort((a, b) => {
+  const sortedJSON = dataWithPrice.sort((a, b) => {
     if (asc) {
       return a[prop] > b[prop] ? 1 : a[prop] < b[prop] ? -1 : 0;
     } else {
@@ -111,13 +135,13 @@ const getAddress = (postcode) => {
       console.log(data);
       if (data.message === 'Request failed with status code 403') {
         console.log('ApiExceptionMessage');
-        msg.innerHTML = `<h2 class="text-warning">IP NOT WHITELISTED</h2>`;
+        msg.innerHTML = `<h2 class="text-danger">IP NOT WHITELISTED</h2>`;
         return;
       }
       if (data.addresses.length === 0) {
         msg.innerHTML = `<h2 class="text-warning">Postcode not valid</h2>`;
       } else {
-        let sortedJASON = sortJSONData(data, 'thoroughfare_number', true);
+        let sortedJASON = _sortAddresses(data, 'thoroughfare_number', true);
 
         let content = sortedJASON.map((address) => {
           let thoroughfare_number =
@@ -239,16 +263,19 @@ const getBroadbandAvailability = (ev) => {
           broadbandDeals.innerHTML = `<h4 class="mt-4">${msg}</h4>`;
           getAreaBroadbandAvailability();
         } else {
-          let content = data.products.map((product) => {
-            count += 1;
-            return `<tr class='broadbandData' onClick='handleBroadbandSelection(event)'>
+          let content = _sortBroadbandData(data, 'name', false).map(
+            (product) => {
+              count += 1;
+              return `<tr class='broadbandData' onClick='handleBroadbandSelection(event)'>
                     <td scope="row">${count}</td>
                     <td>${product.name}</td>
                     <td>${product.speed_range}</td>
                     <td>${product.provider}</td>
                     <td>${product.technology}</td>
+                    <td>${product.price}</td>
                   </tr>`;
-          });
+            }
+          );
 
           broadbandDeals.innerHTML = `<h3 class="displayCenter mt-4">Available Broadband Deals</h3>
                                   <table id='broadbandData' class="table table-hover table-dark">
