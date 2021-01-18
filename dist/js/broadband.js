@@ -16,10 +16,10 @@ let oderAddress = '';
 let oderDeal = '';
 
 // Broadband providers
-const WBC_21CN = 'WBC_21CN';
-const WBC_20CN = 'WBC_20CN';
-const CABLE_AND_WIRELESS = 'CABLE_AND_WIRELESS';
-const TTB = 'TTB';
+let WBC_21CN = 'WBC_21CN';
+let WBC_20CN = 'WBC_20CN';
+let CABLE_AND_WIRELESS = 'CABLE_AND_WIRELESS';
+let TTB = 'TTB';
 
 const validatePostcode = (postcode) => {
   postcode = postcode.replace(/\+|\(|\)|\-|\s/gi, '');
@@ -97,14 +97,16 @@ const _sortAddresses = (data, prop, asc) => {
 };
 
 const _sortBroadbandData = (data, prop, asc) => {
-  // data = data.addresses.map((address) => {
-  //   address.thoroughfare_number = '0' + address.thoroughfare_number;
-  //   console.log(address.thoroughfare_number);
-  //   return address;
-  // });
   const dataWithPrice = data.products.map((broadband) => {
-    if (broadband.provider === WBC_21CN) broadband.price = 'Price A';
-    else broadband.price = 'Price B';
+    if (broadband.provider === WBC_21CN) {
+      broadband.price = 'Price A';
+    } else if (broadband.provider === WBC_20CN) {
+      broadband.price = 'Price B';
+    } else if (broadband.provider === CABLE_AND_WIRELESS) {
+      broadband.price = 'Price C';
+    } else if (broadband.provider === TTB) {
+      broadband.price = 'Price D';
+    } else broadband.price = 'Error - provider not defined';
     return broadband;
   });
   console.log(data);
@@ -263,7 +265,7 @@ const getBroadbandAvailability = (ev) => {
           broadbandDeals.innerHTML = `<h4 class="mt-4">${msg}</h4>`;
           getAreaBroadbandAvailability();
         } else {
-          let content = _sortBroadbandData(data, 'name', false).map(
+          let content = _sortBroadbandData(data, 'name', true).map(
             (product) => {
               count += 1;
               return `<tr class='broadbandData' onClick='handleBroadbandSelection(event)'>
@@ -286,6 +288,7 @@ const getBroadbandAvailability = (ev) => {
                                       <th scope="col">Speed Range</th>
                                       <th scope="col">Provider</th>
                                       <th scope="col">Technology</th>
+                                      <th scope="col">Price</th>
                                     </tr>
                                     </thead>
                                       <tbody>
