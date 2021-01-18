@@ -108,7 +108,12 @@ const getAddress = (postcode) => {
     .then((data) => {
       const msg = document.querySelector('msgBroadband');
       let value = 0;
-
+      console.log(data);
+      if (data.message === 'Request failed with status code 403') {
+        console.log('ApiExceptionMessage');
+        msg.innerHTML = `<h2 class="text-warning">IP NOT WHITELISTED</h2>`;
+        return;
+      }
       if (data.addresses.length === 0) {
         msg.innerHTML = `<h2 class="text-warning">Postcode not valid</h2>`;
       } else {
