@@ -1,4 +1,5 @@
 import { _validateEmail } from '../_validateEmail.js';
+import { _handleErrors } from '../_handleErrors.js';
 
 const _handleFormValidation = () => {
   let name = document.getElementById('name').value;
@@ -20,7 +21,7 @@ const _handleFormValidation = () => {
   if (!_validateEmail(email)) errors.push({ msg: 'Email not valid' });
 
   if (errors.length > 0) {
-    handleErrors(errors);
+    _handleErrors(errors);
   } else {
     console.log('Form submitted successfully...');
     contactUs(name, email, subject, description);

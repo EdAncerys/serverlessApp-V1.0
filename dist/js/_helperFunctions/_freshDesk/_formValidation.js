@@ -1,18 +1,6 @@
 import { _validateEmail } from '../_validateEmail.js';
 import { _submitTicket } from './_submitTicket.js';
-
-const _handleErrors = (errors) => {
-  console.log('Validation error...');
-  let msg = document.querySelector('msg');
-  document.querySelector('#msg').style.display = 'block';
-  let errorMsg = errors.map((err) => {
-    return `<h4 class='text-danger'>${err.msg}</h4>`;
-  });
-  msg.innerHTML = `<ul>${errorMsg}</ul>`;
-  setTimeout(() => {
-    document.querySelector('#msg').style.display = 'none';
-  }, 2000);
-};
+import { _handleErrors } from '../_handleErrors.js';
 
 const _handleFormValidation = () => {
   let name = document.getElementById('name').value;
