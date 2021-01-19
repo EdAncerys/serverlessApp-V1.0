@@ -1,131 +1,82 @@
 const _contactFormTemplate = (value, name, email, subject, description) => {
-  return ` <div style="padding: 30px">
-  <table>
-    <tr>
-      <th
-        colspan="2"
-        style="
-          color: #d5dde5;
-          background: #1b1e24;
-          border: 1px solid #343a45;
-          font-size: 24px;
-          font-weight: 400;
-          padding: 20px;
-          text-align: center;
-          text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-          vertical-align: middle;
-        "
-      >
-        ${value}
-      </th>
-    </tr>
+  const tableCellStyle = `style="border: 1px solid #c1c1c1;
+                          color: #2b2b2b;
+                          font-size: 16px;
+                          font-weight: normal;
+                          padding: 20px;
+                          text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);"`;
 
-    <tr style="padding: 5px">
-      <th
-        style="
-          border: 1px solid #c1c3d1;
-          color: #666b85;
-          font-size: 16px;
-          font-weight: normal;
-          padding: 20px;
-          text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
-        "
-      >
-        Name
-      </th>
-      <th
-        style="
-          border: 1px solid #c1c3d1;
-          color: #666b85;
-          font-size: 16px;
-          font-weight: normal;
-          padding: 20px;
-          text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
-        "
-      >
-        ${name}
-      </th>
-    </tr>
-    <tr style="padding: 5px">
-      <th
-        style="
-          border: 1px solid #c1c3d1;
-          color: #666b85;
-          font-size: 16px;
-          font-weight: normal;
-          padding: 20px;
-          text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
-        "
-      >
-        Email
-      </th>
-      <th
-        style="
-          border: 1px solid #c1c3d1;
-          color: #666b85;
-          font-size: 16px;
-          font-weight: normal;
-          padding: 20px;
-          text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
-        "
-      >
-        ${email}
-      </th>
-    </tr>
-    <tr style="padding: 5px">
-      <th
-        style="
-          border: 1px solid #c1c3d1;
-          color: #666b85;
-          font-size: 16px;
-          font-weight: normal;
-          padding: 20px;
-          text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
-        "
-      >
-        Subject
-      </th>
-      <th
-        style="
-          border: 1px solid #c1c3d1;
-          color: #666b85;
-          font-size: 16px;
-          font-weight: normal;
-          padding: 20px;
-          text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
-        "
-      >
-        ${subject}
-      </th>
-    </tr>
-    <tr style="padding: 5px">
-      <th
-        style="
-          border: 1px solid #c1c3d1;
-          color: #666b85;
-          font-size: 16px;
-          font-weight: normal;
-          padding: 20px;
-          text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
-        "
-      >
-        Description
-      </th>
-      <th
-        style="
-          border: 1px solid #c1c3d1;
-          color: #666b85;
-          font-size: 16px;
-          font-weight: normal;
-          padding: 20px;
-          text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
-        "
-      >
-        ${description}
-      </th>
-    </tr>
-  </table>
-</div>`;
+  return `<div style="display: grid; justify-content: center">
+    <table style="background-color: #f4f4f4; min-width: 400px; margin: 20px">
+      <tr>
+        <th
+          colspan="2"
+          style="
+            color: #f4f4f4;
+            background: #2b2b2b;
+            border: 1px solid #343a45;
+            font-size: 24px;
+            font-weight: 400;
+            padding: 20px;
+            text-align: center;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+            vertical-align: middle;
+          "
+        >
+          ${value}
+        </th>
+      </tr>
+
+      <tr style="padding: 5px">
+        <th
+         ${tableCellStyle}
+        >
+          Name
+        </th>
+        <th
+          ${tableCellStyle}
+        >
+          ${name}
+        </th>
+      </tr>
+      <tr style="padding: 5px">
+        <th
+          ${tableCellStyle}
+        >
+          Email
+        </th>
+        <th
+          ${tableCellStyle}
+        >
+          ${email}
+        </th>
+      </tr>
+      <tr style="padding: 5px">
+        <th
+          ${tableCellStyle}
+        >
+          Subject
+        </th>
+        <th
+          ${tableCellStyle}
+        >
+          ${subject}
+        </th>
+      </tr>
+      <tr style="padding: 5px">
+        <th
+          ${tableCellStyle}
+        >
+          Description
+        </th>
+        <th
+          ${tableCellStyle}
+        >
+          ${description}
+        </th>
+      </tr>
+    </table>
+  </div>`;
 };
 
 export { _contactFormTemplate };
