@@ -1,9 +1,10 @@
 import { _contactFormDescriptionHTML } from './_helperFunctions/_contactFormDescriptionHTML.js';
+import { _handleFormValidation } from './_helperFunctions/_contactForm/_handleFormValidation.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   document
     .getElementById('contactUs')
-    .addEventListener('click', handleFormValidation);
+    .addEventListener('click', submitContactForm);
 });
 
 const submitContactForm = (ev) => {

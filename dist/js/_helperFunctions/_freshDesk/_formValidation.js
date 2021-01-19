@@ -1,4 +1,4 @@
-import { _validateEmail } from './_validateEmail.js';
+import { _validateEmail } from '../_validateEmail.js';
 import { _submitTicket } from './_submitTicket.js';
 
 const _handleErrors = (errors) => {

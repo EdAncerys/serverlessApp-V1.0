@@ -1,7 +1,6 @@
-import { _validateEmail } from './_submitTicket.js';
+import { _validateEmail } from '../_validateEmail.js';
 
-const _handleFormValidation = (ev) => {
-  ev.preventDefault();
+const _handleFormValidation = () => {
   let name = document.getElementById('name').value;
   let email = document.getElementById('email').value;
   let subject =
