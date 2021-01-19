@@ -5,7 +5,7 @@ function _freshDeskTickets() {
   fetch(URL)
     .then((res) => res.json())
     .then((data) => {
-      const length = data.length;
+      let length = data.length;
       let msg = document.querySelector('freshDeskMsg');
       let content = data.slice(0, 4).map((ticket) => {
         return `<li>ID: ${ticket.id}</li>
