@@ -1,7 +1,4 @@
-import {
-  _validateEmail,
-  hello,
-} from './_helperFunctions/_freshDesk/_validateEmail.js';
+import { _handleFormValidation } from './_helperFunctions/_freshDesk/_formValidation.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   document
@@ -9,49 +6,12 @@ document.addEventListener('DOMContentLoaded', () => {
     .addEventListener('click', freshDeskTickets);
   document
     .getElementById('submitTicket')
-    .addEventListener('click', handleFormValidation);
+    .addEventListener('click', submitFreshDeskTicket);
 });
 
-// const validateEmail = (email) => {
-//   const re = /\S+@\S+\.\S+/;
-//   return re.test(email);
-// };
-
-const handleErrors = (errors) => {
-  console.log('error...');
-  let msg = document.querySelector('msg');
-  document.querySelector('#msg').style.display = 'block';
-  let errorMsg = errors.map((err) => {
-    return `<li class='err'>${err.msg}</li>`;
-  });
-  msg.innerHTML = `<ul>${errorMsg}</ul>`;
-  setTimeout(() => {
-    document.querySelector('#msg').style.display = 'none';
-  }, 2000);
-};
-
-const handleFormValidation = (ev) => {
+const submitFreshDeskTicket = (ev) => {
   ev.preventDefault();
-  let name = document.getElementById('name').value;
-  let email = document.getElementById('email').value;
-  let subject = document.getElementById('subject').value;
-  let description = document.getElementById('description').value;
-  let errors = [];
-
-  console.log('Validating From...');
-  console.log(name, email, subject, description);
-
-  if (!name || !email || !subject || !description)
-    errors.push({ msg: 'Please fill in all fields' });
-
-  if (!_validateEmail(email)) errors.push({ msg: 'Email not valid' });
-
-  if (errors.length > 0) {
-    handleErrors(errors);
-  } else {
-    console.log('Form submitted successfully...');
-    submitTicket(name, email, subject, description);
-  }
+  _handleFormValidation();
 };
 
 const handleSubmission = () => {
@@ -68,51 +28,6 @@ const handleSubmission = () => {
     formContainer.style.display = 'block';
     msgContainer.style.display = 'none';
   }, 3000);
-};
-
-const submitTicket = (name, email, subject, description) => {
-  console.log('Submit Ticket To freshDeskTickets...');
-
-  const URL = '/ndg/createTicket';
-  const body = {
-    name: name,
-    email: email,
-    subject: subject,
-    description: description,
-    status: 2,
-    priority: 1,
-  };
-  console.log(body);
-
-  const headers = {
-    'Content-Type': 'application/json',
-  };
-
-  const config = {
-    method: 'POST',
-    headers,
-    body: JSON.stringify(body),
-  };
-
-  let msg = document.querySelector('msg');
-
-  fetch(URL, config)
-    .then((res) => res.json())
-    .then((data) => {
-      let msg = document.querySelector('msg');
-      msg.innerHTML = `<h4>Thank You <span class='highlightedText'>${body.name}</span></h4><br/>
-                      <h4>Ticket been submitted successfully</span></h4>`;
-      // Reset values
-      handleSubmission();
-
-      console.log(data);
-      console.log('Done...');
-    })
-    .catch((err) => {
-      let msg = document.querySelector('msg');
-      msg.innerHTML = `<h4>${err}</h4>`;
-      console.log(err);
-    });
 };
 
 function freshDeskTickets(ev) {
