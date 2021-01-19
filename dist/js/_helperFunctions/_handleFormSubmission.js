@@ -11,7 +11,7 @@ const _handleFormSubmission = () => {
   setTimeout(() => {
     formContainer.style.display = 'block';
     msgContainer.style.display = 'none';
-  }, 3000);
+  }, 4000);
 };
 
 export { _handleFormSubmission };

@@ -1,4 +1,5 @@
 import { _handleFormSubmission } from '../_handleFormSubmission.js';
+import { _successMessage } from '../_successMessage.js';
 
 const _submitTicket = (name, email, subject, description) => {
   console.log('Submit Ticket To freshDeskTickets...');
@@ -29,17 +30,16 @@ const _submitTicket = (name, email, subject, description) => {
   fetch(URL, config)
     .then((res) => res.json())
     .then((data) => {
-      let msg = document.querySelector('msg');
-      msg.innerHTML = `<h4>Thank You <span class='highlightedText'>${body.name}</span></h4><br/>
-                      <h4>Ticket been submitted successfully</span></h4>`;
-      // Reset values
-      _handleSubmission();
+      msg.innerHTML = _successMessage(
+        body.name,
+        'Ticket Been Successfully Submitted...'
+      );
+      _handleSubmission(); // Resets contact form
 
       console.log(data);
       console.log('Done...');
     })
     .catch((err) => {
-      let msg = document.querySelector('msg');
       msg.innerHTML = `<h4>${err}</h4>`;
       console.log(err);
     });

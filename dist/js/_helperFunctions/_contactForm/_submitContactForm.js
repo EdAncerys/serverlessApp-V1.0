@@ -1,5 +1,6 @@
 import { _handleFormSubmission } from '../_handleFormSubmission.js';
 import { _contactFormTemplate } from '../_contactFormTemplate.js';
+import { _successMessage } from '../_successMessage.js';
 
 const _submitContactForm = (name, email, subject, description) => {
   console.log('Sending Email...');
@@ -28,7 +29,10 @@ const _submitContactForm = (name, email, subject, description) => {
     .then((res) => res.json())
     .then((data) => {
       let msg = document.querySelector('msg');
-      msg.innerHTML = `<h4>Thank You For Contacting Us <span class='highlightedText'>${body.name}</span></h4>`;
+      msg.innerHTML = msg.innerHTML = _successMessage(
+        body.name,
+        'Email Been Successfully Sent...'
+      );
       _handleFormSubmission(name, email, subject, description); // Resets contact form
 
       console.log(data);
