@@ -1,4 +1,4 @@
-const handleSubmission = () => {
+const _handleSubmission = () => {
   document.querySelector('#name').value = '';
   document.querySelector('#email').value = '';
   document.querySelector('#subject').value = '';
@@ -47,7 +47,7 @@ const _submitTicket = (name, email, subject, description) => {
       msg.innerHTML = `<h4>Thank You <span class='highlightedText'>${body.name}</span></h4><br/>
                       <h4>Ticket been submitted successfully</span></h4>`;
       // Reset values
-      handleSubmission();
+      _handleSubmission();
 
       console.log(data);
       console.log('Done...');

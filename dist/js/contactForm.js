@@ -6,6 +6,11 @@ document.addEventListener('DOMContentLoaded', () => {
     .addEventListener('click', handleFormValidation);
 });
 
+const submitContactForm = (ev) => {
+  ev.preventDefault();
+  _handleFormValidation();
+};
+
 const validateEmail = (email) => {
   const re = /\S+@\S+\.\S+/;
   return re.test(email);
@@ -22,34 +27,6 @@ const handleErrors = (errors) => {
   setTimeout(() => {
     document.querySelector('#msg').style.display = 'none';
   }, 2000);
-};
-
-const handleFormValidation = (ev) => {
-  ev.preventDefault();
-  let name = document.getElementById('name').value;
-  let email = document.getElementById('email').value;
-  let subject =
-    document.getElementById('subject').value +
-    ' | Created at: ' +
-    new Date().toLocaleString();
-  let description = document.getElementById('description').value;
-
-  let errors = [];
-
-  console.log('Validating From...');
-  console.log(name, email, subject, description);
-
-  if (!name || !email || !subject || !description)
-    errors.push({ msg: 'Please fill in all fields' });
-
-  if (!validateEmail(email)) errors.push({ msg: 'Email not valid' });
-
-  if (errors.length > 0) {
-    handleErrors(errors);
-  } else {
-    console.log('Form submitted successfully...');
-    contactUs(name, email, subject, description);
-  }
 };
 
 const handleSubmission = () => {
