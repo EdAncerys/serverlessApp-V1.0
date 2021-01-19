@@ -33,7 +33,7 @@ const _handleFormValidation = () => {
     _handleErrors(errors);
   } else {
     console.log('Form submitted successfully...');
-    submitTicket(name, email, subject, description);
+    _submitTicket(name, email, subject, description);
   }
 };
 
