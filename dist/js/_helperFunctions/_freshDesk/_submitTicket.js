@@ -1,18 +1,4 @@
-const _handleSubmission = () => {
-  document.querySelector('#name').value = '';
-  document.querySelector('#email').value = '';
-  document.querySelector('#subject').value = '';
-  document.querySelector('#description').value = '';
-
-  const formContainer = document.querySelector('#form');
-  const msgContainer = document.querySelector('#msg');
-  formContainer.style.display = 'none';
-  msgContainer.style.display = 'block';
-  setTimeout(() => {
-    formContainer.style.display = 'block';
-    msgContainer.style.display = 'none';
-  }, 3000);
-};
+import { _handleFormSubmission } from '../_handleFormSubmission.js';
 
 const _submitTicket = (name, email, subject, description) => {
   console.log('Submit Ticket To freshDeskTickets...');
