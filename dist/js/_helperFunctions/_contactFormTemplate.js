@@ -1,10 +1,4 @@
-const _contactFormDescriptionHTML = (
-  value,
-  name,
-  email,
-  subject,
-  description
-) => {
+const _contactFormTemplate = (value, name, email, subject, description) => {
   return ` <div style="padding: 30px">
   <table>
     <tr>
@@ -134,4 +128,4 @@ const _contactFormDescriptionHTML = (
 </div>`;
 };
 
-export { _contactFormDescriptionHTML }; // a list of exported variables
+export { _contactFormTemplate };

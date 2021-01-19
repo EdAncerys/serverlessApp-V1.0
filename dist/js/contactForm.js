@@ -1,4 +1,4 @@
-import { _contactFormDescriptionHTML } from './_helperFunctions/_contactFormDescriptionHTML.js';
+import { _contactFormTemplate } from './_helperFunctions/_contactFormTemplate.js';
 import { _handleFormValidation } from './_helperFunctions/_contactForm/_handleFormValidation.js';
 
 document.addEventListener('DOMContentLoaded', () => {
