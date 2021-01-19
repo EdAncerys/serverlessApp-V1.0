@@ -11,11 +11,6 @@ const submitContactForm = (ev) => {
   _handleFormValidation();
 };
 
-const validateEmail = (email) => {
-  const re = /\S+@\S+\.\S+/;
-  return re.test(email);
-};
-
 const handleErrors = (errors) => {
   console.log('error...');
   let msg = document.querySelector('msg');

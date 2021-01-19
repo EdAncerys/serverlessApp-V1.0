@@ -1,3 +1,5 @@
+import { _validateEmail } from './_submitTicket.js';
+
 const _handleFormValidation = (ev) => {
   ev.preventDefault();
   let name = document.getElementById('name').value;
@@ -16,7 +18,7 @@ const _handleFormValidation = (ev) => {
   if (!name || !email || !subject || !description)
     errors.push({ msg: 'Please fill in all fields' });
 
-  if (!validateEmail(email)) errors.push({ msg: 'Email not valid' });
+  if (!_validateEmail(email)) errors.push({ msg: 'Email not valid' });
 
   if (errors.length > 0) {
     handleErrors(errors);
