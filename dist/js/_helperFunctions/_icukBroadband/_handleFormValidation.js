@@ -1,4 +1,5 @@
-
+import { _validatePostcode } from './_validatePostcode.js';
+import { _handleErrors } from '../_handleErrors.js';
 
 const _handleFormValidation = () => {
   console.log('Validating From...');
@@ -13,12 +14,12 @@ const _handleFormValidation = () => {
 
   if (!postcode) errors.push({ msg: 'Please enter your postcode' });
 
-  if (!validatePostcode(postcode) && postcode)
+  if (!_validatePostcode(postcode) && postcode)
     errors.push({ msg: 'Postcode not valid' });
 
   if (errors.length > 0) {
     console.log('Postcode not valid...');
-    handleErrors(errors);
+    _handleErrors(errors);
   } else {
     console.log('Postcode valid...');
     oderPostcode = postcode;
