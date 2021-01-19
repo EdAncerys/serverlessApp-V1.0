@@ -1,4 +1,4 @@
-import { _handleFormValidation } from './_helperFunctions/_contactForm/_handleFormValidation.js';
+import { _handleFormValidation } from './_helperFunctions/_handleFormValidation.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   document
@@ -8,5 +8,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const submitContactForm = (ev) => {
   ev.preventDefault();
-  _handleFormValidation();
+  _handleFormValidation('_submitContactForm');
 };

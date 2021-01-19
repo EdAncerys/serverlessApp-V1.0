@@ -1,8 +1,9 @@
-import { _validateEmail } from '../_validateEmail.js';
-import { _handleErrors } from '../_handleErrors.js';
-import { _submitContactForm } from './_submitContactForm.js';
+import { _validateEmail } from './_validateEmail.js';
+import { _handleErrors } from './_handleErrors.js';
+import { _submitContactForm } from './_contactForm/_submitContactForm.js';
+import { _submitTicket } from './_freshDesk/_submitTicket.js';
 
-const _handleFormValidation = () => {
+const _handleFormValidation = (formType) => {
   let name = document.getElementById('name').value;
   let email = document.getElementById('email').value;
   let subject =
@@ -25,7 +26,13 @@ const _handleFormValidation = () => {
     _handleErrors(errors);
   } else {
     console.log('Form submitted successfully...');
-    _submitContactForm(name, email, subject, description);
+    if (formType === '_submitContactForm') {
+      _submitContactForm(name, email, subject, description);
+    } else if (formType === '_submitTicket') {
+      _submitTicket(name, email, subject, description);
+    } else {
+      console.log('Error submitting form...');
+    }
   }
 };
 

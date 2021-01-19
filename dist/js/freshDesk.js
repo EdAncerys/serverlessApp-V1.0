@@ -1,4 +1,4 @@
-import { _handleFormValidation } from './_helperFunctions/_freshDesk/_formValidation.js';
+import { _handleFormValidation } from './_helperFunctions/_handleFormValidation.js';
 import { _freshDeskTickets } from './_helperFunctions/_freshDesk/_freshDeskTickets.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const submitFreshDeskTicket = (ev) => {
   ev.preventDefault();
-  _handleFormValidation();
+  _handleFormValidation('_submitTicket');
 };
 
 const getFreshDeskTicket = (ev) => {

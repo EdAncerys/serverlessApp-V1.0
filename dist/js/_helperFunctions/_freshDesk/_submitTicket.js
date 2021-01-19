@@ -34,7 +34,7 @@ const _submitTicket = (name, email, subject, description) => {
         body.name,
         'Ticket Been Successfully Submitted...'
       );
-      _handleSubmission(); // Resets contact form
+      _handleFormSubmission(); // Resets contact form
 
       console.log(data);
       console.log('Done...');

@@ -9,7 +9,8 @@
       crossorigin="anonymous"
     />
     <script defer src="../../JS/dns.js"></script>
-    <script defer src="../../JS/broadband.js"></script>
+    <script defer type="module" src="../../JS/broadband.js"></script>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="../devHTML/css/main.css" />
     <title>Contact Form</title>
@@ -62,30 +63,7 @@
     <script>
       function testFunc(event) {
         // alert('The URL of this page is: ' + window.location.href);
-        let arr = [
-          { number: '1', name: 'A' },
-          { number: '4', name: 'D' },
-          { number: '3', name: 'C' },
-          { number: '2', name: 'B' },
-          // 'A1',
-          // 'A10',
-          // 'A11',
-          // 'A12',
-          // 'A2',
-          // 'A3',
-          // 'A4',
-          // 'B10',
-          // 'B2',
-          // 'F1',
-          // 'F12',
-          // 'F3',
-        ];
-
-        let op = arr.map((data) => {
-          console.log(data.name);
-        });
-
-        console.log(op);
+        console.log('hello world');
       }
     </script>
 
