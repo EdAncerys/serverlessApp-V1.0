@@ -1,3 +1,8 @@
+import {
+  _validateEmail,
+  hello,
+} from './_helperFunctions/_freshDesk/_validateEmail.js';
+
 document.addEventListener('DOMContentLoaded', () => {
   document
     .getElementById('freshDeskTickets')
@@ -7,10 +12,10 @@ document.addEventListener('DOMContentLoaded', () => {
     .addEventListener('click', handleFormValidation);
 });
 
-const validateEmail = (email) => {
-  const re = /\S+@\S+\.\S+/;
-  return re.test(email);
-};
+// const validateEmail = (email) => {
+//   const re = /\S+@\S+\.\S+/;
+//   return re.test(email);
+// };
 
 const handleErrors = (errors) => {
   console.log('error...');
@@ -39,7 +44,7 @@ const handleFormValidation = (ev) => {
   if (!name || !email || !subject || !description)
     errors.push({ msg: 'Please fill in all fields' });
 
-  if (!validateEmail(email)) errors.push({ msg: 'Email not valid' });
+  if (!_validateEmail(email)) errors.push({ msg: 'Email not valid' });
 
   if (errors.length > 0) {
     handleErrors(errors);
