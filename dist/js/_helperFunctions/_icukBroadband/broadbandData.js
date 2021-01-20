@@ -13,11 +13,9 @@ const broadbandData = {
   TTB: 'TTB',
 };
 
-const amendBroadbandData = (key, value) => {
-  broadbandData[key] = value;
-  console.log(broadbandData);
-
-  return broadbandData;
+const saveToLocalStorage = (key, value) => {
+  localStorage.setItem(key, value);
+  console.log(`${key}: `, localStorage.getItem(key));
 };
 
-export { broadbandData, amendBroadbandData };
+export { broadbandData, saveToLocalStorage };

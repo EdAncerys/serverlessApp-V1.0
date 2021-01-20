@@ -1,4 +1,4 @@
-import { broadbandData, amendBroadbandData } from './broadbandData.js';
+import { broadbandData, saveToLocalStorage } from './broadbandData.js';
 import { _validatePostcode } from './_validatePostcode.js';
 import { _handleErrors } from '../_handleErrors.js';
 import { _clearDOMData } from './_clearDOMData.js';
@@ -23,7 +23,7 @@ const _handleFormValidation = () => {
     _handleErrors(errors);
   } else {
     console.log('Postcode valid...');
-    amendBroadbandData('oderPostcode', postcode);
+    saveToLocalStorage('oderPostcode', postcode);
     _getAddress(postcode);
   }
 };

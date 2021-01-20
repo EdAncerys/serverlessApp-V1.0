@@ -62,7 +62,7 @@ const _getAddress = (postcode) => {
     })
     .catch((err) => {
       let msg = document.querySelector('msg');
-      msg.innerHTML = `<h4>${err}</h4>`;
+      msg.innerHTML = _warningMessage(err);
       console.log(err);
     });
 };
