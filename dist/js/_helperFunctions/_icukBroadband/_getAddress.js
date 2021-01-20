@@ -1,6 +1,7 @@
 import { _warningMessage } from '../_warningMessage.js';
 import { _sortAddresses } from './_sortAddresses.js';
 import { _saveAddressData } from './_saveAddressData.js';
+import { _getBroadbandAvailability } from './_getBroadbandAvailability.js';
 
 const _getAddress = (postcode) => {
   console.log('Fetching addresses for postcode provided...');
@@ -66,7 +67,7 @@ const _getAddress = (postcode) => {
           .addEventListener('change', _saveAddressData);
         document
           .getElementById('getBroadbandAvailability')
-          .addEventListener('click', _saveAddressData);
+          .addEventListener('click', _getBroadbandAvailability);
 
         // console.log(data.addresses);
         console.log('Done fetching addresses...');

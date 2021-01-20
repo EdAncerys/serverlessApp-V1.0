@@ -1,4 +1,4 @@
-import { broadbandData, saveToLocalStorage } from './broadbandData.js';
+import { saveToLocalStorage } from './broadbandData.js';
 import { _validatePostcode } from './_validatePostcode.js';
 import { _handleErrors } from '../_handleErrors.js';
 import { _clearDOMData } from './_clearDOMData.js';

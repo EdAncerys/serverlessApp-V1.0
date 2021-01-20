@@ -1,8 +1,14 @@
-const _clearDOMData = () => {
+const _clearDOMData = (container) => {
   // Clearing containers if contains values
-  document.querySelector('msgBroadband').innerHTML = '';
-  document.querySelector('broadbandDeals').innerHTML = '';
-  document.querySelector('broadbandOrder').innerHTML = '';
+  container === 'msgBroadband'
+    ? ''
+    : (document.querySelector('msgBroadband').innerHTML = '');
+  container === 'broadbandDeals'
+    ? ''
+    : (document.querySelector('broadbandDeals').innerHTML = '');
+  container === 'broadbandOrder'
+    ? ''
+    : (document.querySelector('broadbandOrder').innerHTML = '');
 };
 
 export { _clearDOMData };

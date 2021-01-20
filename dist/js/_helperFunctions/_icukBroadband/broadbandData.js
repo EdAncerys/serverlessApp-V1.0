@@ -1,12 +1,4 @@
-const broadbandData = {
-  oderCustomerName: 'HardCoded Name value',
-  oderCustomerEmail: 'HardCoded email value',
-  oderSubject: '',
-  oderPostcode: '',
-  oderAddress: '',
-  oderDeal: '',
-
-  // Broadband providers
+const broadbandProviders = {
   WBC_21CN: 'WBC_21CN',
   WBC_20CN: 'WBC_20CN',
   CABLE_AND_WIRELESS: 'CABLE_AND_WIRELESS',
@@ -18,4 +10,4 @@ const saveToLocalStorage = (key, value) => {
   console.log(`${key}: `, localStorage.getItem(key));
 };
 
-export { broadbandData, saveToLocalStorage };
+export { broadbandProviders, saveToLocalStorage };
