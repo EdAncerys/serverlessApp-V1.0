@@ -1,4 +1,4 @@
-const _getAddressData = () => {
+const _saveAddressData = () => {
   let value = document.getElementById('selectedAddress').value;
   let sub_premises = document
     .getElementById('selectedAddress')
@@ -31,7 +31,19 @@ const _getAddressData = () => {
     .getElementById('selectedAddress')
     [value].getAttribute('nad_key');
 
-  oderAddress = {
+  // Save data to local storage
+  localStorage.setItem('sub_premises', sub_premises);
+  localStorage.setItem('premises_name', premises_name);
+  localStorage.setItem('thoroughfare_number', thoroughfare_number);
+  localStorage.setItem('thoroughfare_name', thoroughfare_name);
+  localStorage.setItem('locality', locality);
+  localStorage.setItem('post_town', post_town);
+  localStorage.setItem('county', county);
+  localStorage.setItem('postcode', postcode);
+  localStorage.setItem('district_id', district_id);
+  localStorage.setItem('nad_key', nad_key);
+
+  const oderAddress = {
     sub_premises,
     premises_name,
     thoroughfare_number,
@@ -46,4 +58,4 @@ const _getAddressData = () => {
   console.log(oderAddress);
 };
 
-export { _getAddressData };
+export { _saveAddressData };
