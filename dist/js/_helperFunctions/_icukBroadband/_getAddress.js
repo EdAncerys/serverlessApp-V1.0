@@ -1,4 +1,5 @@
 import { _warningMessage } from '../_warningMessage.js';
+import { _sortAddresses } from './_sortAddresses.js';
 
 const _getAddress = (postcode) => {
   console.log('Fetching addresses for postcode provided...');
@@ -17,7 +18,7 @@ const _getAddress = (postcode) => {
         return;
       }
       if (data.addresses.length === 0) {
-        msg.innerHTML = `<h2 class="text-warning">Postcode not valid</h2>`;
+        msg.innerHTML = _warningMessage('Postcode not valid');
       } else {
         let sortedJASON = _sortAddresses(data, 'thoroughfare_number', true);
 
