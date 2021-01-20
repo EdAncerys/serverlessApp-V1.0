@@ -1,10 +1,13 @@
+import { _warningMessage } from './_warningMessage.js';
+
 const _handleErrors = (errors) => {
   console.log('Form validation error...');
   let msg = document.querySelector('msg');
   document.querySelector('#msg').style.display = 'block';
   let errorMsg = errors.map((err) => {
-    return `<h4 class='text-danger'>${err.msg}</h4>`;
+    return _warningMessage(err.msg);
   });
+
   msg.innerHTML = `<div>${errorMsg}</div>`;
   setTimeout(() => {
     document.querySelector('#msg').style.display = 'none';

@@ -6,11 +6,12 @@ const _getBroadbandAvailability = () => {
   console.log('Getting Broadband Availability...');
 
   const URL = '/ndg/broadbandAvailability';
+  let msg = document.querySelector('msg');
   let broadbandDeals = document.querySelector('broadbandDeals');
   let value = document.getElementById('selectedAddress').value;
 
   if (value === 'selectionID') {
-    broadbandDeals.innerHTML = _warningMessage('Please Choose Address');
+    msg.innerHTML = _warningMessage('Please Choose Address');
   } else {
     let body = {
       sub_premises: localStorage.getItem('sub_premises'),
