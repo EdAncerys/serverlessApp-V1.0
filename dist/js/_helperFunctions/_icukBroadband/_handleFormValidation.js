@@ -1,12 +1,11 @@
 import { broadbandData, amendBroadbandData } from './broadbandData.js';
 import { _validatePostcode } from './_validatePostcode.js';
 import { _handleErrors } from '../_handleErrors.js';
+import { _clearDOMData } from './_clearDOMData.js';
 
 const _handleFormValidation = () => {
   console.log('Validating From...');
-  // Clearing containers if contains values
-  document.querySelector('msgBroadband').innerHTML = '';
-  document.querySelector('broadbandDeals').innerHTML = '';
+  _clearDOMData();
 
   let postcode = document.getElementById('postcode').value.replace(/\s/g, '');
   let errors = [];
@@ -23,9 +22,7 @@ const _handleFormValidation = () => {
     _handleErrors(errors);
   } else {
     console.log('Postcode valid...');
-    console.log(broadbandData);
-    amendBroadbandData('oderCustomerName', 'hello world');
-    // oderPostcode = postcode;
+    amendBroadbandData('oderPostcode', postcode);
     // getAddress(postcode);
   }
 };
