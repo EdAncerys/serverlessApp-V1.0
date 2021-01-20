@@ -25,8 +25,12 @@ const _getAddress = (postcode) => {
         let content = sortedJASON.map((address) => {
           let thoroughfare_number =
             address.thoroughfare_number === null
-              ? address.premises_name
+              ? ''
               : address.thoroughfare_number;
+          let premises_name =
+            address.premises_name === null ? '' : address.premises_name;
+          let sub_premises =
+            address.sub_premises === null ? '' : address.sub_premises;
           let thoroughfare_name =
             address.thoroughfare_name === null ? '' : address.thoroughfare_name;
           let county = address.county === null ? '' : address.county;
@@ -44,7 +48,7 @@ const _getAddress = (postcode) => {
                   postcode="${address.postcode}"  
                   district_id="${address.district_id}"
                   nad_key="${address.nad_key}"    
-                  >${thoroughfare_number} ${thoroughfare_name} ${county} ${postcode}</option>`;
+                  >${thoroughfare_number} ${premises_name} ${sub_premises} ${thoroughfare_name} ${county} ${postcode}</option>`;
         });
 
         msg.innerHTML = `<h2>Choose your address:</h2>
@@ -52,9 +56,11 @@ const _getAddress = (postcode) => {
                             <option selected disabled hidden value='selectionID'>Please Choose Your Address</option>
                             ${content}
                           </select>
+                          <form>
                           <button id='getBroadbandAvailability' class="btn btn-danger mt-4" role="button" onClick='getBroadbandAvailability(event)'>
                             Check Availability
-                          </button>`;
+                          </button>
+                          </form>`;
 
         // console.log(data.addresses);
         console.log('Done fetching addresses...');

@@ -13,3 +13,8 @@ const quoteBroadbandDeal = (ev) => {
   ev.preventDefault();
   _handleFormValidation();
 };
+
+const getBroadbandAvailability = (ev) => {
+  // ev.preventDefault();
+  console.log('click');
+};
