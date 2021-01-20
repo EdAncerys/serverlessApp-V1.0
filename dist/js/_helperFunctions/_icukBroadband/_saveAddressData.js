@@ -31,18 +31,6 @@ const _saveAddressData = () => {
     .getElementById('selectedAddress')
     [value].getAttribute('nad_key');
 
-  // Save data to local storage
-  localStorage.setItem('sub_premises', sub_premises);
-  localStorage.setItem('premises_name', premises_name);
-  localStorage.setItem('thoroughfare_number', thoroughfare_number);
-  localStorage.setItem('thoroughfare_name', thoroughfare_name);
-  localStorage.setItem('locality', locality);
-  localStorage.setItem('post_town', post_town);
-  localStorage.setItem('county', county);
-  localStorage.setItem('postcode', postcode);
-  localStorage.setItem('district_id', district_id);
-  localStorage.setItem('nad_key', nad_key);
-
   const oderAddress = {
     sub_premises,
     premises_name,
@@ -55,7 +43,13 @@ const _saveAddressData = () => {
     district_id,
     nad_key,
   };
-  console.log(oderAddress);
+
+  // Save data to local storage
+  localStorage.setItem('oderAddress', oderAddress);
+  console.log(
+    'Data saved to local storage for postcode ' +
+      localStorage.getItem('postcode')
+  );
 };
 
 export { _saveAddressData };

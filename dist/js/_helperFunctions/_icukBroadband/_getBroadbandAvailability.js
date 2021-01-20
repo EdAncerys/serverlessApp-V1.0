@@ -1,5 +1,6 @@
-import { _clearDOMData } from './_clearDOMData.js';
 import { _warningMessage } from '../_warningMessage.js';
+import { _clearDOMData } from './_clearDOMData.js';
+import { _sortBroadbandData } from './_sortBroadbandData.js';
 
 const _getBroadbandAvailability = () => {
   _clearDOMData('msgBroadband');
@@ -25,7 +26,6 @@ const _getBroadbandAvailability = () => {
       district_id: localStorage.getItem('district_id'),
       nad_key: localStorage.getItem('nad_key'),
     };
-    console.log(body);
 
     const config = {
       method: 'POST',
@@ -39,10 +39,9 @@ const _getBroadbandAvailability = () => {
         let count = -1;
 
         if (data.name === 'Error') {
-          const msg = 'No Deals Available for selected address';
-          console.log(msg);
-          broadbandDeals.innerHTML = `<h4 class="mt-4">${msg}</h4>`;
-          getAreaBroadbandAvailability();
+          const err = 'No Deals Available for selected address';
+          msg.innerHTML = _warningMessage(err);
+          console.log(err);
         } else {
           let content = _sortBroadbandData(data, 'name', true).map(
             (product) => {

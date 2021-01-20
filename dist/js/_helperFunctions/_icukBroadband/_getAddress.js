@@ -53,7 +53,7 @@ const _getAddress = (postcode) => {
                   >${thoroughfare_number} ${premises_name} ${sub_premises} ${thoroughfare_name} ${county} ${postcode}</option>`;
         });
 
-        msg.innerHTML = `<h2>Choose your address:</h2>
+        msg.innerHTML = `<h4>Choose your address:</h4>
                           <select name="selectedAddress" id="selectedAddress" style="width:600px">
                             <option selected disabled hidden value='selectionID'>Please Choose Your Address</option>
                             ${content}
