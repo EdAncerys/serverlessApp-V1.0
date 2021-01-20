@@ -1,5 +1,6 @@
 import { _warningMessage } from '../_warningMessage.js';
 import { _sortAddresses } from './_sortAddresses.js';
+import { _getAddressData } from './_getAddressData.js';
 
 const _getAddress = (postcode) => {
   console.log('Fetching addresses for postcode provided...');
@@ -52,15 +53,17 @@ const _getAddress = (postcode) => {
         });
 
         msg.innerHTML = `<h2>Choose your address:</h2>
-                          <select name="selectedAddress" id="selectedAddress" style="width:600px" onChange="logAddressData()">
+                          <select name="selectedAddress" id="selectedAddress" style="width:600px" onChange="funk(event)">
                             <option selected disabled hidden value='selectionID'>Please Choose Your Address</option>
                             ${content}
                           </select>
-                          <form>
-                          <button id='getBroadbandAvailability' class="btn btn-danger mt-4" role="button" onClick='getBroadbandAvailability(event)'>
-                            Check Availability
-                          </button>
-                          </form>`;
+                            <button id='getBroadbandAvailability' class="btn btn-danger mt-4" role="button">
+                              Check Availability
+                            </button>`;
+
+        document
+          .getElementById('getBroadbandAvailability')
+          .addEventListener('click', _getAddressData);
 
         // console.log(data.addresses);
         console.log('Done fetching addresses...');
