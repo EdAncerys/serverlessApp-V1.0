@@ -1,6 +1,7 @@
 import { _warningMessage } from '../_warningMessage.js';
 import { _clearDOMData } from './_clearDOMData.js';
 import { _sortBroadbandData } from './_sortBroadbandData.js';
+import { _handleBroadbandSelection } from './_handleBroadbandSelection.js';
 
 const _getBroadbandAvailability = () => {
   _clearDOMData('msgBroadband');
@@ -46,17 +47,17 @@ const _getBroadbandAvailability = () => {
           let content = _sortBroadbandData(data, 'name', true).map(
             (product) => {
               count += 1;
-              return `<tr class='broadbandData' onClick='handleBroadbandSelection(event)'>
-                    <td scope="row">${count}</td>
-                    <td>${product.name}</td>
-                    <td>${product.provider}</td>
-                    <td>${product.likely_down_speed}</td>
-                    <td>${product.likely_up_speed}</td>
-                    <td>${product.speed_range}</td>
-                    <td>${product.technology}</td>
-                    <td>${product.price}</td>
-                    <td>${product.installation}</td>
-                  </tr>`;
+              return `<tr class="broadbandData" id="handleBroadbandSelection">
+                        <td scope="row">${count}</td>
+                        <td>${product.name}</td>
+                        <td>${product.provider}</td>
+                        <td>${product.likely_down_speed}</td>
+                        <td>${product.likely_up_speed}</td>
+                        <td>${product.speed_range}</td>
+                        <td>${product.technology}</td>
+                        <td>${product.price}</td>
+                        <td>${product.installation}</td>
+                      </tr>`;
             }
           );
 
@@ -79,7 +80,9 @@ const _getBroadbandAvailability = () => {
                                         ${content}
                                       </tbody>
                                   </table>`;
-
+          document
+            .getElementById('handleBroadbandSelection')
+            .addEventListener('click', _handleBroadbandSelection);
           console.log('Data submitted successfully...');
         }
       })
