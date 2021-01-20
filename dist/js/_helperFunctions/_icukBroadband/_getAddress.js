@@ -3,7 +3,7 @@ import { _sortAddresses } from './_sortAddresses.js';
 
 const _getAddress = (postcode) => {
   console.log('Fetching addresses for postcode provided...');
-  const URL = '/ndg/_getAddresses/' + postcode;
+  const URL = '/ndg/getAddresses/' + postcode;
   console.log(URL);
   const msg = document.querySelector('msgBroadband');
 
