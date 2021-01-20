@@ -49,10 +49,13 @@ const _getBroadbandAvailability = () => {
               return `<tr class='broadbandData' onClick='handleBroadbandSelection(event)'>
                     <td scope="row">${count}</td>
                     <td>${product.name}</td>
-                    <td>${product.speed_range}</td>
                     <td>${product.provider}</td>
+                    <td>${product.likely_down_speed}</td>
+                    <td>${product.likely_up_speed}</td>
+                    <td>${product.speed_range}</td>
                     <td>${product.technology}</td>
                     <td>${product.price}</td>
+                    <td>${product.installation}</td>
                   </tr>`;
             }
           );
@@ -63,10 +66,13 @@ const _getBroadbandAvailability = () => {
                                     <tr>
                                       <th scope="col">#</th>
                                       <th scope="col">Supplier</th>
-                                      <th scope="col">Speed Range</th>
                                       <th scope="col">Provider</th>
+                                      <th scope="col">Download</th>
+                                      <th scope="col">Upload</th>
+                                      <th scope="col">Speed Range</th>
                                       <th scope="col">Technology</th>
                                       <th scope="col">Price</th>
+                                      <th scope="col">Installation</th>
                                     </tr>
                                     </thead>
                                       <tbody>
