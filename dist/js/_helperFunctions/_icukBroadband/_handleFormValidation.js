@@ -1,3 +1,4 @@
+import { broadbandData, amendBroadbandData } from './broadbandData.js';
 import { _validatePostcode } from './_validatePostcode.js';
 import { _handleErrors } from '../_handleErrors.js';
 
@@ -22,8 +23,10 @@ const _handleFormValidation = () => {
     _handleErrors(errors);
   } else {
     console.log('Postcode valid...');
-    oderPostcode = postcode;
-    getAddress(postcode);
+    console.log(broadbandData);
+    amendBroadbandData('oderCustomerName', 'hello world');
+    // oderPostcode = postcode;
+    // getAddress(postcode);
   }
 };
 
