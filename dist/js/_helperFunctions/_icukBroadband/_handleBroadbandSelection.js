@@ -1,3 +1,5 @@
+import { _placeBroadbandOrder } from './_placeBroadbandOrder.js';
+
 const _handleBroadbandSelection = (event) => {
   const header = event.target.parentNode.children[1].innerHTML;
 
@@ -37,6 +39,15 @@ const _handleBroadbandSelection = (event) => {
       event.target.parentNode.children[8].innerHTML
     );
     console.log(`Name: `, localStorage.getItem('name'));
+
+    console.log('Broadband Deal Selected...');
+    let broadbandOrder = document.querySelector('broadbandOrder');
+    broadbandOrder.innerHTML = `<button id='placeBroadbandOrder' class="btn btn-warning mt-4" role="button" onClick="placeBroadbandOrder()">
+                                Place Order
+                              </button>`;
+    document
+      .getElementById('placeBroadbandOrder')
+      .addEventListener('click', _placeBroadbandOrder);
   }
 };
 
