@@ -64,7 +64,7 @@ msg {
   cursor: pointer;
 }
 .selected {
-  background-color: blue;
+  background-color: rgba(0, 0, 255, 0.12);
 }
 .cursorOver {
   cursor: pointer;

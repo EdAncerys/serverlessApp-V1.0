@@ -59,10 +59,10 @@
 
         <table id="broadbandData" class="table table-hover table-light">
           <thead>
-            <tr>
+            <trC>
               <th scope="col">Name</th>
               <th scope="col">Surname</th>
-            </tr>
+            </trC>
           </thead>
           <tbody>
             <tr class="broadbandData">
@@ -109,8 +109,8 @@
       document
         .getElementById('broadbandData')
         .addEventListener('click', function (e) {
-          const closestCell = e.target.closest('td'), // identify the closest td when the click occured
-            activeCell = e.currentTarget.querySelector('td.selected'); // identify the already selected td
+          const closestCell = e.target.closest('tr'), // identify the closest td when the click occured
+            activeCell = e.currentTarget.querySelector('tr.selected'); // identify the already selected td
 
           closestCell.classList.add('selected'); // add the "selected" class to the clicked td
           if (activeCell) activeCell.classList.remove('selected'); // remove the "selected" class from the previously selected td
