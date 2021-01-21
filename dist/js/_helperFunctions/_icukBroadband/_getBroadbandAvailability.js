@@ -47,8 +47,8 @@ const _getBroadbandAvailability = () => {
           let content = _sortBroadbandData(data, 'name', true).map(
             (product) => {
               count += 1;
-              return `<tr class="broadbandData" id="handleBroadbandSelection">
-                        <td scope="row">${count}</td>
+              return `<tr class="broadbandData">
+                        <td>${count}</td>
                         <td>${product.name}</td>
                         <td>${product.provider}</td>
                         <td>${product.likely_down_speed}</td>
@@ -62,33 +62,34 @@ const _getBroadbandAvailability = () => {
           );
 
           broadbandDeals.innerHTML = `<h3 class="displayCenter mt-4">Available Broadband Deals</h3>
-                                  <table id='broadbandData' class="table table-hover table-dark">
-                                    <thead>
-                                    <tr>
-                                      <th scope="col">#</th>
-                                      <th scope="col">Supplier</th>
-                                      <th scope="col">Provider</th>
-                                      <th scope="col">Download</th>
-                                      <th scope="col">Upload</th>
-                                      <th scope="col">Speed Range</th>
-                                      <th scope="col">Technology</th>
-                                      <th scope="col">Price</th>
-                                      <th scope="col">Installation</th>
-                                    </tr>
-                                    </thead>
-                                      <tbody>
-                                        ${content}
-                                      </tbody>
-                                  </table>`;
+                                      <table id='broadbandData' class="table table-hover table-light">
+                                        <thead>
+                                        <tr>
+                                          <th scope="col">#</th>
+                                          <th scope="col">Supplier</th>
+                                          <th scope="col">Provider</th>
+                                          <th scope="col">Download</th>
+                                          <th scope="col">Upload</th>
+                                          <th scope="col">Speed Range</th>
+                                          <th scope="col">Technology</th>
+                                          <th scope="col">Price</th>
+                                          <th scope="col">Installation</th>
+                                        </tr>
+                                        </thead>
+                                          <tbody>
+                                            ${content}
+                                          </tbody>
+                                      </table>`;
           document
-            .getElementById('handleBroadbandSelection')
+            .getElementById('broadbandData')
             .addEventListener('click', _handleBroadbandSelection);
           console.log('Data submitted successfully...');
         }
       })
       .catch((err) => {
-        let broadbandDeals = document.querySelector('broadbandDeals');
-        broadbandDeals.innerHTML = `<h4 class="mt-4">whoops...something Went Wrong. Please try again...</h4>`;
+        msg.innerHTML = _warningMessage(
+          'woops...something went wrong please try again'
+        );
 
         console.log('error');
         console.log(err);

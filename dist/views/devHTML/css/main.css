@@ -66,3 +66,17 @@ msg {
 .selected {
   background-color: blue;
 }
+.cursorOver {
+  cursor: pointer;
+}
+
+/* Broadband list table */
+table,
+th,
+td {
+  border: 1px solid #c0c0c0;
+  border-collapse: collapse;
+}
+table {
+  width: 100%;
+}

@@ -56,15 +56,65 @@
           <broadbandDeals class="centerVertically"></broadbandDeals>
           <broadbandOrder class="centerVertically"></broadbandOrder>
         </div>
+
+        <table id="broadbandData" class="table table-hover table-light">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Surname</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="broadbandData">
+              <td>John</td>
+              <td>Doe</td>
+            </tr>
+            <tr class="broadbandData">
+              <td>Ben</td>
+              <td>Dower</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
+
     <footer></footer>
 
     <script>
+      // document
+      //   .getElementById('broadbandData')
+      //   .addEventListener('click', testFunc);
       function testFunc(event) {
         // alert('The URL of this page is: ' + window.location.href);
-        console.log('hello world');
+        // const radioBtn = event.target.parentNode.children[0];
+        // const setStyle = event.target.parentNode.children;
+        const table = document.getElementById('broadbandData');
+        const allRows = document.getElementById('broadbandData').children[1];
+        const rowElement = event.target.parentNode;
+        for (let i in table.rows) {
+          // let row = table.children[1].classList.remove(
+          //   'bg-primary',
+          //   'text-white'
+          // );
+          // allRows.children[i].classList.remove('bg-primary', 'text-white');
+          // console.log(allRows.children[i]);
+        }
+
+        event.target.parentNode.classList.add('bg-primary', 'text-white');
+        const name = event.target.parentNode.children[0].innerHTML;
+        console.log(name);
+        console.log(table.rows);
       }
+
+      document
+        .getElementById('broadbandData')
+        .addEventListener('click', function (e) {
+          const closestCell = e.target.closest('td'), // identify the closest td when the click occured
+            activeCell = e.currentTarget.querySelector('td.selected'); // identify the already selected td
+
+          closestCell.classList.add('selected'); // add the "selected" class to the clicked td
+          if (activeCell) activeCell.classList.remove('selected'); // remove the "selected" class from the previously selected td
+        });
     </script>
 
     <!-- <button class="btn btn-warning" type="button" onclick="testFunc();">

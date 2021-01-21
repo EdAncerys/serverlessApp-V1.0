@@ -7,7 +7,8 @@ const _getAddress = (postcode) => {
   console.log('Fetching addresses for postcode provided...');
   const URL = '/ndg/getAddresses/' + postcode;
   console.log(URL);
-  const msg = document.querySelector('msgBroadband');
+  const msg = document.querySelector('msg');
+  const msgBroadband = document.querySelector('msgBroadband');
 
   fetch(URL)
     .then((res) => res.json())
@@ -53,7 +54,7 @@ const _getAddress = (postcode) => {
                   >${thoroughfare_number} ${premises_name} ${sub_premises} ${thoroughfare_name} ${county} ${postcode}</option>`;
         });
 
-        msg.innerHTML = `<h4>Choose your address:</h4>
+        msgBroadband.innerHTML = `<h4>Choose your address:</h4>
                           <select name="selectedAddress" id="selectedAddress" style="width:600px">
                             <option selected disabled hidden value='selectionID'>Please Choose Your Address</option>
                             ${content}
