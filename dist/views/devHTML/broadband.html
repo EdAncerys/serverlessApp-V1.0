@@ -75,14 +75,9 @@
       function testFunc(event) {
         // alert('The URL of this page is: ' + window.location.href);
 
-        const table = document.getElementById('broadbandData');
-        const allRows = document.getElementById('broadbandData').children[1];
-        const rowElement = event.target.parentNode;
-
-        event.target.parentNode.classList.add('bg-primary', 'text-white');
-        const name = event.target.parentNode.children[0].innerHTML;
-        console.log(name);
-        console.log(table.rows);
+        const spinner = document.querySelector('.spinner');
+        console.log(spinner);
+        spinner.style.display = 'block';
       }
     </script>
 

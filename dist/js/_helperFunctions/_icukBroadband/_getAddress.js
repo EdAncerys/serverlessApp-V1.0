@@ -2,9 +2,11 @@ import { _warningMessage } from '../_warningMessage.js';
 import { _sortAddresses } from './_sortAddresses.js';
 import { _saveAddressData } from './_saveAddressData.js';
 import { _getBroadbandAvailability } from './_getBroadbandAvailability.js';
+import { _spinner } from '../_spinner.js';
 
 const _getAddress = (postcode) => {
   console.log('Fetching addresses for postcode provided...');
+  _spinner(true);
   const URL = '/ndg/getAddresses/' + postcode;
   console.log(URL);
   const msg = document.querySelector('msg');
@@ -38,8 +40,8 @@ const _getAddress = (postcode) => {
             address.thoroughfare_name === null ? '' : address.thoroughfare_name;
           let county = address.county === null ? '' : address.county;
           let postcode = address.postcode;
-
           value += 1;
+
           return `<option value="${value}"
                   thoroughfare_number="${address.thoroughfare_number}" 
                   thoroughfare_name="${address.thoroughfare_name}" 
@@ -53,7 +55,7 @@ const _getAddress = (postcode) => {
                   nad_key="${address.nad_key}"    
                   >${thoroughfare_number} ${premises_name} ${sub_premises} ${thoroughfare_name} ${county} ${postcode}</option>`;
         });
-
+        _spinner(false);
         msgBroadband.innerHTML = `<h4>Choose your address:</h4>
                           <select name="selectedAddress" id="selectedAddress" style="width:600px">
                             <option selected disabled hidden value='selectionID'>Please Choose Your Address</option>
@@ -76,6 +78,7 @@ const _getAddress = (postcode) => {
     })
     .catch((err) => {
       let msg = document.querySelector('msg');
+      _spinner(false);
       msg.innerHTML = _warningMessage(err);
       console.log(err);
     });
