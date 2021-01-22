@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer src="../JS/fluidOne.js"></script>
+    <title>Fluid One</title>
+  </head>
+  <body>
+    <h1 id="title">Fluid One</h1>
+    <button
+      onclick="location.reload()"
+      style="
+        font-size: large;
+        background-color: rgba(255, 0, 0, 0.6);
+        margin: 20px;
+      "
+    >
+      Reload
+    </button>
+    <form method="get" action="/fluidOne">
+      <button
+        type="submit"
+        style="
+          font-size: large;
+          background-color: rgba(140, 255, 0, 0.6);
+          margin: 20px;
+        "
+      >
+        Got To FluidOne
+      </button>
+    </form>
+
+    <form id="fluidForm" action="/getQuotes" method="post">
+      <h3>Post Code</h3>
+      <input name="postCode" type="text" class="postCode" />
+      <p class="postCodeError"></p>
+
+      <h3>Email</h3>
+      <input name="email" type="text" class="email" />
+      <p class="emailError"></p>
+
+      <button id="btn" type="submit">Submit Form</button>
+    </form>
+  </body>
+</html>
