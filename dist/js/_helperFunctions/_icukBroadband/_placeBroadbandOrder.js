@@ -38,16 +38,38 @@ const _placeBroadbandOrder = () => {
   let broadbandPrice = localStorage.getItem('price');
   let broadbandInstallation = localStorage.getItem('installation');
 
+  let orderAddressSummary = `${order_sub_premises} 
+                            ${order_premises_name} 
+                            ${order_thoroughfare_number} 
+                            ${order_thoroughfare_name} 
+                            ${order_locality} 
+                            ${order_post_town} 
+                            ${order_county} 
+                            ${order_postcode} 
+                            ${order_district_id} 
+                            ${order_nad_key}`;
+
+  let orderBroadbandSummary = `${broadbandName}
+                              ${broadbandProvider}
+                              ${broadbandPrice}
+                              ${broadbandInstallation}`;
+
+  let orderSummary = `<p>${orderAddressSummary}</p>
+                      <p>${orderBroadbandSummary}</p>`;
+
   const URL = '/ndg/contactUs';
   const body = {
     value: oderSubject,
     customerName,
     customerEmail,
-    subject: `${order_sub_premises} ${order_premises_name} ${order_thoroughfare_number} ${order_thoroughfare_name} ${order_locality} ${order_post_town} ${order_county} ${order_postcode} ${order_district_id} ${order_nad_key}`,
-    description: `<p>Supplier: ${broadbandName}</p>
-                  <p>Provider: ${broadbandProvider}</p>
-                  <p>Price: ${broadbandPrice}</p>
-                  <p>Installation: ${broadbandInstallation}</p>`,
+    subject: oderSubject,
+    description: _contactFormTemplate(
+      'Broadband Order',
+      customerName,
+      customerEmail,
+      oderSubject,
+      orderSummary
+    ),
   };
 
   const config = {
