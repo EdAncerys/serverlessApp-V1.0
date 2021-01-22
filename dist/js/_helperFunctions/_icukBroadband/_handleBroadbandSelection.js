@@ -42,7 +42,7 @@ const _handleBroadbandSelection = (event) => {
 
     console.log('Broadband Deal Selected...');
     let broadbandOrder = document.querySelector('broadbandOrder');
-    broadbandOrder.innerHTML = `<button id='placeBroadbandOrder' class="btn btn-warning mt-4" role="button" onClick="placeBroadbandOrder()">
+    broadbandOrder.innerHTML = `<button id='placeBroadbandOrder' class="btn btn-warning mt-4" role="button">
                                 Place Order
                               </button>`;
     document
