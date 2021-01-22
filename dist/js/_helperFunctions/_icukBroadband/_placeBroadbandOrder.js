@@ -1,7 +1,9 @@
 import { _contactFormTemplate } from '../_contactFormTemplate.js';
+import { _spinner } from '../_spinner.js';
 
 const _placeBroadbandOrder = () => {
   console.log('Placing Broadband Order...');
+  _spinner(true);
   let customerName = 'Name';
   let customerEmail = 'Email';
   let oderSubject =
@@ -56,6 +58,7 @@ const _placeBroadbandOrder = () => {
   fetch(URL, config)
     .then((res) => res.json())
     .then((data) => {
+      _spinner(false);
       handleSubmission();
 
       console.log(data);
@@ -63,6 +66,7 @@ const _placeBroadbandOrder = () => {
     })
     .catch((err) => {
       let msg = document.querySelector('msg');
+      _spinner(false);
       msg.innerHTML = `<h4>${err}</h4>`;
 
       console.log('error');

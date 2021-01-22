@@ -2,10 +2,12 @@ import { _warningMessage } from '../_warningMessage.js';
 import { _clearDOMData } from './_clearDOMData.js';
 import { _sortBroadbandData } from './_sortBroadbandData.js';
 import { _handleBroadbandSelection } from './_handleBroadbandSelection.js';
+import { _spinner } from '../_spinner.js';
 
 const _getBroadbandAvailability = () => {
   _clearDOMData('msgBroadband');
   console.log('Getting Broadband Availability...');
+  _spinner(true);
 
   const URL = '/ndg/broadbandAvailability';
   let msg = document.querySelector('msg');
@@ -14,6 +16,7 @@ const _getBroadbandAvailability = () => {
 
   if (value === 'selectionID') {
     msg.innerHTML = _warningMessage('Please Choose Address');
+    _spinner(false);
   } else {
     let body = {
       sub_premises: localStorage.getItem('sub_premises'),
@@ -60,7 +63,7 @@ const _getBroadbandAvailability = () => {
                       </tr>`;
             }
           );
-
+          _spinner(false);
           broadbandDeals.innerHTML = `<h3 class="displayCenter mt-4">Available Broadband Deals</h3>
                                       <table id='broadbandData' class="table table-hover table-light">
                                         <thead>
@@ -87,6 +90,7 @@ const _getBroadbandAvailability = () => {
         }
       })
       .catch((err) => {
+        _spinner(false);
         msg.innerHTML = _warningMessage(
           'woops...something went wrong please try again'
         );
