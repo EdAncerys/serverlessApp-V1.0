@@ -6,10 +6,7 @@ import { _submitTicket } from './_freshDesk/_submitTicket.js';
 const _handleFormValidation = (formType) => {
   let name = document.getElementById('name').value;
   let email = document.getElementById('email').value;
-  let subject =
-    document.getElementById('subject').value +
-    ' | Created at: ' +
-    new Date().toLocaleString();
+  let subject = 'Created at: ' + new Date().toLocaleString();
   let description = document.getElementById('description').value;
 
   let errors = [];

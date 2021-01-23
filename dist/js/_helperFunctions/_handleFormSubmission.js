@@ -1,7 +1,6 @@
 const _handleFormSubmission = () => {
   document.querySelector('#name').value = '';
   document.querySelector('#email').value = '';
-  document.querySelector('#subject').value = '';
   document.querySelector('#description').value = '';
 
   const formContainer = document.querySelector('#form');

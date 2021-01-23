@@ -8,6 +8,7 @@
   content="width=device-width, initial-scale=1, user-scalable=no"
   />
   <link rel="stylesheet" href="./css/main.css" />
+  <script defer type="module" src="../../JS/contactForm.js"></script>
   <style media="screen">
     body{
       background-color: #000;
@@ -261,26 +262,35 @@ p{
 
   <!-- Footer -->
   <section id="footer">
-    <div class="inner">
+    <div id="msg">
+      <msg style='display: grid; justify-content: center;'></msg>
+    </div>
+    <div id='form' class="inner">
       <header>
         <h2>Get in Touch</h2>
       </header>
-      <form id='contact-form' method="post" action="/contact">
+      <form id="submitForm" action="/">
         <div class="field half first">
           <label style="color: #c8f693;" for="name">Name</label>
-          <input type="text" name="name" id="name" required />
+          <input type="text" class="form-control" id="name" name="name" />
         </div>
         <div class="field half">
           <label style="color: #c8f693;"  for="email">Email</label>
-          <input type="text" name="email" id="email" required />
+          <input type="text" class="form-control" id="email" name="email" />
         </div>
+        
         <div class="field">
           <label style="color: #c8f693;"  for="message">Message</label>
-          <textarea name="message" id="message" rows="6"></textarea>
+          <textarea
+          class="form-control"
+          id="description"
+          name="description"
+          rows="6"
+        ></textarea>
         </div>
         <ul class="actions">
           <li>
-            <input style="color: #c8f693;" type="submit" value="Send Message" class="alt" required />
+            <input id="contactUs" style="color: #c8f693;" type="submit" value="Send Message" class="alt" required />
           </li>
         </ul>
       </form>
