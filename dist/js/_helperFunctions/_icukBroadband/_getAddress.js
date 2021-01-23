@@ -57,12 +57,12 @@ const _getAddress = (postcode) => {
         });
         _spinner(false);
         msgBroadband.innerHTML = `<div>
-                                    <h4 class='alignHorizontally'>Choose your address</h4>
-                                    <select name="selectedAddress" id="selectedAddress">
+                                    <h4 style='margin-bottom: 2vw' class='alignHorizontally'>Choose your address</h4>
+                                    <select name="selectedAddress" id="selectedAddress" style='padding: 1vw'>
                                       <option selected disabled hidden value='selectionID'>Please Choose Your Address</option>
                                       ${content}
                                     </select>
-                                      <button id='getBroadbandAvailability' class="btn btn-danger mt-4 button" role="button">
+                                      <button id='getBroadbandAvailability' class="button" style='margin-top: 2vw' role="button">
                                         Check Availability
                                       </button>
                                     <div>`;

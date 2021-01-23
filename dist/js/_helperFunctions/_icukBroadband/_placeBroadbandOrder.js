@@ -98,16 +98,18 @@ const _placeBroadbandOrder = () => {
 
 const handleSubmission = () => {
   const formContainer = document.getElementById('form');
-  const msgContainer = document.getElementById('msgBroadband');
+  const broadbandAvailabilityContainer = document.getElementById(
+    'broadbandAvailabilityContainer'
+  );
   const msg = document.querySelector('msg');
   formContainer.style.display = 'none';
-  msgContainer.style.display = 'none';
+  broadbandAvailabilityContainer.style.display = 'none';
 
   msg.innerHTML = `<h4>Thank You!</h4> 
                   <h4>Order Been Placed successfully</h4>`;
   setTimeout(() => {
     formContainer.style.display = 'block';
-    msgContainer.style.display = 'block';
+    broadbandAvailabilityContainer.style.display = 'block';
     msg.innerHTML = '';
   }, 3000);
 };
