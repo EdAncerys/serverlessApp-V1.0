@@ -107,6 +107,10 @@ ul.topnav .dropdown:hover > .dropdown-content {
   display: grid;
   justify-content: center;
 }
+.alignVertically {
+  display: grid;
+  align-items: center;
+}
 .broadbandFromContainer {
   display: grid;
   align-content: end;
@@ -116,23 +120,24 @@ ul.topnav .dropdown:hover > .dropdown-content {
   width: 40vw;
   height: 40vw;
   margin: 10% auto;
-  background-color: tomato;
 }
 .broadbandNav {
   display: grid;
   align-content: end;
   margin-bottom: 16vw;
-  /* background-color: tomato; */
 }
 .navContainer {
-  margin: auto;
-  /* width: 60%; */
+  display: inline-grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 10px;
+  justify-items: center;
+  align-items: center;
+  padding-left: 4vw;
 }
 .inputContainer {
   border-radius: 10px 10px 10px 10px;
   border-style: solid;
   border-color: black;
-  border-width: 2px;
   font-size: 2vw;
   padding-left: 1vw;
   width: 20vw;
@@ -157,4 +162,9 @@ ul.topnav .dropdown:hover > .dropdown-content {
 input[type='text'] {
   background-color: transparent;
   outline: none;
+}
+.msgBroadband {
+  width: 40vw;
+  height: 40vw;
+  background-color: tomato;
 }
