@@ -1,4 +1,6 @@
 import { _contactFormTemplate } from '../_contactFormTemplate.js';
+import { _successMessage } from '../_successMessage.js';
+import { _warningMessage } from '../_warningMessage.js';
 import { _spinner } from '../_spinner.js';
 
 const _placeBroadbandOrder = () => {
@@ -81,7 +83,7 @@ const _placeBroadbandOrder = () => {
     .then((res) => res.json())
     .then((data) => {
       _spinner(false);
-      handleSubmission();
+      _handleSubmission();
 
       console.log(data);
       console.log('Order Placed successfully...');
@@ -89,24 +91,23 @@ const _placeBroadbandOrder = () => {
     .catch((err) => {
       let msg = document.querySelector('msg');
       _spinner(false);
-      msg.innerHTML = `<h4>${err}</h4>`;
+      msg.innerHTML = _warningMessage(err);
 
       console.log('error');
       console.log(err);
     });
 };
 
-const handleSubmission = () => {
+const _handleSubmission = () => {
+  const msg = document.querySelector('thankYou');
   const formContainer = document.getElementById('form');
   const broadbandAvailabilityContainer = document.getElementById(
     'broadbandAvailabilityContainer'
   );
-  const msg = document.querySelector('msg');
   formContainer.style.display = 'none';
   broadbandAvailabilityContainer.style.display = 'none';
+  msg.innerHTML = _successMessage('Order Been Placed successfully');
 
-  msg.innerHTML = `<h4>Thank You!</h4> 
-                  <h4>Order Been Placed successfully</h4>`;
   setTimeout(() => {
     formContainer.style.display = 'block';
     broadbandAvailabilityContainer.style.display = 'block';

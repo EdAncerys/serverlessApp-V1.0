@@ -11,40 +11,30 @@ const _handleBroadbandSelection = (event) => {
     // Save to local storage
     localStorage.setItem('name', event.target.parentNode.children[1].innerHTML);
     localStorage.setItem(
-      'provider',
+      'likely_down_speed',
       event.target.parentNode.children[2].innerHTML
     );
     localStorage.setItem(
-      'likely_down_speed',
+      'likely_up_speed',
       event.target.parentNode.children[3].innerHTML
     );
     localStorage.setItem(
-      'likely_up_speed',
+      'price',
       event.target.parentNode.children[4].innerHTML
     );
     localStorage.setItem(
-      'speed_range',
-      event.target.parentNode.children[5].innerHTML
-    );
-    localStorage.setItem(
-      'technology',
-      event.target.parentNode.children[6].innerHTML
-    );
-    localStorage.setItem(
-      'price',
-      event.target.parentNode.children[7].innerHTML
-    );
-    localStorage.setItem(
       'installation',
-      event.target.parentNode.children[8].innerHTML
+      event.target.parentNode.children[5].innerHTML
     );
     console.log(`Name: `, localStorage.getItem('name'));
 
     console.log('Broadband Deal Selected...');
     let broadbandOrder = document.querySelector('broadbandOrder');
-    broadbandOrder.innerHTML = `<button id='placeBroadbandOrder' class="btn btn-warning mt-4" role="button">
-                                  Place Order
-                                </button>`;
+    broadbandOrder.innerHTML = `<div>
+                                  <button id='placeBroadbandOrder' class="button" style='margin: 2vw 0 30vw 0; width: 40vw' role="button">
+                                    Place Order
+                                  </button>
+                                </div>`;
     document
       .getElementById('placeBroadbandOrder')
       .addEventListener('click', _placeBroadbandOrder);

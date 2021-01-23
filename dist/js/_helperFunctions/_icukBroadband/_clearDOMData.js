@@ -1,8 +1,8 @@
 const _clearDOMData = (container) => {
   // Clearing containers if contains values
-  container === 'msgBroadband'
+  container === 'broadbandAddress'
     ? ''
-    : (document.querySelector('msgBroadband').innerHTML = '');
+    : (document.querySelector('broadbandAddress').innerHTML = '');
   container === 'broadbandDeals'
     ? ''
     : (document.querySelector('broadbandDeals').innerHTML = '');
