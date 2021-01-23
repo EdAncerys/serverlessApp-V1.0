@@ -124,7 +124,6 @@ ul.topnav .dropdown:hover > .dropdown-content {
   margin-top: 5%;
 }
 .broadbandAvailabilityContainer {
-  background-color: #f4f4f4;
   width: 40vw;
   height: 40vw;
   margin: auto;
@@ -153,11 +152,12 @@ ul.topnav .dropdown:hover > .dropdown-content {
   background-color: none;
 }
 .button {
-  background-color: #6ec5dd; /* Green */
+  background-color: #6ec5dd;
+  border-color: #292b2c;
   border-radius: 10px 10px 10px 10px;
   color: white;
-  height: 5vw;
-  width: 10vw;
+  padding: 1vw 2vw;
+  width: 100%;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -165,6 +165,9 @@ ul.topnav .dropdown:hover > .dropdown-content {
   font-weight: bold;
   cursor: pointer;
   text-transform: uppercase;
+  outline: none;
+}
+button:focus {
   outline: none;
 }
 input[type='text'] {
@@ -178,4 +181,21 @@ input[type='text'] {
   width: 40vw;
   height: 40vw;
   background-color: tomato;
+}
+/* Broadband list table */
+.selected {
+  background-color: #0275d8;
+  color: #292b2c;
+}
+
+#msg {
+  /* position: absolute;
+  top: 45vw;
+  left: 40vw;
+  width: 20vw;
+  height: 20vh;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  background-color: tomato; */
 }

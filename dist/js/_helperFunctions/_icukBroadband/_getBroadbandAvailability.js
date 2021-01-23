@@ -64,7 +64,8 @@ const _getBroadbandAvailability = () => {
             }
           );
           _spinner(false);
-          broadbandDeals.innerHTML = `<h3 class="displayCenter mt-4">Available Broadband Deals</h3>
+          broadbandDeals.innerHTML = `<div id='broadbandAvailabilityContainer'>
+                                      <h4 class='alignHorizontally'>Available Broadband Deals</h4>
                                       <table id='broadbandData' class="table table-hover table-light">
                                         <thead>
                                         <tr>
@@ -82,7 +83,8 @@ const _getBroadbandAvailability = () => {
                                           <tbody>
                                             ${content}
                                           </tbody>
-                                      </table>`;
+                                      </table>
+                                      </div>`;
           document
             .getElementById('broadbandData')
             .addEventListener('click', _handleBroadbandSelection);

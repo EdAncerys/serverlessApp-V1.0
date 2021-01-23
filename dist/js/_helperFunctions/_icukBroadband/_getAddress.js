@@ -56,14 +56,16 @@ const _getAddress = (postcode) => {
                   >${thoroughfare_number} ${premises_name} ${sub_premises} ${thoroughfare_name} ${county} ${postcode}</option>`;
         });
         _spinner(false);
-        msgBroadband.innerHTML = `<h4>Choose your address:</h4>
-                          <select name="selectedAddress" id="selectedAddress" style="width:600px">
-                            <option selected disabled hidden value='selectionID'>Please Choose Your Address</option>
-                            ${content}
-                          </select>
-                            <button id='getBroadbandAvailability' class="btn btn-danger mt-4" role="button">
-                              Check Availability
-                            </button>`;
+        msgBroadband.innerHTML = `<div>
+                                    <h4 class='alignHorizontally'>Choose your address</h4>
+                                    <select name="selectedAddress" id="selectedAddress">
+                                      <option selected disabled hidden value='selectionID'>Please Choose Your Address</option>
+                                      ${content}
+                                    </select>
+                                      <button id='getBroadbandAvailability' class="btn btn-danger mt-4 button" role="button">
+                                        Check Availability
+                                      </button>
+                                    <div>`;
 
         document
           .getElementById('selectedAddress')
