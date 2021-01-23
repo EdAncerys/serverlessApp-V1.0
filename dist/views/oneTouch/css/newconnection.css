@@ -124,11 +124,7 @@ ul.topnav .dropdown:hover > .dropdown-content {
   margin-top: 5%;
 }
 .broadbandAvailabilityContainer {
-  display: grid;
-  align-content: end;
   background-color: #f4f4f4;
-  background-repeat: no-repeat;
-  background-size: 100%;
   width: 40vw;
   height: 40vw;
   margin: auto;
@@ -174,6 +170,9 @@ ul.topnav .dropdown:hover > .dropdown-content {
 input[type='text'] {
   background-color: transparent;
   outline: none;
+}
+#spinner {
+  display: none;
 }
 .msgBroadband {
   width: 40vw;

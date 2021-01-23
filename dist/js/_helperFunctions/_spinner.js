@@ -1,5 +1,5 @@
 const _spinner = (value) => {
-  const spinner = document.querySelector('.spinner');
+  const spinner = document.querySelector('#spinner');
   if (value) {
     spinner.style.display = 'block';
   } else {
