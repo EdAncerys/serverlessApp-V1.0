@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     .addEventListener('click', quoteBroadbandDeal);
 
   // Hardcoded input value
-  document.getElementById('postcode').value = 'LE15 7GH'; // LE15 7GH
+  // document.getElementById('postcode').value = 'LE15 7GH'; // LE15 7GH
 });
 
 const quoteBroadbandDeal = (ev) => {
