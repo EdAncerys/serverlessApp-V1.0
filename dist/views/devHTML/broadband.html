@@ -8,8 +8,13 @@
       integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
       crossorigin="anonymous"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <script defer src="../../JS/dns.js"></script>
-    <script defer src="../../JS/broadband.js"></script>
+    <script defer type="module" src="../../JS/broadband.js"></script>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="../devHTML/css/main.css" />
     <title>Contact Form</title>
@@ -26,7 +31,7 @@
       <dns>...</dns>
       <h1>NDG Technology</h1>
     </header>
-    <div class="displayCenter">
+    <div class="centerHorizontally">
       <div class="container">
         <div id="msg">
           <msg class="centerVertically"></msg>
@@ -54,38 +59,25 @@
           <msgBroadband class="centerVertically"></msgBroadband>
           <broadbandDeals class="centerVertically"></broadbandDeals>
           <broadbandOrder class="centerVertically"></broadbandOrder>
+          <div class="spinner">
+            <spinner
+              class="fa fa-spinner fa-spin mt-4"
+              style="font-size: 60px"
+            ></spinner>
+          </div>
         </div>
       </div>
     </div>
+
     <footer></footer>
 
     <script>
       function testFunc(event) {
         // alert('The URL of this page is: ' + window.location.href);
-        let arr = [
-          { number: '1', name: 'A' },
-          { number: '4', name: 'D' },
-          { number: '3', name: 'C' },
-          { number: '2', name: 'B' },
-          // 'A1',
-          // 'A10',
-          // 'A11',
-          // 'A12',
-          // 'A2',
-          // 'A3',
-          // 'A4',
-          // 'B10',
-          // 'B2',
-          // 'F1',
-          // 'F12',
-          // 'F3',
-        ];
 
-        let op = arr.map((data) => {
-          console.log(data.name);
-        });
-
-        console.log(op);
+        const spinner = document.querySelector('.spinner');
+        console.log(spinner);
+        spinner.style.display = 'block';
       }
     </script>
 

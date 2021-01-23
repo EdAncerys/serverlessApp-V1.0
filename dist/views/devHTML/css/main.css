@@ -14,6 +14,12 @@ body {
   padding: 0;
   margin: 0;
 }
+footer {
+  margin
+}
+.spinner {
+  display: none;
+}
 #container {
   height: 100vh;
   width: 100vw;
@@ -54,9 +60,6 @@ msg {
   width: 800px;
   height: 50px;
 }
-.highlightedText {
-  color: rgba(255, 0, 0, 0.6);
-}
 .colorTest {
   background-color: tomato;
 }
@@ -67,5 +70,20 @@ msg {
   cursor: pointer;
 }
 .selected {
-  background-color: blue;
+  background-color: #0275d8;
+  color: #292b2c;
+}
+.cursorOver {
+  cursor: pointer;
+}
+
+/* Broadband list table */
+table,
+th,
+td {
+  border: 1px solid #c0c0c0;
+  border-collapse: collapse;
+}
+table {
+  width: 100%;
 }
