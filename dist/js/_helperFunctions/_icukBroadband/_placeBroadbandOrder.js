@@ -6,8 +6,12 @@ import { _spinner } from '../_spinner.js';
 const _placeBroadbandOrder = () => {
   console.log('Placing Broadband Order...');
   _spinner(true);
-  let customerName = 'Name';
-  let customerEmail = 'Email';
+
+  localStorage.setItem('customerName', 'customerName');
+  localStorage.setItem('customerEmail', 'customerEmail');
+
+  let customerName = localStorage.getItem('customerName');
+  let customerEmail = localStorage.getItem('customerEmail');
   let oderSubject =
     'Broadband Order' + ' | Created at: ' + new Date().toLocaleString();
 
@@ -99,6 +103,8 @@ const _placeBroadbandOrder = () => {
 };
 
 const _handleSubmission = () => {
+  const name = localStorage.getItem('customerName');
+
   const msg = document.querySelector('thankYou');
   const formContainer = document.getElementById('form');
   const broadbandAvailabilityContainer = document.getElementById(
@@ -106,7 +112,7 @@ const _handleSubmission = () => {
   );
   formContainer.style.display = 'none';
   broadbandAvailabilityContainer.style.display = 'none';
-  msg.innerHTML = _successMessage('Order Been Placed successfully');
+  msg.innerHTML = _successMessage('Order Been Placed successfully', name);
 
   setTimeout(() => {
     formContainer.style.display = 'block';
