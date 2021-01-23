@@ -4,9 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Order New Connection – NDG Supernet</title>
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+  />
+
     <link rel="icon" href="./images/icon.png" />
     <link rel="stylesheet" href="./css/newconnection.css" />
+    <title>Order New Connection – NDG Supernet</title>
   </head>
   <body>
     <header>
@@ -54,8 +59,8 @@
         </nav>
       </div>
     </header>
-    <div class="">
-      <div class="broadbandFromContainer">
+    <div>
+      <div class="broadbandFromContainer" id="broadbandFromContainer">
         <div class="broadbandNav">
           <div class="navContainer">
             <div>
@@ -68,19 +73,29 @@
         </div>
       </div>
 
-      <div id="msgBroadband">
-        <msgBroadband class="alignHorizontally">msgBroadband</msgBroadband>
-        <broadbandDeals class="alignHorizontally"
-          >broadbandDeals</broadbandDeals
-        >
-        <broadbandOrder class="alignHorizontally"
-          >broadbandOrder</broadbandOrder
-        >
+      <div class='alignHorizontally'>
+        <spinner
+          class="fa fa-spinner fa-spin"
+          style="font-size: 60px"
+        ></spinner>
+      </div>
+      
+      <div
+        class="broadbandAvailabilityContainer"
+        id="broadbandAvailabilityContainer"
+      >
+      <msgBroadband class="alignHorizontally">...</msgBroadband>
+      <broadbandDeals class="alignHorizontally">...</broadbandDeals>
+      <broadbandOrder class="alignHorizontally">...</broadbandOrder>
+      <div class="spinner alignHorizontally">
+      </div>
+
+      <div class="broadbandAvailabilityContainer" id="msgBroadband">
+        <msgBroadband class="alignHorizontally">...</msgBroadband>
+        <broadbandDeals class="alignHorizontally">...</broadbandDeals>
+        <broadbandOrder class="alignHorizontally">...</broadbandOrder>
         <div class="spinner alignHorizontally">
-          <spinner
-            class="fa fa-spinner fa-spin mt-4"
-            style="font-size: 60px"
-          ></spinner>
+       
         </div>
       </div>
       <!-- <div>

@@ -103,6 +103,7 @@ ul.topnav .dropdown:hover > .dropdown-content {
 }
 
 /* Body element styling */
+
 .alignHorizontally {
   display: grid;
   justify-content: center;
@@ -119,7 +120,18 @@ ul.topnav .dropdown:hover > .dropdown-content {
   background-size: 100%;
   width: 40vw;
   height: 40vw;
-  margin: 10% auto;
+  margin: auto;
+  margin-top: 5%;
+}
+.broadbandAvailabilityContainer {
+  display: grid;
+  align-content: end;
+  background-color: #f4f4f4;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 40vw;
+  height: 40vw;
+  margin: auto;
 }
 .broadbandNav {
   display: grid;
@@ -128,7 +140,7 @@ ul.topnav .dropdown:hover > .dropdown-content {
 }
 .navContainer {
   display: inline-grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   grid-gap: 10px;
   justify-items: center;
   align-items: center;
