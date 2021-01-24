@@ -51,6 +51,11 @@
   status = 200
 
 [[redirects]]
+  from = "/ndg/users"
+  to = "/.netlify/functions/mongoDB"
+  status = 200
+
+[[redirects]]
   from = "/views/devHTML/hello"
   to = "/.netlify/functions/redirectLambda"
   status = 301
