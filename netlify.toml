@@ -26,8 +26,8 @@
   status = 200
 
 [[redirects]]
-  from = "/lambdaGET"
-  to = "/.netlify/functions/lambdaGET"
+  from = "/ndg/contactForm"
+  to = "/.netlify/functions/nodeMailerIONOS"
   status = 200
 
 [[redirects]]
