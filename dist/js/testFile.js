@@ -656,3 +656,33 @@ const sortJSON = (data, prop, asc) => {
   console.log(sortedJSON);
   return sortedJSON;
 };
+
+var axios = require('axios');
+var data = JSON.stringify({
+  name: 'Frodo',
+  email: 'tom@outerspace.com',
+  subject: 'Support Needed...',
+  description: 'Details about the issue...',
+  status: 2,
+  priority: 1,
+});
+
+var config = {
+  method: 'post',
+  url: 'https://newaccount1610184510701.freshdesk.com/api/v2/tickets',
+  headers: {
+    Authorization:
+      'Basic YXV0b21hdGVkLm5vZGVtYWlsZXJAZ21haWwuY29tOmphd2phci14ZXJTZXItcnVoZHU2',
+    'Content-Type': 'application/json',
+    Cookie: '_x_w=39_1; _x_m=x_c',
+  },
+  data: data,
+};
+
+axios(config)
+  .then(function (response) {
+    console.log(JSON.stringify(response.data));
+  })
+  .catch(function (error) {
+    console.log(error);
+  });

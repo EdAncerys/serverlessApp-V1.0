@@ -10,8 +10,6 @@ const _submitTicket = (name, email, subject, description) => {
     email: email,
     subject: subject,
     description: description,
-    status: 2,
-    priority: 1,
   };
   console.log(body);
 

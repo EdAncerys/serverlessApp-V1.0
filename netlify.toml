@@ -51,7 +51,7 @@
   status = 200
 
 [[redirects]]
-  from = "/views/devHTML/*"
+  from = "/views/devHTML/hello"
   to = "/.netlify/functions/redirectLambda"
   status = 301
 
