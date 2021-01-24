@@ -1,8 +1,8 @@
 const axios = require('axios'); // Axios module
 require('dotenv').config(); // Enabling to load Environment variables from a .env File
 
-exports.handler = async (event, context, callback) => {
-  const { name, email, subject, description } = await JSON.parse(event.body);
+exports.handler = (event, context, callback) => {
+  const { name, email, subject, description } = JSON.parse(event.body);
 
   const body = {
     name,
@@ -22,7 +22,11 @@ exports.handler = async (event, context, callback) => {
 
   // Send user response
   const headers = {
+    Authorization: AUTHORIZATION_KEY,
     'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers':
+      'Origin, X-Requested-With, Content-Type, Accept',
   };
 
   const config = {
@@ -39,7 +43,7 @@ exports.handler = async (event, context, callback) => {
   const sendResponse = (body) => {
     callback(null, {
       statusCode: 200,
-      headers,
+      headers: headers,
       body: JSON.stringify(body),
     });
   };
@@ -52,7 +56,7 @@ exports.handler = async (event, context, callback) => {
       .then((res) => {
         console.log(res.headers.date);
         console.log(res.headers.status);
-        console.log('Response ', res.data);
+        // console.log(res.data);
         sendResponse(res.data);
       })
       .catch((err) => {
