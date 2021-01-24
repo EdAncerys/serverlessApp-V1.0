@@ -2,13 +2,13 @@ const nodemailer = require('nodemailer');
 require('dotenv').config(); // Enabling to load Environment variables from a .env File
 
 exports.handler = function (event, context, callback) {
-  console.log(event);
   const emailBody = JSON.parse(event.body);
   const name = emailBody.name;
   const email = emailBody.email;
   const subject =
     emailBody.subject + ' | Created at: ' + new Date().toLocaleString() + ' |';
   const description = emailBody.description;
+  console.log(event.body);
   console.log('Credentials obtained, sending message...');
 
   const transporter = nodemailer.createTransport({

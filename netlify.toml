@@ -50,3 +50,8 @@
   to = "/.netlify/functions/broadbandAvailability"
   status = 200
 
+[[redirects]]
+  from = "/views/devHTML/*"
+  to = "/.netlify/functions/redirectLambda"
+  status = 301
+

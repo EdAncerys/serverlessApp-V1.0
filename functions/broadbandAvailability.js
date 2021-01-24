@@ -2,7 +2,7 @@ const axios = require('axios'); // Axios module
 require('dotenv').config(); // Enabling to load Environment variables from a .env File
 const sha512 = require('js-sha512'); // component to compute the SHA512
 
-exports.handler = function (event, context, callback) {
+exports.handler = async (event, context, callback) => {
   const {
     sub_premises,
     premises_name,
@@ -14,7 +14,7 @@ exports.handler = function (event, context, callback) {
     postcode,
     district_id,
     nad_key,
-  } = JSON.parse(event.body);
+  } = await JSON.parse(event.body);
 
   const ICUK_URL = process.env.ICUK_URL;
   const ICUK_API_KEY = process.env.ICUK_API_KEY;
