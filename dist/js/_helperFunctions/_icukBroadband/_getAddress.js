@@ -11,6 +11,7 @@ const _getAddress = (postcode) => {
   console.log(URL);
   const msg = document.querySelector('msg');
   const broadbandAddress = document.querySelector('broadbandAddress');
+  const gridContainer = document.querySelector('#gridContainer');
 
   fetch(URL)
     .then((res) => res.json())
@@ -21,6 +22,7 @@ const _getAddress = (postcode) => {
         console.log('ApiExceptionMessage. Making request for area...');
         msg.innerHTML = _warningMessage('IP not whitelisted');
         _spinner(false);
+        gridContainer.classList.add('gridContainer');
         return;
       }
       if (data.addresses.length === 0) {
@@ -57,6 +59,7 @@ const _getAddress = (postcode) => {
                   >${thoroughfare_number} ${premises_name} ${sub_premises} ${thoroughfare_name} ${county} ${postcode}</option>`;
         });
         _spinner(false);
+        gridContainer.classList.add('gridContainer');
         broadbandAddress.innerHTML = `<div>
                                     <h4 style='margin-bottom: 2vw' class='alignHorizontally'>Choose your address</h4>
                                     <select name="selectedAddress" id="selectedAddress" style='padding: 1vw'>
