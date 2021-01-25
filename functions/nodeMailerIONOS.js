@@ -1,7 +1,7 @@
 const nodemailer = require('nodemailer');
 require('dotenv').config(); // Enabling to load Environment variables from a .env File
 
-exports.handler = function (event, context, callback) {
+exports.handler = (event, context, callback) => {
   const emailBody = JSON.parse(event.body);
   const name = emailBody.name;
   const email = emailBody.email;

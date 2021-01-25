@@ -1,6 +1,6 @@
 const dns = require('dns'); // component to compute the SHA512
 
-exports.handler = function (event, context, callback) {
+exports.handler = (event, context, callback) => {
   const { URL } = JSON.parse(event.body);
 
   const headers = {

@@ -1,6 +1,6 @@
 const sha512 = require('js-sha512'); // component to compute the SHA512
 
-exports.handler = function (event, context, callback) {
+exports.handler = (event, context, callback) => {
   const body = JSON.parse(event.body);
 
   const postCode = body.postCode;
