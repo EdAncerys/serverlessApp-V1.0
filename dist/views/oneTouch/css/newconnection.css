@@ -187,5 +187,6 @@ input[type='text'] {
   width: 40vw;
   height: 40vw;
   background-color: tomato;
+  overflow: auto;
   margin: auto;
 }
