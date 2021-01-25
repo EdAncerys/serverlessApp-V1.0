@@ -16,10 +16,11 @@ const _getAddress = (postcode) => {
     .then((res) => res.json())
     .then((data) => {
       let value = 0;
-      console.log(data);
+      console.log('data: ', data);
       if (data.message === 'Request failed with status code 403') {
         console.log('ApiExceptionMessage. Making request for area...');
         msg.innerHTML = _warningMessage('IP not whitelisted');
+        _spinner(false);
         return;
       }
       if (data.addresses.length === 0) {

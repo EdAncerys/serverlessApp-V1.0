@@ -5,8 +5,8 @@ const _warningMessage = (message) => {
   }, 3000);
 
   return `<div class='text-danger'>
-          <h6>Error occurred...</h6>
-          <h6>${message}</h6>
+            <h4>Error occurred...</h4>
+            <h4>${message}</h4>
           </div>`;
 };
 

@@ -8,7 +8,9 @@ const _handleErrors = (errors) => {
     return _warningMessage(err.msg);
   });
 
-  msg.innerHTML = `<div>${errorMsg}</div>`;
+  msg.innerHTML = `<div>
+                    <h4>${errorMsg}</h4>
+                  </div>`;
   setTimeout(() => {
     document.querySelector('#msg').style.display = 'none';
   }, 3000);
