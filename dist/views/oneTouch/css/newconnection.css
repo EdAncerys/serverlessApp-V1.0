@@ -122,10 +122,6 @@ ul.topnav .dropdown:hover > .dropdown-content {
   margin: auto;
   margin-top: 5%;
 }
-.broadbandAvailabilityContainer {
-  width: 40vw;
-  margin: auto;
-}
 .broadbandNav {
   display: grid;
   align-content: end;
@@ -175,15 +171,21 @@ input[type='text'] {
 #spinner {
   display: none;
 }
-.msgBroadband {
-  width: 40vw;
-  height: 40vw;
-  background-color: tomato;
-}
 /* Broadband list table */
 .selected {
   background-color: #6ec5dd;
   color: #292b2c;
 }
-#msg {
+.gridContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1vw;
+  background-color: #2196f3;
+  padding: 10px;
+}
+.broadbandAvailabilityContainer {
+  width: 40vw;
+  height: 40vw;
+  background-color: tomato;
+  margin: auto;
 }

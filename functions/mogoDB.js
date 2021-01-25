@@ -1,9 +1,9 @@
-import { connectToDatabase } from './_mongoDB/_dbConnection';
+import { connectToDatabase } from './_mongoDB/_dbConnection.js';
 
 module.exports = async (req, res) => {
   if (req.method === 'GET') {
     const db = await connectToDatabase();
-    const collection = await db.collection('users');
+    const collection = await db.collection('Cluster0');
 
     const users = await collection.find({}).toArray();
 
