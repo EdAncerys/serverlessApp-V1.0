@@ -30,6 +30,7 @@ const _getBroadbandAvailability = () => {
       district_id: localStorage.getItem('district_id'),
       nad_key: localStorage.getItem('nad_key'),
     };
+    console.log(body);
 
     const config = {
       method: 'POST',
