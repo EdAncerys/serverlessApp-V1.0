@@ -180,8 +180,9 @@ input[type='text'] {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 1vw;
-  background-color: #2196f3;
+  background-color: #5bc0de;
   padding: 10px;
+  transition: 2s;
 }
 .broadbandAvailabilityContainer {
   width: 40vw;
