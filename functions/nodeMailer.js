@@ -14,7 +14,7 @@ exports.handler = (event, context, callback) => {
 
   const mailOptions = {
     from: 'process.env.EMAIL_FROM', // replace with your email
-    to: process.env.MAILING_LIST, // replace with your mailing list
+    to: process.env.GMAIL_MAILING_LIST, // replace with your mailing list
     subject: `${body.subject}`,
     html: `${body.description}`,
   };

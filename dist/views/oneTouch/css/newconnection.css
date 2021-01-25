@@ -182,12 +182,17 @@ input[type='text'] {
   grid-gap: 1vw;
   background-color: #5bc0de;
   padding: 10px;
+  height: 70vw;
   transition: 2s;
 }
 .broadbandAvailabilityContainer {
   width: 40vw;
   height: 40vw;
-  background-color: tomato;
+  margin-top: 5%;
+}
+
+.broadbandDeals {
+  width: 40vw;
+  height: 40vw;
   overflow: auto;
-  margin: auto;
 }

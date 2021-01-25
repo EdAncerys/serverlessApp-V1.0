@@ -66,8 +66,8 @@ const _placeBroadbandOrder = () => {
   const URL = '/ndg/contactUs';
   const body = {
     value: oderSubject,
-    customerName,
-    customerEmail,
+    name: customerName,
+    email: customerEmail,
     subject: oderSubject,
     description: _contactFormTemplate(
       'Broadband Order',
