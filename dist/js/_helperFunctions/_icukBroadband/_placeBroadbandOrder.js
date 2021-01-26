@@ -104,20 +104,16 @@ const _placeBroadbandOrder = () => {
 
 const _handleSubmission = () => {
   const name = localStorage.getItem('customerName');
+  const gridContainer = document.querySelector('#gridContainer');
+  const msg = document.querySelector('msg');
+  const formContainer = document.getElementById('gridContainer');
 
-  const msg = document.querySelector('thankYou');
-  const formContainer = document.getElementById('form');
-  const broadbandAvailabilityContainer = document.getElementById(
-    'broadbandAvailabilityContainer'
-  );
   formContainer.style.display = 'none';
-  broadbandAvailabilityContainer.style.display = 'none';
+  gridContainer.classList.remove('gridContainer');
   msg.innerHTML = _successMessage('Order Been Placed successfully', name);
 
   setTimeout(() => {
-    formContainer.style.display = 'block';
-    broadbandAvailabilityContainer.style.display = 'block';
-    msg.innerHTML = '';
+    location.reload();
   }, 3000);
 };
 
