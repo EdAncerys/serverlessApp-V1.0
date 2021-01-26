@@ -12,7 +12,7 @@ export const connectToDatabase = async () => {
       useUnifiedTopology: true,
     })
       .then((client) => {
-        let db = client.db('DATA_BASE_NAME');
+        let db = client.db('Cluster0');
         console.log('Establishing new Database connection');
         cachedDb = db;
         return cachedDb;
@@ -23,5 +23,3 @@ export const connectToDatabase = async () => {
       });
   }
 };
-
-export { connectToDatabase };
