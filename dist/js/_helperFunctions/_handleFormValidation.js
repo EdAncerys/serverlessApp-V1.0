@@ -20,6 +20,7 @@ const _handleFormValidation = (formType) => {
   if (!_validateEmail(email)) errors.push({ msg: 'Email not valid' });
 
   if (errors.length > 0) {
+    _spinner(false);
     _handleErrors(errors);
   } else {
     console.log('Form submitted successfully...');
