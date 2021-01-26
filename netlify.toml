@@ -52,11 +52,11 @@
 
 [[redirects]]
   from = "/ndg/users"
-  to = "/.netlify/functions/mongoDB"
+  to = "/.netlify/functions/lambdaGET"
   status = 200
 
 [[redirects]]
   from = "/views/devHTML/hello"
-  to = "/.netlify/functions/redirectLambda"
+  to = "/.netlify/functions/mongoDB"
   status = 301
 

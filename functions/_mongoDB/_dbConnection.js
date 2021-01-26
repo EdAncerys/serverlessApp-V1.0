@@ -23,3 +23,5 @@ export const connectToDatabase = async () => {
       });
   }
 };
+
+export { connectToDatabase };
