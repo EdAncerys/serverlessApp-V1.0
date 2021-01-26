@@ -1,1 +1,18 @@
 @import url('./newconnection.css');
+@import url('./nav.css');
+@import url('../../../css/fonts.css');
+
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.alignHorizontally {
+  display: grid;
+  justify-content: center;
+}
+.alignVertically {
+  display: grid;
+  align-items: center;
+}
