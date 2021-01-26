@@ -1,8 +1,8 @@
 @font-face {
-  src: url(../fonts/Family-Guy-Font.ttf);
-  font-family: FamilyGuy;
+  src: url(../fonts/Roboto-Medium.ttf);
+  font-family: Roboto;
 }
 
-.family {
-  font-family: FamilyGuy, sans-serif;
+* {
+  font-family: Roboto, sans-serif;
 }
