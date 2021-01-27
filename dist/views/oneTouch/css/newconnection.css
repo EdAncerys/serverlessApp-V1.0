@@ -55,9 +55,7 @@ input[type='text'] {
   background-color: transparent;
   outline: none;
 }
-#spinner {
-  display: none;
-}
+
 /* Broadband list table */
 .selected {
   background-color: #5bc0de;

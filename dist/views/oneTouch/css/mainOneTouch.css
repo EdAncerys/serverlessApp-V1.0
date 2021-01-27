@@ -1,6 +1,7 @@
 @import url('./newConnection.css');
 @import url('./nav.css');
 @import url('../../../css/fonts.css');
+@import url('../../../css/spinner.css');
 
 body {
   margin: 0;
