@@ -79,21 +79,37 @@
     </div>
 
     <script>
+      const closeErrorMsg = () => {
+        let errorMessage = document.querySelector('errorMessage');
+        errorMessage.innerHTML = '';
+      };
       const _errorMessage = (message) => {
-        let msg = document.querySelector('msg');
+        let errorMessage = document.querySelector('errorMessage');
         setTimeout(() => {
-          msg.innerHTML = '';
-        }, 3000);
+          errorMessage.innerHTML = '';
+        }, 4000);
+        let errorMsg = 'Warning!';
 
-        return `<div class="alert error">
-            <input type="checkbox" id="alert1"/>
-            <label class="close" title="close" for="alert1">
-              <i class="icon-remove"></i>
-            </label>
-            <p class="inner">
-              <strong>Warning!</strong> ${message}
-            </p>
-          </div>`;
+        return `<div
+                  style="
+                    position: absolute;
+                    display: grid;
+                    grid-template-columns: 1% 15% 75% 4%;
+                    align-items: center;
+                    width: 80vw;
+                    height: 60px;
+                    color: #f7f7f7;
+                    margin: 2vw 0 0 10vw;
+                    border-radius: 10px;
+                    background-color: #d9534f;
+                  "
+                >
+                  <div style="height: 100%; background-color: aquamarine"></div>
+                  <div style="padding-left: 10%"><strong>${errorMsg}</strong></div>
+                  <div>${message}</div>
+                  <span onClick="closeErrorMsg()" 
+                        style="cursor: pointer; padding-left: 95%"> &times; </span>
+                </div>`;
       };
 
       document.querySelector('errorMessage').innerHTML = _errorMessage(
