@@ -60,15 +60,15 @@ const _getAddress = (postcode) => {
         _spinner(false);
         gridContainer.classList.add('gridContainer');
         broadbandAddress.innerHTML = `<div>
-                                    <h4 style='margin-bottom: 2vw' class='alignHorizontally'>Choose your address</h4>
-                                    <select name="selectedAddress" id="selectedAddress" style='padding: 1vw'>
-                                      <option selected disabled hidden value='selectionID'>Please Choose Your Address</option>
-                                      ${content}
-                                    </select>
-                                      <button id='getBroadbandAvailability' class="btnBroadband" style='margin: 2vw 0 2vw 0' role="button">
-                                        Check Availability
-                                      </button>
-                                    <div>`;
+                                        <h4 style='margin-bottom: 2vw' class='alignHorizontally'>Choose your address</h4>
+                                        <select name="selectedAddress" id="selectedAddress" style='padding: 1vw'>
+                                          <option selected disabled hidden value='selectionID'>Please Choose Your Address</option>
+                                          ${content}
+                                        </select>
+                                        <button id='getBroadbandAvailability' class="btnBroadband" style='margin: 2vw 0 2vw 0' role="button">
+                                          Check Availability
+                                        </button>
+                                      <div>`;
 
         document
           .getElementById('selectedAddress')

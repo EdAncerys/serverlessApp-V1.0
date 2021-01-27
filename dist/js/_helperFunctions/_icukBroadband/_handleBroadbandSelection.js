@@ -32,7 +32,7 @@ const _handleBroadbandSelection = (event) => {
     let broadbandOrder = document.querySelector('broadbandOrder');
 
     broadbandOrder.innerHTML = `<div>
-                                  <button id='placeBroadbandOrder' class="button" style='margin: 2vw 0 30vw 0; width: 40vw' role="button">
+                                  <button id='placeBroadbandOrder' class="btnBroadband" style='margin: 2vw 0 30vw 0; width: 40vw' role="button">
                                     Place Order
                                   </button>
                                 </div>`;

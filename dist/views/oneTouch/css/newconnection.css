@@ -49,7 +49,7 @@
   outline: none;
 }
 .btnBroadband:hover {
-  background-color: #6ec5ddba;
+  background-color: #418da2;
   color: #292b2c;
 }
 button:focus {
@@ -83,12 +83,12 @@ input[type='text'] {
   height: 40vw;
   margin-top: 5%;
 }
-broadbandDeals {
-  width: 40vw;
-  height: 40vw;
-  overflow: auto;
-}
 .broadbandDeals {
   border-radius: 10px;
   border: 1px solid #292b2c;
+}
+#broadbandContainer_04 {
+  width: 40vw;
+  height: 30vw;
+  overflow: auto;
 }
