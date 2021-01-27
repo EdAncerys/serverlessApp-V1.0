@@ -21,20 +21,6 @@
     <navigation></navigation>
     <errorMessage></errorMessage>
 
-    <div
-      id="msg"
-      class="alignHorizontally"
-      style="
-        background-color: #f0ad4e;
-        margin: 2vw;
-        position: absolute;
-        width: 80vw;
-        margin-left: 10vw;
-      "
-    >
-      <msg class="alignHorizontally"></msg>
-    </div>
-
     <div id="spinner">
       <spinner class="fa fa-spinner fa-spin"></spinner>
       <spinnerText>Please Wait While We Update Selection</spinnerText>
@@ -77,44 +63,5 @@
       </div>
       <broadbandOrder class="alignHorizontally"></broadbandOrder>
     </div>
-
-    <script>
-      const closeErrorMsg = () => {
-        let errorMessage = document.querySelector('errorMessage');
-        errorMessage.innerHTML = '';
-      };
-      const _errorMessage = (message) => {
-        let errorMessage = document.querySelector('errorMessage');
-        setTimeout(() => {
-          errorMessage.innerHTML = '';
-        }, 4000);
-        let errorMsg = 'Warning!';
-
-        return `<div
-                  style="
-                    position: absolute;
-                    display: grid;
-                    grid-template-columns: 1% 15% 75% 4%;
-                    align-items: center;
-                    width: 80vw;
-                    height: 60px;
-                    color: #f7f7f7;
-                    margin: 2vw 0 0 10vw;
-                    border-radius: 10px;
-                    background-color: #d9534f;
-                  "
-                >
-                  <div style="height: 100%; background-color: aquamarine"></div>
-                  <div style="padding-left: 10%"><strong>${errorMsg}</strong></div>
-                  <div>${message}</div>
-                  <span onClick="closeErrorMsg()" 
-                        style="cursor: pointer; padding-left: 95%"> &times; </span>
-                </div>`;
-      };
-
-      document.querySelector('errorMessage').innerHTML = _errorMessage(
-        'test error message'
-      );
-    </script>
   </body>
 </html>

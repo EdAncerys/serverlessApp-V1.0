@@ -1,4 +1,4 @@
-import { _warningMessage } from '../_warningMessage.js';
+import { _errorMessage } from '../_errorMessage.js';
 import { _sortAddresses } from './_sortAddresses.js';
 import { _saveAddressData } from './_saveAddressData.js';
 import { _getBroadbandAvailability } from './_getBroadbandAvailability.js';
@@ -9,7 +9,7 @@ const _getAddress = (postcode) => {
   _spinner(true);
   const URL = '/ndg/getAddresses/' + postcode;
   console.log(URL);
-  const msg = document.querySelector('msg');
+  const errorMessage = document.querySelector('errorMessage');
   const broadbandAddress = document.querySelector('broadbandAddress');
   const gridContainer = document.querySelector('#gridContainer');
 
@@ -19,13 +19,13 @@ const _getAddress = (postcode) => {
       let value = 0;
       console.log('data: ', data);
       if (data.message === 'Request failed with status code 403') {
-        console.log('ApiExceptionMessage. Making request for area...');
-        msg.innerHTML = _warningMessage('IP not whitelisted');
+        console.log('IP not whitelisted...');
+        errorMessage.innerHTML = _errorMessage('IP not whitelisted');
         _spinner(false);
         return;
       }
       if (data.addresses.length === 0) {
-        msg.innerHTML = _warningMessage('Postcode not valid');
+        errorMessage.innerHTML = _errorMessage('Postcode not valid');
       } else {
         let sortedJASON = _sortAddresses(data, 'thoroughfare_number', true);
 
@@ -82,9 +82,9 @@ const _getAddress = (postcode) => {
       }
     })
     .catch((err) => {
-      let msg = document.querySelector('msg');
+      let errorMessage = document.querySelector('errorMessage');
       _spinner(false);
-      msg.innerHTML = _warningMessage(err);
+      errorMessage.innerHTML = _errorMessage(err);
       console.log(err);
     });
 };
