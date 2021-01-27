@@ -10,7 +10,7 @@ const _getBroadbandAvailability = () => {
   _spinner(true);
 
   const URL = '/ndg/broadbandAvailability';
-  let msg = document.querySelector('msg');
+  let errorMessage = document.querySelector('errorMessage');
   let broadbandDeals = document.querySelector('broadbandDeals');
   let value = document.getElementById('selectedAddress').value;
 

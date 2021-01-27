@@ -65,7 +65,7 @@ const _getAddress = (postcode) => {
                                       <option selected disabled hidden value='selectionID'>Please Choose Your Address</option>
                                       ${content}
                                     </select>
-                                      <button id='getBroadbandAvailability' class="button" style='margin: 2vw 0 2vw 0' role="button">
+                                      <button id='getBroadbandAvailability' class="btnBroadband" style='margin: 2vw 0 2vw 0' role="button">
                                         Check Availability
                                       </button>
                                     <div>`;

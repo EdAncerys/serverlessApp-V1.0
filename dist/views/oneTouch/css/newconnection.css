@@ -32,7 +32,7 @@
   height: 5vw;
   background-color: none;
 }
-.button {
+.btnBroadband {
   background-color: #6ec5dd;
   border-color: #292b2c;
   border-radius: 10px 10px 10px 10px;
@@ -48,6 +48,10 @@
   text-transform: uppercase;
   outline: none;
 }
+.btnBroadband:hover {
+  background-color: #6ec5ddba;
+  color: #292b2c;
+}
 button:focus {
   outline: none;
 }
@@ -57,19 +61,16 @@ input[type='text'] {
 }
 
 /* Broadband list table */
-.selected {
-  background-color: #5bc0de;
-  color: #292b2c;
-}
 .gridContainer {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 1vw;
-  margin-top: 5vw;
-  /* background-color: #5bc0de86; */
-  padding: 10px;
-  height: 60vw;
+  margin-top: 5%;
   transition: 2s;
+}
+.selected {
+  background-color: #5bc0de;
+  color: #292b2c;
 }
 .broadbandAvailabilityContainer {
   width: 40vw;
