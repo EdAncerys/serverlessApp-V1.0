@@ -22,7 +22,6 @@ const _getAddress = (postcode) => {
         console.log('ApiExceptionMessage. Making request for area...');
         msg.innerHTML = _warningMessage('IP not whitelisted');
         _spinner(false);
-        gridContainer.classList.add('gridContainer');
         return;
       }
       if (data.addresses.length === 0) {
