@@ -4,10 +4,10 @@ const _errorMessage = (message, type) => {
     errorMessage.style.visibility = 'hidden';
   };
 
-  // setTimeout(() => {
-  //   let errorMessage = document.querySelector('#errorMessage');
-  //   errorMessage.style.visibility = 'hidden';
-  // }, 4000);
+  setTimeout(() => {
+    let errorMessage = document.querySelector('#errorMessage');
+    errorMessage.style.visibility = 'hidden';
+  }, 4000);
 
   let msgType = type === 'warning' ? 'Warning!' : 'Error!';
   let msgColor = type === 'warning' ? '#f0ad4e' : '#d9534f';

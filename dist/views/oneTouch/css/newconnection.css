@@ -1,4 +1,4 @@
-.broadbandFromContainer {
+#broadbandContainer_01 {
   display: grid;
   align-content: end;
   background-image: url(../images/Broadband.png);
@@ -9,12 +9,12 @@
   margin: auto;
   margin-top: 5%;
 }
-.broadbandNav {
+#broadbandContainer_02 {
   display: grid;
   align-content: end;
   margin-bottom: 16vw;
 }
-.navContainer {
+#broadbandContainer_03 {
   display: inline-grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 10px;

@@ -11,7 +11,7 @@ const _getAddress = (postcode) => {
   console.log(URL);
   const errorMessage = document.querySelector('errorMessage');
   const broadbandAddress = document.querySelector('broadbandAddress');
-  const gridContainer = document.querySelector('#gridContainer');
+  const gridContainer = document.querySelector('#broadbandOrderContainer');
 
   fetch(URL)
     .then((res) => res.json())
