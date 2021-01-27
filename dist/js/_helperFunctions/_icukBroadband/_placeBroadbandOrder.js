@@ -1,10 +1,10 @@
 import { _contactFormTemplate } from '../_contactFormTemplate.js';
-import { _successMessage } from '../_successMessage.js';
-import { _warningMessage } from '../_warningMessage.js';
+import { _errorMessage } from '../_errorMessage.js';
 import { _spinner } from '../_spinner.js';
 
 const _placeBroadbandOrder = () => {
   console.log('Placing Broadband Order...');
+  let errorMessage = document.querySelector('errorMessage');
   _spinner(true);
 
   localStorage.setItem('customerName', 'customerName');
@@ -87,34 +87,21 @@ const _placeBroadbandOrder = () => {
     .then((res) => res.json())
     .then((data) => {
       _spinner(false);
-      _handleSubmission();
+      errorMessage.innerHTML = _errorMessage(
+        'Order Submitted Successfully...',
+        'warning'
+      );
 
       console.log(data);
-      console.log('Order Placed successfully...');
+      console.log('Order Submitted Successfully...');
     })
     .catch((err) => {
-      let msg = document.querySelector('msg');
       _spinner(false);
-      msg.innerHTML = _warningMessage(err);
+      errorMessage.innerHTML = _errorMessage(err);
 
       console.log('error');
       console.log(err);
     });
-};
-
-const _handleSubmission = () => {
-  const name = localStorage.getItem('customerName');
-  const gridContainer = document.querySelector('#gridContainer');
-  const msg = document.querySelector('msg');
-  const formContainer = document.getElementById('gridContainer');
-
-  formContainer.style.display = 'none';
-  gridContainer.classList.remove('gridContainer');
-  msg.innerHTML = _successMessage('Order Been Placed successfully', name);
-
-  setTimeout(() => {
-    location.reload();
-  }, 3000);
 };
 
 export { _placeBroadbandOrder };
