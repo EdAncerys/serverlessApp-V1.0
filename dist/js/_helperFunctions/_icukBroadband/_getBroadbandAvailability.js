@@ -1,4 +1,4 @@
-import { _warningMessage } from '../_warningMessage.js';
+import { _errorMessage } from '../_errorMessage.js';
 import { _clearDOMData } from './_clearDOMData.js';
 import { _sortBroadbandData } from './_sortBroadbandData.js';
 import { _handleBroadbandSelection } from './_handleBroadbandSelection.js';
@@ -11,11 +11,12 @@ const _getBroadbandAvailability = () => {
 
   const URL = '/ndg/broadbandAvailability';
   let errorMessage = document.querySelector('errorMessage');
+  let broadbandAddress = document.querySelector('broadbandAddress');
   let broadbandDeals = document.querySelector('broadbandDeals');
   let value = document.getElementById('selectedAddress').value;
 
   if (value === 'selectionID') {
-    msg.innerHTML = _warningMessage('Please Choose Address');
+    errorMessage.innerHTML = _errorMessage('Please Choose Address', 'warning');
     _spinner(false);
   } else {
     let body = {
@@ -45,13 +46,13 @@ const _getBroadbandAvailability = () => {
 
         if (data.name === 'Error') {
           const err = 'No Deals Available for selected address';
-          msg.innerHTML = _warningMessage(err);
           console.log(err);
+          errorMessage.innerHTML = _errorMessage(err);
         } else {
           let content = _sortBroadbandData(data, 'name', true).map(
             (product) => {
               count += 1;
-              return `<tr class="broadbandData">
+              return `<tr class="broadbandPlan">
                         <td>${count}</td>
                         <td>${product.name}</td>
                         <td>${product.likely_down_speed}</td>
@@ -62,33 +63,34 @@ const _getBroadbandAvailability = () => {
             }
           );
           _spinner(false);
-          broadbandDeals.innerHTML = `<div id='broadbandAvailabilityContainer'>
-                                      <h4 class='alignHorizontally'>Available Broadband Deals</h4>
+          broadbandDeals.innerHTML = `
+                                      <div id='broadbandContainer_04'>
                                       <table id='broadbandData' class="table table-hover table-light">
                                         <thead>
-                                        <tr>
-                                          <th scope="col">#</th>
-                                          <th scope="col">Supplier</th>
-                                          <th scope="col">Download</th>
-                                          <th scope="col">Upload</th>
-                                          <th scope="col">Price</th>
-                                          <th scope="col">Installation</th>
-                                        </tr>
-                                        </thead>
-                                          <tbody>
-                                            ${content}
-                                          </tbody>
-                                      </table>
+                                          <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Supplier</th>
+                                            <th scope="col">Download</th>
+                                            <th scope="col">Upload</th>
+                                            <th scope="col">Price</th>
+                                            <th scope="col">Installation</th>
+                                          </tr>
+                                          </thead>
+                                            <tbody>
+                                              ${content}
+                                            </tbody>
+                                        </table>
                                       </div>`;
           document
             .getElementById('broadbandData')
             .addEventListener('click', _handleBroadbandSelection);
-          console.log('Data submitted successfully...');
+          broadbandAddress.innerHTML = '<h4>Available Broadband Deals</h4>';
+          broadbandDeals.classList.add('broadbandDeals');
         }
       })
       .catch((err) => {
         _spinner(false);
-        msg.innerHTML = _warningMessage(
+        errorMessage.innerHTML = _errorMessage(
           'woops...something went wrong please try again'
         );
 
