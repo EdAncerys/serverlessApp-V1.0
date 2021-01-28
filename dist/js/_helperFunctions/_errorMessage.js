@@ -1,6 +1,8 @@
 const _errorMessage = (message, type) => {
+  let errorMessage = document.querySelector('errorMessage');
+  errorMessage.style.visibility = 'visible';
+
   const closeErrorMsg = () => {
-    let errorMessage = document.querySelector('#errorMessage');
     errorMessage.style.visibility = 'hidden';
   };
 
