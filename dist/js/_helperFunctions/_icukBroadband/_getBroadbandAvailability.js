@@ -107,8 +107,8 @@ const _getBroadbandAvailability = () => {
 };
 
 const _getAreaBroadbandAvailability = (broadbandAddress, broadbandDeals) => {
-  // const oderPostcode = localStorage.getItem('postcode');
-  let oderPostcode = 'LE157GH';
+  const oderPostcode = _handlePostcode(localStorage.getItem('postcode'));
+  // let oderPostcode = 'LE157GH';
   const URL = '/ndg/getAreaBroadbandAvailability/' + oderPostcode;
   console.log(URL);
   fetch(URL)
@@ -165,6 +165,11 @@ const _getAreaBroadbandAvailability = (broadbandAddress, broadbandDeals) => {
       console.log('error');
       console.log(err);
     });
+};
+
+const _handlePostcode = (postcode) => {
+  postcode = postcode.replace(/\+|\(|\)|\-|\s/gi, '');
+  return postcode;
 };
 
 export { _getBroadbandAvailability };
