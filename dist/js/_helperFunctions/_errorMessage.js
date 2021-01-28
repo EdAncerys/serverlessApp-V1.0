@@ -1,7 +1,7 @@
 const _errorMessage = (message, type) => {
   let errorMessage = document.querySelector('errorMessage');
+  let msgID = Date.now().toString();
   errorMessage.style.visibility = 'visible';
-
   const closeErrorMsg = () => {
     errorMessage.style.visibility = 'hidden';
   };
@@ -44,12 +44,12 @@ const _errorMessage = (message, type) => {
                     <div style="border-radius: 10px 0 0 10px; height: 100%; background-color: #292b2c"></div>
                     <div style="padding-left: 10%"><strong>${msgType}</strong></div>
                     <div>${message}</div>
-                    <div id='closeErrorMsg'
+                    <div id='${msgID}'
                           style="cursor: pointer; padding-left: 50%;"> &times; </div>
                   </div>`;
 
   setTimeout(() => {
-    document.querySelector('#closeErrorMsg').onclick = closeErrorMsg;
+    document.getElementById(`${msgID}`).onclick = closeErrorMsg;
   }, 100);
 
   let newErrorMsg = document.createElement('div');
