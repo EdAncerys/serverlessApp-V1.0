@@ -7,7 +7,7 @@ const _errorMessage = (message, type) => {
   };
 
   setTimeout(() => {
-    let errorMessage = document.querySelector('#errorMessage');
+    let errorMessage = document.querySelector('errorMessage');
     errorMessage.style.visibility = 'hidden';
   }, 4000);
 
@@ -52,7 +52,9 @@ const _errorMessage = (message, type) => {
     document.querySelector('#closeErrorMsg').onclick = closeErrorMsg;
   }, 100);
 
-  return errorMsg;
+  let newErrorMsg = document.createElement('div');
+  newErrorMsg.innerHTML = errorMsg;
+  errorMessage.appendChild(newErrorMsg);
 };
 
 export { _errorMessage };
