@@ -310,10 +310,7 @@ const getBroadbandAvailability = (ev) => {
 };
 
 const getAreaBroadbandAvailability = () => {
-  let broadbandDeals = document.querySelector('broadbandDeals');
-  broadbandDeals.innerHTML = '';
-  console.log('Getting Area Broadband Availability...');
-
+  let oderPostcode = localStorage.getItem('postcode');
   const URL = '/ndg/getAreaBroadbandAvailability/' + oderPostcode;
   let value = document.getElementById('selectedAddress').value;
 

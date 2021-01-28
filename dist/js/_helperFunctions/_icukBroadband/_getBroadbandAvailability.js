@@ -16,8 +16,8 @@ const _getBroadbandAvailability = () => {
   let value = document.getElementById('selectedAddress').value;
 
   if (value === 'selectionID') {
-    errorMessage.innerHTML = _errorMessage('Please Choose Address', 'warning');
     _spinner(false);
+    errorMessage.innerHTML = _errorMessage('Please Choose Address', 'warning');
   } else {
     let body = {
       sub_premises: localStorage.getItem('sub_premises'),
@@ -44,10 +44,12 @@ const _getBroadbandAvailability = () => {
         console.log(data);
         let count = -1;
 
-        if (data.name === 'Error') {
-          const err = 'No Deals Available for selected address';
+        if (data.name !== 'Error') {
+          let oderPostcode = localStorage.getItem('postcode');
+          const err = 'Fall back. No Deals Available for selected address';
+          _spinner(false);
+          errorMessage.innerHTML = _errorMessage(oderPostcode, 'warning');
           console.log(err);
-          errorMessage.innerHTML = _errorMessage(err);
         } else {
           let content = _sortBroadbandData(data, 'name', true).map(
             (product) => {
