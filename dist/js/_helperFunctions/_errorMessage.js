@@ -9,8 +9,19 @@ const _errorMessage = (message, type) => {
     errorMessage.style.visibility = 'hidden';
   }, 4000);
 
-  let msgType = type === 'warning' ? 'Warning!' : 'Error!';
-  let msgColor = type === 'warning' ? '#f0ad4e' : '#d9534f';
+  let msgType;
+  let msgColor;
+
+  if (type === 'warning') {
+    msgType = 'Warning!';
+    msgColor = '#f0ad4e';
+  } else if (type === 'success') {
+    msgType = 'Success!';
+    msgColor = '#5cb85c';
+  } else {
+    msgType = 'Error!';
+    msgColor = '#d9534f';
+  }
 
   const errorMsg = `<div
                     id='errorMessage'

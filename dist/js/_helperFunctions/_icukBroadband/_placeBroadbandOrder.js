@@ -89,7 +89,7 @@ const _placeBroadbandOrder = () => {
       _spinner(false);
       errorMessage.innerHTML = _errorMessage(
         'Order Submitted Successfully...',
-        'warning'
+        'success'
       );
 
       console.log(data);
