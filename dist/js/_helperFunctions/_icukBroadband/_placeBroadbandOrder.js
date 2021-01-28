@@ -4,7 +4,6 @@ import { _spinner } from '../_spinner.js';
 
 const _placeBroadbandOrder = () => {
   console.log('Placing Broadband Order...');
-  let errorMessage = document.querySelector('errorMessage');
   _spinner(true);
 
   localStorage.setItem('customerName', 'customerName');
@@ -87,17 +86,14 @@ const _placeBroadbandOrder = () => {
     .then((res) => res.json())
     .then((data) => {
       _spinner(false);
-      errorMessage.innerHTML = _errorMessage(
-        'Order Submitted Successfully...',
-        'success'
-      );
+      _errorMessage('Order Submitted Successfully...', 'success');
 
       console.log(data);
       console.log('Order Submitted Successfully...');
     })
     .catch((err) => {
       _spinner(false);
-      errorMessage.innerHTML = _errorMessage(err);
+      _errorMessage(err);
 
       console.log('error');
       console.log(err);

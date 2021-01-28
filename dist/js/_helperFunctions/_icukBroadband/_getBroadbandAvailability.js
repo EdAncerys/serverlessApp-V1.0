@@ -10,14 +10,13 @@ const _getBroadbandAvailability = () => {
   _spinner(true);
 
   const URL = '/ndg/broadbandAvailability';
-  let errorMessage = document.querySelector('errorMessage');
   let broadbandAddress = document.querySelector('broadbandAddress');
   let broadbandDeals = document.querySelector('broadbandDeals');
   let validateInput = document.getElementById('selectedAddress').value;
 
   if (validateInput === 'selectionID') {
     _spinner(false);
-    errorMessage.innerHTML = _errorMessage('Please Choose Address', 'warning');
+    _errorMessage('Please Choose Address', 'warning');
   } else {
     let body = {
       sub_premises: localStorage.getItem('sub_premises'),
@@ -47,7 +46,7 @@ const _getBroadbandAvailability = () => {
         if (data.name === 'Error') {
           const err = 'Fall back. No Deals Available for selected address';
           _spinner(false);
-          errorMessage.innerHTML = _errorMessage(err, 'warning');
+          _errorMessage(err, 'warning');
           _getAreaBroadbandAvailability(broadbandAddress, broadbandDeals);
           console.log(err);
         } else {
@@ -96,9 +95,7 @@ const _getBroadbandAvailability = () => {
       })
       .catch((err) => {
         _spinner(false);
-        errorMessage.innerHTML = _errorMessage(
-          'woops...something went wrong please try again'
-        );
+        _errorMessage('woops...something went wrong please try again');
 
         console.log('error');
         console.log(err);
@@ -158,7 +155,7 @@ const _getAreaBroadbandAvailability = (broadbandAddress, broadbandDeals) => {
     })
     .catch((err) => {
       _spinner(false);
-      errorMessage.innerHTML = _errorMessage(
+      _errorMessage(
         'Fall back function. woops...something went wrong please try again'
       );
 
