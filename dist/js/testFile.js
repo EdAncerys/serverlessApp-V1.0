@@ -309,58 +309,62 @@ const getBroadbandAvailability = (ev) => {
   }
 };
 
-const getAreaBroadbandAvailability = () => {
-  let oderPostcode = localStorage.getItem('postcode');
+const _getAreaBroadbandAvailability = () => {
+  const oderPostcode = localStorage.getItem('postcode');
   const URL = '/ndg/getAreaBroadbandAvailability/' + oderPostcode;
-  let value = document.getElementById('selectedAddress').value;
 
-  if (value === 'selectionID') {
-    broadbandDeals.innerHTML = '<h4 class="mt-4">Please Choose Address</h4>';
-  } else {
-    fetch(URL)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        let count = -1;
-
-        let content = data.products.map((product) => {
-          count += 1;
-          return `<tr class='broadbandData' onClick='handleBroadbandSelection(event)'>
-                    <td scope="row">${count}</td>
-                    <td>${product.name}</td>
-                    <td>${product.speed_range}</td>
-                    <td>${product.provider}</td>
-                    <td>${product.technology}</td>
-                  </tr>`;
-        });
-
-        broadbandDeals.innerHTML = `<h3 class="displayCenter mt-4 text-warning">Not Available for Address Provided</h3>
-                                    <h3 class="displayCenter mt-4 text-warning">Available Area Broadband Deals</h3>
-                                    <table id='broadbandData' class="table table-hover table-dark">
-                                      <thead>
-                                      <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Supplier</th>
-                                        <th scope="col">Speed Range</th>
-                                        <th scope="col">Provider</th>
-                                        <th scope="col">Technology</th>
-                                      </tr>
-                                      </thead>
-                                        <tbody>
-                                          ${content}
-                                        </tbody>
-                                    </table>`;
-
-        console.log('Data submitted successfully...');
-      })
-      .catch((err) => {
-        let broadbandDeals = document.querySelector('broadbandDeals');
-        broadbandDeals.innerHTML = `<h4 class="mt-4">whoops...something Went Wrong. Please try again...</h4>`;
-
-        console.log('error');
-        console.log(err);
+  fetch(URL)
+    .then((res) => res.json())
+    .then((data) => {
+      let content = _sortBroadbandData(data, 'name', true).map((product) => {
+        count += 1;
+        return `<tr class="broadbandPlan">
+                      <td>${count}</td>
+                      <td>${product.name}</td>
+                      <td>${product.likely_down_speed}</td>
+                      <td>${product.likely_up_speed}</td>
+                      <td>${product.price}</td>
+                      <td>${product.installation}</td>
+                    </tr>`;
       });
-  }
+      _spinner(false);
+      broadbandDeals.innerHTML = `<div id='broadbandContainer_04'>
+                                      <div>
+                                      <table id='broadbandData' class="table table-hover table-light">
+                                        <thead>
+                                          <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Supplier</th>
+                                            <th scope="col">Download</th>
+                                            <th scope="col">Upload</th>
+                                            <th scope="col">Price</th>
+                                            <th scope="col">Installation</th>
+                                          </tr>
+                                          </thead>
+                                            <tbody>
+                                              ${content}
+                                            </tbody>
+                                        </table>
+                                        </div>
+                                      </div>`;
+      document
+        .getElementById('broadbandData')
+        .addEventListener('click', _handleBroadbandSelection);
+      let msgTitle = document.createElement('p');
+      msgTitle.innerHTML =
+        '<h4 class="alignHorizontally">Available Broadband Deals</h4>';
+      broadbandAddress.appendChild(msgTitle);
+      broadbandDeals.classList.add('broadbandDeals');
+    })
+    .catch((err) => {
+      _spinner(false);
+      errorMessage.innerHTML = _errorMessage(
+        'woops...something went wrong please try again'
+      );
+
+      console.log('error');
+      console.log(err);
+    });
 };
 
 const placeBroadbandOrder = () => {

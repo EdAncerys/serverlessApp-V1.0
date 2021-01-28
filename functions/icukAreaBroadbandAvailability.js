@@ -19,7 +19,7 @@ exports.handler = (event, context, callback) => {
     Encryption: 'SHA-512',
     'Content-Type': 'application/json',
   };
-  console.log(headers);
+  console.table(headers);
 
   const sendResponse = (body) => {
     callback(null, {
