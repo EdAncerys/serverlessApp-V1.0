@@ -44,7 +44,7 @@ const _getBroadbandAvailability = () => {
         console.log(data);
         let count = -1;
 
-        if (data.name !== 'Error') {
+        if (data.name === 'Error') {
           const err = 'Fall back. No Deals Available for selected address';
           _spinner(false);
           errorMessage.innerHTML = _errorMessage(err, 'warning');
