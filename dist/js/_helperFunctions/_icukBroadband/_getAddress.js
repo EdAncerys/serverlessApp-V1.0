@@ -20,7 +20,7 @@ const _getAddress = (postcode) => {
       console.log('data: ', data);
       if (data.message === 'Request failed with status code 403') {
         console.log('IP not whitelisted...');
-        errorMessage.innerHTML = _errorMessage('IP not whitelisted');
+        _errorMessage('IP not whitelisted');
         _spinner(false);
         return;
       }
