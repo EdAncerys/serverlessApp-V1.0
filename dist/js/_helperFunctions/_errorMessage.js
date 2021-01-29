@@ -7,7 +7,7 @@ const _errorMessage = (message, type) => {
   };
 
   setTimeout(() => {
-    let errorMessage = document.querySelector('errorMessage');
+    let errorMessage = document.getElementById(`errorMessage_${msgID}`);
     errorMessage.style.visibility = 'hidden';
   }, 4000);
 
@@ -26,7 +26,7 @@ const _errorMessage = (message, type) => {
   }
 
   const errorMsg = `<div
-                    id='errorMessage'
+                    id='errorMessage_${msgID}'
                     style="
                       display: grid;
                       position: absolute;
