@@ -56,7 +56,7 @@
   status = 200
 
 [[redirects]]
-  from = "/views/devHTML/hello"
-  to = "/.netlify/functions/mongoDB"
+  from = "/ndg/mongoDBUsers"
+  to = "/.netlify/functions/mongoDBUsers"
   status = 301
 
