@@ -2,6 +2,7 @@
 @import url('./nav.css');
 @import url('./indexOneTouch.css');
 @import url('./supportDocs.css');
+@import url('./raiseTicket.css');
 @import url('../../../css/fonts.css');
 @import url('../../../css/spinner.css');
 
@@ -16,4 +17,24 @@ body {
 .alignVertically {
   display: grid;
   align-items: center;
+}
+.btnOneTouch {
+  background-color: #6ec5dd;
+  border-color: #292b2c;
+  border-radius: 10px 10px 10px 10px;
+  color: #f7f7f7;
+  padding: 1vw 2vw;
+  width: 100%;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1vw;
+  font-weight: bold;
+  cursor: pointer;
+  text-transform: uppercase;
+  outline: none;
+}
+.btnOneTouch:hover {
+  background-color: #418da2;
+  color: #292b2c;
 }

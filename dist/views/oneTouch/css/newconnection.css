@@ -52,7 +52,7 @@
   background-color: #418da2;
   color: #292b2c;
 }
-button:focus {
+.btnBroadband:focus {
   outline: none;
 }
 input[type='text'] {

@@ -23,58 +23,22 @@
       <spinner class="fa fa-spinner fa-spin"></spinner>
       <spinnerText>Please Wait While We Update Selection</spinnerText>
     </div>
-    <div id="new">
-      <div id="innernew">
-        <form
-          id="createTicket"
-          style=""
-          action="/createFreshSaleTicket"
-          method="post"
-        >
-          <div class="question">
-            <input type="text" required />
-            <label> Name</label>
+
+    <div id="broadbandContainer_01">
+      <div id="broadbandContainer_02">
+        <div id="broadbandContainer_03">
+          <div>
+            <input
+              id="postcode"
+              name="postcode"
+              class="inputContainer"
+              type="text"
+            />
           </div>
-          <div class="question">
-            <input type="text" required />
-            <label>Subject</label>
+          <div>
+            <button id="getAddress" class="btnBroadband">Get Quote</button>
           </div>
-          <div class="question">
-            <input type="text" required />
-            <label>Email Address</label>
-          </div>
-          <br />
-          <div class="question">
-            <label>Description</label>
-            <textarea></textarea>
-          </div>
-          <button
-            style="
-              text-align: center;
-              margin-left: 140px;
-              margin-right: auto;
-              width: 40%;
-            "
-          >
-            Submit
-          </button>
-          <br />
-          <br />
-          <br />
-          <header id="divf">
-            <div
-              style="
-                padding-top: 3%;
-                color: white;
-                text-align: center;
-                font-size: medium;
-                font-weight: loght;
-              "
-            >
-              SUBMIT A TICKET
-            </div>
-          </header>
-        </form>
+        </div>
       </div>
     </div>
   </body>
