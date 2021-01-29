@@ -1,0 +1,22 @@
+.wrapperOneTouch {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  width: 100%;
+}
+
+.icon {
+  padding: 10px;
+  height: 450px;
+  top: 120px;
+  left: 70px;
+  margin: 100;
+  transition: transform 0.2s;
+}
+
+.icon:hover {
+  -ms-transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
