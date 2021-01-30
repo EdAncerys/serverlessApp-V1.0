@@ -4,7 +4,7 @@ import { _spinner } from '../_spinner.js';
 function _getAllUsers() {
   console.log('Fetching all users...');
   _spinner(true);
-  const URL = '/ndg/users';
+  const URL = '/oneTouch/users';
   const users = document.querySelector('users');
 
   fetch(URL)

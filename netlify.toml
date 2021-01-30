@@ -51,8 +51,8 @@
   status = 200
 
 [[redirects]]
-  from = "/ndg/users"
-  to = "/.netlify/functions/mongoDB_GetUsers"
+  from = "/oneTouch/users"
+  to = "/.netlify/functions/mongoDB_oneTouchUsers"
   status = 200
 
 [[redirects]]
