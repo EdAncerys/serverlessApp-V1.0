@@ -1,47 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Home page – NDG Supernet</title>
-  <link rel="icon" href="./images/icon.png">
-  <link rel="stylesheet" href="./css/style.css">
-</head>
-<body>
-  <header>
-    <div class="container ">
-      <a href="./index.html"><img src="./images/color_logo_transparent.png" alt="" class="logo"></a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="./css/mainOneTouch.css" />
+    <!-- Navigation Partial script -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./JS/oneTouchNav.js"></script>
 
-      <nav>
-        <ul class="topnav">
-          <li><a href="./index.html">Home</a></li>
-          <li class="dropdown right"><a class="dropbtn" href="#">Admin</a>
-            <div class="dropdown-content">
-              <a class ="change" href="#">Edit Users</a>
-              <a class ="change" href="#">Add Users</a>
-              <a class ="change" href="./raise_ticket.html">Create Ticket</a>
-            </div>
-          </li>
-          <li class="dropdown right"><a class="dropbtn" href="#">Hosted</a>
-            <div class="dropdown-content">
-              <a class ="change" href="./voip.html">Order a New Voip Connection </a>
-              <a class ="change" href="./cloudtouch.html">Cloud Touch</a>
-            </div>
-          </li>
-          <li class="dropdown right"><a class="dropbtn" href="#">Broadband</a>
-            <div class="dropdown-content">
-              <a class ="change" href="./order_new_connection.html">Order a New Connection</a>
-              <a class ="change" href="#">Order Status</a>
-              <a class ="change" href="#">Connection</a>
-              <a class ="change" href="./make_a_new_connection.html">Make a Connection</a>
-            </div>
-          </li>
-          <li><a href="./support_docs.html">Support Doc's</a></li>
-          <li><a href="./index.html">Log Out</a></li>
-        </ul>
-      </nav>
+    <!-- Spinner script -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <title>Order New Connection – NDG Supernet</title>
+  </head>
+  <body>
+    <navigation></navigation>
+    <errorMessage></errorMessage>
+    <div id="spinner">
+      <spinner class="fa fa-spinner fa-spin"></spinner>
+      <spinnerText>Please Wait While We Update Selection</spinnerText>
     </div>
-  </header>
-</body>
+    <h1 class="alignHorizontally" style="margin-top: 5%">Manage User Page</h1>
+  </body>
 </html>
