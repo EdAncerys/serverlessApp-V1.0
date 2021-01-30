@@ -1,7 +1,7 @@
 import { _errorMessage } from './_helperFunctions/_errorMessage.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-  // document.getElementById('raiseTicket').addEventListener('click', getAllUsers);
+  document.getElementById('getAllUsers').addEventListener('click', getAllUsers);
 });
 
 const getAllUsers = (ev) => {
