@@ -24,70 +24,42 @@
       <spinnerText>Please Wait While We Update Selection</spinnerText>
     </div>
 
-    <div class="container">
-      <form action="/">
-        <label for="country">Reason For Contacting</label>
-        <select id="country" name="country">
-          <option value="australia">Query</option>
-          <option value="canada">Faulty</option>
-        </select>
-
-        <label for="fname">First Name</label>
-        <input
-          type="text"
-          id="fname"
-          name="firstname"
-          placeholder="Your name.."
-        />
-
-        <label for="lname">Last Name</label>
-        <input
-          type="text"
-          id="lname"
-          name="lastname"
-          placeholder="Your last name.."
-        />
-
-        <label for="subject">Subject</label>
-        <textarea
-          id="subject"
-          name="subject"
-          placeholder="Write something.."
-          style="height: 200px"
-        ></textarea>
-
-        <input type="submit" value="Submit" />
-      </form>
-    </div>
-
-    <div id="raiseTicketContainer_01">
-      <div id="raiseTicketContainer_02">
-        <div id="raiseTicketContainer_03">
-          <div>
-            <input id="name" name="name" class="inputContainer" type="text" />
-          </div>
-          <div>
-            <input
-              id="number"
-              name="number"
-              class="inputContainer"
-              type="text"
-            />
-          </div>
-          <div>
-            <textarea
-              id="description"
-              name="description"
-              class="inputContainerDescription"
-              type="text"
-              rows="13"
-            >
-            </textarea>
-          </div>
-          <div>
-            <button id="getAddress" class="btnOneTouch">Get Quote</button>
-          </div>
+    <div class="alignHorizontally">
+      <div class="raiseTicketContainer">
+        <div id="raiseTicketImgContainer">
+          <div id="raiseTicketImg"></div>
         </div>
+        <form action="/">
+          <label for="country">Reason For Contacting</label>
+          <select id="country" name="country">
+            <option selected disabled hidden value="selectionID">
+              Please Choose Your Reason
+            </option>
+            <option value="Query">Query</option>
+            <option value="Faulty">Faulty</option>
+          </select>
+
+          <label for="fname">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your name..." />
+
+          <label for="lname">Phone Number</label>
+          <input
+            type="text"
+            id="phoneNumber"
+            name="phoneNumber"
+            placeholder="Your phone number..."
+          />
+
+          <label for="subject">Description</label>
+          <textarea
+            id="description"
+            name="description"
+            placeholder="Describe the issue..."
+            style="height: 200px"
+          ></textarea>
+
+          <input class="btnOneTouch" type="submit" value="Submit" />
+        </form>
       </div>
     </div>
   </body>

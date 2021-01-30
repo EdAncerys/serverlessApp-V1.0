@@ -25,20 +25,20 @@ body {
 }
 .btnOneTouch {
   background-color: #6ec5dd;
-  border-color: #292b2c;
-  border-radius: 10px 10px 10px 10px;
   color: #f7f7f7;
+  border-color: #292b2c;
+  border-radius: 8px;
   padding: 1vw 2vw;
   width: 100%;
   text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 1vw;
+  font-size: 1.5vw;
   font-weight: bold;
   cursor: pointer;
   text-transform: uppercase;
+  text-decoration: none;
   outline: none;
 }
+
 .btnOneTouch:hover {
   background-color: #6ec5ddc5;
   color: #f7f7f7;
