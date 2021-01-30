@@ -24,7 +24,6 @@ exports.handler = (event, context, callback) => {
     to: process.env.GMAIL_MAILING_LIST, // replace with your mailing list
     subject: `${body.subject}`,
     html: emailTemplate,
-    // html: `<b>${description} </b><br> This is our first message sent with Nodemailer<br /><img src="cid:ndgLogo" alt="mailtrap" />`,
     attachments: [
       {
         filename: 'NDGlogo.png',
@@ -128,4 +127,4 @@ const emailTemplateForm = (name, email, subject, description) => {
               </tr>
             </table>
             </div>`;
-};
+}; //Img url same cid value as in the html img src
