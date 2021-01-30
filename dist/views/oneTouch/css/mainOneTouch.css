@@ -10,6 +10,11 @@ body {
   margin: 0;
   padding: 0;
 }
+.center {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
 .alignHorizontally {
   display: grid;
   justify-content: center;
@@ -35,6 +40,6 @@ body {
   outline: none;
 }
 .btnOneTouch:hover {
-  background-color: #418da2;
-  color: #292b2c;
+  background-color: #6ec5ddc5;
+  color: #f7f7f7;
 }

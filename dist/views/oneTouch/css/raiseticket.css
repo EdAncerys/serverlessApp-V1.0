@@ -1,36 +1,41 @@
-#broadbandContainer_01 {
+#raiseTicketContainer_01 {
   display: grid;
   align-content: end;
-  background-image: url(../images/Broadband.png);
+  background-image: url(../images/raise_ticket.png);
   background-repeat: no-repeat;
   background-size: 100%;
-  width: 40vw;
+  width: 35vw;
   height: 40vw;
   margin: auto;
   margin-top: 5%;
 }
-#broadbandContainer_02 {
+#raiseTicketContainer_02 {
   display: grid;
   align-content: end;
-  margin-bottom: 16vw;
+  /* margin: 0 0 8vw 5vw; */
+  background-color: tomato;
 }
-#broadbandContainer_03 {
+#raiseTicketContainer_03 {
   display: inline-grid;
-  grid-template-columns: 1fr 1fr;
   grid-gap: 10px;
-  justify-items: center;
-  align-items: center;
   padding-left: 4vw;
 }
-.inputContainer {
+.inputContainer,
+.inputContainerDescription {
   border-radius: 10px 10px 10px 10px;
   border-style: solid;
   border-color: black;
   font-size: 2vw;
-  padding-left: 1vw;
-  width: 20vw;
-  height: 5vw;
+  width: 25vw;
+  height: 3vw;
   background-color: none;
+}
+.inputContainerDescription {
+  height: 10vw;
+}
+textarea {
+  resize: none;
+  overflow: auto;
 }
 input[type='text'] {
   background-color: transparent;
