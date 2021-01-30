@@ -1,7 +1,7 @@
 import { _errorMessage } from '../_errorMessage.js';
 import { _spinner } from '../_spinner.js';
 
-function _getAllUsers() {
+const _getAllUsers = () => {
   console.log('Fetching all users...');
   _spinner(true);
   const URL = '/oneTouch/users';
@@ -12,8 +12,10 @@ function _getAllUsers() {
     .then((data) => {
       _spinner(false);
       let content = data.map((user) => {
-        return `<p>ID: ${user._id}</p>
+        return `<p>ID: ${user.id}</p>
                 <p>Name: ${user.name}</p>
+                <p>username: ${user.username}</p>
+                <p>phone: ${user.phone}</p>
                 <p>email: ${user.email}</p>`;
       });
       users.innerHTML = `<h4>All Registered Users</h4>
@@ -22,9 +24,10 @@ function _getAllUsers() {
       console.log(data);
     })
     .catch((err) => {
+      _spinner(false);
       _errorMessage(err);
       console.log(err);
     });
-}
+};
 
 export { _getAllUsers };
