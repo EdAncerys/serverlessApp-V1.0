@@ -37,8 +37,11 @@ const oneTouchAddUser = async (db, data) => {
     email: data.email,
     password: data.password,
   };
+  const user = await db
+    .collection(COLLECTION)
+    .find({ email: `${addUser.email}` });
 
-  if (addUser.name && addUser.email && addUser.password) {
+  if (!user && addUser.name && addUser.email && addUser.password) {
     await db.collection(COLLECTION).insertMany([data]);
     return { statusCode: 201, message: 'User been added successfully' };
   } else {
