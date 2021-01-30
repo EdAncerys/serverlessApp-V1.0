@@ -1,4 +1,4 @@
-import { _errorMessage } from './_helperFunctions/_errorMessage.js';
+import { _getAllUsers } from '../JS/_helperFunctions/mongoDB/getAllUsers.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('getAllUsers').addEventListener('click', getAllUsers);
@@ -6,5 +6,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const getAllUsers = (ev) => {
   ev.preventDefault();
-  _errorMessage('Form Not active yet...', 'warning');
+  _getAllUsers();
 };
