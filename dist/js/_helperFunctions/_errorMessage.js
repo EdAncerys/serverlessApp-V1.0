@@ -8,7 +8,7 @@ const _errorMessage = (message, type) => {
 
   setTimeout(() => {
     let errorMessage = document.getElementById(`errorMessage_${msgID}`);
-    errorMessage.style.visibility = 'hidden';
+    if (errorMessage) errorMessage.style.visibility = 'hidden';
   }, 4000);
 
   let msgType;
@@ -49,7 +49,8 @@ const _errorMessage = (message, type) => {
                   </div>`;
 
   setTimeout(() => {
-    document.getElementById(`${msgID}`).onclick = closeErrorMsg;
+    let errorMessage = document.getElementById(`${msgID}`);
+    if (errorMessage) errorMessage.onclick = closeErrorMsg;
   }, 100);
 
   let newErrorMsg = document.createElement('div');
