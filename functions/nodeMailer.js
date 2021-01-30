@@ -1,7 +1,21 @@
 const nodemailer = require('nodemailer');
 require('dotenv').config(); // Enabling to load Environment variables from a .env File
 
-const emailTemplate = `<div style="display: grid; justify-content: center">
+exports.handler = (event, context, callback) => {
+  const body = JSON.parse(event.body);
+
+  let name = body.name;
+  let email = body.email;
+  let subject = body.subject;
+  let description = body.description;
+
+  const tableCellStyle = `style="border: 1px solid #c1c1c1;
+                          color: #2b2b2b;
+                          font-size: 16px;
+                          font-weight: normal;
+                          padding: 20px;
+                          text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);"`;
+  const emailTemplate = `<div style="display: grid; justify-content: center">
                         <table style="background-color: #f4f4f4; min-width: 400px; margin: 20px">
                           <tr>
                             <th
@@ -17,7 +31,7 @@ const emailTemplate = `<div style="display: grid; justify-content: center">
                             "
                             >
                               <div style="display: grid; justify-content: center">
-                                <img src="cid:${ndgLogo}" alt="ndgLogo"/>
+                                <img src="cid:ndgLogo" alt="ndgLogo"/>
                               </div>
                             </th>
                           </tr>
@@ -72,13 +86,6 @@ const emailTemplate = `<div style="display: grid; justify-content: center">
                           </tr>
                         </table>
                         </div>`;
-exports.handler = (event, context, callback) => {
-  const body = JSON.parse(event.body);
-
-  let name = body.name;
-  let email = body.email;
-  let subject = body.subject;
-  let description = body.description;
 
   const transporter = nodemailer.createTransport({
     service: process.env.EMAIL_SERVICE, // replace with service provider
@@ -92,8 +99,8 @@ exports.handler = (event, context, callback) => {
     from: 'process.env.EMAIL_FROM', // replace with your email
     to: process.env.GMAIL_MAILING_LIST, // replace with your mailing list
     subject: `${body.subject}`,
-    // html: `${body.description}`,
     html: emailTemplate,
+    // html: `<b>${description} </b><br> This is our first message sent with Nodemailer<br /><img src="cid:ndgLogo" alt="mailtrap" />`,
     attachments: [
       {
         filename: 'NDGlogo.png',
