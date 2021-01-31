@@ -9,7 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script defer src="./JS/oneTouchNav.js"></script>
 
-    <script defer src="./JS/oneTouchNav.js"></script>
+    <script defer type="module" src="../../JS/orderManagement.js"></script>
 
     <!-- Spinner script -->
     <link
@@ -25,9 +25,13 @@
       <spinner class="fa fa-spinner fa-spin"></spinner>
       <spinnerText>Please Wait While We Update Selection</spinnerText>
     </div>
-    <h1 class="alignHorizontally" style="margin-top: 5%">
-      One Touch Order Page
-    </h1>
+
+    <div class="alignHorizontally">
+      <h1 class="alignHorizontally" style="margin-top: 5%">
+        One Touch Order Page
+      </h1>
+      <button id="oneTouchOrders" class="btnOneTouch">Get All Orders</button>
+    </div>
 
     <oneTouchOrders></oneTouchOrders>
   </body>

@@ -1,10 +1,6 @@
 import { _errorMessage } from '../_errorMessage.js';
 import { _spinner } from '../_spinner.js';
 
-document.addEventListener('DOMContentLoaded', () => {
-  _oneTouchOrders();
-});
-
 async function _oneTouchOrders() {
   console.log('Fetching all orders...');
   _spinner(true);

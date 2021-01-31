@@ -5,7 +5,7 @@ async function _oneTouchUsers() {
   console.log('Fetching all users...');
   _spinner(true);
   const URL = '/oneTouch/users';
-  const users = document.querySelector('users');
+  const users = document.querySelector('oneTouchUsers');
 
   fetch(URL)
     .then((res) => res.json())

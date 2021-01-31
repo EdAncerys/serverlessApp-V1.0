@@ -1,4 +1,4 @@
-import { _oneTouchUsers } from '../JS/_helperFunctions/mongoDB/oneTouchUsers.js';
+import { _oneTouchUsers } from '../JS/_helperFunctions/mongoDB/_oneTouchUsers.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('getAllUsers').addEventListener('click', getAllUsers);
