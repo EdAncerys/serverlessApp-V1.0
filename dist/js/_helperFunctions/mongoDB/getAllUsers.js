@@ -12,7 +12,7 @@ async function _getAllUsers() {
     .then((data) => {
       _spinner(false);
       let content = data.map((user) => {
-        return `<p>ID: ${user.id}</p>
+        return `<p>ID: ${user._id}</p>
                 <p>Name: ${user.name}</p>
                 <p>username: ${user.username}</p>
                 <p>phone: ${user.phone}</p>
