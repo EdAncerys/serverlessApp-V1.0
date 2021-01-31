@@ -4,7 +4,7 @@ import { _saveAddressData } from './_saveAddressData.js';
 import { _getBroadbandAvailability } from './_getBroadbandAvailability.js';
 import { _spinner } from '../_spinner.js';
 
-const _getAddress = (postcode) => {
+async function _getAddress(postcode) {
   console.log('Fetching addresses for postcode provided...');
   _spinner(true);
   const URL = '/ndg/getAddresses/' + postcode;
@@ -87,6 +87,6 @@ const _getAddress = (postcode) => {
       errorMessage.innerHTML = _errorMessage(err);
       console.log(err);
     });
-};
+}
 
 export { _getAddress };

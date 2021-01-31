@@ -2,7 +2,7 @@ const MongoClient = require('mongodb').MongoClient;
 
 const MONGODB_URI = process.env.MONGODB_URI;
 const DB_NAME = 'oneTouchDB';
-const COLLECTION = 'oneTouchUsers';
+const COLLECTION = 'oneTouchOrders';
 
 let cachedDb = null;
 
@@ -18,7 +18,7 @@ const connectToDatabase = async (uri) => {
   return cachedDb;
 };
 
-const oneTouchQueryUsers = async (db) => {
+const oneTouchQueryOrders = async (db) => {
   const dbData = await db.collection(COLLECTION).find({}).toArray();
   console.table(dbData);
 
@@ -31,20 +31,13 @@ const oneTouchQueryUsers = async (db) => {
   };
 };
 
-const oneTouchAddUser = async (db, data) => {
-  const addUser = {
+const oneTouchAddOrder = async (db, data) => {
+  const createOrder = {
     name: data.name,
-    email: data.email,
-    password: data.password,
   };
-  const user = await db
-    .collection(COLLECTION)
-    .find({ email: addUser.email })
-    .toArray();
-  const userValid = !user[0];
 
-  if (userValid && addUser.name && addUser.email && addUser.password) {
-    const msg = `User successfully added to DB with email: ` + addUser.email;
+  if (createOrder.name) {
+    const msg = `Order successfully been created for: ` + createOrder.name;
     await db.collection(COLLECTION).insertMany([data]);
     console.log(msg);
 
@@ -53,11 +46,10 @@ const oneTouchAddUser = async (db, data) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ user: data, msg: msg }),
+      body: JSON.stringify({ order: data, msg: msg }),
     };
   } else {
-    const msg =
-      `User Exists. Error adding user to DB with email: ` + addUser.email;
+    const msg = `Error creating order for: ` + createOrder.name;
     console.log(msg);
 
     return {
@@ -65,26 +57,25 @@ const oneTouchAddUser = async (db, data) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ user: data, msg: msg, dbUser: user }),
+      body: JSON.stringify({ order: data, msg: msg }),
     };
   }
 };
 
-const oneTouchDeleteUser = async (db, data) => {
-  const deleteUser = {
+const oneTouchDeleteOrder = async (db, data) => {
+  const deleteOrder = {
     _id: data._id,
-    email: data.email,
   };
-  const user = await db
+  const order = await db
     .collection(COLLECTION)
-    .find({ email: deleteUser.email })
+    .find({ _id: deleteOrder._id })
     .toArray();
-  const userValid = user[0];
+  const orderValid = order[0];
 
-  if (userValid && deleteUser.email) {
+  if (orderValid && deleteOrder._id) {
     const msg =
-      `User been successfully deleted from DB with email: ` + deleteUser.email;
-    await db.collection(COLLECTION).deleteOne({ email: deleteUser.email });
+      `Oder been successfully deleted from DB. Order ID: ` + deleteOrder._id;
+    await db.collection(COLLECTION).deleteOne({ _id: deleteOrder._id });
     console.log(msg);
 
     return {
@@ -92,12 +83,12 @@ const oneTouchDeleteUser = async (db, data) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ user: data, msg: msg }),
+      body: JSON.stringify({ order: data, msg: msg }),
     };
   } else {
     const msg =
-      `User not found! Error deleting user from DB where email: ` +
-      deleteUser.email;
+      `Order not found! Error deleting order from DB. Order ID: ` +
+      deleteOrder._id;
     console.log(msg);
 
     return {
@@ -110,23 +101,23 @@ const oneTouchDeleteUser = async (db, data) => {
   }
 };
 
-const oneTouchUpdateUser = async (db, data) => {
-  const updateUser = {
-    email: data.email,
+const oneTouchUpdateOrder = async (db, data) => {
+  const updateOrder = {
+    _id: data._id,
   };
-  const user = await db
+  const order = await db
     .collection(COLLECTION)
-    .find({ email: updateUser.email })
+    .find({ _id: updateOrder._id })
     .toArray();
-  const userValid = user[0];
+  const orderValid = order[0];
 
-  if (userValid && updateUser.email) {
+  if (orderValid && updateOrder._id) {
     const msg =
-      `User been successfully updated in DB with email: ` + updateUser.email;
-    const oneTouchUser = { email: updateUser.email };
+      `Order been successfully updated in DB. Order ID: ` + updateOrder._id;
+    const oneTouchOrder = { _id: updateOrder._id };
     const updatedValues = { $set: data };
 
-    await db.collection(COLLECTION).updateOne(oneTouchUser, updatedValues);
+    await db.collection(COLLECTION).updateOne(oneTouchOrder, updatedValues);
     console.log(msg);
 
     return {
@@ -134,12 +125,12 @@ const oneTouchUpdateUser = async (db, data) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ updatedUser: data, msg: msg, user: user }),
+      body: JSON.stringify({ updateOrder: data, msg: msg }),
     };
   } else {
     const msg =
-      `User not found! Error updating user in DB where email: ` +
-      updateUser.email;
+      `Order not found! Error updating order in DB. Order ID: ` +
+      updateOrder._id;
     console.log(msg);
 
     return {
@@ -147,7 +138,7 @@ const oneTouchUpdateUser = async (db, data) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ updatedUser: data, msg: msg, user: user }),
+      body: JSON.stringify({ updateOrder: data, msg: msg }),
     };
   }
 };
@@ -159,13 +150,13 @@ module.exports.handler = async (event, context) => {
 
   switch (event.httpMethod) {
     case 'GET':
-      return oneTouchQueryUsers(db);
+      return oneTouchQueryOrders(db);
     case 'POST':
-      return oneTouchAddUser(db, JSON.parse(event.body));
+      return oneTouchAddOrder(db, JSON.parse(event.body));
     case 'DELETE':
-      return oneTouchDeleteUser(db, JSON.parse(event.body));
+      return oneTouchDeleteOrder(db, JSON.parse(event.body));
     case 'PATCH':
-      return oneTouchUpdateUser(db, JSON.parse(event.body));
+      return oneTouchUpdateOrder(db, JSON.parse(event.body));
     default:
       return { statusCode: 400 };
   }

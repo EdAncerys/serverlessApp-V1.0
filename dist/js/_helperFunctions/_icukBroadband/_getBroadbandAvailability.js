@@ -4,7 +4,7 @@ import { _sortBroadbandData } from './_sortBroadbandData.js';
 import { _handleBroadbandSelection } from './_handleBroadbandSelection.js';
 import { _spinner } from '../_spinner.js';
 
-const _getBroadbandAvailability = () => {
+async function _getBroadbandAvailability() {
   _clearDOMData('broadbandAddress');
   console.log('Getting Broadband Availability...');
   _spinner(true);
@@ -101,7 +101,7 @@ const _getBroadbandAvailability = () => {
         console.log(err);
       });
   }
-};
+}
 
 const _getAreaBroadbandAvailability = (broadbandAddress, broadbandDeals) => {
   const oderPostcode = _handlePostcode(localStorage.getItem('postcode'));

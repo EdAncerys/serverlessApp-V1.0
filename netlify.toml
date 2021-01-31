@@ -56,6 +56,11 @@
   status = 200
 
 [[redirects]]
+  from = "/oneTouch/orders"
+  to = "/.netlify/functions/mongoDB_oneTouchOrders"
+  status = 200
+
+[[redirects]]
   from = "/ndg/hello"
   to = "/.netlify/functions/redirectLambda"
   status = 301
