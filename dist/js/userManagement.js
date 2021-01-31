@@ -1,4 +1,4 @@
-import { _getAllUsers } from '../JS/_helperFunctions/mongoDB/getAllUsers.js';
+import { _oneTouchUsers } from '../JS/_helperFunctions/mongoDB/oneTouchUsers.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('getAllUsers').addEventListener('click', getAllUsers);
@@ -6,5 +6,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const getAllUsers = (ev) => {
   ev.preventDefault();
-  _getAllUsers();
+  _oneTouchUsers();
 };

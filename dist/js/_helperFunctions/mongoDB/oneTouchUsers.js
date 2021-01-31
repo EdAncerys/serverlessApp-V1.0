@@ -1,7 +1,7 @@
 import { _errorMessage } from '../_errorMessage.js';
 import { _spinner } from '../_spinner.js';
 
-async function _getAllUsers() {
+async function _oneTouchUsers() {
   console.log('Fetching all users...');
   _spinner(true);
   const URL = '/oneTouch/users';
@@ -30,4 +30,4 @@ async function _getAllUsers() {
     });
 }
 
-export { _getAllUsers };
+export { _oneTouchUsers };
