@@ -25,6 +25,11 @@ async function _oneTouchOrders() {
                   <th ${tableCellStyle}>${order.likely_up_speed}</th>
                   <th ${tableCellStyle}>${order.price}</th>
                   <th ${tableCellStyle}>${order.installation}</th>
+                  <th ${tableCellStyle}>
+                    <button id='${order._id}' value='${order._id}' class="btnOneTouch" role="button">
+                      Delete
+                    </button>
+                  </th>
                 </tr>`;
       });
       oneTouchOrders.innerHTML = `<div>
@@ -33,7 +38,7 @@ async function _oneTouchOrders() {
                                     <table style="background-color: #f4f4f4; min-width: 400px; margin: 20px">
                                       <tr>
                                         <th
-                                        colspan="5"
+                                        colspan="6"
                                         style="
                                           color: #f4f4f4;
                                           background: #f7f7f7;
@@ -55,6 +60,7 @@ async function _oneTouchOrders() {
                                         <th ${tableCellStyle}>Upload Speed</th>
                                         <th ${tableCellStyle}>Price</th>
                                         <th ${tableCellStyle}>Installation</th>
+                                        <th ${tableCellStyle}>Delete Order</th>
                                       </tr>
                                         ${content}
                                     </table>
