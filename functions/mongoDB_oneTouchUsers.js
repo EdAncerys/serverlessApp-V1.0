@@ -92,7 +92,7 @@ const oneTouchDeleteUser = async (db, data) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ user: data, msg: msg, user: user }),
+      body: JSON.stringify({ user: data, msg: msg }),
     };
   } else {
     const msg =
@@ -105,7 +105,49 @@ const oneTouchDeleteUser = async (db, data) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ user: data, msg: msg, user: user }),
+      body: JSON.stringify({ user: data, msg: msg }),
+    };
+  }
+};
+
+const oneTouchUpdateUser = async (db, data) => {
+  const updateUser = {
+    email: data.email,
+  };
+  const user = await db
+    .collection(COLLECTION)
+    .find({ email: updateUser.email })
+    .toArray();
+  const userValid = user[0];
+
+  if (userValid && updateUser.email) {
+    const msg =
+      `User been successfully updated in DB with email: ` + updateUser.email;
+    const oneTouchUser = { email: updateUser.email };
+    const updateValues = { $set: { name: data.name } };
+
+    await db.collection(COLLECTION).updateOne(oneTouchUser, updateValues);
+    console.log(msg);
+
+    return {
+      statusCode: 201,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ user: data, msg: msg, updatedUser: user }),
+    };
+  } else {
+    const msg =
+      `User not found! Error updating user in DB where email: ` +
+      updateUser.email;
+    console.log(msg);
+
+    return {
+      statusCode: 201,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ user: data, msg: msg, updatedUser: user }),
     };
   }
 };
@@ -122,6 +164,8 @@ module.exports.handler = async (event, context) => {
       return oneTouchAddUser(db, JSON.parse(event.body));
     case 'DELETE':
       return oneTouchDeleteUser(db, JSON.parse(event.body));
+    case 'PATCH':
+      return oneTouchUpdateUser(db, JSON.parse(event.body));
     default:
       return { statusCode: 400 };
   }
