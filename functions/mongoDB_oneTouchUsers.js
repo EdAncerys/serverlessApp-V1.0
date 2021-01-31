@@ -41,22 +41,25 @@ const oneTouchAddUser = async (db, data) => {
     .collection(COLLECTION)
     .find({ email: addUser.email })
     .toArray();
+  const userValid = !user[0];
 
-  if (!user[0] && addUser.name && addUser.email && addUser.password) {
+  if (userValid && addUser.name && addUser.email && addUser.password) {
     const msg = `User successfully added to DB with email: ` + addUser.email;
-    console.log(msg);
     await db.collection(COLLECTION).insertMany([data]);
+    console.log(msg);
+
     return {
       statusCode: 201,
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ user: data, msg: msg, dbUser: user }),
+      body: JSON.stringify({ user: data, msg: msg }),
     };
   } else {
     const msg =
       `User Exists. Error adding user to DB with email: ` + addUser.email;
     console.log(msg);
+
     return {
       statusCode: 422,
       headers: {
@@ -74,19 +77,36 @@ const oneTouchDeleteUser = async (db, data) => {
   };
   const user = await db
     .collection(COLLECTION)
-    .find({ email: deleteUser.email });
-  console.log(user);
-  if (!user && deleteUser._id) {
-    const msg = `User been deleted with _id: ` + deleteUser._id;
+    .find({ email: deleteUser.email })
+    .toArray();
+  const userValid = user[0];
+
+  if (userValid && deleteUser.email) {
+    const msg =
+      `User been successfully deleted from DB with email: ` + deleteUser.email;
+    await db.collection(COLLECTION).deleteOne({ email: deleteUser.email });
     console.log(msg);
-    await db
-      .collection(COLLECTION)
-      .deleteOne({ _id: ObjectId(`${deleteUser._id}`) });
-    return { statusCode: 201, msg: msg };
+
+    return {
+      statusCode: 201,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ user: data, msg: msg, user: user }),
+    };
   } else {
-    const msg = `Error deleting user with _id: ` + deleteUser._id;
+    const msg =
+      `User not found! Error deleting user from DB where email: ` +
+      deleteUser.email;
     console.log(msg);
-    return { statusCode: 422, msg: msg };
+
+    return {
+      statusCode: 201,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ user: data, msg: msg, user: user }),
+    };
   }
 };
 
