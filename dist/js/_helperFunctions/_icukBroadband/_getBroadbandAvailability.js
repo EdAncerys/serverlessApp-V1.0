@@ -54,6 +54,7 @@ async function _getBroadbandAvailability() {
               return `<tr class="broadbandPlan">
                         <td>${count}</td>
                         <td>${product.name}</td>
+                        <td>${product.provider}</td>
                         <td>${product.likely_down_speed}</td>
                         <td>${product.likely_up_speed}</td>
                         <td>${product.price}</td>
@@ -69,6 +70,7 @@ async function _getBroadbandAvailability() {
                                           <tr>
                                             <th scope="col">#</th>
                                             <th scope="col">Supplier</th>
+                                            <th scope="col">Provider</th>
                                             <th scope="col">Download</th>
                                             <th scope="col">Upload</th>
                                             <th scope="col">Price</th>
@@ -103,7 +105,7 @@ async function _getBroadbandAvailability() {
 
 const _getAreaBroadbandAvailability = (broadbandAddress, broadbandDeals) => {
   const oderPostcode = _handlePostcode(localStorage.getItem('postcode'));
-  // let oderPostcode = 'LE157GH';
+
   const URL = '/ndg/getAreaBroadbandAvailability/' + oderPostcode;
   console.log(URL);
   fetch(URL)

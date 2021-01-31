@@ -11,21 +11,26 @@ const _handleBroadbandSelection = (event) => {
     // Save to local storage
     localStorage.setItem('name', event.target.parentNode.children[1].innerHTML);
     localStorage.setItem(
-      'likely_down_speed',
+      'provider',
       event.target.parentNode.children[2].innerHTML
     );
     localStorage.setItem(
-      'likely_up_speed',
+      'likely_down_speed',
       event.target.parentNode.children[3].innerHTML
     );
     localStorage.setItem(
-      'price',
+      'likely_up_speed',
       event.target.parentNode.children[4].innerHTML
     );
     localStorage.setItem(
-      'installation',
+      'price',
       event.target.parentNode.children[5].innerHTML
     );
+    localStorage.setItem(
+      'installation',
+      event.target.parentNode.children[6].innerHTML
+    );
+
     console.log(`Name: `, localStorage.getItem('name'));
 
     console.log('Broadband Deal Selected...');

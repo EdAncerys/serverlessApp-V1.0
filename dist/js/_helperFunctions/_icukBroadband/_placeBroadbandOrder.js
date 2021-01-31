@@ -1,4 +1,4 @@
-import { _contactFormTemplate } from '../_contactFormTemplate.js';
+import { _createOneTouchOrder } from '../mongoDB/_createOneTouchOrder.js';
 import { _errorMessage } from '../_errorMessage.js';
 import { _spinner } from '../_spinner.js';
 
@@ -38,10 +38,12 @@ const _placeBroadbandOrder = () => {
   let order_district_id = district_id === 'null' ? '' : district_id;
   let order_nad_key = nad_key === 'null' ? '' : nad_key;
 
-  let broadbandName = localStorage.getItem('name');
-  let broadbandProvider = localStorage.getItem('provider');
-  let broadbandPrice = localStorage.getItem('price');
-  let broadbandInstallation = localStorage.getItem('installation');
+  let broadband_name = localStorage.getItem('name');
+  let broadband_provider = localStorage.getItem('provider');
+  let broadband_likely_down_speed = localStorage.getItem('likely_down_speed');
+  let broadband_likely_up_speed = localStorage.getItem('likely_up_speed');
+  let broadband_price = localStorage.getItem('price');
+  let broadband_installation = localStorage.getItem('installation');
 
   let orderAddressSummary = `${order_sub_premises} 
                             ${order_premises_name} 
@@ -54,10 +56,12 @@ const _placeBroadbandOrder = () => {
                             ${order_district_id} 
                             ${order_nad_key}`;
 
-  let orderBroadbandSummary = `${broadbandName}
-                              ${broadbandProvider}
-                              ${broadbandPrice}
-                              ${broadbandInstallation}`;
+  let orderBroadbandSummary = `${broadband_name}
+                              ${broadband_provider}
+                              ${broadband_likely_down_speed}
+                              ${broadband_likely_up_speed}
+                              ${broadband_price}
+                              ${broadband_installation}`;
 
   let orderSummary = `<p>${orderAddressSummary}</p>
                       <p>${orderBroadbandSummary}</p>`;
@@ -78,6 +82,13 @@ const _placeBroadbandOrder = () => {
   fetch(URL, config)
     .then((res) => res.json())
     .then((data) => {
+      _createOneTouchOrder(
+        broadband_name,
+        broadband_likely_down_speed,
+        broadband_likely_up_speed,
+        broadband_price,
+        broadband_installation
+      );
       _spinner(false);
       _errorMessage('Order Submitted Successfully...', 'success');
 
