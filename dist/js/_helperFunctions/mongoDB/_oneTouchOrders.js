@@ -1,6 +1,10 @@
 import { _errorMessage } from '../_errorMessage.js';
 import { _spinner } from '../_spinner.js';
 
+const deleteOneTouchOrder = (id) => {
+  console.log(id);
+};
+
 async function _oneTouchOrders() {
   console.log('Fetching all orders...');
   _spinner(true);
@@ -26,46 +30,58 @@ async function _oneTouchOrders() {
                   <th ${tableCellStyle}>${order.price}</th>
                   <th ${tableCellStyle}>${order.installation}</th>
                   <th ${tableCellStyle}>
-                    <button id='${order._id}' value='${order._id}' class="btnOneTouch" role="button">
+                    <btnDeleteOrder id='${order._id}' value='${order._id}' class="btnOneTouch" role="button">
                       Delete
-                    </button>
+                    </btnDeleteOrder>
                   </th>
                 </tr>`;
       });
       oneTouchOrders.innerHTML = `<div>
                                     <h2 style="display: grid; justify-content: center">All Registered Orders</h2>
                                     <div style="display: grid; justify-content: center; background">
-                                    <table style="background-color: #f4f4f4; min-width: 400px; margin: 20px">
-                                      <tr>
-                                        <th
-                                        colspan="6"
-                                        style="
-                                          color: #f4f4f4;
-                                          background: #f7f7f7;
-                                          border: 1px solid #343a45;
-                                          text-align: center;
-                                          text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-                                          vertical-align: middle;
-                                          padding: 10px;
-                                        "
-                                        >
-                                          <div style="display: grid; justify-content: center">
-                                            <img src="../../../views/oneTouch/images/color_logo_transparent.png" alt="ndgLogo"/>
-                                          </div>
-                                        </th>
-                                      </tr>
-                                      <tr style="padding: 5px">
-                                        <th ${tableCellStyle}>Supplier</th>
-                                        <th ${tableCellStyle}>Download Speed</th>
-                                        <th ${tableCellStyle}>Upload Speed</th>
-                                        <th ${tableCellStyle}>Price</th>
-                                        <th ${tableCellStyle}>Installation</th>
-                                        <th ${tableCellStyle}>Delete Order</th>
-                                      </tr>
-                                        ${content}
-                                    </table>
+                                      <table id='oneTouchOrderTable' style="background-color: #f4f4f4; min-width: 400px; margin: 20px">
+                                        <tr>
+                                          <th
+                                          colspan="6"
+                                          style="
+                                            color: #f4f4f4;
+                                            background: #f7f7f7;
+                                            border: 1px solid #343a45;
+                                            text-align: center;
+                                            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+                                            vertical-align: middle;
+                                            padding: 10px;
+                                          "
+                                          >
+                                            <div style="display: grid; justify-content: center">
+                                              <img src="../../../views/oneTouch/images/color_logo_transparent.png" alt="ndgLogo"/>
+                                            </div>
+                                          </th>
+                                        </tr>
+                                        <tr style="padding: 5px">
+                                          <th ${tableCellStyle}>Supplier</th>
+                                          <th ${tableCellStyle}>Download Speed</th>
+                                          <th ${tableCellStyle}>Upload Speed</th>
+                                          <th ${tableCellStyle}>Price</th>
+                                          <th ${tableCellStyle}>Installation</th>
+                                          <th ${tableCellStyle}>Delete Order</th>
+                                        </tr>
+                                          ${content}
+                                      </table>
                                     </div>
                                   </div>`;
+
+      document
+        .getElementById('oneTouchOrderTable')
+        .addEventListener('click', (event) => {
+          const isButton = event.target.nodeName === 'BTNDELETEORDER';
+
+          if (!isButton) {
+            return;
+          }
+
+          deleteOneTouchOrder(event.target.id);
+        });
 
       console.log(data);
     })
