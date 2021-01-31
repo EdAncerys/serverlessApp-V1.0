@@ -1,3 +1,4 @@
+import { _oneTouchOrders } from './_oneTouchOrders.js';
 import { _errorMessage } from '../_errorMessage.js';
 import { _spinner } from '../_spinner.js';
 
@@ -17,6 +18,7 @@ async function _deleteOneTouchOrder(id) {
   fetch(URL, config)
     .then((res) => res.json())
     .then((data) => {
+      _oneTouchOrders();
       _spinner(false);
       _errorMessage(data.msg, 'success');
 
