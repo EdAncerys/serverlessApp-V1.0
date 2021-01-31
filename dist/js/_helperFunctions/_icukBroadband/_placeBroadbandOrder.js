@@ -45,26 +45,32 @@ const _placeBroadbandOrder = () => {
   let broadband_price = localStorage.getItem('price');
   let broadband_installation = localStorage.getItem('installation');
 
-  let orderAddressSummary = `${order_sub_premises} 
-                            ${order_premises_name} 
-                            ${order_thoroughfare_number} 
-                            ${order_thoroughfare_name} 
-                            ${order_locality} 
-                            ${order_post_town} 
-                            ${order_county} 
-                            ${order_postcode} 
-                            ${order_district_id} 
-                            ${order_nad_key}`;
+  let orderAddressSummary = ` ${order_sub_premises}
+                              ${order_premises_name}
+                              ${order_thoroughfare_number}
+                              ${order_thoroughfare_name}
+                              ${order_locality}
+                              ${order_post_town}
+                              ${order_county}
+                              ${order_postcode}
+                              ${order_district_id}
+                              ${order_nad_key}`;
 
-  let orderBroadbandSummary = `${broadband_name}
-                              ${broadband_provider}
-                              ${broadband_likely_down_speed}
-                              ${broadband_likely_up_speed}
-                              ${broadband_price}
-                              ${broadband_installation}`;
+  let orderBroadbandSummary = ` <p>Name: ${broadband_name}</p>
+                                <p>Provider: ${broadband_provider}</p>
+                                <p>Down Speed: ${broadband_likely_down_speed}</p>
+                                <p>Up Speed: ${broadband_likely_up_speed}</p>
+                                <p>Price: ${broadband_price}</p>
+                                <p>Installation: ${broadband_installation}</p>`;
 
-  let orderSummary = `<p>${orderAddressSummary}</p>
-                      <p>${orderBroadbandSummary}</p>`;
+  let orderSummary = `<div style='color: #5cb85c'>
+                        <h4>Order Address</h4>
+                        ${orderAddressSummary}
+                      </div>
+                      <div style='color: #5bc0de'>
+                        <h4>broadband Deal</h4>
+                        ${orderBroadbandSummary}
+                      </div>`;
 
   const URL = '/ndg/contactUs';
   const body = {
