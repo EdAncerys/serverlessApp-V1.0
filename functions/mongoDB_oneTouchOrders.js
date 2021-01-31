@@ -106,18 +106,32 @@ const oneTouchDeleteOrder = async (db, data) => {
 const oneTouchUpdateOrder = async (db, data) => {
   const updateOrder = {
     _id: data._id,
+    name: data.name,
+    likely_down_speed: data.likely_down_speed,
+    likely_up_speed: data.likely_up_speed,
+    price: data.price,
+    installation: data.installation,
   };
+  const orderID = new ObjectId(updateOrder._id);
   const order = await db
     .collection(COLLECTION)
-    .find({ _id: updateOrder._id })
+    .find({ _id: orderID })
     .toArray();
   const orderValid = order[0];
 
   if (orderValid && updateOrder._id) {
     const msg =
       `Order been successfully updated in DB. Order ID: ` + updateOrder._id;
-    const oneTouchOrder = { _id: updateOrder._id };
-    const updatedValues = { $set: data };
+    const oneTouchOrder = { _id: orderID };
+    const updatedValues = {
+      $set: {
+        name: updateOrder.name,
+        likely_down_speed: updateOrder.likely_down_speed,
+        likely_up_speed: updateOrder.likely_up_speed,
+        price: updateOrder.price,
+        installation: updateOrder.installation,
+      },
+    };
 
     await db.collection(COLLECTION).updateOne(oneTouchOrder, updatedValues);
     console.log(msg);
