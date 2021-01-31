@@ -124,9 +124,9 @@ const oneTouchUpdateUser = async (db, data) => {
     const msg =
       `User been successfully updated in DB with email: ` + updateUser.email;
     const oneTouchUser = { email: updateUser.email };
-    const updateValues = { $set: { name: data.name } };
+    const updatedValues = { $set: data };
 
-    await db.collection(COLLECTION).updateOne(oneTouchUser, updateValues);
+    await db.collection(COLLECTION).updateOne(oneTouchUser, updatedValues);
     console.log(msg);
 
     return {
@@ -134,7 +134,7 @@ const oneTouchUpdateUser = async (db, data) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ user: data, msg: msg, updatedUser: user }),
+      body: JSON.stringify({ updatedUser: data, msg: msg, user: user }),
     };
   } else {
     const msg =
@@ -147,7 +147,7 @@ const oneTouchUpdateUser = async (db, data) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ user: data, msg: msg, updatedUser: user }),
+      body: JSON.stringify({ updatedUser: data, msg: msg, user: user }),
     };
   }
 };
