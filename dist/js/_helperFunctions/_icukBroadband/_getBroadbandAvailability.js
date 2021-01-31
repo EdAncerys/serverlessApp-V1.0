@@ -1,11 +1,9 @@
 import { _errorMessage } from '../_errorMessage.js';
-import { _clearDOMData } from './_clearDOMData.js';
 import { _sortBroadbandData } from './_sortBroadbandData.js';
 import { _handleBroadbandSelection } from './_handleBroadbandSelection.js';
 import { _spinner } from '../_spinner.js';
 
 async function _getBroadbandAvailability() {
-  _clearDOMData('broadbandAddress');
   console.log('Getting Broadband Availability...');
   _spinner(true);
 

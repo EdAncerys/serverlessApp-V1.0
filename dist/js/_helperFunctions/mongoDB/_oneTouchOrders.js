@@ -1,9 +1,6 @@
+import { _deleteOneTouchOrder } from '../mongoDB/_deleteOneTouchOrder.js';
 import { _errorMessage } from '../_errorMessage.js';
 import { _spinner } from '../_spinner.js';
-
-const deleteOneTouchOrder = (id) => {
-  console.log(id);
-};
 
 async function _oneTouchOrders() {
   console.log('Fetching all orders...');
@@ -80,7 +77,7 @@ async function _oneTouchOrders() {
             return;
           }
 
-          deleteOneTouchOrder(event.target.id);
+          _deleteOneTouchOrder(event.target.id);
         });
 
       console.log(data);
