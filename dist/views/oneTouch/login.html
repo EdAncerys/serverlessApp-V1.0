@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="./css/mainOneTouch.css" />
+    <!-- Navigation Partial script -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./JS/oneTouchNav.js"></script>
+
+    <script defer type="module" src="../../JS/raiseTicket.js"></script>
+
+    <!-- Spinner script -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <title>Order New Connection – NDG Supernet</title>
+  </head>
+  <body>
+    <navigation></navigation>
+    <errorMessage></errorMessage>
+    <div id="spinner">
+      <spinner class="fa fa-spinner fa-spin"></spinner>
+      <spinnerText>Please Wait While We Update Selection</spinnerText>
+    </div>
+
+    <div class="alignHorizontally">
+      <div class="raiseTicketContainer">
+        <div id="raiseTicketImgContainer">
+          <div id="raiseTicketImg"></div>
+        </div>
+        <form action="/">
+          <label for="country">Reason For Contacting</label>
+          <select id="country" name="country">
+            <option selected disabled hidden value="selectionID">
+              Please Choose Your Reason
+            </option>
+            <option value="Query">Query</option>
+            <option value="Faulty">Faulty</option>
+          </select>
+
+          <label for="fname">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your name..." />
+
+          <label for="lname">Phone Number</label>
+          <input
+            type="text"
+            id="phoneNumber"
+            name="phoneNumber"
+            placeholder="Your phone number..."
+          />
+
+          <label for="subject">Description</label>
+          <textarea
+            id="description"
+            name="description"
+            placeholder="Describe the issue..."
+            style="height: 200px"
+          ></textarea>
+
+          <input
+            id="raiseTicket"
+            class="btnOneTouch"
+            type="submit"
+            value="Submit"
+          />
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
