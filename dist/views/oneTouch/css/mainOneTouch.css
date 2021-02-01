@@ -40,8 +40,10 @@ body {
   text-decoration: none;
   outline: none;
 }
-
 .btnOneTouch:hover {
   background-color: #6ec5ddc5;
   color: #f7f7f7;
+}
+.loginNav {
+  display: none;
 }
