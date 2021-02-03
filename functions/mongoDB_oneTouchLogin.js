@@ -19,7 +19,6 @@ const connectToDatabase = async (uri) => {
 };
 
 const oneTouchLogin = async (db, data) => {
-  console.table(data);
   const loginUser = {
     email: data.email,
     password: data.password,
@@ -63,10 +62,11 @@ module.exports.handler = async (event, context) => {
   context.callbackWaitsForEmptyEventLoop = false;
 
   const db = await connectToDatabase(MONGODB_URI);
+  const body = JSON.parse(event.body);
 
   switch (event.httpMethod) {
     case 'POST':
-      return oneTouchLogin(db, event.body);
+      return oneTouchLogin(db, body);
     default:
       return { statusCode: 400 };
   }
