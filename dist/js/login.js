@@ -1,3 +1,3 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // document.getElementById('navigation').classList.add('loginNav');
+  console.log('login page script');
 });

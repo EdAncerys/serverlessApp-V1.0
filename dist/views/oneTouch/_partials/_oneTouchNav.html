@@ -1,46 +1,65 @@
-<header>
-  <div>
-    <a href="./index.html"
-      ><img src="./images/color_logo_transparent.png" alt="NDG" class="logo"
-    /></a>
-  </div>
-  <div id="navigation">
-    <nav>
-      <ul class="topnav">
-        <li><a href="./index.html">Home</a></li>
-        <li class="dropdown right">
-          <a class="dropbtn" href="#">Admin</a>
-          <div class="dropdown-content">
-            <a class="change" href="#">Edit Users</a>
-            <a class="change" href="#">Add Users</a>
-            <a class="change" href="./raise_ticket.html">Create Ticket</a>
-          </div>
-        </li>
-        <li class="dropdown right">
-          <a class="dropbtn" href="#">Hosted</a>
-          <div class="dropdown-content">
-            <a class="change" href="./voip.html"
-              >Order a New Voip Connection
-            </a>
-            <a class="change" href="./cloudtouch.html">Cloud Touch</a>
-          </div>
-        </li>
-        <li class="dropdown right">
-          <a class="dropbtn" href="#">Broadband</a>
-          <div class="dropdown-content">
-            <a class="change" href="./order_new_connection.html"
-              >Order a New Connection</a
-            >
-            <a class="change" href="#">Order Status</a>
-            <a class="change" href="#">Connection</a>
-            <a class="change" href="./make_a_new_connection.html"
-              >Make a Connection</a
-            >
-          </div>
-        </li>
-        <li><a href="./support_docs.html">Support Doc's</a></li>
-        <li><a href="./login.html">Log Out/In</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <header>
+      <div>
+        <a href="./index.html"
+          ><img
+            src="./images/color_logo_transparent.png"
+            alt="NDG"
+            class="logo"
+        /></a>
+      </div>
+      <div id="navID">
+        <nav>
+          <ul class="topnav">
+            <li><a href="./index.html">Home</a></li>
+            <li class="dropdown right">
+              <a class="dropbtn" href="#">Admin</a>
+              <div class="dropdown-content">
+                <a class="change" href="#">Edit Users</a>
+                <a class="change" href="#">Add Users</a>
+                <a class="change" href="./raise_ticket.html">Create Ticket</a>
+              </div>
+            </li>
+            <li class="dropdown right">
+              <a class="dropbtn" href="#">Hosted</a>
+              <div class="dropdown-content">
+                <a class="change" href="./voip.html"
+                  >Order a New Voip Connection
+                </a>
+                <a class="change" href="./cloudtouch.html">Cloud Touch</a>
+              </div>
+            </li>
+            <li class="dropdown right">
+              <a class="dropbtn" href="#">Broadband</a>
+              <div class="dropdown-content">
+                <a class="change" href="./order_new_connection.html"
+                  >Order a New Connection</a
+                >
+                <a class="change" href="#">Order Status</a>
+                <a class="change" href="#">Connection</a>
+                <a class="change" href="./make_a_new_connection.html"
+                  >Make a Connection</a
+                >
+              </div>
+            </li>
+            <li><a href="./support_docs.html">Support Doc's</a></li>
+            <li><a href="./login.html">Log Out/In</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+  </body>
+</html>
+
+<script>
+  const nav = document.getElementById('navID');
+  const user = localStorage.getItem('user');
+  if (!user) nav.classList.add('loginNav');
+</script>
