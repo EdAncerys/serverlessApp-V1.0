@@ -310,7 +310,7 @@ const getBroadbandAvailability = (ev) => {
 };
 
 const _getAreaBroadbandAvailability = () => {
-  const oderPostcode = localStorage.getItem('postcode');
+  const oderPostcode = sessionStorage.getItem('postcode');
   const URL = '/ndg/getAreaBroadbandAvailability/' + oderPostcode;
 
   fetch(URL)

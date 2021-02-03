@@ -5,9 +5,9 @@ const broadbandProviders = {
   TTB: 'TTB',
 };
 
-const saveToLocalStorage = (key, value) => {
-  localStorage.setItem(key, value);
-  console.log(`${key}: `, localStorage.getItem(key));
+const saveToSessionStorage = (key, value) => {
+  sessionStorage.setItem(key, value);
+  console.log(`${key}: `, sessionStorage.getItem(key));
 };
 
-export { broadbandProviders, saveToLocalStorage };
+export { broadbandProviders, saveToSessionStorage };

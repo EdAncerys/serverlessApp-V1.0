@@ -17,16 +17,16 @@ async function _getBroadbandAvailability() {
     _errorMessage('Please Choose Address', 'warning');
   } else {
     let body = {
-      sub_premises: localStorage.getItem('sub_premises'),
-      premises_name: localStorage.getItem('premises_name'),
-      thoroughfare_number: localStorage.getItem('thoroughfare_number'),
-      thoroughfare_name: localStorage.getItem('thoroughfare_name'),
-      locality: localStorage.getItem('locality'),
-      post_town: localStorage.getItem('post_town'),
-      county: localStorage.getItem('county'),
-      postcode: localStorage.getItem('postcode'),
-      district_id: localStorage.getItem('district_id'),
-      nad_key: localStorage.getItem('nad_key'),
+      sub_premises: sessionStorage.getItem('sub_premises'),
+      premises_name: sessionStorage.getItem('premises_name'),
+      thoroughfare_number: sessionStorage.getItem('thoroughfare_number'),
+      thoroughfare_name: sessionStorage.getItem('thoroughfare_name'),
+      locality: sessionStorage.getItem('locality'),
+      post_town: sessionStorage.getItem('post_town'),
+      county: sessionStorage.getItem('county'),
+      postcode: sessionStorage.getItem('postcode'),
+      district_id: sessionStorage.getItem('district_id'),
+      nad_key: sessionStorage.getItem('nad_key'),
     };
     console.log(body);
 
@@ -104,7 +104,7 @@ async function _getBroadbandAvailability() {
 }
 
 const _getAreaBroadbandAvailability = (broadbandAddress, broadbandDeals) => {
-  const oderPostcode = _handlePostcode(localStorage.getItem('postcode'));
+  const oderPostcode = _handlePostcode(sessionStorage.getItem('postcode'));
 
   const URL = '/ndg/getAreaBroadbandAvailability/' + oderPostcode;
   console.log(URL);

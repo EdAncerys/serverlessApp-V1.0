@@ -6,24 +6,24 @@ const _placeBroadbandOrder = () => {
   console.log('Placing Broadband Order...');
   _spinner(true);
 
-  localStorage.setItem('customerName', 'customerName');
-  localStorage.setItem('customerEmail', 'customerEmail');
+  sessionStorage.setItem('customerName', 'customerName');
+  sessionStorage.setItem('customerEmail', 'customerEmail');
 
-  let customerName = localStorage.getItem('customerName');
-  let customerEmail = localStorage.getItem('customerEmail');
+  let customerName = sessionStorage.getItem('customerName');
+  let customerEmail = sessionStorage.getItem('customerEmail');
   let oderSubject =
     'Broadband Order' + ' | Created at: ' + new Date().toLocaleString();
 
-  let sub_premises = localStorage.getItem('sub_premises');
-  let premises_name = localStorage.getItem('premises_name');
-  let thoroughfare_number = localStorage.getItem('thoroughfare_number');
-  let thoroughfare_name = localStorage.getItem('thoroughfare_name');
-  let locality = localStorage.getItem('locality');
-  let post_town = localStorage.getItem('post_town');
-  let county = localStorage.getItem('county');
-  let postcode = localStorage.getItem('postcode');
-  let district_id = localStorage.getItem('district_id');
-  let nad_key = localStorage.getItem('nad_key');
+  let sub_premises = sessionStorage.getItem('sub_premises');
+  let premises_name = sessionStorage.getItem('premises_name');
+  let thoroughfare_number = sessionStorage.getItem('thoroughfare_number');
+  let thoroughfare_name = sessionStorage.getItem('thoroughfare_name');
+  let locality = sessionStorage.getItem('locality');
+  let post_town = sessionStorage.getItem('post_town');
+  let county = sessionStorage.getItem('county');
+  let postcode = sessionStorage.getItem('postcode');
+  let district_id = sessionStorage.getItem('district_id');
+  let nad_key = sessionStorage.getItem('nad_key');
 
   let order_sub_premises = sub_premises === 'null' ? '' : sub_premises;
   let order_premises_name = premises_name === 'null' ? '' : premises_name;
@@ -38,12 +38,12 @@ const _placeBroadbandOrder = () => {
   let order_district_id = district_id === 'null' ? '' : district_id;
   let order_nad_key = nad_key === 'null' ? '' : nad_key;
 
-  let broadband_name = localStorage.getItem('name');
-  let broadband_provider = localStorage.getItem('provider');
-  let broadband_likely_down_speed = localStorage.getItem('likely_down_speed');
-  let broadband_likely_up_speed = localStorage.getItem('likely_up_speed');
-  let broadband_price = localStorage.getItem('price');
-  let broadband_installation = localStorage.getItem('installation');
+  let broadband_name = sessionStorage.getItem('name');
+  let broadband_provider = sessionStorage.getItem('provider');
+  let broadband_likely_down_speed = sessionStorage.getItem('likely_down_speed');
+  let broadband_likely_up_speed = sessionStorage.getItem('likely_up_speed');
+  let broadband_price = sessionStorage.getItem('price');
+  let broadband_installation = sessionStorage.getItem('installation');
 
   let orderAddressSummary = ` ${order_sub_premises}
                               ${order_premises_name}

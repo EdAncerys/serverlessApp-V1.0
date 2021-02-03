@@ -1,4 +1,4 @@
-import { saveToLocalStorage } from './broadbandData.js';
+import { saveToSessionStorage } from './broadbandData.js';
 import { _validatePostcode } from './_validatePostcode.js';
 import { _handleErrors } from '../_handleErrors.js';
 import { _getAddress } from './_getAddress.js';
@@ -21,7 +21,7 @@ const _handleFormValidation = () => {
     _handleErrors(errors);
   } else {
     console.log('Postcode valid...');
-    saveToLocalStorage('oderPostcode', postcode);
+    saveToSessionStorage('oderPostcode', postcode);
     _getAddress(postcode);
   }
 };

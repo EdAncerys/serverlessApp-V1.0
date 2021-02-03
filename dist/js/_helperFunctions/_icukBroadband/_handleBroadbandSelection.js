@@ -8,30 +8,30 @@ const _handleBroadbandSelection = (event) => {
       activeCell = event.currentTarget.querySelector('tr.selected');
     closestCell.classList.add('selected');
     if (activeCell) activeCell.classList.remove('selected');
-    // Save to local storage
-    localStorage.setItem('name', event.target.parentNode.children[1].innerHTML);
-    localStorage.setItem(
+    // Save to session storage
+    sessionStorage.setItem('name', event.target.parentNode.children[1].innerHTML);
+    sessionStorage.setItem(
       'provider',
       event.target.parentNode.children[2].innerHTML
     );
-    localStorage.setItem(
+    sessionStorage.setItem(
       'likely_down_speed',
       event.target.parentNode.children[3].innerHTML
     );
-    localStorage.setItem(
+    sessionStorage.setItem(
       'likely_up_speed',
       event.target.parentNode.children[4].innerHTML
     );
-    localStorage.setItem(
+    sessionStorage.setItem(
       'price',
       event.target.parentNode.children[5].innerHTML
     );
-    localStorage.setItem(
+    sessionStorage.setItem(
       'installation',
       event.target.parentNode.children[6].innerHTML
     );
 
-    console.log(`Name: `, localStorage.getItem('name'));
+    console.log(`Name: `, sessionStorage.getItem('name'));
 
     console.log('Broadband Deal Selected...');
     let broadbandOrder = document.querySelector('broadbandOrder');
