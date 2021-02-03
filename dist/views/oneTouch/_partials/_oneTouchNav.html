@@ -55,11 +55,25 @@
         </nav>
       </div>
     </header>
+
+    <div style="margin: 10px 0 0 10px">
+      <login class="btnOneTouch">Fake Login</login>
+      <logout class="btnOneTouch">Fake Logout</logout>
+    </div>
   </body>
 </html>
 
 <script>
   const nav = document.getElementById('navID');
-  const user = localStorage.getItem('user');
+  const user = sessionStorage.getItem('user');
   if (!user) nav.classList.add('loginNav');
+
+  document.querySelector('login').addEventListener('click', () => {
+    sessionStorage.setItem('user', { user: 'user' });
+    location.reload();
+  });
+  document.querySelector('logout').addEventListener('click', () => {
+    sessionStorage.removeItem('user');
+    location.reload();
+  });
 </script>

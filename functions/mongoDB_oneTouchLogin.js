@@ -28,7 +28,8 @@ const oneTouchLogin = async (db, data) => {
     .collection(COLLECTION)
     .find({ email: loginUser.email })
     .toArray();
-  const userValid = !user[0];
+  const userValid = user[0];
+  console.table(user);
 
   if (userValid && loginUser.password) {
     const msg =
