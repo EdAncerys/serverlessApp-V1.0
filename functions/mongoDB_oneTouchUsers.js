@@ -156,16 +156,17 @@ module.exports.handler = async (event, context) => {
   context.callbackWaitsForEmptyEventLoop = false;
 
   const db = await connectToDatabase(MONGODB_URI);
+  const body = JSON.parse(event.body);
 
   switch (event.httpMethod) {
     case 'GET':
       return oneTouchQueryUsers(db);
     case 'POST':
-      return oneTouchAddUser(db, JSON.parse(event.body));
+      return oneTouchAddUser(db, body);
     case 'DELETE':
-      return oneTouchDeleteUser(db, JSON.parse(event.body));
+      return oneTouchDeleteUser(db, body);
     case 'PATCH':
-      return oneTouchUpdateUser(db, JSON.parse(event.body));
+      return oneTouchUpdateUser(db, body);
     default:
       return { statusCode: 400 };
   }
