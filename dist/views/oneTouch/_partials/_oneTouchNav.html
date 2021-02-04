@@ -65,10 +65,21 @@
 
 <script>
   const nav = document.getElementById('navID');
+  let userSession;
   document.addEventListener('click', () => {
     const user = sessionStorage.getItem('user');
-    if (!user) nav.classList.add('loginNav');
-    if (user) nav.classList.remove('loginNav');
+    const login = document
+      .querySelector('login')
+      .addEventListener('click', () => {
+        userSession = true;
+      });
+    const logout = document
+      .querySelector('logout')
+      .addEventListener('click', () => {
+        userSession = false;
+      });
+    if (!user && !userSession) nav.classList.add('loginNav');
+    if (user && userSession) nav.classList.remove('loginNav');
   });
 
   document.querySelector('login').addEventListener('click', () => {

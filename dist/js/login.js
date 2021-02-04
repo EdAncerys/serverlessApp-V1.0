@@ -1,3 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('login page script');
+  const oneTouchUserLogin = document.querySelector('#oneTouchUserLogin');
+  oneTouchUserLogin.addEventListener('click', oneTouchUserLogin);
 });
+
+const oneTouchUserLogin = (e) => {
+  e.preventDefault();
+  console.log('login page script');
+};
