@@ -65,15 +65,16 @@
 
 <script>
   const nav = document.getElementById('navID');
-  const user = sessionStorage.getItem('user');
-  if (!user) nav.classList.add('loginNav');
+  document.addEventListener('click', () => {
+    const user = sessionStorage.getItem('user');
+    if (!user) nav.classList.add('loginNav');
+    if (user) nav.classList.remove('loginNav');
+  });
 
   document.querySelector('login').addEventListener('click', () => {
     sessionStorage.setItem('user', { user: 'user' });
-    location.reload();
   });
   document.querySelector('logout').addEventListener('click', () => {
     sessionStorage.removeItem('user');
-    location.reload();
   });
 </script>
