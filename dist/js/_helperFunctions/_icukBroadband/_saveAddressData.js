@@ -53,8 +53,10 @@ const _saveAddressData = () => {
   // Save data to session storage
   sessionStorage.setItem('oderAddress', oderAddress);
   console.log(
-    'Data saved to session storage for postcode ' +
-      sessionStorage.getItem('postcode')
+    'Data saved to session storage for: ' +
+      sessionStorage.getItem('premises_name') +
+      ' ' +
+      sessionStorage.getItem('thoroughfare_name')
   );
 };
 
