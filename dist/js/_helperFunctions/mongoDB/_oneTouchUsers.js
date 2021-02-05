@@ -24,6 +24,11 @@ async function _oneTouchUsers() {
                   <th ${tableCellStyle}>${user.username}</th>
                   <th ${tableCellStyle}>${user.phone}</th>
                   <th ${tableCellStyle}>${user.email}</th>
+                  <th ${tableCellStyle}>
+                  <btnDeleteUser id='${user._id}' value='${user._id}' class="btnOneTouch" role="button">
+                    Delete
+                  </btnDeleteUser>
+                </th>
                 </tr>`;
       });
       oneTouchUsers.innerHTML = `<div>
@@ -32,7 +37,7 @@ async function _oneTouchUsers() {
                                       <table id='oneTouchOrderTable' style="background-color: #f4f4f4; min-width: 400px; margin: 20px">
                                         <tr>
                                           <th
-                                          colspan="4"
+                                          colspan="5"
                                           style="
                                             color: #f4f4f4;
                                             background: #f7f7f7;
@@ -53,11 +58,25 @@ async function _oneTouchUsers() {
                                           <th ${tableCellStyle}>Username</th>
                                           <th ${tableCellStyle}>Phone</th>
                                           <th ${tableCellStyle}>Email</th>
+                                          <th ${tableCellStyle}>Delete User</th>
                                         </tr>
                                           ${content}
                                       </table>
                                     </div>
                                   </div>`;
+
+      document
+        .getElementById('oneTouchOrderTable')
+        .addEventListener('click', (event) => {
+          const isButton = event.target.nodeName === 'BTNDELETEUSER';
+
+          if (!isButton) {
+            return;
+          }
+
+          // _deleteOneTouchOrder(event.target.id);
+          console.log(event.target.id);
+        });
 
       console.log(data);
     })
