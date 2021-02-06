@@ -19,17 +19,24 @@ async function _oneTouchUserLogin() {
   };
 
   fetch(URL, config)
-    .then((res) => res.json())
+    .then((res) => {
+      if (!res.ok) {
+        const msg = res.json().msg;
+        console.table(res.status, msg);
+        throw new Error(res.json());
+      } else {
+        res.json();
+      }
+    })
     .then((data) => {
       _spinner(false);
       _errorMessage(data.msg, 'success');
 
-      console.log(data.status);
       console.log(data);
     })
     .catch((err) => {
       _spinner(false);
-      _errorMessage(data.msg);
+      _errorMessage(err.msg);
 
       console.log(err);
     });
