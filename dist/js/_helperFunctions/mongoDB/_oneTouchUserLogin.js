@@ -19,18 +19,14 @@ async function _oneTouchUserLogin() {
   };
 
   fetch(URL, config)
-    .then((res) => {
-      if (!res.ok) {
-        const msg = res.json().msg;
-        console.table(res.status, msg);
-        throw new Error(res.json());
-      } else {
-        res.json();
-      }
-    })
+    .then((res) => res.json())
     .then((data) => {
       _spinner(false);
-      _errorMessage(data.msg, 'success');
+      if (data.statusCode === 404) {
+        _errorMessage(data.msg);
+      } else {
+        _errorMessage(data.msg, 'success');
+      }
 
       console.log(data);
     })

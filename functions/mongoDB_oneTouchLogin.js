@@ -50,11 +50,11 @@ const oneTouchLogin = async (db, data) => {
     console.log(msg);
 
     return {
-      statusCode: 422,
+      statusCode: 404,
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ user: data, msg: msg }),
+      body: JSON.stringify({ statusCode: 404, user: data, msg: msg }),
     };
   }
 };
