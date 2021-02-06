@@ -1,3 +1,4 @@
+import { _deleteOneTouchUser } from '../mongoDB/_deleteOneTouchUser.js';
 import { _errorMessage } from '../_errorMessage.js';
 import { _spinner } from '../_spinner.js';
 
@@ -34,7 +35,7 @@ async function _oneTouchUsers() {
       oneTouchUsers.innerHTML = `<div>
                                     <h2 style="display: grid; justify-content: center">All Registered Orders</h2>
                                     <div style="display: grid; justify-content: center; background">
-                                      <table id='oneTouchOrderTable' style="background-color: #f4f4f4; min-width: 400px; margin: 20px">
+                                      <table id='oneTouchUserTable' style="background-color: #f4f4f4; min-width: 400px; margin: 20px">
                                         <tr>
                                           <th
                                           colspan="5"
@@ -66,7 +67,7 @@ async function _oneTouchUsers() {
                                   </div>`;
 
       document
-        .getElementById('oneTouchOrderTable')
+        .getElementById('oneTouchUserTable')
         .addEventListener('click', (event) => {
           const isButton = event.target.nodeName === 'BTNDELETEUSER';
 
@@ -74,8 +75,7 @@ async function _oneTouchUsers() {
             return;
           }
 
-          // _deleteOneTouchOrder(event.target.id);
-          console.log(event.target.id);
+          _deleteOneTouchUser(event.target.id);
         });
 
       console.log(data);

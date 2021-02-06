@@ -1,4 +1,5 @@
 const MongoClient = require('mongodb').MongoClient;
+let ObjectId = require('mongodb').ObjectID;
 
 const MONGODB_URI = process.env.MONGODB_URI;
 const DB_NAME = 'oneTouchDB';
@@ -73,18 +74,15 @@ const oneTouchAddUser = async (db, data) => {
 const oneTouchDeleteUser = async (db, data) => {
   const deleteUser = {
     _id: data._id,
-    email: data.email,
   };
-  const user = await db
-    .collection(COLLECTION)
-    .find({ email: deleteUser.email })
-    .toArray();
+  const userID = new ObjectId(deleteUser._id);
+  const user = await db.collection(COLLECTION).find({ _id: userID }).toArray();
   const userValid = user[0];
 
-  if (userValid && deleteUser.email) {
+  if (userValid && deleteUser._id) {
     const msg =
       `User been successfully deleted from DB with email: ` + deleteUser.email;
-    await db.collection(COLLECTION).deleteOne({ email: deleteUser.email });
+    await db.collection(COLLECTION).deleteOne({ _id: userID });
     console.log(msg);
 
     return {
