@@ -35,7 +35,7 @@
   background-color: #6ec5dd;
   cursor: pointer;
 }
-.box-container {
+.boxContainer {
   display: grid;
   justify-content: center;
   align-content: center;
@@ -43,10 +43,24 @@
   padding: 10px;
   border: 1px solid #e8e9e9;
   border-radius: 8px;
-  box-shadow: 5px 10px 18px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 5px 10px 18px 0px rgba(0; 0; 0; 0.1);
   transition: all 250ms ease-in-out;
   overflow: auto;
 }
-.box-container:hover {
+.boxContainer:hover {
   box-shadow: none;
+}
+.tableRow {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  grid-template-columns: 25vw 10vw 10vw 10vw 10vw 10vw;
+  grid-gap: 1vw;
+}
+.tableCell {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  font-size: 1.5vw;
+  overflow: auto;
 }

@@ -29,6 +29,9 @@ body {
 .backgroundColorPrimary {
   background-color: #6ec5dd;
 }
+.colorPrimary {
+  color: #6ec5dd;
+}
 .loginNav {
   display: none;
 }
