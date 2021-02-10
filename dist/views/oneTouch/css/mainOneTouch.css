@@ -5,6 +5,7 @@
 @import url('./raiseTicket.css');
 @import url('./userManagement.css');
 @import url('./login.css');
+@import url('./colors.css');
 @import url('../../../css/fonts.css');
 @import url('../../../css/spinner.css');
 @import url('../../../css/UIElements.css');
@@ -27,14 +28,17 @@ body {
   display: grid;
   align-items: center;
 }
-.backgroundColorPrimary {
-  background-color: #6ec5dd;
-}
-.colorPrimary {
-  color: #6ec5dd;
-}
 .width_90 {
   width: 90vw;
+  overflow: auto;
+}
+.width_40 {
+  width: 40vw;
+  overflow: auto;
+}
+.height_40 {
+  height: 40vh;
+  overflow: auto;
 }
 .hoverBackground:hover {
   background-color: #6ec5dda7;

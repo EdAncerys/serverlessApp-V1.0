@@ -28,7 +28,53 @@
 
     <div class="alignHorizontally">
       <div class="boxContainer width_90">
-        <h1 style="margin-top: 5%">Manage User Page</h1>
+        <div class="alignHorizontally">
+          <div class="width_40 boxContainer_V2 backgroundSilver">
+            <div id="raiseTicketImgContainer">
+              <div id="raiseTicketImg"></div>
+            </div>
+            <form action="/">
+              <label for="fname">Name</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Your name..."
+              />
+
+              <label for="lname">Phone Number</label>
+              <input
+                type="text"
+                id="phoneNumber"
+                name="phoneNumber"
+                placeholder="Your phone number..."
+              />
+
+              <label for="lname">Email</label>
+              <input
+                type="text"
+                id="email"
+                name="email"
+                placeholder="Your email address..."
+              />
+
+              <label for="lname">Password</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Your password..."
+              />
+
+              <input
+                id="createOneTouchAccount"
+                class="btnOneTouch"
+                type="submit"
+                value="Create Account"
+              />
+            </form>
+          </div>
+        </div>
         <button id="getAllUsers" class="btnOneTouch_V01">Get All Users</button>
       </div>
     </div>
