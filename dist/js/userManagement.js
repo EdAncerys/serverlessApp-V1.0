@@ -1,4 +1,5 @@
 import { _oneTouchUsers } from '../JS/_helperFunctions/mongoDB/_oneTouchUsers.js';
+import { _errorMessage } from './_helperFunctions/_errorMessage.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('getAllUsers').addEventListener('click', getAllUsers);
@@ -14,5 +15,5 @@ const getAllUsers = (ev) => {
 
 const createOneTouchAccount = (ev) => {
   ev.preventDefault();
-  console.log('createOneTouchAccount');
+  _errorMessage('Form Not active yet...', 'warning');
 };
