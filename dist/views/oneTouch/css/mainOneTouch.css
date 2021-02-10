@@ -7,6 +7,7 @@
 @import url('./login.css');
 @import url('../../../css/fonts.css');
 @import url('../../../css/spinner.css');
+@import url('../../../css/UIElements.css');
 
 body {
   margin: 0;
@@ -25,44 +26,9 @@ body {
   display: grid;
   align-items: center;
 }
-.btnOneTouch {
+.backgroundColorPrimary {
   background-color: #6ec5dd;
-  color: #f7f7f7;
-  border-color: #292b2c;
-  border-radius: 8px;
-  padding: 1vw 2vw;
-  width: 100%;
-  text-align: center;
-  font-size: 1.5vw;
-  font-weight: bold;
-  cursor: pointer;
-  text-transform: uppercase;
-  text-decoration: none;
-  outline: none;
 }
-.btnOneTouch:hover {
-  background-color: #6ec5ddc5;
-  color: #f7f7f7;
-}
-.btnOneTouch_V01 {
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  color: #f7f7f7;
-  background-color: #0f367f;
-  border-radius: 20px;
-  border: none;
-  font-weight: 500px;
-  font-size: 2vw;
-  padding: 5px 20px;
-  margin: 10px 0px;
-}
-.btnOneTouch_V01:hover {
-  background-color: #5cb85c;
-  cursor: pointer;
-}
-
 .loginNav {
   display: none;
 }
