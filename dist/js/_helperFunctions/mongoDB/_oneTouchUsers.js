@@ -12,59 +12,37 @@ async function _oneTouchUsers() {
     .then((res) => res.json())
     .then((data) => {
       _spinner(false);
-      const tableCellStyle = `style="border: 1px solid #c1c1c1;
-                              color: #2b2b2b;
-                              font-size: 16px;
-                              font-weight: normal;
-                              padding: 20px;
-                              text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);"`;
 
       let content = data.map((user) => {
-        return `<tr style="padding: 5px">
-                  <th ${tableCellStyle}>${user.name}</th>
-                  <th ${tableCellStyle}>${user.username}</th>
-                  <th ${tableCellStyle}>${user.phone}</th>
-                  <th ${tableCellStyle}>${user.email}</th>
-                  <th ${tableCellStyle}>
-                  <btnDeleteUser id='${user._id}' value='${user._id}' class="btnOneTouch" role="button">
-                    Delete
-                  </btnDeleteUser>
-                </th>
-                </tr>`;
+        return `<div class="alignHorizontally">
+                  <div class="boxContainer width_90">
+                    <div class="tableRow">
+                      <div class="tableCell">${user.name}</div>
+                      <div class="tableCell">${user.username}</div>
+                      <div class="tableCell">${user.phone}</div>
+                      <div class="tableCell">${user.email}</div>
+                      <div class="tableCell">
+                        <btnDeleteUser id='${user._id}' value='${user._id}' class="btnOneTouch_V01" role="button">
+                          Delete
+                        </btnDeleteUser>
+                      </div>
+                    </div>
+                  </div>
+                </div>`;
       });
-      oneTouchUsers.innerHTML = `<div>
-                                    <h2 style="display: grid; justify-content: center">All Registered Orders</h2>
-                                    <div style="display: grid; justify-content: center; background">
-                                      <table id='oneTouchUserTable' style="background-color: #f4f4f4; min-width: 400px; margin: 20px">
-                                        <tr>
-                                          <th
-                                          colspan="5"
-                                          style="
-                                            color: #f4f4f4;
-                                            background: #f7f7f7;
-                                            border: 1px solid #343a45;
-                                            text-align: center;
-                                            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-                                            vertical-align: middle;
-                                            padding: 10px;
-                                          "
-                                          >
-                                            <div style="display: grid; justify-content: center">
-                                              <img src="../../../views/oneTouch/images/color_logo_transparent.png" alt="ndgLogo"/>
-                                            </div>
-                                          </th>
-                                        </tr>
-                                        <tr style="padding: 5px">
-                                          <th ${tableCellStyle}>Name</th>
-                                          <th ${tableCellStyle}>Username</th>
-                                          <th ${tableCellStyle}>Phone</th>
-                                          <th ${tableCellStyle}>Email</th>
-                                          <th ${tableCellStyle}>Delete User</th>
-                                        </tr>
-                                          ${content}
-                                      </table>
+
+      oneTouchUsers.innerHTML = ` <div class="alignHorizontally">
+                                  <div class="boxContainer width_90">
+                                    <div class="tableRow">
+                                      <div class="tableCell">Name</div>
+                                      <div class="tableCell">Username</div>
+                                      <div class="tableCell">Phone</div>
+                                      <div class="tableCell">Email</div>
+                                      <div class="tableCell">Delete User</div>
                                     </div>
-                                  </div>`;
+                                  </div>
+                                  ${content}
+                                </div>`;
 
       document
         .getElementById('oneTouchUserTable')

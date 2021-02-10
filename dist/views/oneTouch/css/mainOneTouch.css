@@ -32,6 +32,9 @@ body {
 .colorPrimary {
   color: #6ec5dd;
 }
+.width_90 {
+  width: 90vw;
+}
 .loginNav {
   display: none;
 }
