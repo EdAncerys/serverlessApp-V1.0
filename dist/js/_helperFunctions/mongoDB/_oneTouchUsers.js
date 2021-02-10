@@ -15,7 +15,7 @@ async function _oneTouchUsers() {
       let list = '';
       data.map((user) => {
         list += `<div class="alignHorizontally">
-                  <div class="boxContainer width_90">
+                  <div class="boxContainer hoverBackground width_90">
                     <div class="tableRow">
                       <div class="tableCell">${user.name}</div>
                       <div class="tableCell">${user.username}</div>
@@ -31,8 +31,8 @@ async function _oneTouchUsers() {
                 </div>`;
       });
 
-      oneTouchUsers.innerHTML = ` <div class="alignHorizontally">
-                                  <div class="boxContainer width_90">
+      oneTouchUsers.innerHTML = ` <div id='oneTouchUserTable' class="alignHorizontally">
+                                  <div class="boxContainer font_2 alignHorizontally width_90">
                                     <div class="tableRow">
                                       <div class="tableCell">Name</div>
                                       <div class="tableCell">Username</div>

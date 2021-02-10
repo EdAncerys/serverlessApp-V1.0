@@ -8,6 +8,7 @@
 @import url('../../../css/fonts.css');
 @import url('../../../css/spinner.css');
 @import url('../../../css/UIElements.css');
+@import url('../../../css/fontSize.css');
 
 body {
   margin: 0;
@@ -34,6 +35,10 @@ body {
 }
 .width_90 {
   width: 90vw;
+}
+.hoverBackground:hover {
+  background-color: #6ec5dda7;
+  cursor: pointer;
 }
 .loginNav {
   display: none;
