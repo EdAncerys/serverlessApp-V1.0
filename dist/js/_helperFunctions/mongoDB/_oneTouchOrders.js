@@ -12,61 +12,44 @@ async function _oneTouchOrders() {
     .then((res) => res.json())
     .then((data) => {
       _spinner(false);
-      const tableCellStyle = `style="border: 1px solid #c1c1c1;
-                              color: #2b2b2b;
-                              font-size: 16px;
-                              font-weight: normal;
-                              padding: 20px;
-                              text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);"`;
-
-      let content = data.map((order) => {
-        return `<tr style="padding: 5px">
-                  <th ${tableCellStyle}>${order.name}</th>
-                  <th ${tableCellStyle}>${order.likely_down_speed}</th>
-                  <th ${tableCellStyle}>${order.likely_up_speed}</th>
-                  <th ${tableCellStyle}>${order.price}</th>
-                  <th ${tableCellStyle}>${order.installation}</th>
-                  <th ${tableCellStyle}>
-                    <btnDeleteOrder id='${order._id}' value='${order._id}' class="btnOneTouch" role="button">
-                      Delete
-                    </btnDeleteOrder>
-                  </th>
-                </tr>`;
+      let list = '';
+      data.map((order) => {
+        list += `<div class="alignHorizontally">
+                  <div class="boxContainer hoverBackground">
+                    <div class="tableRowNo6">
+                      <div class="tableCell">${order.name}</div>
+                      <div class="tableCell">${order.likely_down_speed}</div>
+                      <div class="tableCell">${order.likely_up_speed}</div>
+                      <div class="tableCell">${order.price}</div>
+                      <div class="tableCell">${order.installation}</div>
+                      <div class="tableCell">
+                        <btnDeleteUser id='${order._id}' value='${order._id}' class="btnOneTouch_V01" role="button">
+                          Delete
+                        </btnDeleteUser>
+                      </div>
+                    </div>
+                  </div>
+                </div>`;
       });
-      oneTouchOrders.innerHTML = `<div>
-                                    <h2 style="display: grid; justify-content: center">All Registered Orders</h2>
-                                    <div style="display: grid; justify-content: center; background">
-                                      <table id='oneTouchOrderTable' style="background-color: #f4f4f4; min-width: 400px; margin: 20px">
-                                        <tr>
-                                          <th
-                                          colspan="6"
-                                          style="
-                                            color: #f4f4f4;
-                                            background: #f7f7f7;
-                                            border: 1px solid #343a45;
-                                            text-align: center;
-                                            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-                                            vertical-align: middle;
-                                            padding: 10px;
-                                          "
-                                          >
-                                            <div style="display: grid; justify-content: center">
-                                              <img src="../../../views/oneTouch/images/color_logo_transparent.png" alt="ndgLogo"/>
-                                            </div>
-                                          </th>
-                                        </tr>
-                                        <tr style="padding: 5px">
-                                          <th ${tableCellStyle}>Supplier</th>
-                                          <th ${tableCellStyle}>Download Speed</th>
-                                          <th ${tableCellStyle}>Upload Speed</th>
-                                          <th ${tableCellStyle}>Price</th>
-                                          <th ${tableCellStyle}>Installation</th>
-                                          <th ${tableCellStyle}>Delete Order</th>
-                                        </tr>
-                                          ${content}
-                                      </table>
+
+      oneTouchOrders.innerHTML = `<div class="alignHorizontally">
+                                  <div id='oneTouchOrderTable' class="boxContainer width_90 height_40">
+                                    <div class="boxContainer font_2 backgroundSecondary colorWhite">
+                                      <div class="alignHorizontally">
+                                        <img src="../../../views/oneTouch/images/color_logo_transparent.png" alt="ndgLogo"/>
+                                      </div>
+                                      <div class="tableRowNo6">
+                                        <div class="tableCell">Supplier</div>
+                                        <div class="tableCell">Download Speed</div>
+                                        <div class="tableCell">Upload Speed</div>
+                                        <div class="tableCell">Price</div>
+                                        <div class="tableCell">Installation</div>
+                                        <div class="tableCell">Delete Order</div>
+                                      </div>
                                     </div>
-                                  </div>`;
+                                    ${list}
+                                  </div>
+                                </div>`;
 
       document
         .getElementById('oneTouchOrderTable')
