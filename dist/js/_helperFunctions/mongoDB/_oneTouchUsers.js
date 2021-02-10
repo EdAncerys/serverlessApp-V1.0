@@ -12,9 +12,9 @@ async function _oneTouchUsers() {
     .then((res) => res.json())
     .then((data) => {
       _spinner(false);
-
-      let content = data.map((user) => {
-        return `<div class="alignHorizontally">
+      let list = '';
+      data.map((user) => {
+        list += `<div class="alignHorizontally">
                   <div class="boxContainer width_90">
                     <div class="tableRow">
                       <div class="tableCell">${user.name}</div>
@@ -41,7 +41,7 @@ async function _oneTouchUsers() {
                                       <div class="tableCell">Delete User</div>
                                     </div>
                                   </div>
-                                  ${content}
+                                  ${list}
                                 </div>`;
 
       document
