@@ -44,6 +44,25 @@ body {
   background-color: #6ec5ddc5;
   color: #f7f7f7;
 }
+.btnOneTouch_V01 {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #f7f7f7;
+  background-color: #0f367f;
+  border-radius: 20px;
+  border: none;
+  font-weight: 500px;
+  font-size: 2vw;
+  padding: 5px 20px;
+  margin: 10px 0px;
+}
+.btnOneTouch_V01:hover {
+  background-color: #5cb85c;
+  cursor: pointer;
+}
+
 .loginNav {
   display: none;
 }
