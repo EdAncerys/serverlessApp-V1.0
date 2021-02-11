@@ -1,6 +1,4 @@
 #oneTouchOrderSlider {
-  display: grid;
-  grid-template-columns: 1fr 5fr 1fr;
   height: 60vh;
   padding: 2vw;
   overflow-x: hidden;
@@ -9,15 +7,17 @@
 .oneTouchOrderBackground {
   background-image: url(../images/Broadband.png);
   background-position: center center;
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
 }
-#broadbandQuoteContainer {
+.broadbandQuoteContainer {
+  display: grid;
+  grid-template-rows: 3fr 6fr;
+  /* align-items: end; */
   width: 40vw;
-  height: 40vw;
-  margin: auto;
+  height: 35vw;
 }
-#broadbandInputContainer {
+.broadbandInputContainer {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 10px;
