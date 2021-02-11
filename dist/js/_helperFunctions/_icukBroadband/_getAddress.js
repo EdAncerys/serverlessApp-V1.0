@@ -10,8 +10,8 @@ async function _getAddress(postcode) {
   const URL = '/ndg/getAddresses/' + postcode;
   console.log(URL);
   const errorMessage = document.querySelector('errorMessage');
-  const broadbandAddress = document.querySelector('broadbandAddress');
-  const gridContainer = document.querySelector('#broadbandOrderContainer');
+  const oneTouchOrderSlider = document.querySelector('#oneTouchOrderSlider');
+  // const gridContainer = document.querySelector('#broadbandOrderContainer');
 
   fetch(URL)
     .then((res) => res.json())
@@ -26,25 +26,26 @@ async function _getAddress(postcode) {
       }
       if (data.addresses.length === 0) {
         errorMessage.innerHTML = _errorMessage('Postcode not valid');
-      } else {
-        let sortedJASON = _sortAddresses(data, 'thoroughfare_number', true);
+        return;
+      }
+      let sortedJASON = _sortAddresses(data, 'thoroughfare_number', true);
 
-        let content = sortedJASON.map((address) => {
-          let thoroughfare_number =
-            address.thoroughfare_number === null
-              ? ''
-              : address.thoroughfare_number;
-          let premises_name =
-            address.premises_name === null ? '' : address.premises_name;
-          let sub_premises =
-            address.sub_premises === null ? '' : address.sub_premises;
-          let thoroughfare_name =
-            address.thoroughfare_name === null ? '' : address.thoroughfare_name;
-          let county = address.county === null ? '' : address.county;
-          let postcode = address.postcode;
-          value += 1;
+      let content = sortedJASON.map((address) => {
+        let thoroughfare_number =
+          address.thoroughfare_number === null
+            ? ''
+            : address.thoroughfare_number;
+        let premises_name =
+          address.premises_name === null ? '' : address.premises_name;
+        let sub_premises =
+          address.sub_premises === null ? '' : address.sub_premises;
+        let thoroughfare_name =
+          address.thoroughfare_name === null ? '' : address.thoroughfare_name;
+        let county = address.county === null ? '' : address.county;
+        let postcode = address.postcode;
+        value += 1;
 
-          return `<option value="${value}"
+        return `<option value="${value}"
                   thoroughfare_number="${address.thoroughfare_number}" 
                   thoroughfare_name="${address.thoroughfare_name}" 
                   premises_name="${address.premises_name}" 
@@ -56,12 +57,13 @@ async function _getAddress(postcode) {
                   district_id="${address.district_id}"
                   nad_key="${address.nad_key}"    
                   >${thoroughfare_number} ${premises_name} ${sub_premises} ${thoroughfare_name} ${county} ${postcode}</option>`;
-        });
-        _spinner(false);
-        gridContainer.classList.add('gridContainer');
-        broadbandAddress.innerHTML = `<div>
-                                        <h4 style='margin-bottom: 2vw' class='alignHorizontally'>Choose your address</h4>
-                                        <select name="selectedAddress" id="selectedAddress" style='padding: 1vw'>
+      });
+      _spinner(false);
+      const orderAddressContainer = document.createElement('div');
+
+      orderAddressContainer.innerHTML = `<div>
+                                        <h4 class='alignHorizontally'>Choose your address</h4>
+                                        <select name="selectedAddress" id="selectedAddress">
                                           <option selected disabled hidden value='selectionID'>Please Choose Your Address</option>
                                           ${content}
                                         </select>
@@ -70,16 +72,17 @@ async function _getAddress(postcode) {
                                         </button>
                                       <div>`;
 
-        document
-          .getElementById('selectedAddress')
-          .addEventListener('change', _saveAddressData);
-        document
-          .getElementById('getBroadbandAvailability')
-          .addEventListener('click', _getBroadbandAvailability);
+      oneTouchOrderSlider.appendChild(orderAddressContainer);
+      orderAddressContainer.classList.add('boxContainer');
 
-        // console.log(data.addresses);
-        console.log('Done fetching addresses...');
-      }
+      document
+        .getElementById('selectedAddress')
+        .addEventListener('change', _saveAddressData);
+      document
+        .getElementById('getBroadbandAvailability')
+        .addEventListener('click', _getBroadbandAvailability);
+
+      // console.log(data.addresses);
     })
     .catch((err) => {
       let errorMessage = document.querySelector('errorMessage');

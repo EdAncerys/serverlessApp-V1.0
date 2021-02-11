@@ -1,6 +1,5 @@
 #oneTouchOrderSlider {
-  height: 60vh;
-  padding: 2vw;
+  height: 50vh;
   overflow-x: hidden;
   background-color: tomato;
 }
@@ -13,7 +12,6 @@
 .broadbandQuoteContainer {
   display: grid;
   grid-template-rows: 3fr 6fr;
-  /* align-items: end; */
   width: 40vw;
   height: 35vw;
 }
@@ -22,6 +20,7 @@
   grid-template-columns: 1fr 1fr;
   grid-gap: 10px;
   align-items: center;
+  margin-bottom: 2vw;
 }
 .inputContainer {
   border-radius: 10px;
@@ -29,6 +28,7 @@
   border-color: black;
   font-size: 2vw;
   background-color: none;
+  padding: 1.5vw;
 }
 input[type='text'] {
   background-color: transparent;
