@@ -1,6 +1,6 @@
 #oneTouchOrderSlider {
-  height: 50vh;
-  overflow-x: hidden;
+  /* height: 50vh; */
+  overflow: auto;
   background-color: tomato;
 }
 .oneTouchOrderBackground {
@@ -36,12 +36,15 @@ input[type='text'] {
 }
 
 /* Broadband list table */
-.gridContainer {
+.gridSliderContainer {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 2fr 1fr;
   grid-gap: 1vw;
-  margin-top: 5%;
   transition: 2s;
+}
+.leftSliderElement {
+  width: 20vw;
+  opacity: 0.15;
 }
 .broadbandPlan {
   cursor: pointer;

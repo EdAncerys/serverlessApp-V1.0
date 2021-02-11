@@ -11,7 +11,9 @@ async function _getAddress(postcode) {
   console.log(URL);
   const errorMessage = document.querySelector('errorMessage');
   const oneTouchOrderSlider = document.querySelector('#oneTouchOrderSlider');
-  // const gridContainer = document.querySelector('#broadbandOrderContainer');
+  const broadbandQuoteContainer = document.querySelector(
+    '#broadbandQuoteContainer'
+  );
 
   fetch(URL)
     .then((res) => res.json())
@@ -62,17 +64,19 @@ async function _getAddress(postcode) {
       const orderAddressContainer = document.createElement('div');
 
       orderAddressContainer.innerHTML = `<div>
-                                        <h4 class='alignHorizontally'>Choose your address</h4>
-                                        <select name="selectedAddress" id="selectedAddress">
-                                          <option selected disabled hidden value='selectionID'>Please Choose Your Address</option>
-                                          ${content}
-                                        </select>
-                                        <button id='getBroadbandAvailability' class="btnOneTouch" style='margin: 2vw 0 2vw 0' role="button">
-                                          Check Availability
-                                        </button>
-                                      <div>`;
+                                          <div class='alignHorizontally font_2'>Choose your address</div>
+                                          <select name="selectedAddress" id="selectedAddress">
+                                            <option selected disabled hidden value='selectionID'>Please Choose Your Address</option>
+                                            ${content}
+                                          </select>
+                                          <button id='getBroadbandAvailability' class="btnOneTouch" style='margin: 2vw 0 2vw 0' role="button">
+                                            Check Availability
+                                          </button>
+                                        <div>`;
 
       oneTouchOrderSlider.appendChild(orderAddressContainer);
+      broadbandQuoteContainer.classList.add('leftSliderElement');
+      oneTouchOrderSlider.classList.add('gridSliderContainer');
       orderAddressContainer.classList.add('boxContainer');
 
       document
