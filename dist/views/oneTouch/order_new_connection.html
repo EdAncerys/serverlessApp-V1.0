@@ -26,24 +26,29 @@
       <spinnerText>Please Wait While We Update Selection</spinnerText>
     </div>
 
-    <div id="broadbandOrderContainer">
-      <div id="broadbandContainer_01">
-        <div id="broadbandContainer_02">
-          <div id="broadbandContainer_03">
-            <div>
-              <input
-                id="postcode"
-                name="postcode"
-                class="inputContainer"
-                type="text"
-              />
-            </div>
-            <div>
-              <button id="getAddress" class="btnOneTouch">Get Quote</button>
+    <div class="alignHorizontally">
+      <div id="oneTouchOrderSlider" class="boxContainer width_90">
+        <div class="oneTouchOrderSliderLeft"></div>
+        <div id="broadbandOrderContainer">
+          <div id="broadbandQuoteContainer">
+            <div class="boxContainer">
+              <div id="broadbandInputContainer" class="oneTouchOrderBackground">
+                <input
+                  id="postcode"
+                  name="postcode"
+                  class="inputContainer"
+                  type="text"
+                />
+                <div style="margin-bottom: 1vw">
+                  <button id="getAddress" class="btnOneTouch">Get Quote</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+        <div class="oneTouchOrderSliderRight"></div>
       </div>
+
       <div
         class="broadbandAvailabilityContainer"
         id="broadbandAvailabilityContainer"

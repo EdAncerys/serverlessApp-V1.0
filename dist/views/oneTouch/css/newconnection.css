@@ -1,35 +1,33 @@
-#broadbandContainer_01 {
+#oneTouchOrderSlider {
   display: grid;
-  align-content: end;
+  grid-template-columns: 1fr 5fr 1fr;
+  height: 60vh;
+  padding: 2vw;
+  overflow-x: hidden;
+  background-color: tomato;
+}
+.oneTouchOrderBackground {
   background-image: url(../images/Broadband.png);
+  background-position: center center;
+  background-size: contain;
   background-repeat: no-repeat;
-  background-size: 100%;
+}
+#broadbandQuoteContainer {
   width: 40vw;
   height: 40vw;
   margin: auto;
-  margin-top: 5%;
 }
-#broadbandContainer_02 {
+#broadbandInputContainer {
   display: grid;
-  align-content: end;
-  margin-bottom: 16vw;
-}
-#broadbandContainer_03 {
-  display: inline-grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 10px;
-  justify-items: center;
   align-items: center;
-  padding-left: 4vw;
 }
 .inputContainer {
-  border-radius: 10px 10px 10px 10px;
+  border-radius: 10px;
   border-style: solid;
   border-color: black;
   font-size: 2vw;
-  padding-left: 1vw;
-  width: 20vw;
-  height: 5vw;
   background-color: none;
 }
 input[type='text'] {
