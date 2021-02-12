@@ -1,7 +1,6 @@
 #oneTouchOrderSlider {
   /* height: 50vh; */
   overflow: auto;
-  background-color: tomato;
 }
 .oneTouchOrderBackground {
   background-image: url(../images/Broadband.png);
@@ -46,27 +45,11 @@ input[type='text'] {
   width: 20vw;
   opacity: 0.15;
 }
-.broadbandPlan {
-  cursor: pointer;
-}
-.broadbandPlan:hover {
-  background-color: #5bc0deca;
-}
-.selected {
-  background-color: #5bc0de;
-  color: #292b2c;
-}
-.broadbandAvailabilityContainer {
-  width: 40vw;
-  height: 40vw;
-  margin-top: 5%;
-}
-.broadbandDeals {
-  border-radius: 10px;
-  border: 1px solid #292b2c;
-}
-#broadbandContainer_04 {
-  width: 40vw;
-  height: 30vw;
-  overflow: auto;
+.tableRowBroadbandOrder {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  grid-template-columns: 10vw 10vw 10vw 10vw 10vw 10vw 10vw;
+  grid-gap: 0.5vw;
 }

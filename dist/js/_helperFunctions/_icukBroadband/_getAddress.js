@@ -18,8 +18,8 @@ async function _getAddress(postcode) {
   fetch(URL)
     .then((res) => res.json())
     .then((data) => {
-      let value = 0;
       console.log('data: ', data);
+      let value = 0;
       if (data.message === 'Request failed with status code 403') {
         console.log('IP not whitelisted...');
         _errorMessage('IP not whitelisted');
@@ -45,8 +45,8 @@ async function _getAddress(postcode) {
           address.thoroughfare_name === null ? '' : address.thoroughfare_name;
         let county = address.county === null ? '' : address.county;
         let postcode = address.postcode;
-        value += 1;
 
+        value += 1;
         return `<option value="${value}"
                   thoroughfare_number="${address.thoroughfare_number}" 
                   thoroughfare_name="${address.thoroughfare_name}" 
@@ -63,7 +63,7 @@ async function _getAddress(postcode) {
       _spinner(false);
       const orderAddressContainer = document.createElement('div');
 
-      orderAddressContainer.innerHTML = `<div>
+      orderAddressContainer.innerHTML = `<div id='orderAddressContainer'>
                                           <div class='alignHorizontally font_2'>Choose your address</div>
                                           <select name="selectedAddress" id="selectedAddress">
                                             <option selected disabled hidden value='selectionID'>Please Choose Your Address</option>

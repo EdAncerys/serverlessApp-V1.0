@@ -47,3 +47,6 @@ body {
 .loginNav {
   display: none;
 }
+.hidden {
+  display: none;
+}
