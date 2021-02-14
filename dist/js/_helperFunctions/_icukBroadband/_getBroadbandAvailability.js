@@ -1,6 +1,7 @@
 import { _errorMessage } from '../_errorMessage.js';
 import { _sortBroadbandData } from './_sortBroadbandData.js';
 import { _handleBroadbandSelection } from './_handleBroadbandSelection.js';
+import { _saveOrderData } from './_saveOrderData.js';
 import { _spinner } from '../_spinner.js';
 
 async function _getBroadbandAvailability() {
@@ -94,7 +95,7 @@ async function _getBroadbandAvailability() {
                                         </div>`;
 
         broadbandQuoteContainer.classList.add('hidden');
-        orderAddressContainer.classList.add('leftSliderElement');
+        orderAddressContainer.classList.add('hidden');
         oneTouchOrderSlider.appendChild(orderDealContainer);
         oneTouchOrderSlider.classList.add('boxContainer');
 
@@ -106,6 +107,7 @@ async function _getBroadbandAvailability() {
             if (!isButton) {
               return;
             }
+
             console.log(event.target.id);
             // _deleteOneTouchUser(event.target.id);
           });
@@ -129,6 +131,7 @@ const _getAreaBroadbandAvailability = () => {
     .then((res) => res.json())
     .then((data) => {
       _spinner(false);
+      _errorMessage('Area Deal Fallback helper function...', 'warning');
       console.table(data);
     })
     .catch((err) => {
