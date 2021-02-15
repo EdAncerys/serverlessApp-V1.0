@@ -11,6 +11,7 @@
 .broadbandQuoteContainer {
   display: grid;
   grid-template-rows: 3fr 6fr;
+  padding: 1vw;
   width: 40vw;
   height: 35vw;
 }
@@ -37,7 +38,7 @@ input[type='text'] {
 /* Broadband list table */
 .gridSliderContainer {
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
+  /* grid-template-columns: 1fr 2fr 1fr; */
   grid-gap: 1vw;
   transition: 2s;
 }

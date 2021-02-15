@@ -22,7 +22,8 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  color: #cccccc;
+  color: #6ec5dd;
+  background-color: #dfdfdf;
   border-color: #292b2c;
   border-radius: 8px;
   border: none;
@@ -33,6 +34,7 @@
   font-size: 2vw;
 }
 .btnOneTouch_V01:hover {
+  color: #f7f7f7;
   background-color: #6ec5dd;
   cursor: pointer;
 }

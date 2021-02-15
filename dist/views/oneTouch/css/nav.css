@@ -2,7 +2,7 @@ header {
   display: grid;
   grid-template-columns: 1fr 3fr;
   align-items: center;
-  background: #CCCCCC
+  background: #dfdfdf;
   border-radius: 0px 0px 30px 30px;
 }
 header::after {

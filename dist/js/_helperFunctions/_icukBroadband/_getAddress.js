@@ -63,7 +63,7 @@ async function _getAddress(postcode) {
       _spinner(false);
       const orderAddressContainer = document.createElement('div');
 
-      orderAddressContainer.innerHTML = `<div id='orderAddressContainer'>
+      orderAddressContainer.innerHTML = `<div id='orderAddressContainer' class='boxContainer'>
                                           <div class='alignHorizontally font_2'>Choose your address</div>
                                           <select name="selectedAddress" id="selectedAddress">
                                             <option selected disabled hidden value='selectionID'>Please Choose Your Address</option>
@@ -75,9 +75,8 @@ async function _getAddress(postcode) {
                                         <div>`;
 
       oneTouchOrderSlider.appendChild(orderAddressContainer);
-      broadbandQuoteContainer.classList.add('leftSliderElement');
+      broadbandQuoteContainer.classList.add('hidden');
       oneTouchOrderSlider.classList.add('gridSliderContainer');
-      orderAddressContainer.classList.add('boxContainer');
 
       document
         .getElementById('selectedAddress')

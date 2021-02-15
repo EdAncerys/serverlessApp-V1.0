@@ -27,7 +27,7 @@ const _manageOrderData = (
 
   const content = `<div class="">
                     <div class="boxContainer hoverBackground">
-                      <div class="tableRowBroadbandOrder font_2">
+                      <div class="tableRowBroadbandOrder font_1">
                         <div class="tableCell">${name}</div>
                         <div class="tableCell">${provider}</div>
                         <div class="tableCell">${likely_down_speed}</div>
