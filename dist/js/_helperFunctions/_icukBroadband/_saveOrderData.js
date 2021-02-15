@@ -6,18 +6,16 @@ const _saveOrderData = (
   price,
   installation
 ) => {
-  const oderData = {
-    supplier: sessionStorage.setItem('supplier', supplier),
-    provider: sessionStorage.setItem('provider', provider),
-    download: sessionStorage.setItem('download', download),
-    upload: sessionStorage.setItem('upload', upload),
-    price: sessionStorage.setItem('price', price),
-    installation: sessionStorage.setItem('installation', installation),
-  };
+  console.table(supplier, provider, download, upload, price, installation);
 
+  sessionStorage.setItem('supplier', supplier);
+  sessionStorage.setItem('provider', provider);
+  sessionStorage.setItem('download', download);
+  sessionStorage.setItem('upload', upload);
+  sessionStorage.setItem('price', price);
+  sessionStorage.setItem('installation', installation);
   // Save data to session storage
-  sessionStorage.setItem('oderData', oderData);
-  console.table(sessionStorage.getItem('oderData', supplier));
+  console.log(provider, sessionStorage.getItem('provider', provider));
 };
 
 export { _saveOrderData };

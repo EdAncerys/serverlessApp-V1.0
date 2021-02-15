@@ -66,15 +66,15 @@ async function _getBroadbandAvailability() {
                         <div class="tableCell">${data.price}</div>
                         <div class="tableCell">${data.installation}</div>
                         <div class="tableCell">
-                          <btnDeleteOrder name='${data.name}' 
+                          <btnSelectOrder name='${data.name}' 
                                           provider='${data.provider}' 
                                           likely_down_speed='${data.likely_down_speed}' 
                                           likely_up_speed='${data.likely_up_speed}' 
-                                          likely_up_speed='${data.price}' 
-                                          likely_up_speed='${data.installation}' 
+                                          price='${data.price}' 
+                                          installation='${data.installation}' 
                                           class="btnOneTouch_V01" role="button">
                             Select
-                          </btnDeleteOrder>
+                          </btnSelectOrder>
                         </div>
                       </div>
                     </div>
@@ -108,19 +108,18 @@ async function _getBroadbandAvailability() {
         document
           .getElementById('oneTouchOrderTable')
           .addEventListener('click', (event) => {
-            const isButton = event.target.nodeName === 'BTNDELETEORDER';
+            const isButton = event.target.nodeName === 'BTNSELECTORDER';
 
             if (!isButton) {
               return;
             }
-
             _saveOrderData(
-              event.target.supplier,
-              event.target.provider,
-              event.target.download,
-              event.target.upload,
-              event.target.price,
-              event.target.installation
+              event.target.getAttribute('supplier'),
+              event.target.getAttribute('provider'),
+              event.target.getAttribute('download'),
+              event.target.getAttribute('upload'),
+              event.target.getAttribute('price'),
+              event.target.getAttribute('installation')
             );
           });
       })
