@@ -101,7 +101,7 @@ async function _getBroadbandAvailability() {
                                         </div>`;
 
         broadbandQuoteContainer.classList.add('hidden');
-        orderAddressContainer.classList.add('hidden');
+        orderAddressContainer.classList.add('leftSliderElement');
         oneTouchOrderSlider.appendChild(orderDealContainer);
         oneTouchOrderSlider.classList.add('boxContainer');
 
@@ -114,10 +114,10 @@ async function _getBroadbandAvailability() {
               return;
             }
             _saveOrderData(
-              event.target.getAttribute('supplier'),
+              event.target.getAttribute('name'),
               event.target.getAttribute('provider'),
-              event.target.getAttribute('download'),
-              event.target.getAttribute('upload'),
+              event.target.getAttribute('likely_down_speed'),
+              event.target.getAttribute('likely_up_speed'),
               event.target.getAttribute('price'),
               event.target.getAttribute('installation')
             );
