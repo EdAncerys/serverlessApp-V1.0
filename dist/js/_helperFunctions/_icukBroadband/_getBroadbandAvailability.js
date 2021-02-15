@@ -66,7 +66,13 @@ async function _getBroadbandAvailability() {
                         <div class="tableCell">${data.price}</div>
                         <div class="tableCell">${data.installation}</div>
                         <div class="tableCell">
-                          <btnDeleteOrder id='${data.name}' value='${data._id}' class="btnOneTouch_V01" role="button">
+                          <btnDeleteOrder name='${data.name}' 
+                                          provider='${data.provider}' 
+                                          likely_down_speed='${data.likely_down_speed}' 
+                                          likely_up_speed='${data.likely_up_speed}' 
+                                          likely_up_speed='${data.price}' 
+                                          likely_up_speed='${data.installation}' 
+                                          class="btnOneTouch_V01" role="button">
                             Select
                           </btnDeleteOrder>
                         </div>
@@ -78,7 +84,7 @@ async function _getBroadbandAvailability() {
         const orderDealContainer = document.createElement('div');
 
         orderDealContainer.innerHTML = `<div class="alignHorizontally">
-                                          <div id='oneTouchOrderTable' class="boxContainer width_90 height_40">
+                                          <div id='oneTouchOrderTable' class="boxContainer width_90 height_40 alignHorizontally">
                                             <div class="boxContainer font_2 backgroundSecondary colorWhite">
                                               <div class="tableRowBroadbandOrder">
                                                 <div class="tableCell">Supplier</div>
@@ -108,8 +114,14 @@ async function _getBroadbandAvailability() {
               return;
             }
 
-            console.log(event.target.id);
-            // _deleteOneTouchUser(event.target.id);
+            _saveOrderData(
+              event.target.supplier,
+              event.target.provider,
+              event.target.download,
+              event.target.upload,
+              event.target.price,
+              event.target.installation
+            );
           });
       })
       .catch((err) => {

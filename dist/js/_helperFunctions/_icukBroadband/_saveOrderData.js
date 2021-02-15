@@ -17,12 +17,7 @@ const _saveOrderData = (
 
   // Save data to session storage
   sessionStorage.setItem('oderData', oderData);
-  console.log(
-    'Data saved to session storage for: ' +
-      sessionStorage.getItem('supplier') +
-      ' ' +
-      sessionStorage.getItem('price')
-  );
+  console.table(sessionStorage.getItem('oderData', supplier));
 };
 
 export { _saveOrderData };
