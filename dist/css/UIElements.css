@@ -22,17 +22,15 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  color: #f7f7f7;
-  background-color: #0f367f;
-  border-radius: 20px;
+  color: #cccccc;
+  border-color: #292b2c;
+  border-radius: 8px;
   border: none;
   text-transform: uppercase;
   text-decoration: none;
   outline: none;
   font-weight: 500px;
   font-size: 2vw;
-  /* padding: 2px 10px; */
-  /* margin: 10px 0px; */
 }
 .btnOneTouch_V01:hover {
   background-color: #6ec5dd;

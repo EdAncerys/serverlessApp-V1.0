@@ -1,7 +1,7 @@
 import { _errorMessage } from '../_errorMessage.js';
 import { _sortBroadbandData } from './_sortBroadbandData.js';
 import { _handleBroadbandSelection } from './_handleBroadbandSelection.js';
-import { _saveOrderData } from './_saveOrderData.js';
+import { _manageOrderData } from './_manageOrderData.js';
 import { _spinner } from '../_spinner.js';
 
 async function _getBroadbandAvailability() {
@@ -50,7 +50,7 @@ async function _getBroadbandAvailability() {
           const err = 'Fall back. No Deals Available for selected address';
           _spinner(false);
           _errorMessage(err, 'warning');
-          _getAreaBroadbandAvailability(broadbandAddress, broadbandDeals);
+          _getAreaBroadbandAvailability();
           console.log(err);
           return;
         }
@@ -81,10 +81,10 @@ async function _getBroadbandAvailability() {
                   </div>`;
         });
         _spinner(false);
-        const orderDealContainer = document.createElement('div');
+        const oneTouchOrderTable = document.createElement('div');
 
-        orderDealContainer.innerHTML = `<div class="alignHorizontally">
-                                          <div id='oneTouchOrderTable' class="boxContainer width_90 height_40 alignHorizontally">
+        oneTouchOrderTable.innerHTML = `<div class="alignHorizontally">
+                                          <div id='oneTouchOrderTable' class="width_90 height_40 alignHorizontally">
                                             <div class="boxContainer font_2 backgroundSecondary colorWhite">
                                               <div class="tableRowBroadbandOrder">
                                                 <div class="tableCell">Supplier</div>
@@ -101,9 +101,8 @@ async function _getBroadbandAvailability() {
                                         </div>`;
 
         broadbandQuoteContainer.classList.add('hidden');
-        orderAddressContainer.classList.add('leftSliderElement');
-        oneTouchOrderSlider.appendChild(orderDealContainer);
-        oneTouchOrderSlider.classList.add('boxContainer');
+        orderAddressContainer.classList.add('hidden');
+        oneTouchOrderSlider.appendChild(oneTouchOrderTable);
 
         document
           .getElementById('oneTouchOrderTable')
@@ -113,7 +112,7 @@ async function _getBroadbandAvailability() {
             if (!isButton) {
               return;
             }
-            _saveOrderData(
+            _manageOrderData(
               event.target.getAttribute('name'),
               event.target.getAttribute('provider'),
               event.target.getAttribute('likely_down_speed'),
