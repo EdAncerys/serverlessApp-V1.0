@@ -72,6 +72,7 @@ const _manageOrderData = (
 
   oneTouchOrderTable.classList.add('hidden');
   oneTouchOrderSlider.appendChild(orderSelectionContainer);
+  orderSelectionContainer.setAttribute('id', 'orderSelectionContainer');
   orderSelectionContainer.classList.add('boxContainer');
 
   document.querySelector('btnPlaceOrder').addEventListener('click', (event) => {

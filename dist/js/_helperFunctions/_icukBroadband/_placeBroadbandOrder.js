@@ -3,6 +3,13 @@ import { _errorMessage } from '../_errorMessage.js';
 import { _spinner } from '../_spinner.js';
 
 const _placeBroadbandOrder = () => {
+  const broadbandQuoteContainer = document.querySelector(
+    '#broadbandQuoteContainer'
+  );
+  const orderSelectionContainer = document.querySelector(
+    '#orderSelectionContainer'
+  );
+
   console.log('Placing Broadband Order...');
   _spinner(true);
 
@@ -56,12 +63,12 @@ const _placeBroadbandOrder = () => {
                               ${order_district_id}
                               ${order_nad_key}`;
 
-  let orderBroadbandSummary = ` <p>Name: ${broadband_name}</p>
-                                <p>Provider: ${broadband_provider}</p>
-                                <p>Down Speed: ${broadband_likely_down_speed}</p>
-                                <p>Up Speed: ${broadband_likely_up_speed}</p>
-                                <p>Price: ${broadband_price}</p>
-                                <p>Installation: ${broadband_installation}</p>`;
+  let orderBroadbandSummary = ` <div>Name: ${broadband_name}</div>
+                                <div>Provider: ${broadband_provider}</div>
+                                <div>Down Speed: ${broadband_likely_down_speed}</div>
+                                <div>Up Speed: ${broadband_likely_up_speed}</div>
+                                <div>Price: ${broadband_price}</div>
+                                <div>Installation: ${broadband_installation}</div>`;
 
   let orderSummary = `<div style='color: #5cb85c'>
                         <h4>Order Address</h4>
@@ -97,6 +104,9 @@ const _placeBroadbandOrder = () => {
       );
       _spinner(false);
       _errorMessage('Order Submitted Successfully...', 'success');
+
+      orderSelectionContainer.classList.add('hidden');
+      broadbandQuoteContainer.classList.remove('hidden');
 
       console.log(data);
       console.log('Order Submitted Successfully...');
