@@ -23,9 +23,9 @@ async function _oneTouchOrders() {
                       <div class="tableCell">${order.price}</div>
                       <div class="tableCell">${order.installation}</div>
                       <div class="tableCell">
-                        <btnDeleteUser id='${order._id}' value='${order._id}' class="btnOneTouch_V01" role="button">
+                        <btnDeleteOrder id='${order._id}' value='${order._id}' class="btnOneTouch_V01" role="button">
                           Delete
-                        </btnDeleteUser>
+                        </btnDeleteOrder>
                       </div>
                     </div>
                   </div>
@@ -59,7 +59,7 @@ async function _oneTouchOrders() {
           if (!isButton) {
             return;
           }
-
+          console.log(event.target.id);
           _deleteOneTouchOrder(event.target.id);
         });
 
