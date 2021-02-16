@@ -1,3 +1,5 @@
+import { _placeBroadbandOrder } from './_placeBroadbandOrder.js';
+
 const _manageOrderData = (
   name,
   provider,
@@ -73,7 +75,7 @@ const _manageOrderData = (
   orderSelectionContainer.classList.add('boxContainer');
 
   document.querySelector('btnPlaceOrder').addEventListener('click', (event) => {
-    console.log('place order');
+    _placeBroadbandOrder();
   });
 };
 
