@@ -9,6 +9,7 @@ const _placeBroadbandOrder = () => {
   const orderSelectionContainer = document.querySelector(
     '#orderSelectionContainer'
   );
+  const inputPostcodeValue = document.querySelector('#postcode');
 
   console.log('Placing Broadband Order...');
   _spinner(true);
@@ -107,6 +108,7 @@ const _placeBroadbandOrder = () => {
 
       orderSelectionContainer.classList.add('hidden');
       broadbandQuoteContainer.classList.remove('hidden');
+      inputPostcodeValue.value = '';
 
       console.log(data);
       console.log('Order Submitted Successfully...');
