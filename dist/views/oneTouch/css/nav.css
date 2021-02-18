@@ -10,12 +10,15 @@ header::after {
   display: table;
   clear: both;
 }
+header:hover {
+  opacity: 0.85;
+}
 
 .logo {
   display: grid;
   align-items: center;
   padding: 2vw 0 2vw 4vw;
-  width: 15vw;
+  width: 20vw;
   position: relative;
 }
 
