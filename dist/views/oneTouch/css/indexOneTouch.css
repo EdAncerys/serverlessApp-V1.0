@@ -7,11 +7,10 @@
 }
 
 .icon {
-  padding: 10px;
-  width: 250px;
-  top: 120px;
-  left: 70px;
-  margin: 100;
+  width: 15vw;
+  min-width: 80px;
+  max-width: 250px;
+  margin: 1vw;
   transition: transform 0.2s;
 }
 
