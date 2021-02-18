@@ -86,6 +86,7 @@
     sessionStorage.setItem('user', { user: 'user' });
   });
   document.querySelector('logout').addEventListener('click', () => {
-    sessionStorage.removeItem('user');
+    // sessionStorage.removeItem('user');
+    sessionStorage.clear();
   });
 </script>
