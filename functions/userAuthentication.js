@@ -1,5 +1,5 @@
-exports.handler = async (event) => {
-  const redirectURL = '../dist/error.html';
+exports.handler = async (event, context, callback) => {
+  const redirectURL = '/views/oneTouch/login.html';
   console.log('Access denied. You been redirected to: ' + redirectURL);
 
   const response = {

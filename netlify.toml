@@ -66,7 +66,7 @@
   status = 200
 
 [[redirects]]
-  from = "/ndg/hello"
-  to = "/.netlify/functions/redirectLambda"
-  status = 301
-
+  from = "/views/oneTouch/hello"
+  to = "/.netlify/functions/userAuthentication"
+  status = 200
+  force = true
