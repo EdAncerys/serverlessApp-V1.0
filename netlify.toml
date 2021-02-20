@@ -4,7 +4,7 @@
   # the root website directory
   publish = "./dist"
   # the root website directory
-  command = "echo 'I be building' "
+  command = "echo 'Build in progress...' "
   # the build command
   functions = "functions/"
 

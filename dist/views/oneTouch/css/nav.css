@@ -3,22 +3,16 @@ header {
   grid-template-columns: 1fr 3fr;
   align-items: center;
   background: #dfdfdf;
-  border-radius: 0px 0px 30px 30px;
-}
-header::after {
-  content: '';
-  display: table;
-  clear: both;
+  border-bottom: 1px solid #aab0b3;
+  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 20%);
 }
 header:hover {
   opacity: 0.85;
 }
-
 .logo {
   display: grid;
   align-items: center;
-  padding: 2vw 0 2vw 4vw;
-  width: 20vw;
+  width: 10em;
   position: relative;
 }
 
@@ -43,8 +37,7 @@ nav li {
 nav a {
   color: #6ec5dd;
   text-decoration: none;
-  text-transform: uppercase;
-  font-size: 1.5vw;
+  /* text-transform: uppercase; */
 }
 
 nav a:hover {
@@ -56,7 +49,6 @@ nav a::before {
   display: block;
   height: 5px;
   background-color: #c8d85a;
-
   position: absolute;
   top: 0;
   width: 0%;

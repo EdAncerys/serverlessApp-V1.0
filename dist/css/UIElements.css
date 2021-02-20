@@ -17,26 +17,22 @@
   color: #f7f7f7;
   cursor: pointer;
 }
-.btnOneTouch_V01 {
-  display: grid;
-  justify-content: center;
+.btnB01 {
+  font-size: 16px;
+  letter-spacing: 1px;
+  border: 0;
+  background-color: #16214d;
+  color: white;
+  min-width: 80px;
+  min-height: 30px;
+  display: flex;
   align-items: center;
-  text-align: center;
-  color: #6ec5dd;
-  background-color: #dfdfdf;
-  border-color: #292b2c;
-  border-radius: 8px;
-  border: none;
-  text-transform: uppercase;
-  text-decoration: none;
-  outline: none;
-  font-weight: 500px;
-  font-size: 2vw;
-}
-.btnOneTouch_V01:hover {
-  color: #f7f7f7;
-  background-color: #6ec5dd;
+  justify-content: center;
   cursor: pointer;
+  min-width: 200px;
+}
+.btnB01:hover {
+  background-color: #44c7f4;
 }
 .boxContainer {
   margin: 4px 0;

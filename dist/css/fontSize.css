@@ -1,12 +1,12 @@
-.font_4 {
-  font-size: 4vw;
+.fontH4 {
+  font-size: clamp(2vw, 2em, 36px);
 }
-.font_3 {
-  font-size: 3vw;
+.fontH3 {
+  font-size: clamp(2vw, 1.5em, 36px);
 }
-.font_2 {
-  font-size: 2vw;
+.fontH2 {
+  font-size: clamp(2vw, 1em, 36px);
 }
-.font_1 {
-  font-size: 1vw;
+.fontH1 {
+  font-size: clamp(2vw, 0.5em, 36px);
 }
