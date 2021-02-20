@@ -6,55 +6,68 @@
     <title>Document</title>
   </head>
   <body>
-    <header class="fontH2">
-      <div>
-        <a href="./index.html"
-          ><img
-            src="./images/color_logo_transparent.png"
-            alt="NDG"
-            class="logo"
-        /></a>
-      </div>
-      <div id="navID">
-        <nav>
+    <navBar class="fontH2">
+      <logo>
+        <div>
+          <a href="./index.html"
+            ><img
+              src="./images/color_logo_transparent.png"
+              alt="NDG"
+              class="logo"
+          /></a>
+        </div>
+      </logo>
+      <nav>
+        <div>
           <ul class="topnav">
-            <li><a href="./index.html">Home</a></li>
+            <li><a class="navLink" href="./index.html">Home</a></li>
             <li class="dropdown right">
-              <a class="dropbtn" href="#">Admin</a>
+              <a class="dropbtn navLink" href="#">Admin</a>
               <div class="dropdown-content">
-                <a class="change" href="#">Edit Users</a>
-                <a class="change" href="#">Add Users</a>
-                <a class="change" href="./raise_ticket.html">Create Ticket</a>
+                <a class="change navLink" href="#">Edit Users</a>
+                <a class="change navLink" href="#">Add Users</a>
+                <a class="change navLink" href="./raise_ticket.html"
+                  >Create Ticket</a
+                >
               </div>
             </li>
             <li class="dropdown right">
-              <a class="dropbtn" href="#">Hosted</a>
+              <a class="dropbtn navLink" href="#">Hosted</a>
               <div class="dropdown-content">
-                <a class="change" href="./voip.html"
+                <a class="change navLink" href="./voip.html"
                   >Order a New Voip Connection
                 </a>
-                <a class="change" href="./cloudtouch.html">Cloud Touch</a>
+                <a class="change navLink" href="./cloudtouch.html"
+                  >Cloud Touch</a
+                >
               </div>
             </li>
             <li class="dropdown right">
-              <a class="dropbtn" href="#">Broadband</a>
+              <a class="dropbtn navLink" href="#">Broadband</a>
               <div class="dropdown-content">
-                <a class="change" href="./order_new_connection.html"
+                <a class="change navLink" href="./order_new_connection.html"
                   >Order a New Connection</a
                 >
-                <a class="change" href="#">Order Status</a>
-                <a class="change" href="#">Connection</a>
-                <a class="change" href="./make_a_new_connection.html"
+                <a class="change navLink" href="#">Order Status</a>
+                <a class="change navLink" href="#">Connection</a>
+                <a class="change navLink" href="./make_a_new_connection.html"
                   >Make a Connection</a
                 >
               </div>
             </li>
-            <li><a href="./support_docs.html">Support Doc's</a></li>
-            <li><a href="./login.html">Logout</a></li>
           </ul>
-        </nav>
-      </div>
-    </header>
+        </div>
+        <div>hello</div>
+        <div>hello</div>
+        <div>hello</div>
+        <div>
+          <li>
+            <a class="navLink" href="./support_docs.html">Support Doc's</a>
+          </li>
+        </div>
+        <div class="btnB01">Logout</div>
+      </nav>
+    </navBar>
 
     <div style="position: absolute; margin: 10px; bottom: 20px">
       <login class="btnOneTouch">Fake Login</login>

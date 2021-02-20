@@ -1,4 +1,4 @@
-header {
+navBar {
   display: grid;
   grid-template-columns: 1fr 3fr;
   align-items: center;
@@ -6,19 +6,25 @@ header {
   border-bottom: 1px solid #aab0b3;
   box-shadow: 0 2px 4px 0 rgb(0 0 0 / 20%);
 }
-header:hover {
-  opacity: 0.85;
+navBar:hover {
+  background: #dfdfdfcf;
 }
-.logo {
+logo {
   display: grid;
   align-items: center;
-  width: 10em;
-  position: relative;
+  justify-content: center;
+}
+.logo {
+  width: clamp(2vw, 10em, 200px);
 }
 
 nav {
-  float: right;
-  padding: 0 4vw 0 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 5px;
+  align-items: center;
+  justify-content: center;
+  background-color: tomato;
 }
 
 nav ul {
@@ -34,17 +40,16 @@ nav li {
   position: relative;
 }
 
-nav a {
+.navLink {
   color: #6ec5dd;
   text-decoration: none;
-  /* text-transform: uppercase; */
 }
 
-nav a:hover {
+.navLink:hover {
   color: #6ec5dd;
 }
 
-nav a::before {
+.navLink::before {
   content: '';
   display: block;
   height: 5px;
@@ -56,7 +61,7 @@ nav a::before {
   transition: all ease-in-out 250ms;
 }
 
-nav a:hover::before {
+.navLink:hover::before {
   width: 100%;
 }
 
