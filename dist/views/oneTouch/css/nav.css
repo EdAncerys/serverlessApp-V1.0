@@ -48,7 +48,6 @@ nav li {
 .navLink:hover {
   opacity: 0.85;
 }
-
 .navLink::before {
   content: '';
   display: block;

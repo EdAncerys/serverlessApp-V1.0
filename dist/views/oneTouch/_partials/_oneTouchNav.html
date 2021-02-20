@@ -110,7 +110,7 @@
 </html>
 
 <script>
-  const nav = document.getElementById('navID');
+  const nav = document.querySelector('nav');
   let userSession;
   document.addEventListener('click', () => {
     const user = sessionStorage.getItem('user');
@@ -124,8 +124,8 @@
       .addEventListener('click', () => {
         userSession = false;
       });
-    if (!user && !userSession) nav.classList.add('loginNav');
-    if (user && userSession) nav.classList.remove('loginNav');
+    if (!user && !userSession) nav.classList.add('hidden');
+    if (user && userSession) nav.classList.remove('hidden');
   });
 
   document.querySelector('login').addEventListener('click', () => {
