@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>oneTouch Navigation</title>
   </head>
   <body>
     <navBar class="fontH2">
@@ -19,51 +19,84 @@
       </logo>
       <nav>
         <div>
-          <ul class="topnav">
+          <ul class="topNav">
             <li><a class="navLink" href="./index.html">Home</a></li>
-            <li class="dropdown right">
-              <a class="dropbtn navLink" href="#">Admin</a>
+          </ul>
+        </div>
+        <div>
+          <ul class="topNav">
+            <li class="dropdown">
+              <a class="dropbtn navLink" href="#">Hosting</a>
               <div class="dropdown-content">
-                <a class="change navLink" href="#">Edit Users</a>
-                <a class="change navLink" href="#">Add Users</a>
-                <a class="change navLink" href="./raise_ticket.html"
-                  >Create Ticket</a
-                >
-              </div>
-            </li>
-            <li class="dropdown right">
-              <a class="dropbtn navLink" href="#">Hosted</a>
-              <div class="dropdown-content">
-                <a class="change navLink" href="./voip.html"
-                  >Order a New Voip Connection
-                </a>
-                <a class="change navLink" href="./cloudtouch.html"
-                  >Cloud Touch</a
-                >
-              </div>
-            </li>
-            <li class="dropdown right">
-              <a class="dropbtn navLink" href="#">Broadband</a>
-              <div class="dropdown-content">
-                <a class="change navLink" href="./order_new_connection.html"
-                  >Order a New Connection</a
-                >
-                <a class="change navLink" href="#">Order Status</a>
-                <a class="change navLink" href="#">Connection</a>
-                <a class="change navLink" href="./make_a_new_connection.html"
-                  >Make a Connection</a
-                >
+                <div class="dropdown-menu">
+                  <div class="dropdown-link">
+                    <a class="change navLink" href="#"
+                      >Order a New Voip Connection</a
+                    >
+                  </div>
+                  <div class="dropdown-link">
+                    <a class="change navLink" href="#">Cloud Touch</a>
+                  </div>
+                </div>
               </div>
             </li>
           </ul>
         </div>
-        <div>hello</div>
-        <div>hello</div>
-        <div>hello</div>
+        <div>
+          <ul class="topNav">
+            <li class="dropdown">
+              <a class="dropbtn navLink" href="#">Broadband</a>
+              <div class="dropdown-content">
+                <div class="dropdown-menu">
+                  <div class="dropdown-link">
+                    <a class="change navLink" href="./order_new_connection.html"
+                      >Order a New Connection</a
+                    >
+                  </div>
+                  <div class="dropdown-link">
+                    <a class="change navLink" href="#">Order Status</a>
+                  </div>
+                  <div class="dropdown-link">
+                    <a class="change navLink" href="#">Connection</a>
+                  </div>
+                  <div class="dropdown-link">
+                    <a
+                      class="change navLink"
+                      href="./make_a_new_connection.html"
+                      >Make a Connection</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
         <div>
           <li>
-            <a class="navLink" href="./support_docs.html">Support Doc's</a>
+            <a class="navLink" href="../oneTouch/support-docs.html"
+              >Support Doc's</a
+            >
           </li>
+        </div>
+        <div>
+          <ul class="topNav">
+            <li class="dropdown">
+              <a class="dropbtn navLink" href="#">Admin</a>
+              <div class="dropdown-content">
+                <div class="dropdown-menu">
+                  <div class="dropdown-link">
+                    <a class="change navLink" href="#">Edit Users</a>
+                  </div>
+                  <div class="dropdown-link">
+                    <a class="change navLink" href="#">Add Users</a>
+                  </div>
+                  <div class="dropdown-link">
+                    <a class="change navLink" href="#">Create Ticket</a>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
         </div>
         <div class="btnB01">Logout</div>
       </nav>
