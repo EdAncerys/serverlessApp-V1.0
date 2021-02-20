@@ -34,7 +34,7 @@
               <div id="raiseTicketImg"></div>
             </div>
             <form action="/">
-              <label for="fname">Name</label>
+              <labelUM for="fname">Name</labelUM>
               <input
                 type="text"
                 id="name"
@@ -42,7 +42,7 @@
                 placeholder="Your name..."
               />
 
-              <label for="lname">Phone Number</label>
+              <labelUM for="lname">Phone Number</labelUM>
               <input
                 type="text"
                 id="phoneNumber"
@@ -50,7 +50,7 @@
                 placeholder="Your phone number..."
               />
 
-              <label for="lname">Email</label>
+              <labelUM for="lname">Email</labelUM>
               <input
                 type="text"
                 id="email"
@@ -58,7 +58,7 @@
                 placeholder="Your email address..."
               />
 
-              <label for="lname">Password</label>
+              <labelUM for="lname">Password</labelUM>
               <input
                 type="password"
                 id="password"
@@ -79,15 +79,79 @@
       </div>
     </div> -->
 
-    <div class="alignVertically">Banner</div>
+    <div class="alignVertically">
+      <bannerUM>
+        <bannerUMComponent>Content</bannerUMComponent>
+        <bannerUMComponent>Content</bannerUMComponent>
+      </bannerUM>
+    </div>
+
+    <div class="alignVertically">
+      <umComponent>
+        <bannerUMComponent>
+          <form class="fontH2" action="/">
+            <labelUM for="fname">Full Name</labelUM>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Your name..."
+            />
+
+            <labelUM for="lname">Phone Number</labelUM>
+            <input
+              type="text"
+              id="phoneNumber"
+              name="phoneNumber"
+              placeholder="User phone number..."
+            />
+
+            <labelUM for="lname">Email</labelUM>
+            <input
+              type="text"
+              id="email"
+              name="email"
+              placeholder="User email address..."
+            />
+
+            <labelUM for="lname">Address</labelUM>
+            <input
+              type="text"
+              id="address"
+              name="address"
+              placeholder="User Address..."
+            />
+
+            <labelUM for="lname">Notes</labelUM>
+            <textarea
+              id="notes"
+              class="umTextArea"
+              name="notes"
+              rows="5"
+              placeholder="Notes..."
+            ></textarea>
+
+            <input
+              id="createOneTouchAccount"
+              class="btnOneTouch"
+              type="submit"
+              value="Add User"
+            /></form
+        ></bannerUMComponent>
+        <bannerUMComponent
+          ><div>Content</div>
+          <oneTouchUsers></oneTouchUsers
+        ></bannerUMComponent>
+      </umComponent>
+    </div>
 
     <div class="center">
       <div>
         <form action="/">
-          <label for="fname">Name</label>
+          <labelUM for="fname">Name</labelUM>
           <input type="text" id="name" name="name" placeholder="Your name..." />
 
-          <label for="lname">Phone Number</label>
+          <labelUM for="lname">Phone Number</labelUM>
           <input
             type="text"
             id="phoneNumber"
@@ -95,7 +159,7 @@
             placeholder="Your phone number..."
           />
 
-          <label for="lname">Email</label>
+          <labelUM for="lname">Email</labelUM>
           <input
             type="text"
             id="email"
@@ -103,7 +167,7 @@
             placeholder="Your email address..."
           />
 
-          <label for="lname">Password</label>
+          <labelUM for="lname">Password</labelUM>
           <input
             type="password"
             id="password"
@@ -120,7 +184,5 @@
         </form>
       </div>
     </div>
-
-    <oneTouchUsers></oneTouchUsers>
   </body>
 </html>

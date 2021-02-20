@@ -1,0 +1,43 @@
+bannerUM,
+umComponent {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 1fr;
+  color: #f4f4f4;
+  background: #e21014;
+  min-height: 150px;
+  margin: 20px 0;
+}
+bannerUMComponent {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  border-left: 1px solid #aab0b3;
+  border-right: 1px solid #aab0b3;
+  padding: 10px 5%;
+  margin: 5% 20%;
+}
+umComponent {
+  background: #e5e5e5;
+}
+umFormColumn {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+}
+labelUM {
+  color: #6ec5dd;
+  white-space: nowrap;
+}
+inputContainer {
+  min-width: 200px;
+}
+textarea {
+  background-color: transparent;
+  outline: none;
+}
+.umTextArea {
+  resize: none;
+}
