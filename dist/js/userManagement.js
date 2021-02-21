@@ -10,11 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 if (performance.navigation.type == PerformanceNavigation.TYPE_RELOAD) {
   console.info('This page is reloaded');
-  const oneTouchUsers = document.querySelector('oneTouchUsers');
-  const domBody = sessionStorage.getItem('body');
-  // document.body.innerHTML = domBody;
-  // oneTouchUsers.innerHTML = domBody;
-  // console.log(domBody);
+  const oneTouchDOMBody = sessionStorage.getItem('oneTouchDOMBody');
+  const body = document.querySelector('body');
+  body.innerHTML = oneTouchDOMBody;
 }
 
 const observer = new MutationObserver((list) => {
@@ -29,14 +27,9 @@ observer.observe(document.body, {
 
 document.body.addEventListener('dom-changed', (e) => {
   console.info('Saving Data to sessionStorage...');
-  const body = document.body.innerHTML;
-  sessionStorage.setItem('body', body);
+  const oneTouchDOMBody = document.body.innerHTML;
+  sessionStorage.setItem('oneTouchDOMBody', oneTouchDOMBody);
 });
-
-const persistUserData = () => {
-  const body = document.querySelector('body');
-  console.log(body);
-};
 
 const getAllUsers = (ev) => {
   ev.preventDefault();
