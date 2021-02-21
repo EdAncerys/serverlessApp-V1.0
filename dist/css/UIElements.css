@@ -35,19 +35,12 @@
 }
 .boxContainer {
   margin: 4px 0;
-  padding: 10px;
+  padding: 5px;
   border: 1px solid #e8e9e9;
-  box-shadow: 5px 10px 18px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 30%);
   transition: all 250ms ease-in-out;
 }
-.boxContainer_V2 {
-  margin: 4px 0;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 5px 10px 18px 0px rgba(0, 0, 0, 0.1);
-  transition: all 250ms ease-in-out;
-}
-.boxContainer:hover {
+.boxContainerHover:hover {
   -ms-transform: scale(1.1);
   -webkit-transform: scale(1.1);
   transform: scale(1.1);

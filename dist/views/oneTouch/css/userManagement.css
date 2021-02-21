@@ -20,7 +20,6 @@ umComponent {
   background: #e5e5e5;
 }
 formUMComponent {
-  display: grid;
   border-left: 1px solid #aab0b3;
   border-right: 1px solid #aab0b3;
   padding: 10px 5%;
@@ -53,10 +52,17 @@ textarea {
 }
 
 /* Manage User Container */
-.userDataContainer,
-.dataContainer {
+.umContainer {
+  margin-top: 20px;
+  max-height: 600px;
+  overflow: auto;
+  border: 1px solid #aab0b3;
+}
+.userDataContainer {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  margin: 5px 0;
+  color: #393b3c;
 }
 .manageUserDataComponent {
   display: grid;
