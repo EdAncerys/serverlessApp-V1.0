@@ -1,7 +1,6 @@
 bannerUM,
 umComponent {
   display: grid;
-  align-items: center;
   grid-template-columns: 1fr 1fr;
   color: #f4f4f4;
   background: #e21014;
@@ -10,8 +9,8 @@ umComponent {
 }
 bannerUMComponent {
   display: grid;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   border-left: 1px solid #aab0b3;
   border-right: 1px solid #aab0b3;
   padding: 10px 5%;
@@ -19,6 +18,13 @@ bannerUMComponent {
 }
 umComponent {
   background: #e5e5e5;
+}
+formUMComponent {
+  display: grid;
+  border-left: 1px solid #aab0b3;
+  border-right: 1px solid #aab0b3;
+  padding: 10px 5%;
+  margin: 5% 5%;
 }
 umFormColumn {
   display: grid;
@@ -33,6 +39,10 @@ labelUM {
 }
 inputContainer {
   min-width: 200px;
+}
+.umFormHeader {
+  color: #6ec5dd;
+  margin-bottom: 20px;
 }
 textarea {
   background-color: transparent;

@@ -4,13 +4,14 @@ import { _errorMessage } from './_helperFunctions/_errorMessage.js';
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('getAllUsers').addEventListener('click', getAllUsers);
   document
-    .getElementById('createOneTouchAccount')
+    .getElementById('createOneTouchUser')
     .addEventListener('click', createOneTouchAccount);
 });
 
 const getAllUsers = (ev) => {
   ev.preventDefault();
   _oneTouchUsers();
+  // _errorMessage('Form Not active yet...', 'warning');
 };
 
 const createOneTouchAccount = (ev) => {
