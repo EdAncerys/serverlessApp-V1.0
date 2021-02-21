@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
 const getAllUsers = (ev) => {
   ev.preventDefault();
   _oneTouchUsers();
-  // _errorMessage('Form Not active yet...', 'warning');
 };
 
 const createOneTouchAccount = (ev) => {

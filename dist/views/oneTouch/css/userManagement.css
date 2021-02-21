@@ -51,3 +51,15 @@ textarea {
 .umTextArea {
   resize: none;
 }
+
+/* Manage User Container */
+.userDataContainer,
+.dataContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.manageUserDataComponent {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 1fr 1fr 1fr;
+}
