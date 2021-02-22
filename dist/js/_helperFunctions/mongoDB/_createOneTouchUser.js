@@ -26,9 +26,7 @@ async function _createOneTouchUser() {
   };
 
   try {
-    const response = await fetch(URL, {
-      timeout: 100,
-    });
+    const response = await fetch(URL, config);
     if (!response.ok) throw new Error(response);
     const data = await response.json();
 
@@ -37,12 +35,8 @@ async function _createOneTouchUser() {
     console.log(data);
   } catch (err) {
     console.log(err);
+    _errorMessage(err);
   }
-
-  // const response = await fetch(URL, config, {
-  //   timeout: 6000,
-  // });
-  // const data = await response.json();
 }
 
 export { _createOneTouchUser };

@@ -20,12 +20,12 @@ async function _oneTouchUsers() {
                       <div class="tableCell">${user.email}</div>
                     </div>
                     <div class="manageUserDataComponent">
-                      <btnDeleteUser id='${user._id}' value='${user._id}' class="btnB01" role="button">
-                        More
-                      </btnDeleteUser>
-                      <btnDeleteUser id='${user._id}' value='${user._id}' class="btnB01" role="button">
+                      <btnInfoUser id='${user._id}' value='${user._id}' class="btnB01" role="button">
+                        Info
+                      </btnInfoUser>
+                      <btnUpdateUser id='${user._id}' value='${user._id}' class="btnB01" role="button">
                         Update
-                      </btnDeleteUser>
+                      </btnUpdateUser>
                         <btnDeleteUser id='${user._id}' value='${user._id}' class="btnB01" role="button">
                         Delete
                       </btnDeleteUser>
@@ -40,8 +40,27 @@ async function _oneTouchUsers() {
                               </div>
                               ${userData}
                             </div>`;
-
     _spinner(false);
+    document.querySelector('body').addEventListener('click', (event) => {
+      const btnInfoUser = event.target.nodeName === 'BTNINFOUSER';
+      const btnUpdateUser = event.target.nodeName === 'BTNUPDATEUSER';
+      const btnDeleteUser = event.target.nodeName === 'BTNDELETEUSER';
+
+      let id = event.target.getAttribute('id');
+
+      if (btnInfoUser) {
+        console.log(id);
+        _errorMessage(id, 'success');
+      }
+      if (btnUpdateUser) {
+        console.log(id);
+        _errorMessage(id, 'warning');
+      }
+      if (btnDeleteUser) {
+        console.log(id);
+        _errorMessage(id);
+      }
+    });
   } catch (err) {
     console.log(err);
     _errorMessage(err);

@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('getAllUsers').addEventListener('click', getAllUsers);
   document
     .getElementById('createOneTouchAccount')
-    .addEventListener('click', createOneTouchAccount);
+    .addEventListener('click', createOneTouchUser);
 });
 // Persist user data on reload
 if (performance.navigation.type == PerformanceNavigation.TYPE_RELOAD) {
@@ -38,7 +38,7 @@ const getAllUsers = (ev) => {
   _oneTouchUsers();
 };
 
-const createOneTouchAccount = (ev) => {
+const createOneTouchUser = (ev) => {
   ev.preventDefault();
   _createOneTouchUser();
 };
