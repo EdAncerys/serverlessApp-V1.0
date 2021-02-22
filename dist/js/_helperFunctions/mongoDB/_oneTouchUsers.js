@@ -1,3 +1,4 @@
+import { _deleteOneTouchUser } from './_deleteOneTouchUser.js';
 import { _errorMessage } from '../_errorMessage.js';
 import { _spinner } from '../_spinner.js';
 
@@ -20,13 +21,13 @@ async function _oneTouchUsers() {
                       <div class="tableCell">${user.email}</div>
                     </div>
                     <div class="manageUserDataComponent">
-                      <btnInfoUser id='${user._id}' value='${user._id}' class="btnB01" role="button">
+                      <btnInfoUser id='${user._id}' email='${user.email}' value='${user._id}' class="btnB01" role="button">
                         Info
                       </btnInfoUser>
-                      <btnUpdateUser id='${user._id}' value='${user._id}' class="btnB01" role="button">
+                      <btnUpdateUser id='${user._id}' email='${user.email}' value='${user._id}' class="btnB01" role="button">
                         Update
                       </btnUpdateUser>
-                        <btnDeleteUser id='${user._id}' value='${user._id}' class="btnB01" role="button">
+                        <btnDeleteUser id='${user._id}' email='${user.email}' value='${user._id}' class="btnB01" role="button">
                         Delete
                       </btnDeleteUser>
                     </div>
@@ -47,17 +48,19 @@ async function _oneTouchUsers() {
       const btnDeleteUser = event.target.nodeName === 'BTNDELETEUSER';
 
       let id = event.target.getAttribute('id');
+      let email = event.target.getAttribute('email');
 
       if (btnInfoUser) {
         console.log(id);
-        _errorMessage(id, 'success');
+        _errorMessage(email, 'success');
       }
       if (btnUpdateUser) {
         console.log(id);
-        _errorMessage(id, 'warning');
+        _errorMessage(email, 'warning');
       }
       if (btnDeleteUser) {
-        console.log(id);
+        console.log(email);
+        _deleteOneTouchUser(id);
         _errorMessage(id);
       }
     });

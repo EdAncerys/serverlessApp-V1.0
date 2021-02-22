@@ -74,6 +74,7 @@ const oneTouchAddUser = async (db, data) => {
 const oneTouchDeleteUser = async (db, data) => {
   const deleteUser = {
     _id: data._id,
+    email: data.email,
   };
   const userID = new ObjectId(deleteUser._id);
   const user = await db.collection(COLLECTION).find({ _id: userID }).toArray();
