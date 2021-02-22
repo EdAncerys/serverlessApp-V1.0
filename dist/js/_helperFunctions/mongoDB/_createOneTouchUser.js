@@ -1,3 +1,4 @@
+import { _oneTouchUsers } from './_oneTouchUsers.js';
 import { _errorMessage } from '../_errorMessage.js';
 import { _spinner } from '../_spinner.js';
 
@@ -27,15 +28,18 @@ async function _createOneTouchUser() {
 
   try {
     const response = await fetch(URL, config);
-    if (!response.ok) throw new Error(response);
     const data = await response.json();
+    console.log(data);
+    if (!response.ok) throw new Error(data.msg);
 
+    _oneTouchUsers();
     _errorMessage(data.msg, 'success');
     _spinner(false);
     console.log(data);
   } catch (err) {
     console.log(err);
     _errorMessage(err);
+    _spinner(false);
   }
 }
 

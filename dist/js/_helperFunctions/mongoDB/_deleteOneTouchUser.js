@@ -27,6 +27,7 @@ async function _deleteOneTouchUser(id) {
   } catch (err) {
     console.log(err);
     _errorMessage(err);
+    _spinner(false);
   }
 }
 
