@@ -15,21 +15,19 @@ async function _deleteOneTouchUser(id) {
     body: JSON.stringify(body),
   };
 
-  fetch(URL, config)
-    .then((res) => res.json())
-    .then((data) => {
-      _oneTouchUsers();
-      _spinner(false);
-      _errorMessage(data.msg, 'success');
+  try {
+    const response = await fetch(URL, config);
+    if (!response.ok) throw new Error(response);
+    const data = await response.json();
 
-      console.log(data);
-    })
-    .catch((err) => {
-      _spinner(false);
-      _errorMessage(err);
-
-      console.log(err);
-    });
+    _oneTouchUsers();
+    _errorMessage(data.msg, 'success');
+    _spinner(false);
+    console.log(data);
+  } catch (err) {
+    console.log(err);
+    _errorMessage(err);
+  }
 }
 
 export { _deleteOneTouchUser };
