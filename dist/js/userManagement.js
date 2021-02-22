@@ -1,10 +1,11 @@
 import { _oneTouchUsers } from '../JS/_helperFunctions/mongoDB/_oneTouchUsers.js';
+import { _createOneTouchUser } from '../JS/_helperFunctions/mongoDB/_createOneTouchUser.js';
 import { _errorMessage } from './_helperFunctions/_errorMessage.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('getAllUsers').addEventListener('click', getAllUsers);
   document
-    .getElementById('createOneTouchUser')
+    .getElementById('createOneTouchAccount')
     .addEventListener('click', createOneTouchAccount);
 });
 // Persist user data on reload
@@ -39,5 +40,5 @@ const getAllUsers = (ev) => {
 
 const createOneTouchAccount = (ev) => {
   ev.preventDefault();
-  _errorMessage('Form Not active yet...', 'warning');
+  _createOneTouchUser();
 };

@@ -34,9 +34,9 @@ const oneTouchQueryUsers = async (db) => {
 
 const oneTouchAddUser = async (db, data) => {
   const addUser = {
-    name: data.name,
+    fullName: data.fullName,
     email: data.email,
-    password: data.password,
+    postcode: data.postcode,
   };
   const user = await db
     .collection(COLLECTION)
@@ -44,7 +44,7 @@ const oneTouchAddUser = async (db, data) => {
     .toArray();
   const userValid = !user[0];
 
-  if (userValid && addUser.name && addUser.email && addUser.password) {
+  if (userValid && addUser.fullName && addUser.email && addUser.postcode) {
     const msg = `User successfully added to DB with email: ` + addUser.email;
     await db.collection(COLLECTION).insertMany([data]);
     console.log(msg);
