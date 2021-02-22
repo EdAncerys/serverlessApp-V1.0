@@ -33,9 +33,8 @@ async function _createOneTouchUser() {
     const data = await response.json();
 
     _errorMessage(data.msg, 'success');
-    console.log(data);
-
     _spinner(false);
+    console.log(data);
   } catch (err) {
     console.log(err);
   }
