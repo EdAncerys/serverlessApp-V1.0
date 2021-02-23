@@ -52,11 +52,11 @@ async function _oneTouchOrders() {
 
       if (btnInfoOrder) {
         console.log(name);
-        _errorMessage(email, 'success');
+        _errorMessage(name, 'success');
       }
       if (btnDeleteOrder) {
         console.log(name);
-        // _deleteOneTouchUser(id);
+        _deleteOneTouchOrder(id);
         _errorMessage(name);
       }
     });
