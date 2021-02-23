@@ -8,68 +8,62 @@ async function _oneTouchOrders() {
   const URL = '/oneTouch/orders';
   const oneTouchOrders = document.querySelector('oneTouchOrders');
 
-  fetch(URL)
-    .then((res) => res.json())
-    .then((data) => {
-      _spinner(false);
-      let list = '';
-      data.map((order) => {
-        list += `<div class="alignHorizontally">
-                  <div class="boxContainer hoverBackground">
-                    <div class="tableRowNo6">
+  try {
+    const response = await fetch(URL);
+    const data = await response.json();
+    console.log(data);
+
+    let orderData = '';
+    data.map((order) => {
+      orderData += `<div class='boxContainer'>
+                    <div class="userDataContainer">
                       <div class="tableCell">${order.name}</div>
-                      <div class="tableCell">${order.likely_down_speed}</div>
-                      <div class="tableCell">${order.likely_up_speed}</div>
+                      <div class="tableCell">${order.provider}</div>
                       <div class="tableCell">${order.price}</div>
                       <div class="tableCell">${order.installation}</div>
-                      <div class="tableCell">
-                        <btnDeleteOrder id='${order._id}' value='${order._id}' class="btnOneTouch_V01" role="button">
-                          Delete
-                        </btnDeleteOrder>
-                      </div>
                     </div>
-                  </div>
-                </div>`;
-      });
-
-      oneTouchOrders.innerHTML = `<div class="alignHorizontally">
-                                  <div id='oneTouchOrderTable' class="boxContainer width_90 height_40">
-                                    <div class="boxContainer font_2 backgroundSecondary colorWhite">
-                                      <div class="alignHorizontally">
-                                        <img src="../../../views/oneTouch/images/color_logo_transparent.png" alt="ndgLogo"/>
-                                      </div>
-                                      <div class="tableRowNo6">
-                                        <div class="tableCell">Supplier</div>
-                                        <div class="tableCell">Download Speed</div>
-                                        <div class="tableCell">Upload Speed</div>
-                                        <div class="tableCell">Price</div>
-                                        <div class="tableCell">Installation</div>
-                                        <div class="tableCell">Delete Order</div>
-                                      </div>
-                                    </div>
-                                    ${list}
-                                  </div>
-                                </div>`;
-
-      document
-        .getElementById('oneTouchOrderTable')
-        .addEventListener('click', (event) => {
-          const isButton = event.target.nodeName === 'BTNDELETEORDER';
-
-          if (!isButton) {
-            return;
-          }
-          console.log(event.target.id);
-          _deleteOneTouchOrder(event.target.id);
-        });
-
-      console.log(data);
-    })
-    .catch((err) => {
-      _spinner(false);
-      _errorMessage(err);
-      console.log(err);
+                    <div class="manageUserDataComponent">
+                      <btnInfoOrder id='${order._id}' name='${order.name}' value='${order._id}' class="btnB01" role="button">
+                        Info
+                      </btnInfoOrder>
+                      <btnDeleteOrder id='${order._id}' name='${order.name}' value='${order._id}' class="btnB01" role="button">
+                        Delete
+                      </btnDeleteOrder>
+                    </div>
+                  </div>`;
     });
+
+    oneTouchOrders.innerHTML = `<div class='umContainer'>
+                                <div class="userDataContainer boxContainer">
+                                  <div class="tableCell">Supplier</div>
+                                  <div class="tableCell">Provider</div>
+                                  <div class="tableCell">Provider</div>
+                                  <div class="tableCell">Provider</div>
+                                </div>
+                                ${orderData}
+                              </div>`;
+    _spinner(false);
+    document.querySelector('body').addEventListener('click', (event) => {
+      const btnInfoOrder = event.target.nodeName === 'BTNINFOORDER';
+      const btnDeleteOrder = event.target.nodeName === 'BTNDELETEORDER';
+
+      let id = event.target.getAttribute('id');
+      let name = event.target.getAttribute('name');
+
+      if (btnInfoOrder) {
+        console.log(name);
+        _errorMessage(email, 'success');
+      }
+      if (btnDeleteOrder) {
+        console.log(name);
+        // _deleteOneTouchUser(id);
+        _errorMessage(name);
+      }
+    });
+  } catch (err) {
+    console.log(err);
+    _errorMessage(err);
+  }
 }
 
 export { _oneTouchOrders };

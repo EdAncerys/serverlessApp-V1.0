@@ -46,18 +46,6 @@
   transform: scale(1.1);
   box-shadow: none;
 }
-.tableRowNo5,
-.tableRowNo6 {
-  display: grid;
-  justify-content: center;
-  align-content: center;
-  text-align: center;
-  grid-template-columns: 20vw 18vw 18vw 18vw 10vw;
-  grid-gap: 1vw;
-}
-.tableRowNo6 {
-  grid-template-columns: 22vw 10vw 10vw 20vw 10vw 10vw;
-}
 .tableCell {
   display: grid;
   align-content: center;
