@@ -3,8 +3,8 @@ umComponent {
   display: grid;
   grid-template-columns: 1fr 1fr;
   color: #f4f4f4;
-  background: #e21014;
-  min-height: 150px;
+  background: #f0ad4e;
+  min-height: 250px;
   margin: 20px 0;
 }
 bannerUMComponent {

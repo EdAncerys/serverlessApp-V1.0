@@ -4,7 +4,7 @@ navBar {
   align-items: center;
   background: #dfdfdf;
   border-bottom: 1px solid #e5e5e5;
-  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 30%);
+  /* box-shadow: 0 2px 4px 0 rgb(0 0 0 / 30%); */
 }
 navBar:hover {
   background: #dfdfdfcf;
