@@ -4,3 +4,14 @@ lcComponent {
   min-height: 150px;
   margin: 20px 0;
 }
+.orderDataContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  margin: 5px 0;
+  color: #393b3c;
+}
+.manageOrderDataComponent {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 1fr 1fr;
+}

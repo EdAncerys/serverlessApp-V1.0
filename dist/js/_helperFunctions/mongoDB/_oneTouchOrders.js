@@ -16,13 +16,13 @@ async function _oneTouchOrders() {
     let orderData = '';
     data.map((order) => {
       orderData += `<div class='boxContainer'>
-                    <div class="userDataContainer">
+                    <div class="orderDataContainer">
                       <div class="tableCell">${order.name}</div>
                       <div class="tableCell">${order.provider}</div>
                       <div class="tableCell">${order.price}</div>
                       <div class="tableCell">${order.installation}</div>
                     </div>
-                    <div class="manageUserDataComponent">
+                    <div class="manageOrderDataComponent">
                       <btnInfoOrder id='${order._id}' name='${order.name}' value='${order._id}' class="btnB01" role="button">
                         Info
                       </btnInfoOrder>
@@ -34,11 +34,11 @@ async function _oneTouchOrders() {
     });
 
     oneTouchOrders.innerHTML = `<div class='umContainer'>
-                                <div class="userDataContainer boxContainer">
+                                <div class="orderDataContainer boxContainer">
                                   <div class="tableCell">Supplier</div>
                                   <div class="tableCell">Provider</div>
-                                  <div class="tableCell">Provider</div>
-                                  <div class="tableCell">Provider</div>
+                                  <div class="tableCell">Price</div>
+                                  <div class="tableCell">Installation</div>
                                 </div>
                                 ${orderData}
                               </div>`;
