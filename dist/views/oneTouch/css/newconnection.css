@@ -22,7 +22,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 50px;
-  grid-gap: 10px;
+  grid-gap: 20px;
   align-self: end;
   padding: 0 10px;
   margin-bottom: 110px;
@@ -30,6 +30,7 @@
 
 .dslFormInput {
   font-size: 1.5em;
+  padding-left: 10px;
   background-color: transparent;
   outline: none;
 }
@@ -40,12 +41,4 @@
   /* grid-template-columns: 1fr 2fr 1fr; */
   grid-gap: 1vw;
   transition: 2s;
-}
-.tableRowBroadbandOrder {
-  display: grid;
-  justify-content: center;
-  align-content: center;
-  text-align: center;
-  grid-template-columns: 10vw 10vw 10vw 10vw 10vw 10vw 10vw;
-  grid-gap: 0.5vw;
 }
