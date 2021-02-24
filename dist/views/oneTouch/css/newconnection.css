@@ -1,5 +1,11 @@
 #oneTouchOrderSlider {
+  display: grid;
+  justify-content: center;
   overflow: auto;
+  width: 100vw;
+  min-height: 300px;
+  margin: 5% 0;
+  background: #f8f9f9;
 }
 .oneTouchOrderBackground {
   background-image: url(../images/Broadband.png);

@@ -5,11 +5,13 @@ document.addEventListener('DOMContentLoaded', () => {
     .getElementById('oneTouchOrders')
     .addEventListener('click', oneTouchOrders);
 });
-
 // Persist user data on reload
-if (performance.navigation.type == PerformanceNavigation.TYPE_RELOAD) {
+const oneTouchDOMBody = sessionStorage.getItem('oneTouchDOMBody');
+if (
+  performance.navigation.type === PerformanceNavigation.TYPE_RELOAD &&
+  oneTouchDOMBody
+) {
   console.info('This page is reloaded');
-  const oneTouchDOMBody = sessionStorage.getItem('oneTouchDOMBody');
   const body = document.querySelector('body');
   body.innerHTML = oneTouchDOMBody;
 }

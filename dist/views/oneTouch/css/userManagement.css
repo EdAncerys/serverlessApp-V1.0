@@ -2,8 +2,8 @@ bannerUM,
 umComponent {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  color: #f4f4f4;
-  background: #f0ad4e;
+  color: #292b2c;
+  background: #f8f9f9;
   min-height: 250px;
   margin: 20px 0;
 }
@@ -17,7 +17,7 @@ bannerUMComponent {
   margin: 5% 20%;
 }
 umComponent {
-  background: #e5e5e5;
+  background: #f8f9f9;
 }
 formUMComponent {
   border-left: 1px solid #aab0b3;

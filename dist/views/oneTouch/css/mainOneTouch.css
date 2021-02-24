@@ -30,22 +30,6 @@ body {
   display: grid;
   align-items: center;
 }
-.width_90 {
-  width: 90vw;
-  overflow: auto;
-}
-.width_40 {
-  width: 40vw;
-  overflow: auto;
-}
-.height_40 {
-  height: 40vh;
-  overflow: auto;
-}
-.hoverBackground:hover {
-  background-color: #6ec5dda7;
-  cursor: pointer;
-}
 .hidden {
   display: none;
 }
