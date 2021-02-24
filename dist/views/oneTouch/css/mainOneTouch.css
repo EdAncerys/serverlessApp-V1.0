@@ -17,6 +17,12 @@ body {
   padding: 0;
   user-select: none;
 }
+errorMessage {
+  position: absolute;
+  width: 100%;
+  z-index: 99;
+  top: 100px;
+}
 .center {
   display: grid;
   justify-content: center;
