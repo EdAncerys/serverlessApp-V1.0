@@ -1,15 +1,10 @@
 const _errorMessage = (message, type) => {
   let errorMessageContainer = document.querySelector('errorMessage');
   let msgID = Date.now().toString();
-  // errorMessage.style.visibility = 'visible';
-  const closeErrorMsg = (id) => {
-    console.log(id);
-    // errorMessage.remove();
-  };
 
   setTimeout(() => {
     let errMsg = document.getElementById(`errorMessage_${msgID}`);
-    if (errMsg) errorMessage.remove();
+    if (errMsg) errMsg.remove();
   }, 4000);
 
   let msgType;
