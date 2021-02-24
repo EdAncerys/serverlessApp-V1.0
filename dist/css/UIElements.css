@@ -1,13 +1,16 @@
 .btnOneTouch {
-  background-color: #6ec5dd;
-  color: #f7f7f7;
-  border-color: #292b2c;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 1px;
+  border: 0;
+  border: 1px solid #292b2c;
   border-radius: 8px;
-  padding: 1vw 2vw;
+  font-size: 1.2em;
+  color: #292b2c;
+  background-color: #6ec5dd;
   width: 100%;
-  text-align: center;
-  font-size: 1.5vw;
-  font-weight: bold;
+  height: 100%;
   text-transform: uppercase;
   text-decoration: none;
   outline: none;

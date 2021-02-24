@@ -7,35 +7,29 @@
   margin: 5% 0;
   background: #f8f9f9;
 }
-.oneTouchOrderBackground {
+.dslForm {
+  display: grid;
+  width: 400px;
+  height: 350px;
+}
+.dslFormBackground {
   background-image: url(../images/Broadband.png);
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
 }
-.broadbandQuoteContainer {
-  display: grid;
-  grid-template-rows: 3fr 6fr;
-  padding: 1vw;
-  width: 40vw;
-  height: 35vw;
-}
-.broadbandInputContainer {
+.dslFormInputContainer {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-template-rows: 50px;
   grid-gap: 10px;
-  align-items: center;
-  margin-bottom: 2vw;
+  align-self: end;
+  padding: 0 10px;
+  margin-bottom: 110px;
 }
-.inputContainer {
-  border-radius: 10px;
-  border-style: solid;
-  border-color: black;
-  font-size: 2vw;
-  background-color: none;
-  padding: 1.5vw;
-}
-input[type='text'] {
+
+.dslFormInput {
+  font-size: 1.5em;
   background-color: transparent;
   outline: none;
 }
@@ -46,10 +40,6 @@ input[type='text'] {
   /* grid-template-columns: 1fr 2fr 1fr; */
   grid-gap: 1vw;
   transition: 2s;
-}
-.leftSliderElement {
-  width: 20vw;
-  opacity: 0.15;
 }
 .tableRowBroadbandOrder {
   display: grid;
