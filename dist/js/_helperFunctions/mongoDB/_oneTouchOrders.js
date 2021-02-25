@@ -14,8 +14,13 @@ async function _oneTouchOrders() {
     console.log(data);
 
     let orderData = '';
-    data.map((order) => {
-      orderData += `<div class='boxContainer'>
+    if (data.length === 0) {
+      oneTouchOrders.innerHTML = `<div class='umContainer alignHorizontally noOrders'>
+                                    No Order Yet!
+                                  </div>`;
+    } else {
+      data.map((order) => {
+        orderData += `<div class='boxContainer'>
                     <div class="orderDataContainer">
                       <div class="tableCell">${order.name}</div>
                       <div class="tableCell">${order.provider}</div>
@@ -31,9 +36,9 @@ async function _oneTouchOrders() {
                       </btnDeleteOrder>
                     </div>
                   </div>`;
-    });
+      });
 
-    oneTouchOrders.innerHTML = `<div class='umContainer'>
+      oneTouchOrders.innerHTML = `<div class='umContainer'>
                                 <div class="orderDataContainer boxContainer">
                                   <div class="tableCell">Supplier</div>
                                   <div class="tableCell">Provider</div>
@@ -42,6 +47,8 @@ async function _oneTouchOrders() {
                                 </div>
                                 ${orderData}
                               </div>`;
+    }
+
     _spinner(false);
     document.querySelector('body').addEventListener('click', (event) => {
       const btnInfoOrder = event.target.nodeName === 'BTNINFOORDER';
@@ -57,7 +64,7 @@ async function _oneTouchOrders() {
       if (btnDeleteOrder) {
         console.log(name);
         _deleteOneTouchOrder(id);
-        _errorMessage(name);
+        _errorMessage(`Order will be deleted! Order ${name} `);
       }
     });
   } catch (err) {

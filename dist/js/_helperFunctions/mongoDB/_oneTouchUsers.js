@@ -61,7 +61,7 @@ async function _oneTouchUsers() {
       if (btnDeleteUser) {
         console.log(email);
         _deleteOneTouchUser(id);
-        _errorMessage(id);
+        _errorMessage(`User will be deleted! Email ${email} `);
       }
     });
   } catch (err) {

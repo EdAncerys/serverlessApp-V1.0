@@ -1,6 +1,7 @@
 #oneTouchOrderSlider {
   display: grid;
   justify-content: center;
+  align-content: center;
   overflow: auto;
   width: 100vw;
   min-height: 300px;
@@ -34,11 +35,8 @@
   background-color: transparent;
   outline: none;
 }
-
-/* Broadband list table */
-.gridSliderContainer {
+.sliderNavBtn {
   display: grid;
-  /* grid-template-columns: 1fr 2fr 1fr; */
-  grid-gap: 1vw;
-  transition: 2s;
+  grid-template-columns: 1fr 1fr;
+  margin: 10px 0;
 }
