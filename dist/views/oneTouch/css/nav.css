@@ -21,7 +21,7 @@ logo {
 nav {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-  grid-gap: 10px;
+  grid-gap: 5px;
   align-items: center;
   justify-content: center;
   padding: 0 10px;
@@ -54,6 +54,7 @@ nav li {
   height: 5px;
   background-color: #c8d85a;
   position: absolute;
+  z-index: 1;
   top: -5px;
   width: 0%;
   transition: all ease-in-out 550ms;

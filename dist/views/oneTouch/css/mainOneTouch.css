@@ -12,9 +12,14 @@
 @import url('../../../css/UIElements.css');
 @import url('../../../css/fontSize.css');
 
-body {
+* {
   margin: 0;
   padding: 0;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
   user-select: none;
 }
 errorMessage {

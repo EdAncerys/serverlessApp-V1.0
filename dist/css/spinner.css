@@ -1,24 +1,26 @@
+spinnerContainer {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
 .spinnerWrapper {
   position: absolute;
-  top: 0;
-  display: grid;
-  grid-template-rows: 60px 150px;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  padding-top: 20%;
-  font-size: 3em;
+  z-index: 999;
+  font-size: 80px;
   color: #292b2c;
-  background: rgb(0 0 0 / 50%);
+  margin: -10vh 0;
+  padding: 15vh 0;
+  background: rgb(0 0 0 / 30%);
 }
 spinnerMsg {
   display: grid;
   justify-content: center;
-  align-items: center;
-  font-size: 1em;
+  width: 100vw;
+  height: 100vh;
+  font-size: 24px;
+  margin: 20px 0;
 }
 spinnerIconContainer {
   display: grid;
   justify-content: center;
-  align-items: center;
 }

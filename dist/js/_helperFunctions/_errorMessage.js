@@ -23,8 +23,8 @@ const _errorMessage = (message, type) => {
 
   const errorMsg = `<div
                       style="
-                        display: grid;
-                        justify-items: center;
+                      display: grid;
+                      justify-items: center;
                       "
                     >
                       <div
