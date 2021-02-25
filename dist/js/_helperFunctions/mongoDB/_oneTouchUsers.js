@@ -4,7 +4,7 @@ import { _spinner } from '../_spinner.js';
 
 async function _oneTouchUsers() {
   console.log('Fetching users from db...');
-  _spinner(true, 'Msg passed in ');
+  _spinner(true, 'Loading Active Users...');
   const URL = '/oneTouch/users';
   const oneTouchUsers = document.querySelector('oneTouchUsers');
 
