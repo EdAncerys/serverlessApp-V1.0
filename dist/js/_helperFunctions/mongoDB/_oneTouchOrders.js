@@ -4,7 +4,7 @@ import { _spinner } from '../_spinner.js';
 
 async function _oneTouchOrders() {
   console.log('Fetching all orders...');
-  _spinner('Msg on', true);
+  _spinner(true, 'Loading Orders...');
   const URL = '/oneTouch/orders';
   const oneTouchOrders = document.querySelector('oneTouchOrders');
 
@@ -42,7 +42,7 @@ async function _oneTouchOrders() {
                                 </div>
                                 ${orderData}
                               </div>`;
-    _spinner('Msg on', false);
+    _spinner(false);
     document.querySelector('body').addEventListener('click', (event) => {
       const btnInfoOrder = event.target.nodeName === 'BTNINFOORDER';
       const btnDeleteOrder = event.target.nodeName === 'BTNDELETEORDER';

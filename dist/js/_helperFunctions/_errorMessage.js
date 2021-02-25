@@ -68,6 +68,7 @@ const _errorMessage = (message, type) => {
 
   let newErrorMsg = document.createElement('div');
   newErrorMsg.id = `errorMessage_${msgID}`;
+  newErrorMsg.classList.add('errorMessage');
   newErrorMsg.innerHTML = errorMsg;
   errorMessageContainer.appendChild(newErrorMsg);
 

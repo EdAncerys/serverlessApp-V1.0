@@ -5,16 +5,17 @@ import { _spinner } from '../_spinner.js';
 async function _createOneTouchUser() {
   _spinner(true);
   const URL = '/oneTouch/users';
-  let fullName = document.getElementById('fullName').value;
+  let name = document.getElementById('name').value;
   let phoneNumber = document.getElementById('phoneNumber').value;
   let email = document.getElementById('email').value;
   let address = document.getElementById('address').value;
   let postcode = document.getElementById('postcode').value;
   let notes = document.getElementById('notes').value;
-  console.log('Adding user. Full Name: ' + fullName);
+
+  console.log('Adding user. Full Name: ' + name);
 
   const body = {
-    fullName,
+    name,
     phoneNumber,
     email,
     address,

@@ -34,7 +34,7 @@ const oneTouchQueryUsers = async (db) => {
 
 const oneTouchAddUser = async (db, data) => {
   const addUser = {
-    fullName: data.fullName,
+    fullName: data.name,
     email: data.email,
     postcode: data.postcode,
   };
