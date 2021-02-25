@@ -7,10 +7,10 @@ spinnerContainer {
   position: absolute;
   z-index: 999;
   font-size: 80px;
-  color: #292b2c;
+  color: #f4f4f4;
   margin: -10vh 0;
   padding: 15vh 0;
-  background: rgb(0 0 0 / 30%);
+  background: rgb(0 0 0 / 40%);
 }
 spinnerMsg {
   display: grid;

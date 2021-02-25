@@ -6,8 +6,6 @@ const _handleFormValidation = () => {
   console.log('Validating From...');
 
   let postcode = document.getElementById('postcode').value.replace(/\s/g, '');
-  let oneTouchOrderSlider = document.getElementById('oneTouchOrderSlider')
-    .innerHTML;
   let errors = [];
 
   console.log(postcode);
@@ -22,7 +20,6 @@ const _handleFormValidation = () => {
     _handleErrors(errors);
   } else {
     sessionStorage.setItem('oderPostcode', postcode);
-    sessionStorage.setItem('oneTouchSliderPageOne', oneTouchOrderSlider);
     _getAddress(postcode);
   }
 };

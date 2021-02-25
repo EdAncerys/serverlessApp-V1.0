@@ -1,5 +1,6 @@
 const _saveAddressData = () => {
   let value = document.getElementById('selectedAddress').value;
+
   let sub_premises = document
     .getElementById('selectedAddress')
     [value].getAttribute('sub_premises');
@@ -31,33 +32,16 @@ const _saveAddressData = () => {
     .getElementById('selectedAddress')
     [value].getAttribute('nad_key');
 
-  const oderAddress = {
-    sub_premises: sessionStorage.setItem('sub_premises', sub_premises),
-    premises_name: sessionStorage.setItem('premises_name', premises_name),
-    thoroughfare_number: sessionStorage.setItem(
-      'thoroughfare_number',
-      thoroughfare_number
-    ),
-    thoroughfare_name: sessionStorage.setItem(
-      'thoroughfare_name',
-      thoroughfare_name
-    ),
-    locality: sessionStorage.setItem('locality', locality),
-    post_town: sessionStorage.setItem('post_town', post_town),
-    county: sessionStorage.setItem('county', county),
-    postcode: sessionStorage.setItem('postcode', postcode),
-    district_id: sessionStorage.setItem('district_id', district_id),
-    nad_key: sessionStorage.setItem('nad_key', nad_key),
-  };
-
-  // Save data to session storage
-  sessionStorage.setItem('oderAddress', oderAddress);
-  console.log(
-    'Data saved to session storage for: ' +
-      sessionStorage.getItem('premises_name') +
-      ' ' +
-      sessionStorage.getItem('thoroughfare_name')
-  );
+  sessionStorage.setItem('sub_premises', sub_premises);
+  sessionStorage.setItem('premises_name', premises_name);
+  sessionStorage.setItem('thoroughfare_number', thoroughfare_number);
+  sessionStorage.setItem('thoroughfare_name', thoroughfare_name);
+  sessionStorage.setItem('locality', locality);
+  sessionStorage.setItem('post_town', post_town);
+  sessionStorage.setItem('county', county);
+  sessionStorage.setItem('postcode', postcode);
+  sessionStorage.setItem('district_id', district_id);
+  sessionStorage.setItem('nad_key', nad_key);
 };
 
 export { _saveAddressData };

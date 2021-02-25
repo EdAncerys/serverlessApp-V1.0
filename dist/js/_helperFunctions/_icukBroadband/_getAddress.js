@@ -77,24 +77,21 @@ async function _getAddress(postcode) {
                                       </div>`;
 
     oneTouchOrderSlider.appendChild(orderAddressContainer);
-    dslFormContainer.remove();
-    dslFormUserContainer.remove();
+    dslFormContainer.style.display = 'none';
+    dslFormUserContainer.style.display = 'none';
 
+    document.getElementById('sliderPageOne').addEventListener('click', () => {
+      // document.getElementById('orderAddressContainer').style.display = 'none';
+      // dslFormContainer.style.display = 'block';
+      // dslFormUserContainer.style.display = 'block';
+      _errorMessage('Go To Page One', 'success');
+    });
     document
       .getElementById('selectedAddress')
       .addEventListener('change', _saveAddressData);
     document
       .getElementById('getBroadbandAvailability')
       .addEventListener('click', _getBroadbandAvailability);
-    document.getElementById('sliderPageOne').addEventListener('click', () => {
-      const oneTouchSliderPageOne = sessionStorage.getItem(
-        'oneTouchSliderPageOne'
-      );
-      document.getElementById('orderAddressContainer').remove();
-      document.getElementById(
-        'oneTouchOrderSlider'
-      ).innerHTML = oneTouchSliderPageOne;
-    });
   } catch (err) {
     console.log(err);
     _errorMessage(err);
