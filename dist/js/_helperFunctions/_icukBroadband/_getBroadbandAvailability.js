@@ -11,12 +11,9 @@ async function _getBroadbandAvailability() {
   const URL = '/ndg/broadbandAvailability';
   const validateInput = document.getElementById('selectedAddress').value;
   const oneTouchOrderSlider = document.querySelector('#oneTouchOrderSlider');
-  const broadbandQuoteContainer = document.querySelector(
-    '#broadbandQuoteContainer'
-  );
-  const orderAddressContainer = document.querySelector(
-    '#orderAddressContainer'
-  );
+
+  const oneTouchBoradbandDeals = document.createElement('div');
+  oneTouchBoradbandDeals.id = 'oneTouchBoradbandDeals';
 
   if (validateInput === 'selectionID') {
     _spinner(false);
@@ -41,94 +38,79 @@ async function _getBroadbandAvailability() {
       body: JSON.stringify(body),
     };
 
-    fetch(URL, config)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
+    try {
+      const response = await fetch(URL, config);
+      const data = await response.json();
+      console.log(data);
 
-        if (data.name === 'Error') {
-          const err = 'Fall back. No Deals Available for selected address';
-          _spinner(false);
-          _errorMessage(err, 'warning');
-          _getAreaBroadbandAvailability();
-          console.log(err);
-          return;
-        }
-        let list = '';
-        _sortBroadbandData(data, 'name', true).map((data) => {
-          list += `<div class="">
-                    <div class="boxContainer hoverBackground">
-                      <div class="tableRowBroadbandOrder font_1">
-                        <div class="tableCell">${data.name}</div>
-                        <div class="tableCell">${data.provider}</div>
-                        <div class="tableCell">${data.likely_down_speed}</div>
-                        <div class="tableCell">${data.likely_up_speed}</div>
-                        <div class="tableCell">${data.price}</div>
-                        <div class="tableCell">${data.installation}</div>
-                        <div class="tableCell">
-                          <btnSelectOrder name='${data.name}' 
-                                          provider='${data.provider}' 
-                                          likely_down_speed='${data.likely_down_speed}' 
-                                          likely_up_speed='${data.likely_up_speed}' 
-                                          price='${data.price}' 
-                                          installation='${data.installation}' 
-                                          class="btnOneTouch_V01" role="button">
-                            Select
-                          </btnSelectOrder>
-                        </div>
-                      </div>
-                    </div>
-                  </div>`;
+      let orderData = '';
+      if (data.length === 0) {
+        oneTouchBoradbandDeals.innerHTML = `<div class='umContainer alignHorizontally noOrders'>
+                                              No Broadband Data Provided!
+                                            </div>`;
+      } else {
+        data.products.map((order) => {
+          orderData += `<div class='boxContainer'>
+                          <div class="broadbandDataContainer">
+                            <div class="tableCell">${order.name}</div>
+                            <div class="tableCell">${order.provider}</div>
+                            <div class="tableCell">${data.likely_down_speed}</div>
+                            <div class="tableCell">${data.likely_up_speed}</div>
+                            <div class="tableCell">${order.price}</div>
+                            <div class="tableCell">${order.installation}</div>
+                            <div class="tableCell">
+                            <btnSelectOrder name='${data.name}' 
+                                            provider='${data.provider}' 
+                                            likely_down_speed='${data.likely_down_speed}' 
+                                            likely_up_speed='${data.likely_up_speed}' 
+                                            price='${data.price}' 
+                                            installation='${data.installation}' 
+                                            class="btnB01" role="button">
+                              Select
+                            </btnSelectOrder>
+                          </div>
+                          </div>
+                        </div>`;
         });
-        _spinner(false);
-        const oneTouchOrderTable = document.createElement('div');
 
-        oneTouchOrderTable.innerHTML = `<div class="alignHorizontally">
-                                          <div id='oneTouchOrderTable' class="width_90 height_40 alignHorizontally">
-                                            <div class="boxContainer font_2 backgroundSecondary colorWhite">
-                                              <div class="tableRowBroadbandOrder">
+        oneTouchBoradbandDeals.innerHTML = `<div class='umContainer'>
+                                              <div class="orderDataContainer boxContainer">
                                                 <div class="tableCell">Supplier</div>
                                                 <div class="tableCell">Provider</div>
                                                 <div class="tableCell">Download</div>
                                                 <div class="tableCell">Upload</div>
                                                 <div class="tableCell">Price</div>
                                                 <div class="tableCell">Installation</div>
-                                                <div class="tableCell">Select</div>
                                               </div>
-                                            </div>
-                                            ${list}
-                                          </div>
-                                        </div>`;
+                                              ${orderData}
+                                            </div>`;
+      }
 
-        broadbandQuoteContainer.classList.add('hidden');
-        orderAddressContainer.classList.add('hidden');
-        oneTouchOrderSlider.appendChild(oneTouchOrderTable);
+      _spinner(false);
 
-        document
-          .getElementById('oneTouchOrderTable')
-          .addEventListener('click', (event) => {
-            const isButton = event.target.nodeName === 'BTNSELECTORDER';
+      document.getElementById('orderAddressContainer').style.display = 'none';
+      oneTouchOrderSlider.appendChild(oneTouchBoradbandDeals);
 
-            if (!isButton) {
-              return;
-            }
-            _manageOrderData(
-              event.target.getAttribute('name'),
-              event.target.getAttribute('provider'),
-              event.target.getAttribute('likely_down_speed'),
-              event.target.getAttribute('likely_up_speed'),
-              event.target.getAttribute('price'),
-              event.target.getAttribute('installation')
-            );
-          });
-      })
-      .catch((err) => {
-        _spinner(false);
-        _errorMessage('woops...something went wrong please try again: ' + err);
+      document.querySelector('body').addEventListener('click', (event) => {
+        const btnSelectOrder = event.target.nodeName === 'BTNSELECTORDER';
 
-        console.log('error');
-        console.log(err);
+        if (!btnSelectOrder) {
+          return;
+        }
+        console.log('select');
+        // _manageOrderData(
+        //   event.target.getAttribute('name'),
+        //   event.target.getAttribute('provider'),
+        //   event.target.getAttribute('likely_down_speed'),
+        //   event.target.getAttribute('likely_up_speed'),
+        //   event.target.getAttribute('price'),
+        //   event.target.getAttribute('installation')
+        // );
       });
+    } catch (err) {
+      console.log(err);
+      _errorMessage(err);
+    }
   }
 }
 
