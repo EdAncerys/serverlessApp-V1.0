@@ -13,7 +13,8 @@
 
 const _spinner = (active, msg) => {
   let spinnerContainer = document.querySelector('spinnerContainer');
-  let spinner = document.createElement('spinner');
+  let spinnerIcon = document.createElement('spinnerIcon');
+  let spinnerIconContainer = document.createElement('spinnerContainer');
   let spinnerMsg = document.createElement('spinnerMsg');
   const newMsg = msg ? msg : 'Loading Selection...';
   console.log('Spinner function', newMsg);
@@ -21,7 +22,7 @@ const _spinner = (active, msg) => {
   if (active) {
     spinnerContainer.appendChild(spinner);
     spinnerContainer.appendChild(spinnerMsg);
-    spinner.classList.add('fa', 'fa-spinner', 'fa-spin');
+    spinner.classList.add('fa', 'fa-cog', 'fa-spin');
     spinnerMsg.innerHTML = newMsg;
   }
   if (!active) {
