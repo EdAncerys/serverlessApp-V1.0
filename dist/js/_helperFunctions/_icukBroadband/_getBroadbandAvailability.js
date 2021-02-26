@@ -49,7 +49,7 @@ async function _getBroadbandAvailability() {
                                               No Broadband Data Provided!
                                             </div>`;
       } else {
-        data.products.map((order) => {
+        _sortBroadbandData(data, 'name', true).map((order) => {
           orderData += `<div class="boxContainer broadbandDataContainerHover">
                           <div class="broadbandDataContainer">
                             <div class="tableCell">${order.name}</div>
