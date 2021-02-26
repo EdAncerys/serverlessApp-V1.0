@@ -50,39 +50,44 @@ async function _getBroadbandAvailability() {
                                             </div>`;
       } else {
         data.products.map((order) => {
-          orderData += `<div class='boxContainer'>
+          orderData += `<div class="boxContainer broadbandDataContainerHover">
                           <div class="broadbandDataContainer">
                             <div class="tableCell">${order.name}</div>
                             <div class="tableCell">${order.provider}</div>
-                            <div class="tableCell">${data.likely_down_speed}</div>
-                            <div class="tableCell">${data.likely_up_speed}</div>
+                            <div class="tableCell">${order.likely_down_speed}</div>
+                            <div class="tableCell">${order.likely_up_speed}</div>
                             <div class="tableCell">${order.price}</div>
                             <div class="tableCell">${order.installation}</div>
                             <div class="tableCell">
-                            <btnSelectOrder name='${data.name}' 
-                                            provider='${data.provider}' 
-                                            likely_down_speed='${data.likely_down_speed}' 
-                                            likely_up_speed='${data.likely_up_speed}' 
-                                            price='${data.price}' 
-                                            installation='${data.installation}' 
-                                            class="btnB01" role="button">
-                              Select
-                            </btnSelectOrder>
+                              <btnSelectOrder name='${data.name}' 
+                                              provider='${data.provider}' 
+                                              likely_down_speed='${data.likely_down_speed}' 
+                                              likely_up_speed='${data.likely_up_speed}' 
+                                              price='${data.price}' 
+                                              installation='${data.installation}' 
+                                              class="btnB01" role="button">
+                                Select
+                              </btnSelectOrder>
                           </div>
                           </div>
                         </div>`;
         });
 
         oneTouchBoradbandDeals.innerHTML = `<div class='umContainer'>
-                                              <div class="orderDataContainer boxContainer">
+                                              <div class="boxContainer broadbandDataContainer">
                                                 <div class="tableCell">Supplier</div>
                                                 <div class="tableCell">Provider</div>
                                                 <div class="tableCell">Download</div>
                                                 <div class="tableCell">Upload</div>
                                                 <div class="tableCell">Price</div>
                                                 <div class="tableCell">Installation</div>
+                                                <div class="tableCell">Select Deal</div>
                                               </div>
                                               ${orderData}
+                                            </div>
+                                              <div class='sliderNavBtn'>
+                                              <div id='sliderPageTwo' class="btnB01">Go Back</div>
+                                              <div></div>
                                             </div>`;
       }
 

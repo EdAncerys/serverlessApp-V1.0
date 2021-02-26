@@ -21,32 +21,32 @@ async function _oneTouchOrders() {
     } else {
       data.map((order) => {
         orderData += `<div class='boxContainer'>
-                    <div class="orderDataContainer">
-                      <div class="tableCell">${order.name}</div>
-                      <div class="tableCell">${order.provider}</div>
-                      <div class="tableCell">${order.price}</div>
-                      <div class="tableCell">${order.installation}</div>
-                    </div>
-                    <div class="manageOrderDataComponent">
-                      <btnInfoOrder id='${order._id}' name='${order.name}' value='${order._id}' class="btnB01" role="button">
-                        Info
-                      </btnInfoOrder>
-                      <btnDeleteOrder id='${order._id}' name='${order.name}' value='${order._id}' class="btnB01" role="button">
-                        Delete
-                      </btnDeleteOrder>
-                    </div>
-                  </div>`;
+                        <div class="orderDataContainer">
+                          <div class="tableCell">${order.name}</div>
+                          <div class="tableCell">${order.provider}</div>
+                          <div class="tableCell">${order.price}</div>
+                          <div class="tableCell">${order.installation}</div>
+                        </div>
+                        <div class="manageOrderDataComponent">
+                          <btnInfoOrder id='${order._id}' name='${order.name}' value='${order._id}' class="btnB01" role="button">
+                            Info
+                          </btnInfoOrder>
+                          <btnDeleteOrder id='${order._id}' name='${order.name}' value='${order._id}' class="btnB01" role="button">
+                            Delete
+                          </btnDeleteOrder>
+                        </div>
+                      </div>`;
       });
 
       oneTouchOrders.innerHTML = `<div class='umContainer'>
-                                <div class="orderDataContainer boxContainer">
-                                  <div class="tableCell">Supplier</div>
-                                  <div class="tableCell">Provider</div>
-                                  <div class="tableCell">Price</div>
-                                  <div class="tableCell">Installation</div>
-                                </div>
-                                ${orderData}
-                              </div>`;
+                                    <div class="orderDataContainer boxContainer">
+                                      <div class="tableCell">Supplier</div>
+                                      <div class="tableCell">Provider</div>
+                                      <div class="tableCell">Price</div>
+                                      <div class="tableCell">Installation</div>
+                                    </div>
+                                    ${orderData}
+                                  </div>`;
     }
 
     _spinner(false);

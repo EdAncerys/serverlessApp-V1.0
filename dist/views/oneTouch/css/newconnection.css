@@ -40,3 +40,14 @@
   grid-template-columns: 1fr 1fr;
   margin: 10px 0;
 }
+.broadbandDataContainer {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 30px;
+  width: 800px;
+}
+.broadbandDataContainerHover:hover {
+  color: #f7f7f7;
+  background-color: #44c7f4;
+  cursor: pointer;
+}
