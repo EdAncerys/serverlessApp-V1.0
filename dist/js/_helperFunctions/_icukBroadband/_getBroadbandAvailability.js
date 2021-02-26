@@ -96,6 +96,10 @@ async function _getBroadbandAvailability() {
       document.getElementById('orderAddressContainer').style.display = 'none';
       oneTouchOrderSlider.appendChild(oneTouchBoradbandDeals);
 
+      document.getElementById('sliderPageTwo').addEventListener('click', () => {
+        _errorMessage('Go To Page Two', 'success');
+      });
+
       document.querySelector('body').addEventListener('click', (event) => {
         const btnSelectOrder = event.target.nodeName === 'BTNSELECTORDER';
 
@@ -103,14 +107,14 @@ async function _getBroadbandAvailability() {
           return;
         }
         console.log('select');
-        // _manageOrderData(
-        //   event.target.getAttribute('name'),
-        //   event.target.getAttribute('provider'),
-        //   event.target.getAttribute('likely_down_speed'),
-        //   event.target.getAttribute('likely_up_speed'),
-        //   event.target.getAttribute('price'),
-        //   event.target.getAttribute('installation')
-        // );
+        _manageOrderData(
+          event.target.getAttribute('name'),
+          event.target.getAttribute('provider'),
+          event.target.getAttribute('likely_down_speed'),
+          event.target.getAttribute('likely_up_speed'),
+          event.target.getAttribute('price'),
+          event.target.getAttribute('installation')
+        );
       });
     } catch (err) {
       console.log(err);
