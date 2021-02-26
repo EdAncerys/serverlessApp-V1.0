@@ -59,12 +59,12 @@ async function _getBroadbandAvailability() {
                             <div class="tableCell">${order.price}</div>
                             <div class="tableCell">${order.installation}</div>
                             <div class="tableCell">
-                              <btnSelectOrder name='${data.name}' 
-                                              provider='${data.provider}' 
-                                              likely_down_speed='${data.likely_down_speed}' 
-                                              likely_up_speed='${data.likely_up_speed}' 
-                                              price='${data.price}' 
-                                              installation='${data.installation}' 
+                              <btnSelectOrder name='${order.name}' 
+                                              provider='${order.provider}' 
+                                              likely_down_speed='${order.likely_down_speed}' 
+                                              likely_up_speed='${order.likely_up_speed}' 
+                                              price='${order.price}' 
+                                              installation='${order.installation}' 
                                               class="btnB01" role="button">
                                 Select
                               </btnSelectOrder>

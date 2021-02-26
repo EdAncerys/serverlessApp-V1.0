@@ -1,34 +1,34 @@
 async function _createOneTouchOrder(
-  name,
-  likely_down_speed,
-  likely_up_speed,
-  price,
-  installation
+  broadband_name,
+  broadband_provider,
+  broadband_likely_down_speed,
+  broadband_likely_up_speed,
+  broadband_price,
+  broadband_installation
 ) {
-  console.log('Creating Broadband Order. Name: ' + name);
+  console.log('Creating Broadband Order. Name: ' + broadband_name);
 
   const URL = '/oneTouch/orders';
   const body = {
-    name,
-    likely_down_speed,
-    likely_up_speed,
-    price,
-    installation,
+    broadband_name,
+    broadband_provider,
+    broadband_likely_down_speed,
+    broadband_likely_up_speed,
+    broadband_price,
+    broadband_installation,
   };
   const config = {
     method: 'POST',
     body: JSON.stringify(body),
   };
 
-  fetch(URL, config)
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data.msg);
-      console.log(data);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  try {
+    const response = await fetch(URL, config);
+    const data = await response.json();
+    console.log(data);
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 export { _createOneTouchOrder };

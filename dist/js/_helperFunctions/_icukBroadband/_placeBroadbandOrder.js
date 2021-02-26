@@ -2,15 +2,14 @@ import { _createOneTouchOrder } from '../mongoDB/_createOneTouchOrder.js';
 import { _errorMessage } from '../_errorMessage.js';
 import { _spinner } from '../_spinner.js';
 
-const _placeBroadbandOrder = () => {
-  const broadbandQuoteContainer = document.querySelector(
-    '#broadbandQuoteContainer'
-  );
-  const orderSelectionContainer = document.querySelector(
-    '#orderSelectionContainer'
-  );
-  const inputPostcodeValue = document.querySelector('#postcode');
-
+async function _placeBroadbandOrder(
+  broadband_name,
+  broadband_provider,
+  broadband_likely_down_speed,
+  broadband_likely_up_speed,
+  broadband_price,
+  broadband_installation
+) {
   console.log('Placing Broadband Order...');
   _spinner(true);
 
@@ -45,13 +44,6 @@ const _placeBroadbandOrder = () => {
   let order_postcode = postcode === 'null' ? '' : postcode;
   let order_district_id = district_id === 'null' ? '' : district_id;
   let order_nad_key = nad_key === 'null' ? '' : nad_key;
-
-  let broadband_name = sessionStorage.getItem('name');
-  let broadband_provider = sessionStorage.getItem('provider');
-  let broadband_likely_down_speed = sessionStorage.getItem('likely_down_speed');
-  let broadband_likely_up_speed = sessionStorage.getItem('likely_up_speed');
-  let broadband_price = sessionStorage.getItem('price');
-  let broadband_installation = sessionStorage.getItem('installation');
 
   let orderAddressSummary = ` ${order_sub_premises}
                               ${order_premises_name}
@@ -92,34 +84,25 @@ const _placeBroadbandOrder = () => {
     method: 'POST',
     body: JSON.stringify(body),
   };
+  try {
+    const response = await fetch(URL, config);
+    const data = await response.json();
+    console.log(data);
 
-  fetch(URL, config)
-    .then((res) => res.json())
-    .then((data) => {
-      _createOneTouchOrder(
-        broadband_name,
-        broadband_likely_down_speed,
-        broadband_likely_up_speed,
-        broadband_price,
-        broadband_installation
-      );
-      _spinner(false);
-      _errorMessage('Order Submitted Successfully...', 'success');
-
-      orderSelectionContainer.classList.add('hidden');
-      broadbandQuoteContainer.classList.remove('hidden');
-      inputPostcodeValue.value = '';
-
-      console.log(data);
-      console.log('Order Submitted Successfully...');
-    })
-    .catch((err) => {
-      _spinner(false);
-      _errorMessage(err);
-
-      console.log('error');
-      console.log(err);
-    });
-};
+    _createOneTouchOrder(
+      broadband_name,
+      broadband_provider,
+      broadband_likely_down_speed,
+      broadband_likely_up_speed,
+      broadband_price,
+      broadband_installation
+    );
+    _spinner(false);
+    _errorMessage('Order Submitted Successfully...', 'success');
+  } catch (err) {
+    console.log(err);
+    _errorMessage(err);
+  }
+}
 
 export { _placeBroadbandOrder };

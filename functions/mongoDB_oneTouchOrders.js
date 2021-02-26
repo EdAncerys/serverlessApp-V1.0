@@ -34,11 +34,12 @@ const oneTouchQueryOrders = async (db) => {
 
 const oneTouchAddOrder = async (db, data) => {
   const createOrder = {
-    name: data.name,
+    broadband_name: data.broadband_name,
   };
 
-  if (createOrder.name) {
-    const msg = `Order successfully been created for: ` + createOrder.name;
+  if (createOrder.broadband_name) {
+    const msg =
+      `Order successfully been created for: ` + createOrder.broadband_name;
     await db.collection(COLLECTION).insertMany([data]);
     console.log(msg);
 
@@ -50,7 +51,7 @@ const oneTouchAddOrder = async (db, data) => {
       body: JSON.stringify({ order: data, msg: msg }),
     };
   } else {
-    const msg = `Error creating order for: ` + createOrder.name;
+    const msg = `Error creating order for: ` + createOrder.broadband_name;
     console.log(msg);
 
     return {
