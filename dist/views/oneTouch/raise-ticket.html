@@ -23,92 +23,55 @@
     <errorMessage></errorMessage>
     <spinnerContainer></spinnerContainer>
 
-    <div class="indexContainer alignHorizontally">
-      <div class="raiseTicketContainer">
-        <div id="raiseTicketImgContainer">
-          <div id="raiseTicketImg"></div>
+    <div class="indexContainer">
+      <div class="wrapperOneTouch alignHorizontally">
+        <div class="raiseTicketContainer">
+          <div id="raiseTicketImgContainer">
+            <div id="raiseTicketImg"></div>
+          </div>
+
+          <form action="/">
+            <label for="contactReason">Reason For Contacting</label>
+            <select id="contactReason" name="contactReason">
+              <option selected disabled hidden value="selectionID">
+                Please Choose Your Reason
+              </option>
+              <option value="Query">Query</option>
+              <option value="Faulty">Faulty</option>
+            </select>
+
+            <label for="fname">Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Your name..."
+            />
+
+            <label for="lname">Phone Number</label>
+            <input
+              type="text"
+              id="phoneNumber"
+              name="phoneNumber"
+              placeholder="Your phone number..."
+            />
+
+            <label for="subject">Description</label>
+            <textarea
+              id="description"
+              name="description"
+              placeholder="Describe the issue..."
+              style="height: 200px"
+            ></textarea>
+
+            <input
+              id="raiseTicket"
+              class="btnOneTouch"
+              type="submit"
+              value="Submit"
+            />
+          </form>
         </div>
-
-        <form action="/">
-          <label for="country">Reason For Contacting</label>
-          <select id="country" name="country">
-            <option selected disabled hidden value="selectionID">
-              Please Choose Your Reason
-            </option>
-            <option value="Query">Query</option>
-            <option value="Faulty">Faulty</option>
-          </select>
-
-          <label for="fname">Name</label>
-          <input type="text" id="name" name="name" placeholder="Your name..." />
-
-          <label for="lname">Phone Number</label>
-          <input
-            type="text"
-            id="phoneNumber"
-            name="phoneNumber"
-            placeholder="Your phone number..."
-          />
-
-          <label for="subject">Description</label>
-          <textarea
-            id="description"
-            name="description"
-            placeholder="Describe the issue..."
-            style="height: 200px"
-          ></textarea>
-
-          <input
-            id="raiseTicket"
-            class="btnOneTouch"
-            type="submit"
-            value="Submit"
-          />
-        </form>
-      </div>
-    </div>
-
-    <div class="alignHorizontally">
-      <div class="raiseTicketContainer">
-        <div id="raiseTicketImgContainer">
-          <div id="raiseTicketImg"></div>
-        </div>
-        <form action="/">
-          <label for="country">Reason For Contacting</label>
-          <select id="country" name="country">
-            <option selected disabled hidden value="selectionID">
-              Please Choose Your Reason
-            </option>
-            <option value="Query">Query</option>
-            <option value="Faulty">Faulty</option>
-          </select>
-
-          <label for="fname">Name</label>
-          <input type="text" id="name" name="name" placeholder="Your name..." />
-
-          <label for="lname">Phone Number</label>
-          <input
-            type="text"
-            id="phoneNumber"
-            name="phoneNumber"
-            placeholder="Your phone number..."
-          />
-
-          <label for="subject">Description</label>
-          <textarea
-            id="description"
-            name="description"
-            placeholder="Describe the issue..."
-            style="height: 200px"
-          ></textarea>
-
-          <input
-            id="raiseTicket"
-            class="btnOneTouch"
-            type="submit"
-            value="Submit"
-          />
-        </form>
       </div>
     </div>
   </body>

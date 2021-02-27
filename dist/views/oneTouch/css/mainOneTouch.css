@@ -5,7 +5,6 @@
 @import url('./raiseTicket.css');
 @import url('./userManagement.css');
 @import url('./liveConnections.css');
-@import url('./login.css');
 @import url('./oneTouchColors.css');
 @import url('./oneTouchUIElements.css');
 @import url('../../../css/fonts.css');
@@ -36,10 +35,12 @@ errorMessage {
 .alignHorizontally {
   display: grid;
   justify-content: center;
+  width: 100%;
 }
 .alignVertically {
   display: grid;
   align-items: center;
+  width: 100%;
 }
 .hidden {
   display: none;
