@@ -1,7 +1,24 @@
 .supoortDocContainer {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, 150px);
+  grid-template-rows: repeat(2, 200px);
   grid-gap: 20px;
   max-width: 600px;
+}
+.supportIcon {
+  width: 200px;
+  max-width: 250px;
+  margin: 1vw;
+  transition: transform 0.2s;
+}
+@media screen and (max-width: 800px) {
+  .supoortDocContainer {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(6, 200px);
+    grid-gap: 20px;
+  }
+  .supportIcon {
+    width: 200px;
+  }
 }

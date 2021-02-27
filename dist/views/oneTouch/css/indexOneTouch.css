@@ -1,20 +1,19 @@
 .indexContainer {
-  height: 100vh;
+  height: 100%;
   overflow: auto;
 }
 .wrapperOneTouch {
-  padding: 100px 0;
+  padding-top: 100px;
   text-align: center;
 }
-
-.icon {
+.indexIcon {
   width: 150px;
   max-width: 250px;
   margin: 1vw;
   transition: transform 0.2s;
 }
-
-.icon:hover {
+.indexIcon:hover,
+.supportIcon:hover {
   -ms-transform: scale(1.1);
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
