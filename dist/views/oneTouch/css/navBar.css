@@ -40,10 +40,10 @@ nav ul li {
 }
 nav ul li a,
 nav ul li a:visited {
+  color: #333;
   display: block;
   padding: 0 10px;
   line-height: 66px;
-  color: #333;
   text-decoration: none;
 }
 nav ul li a {
@@ -108,13 +108,21 @@ nav ul li ul li a {
   nav ul li {
     float: none;
   }
-  nav ul li a {
+  nav ul li a,
+  nav ul li a:visited {
+    color: #fff;
     padding: 15px;
     line-height: 20px;
-    background: #262626;
+    background: #313131;
   }
   nav ul li ul li a {
     padding-left: 30px;
+  }
+  .navbar-dropdown li a {
+    background: #333;
+  }
+  .navbar-dropdown {
+    box-shadow: none;
   }
   .navbar-dropdown {
     position: static;
