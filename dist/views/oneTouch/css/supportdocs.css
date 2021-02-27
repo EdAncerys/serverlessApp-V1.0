@@ -1,16 +1,7 @@
-img {
-  width: 20vw;
-}
-.images {
-  display: flex;
-  position: relative;
-  top: 10vw;
-}
-.cloud {
-  list-style: none;
-  text-align: center;
+.supoortDocContainer {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 5vw;
-  margin: 0 auto;
+  grid-template-rows: repeat(2, 150px);
+  grid-gap: 20px;
+  max-width: 600px;
 }
