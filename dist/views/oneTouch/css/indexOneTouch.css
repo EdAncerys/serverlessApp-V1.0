@@ -1,14 +1,14 @@
+.indexContainer {
+  height: 100vh;
+  overflow: auto;
+}
 .wrapperOneTouch {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+  padding: 10% 0;
   text-align: center;
-  width: 100%;
 }
 
 .icon {
   width: 150px;
-  min-width: 100px;
   max-width: 250px;
   margin: 1vw;
   transition: transform 0.2s;
