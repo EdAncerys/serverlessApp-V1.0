@@ -6,10 +6,10 @@
 @import url('./userManagement.css');
 @import url('./liveConnections.css');
 @import url('./login.css');
-@import url('./colors.css');
+@import url('./oneTouchColors.css');
+@import url('./oneTouchUIElements.css');
 @import url('../../../css/fonts.css');
 @import url('../../../css/spinner.css');
-@import url('../../../css/UIElements.css');
 @import url('../../../css/fontSize.css');
 
 * {
