@@ -9,7 +9,9 @@
     <section class="navigation">
       <div class="nav-container">
         <div class="brand">
-          <a href="#!">Logo</a>
+          <a href="./index.html"
+            ><img src="./images/color_logo_transparent.png" alt="oneTouch"
+          /></a>
         </div>
         <nav>
           <div class="nav-mobile">
@@ -17,147 +19,66 @@
           </div>
           <ul class="nav-list">
             <li>
-              <a href="#!">Home</a>
+              <a href="./index.html">Home</a>
             </li>
             <li>
-              <a href="#!">About</a>
-            </li>
-            <li>
-              <a href="#!">Services</a>
+              <a href="#!">Hosting</a>
               <ul class="navbar-dropdown">
                 <li>
-                  <a href="#!">Sass</a>
+                  <a href="#!">Order a New Voip Connection</a>
                 </li>
                 <li>
-                  <a href="#!">Less</a>
-                </li>
-                <li>
-                  <a href="#!">Stylus</a>
+                  <a href="#!">Cloud Touch</a>
                 </li>
               </ul>
             </li>
             <li>
-              <a href="#!">Portfolio</a>
-            </li>
-            <li>
-              <a href="#!">Category</a>
+              <a href="#!">Broadband</a>
               <ul class="navbar-dropdown">
                 <li>
-                  <a href="#!">Sass</a>
+                  <a href="#!">Order a New Connection</a>
                 </li>
                 <li>
-                  <a href="#!">Less</a>
+                  <a href="#!">Order Status</a>
                 </li>
                 <li>
-                  <a href="#!">Stylus</a>
+                  <a href="#!">Connection</a>
+                </li>
+                <li>
+                  <a href="#!">Make a Connection</a>
                 </li>
               </ul>
             </li>
             <li>
-              <a href="#!">Contact</a>
+              <a href="../oneTouch/support-docs.html">Support Doc's</a>
+            </li>
+            <li>
+              <a href="#!">Admin</a>
+              <ul class="navbar-dropdown">
+                <li>
+                  <a href="#!">Edit User</a>
+                </li>
+                <li>
+                  <a href="#!">Add User</a>
+                </li>
+                <li>
+                  <a href="#!">Create User</a>
+                </li>
+                <li>
+                  <a href="#!">Create Ticket</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#!">Logout</a>
             </li>
           </ul>
         </nav>
       </div>
     </section>
-    <!-- <navBar class="fontH2">
-      <logo>
-        <div>
-          <a href="./index.html"
-            ><img
-              src="./images/color_logo_transparent.png"
-              alt="NDG"
-              class="logo"
-          /></a>
-        </div>
-      </logo>
-      <nav>
-        <div>
-          <ul class="topNav">
-            <li><a class="navLink" href="./index.html">Home</a></li>
-          </ul>
-        </div>
-        <div>
-          <ul class="topNav">
-            <li class="dropdown">
-              <a class="dropbtn navLink" href="#">Hosting</a>
-              <div class="dropdown-content">
-                <div class="dropdown-menu">
-                  <div class="dropdown-link">
-                    <a class="change navLink" href="#"
-                      >Order a New Voip Connection</a
-                    >
-                  </div>
-                  <div class="dropdown-link">
-                    <a class="change navLink" href="#">Cloud Touch</a>
-                  </div>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <ul class="topNav">
-            <li class="dropdown">
-              <a class="dropbtn navLink" href="#">Broadband</a>
-              <div class="dropdown-content">
-                <div class="dropdown-menu">
-                  <div class="dropdown-link">
-                    <a class="change navLink" href="./order_new_connection.html"
-                      >Order a New Connection</a
-                    >
-                  </div>
-                  <div class="dropdown-link">
-                    <a class="change navLink" href="#">Order Status</a>
-                  </div>
-                  <div class="dropdown-link">
-                    <a class="change navLink" href="#">Connection</a>
-                  </div>
-                  <div class="dropdown-link">
-                    <a
-                      class="change navLink"
-                      href="./make_a_new_connection.html"
-                      >Make a Connection</a
-                    >
-                  </div>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <li>
-            <a class="navLink" href="../oneTouch/support-docs.html"
-              >Support Doc's</a
-            >
-          </li>
-        </div>
-        <div>
-          <ul class="topNav">
-            <li class="dropdown">
-              <a class="dropbtn navLink" href="#">Admin</a>
-              <div class="dropdown-content">
-                <div class="dropdown-menu">
-                  <div class="dropdown-link">
-                    <a class="change navLink" href="#">Edit Users</a>
-                  </div>
-                  <div class="dropdown-link">
-                    <a class="change navLink" href="#">Add Users</a>
-                  </div>
-                  <div class="dropdown-link">
-                    <a class="change navLink" href="#">Create Ticket</a>
-                  </div>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
-        <div class="btnB01" style="margin-left: 20px">Logout</div>
-      </nav>
-    </navBar> -->
 
     <div style="position: absolute; bottom: 0; right: 0">
-      <logout class="btnB01">Clear Sessions</logout>
+      <clearSessionsBtn class="btnB01">Clear Sessions</clearSessionsBtn>
     </div>
   </body>
 </html>
@@ -194,8 +115,7 @@
   // document.querySelector('login').addEventListener('click', () => {
   //   sessionStorage.setItem('user', { user: 'user' });
   // });
-  // document.querySelector('logout').addEventListener('click', () => {
-  //   // sessionStorage.removeItem('user');
-  //   sessionStorage.clear();
-  // });
+  document.querySelector('clearSessionsBtn').addEventListener('click', () => {
+    sessionStorage.clear();
+  });
 </script>
