@@ -10,10 +10,12 @@ async function _getBroadbandAvailability() {
 
   const URL = '/ndg/broadbandAvailability';
   const validateInput = document.getElementById('selectedAddress').value;
-  const oneTouchOrderSlider = document.querySelector('#oneTouchOrderSlider');
-
-  const oneTouchBoradbandDeals = document.createElement('div');
-  oneTouchBoradbandDeals.id = 'oneTouchBoradbandDeals';
+  const oneTouchSlider = document.querySelector('#oneTouchSlider');
+  const oneTouchBroadbandOrderPageTwo = document.querySelector(
+    '#oneTouchBroadbandOrderPageTwo'
+  );
+  const oneTouchBroadbandAvailability = document.createElement('div');
+  oneTouchBroadbandAvailability.id = 'oneTouchBroadbandOrderPageThree';
 
   if (validateInput === 'selectionID') {
     _spinner(false);
@@ -45,9 +47,11 @@ async function _getBroadbandAvailability() {
 
       let orderData = '';
       if (data.length === 0) {
-        oneTouchBoradbandDeals.innerHTML = `<div class='umContainer alignHorizontally noOrders'>
-                                              No Broadband Data Provided!
-                                            </div>`;
+        oneTouchBroadbandAvailability.innerHTML = `<div class='fullHeight center'>
+                                                    <div class='fontH4 boxContainer backgroundWhite'>
+                                                      No Broadband Data Provided!
+                                                    </div>
+                                                  </div>`;
       } else {
         _sortBroadbandData(data, 'name', true).map((order) => {
           orderData += `<div class="boxContainer broadbandDataContainerHover">
@@ -73,7 +77,7 @@ async function _getBroadbandAvailability() {
                         </div>`;
         });
 
-        oneTouchBoradbandDeals.innerHTML = `<div class='umContainer'>
+        oneTouchBroadbandAvailability.innerHTML = `<div class='umContainer'>
                                               <div class="boxContainer broadbandDataContainer">
                                                 <div class="tableCell">Supplier</div>
                                                 <div class="tableCell">Provider</div>
@@ -93,12 +97,8 @@ async function _getBroadbandAvailability() {
 
       _spinner(false);
 
-      document.getElementById('orderAddressContainer').style.display = 'none';
-      oneTouchOrderSlider.appendChild(oneTouchBoradbandDeals);
-
-      document.getElementById('sliderPageTwo').addEventListener('click', () => {
-        _errorMessage('Go To Page Two', 'success');
-      });
+      oneTouchBroadbandOrderPageTwo.style.display = 'none';
+      oneTouchSlider.appendChild(oneTouchBroadbandAvailability);
 
       document.querySelector('body').addEventListener('click', (event) => {
         const btnSelectOrder = event.target.nodeName === 'BTNSELECTORDER';
@@ -106,15 +106,15 @@ async function _getBroadbandAvailability() {
         if (!btnSelectOrder) {
           return;
         }
-        console.log('select');
-        _manageOrderData(
-          event.target.getAttribute('name'),
-          event.target.getAttribute('provider'),
-          event.target.getAttribute('likely_down_speed'),
-          event.target.getAttribute('likely_up_speed'),
-          event.target.getAttribute('price'),
-          event.target.getAttribute('installation')
-        );
+        console.log(event.target.getAttribute('name'));
+        // _manageOrderData(
+        //   event.target.getAttribute('name'),
+        //   event.target.getAttribute('provider'),
+        //   event.target.getAttribute('likely_down_speed'),
+        //   event.target.getAttribute('likely_up_speed'),
+        //   event.target.getAttribute('price'),
+        //   event.target.getAttribute('installation')
+        // );
       });
     } catch (err) {
       console.log(err);

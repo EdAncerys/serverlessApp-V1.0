@@ -66,7 +66,7 @@ async function _getAddressForPostcodeProvided(postcode) {
     _spinner(false);
 
     orderAddressContainer.innerHTML = `<div class='alignHorizontally'>
-                                        <div class='addressSearchContainer boxContainer backgroundWhite'>
+                                        <div class='addressSearchContainer boxContainer'>
                                           <div class='oneTouchIcon'></div>
                                           <div class='alignHorizontally'>
                                             <div class='fontH4'>Please Choose Address</div>
@@ -76,7 +76,7 @@ async function _getAddressForPostcodeProvided(postcode) {
                                             <option selected disabled hidden value='selectionID'>Please Choose Your Address</option>
                                             ${content}
                                           </select>
-                                          <button id='getBroadbandAvailability' class="btnOneTouch" role="button">
+                                          <button id='_getBroadbandAvailability' class="btnOneTouch" role="button">
                                             Check Availability
                                           </button>
                                         </div>
@@ -85,17 +85,11 @@ async function _getAddressForPostcodeProvided(postcode) {
     oneTouchSlider.appendChild(orderAddressContainer);
     oneTouchBroadbandOrderPageOne.style.display = 'none';
 
-    // document.getElementById('sliderPageOne').addEventListener('click', () => {
-    //   // document.getElementById('orderAddressContainer').style.display = 'none';
-    //   // dslFormContainer.style.display = 'block';
-    //   // dslFormUserContainer.style.display = 'block';
-    //   _errorMessage('Go To Page One', 'success');
-    // });
     document
       .getElementById('selectedAddress')
       .addEventListener('change', _saveAddressData);
     document
-      .getElementById('getBroadbandAvailability')
+      .getElementById('_getBroadbandAvailability')
       .addEventListener('click', _getBroadbandAvailability);
   } catch (err) {
     console.log(err);

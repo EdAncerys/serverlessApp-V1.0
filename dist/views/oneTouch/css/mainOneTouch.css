@@ -53,6 +53,9 @@ errorMessage {
 .justifyText {
   text-align: justify;
 }
+.fullHeight {
+  height: 100%;
+}
 .hidden {
   display: none;
 }
