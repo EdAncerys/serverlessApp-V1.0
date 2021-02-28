@@ -16,6 +16,7 @@ async function _getAddressForPostcodeProvided(postcode) {
   );
   const orderAddressContainer = document.createElement('div');
   orderAddressContainer.id = 'oneTouchBroadbandOrderPageTwo';
+  orderAddressContainer.classList.add('center');
 
   try {
     const response = await fetch(URL);
@@ -64,10 +65,13 @@ async function _getAddressForPostcodeProvided(postcode) {
     });
     _spinner(false);
 
-    orderAddressContainer.innerHTML = `<div class='center'>
+    orderAddressContainer.innerHTML = `<div class='alignHorizontally'>
                                         <div class='addressSearchContainer boxContainer backgroundWhite'>
-                                          <div></div>
-                                          <div class='alignHorizontally fontH3'>Choose address below</div>
+                                          <div class='oneTouchIcon'></div>
+                                          <div class='alignHorizontally'>
+                                            <div class='fontH4'>Please Choose Address</div>
+                                            <div class='fontH2'>Postcode provided: ${postcode}</div>
+                                          </div>
                                           <select id="selectedAddress" name="selectedAddress">
                                             <option selected disabled hidden value='selectionID'>Please Choose Your Address</option>
                                             ${content}
