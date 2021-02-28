@@ -1,6 +1,5 @@
 import { _errorMessage } from '../_errorMessage.js';
 import { _sortAddresses } from './_sortAddresses.js';
-import { _saveAddressData } from './_saveAddressData.js';
 import { _getBroadbandAvailability } from './_getBroadbandAvailability.js';
 import { _spinner } from '../_spinner.js';
 
@@ -76,21 +75,14 @@ async function _getAddressForPostcodeProvided(postcode) {
                                             <option selected disabled hidden value='selectionID'>Please Choose Your Address</option>
                                             ${content}
                                           </select>
-                                          <button id='_getBroadbandAvailability' class="btnOneTouch" role="button">
+                                          <getBroadbandAvailability class="btnOneTouch" role="button">
                                             Check Availability
-                                          </button>
+                                          </getBroadbandAvailability>
                                         </div>
                                       <div>`;
 
     oneTouchSlider.appendChild(orderAddressContainer);
     oneTouchBroadbandOrderPageOne.style.display = 'none';
-
-    document
-      .getElementById('selectedAddress')
-      .addEventListener('change', _saveAddressData);
-    document
-      .getElementById('_getBroadbandAvailability')
-      .addEventListener('click', _getBroadbandAvailability);
   } catch (err) {
     console.log(err);
     _errorMessage(err);

@@ -1,4 +1,3 @@
-import { _placeBroadbandOrder } from './_placeBroadbandOrder.js';
 import { _errorMessage } from '../_errorMessage.js';
 
 const _manageOrderData = (
@@ -71,23 +70,6 @@ const _manageOrderData = (
 
   oneTouchBroadbandOrderPageThree.style.display = 'none';
   oneTouchSlider.appendChild(oneTouchOrderReview);
-
-  document.querySelector('body').addEventListener('click', (event) => {
-    const btnPlaceOrder = event.target.nodeName === 'BTNPLACEORDER';
-
-    if (!btnPlaceOrder) {
-      return;
-    }
-    console.log(event.target.getAttribute('name'));
-    // _placeBroadbandOrder(
-    //   event.target.getAttribute('name'),
-    //   event.target.getAttribute('provider'),
-    //   event.target.getAttribute('likely_down_speed'),
-    //   event.target.getAttribute('likely_up_speed'),
-    //   event.target.getAttribute('price'),
-    //   event.target.getAttribute('installation')
-    // );
-  });
 };
 
 export { _manageOrderData };

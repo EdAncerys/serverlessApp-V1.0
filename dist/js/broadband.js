@@ -1,5 +1,9 @@
 import { _newOrderPostcodeValidation } from './_helperFunctions/_icukBroadband/_newOrderPostcodeValidation.js';
 import { _errorMessage } from '../js/_helperFunctions/_errorMessage.js';
+import { _placeBroadbandOrder } from './_helperFunctions/_icukBroadband/_placeBroadbandOrder.js';
+import { _saveAddressData } from './_helperFunctions/_icukBroadband/_saveAddressData.js';
+import { _manageOrderData } from './_helperFunctions/_icukBroadband/_manageOrderData.js';
+import { _getBroadbandAvailability } from './_helperFunctions/_icukBroadband/_getBroadbandAvailability.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   document
@@ -51,3 +55,50 @@ const oneTouchUsers = (ev) => {
   ev.preventDefault();
   _errorMessage('Load Users From DB', 'success');
 };
+
+document.querySelector('body').addEventListener('click', (event) => {
+  const btnPlaceOrder = event.target.nodeName === 'BTNPLACEORDER';
+  const getBroadbandAvailability =
+    event.target.nodeName === 'GETBROADBANDAVAILABILITY';
+  const btnSelectOrder = event.target.nodeName === 'BTNSELECTORDER';
+
+  if (btnPlaceOrder) {
+    _placeBroadbandOrder();
+    return;
+  }
+  if (getBroadbandAvailability) {
+    _getBroadbandAvailability();
+    return;
+  }
+  if (btnSelectOrder) {
+    _manageOrderData(
+      event.target.getAttribute('name'),
+      event.target.getAttribute('provider'),
+      event.target.getAttribute('likely_down_speed'),
+      event.target.getAttribute('likely_up_speed'),
+      event.target.getAttribute('price'),
+      event.target.getAttribute('installation')
+    );
+    return;
+  }
+  console.log(event.target);
+  // if (btn) {
+  //   _placeBroadbandOrder(
+  //     event.target.getAttribute('name'),
+  //     event.target.getAttribute('provider'),
+  //     event.target.getAttribute('likely_down_speed'),
+  //     event.target.getAttribute('likely_up_speed'),
+  //     event.target.getAttribute('price'),
+  //     event.target.getAttribute('installation')
+  //   );
+  //   return;
+  // }
+});
+document.querySelector('body').addEventListener('change', (event) => {
+  const saveAddressData = document.getElementById('selectedAddress');
+
+  if (saveAddressData) {
+    _saveAddressData();
+    return;
+  }
+});

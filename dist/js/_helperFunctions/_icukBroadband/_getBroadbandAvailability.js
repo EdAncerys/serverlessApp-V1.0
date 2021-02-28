@@ -1,7 +1,5 @@
 import { _errorMessage } from '../_errorMessage.js';
 import { _sortBroadbandData } from './_sortBroadbandData.js';
-import { _handleBroadbandSelection } from './_handleBroadbandSelection.js';
-import { _manageOrderData } from './_manageOrderData.js';
 import { _spinner } from '../_spinner.js';
 
 async function _getBroadbandAvailability() {
@@ -97,23 +95,6 @@ async function _getBroadbandAvailability() {
 
       oneTouchBroadbandOrderPageTwo.style.display = 'none';
       oneTouchSlider.appendChild(oneTouchBroadbandAvailability);
-
-      document.querySelector('body').addEventListener('click', (event) => {
-        const btnSelectOrder = event.target.nodeName === 'BTNSELECTORDER';
-
-        if (!btnSelectOrder) {
-          return;
-        }
-        console.log(event.target.getAttribute('name'));
-        _manageOrderData(
-          event.target.getAttribute('name'),
-          event.target.getAttribute('provider'),
-          event.target.getAttribute('likely_down_speed'),
-          event.target.getAttribute('likely_up_speed'),
-          event.target.getAttribute('price'),
-          event.target.getAttribute('installation')
-        );
-      });
     } catch (err) {
       console.log(err);
       _errorMessage(err);
