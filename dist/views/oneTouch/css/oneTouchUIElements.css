@@ -1,4 +1,5 @@
-.btnOneTouch {
+.btnOneTouch,
+.btnB01 {
   font-size: 1.125rem;
   background-color: #0074a6;
   color: #fff;
@@ -16,28 +17,28 @@
   user-select: none;
   vertical-align: middle;
   white-space: nowrap;
+  cursor: pointer;
+}
+.btnOneTouch {
   width: 100%;
   height: 100%;
 }
 .btnOneTouch:hover {
   background-color: #0074a6d3;
-  cursor: pointer;
+  box-shadow: 0 4px 12px -4px rgb(0 0 0 / 80%);
 }
 .btnB01 {
-  display: grid;
-  align-items: center;
-  justify-content: center;
-  letter-spacing: 1px;
-  border: 0;
   color: #6ec5dd;
   background-color: #16214d;
-  min-width: 80px;
-  min-height: 30px;
+  border-radius: 10px;
 }
 .btnB01:hover {
   color: #f7f7f7;
   background-color: #44c7f4;
-  cursor: pointer;
+  box-shadow: 0 4px 12px -4px rgb(0 0 0 / 80%);
+  -ms-transform: scale(0.98);
+  -webkit-transform: scale(0.98);
+  transform: scale(0.98);
 }
 .boxContainer {
   margin: 4px 0;
