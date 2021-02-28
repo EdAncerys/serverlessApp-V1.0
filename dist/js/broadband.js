@@ -19,8 +19,8 @@ if (
   performance.navigation.type === PerformanceNavigation.TYPE_RELOAD &&
   oneTouchDOMBody
 ) {
-  console.info('This page is reloaded');
-  const body = document.querySelector('body');
+  console.info('Page reloaded');
+  const body = document.querySelector('#oneTouchBodyContainer');
   body.innerHTML = oneTouchDOMBody;
 }
 // Create custom event
@@ -36,8 +36,9 @@ observer.observe(document.body, {
 });
 // Save DOM changes to localStorage
 document.body.addEventListener('dom-changed', (e) => {
-  console.info('Saving Data to sessionStorage...');
-  const oneTouchDOMBody = document.body.innerHTML;
+  console.info('Saving DOM Body data to sessionStorage...');
+  const oneTouchDOMBody = document.querySelector('#oneTouchBodyContainer')
+    .innerHTML;
   sessionStorage.setItem('oneTouchDOMBody', oneTouchDOMBody);
 });
 
