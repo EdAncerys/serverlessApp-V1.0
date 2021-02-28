@@ -2,7 +2,7 @@ import { _validatePostcode } from './_validatePostcode.js';
 import { _handleErrors } from '../_handleErrors.js';
 import { _getAddress } from './_getAddress.js';
 
-const _handleFormValidation = () => {
+const _newOrderPostcodeValidation = () => {
   console.log('Validating From...');
 
   let postcode = document.getElementById('postcode').value.replace(/\s/g, '');
@@ -24,4 +24,4 @@ const _handleFormValidation = () => {
   }
 };
 
-export { _handleFormValidation };
+export { _newOrderPostcodeValidation };

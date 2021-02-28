@@ -1,4 +1,4 @@
-import { _handleFormValidation } from './_helperFunctions/_icukBroadband/_handleFormValidation.js';
+import { _newOrderPostcodeValidation } from './_helperFunctions/_icukBroadband/_newOrderPostcodeValidation.js';
 import { _errorMessage } from '../js/_helperFunctions/_errorMessage.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const getAddressForPostcodeProvided = (ev) => {
   ev.preventDefault();
-  _handleFormValidation();
+  _newOrderPostcodeValidation();
 };
 
 const oneTouchUsers = (ev) => {
