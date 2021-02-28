@@ -19,10 +19,10 @@ const _manageOrderData = (
   );
   const oneTouchSlider = document.querySelector('#oneTouchSlider');
   const oneTouchBroadbandOrderPageThree = document.querySelector(
-    '#oneTouchBroadbandOrderPageTwo'
+    '#oneTouchBroadbandOrderPageThree'
   );
-  const oneTouchBroadbandAvailability = document.createElement('div');
-  oneTouchBroadbandAvailability.id = 'oneTouchBroadbandOrderPageThree';
+  const oneTouchOrderReview = document.createElement('div');
+  oneTouchOrderReview.id = 'oneTouchBroadbandOrderPageFour';
 
   // Save data to session storage
   sessionStorage.setItem('name', name);
@@ -32,51 +32,45 @@ const _manageOrderData = (
   sessionStorage.setItem('price', price);
   sessionStorage.setItem('installation', installation);
 
-  const orderData = `<div class="boxContainer broadbandDataContainerHover">
-                    <div class="broadbandDataContainer">
-                      <div class="tableCell">${name}</div>
-                      <div class="tableCell">${provider}</div>
-                      <div class="tableCell">${likely_down_speed}</div>
-                      <div class="tableCell">${likely_up_speed}</div>
-                      <div class="tableCell">${price}</div>
-                      <div class="tableCell">${installation}</div>
-                      <div class="tableCell">
-                        <btnPlaceOrder name='${name}' 
-                                        provider='${provider}' 
-                                        likely_down_speed='${likely_down_speed}' 
-                                        likely_up_speed='${likely_up_speed}' 
-                                        price='${price}' 
-                                        installation='${installation}' 
-                                        class="btnB01" role="button">
-                          Place Order
-                        </btnPlaceOrder>
-                    </div>
-                    </div>
-                  </div>`;
+  const orderData = `<div class="boxContainer backgroundWhiteT01 broadbandDataContainerHover">
+                      <div class="broadbandDataContainer">
+                        <div class="tableCell">${name}</div>
+                        <div class="tableCell">${provider}</div>
+                        <div class="tableCell">${likely_down_speed}</div>
+                        <div class="tableCell">${likely_up_speed}</div>
+                        <div class="tableCell">${price}</div>
+                        <div class="tableCell">${installation}</div>
+                        <div class="tableCell">
+                        <div class='center'>
+                          <btnPlaceOrder name='${name}' 
+                                          provider='${provider}' 
+                                          likely_down_speed='${likely_down_speed}' 
+                                          likely_up_speed='${likely_up_speed}' 
+                                          price='${price}' 
+                                          installation='${installation}' 
+                                          class="btnB01" role="button">
+                            Select
+                          </btnPlaceOrder>
+                        </div>
+                      </div>
+                      </div>
+                    </div>`;
 
-  orderSelectionContainer.innerHTML = `<div class='umContainer'>
-                                        <div class="boxContainer broadbandDataContainer">
-                                          <div class="tableCell">Supplier</div>
-                                          <div class="tableCell">Provider</div>
-                                          <div class="tableCell">Download</div>
-                                          <div class="tableCell">Upload</div>
-                                          <div class="tableCell">Price</div>
-                                          <div class="tableCell">Installation</div>
-                                          <div class="tableCell">Select Deal</div>
-                                        </div>
-                                        ${orderData}
-                                      </div>
-                                        <div class='sliderNavBtn'>
-                                        <div id='sliderPageThree' class="btnB01">Go Back</div>
-                                        <div></div>
-                                      </div>`;
+  oneTouchOrderReview.innerHTML = `<div class='alignHorizontally'>
+                                    <div class="boxContainer broadbandDataContainer backgroundWhite">
+                                      <div class="tableCell">Supplier</div>
+                                      <div class="tableCell">Provider</div>
+                                      <div class="tableCell">Download</div>
+                                      <div class="tableCell">Upload</div>
+                                      <div class="tableCell">Price</div>
+                                      <div class="tableCell">Installation</div>
+                                      <div class="tableCell">Select Deal</div>
+                                    </div>
+                                      ${orderData}
+                                    </div>`;
 
-  oneTouchBoradbandDeals.style.display = 'none';
-  oneTouchOrderSlider.appendChild(orderSelectionContainer);
-
-  document.getElementById('sliderPageThree').addEventListener('click', () => {
-    _errorMessage('Go To Page Three', 'success');
-  });
+  oneTouchBroadbandOrderPageThree.style.display = 'none';
+  oneTouchSlider.appendChild(oneTouchOrderReview);
 
   document.querySelector('body').addEventListener('click', (event) => {
     const btnPlaceOrder = event.target.nodeName === 'BTNPLACEORDER';
@@ -84,15 +78,15 @@ const _manageOrderData = (
     if (!btnPlaceOrder) {
       return;
     }
-    console.log('select');
-    _placeBroadbandOrder(
-      event.target.getAttribute('name'),
-      event.target.getAttribute('provider'),
-      event.target.getAttribute('likely_down_speed'),
-      event.target.getAttribute('likely_up_speed'),
-      event.target.getAttribute('price'),
-      event.target.getAttribute('installation')
-    );
+    console.log(event.target.getAttribute('name'));
+    // _placeBroadbandOrder(
+    //   event.target.getAttribute('name'),
+    //   event.target.getAttribute('provider'),
+    //   event.target.getAttribute('likely_down_speed'),
+    //   event.target.getAttribute('likely_up_speed'),
+    //   event.target.getAttribute('price'),
+    //   event.target.getAttribute('installation')
+    // );
   });
 };
 
