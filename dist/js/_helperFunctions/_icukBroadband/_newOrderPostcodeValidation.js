@@ -1,6 +1,6 @@
 import { _validatePostcode } from './_validatePostcode.js';
 import { _handleErrors } from '../_handleErrors.js';
-import { _getAddress } from './_getAddress.js';
+import { _getAddressForPostcodeProvided } from './_getAddressForPostcodeProvided.js';
 
 const _newOrderPostcodeValidation = () => {
   console.log('Validating From...');
@@ -20,7 +20,7 @@ const _newOrderPostcodeValidation = () => {
     _handleErrors(errors);
   } else {
     sessionStorage.setItem('oderPostcode', postcode);
-    _getAddress(postcode);
+    _getAddressForPostcodeProvided(postcode);
   }
 };
 

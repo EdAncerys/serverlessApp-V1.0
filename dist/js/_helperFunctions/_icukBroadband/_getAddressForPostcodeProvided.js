@@ -4,14 +4,18 @@ import { _saveAddressData } from './_saveAddressData.js';
 import { _getBroadbandAvailability } from './_getBroadbandAvailability.js';
 import { _spinner } from '../_spinner.js';
 
-async function _getAddress(postcode) {
+async function _getAddressForPostcodeProvided(postcode) {
   console.log('Fetching addresses for postcode provided...');
   _spinner(true, 'Loading Addresses For Provided Postcode...');
   const URL = '/ndg/getAddresses/' + postcode;
   console.log(URL);
-  const oneTouchOrderSlider = document.querySelector('#oneTouchOrderSlider');
-  const dslFormContainer = document.querySelector('#dslFormContainer');
-  const dslFormUserContainer = document.querySelector('#dslFormUserContainer');
+
+  const oneTouchSlider = document.querySelector('#oneTouchSlider');
+  const oneTouchBroadbandOrderPageOne = document.querySelector(
+    '#oneTouchBroadbandOrderPageOne'
+  );
+  const orderAddressContainer = document.createElement('div');
+  orderAddressContainer.id = 'oneTouchBroadbandOrderPageTwo';
 
   try {
     const response = await fetch(URL);
@@ -59,9 +63,8 @@ async function _getAddress(postcode) {
                 >${thoroughfare_number} ${premises_name} ${sub_premises} ${thoroughfare_name} ${county} ${postcode}</option>`;
     });
     _spinner(false);
-    const orderAddressContainer = document.createElement('div');
 
-    orderAddressContainer.innerHTML = `<div id='orderAddressContainer' class='boxContainer'>
+    orderAddressContainer.innerHTML = `<div class='boxContainer'>
                                         <div class='alignHorizontally fontH3'>Choose your address</div>
                                         <select id="selectedAddress" name="selectedAddress">
                                           <option selected disabled hidden value='selectionID'>Please Choose Your Address</option>
@@ -70,22 +73,17 @@ async function _getAddress(postcode) {
                                         <button id='getBroadbandAvailability' class="btnOneTouch" style='margin: 2vw 0 2vw 0' role="button">
                                           Check Availability
                                         </button>
-                                      <div>
-                                      <div class='sliderNavBtn'>
-                                        <div id='sliderPageOne' class="btnB01">Go Back</div>
-                                        <div></div>
-                                      </div>`;
+                                      <div>`;
 
-    oneTouchOrderSlider.appendChild(orderAddressContainer);
-    dslFormContainer.style.display = 'none';
-    dslFormUserContainer.style.display = 'none';
+    oneTouchSlider.appendChild(orderAddressContainer);
+    oneTouchBroadbandOrderPageOne.style.display = 'none';
 
-    document.getElementById('sliderPageOne').addEventListener('click', () => {
-      // document.getElementById('orderAddressContainer').style.display = 'none';
-      // dslFormContainer.style.display = 'block';
-      // dslFormUserContainer.style.display = 'block';
-      _errorMessage('Go To Page One', 'success');
-    });
+    // document.getElementById('sliderPageOne').addEventListener('click', () => {
+    //   // document.getElementById('orderAddressContainer').style.display = 'none';
+    //   // dslFormContainer.style.display = 'block';
+    //   // dslFormUserContainer.style.display = 'block';
+    //   _errorMessage('Go To Page One', 'success');
+    // });
     document
       .getElementById('selectedAddress')
       .addEventListener('change', _saveAddressData);
@@ -98,4 +96,4 @@ async function _getAddress(postcode) {
   }
 }
 
-export { _getAddress };
+export { _getAddressForPostcodeProvided };

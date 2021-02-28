@@ -4,7 +4,7 @@
 /* Page content */
 .oneTouchSlider {
   width: 100%;
-  height: 65vh;
+  height: 50vh;
   min-height: 450px;
   padding: 10px 0;
   background: linear-gradient(#e66465, #9198e5);
@@ -63,6 +63,9 @@
 @media only screen and (max-width: 800px) {
   .features {
     flex-direction: column;
+  }
+  .feature-container {
+    padding: 20px 20px;
   }
 }
 /* 
