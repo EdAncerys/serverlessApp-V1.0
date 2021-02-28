@@ -56,6 +56,9 @@ errorMessage {
 .fullHeight {
   height: 100%;
 }
+.fullWidth {
+  width: 100%;
+}
 .hidden {
   display: none;
 }

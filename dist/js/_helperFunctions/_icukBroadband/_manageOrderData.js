@@ -17,12 +17,12 @@ const _manageOrderData = (
     price,
     installation
   );
-  const oneTouchOrderSlider = document.querySelector('#oneTouchOrderSlider');
-  const oneTouchBoradbandDeals = document.querySelector(
-    '#oneTouchBoradbandDeals'
+  const oneTouchSlider = document.querySelector('#oneTouchSlider');
+  const oneTouchBroadbandOrderPageThree = document.querySelector(
+    '#oneTouchBroadbandOrderPageTwo'
   );
-  const orderSelectionContainer = document.createElement('div');
-  orderSelectionContainer.id = 'orderSelectionContainer';
+  const oneTouchBroadbandAvailability = document.createElement('div');
+  oneTouchBroadbandAvailability.id = 'oneTouchBroadbandOrderPageThree';
 
   // Save data to session storage
   sessionStorage.setItem('name', name);

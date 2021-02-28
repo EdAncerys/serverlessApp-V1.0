@@ -48,13 +48,13 @@ async function _getBroadbandAvailability() {
       let orderData = '';
       if (data.length === 0) {
         oneTouchBroadbandAvailability.innerHTML = `<div class='fullHeight center'>
-                                                    <div class='fontH4 boxContainer backgroundWhite'>
+                                                    <div class='fontH4 boxContainer backgroundWhiteT01'>
                                                       No Broadband Data Provided!
                                                     </div>
                                                   </div>`;
       } else {
         _sortBroadbandData(data, 'name', true).map((order) => {
-          orderData += `<div class="boxContainer broadbandDataContainerHover">
+          orderData += `<div class="boxContainer backgroundWhiteT01 broadbandDataContainerHover">
                           <div class="broadbandDataContainer">
                             <div class="tableCell">${order.name}</div>
                             <div class="tableCell">${order.provider}</div>
@@ -63,6 +63,7 @@ async function _getBroadbandAvailability() {
                             <div class="tableCell">${order.price}</div>
                             <div class="tableCell">${order.installation}</div>
                             <div class="tableCell">
+                            <div class='center'>
                               <btnSelectOrder name='${order.name}' 
                                               provider='${order.provider}' 
                                               likely_down_speed='${order.likely_down_speed}' 
@@ -72,27 +73,24 @@ async function _getBroadbandAvailability() {
                                               class="btnB01" role="button">
                                 Select
                               </btnSelectOrder>
+                            </div>
                           </div>
                           </div>
                         </div>`;
         });
 
-        oneTouchBroadbandAvailability.innerHTML = `<div class='umContainer'>
-                                              <div class="boxContainer broadbandDataContainer">
-                                                <div class="tableCell">Supplier</div>
-                                                <div class="tableCell">Provider</div>
-                                                <div class="tableCell">Download</div>
-                                                <div class="tableCell">Upload</div>
-                                                <div class="tableCell">Price</div>
-                                                <div class="tableCell">Installation</div>
-                                                <div class="tableCell">Select Deal</div>
-                                              </div>
-                                              ${orderData}
-                                            </div>
-                                              <div class='sliderNavBtn'>
-                                              <div id='sliderPageTwo' class="btnB01">Go Back</div>
-                                              <div></div>
-                                            </div>`;
+        oneTouchBroadbandAvailability.innerHTML = `<div class='alignHorizontally'>
+                                                    <div class="boxContainer broadbandDataContainer backgroundWhite">
+                                                      <div class="tableCell">Supplier</div>
+                                                      <div class="tableCell">Provider</div>
+                                                      <div class="tableCell">Download</div>
+                                                      <div class="tableCell">Upload</div>
+                                                      <div class="tableCell">Price</div>
+                                                      <div class="tableCell">Installation</div>
+                                                      <div class="tableCell">Select Deal</div>
+                                                    </div>
+                                                    ${orderData}
+                                                  </div>`;
       }
 
       _spinner(false);
@@ -107,14 +105,14 @@ async function _getBroadbandAvailability() {
           return;
         }
         console.log(event.target.getAttribute('name'));
-        // _manageOrderData(
-        //   event.target.getAttribute('name'),
-        //   event.target.getAttribute('provider'),
-        //   event.target.getAttribute('likely_down_speed'),
-        //   event.target.getAttribute('likely_up_speed'),
-        //   event.target.getAttribute('price'),
-        //   event.target.getAttribute('installation')
-        // );
+        _manageOrderData(
+          event.target.getAttribute('name'),
+          event.target.getAttribute('provider'),
+          event.target.getAttribute('likely_down_speed'),
+          event.target.getAttribute('likely_up_speed'),
+          event.target.getAttribute('price'),
+          event.target.getAttribute('installation')
+        );
       });
     } catch (err) {
       console.log(err);
