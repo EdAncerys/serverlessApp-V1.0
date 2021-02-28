@@ -1,3 +1,7 @@
+.supportDocsContent {
+  padding-top: 5%;
+  max-width: 700px;
+}
 .supoortDocContainer {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -7,7 +11,6 @@
 }
 .supportIcon {
   width: 200px;
-  max-width: 250px;
   margin: 1vw;
   transition: transform 0.2s;
 }

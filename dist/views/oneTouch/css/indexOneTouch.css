@@ -1,10 +1,5 @@
-.indexContainer {
-  height: 100%;
-  overflow: auto;
-}
-.wrapperOneTouch {
-  padding-top: 100px;
-  text-align: center;
+.indexContent {
+  padding-top: 5%;
 }
 .indexIcon {
   width: 150px;

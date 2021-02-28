@@ -48,7 +48,6 @@ nav ul li a:visited {
 }
 nav ul li a {
   background: transparent;
-  color: #fff;
 }
 nav ul li a:hover,
 nav ul li a:visited:hover {
@@ -124,6 +123,7 @@ nav ul li ul li a {
   }
   .navbar-dropdown {
     box-shadow: none;
+    margin-top: 0;
   }
   .navbar-dropdown {
     position: static;
