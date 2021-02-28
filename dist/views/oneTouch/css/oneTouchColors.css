@@ -7,6 +7,13 @@
 .backgroundSilver {
   background-color: #f2f2f2;
 }
+.backgroundWhite {
+  background-color: #f7f7f7;
+}
+
+.colorBlack {
+  color: #333;
+}
 .colorPrimary {
   color: #6ec5dd;
 }

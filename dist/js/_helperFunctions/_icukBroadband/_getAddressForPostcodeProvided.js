@@ -64,15 +64,18 @@ async function _getAddressForPostcodeProvided(postcode) {
     });
     _spinner(false);
 
-    orderAddressContainer.innerHTML = `<div class='boxContainer'>
-                                        <div class='alignHorizontally fontH3'>Choose your address</div>
-                                        <select id="selectedAddress" name="selectedAddress">
-                                          <option selected disabled hidden value='selectionID'>Please Choose Your Address</option>
-                                          ${content}
-                                        </select>
-                                        <button id='getBroadbandAvailability' class="btnOneTouch" style='margin: 2vw 0 2vw 0' role="button">
-                                          Check Availability
-                                        </button>
+    orderAddressContainer.innerHTML = `<div class='center'>
+                                        <div class='addressSearchContainer boxContainer backgroundWhite'>
+                                          <div></div>
+                                          <div class='alignHorizontally fontH3'>Choose address below</div>
+                                          <select id="selectedAddress" name="selectedAddress">
+                                            <option selected disabled hidden value='selectionID'>Please Choose Your Address</option>
+                                            ${content}
+                                          </select>
+                                          <button id='getBroadbandAvailability' class="btnOneTouch" role="button">
+                                            Check Availability
+                                          </button>
+                                        </div>
                                       <div>`;
 
     oneTouchSlider.appendChild(orderAddressContainer);
