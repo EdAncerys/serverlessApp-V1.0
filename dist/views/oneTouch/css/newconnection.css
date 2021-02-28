@@ -1,20 +1,31 @@
 .newConnectionContent {
   padding-top: 20px;
 }
-.justifyText {
-  text-align: justify;
-}
-
-/* SECTIONS */
+/* Page content */
 .oneTouchSlider {
   width: 100%;
-  height: 50vh;
-  min-height: 350px;
+  height: 65vh;
+  min-height: 450px;
+  padding: 10px 0;
   background: linear-gradient(#e66465, #9198e5);
   background-size: cover;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  overflow: auto;
+}
+.ncUserSelection {
+  display: grid;
+  grid-template-rows: 40px 50px;
+  align-items: center;
+}
+.dslFormBackground {
+  background-image: url(../images/Broadband.png);
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 350px;
+  height: 300px;
+  margin: 10px;
 }
 .features {
   width: 100%;
@@ -33,44 +44,19 @@
   width: 100%;
   margin-bottom: 15px;
 }
-
-
-/* KEYFRAME ANIMATIONS */
-
-@-webkit-keyframes gradbar {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+.addressSearchContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 20px;
+  align-self: end;
+  padding: 0 10px;
+  margin-top: 165px;
 }
-
-@-moz-keyframes gradbar {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-@keyframes gradbar {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+.addressSearchContainer input {
+  font-size: 1.5em;
+  padding-left: 10px;
+  background-color: transparent;
+  outline: none;
 }
 
 /* Media Queries */
@@ -78,7 +64,7 @@
   .features {
     flex-direction: column;
   }
-
+}
 /* 
 #oneTouchOrderSlider {
   display: grid;

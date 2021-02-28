@@ -50,6 +50,9 @@ errorMessage {
   align-items: center;
   width: 100%;
 }
+.justifyText {
+  text-align: justify;
+}
 .hidden {
   display: none;
 }

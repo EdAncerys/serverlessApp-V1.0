@@ -27,8 +27,37 @@
       <div class="oneTouchWrapper">
         <div class="newConnectionContent">
           <section class="oneTouchSlider">
-            <div class="fontH3">Broadband Content</div>
-            <div class="fontH2">Content Content Content Content</div>
+            <div class="alignHorizontally">
+              <div class="colorWhite">
+                <div class="fontH4">Broadband Order</div>
+                <div class="fontH2">Enter Postcode to start your order</div>
+              </div>
+              <div class="dslFormBackground">
+                <form action="/">
+                  <div class='addressSearchContainer'>
+                    <input
+                      id="postcode"
+                      name="postcode"
+                      class="dslFormInput"
+                      type="text"
+                    />
+                    <button
+                      id="getAddressForPostcodeProvided"
+                      class="btnOneTouch"
+                    >
+                      Get Addresses
+                    </button>
+                  </div>
+                </form>
+              </div>
+
+              <div class="ncUserSelection">
+                <div class="fontH4">|or|</div>
+                <button id="oneTouchUsers" class="btnOneTouch">
+                  Select User
+                </button>
+              </div>
+            </div>
           </section>
 
           <section class="features">
@@ -69,7 +98,7 @@
       </div>
     </div>
 
-    <div id="oneTouchOrderSlider">
+    <!-- <div id="oneTouchOrderSlider">
       <div id="dslFormContainer" class="dslFormBackground dslForm">
         <div class="dslFormInputContainer">
           <input
@@ -87,6 +116,6 @@
         <div class="alignHorizontally" style="margin: 20px 0">|or|</div>
         <div id="getUsers" class="btnB01">Load Users</div>
       </div>
-    </div>
+    </div> -->
   </body>
 </html>
