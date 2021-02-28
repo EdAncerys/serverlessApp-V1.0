@@ -2,14 +2,7 @@ import { _createOneTouchOrder } from '../mongoDB/_createOneTouchOrder.js';
 import { _errorMessage } from '../_errorMessage.js';
 import { _spinner } from '../_spinner.js';
 
-async function _placeBroadbandOrder(
-  broadband_name,
-  broadband_provider,
-  broadband_likely_down_speed,
-  broadband_likely_up_speed,
-  broadband_price,
-  broadband_installation
-) {
+async function _placeBroadbandOrder() {
   console.log('Placing Broadband Order...');
   _spinner(true);
 
@@ -20,6 +13,13 @@ async function _placeBroadbandOrder(
   let customerEmail = sessionStorage.getItem('customerEmail');
   let oderSubject =
     'Broadband Order' + ' | Created at: ' + new Date().toLocaleString();
+
+  let broadband_name = sessionStorage.getItem('name');
+  let broadband_provider = sessionStorage.getItem('provider');
+  let broadband_likely_down_speed = sessionStorage.getItem('likely_down_speed');
+  let broadband_likely_up_speed = sessionStorage.getItem('likely_up_speed');
+  let broadband_price = sessionStorage.getItem('price');
+  let broadband_installation = sessionStorage.getItem('installation');
 
   let sub_premises = sessionStorage.getItem('sub_premises');
   let premises_name = sessionStorage.getItem('premises_name');

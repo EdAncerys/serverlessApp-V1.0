@@ -81,18 +81,6 @@ document.querySelector('body').addEventListener('click', (event) => {
     );
     return;
   }
-  console.log(event.target);
-  // if (btn) {
-  //   _placeBroadbandOrder(
-  //     event.target.getAttribute('name'),
-  //     event.target.getAttribute('provider'),
-  //     event.target.getAttribute('likely_down_speed'),
-  //     event.target.getAttribute('likely_up_speed'),
-  //     event.target.getAttribute('price'),
-  //     event.target.getAttribute('installation')
-  //   );
-  //   return;
-  // }
 });
 document.querySelector('body').addEventListener('change', (event) => {
   const saveAddressData = document.getElementById('selectedAddress');
