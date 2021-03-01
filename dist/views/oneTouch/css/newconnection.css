@@ -96,63 +96,53 @@
   row-gap: 10px;
   width: 400px;
 }
-/* The container */
-.container-checkbox {
-  display: block;
-  position: relative;
-  padding-left: 35px;
-  margin-bottom: 12px;
-  cursor: pointer;
-  font-size: 22px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+.termsAndConditionsBtn {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
 }
-/* Hide the browser's default checkbox */
-.container-checkbox input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-}
-/* Create a custom checkbox */
-.container-checkbox .checkmark {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 25px;
-  width: 25px;
-  background-color: #eee;
-}
-/* On mouse-over, add a grey background color */
-.container-checkbox:hover input ~ .checkmark {
-  background-color: #ccc;
-}
-/* When the checkbox is checked, add a blue background */
-.container-checkbox input:checked ~ .checkmark {
-  background-color: #2196f3;
-}
-/* Create the checkmark/indicator (hidden when not checked) */
-.container-checkbox .checkmark:after {
-  content: '';
-  position: absolute;
-  display: none;
-}
-/* Show the checkmark when checked */
-.container-checkbox input:checked ~ .checkmark:after {
-  display: block;
-}
-/* Style the checkmark/indicator */
-.container-checkbox .checkmark:after {
-  left: 9px;
-  top: 5px;
-  width: 5px;
-  height: 10px;
-  border: solid white;
-  border-width: 0 3px 3px 0;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
+/* CheckBox css */
+.Checkbox {
+  font-size: 18px;
+  display: grid;
+  grid-auto-flow: column;
+  column-gap: 0.5em;
+  align-items: center;
+
+  &-input {
+    margin: 0;
+    appearance: none;
+    display: block;
+    width: 18px;
+    height: 18px;
+    background-color: #fff;
+    border: 2px solid #aaa;
+    border-radius: 4px;
+    outline: none;
+
+    &:checked {
+      position: relative;
+      background-color: #5290ff;
+      border-color: transparent;
+
+      /* The checkmark */
+      &::after {
+        box-sizing: border-box;
+        content: '';
+        position: absolute;
+        width: 6px;
+        height: 10px;
+        border: 2px solid #fff;
+        border-top: none;
+        border-left: none;
+        transform-origin: bottom right;
+        transform: translateX(0) translateY(1px) rotate(45deg);
+      }
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 3px #8cdaff;
+    }
+  }
 }
 
 /* Media Queries */

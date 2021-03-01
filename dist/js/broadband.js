@@ -3,6 +3,7 @@ import { _errorMessage } from '../js/_helperFunctions/_errorMessage.js';
 import { _placeBroadbandOrder } from './_helperFunctions/_icukBroadband/_placeBroadbandOrder.js';
 import { _saveAddressData } from './_helperFunctions/_icukBroadband/_saveAddressData.js';
 import { _manageOrderData } from './_helperFunctions/_icukBroadband/_manageOrderData.js';
+import { _termsAndConditions } from './_helperFunctions/_icukBroadband/_termsAndConditions.js';
 import { _getBroadbandAvailability } from './_helperFunctions/_icukBroadband/_getBroadbandAvailability.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -61,8 +62,10 @@ document.querySelector('body').addEventListener('click', (event) => {
     event.target.nodeName === 'GETBROADBANDAVAILABILITY';
   const selectOrder = event.target.nodeName === 'SELECTORDER';
   const termsAndConditions = event.target.nodeName === 'TERMSANDCONDITIONS';
+  const agreeWithTermsAndConditions = event.target.nodeName === 'LABEL';
   const placeOrder = event.target.nodeName === 'PLACEORDER';
 
+  // console.log(event.target.nodeName);
   if (getBroadbandAvailability) {
     _getBroadbandAvailability();
     return;
@@ -79,7 +82,11 @@ document.querySelector('body').addEventListener('click', (event) => {
     return;
   }
   if (termsAndConditions) {
-    console.log('termsAndConditions');
+    _termsAndConditions();
+    return;
+  }
+  if (agreeWithTermsAndConditions) {
+    console.log('agreeWithTermsAndConditions');
     return;
   }
   if (placeOrder) {
@@ -89,8 +96,7 @@ document.querySelector('body').addEventListener('click', (event) => {
 });
 document.querySelector('body').addEventListener('change', (event) => {
   const saveAddressData = document.getElementById('selectedAddress');
-
-  if (saveAddressData) {
+  if (saveAddressData && saveAddressData.id === 'selectedAddress') {
     _saveAddressData();
     return;
   }
