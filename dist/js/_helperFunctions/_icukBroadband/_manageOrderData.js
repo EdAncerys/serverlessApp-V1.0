@@ -41,15 +41,9 @@ const _manageOrderData = (
                         <div class="tableCell">${installation}</div>
                         <div class="tableCell">
                         <div class='center'>
-                          <placeOrder name='${name}' 
-                                          provider='${provider}' 
-                                          likely_down_speed='${likely_down_speed}' 
-                                          likely_up_speed='${likely_up_speed}' 
-                                          price='${price}' 
-                                          installation='${installation}' 
-                                          class="btnB01" role="button">
-                            Order
-                          </placeOrder>
+                          <termsAndConditions class="btnB01" role="button">
+                            Place Order
+                          </termsAndConditions>
                         </div>
                       </div>
                       </div>

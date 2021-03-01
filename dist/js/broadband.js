@@ -60,7 +60,7 @@ document.querySelector('body').addEventListener('click', (event) => {
   const getBroadbandAvailability =
     event.target.nodeName === 'GETBROADBANDAVAILABILITY';
   const selectOrder = event.target.nodeName === 'SELECTORDER';
-  const termsAndConditions = event.target.nodeName === 'BTNSELECTORDER';
+  const termsAndConditions = event.target.nodeName === 'TERMSANDCONDITIONS';
   const placeOrder = event.target.nodeName === 'PLACEORDER';
 
   if (getBroadbandAvailability) {
@@ -76,6 +76,10 @@ document.querySelector('body').addEventListener('click', (event) => {
       event.target.getAttribute('price'),
       event.target.getAttribute('installation')
     );
+    return;
+  }
+  if (termsAndConditions) {
+    console.log('termsAndConditions');
     return;
   }
   if (placeOrder) {
