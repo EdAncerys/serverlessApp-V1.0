@@ -1,5 +1,3 @@
-import { _errorMessage } from '../_errorMessage.js';
-
 const _manageOrderData = (
   name,
   provider,

@@ -30,7 +30,7 @@
   background-color: #16214d;
   border-radius: 10px;
   padding: 5px 15px;
-  font-size: 0.9rem;
+  font-size: 0.75rem;
 }
 .btnB01:hover {
   color: #f7f7f7;
@@ -58,6 +58,12 @@
   align-content: center;
   overflow-y: scroll;
   padding: 0px 2px;
+}
+.btnDisable {
+  cursor: not-allowed;
+  pointer-events: none;
+  color: #c0c0c0;
+  background-color: #ffffff;
 }
 *::-webkit-scrollbar {
   display: none; /* Chrome Safari */
