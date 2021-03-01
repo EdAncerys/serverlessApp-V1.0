@@ -80,9 +80,7 @@
 }
 .broadbandDataContainer {
   display: grid;
-  grid-template-columns: 250px 1fr 1fr 1fr 1fr 1fr 100px;
-  width: 800px;
-  min-height: 40px;
+  grid-template-columns: 200px 80px 80px 80px 80px 100px 100px;
 }
 .broadbandDataContainerHover:hover {
   background-color: #fff;

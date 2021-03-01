@@ -52,7 +52,7 @@ async function _getBroadbandAvailability() {
                                                   </div>`;
       } else {
         _sortBroadbandData(data, 'name', true).map((order) => {
-          orderData += `<div class="boxContainer backgroundWhiteT01 broadbandDataContainerHover">
+          orderData += `<div class="boxContainer backgroundWhiteT01 broadbandDataContainerHover fontH2">
                           <div class="broadbandDataContainer">
                             <div class="tableCell">${order.name}</div>
                             <div class="tableCell">${order.provider}</div>
@@ -62,7 +62,7 @@ async function _getBroadbandAvailability() {
                             <div class="tableCell">${order.installation}</div>
                             <div class="tableCell">
                             <div class='center'>
-                              <btnSelectOrder name='${order.name}' 
+                              <selectOrder name='${order.name}' 
                                               provider='${order.provider}' 
                                               likely_down_speed='${order.likely_down_speed}' 
                                               likely_up_speed='${order.likely_up_speed}' 
@@ -70,7 +70,7 @@ async function _getBroadbandAvailability() {
                                               installation='${order.installation}' 
                                               class="btnB01" role="button">
                                 Select
-                              </btnSelectOrder>
+                              </selectOrder>
                             </div>
                           </div>
                           </div>
@@ -78,14 +78,14 @@ async function _getBroadbandAvailability() {
         });
 
         oneTouchBroadbandAvailability.innerHTML = `<div class='alignHorizontally'>
-                                                    <div class="boxContainer broadbandDataContainer backgroundWhite">
+                                                    <div class="boxContainer broadbandDataContainer backgroundWhite fontH3">
                                                       <div class="tableCell">Supplier</div>
                                                       <div class="tableCell">Provider</div>
                                                       <div class="tableCell">Download</div>
                                                       <div class="tableCell">Upload</div>
                                                       <div class="tableCell">Price</div>
                                                       <div class="tableCell">Installation</div>
-                                                      <div class="tableCell">Select Deal</div>
+                                                      <div class="tableCell">Select</div>
                                                     </div>
                                                     ${orderData}
                                                   </div>`;

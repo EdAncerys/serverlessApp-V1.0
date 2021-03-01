@@ -57,20 +57,17 @@ const oneTouchUsers = (ev) => {
 };
 
 document.querySelector('body').addEventListener('click', (event) => {
-  const btnPlaceOrder = event.target.nodeName === 'BTNPLACEORDER';
   const getBroadbandAvailability =
     event.target.nodeName === 'GETBROADBANDAVAILABILITY';
-  const btnSelectOrder = event.target.nodeName === 'BTNSELECTORDER';
+  const selectOrder = event.target.nodeName === 'SELECTORDER';
+  const termsAndConditions = event.target.nodeName === 'BTNSELECTORDER';
+  const placeOrder = event.target.nodeName === 'PLACEORDER';
 
-  if (btnPlaceOrder) {
-    _placeBroadbandOrder();
-    return;
-  }
   if (getBroadbandAvailability) {
     _getBroadbandAvailability();
     return;
   }
-  if (btnSelectOrder) {
+  if (selectOrder) {
     _manageOrderData(
       event.target.getAttribute('name'),
       event.target.getAttribute('provider'),
@@ -79,6 +76,10 @@ document.querySelector('body').addEventListener('click', (event) => {
       event.target.getAttribute('price'),
       event.target.getAttribute('installation')
     );
+    return;
+  }
+  if (placeOrder) {
+    _placeBroadbandOrder();
     return;
   }
 });

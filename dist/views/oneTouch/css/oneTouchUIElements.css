@@ -29,8 +29,8 @@
   color: #6ec5dd;
   background-color: #16214d;
   border-radius: 10px;
-  padding: 10px 15px;
-  font-size: 1rem;
+  padding: 5px 15px;
+  font-size: 0.9rem;
 }
 .btnB01:hover {
   color: #f7f7f7;
@@ -41,8 +41,8 @@
   transform: scale(0.98);
 }
 .boxContainer {
-  margin: 4px 0;
-  padding: 5px;
+  margin: 1px 0;
+  padding: 2px 5px;
   border: 1px solid #e8e9e9;
   box-shadow: 0 2px 4px 0 rgb(0 0 0 / 30%);
   transition: all 250ms ease-in-out;

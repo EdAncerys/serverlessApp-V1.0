@@ -9,7 +9,10 @@ const _handleBroadbandSelection = (event) => {
     closestCell.classList.add('selected');
     if (activeCell) activeCell.classList.remove('selected');
     // Save to session storage
-    sessionStorage.setItem('name', event.target.parentNode.children[1].innerHTML);
+    sessionStorage.setItem(
+      'name',
+      event.target.parentNode.children[1].innerHTML
+    );
     sessionStorage.setItem(
       'provider',
       event.target.parentNode.children[2].innerHTML

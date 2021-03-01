@@ -31,7 +31,7 @@ const _manageOrderData = (
   sessionStorage.setItem('price', price);
   sessionStorage.setItem('installation', installation);
 
-  const orderData = `<div class="boxContainer backgroundWhiteT01 broadbandDataContainerHover">
+  const orderData = `<div class="boxContainer backgroundWhiteT01 broadbandDataContainerHover fontH2">
                       <div class="broadbandDataContainer">
                         <div class="tableCell">${name}</div>
                         <div class="tableCell">${provider}</div>
@@ -41,15 +41,15 @@ const _manageOrderData = (
                         <div class="tableCell">${installation}</div>
                         <div class="tableCell">
                         <div class='center'>
-                          <btnPlaceOrder name='${name}' 
+                          <placeOrder name='${name}' 
                                           provider='${provider}' 
                                           likely_down_speed='${likely_down_speed}' 
                                           likely_up_speed='${likely_up_speed}' 
                                           price='${price}' 
                                           installation='${installation}' 
                                           class="btnB01" role="button">
-                            Select
-                          </btnPlaceOrder>
+                            Order
+                          </placeOrder>
                         </div>
                       </div>
                       </div>
@@ -63,7 +63,7 @@ const _manageOrderData = (
                                       <div class="tableCell">Upload</div>
                                       <div class="tableCell">Price</div>
                                       <div class="tableCell">Installation</div>
-                                      <div class="tableCell">Select Deal</div>
+                                      <div class="tableCell">Order</div>
                                     </div>
                                       ${orderData}
                                     </div>`;
