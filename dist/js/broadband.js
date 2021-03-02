@@ -96,8 +96,8 @@ document.querySelector('body').addEventListener('click', (event) => {
   }
 });
 document.querySelector('body').addEventListener('change', (event) => {
-  const saveAddressData = document.getElementById('selectedAddress');
-  if (saveAddressData && saveAddressData.id === 'selectedAddress') {
+  const saveAddressData = event.target.nodeName === 'SELECT';
+  if (saveAddressData) {
     _saveAddressData();
     return;
   }
