@@ -66,7 +66,7 @@ document.querySelector('body').addEventListener('click', (event) => {
     event.target.nodeName === 'LABEL' || 'INPUT';
   const placeOrder = event.target.nodeName === 'PLACEORDER';
 
-  console.log(event.target.nodeName);
+  // console.log(event.target);
   if (getBroadbandAvailability) {
     _getBroadbandAvailability();
     return;
@@ -86,7 +86,7 @@ document.querySelector('body').addEventListener('click', (event) => {
     _termsAndConditions();
     return;
   }
-  if (agreeWithTermsAndConditions) {
+  if (agreeWithTermsAndConditions && event.target.type === 'checkbox') {
     console.log('agreeWithTermsAndConditions');
     return;
   }
