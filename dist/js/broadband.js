@@ -62,10 +62,11 @@ document.querySelector('body').addEventListener('click', (event) => {
     event.target.nodeName === 'GETBROADBANDAVAILABILITY';
   const selectOrder = event.target.nodeName === 'SELECTORDER';
   const termsAndConditions = event.target.nodeName === 'TERMSANDCONDITIONS';
-  const agreeWithTermsAndConditions = event.target.nodeName === 'LABEL';
+  const agreeWithTermsAndConditions =
+    event.target.nodeName === 'LABEL' || 'INPUT';
   const placeOrder = event.target.nodeName === 'PLACEORDER';
 
-  // console.log(event.target.nodeName);
+  console.log(event.target.nodeName);
   if (getBroadbandAvailability) {
     _getBroadbandAvailability();
     return;
