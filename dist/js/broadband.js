@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     .addEventListener('click', oneTouchUsers);
 
   // Hardcoded input value
-  // document.getElementById('postcode').value = 'LE15 7GH'; // LE15 7GH
+  document.getElementById('postcode').value = 'LE15 7GH'; // LE15 7GH
 });
 // Persist user data on reload
 const oneTouchDOMBody = sessionStorage.getItem('oneTouchDOMBody');
@@ -27,6 +27,9 @@ if (
   console.info('Page reloaded');
   const body = document.querySelector('#oneTouchBodyContainer');
   body.innerHTML = oneTouchDOMBody;
+  // Add classList if checkbox not checked upon reload
+  let oneTouchPlaceOrder = document.querySelector('oneTouchPlaceOrder');
+  if (oneTouchPlaceOrder) oneTouchPlaceOrder.classList.add('btnDisable');
 }
 // Create custom event
 const observer = new MutationObserver((list) => {
@@ -92,10 +95,8 @@ document.querySelector('body').addEventListener('click', (event) => {
 
     if (checkbox) {
       oneTouchPlaceOrder.classList.remove('btnDisable');
-      console.log('checked');
     } else {
       oneTouchPlaceOrder.classList.add('btnDisable');
-      console.log('un checked');
     }
   }
   if (oneTouchPlaceOrder) {

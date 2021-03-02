@@ -50,6 +50,7 @@ async function _getBroadbandAvailability() {
                                                       No Broadband Data Provided!
                                                     </div>
                                                   </div>`;
+        _spinner(false);
       } else {
         _sortBroadbandData(data, 'name', true).map((order) => {
           orderData += `<div class="boxContainer backgroundWhiteT01 broadbandDataContainerHover fontH2">
@@ -98,6 +99,7 @@ async function _getBroadbandAvailability() {
     } catch (err) {
       console.log(err);
       _errorMessage(err);
+      _spinner(false);
     }
   }
 }
