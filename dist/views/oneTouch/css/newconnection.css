@@ -101,6 +101,10 @@
   grid-template-rows: 1fr 1fr;
 }
 /* CheckBox css */
+agreeWithTermsAndConditions input,
+agreeWithTermsAndConditions label {
+  cursor: pointer;
+}
 .Checkbox {
   font-size: 18px;
   display: grid;
