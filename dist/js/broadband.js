@@ -88,11 +88,13 @@ document.querySelector('body').addEventListener('click', (event) => {
   }
   if (agreeWithTermsAndConditions && event.target.type === 'checkbox') {
     let checkbox = event.target.checked;
-    let btnPlaceOrder = document.querySelector('oneTouchPlaceOrder');
+    let oneTouchPlaceOrder = document.querySelector('oneTouchPlaceOrder');
 
     if (checkbox) {
+      oneTouchPlaceOrder.classList.remove('btnDisable');
       console.log('checked');
     } else {
+      oneTouchPlaceOrder.classList.add('btnDisable');
       console.log('un checked');
     }
   }
