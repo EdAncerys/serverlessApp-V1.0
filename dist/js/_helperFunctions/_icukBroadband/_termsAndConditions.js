@@ -8,12 +8,17 @@ const _termsAndConditions = () => {
   oneTouchTermsAndConditions.id = 'oneTouchBroadbandOrderPageFive';
 
   const data = `   <div class="alignHorizontally">
-                    <div class="oneTouchTermsAndConditions">
+                    <div class="oneTouchTermsAndConditions backgroundWhiteT01">
                       <div class="fontH4">Terms And Conditions</div>
                       <div class="oneTouchTermsAndConditionsText justifyText fontH2">
                         <div>
-                          All FTTP Products are available on request. All products exclude
-                          DIA at £2 Bespoke pricing and leased lines are available from
+                          All FTTP Products are available on request. 
+                        </div>
+                        <div>
+                        All products exclude DIA at £2.
+                        </div>
+                        <div>
+                          Bespoke pricing and leased lines are available from
                           your account manager
                         </div>
                         <div>
