@@ -31,9 +31,9 @@ const _termsAndConditions = () => {
                             >I agree to the Terms and Conditions</label
                           >
                         </agreeWithTermsAndConditions>
-                        <placeOrder class="btnOneTouch btnDisable" role="button"
-                          >Place Broadband Order</placeOrder
-                        >
+                        <oneTouchPlaceOrder class="btnOneTouch btnDisable" role="button">
+                          Place Broadband Order
+                        </oneTouchPlaceOrder>
                       </div>
                     </div>
                   </div>`;

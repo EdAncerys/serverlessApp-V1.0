@@ -64,9 +64,9 @@ document.querySelector('body').addEventListener('click', (event) => {
   const termsAndConditions = event.target.nodeName === 'TERMSANDCONDITIONS';
   const agreeWithTermsAndConditions =
     event.target.nodeName === 'LABEL' || 'INPUT';
-  const placeOrder = event.target.nodeName === 'PLACEORDER';
+  const oneTouchPlaceOrder = event.target.nodeName === 'ONETOUCHPLACEORDER';
 
-  console.log(event.target);
+  // console.log(event.target);
   if (getBroadbandAvailability) {
     _getBroadbandAvailability();
     return;
@@ -87,11 +87,16 @@ document.querySelector('body').addEventListener('click', (event) => {
     return;
   }
   if (agreeWithTermsAndConditions && event.target.type === 'checkbox') {
-    // if(eve)
-    console.log('agreeWithTermsAndConditions');
-    return;
+    let checkbox = event.target.checked;
+    let btnPlaceOrder = document.querySelector('oneTouchPlaceOrder');
+
+    if (checkbox) {
+      console.log('checked');
+    } else {
+      console.log('un checked');
+    }
   }
-  if (placeOrder) {
+  if (oneTouchPlaceOrder) {
     _placeBroadbandOrder();
     return;
   }
