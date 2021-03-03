@@ -5,7 +5,7 @@ import { _spinner } from '../_spinner.js';
 
 async function _getAddressForPostcodeProvided(postcode) {
   console.log('Fetching addresses for postcode provided...');
-  _spinner(true, 'Loading Addresses For Provided Postcode...');
+  _spinner(true);
   const URL = '/ndg/getAddresses/' + postcode;
   console.log(URL);
 

@@ -1,18 +1,27 @@
 const _sortBroadbandData = (data, prop, asc) => {
   const dataWithPrice = data.products.map((broadband) => {
-    if (broadband.provider === 'WBC_21CN') {
-      broadband.price = 'Price A1';
-      broadband.installation = 'Price A2';
-    } else if (broadband.provider === 'WBC_20CN') {
-      broadband.price = 'Price B1';
-      broadband.installation = 'Price B2';
-    } else if (broadband.provider === 'CABLE_AND_WIRELESS') {
-      broadband.price = 'Price C1';
-      broadband.installation = 'Price C2';
-    } else if (broadband.provider === 'TTB') {
-      broadband.price = 'Price D1';
-      broadband.installation = 'Price D2';
-    } else broadband.price = 'Error - provider not defined';
+    if (broadband.technology === 'ADSL') {
+      broadband.price = '£20.20';
+      broadband.installation = '£115.00';
+    } else if (broadband.technology === 'FTTC') {
+      broadband.price = '$28.00';
+      broadband.installation = '£115.00';
+    } else if (broadband.technology === 'FTTP') {
+      broadband.price = '£32.00';
+      broadband.installation = '£130.00';
+    } else if (broadband.technology === 'AnnexM') {
+      broadband.price = '£24.00';
+      broadband.installation = '£115.00';
+    } else if (broadband.technology === 'WBC_20CN') {
+      broadband.price = '£24.00';
+      broadband.installation = '£115.00';
+    } else if (broadband.technology === 'TTB') {
+      broadband.price = '£24.00';
+      broadband.installation = '£115.00';
+    } else {
+      broadband.price = 'Error - not provided';
+      broadband.installation = 'Error - not provided';
+    }
     return broadband;
   });
   console.log(data);
