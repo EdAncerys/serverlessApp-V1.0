@@ -45,7 +45,7 @@ const _termsAndConditions = () => {
 
   oneTouchTermsAndConditions.innerHTML = data;
 
-  oneTouchBroadbandOrderPageFour.style.display = 'none';
+  oneTouchBroadbandOrderPageFour.classList.add('hidden');
   oneTouchSlider.appendChild(oneTouchTermsAndConditions);
 };
 

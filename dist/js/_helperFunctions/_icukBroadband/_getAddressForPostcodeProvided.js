@@ -82,7 +82,7 @@ async function _getAddressForPostcodeProvided(postcode) {
                                       <div>`;
 
     oneTouchSlider.appendChild(orderAddressContainer);
-    oneTouchBroadbandOrderPageOne.style.display = 'none';
+    oneTouchBroadbandOrderPageOne.classList.add('hidden');
   } catch (err) {
     console.log(err);
     _errorMessage(err);

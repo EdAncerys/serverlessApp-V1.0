@@ -94,7 +94,7 @@ async function _getBroadbandAvailability() {
 
       _spinner(false);
 
-      oneTouchBroadbandOrderPageTwo.style.display = 'none';
+      oneTouchBroadbandOrderPageTwo.classList.add('hidden');
       oneTouchSlider.appendChild(oneTouchBroadbandAvailability);
     } catch (err) {
       console.log(err);

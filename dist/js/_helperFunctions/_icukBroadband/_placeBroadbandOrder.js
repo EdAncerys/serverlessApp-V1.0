@@ -108,8 +108,8 @@ async function _placeBroadbandOrder() {
     _spinner(false);
     _errorMessage('Order Submitted Successfully...', 'success');
 
-    oneTouchBroadbandOrderPageFive.style.display = 'none';
-    oneTouchBroadbandOrderPageOne.style.display = 'block';
+    oneTouchBroadbandOrderPageFive.classList.add('hidden');
+    oneTouchBroadbandOrderPageOne.classList.remove('hidden');
   } catch (err) {
     console.log(err);
     _errorMessage(err);

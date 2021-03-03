@@ -60,7 +60,7 @@ const _manageOrderData = (
                                       ${orderData}
                                     </div>`;
 
-  oneTouchBroadbandOrderPageThree.style.display = 'none';
+  oneTouchBroadbandOrderPageThree.classList.add('hidden');
   oneTouchSlider.appendChild(oneTouchOrderReview);
 };
 
