@@ -1,7 +1,8 @@
 const _spinner = (active, msg) => {
-  let spinnerContainer = document.querySelector('spinnerContainer');
+  const spinnerContainer = document.querySelector('spinnerContainer');
 
   let spinnerWrapper = document.createElement('spinnerWrapper');
+  let errMsgContent = document.createElement('errMsgContent');
   let spinnerIconContainer = document.createElement('spinnerIconContainer');
   let spinner = document.createElement('spinner');
   let spinnerMsg = document.createElement('spinnerMsg');
@@ -9,10 +10,10 @@ const _spinner = (active, msg) => {
 
   if (active) {
     spinnerContainer.appendChild(spinnerWrapper);
-    spinnerWrapper.appendChild(spinnerIconContainer);
+    spinnerWrapper.appendChild(errMsgContent);
+    errMsgContent.appendChild(spinnerIconContainer);
     spinnerIconContainer.appendChild(spinner);
-    spinnerWrapper.appendChild(spinnerMsg);
-    spinnerWrapper.classList.add('spinnerWrapper');
+    errMsgContent.appendChild(spinnerMsg);
     spinner.classList.add('fa', 'fa-cog', 'fa-spin');
     spinnerMsg.innerHTML = newMsg;
   }

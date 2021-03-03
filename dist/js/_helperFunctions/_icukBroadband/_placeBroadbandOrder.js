@@ -102,6 +102,7 @@ async function _placeBroadbandOrder() {
   } catch (err) {
     console.log(err);
     _errorMessage(err);
+    _spinner(false);
   }
 }
 

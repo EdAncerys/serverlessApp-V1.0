@@ -19,7 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Hardcoded input value
   // document.getElementById('postcode').value = 'LE15 7GH'; // LE15 7GH
-  // _spinner(true);
 });
 // Persist user data on reload
 const oneTouchDOMBody = sessionStorage.getItem('oneTouchDOMBody');
