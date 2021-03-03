@@ -6,6 +6,8 @@ import { _manageOrderData } from './_helperFunctions/_icukBroadband/_manageOrder
 import { _termsAndConditions } from './_helperFunctions/_icukBroadband/_termsAndConditions.js';
 import { _getBroadbandAvailability } from './_helperFunctions/_icukBroadband/_getBroadbandAvailability.js';
 
+import { _spinner } from '../js/_helperFunctions/_spinner.js';
+
 document.addEventListener('DOMContentLoaded', () => {
   document
     .getElementById('getAddressForPostcodeProvided')
@@ -16,7 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
     .addEventListener('click', oneTouchUsers);
 
   // Hardcoded input value
-  document.getElementById('postcode').value = 'LE15 7GH'; // LE15 7GH
+  // document.getElementById('postcode').value = 'LE15 7GH'; // LE15 7GH
+  // _spinner(true);
 });
 // Persist user data on reload
 const oneTouchDOMBody = sessionStorage.getItem('oneTouchDOMBody');
