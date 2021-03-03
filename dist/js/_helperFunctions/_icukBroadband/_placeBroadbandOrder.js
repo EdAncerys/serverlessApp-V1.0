@@ -6,6 +6,14 @@ async function _placeBroadbandOrder() {
   console.log('Placing Broadband Order...');
   _spinner(true);
 
+  const oneTouchSlider = document.querySelector('#oneTouchSlider');
+  const oneTouchBroadbandOrderPageOne = document.querySelector(
+    '#oneTouchBroadbandOrderPageOne'
+  );
+  const oneTouchBroadbandOrderPageFive = document.querySelector(
+    '#oneTouchBroadbandOrderPageFive'
+  );
+
   sessionStorage.setItem('customerName', 'customerName');
   sessionStorage.setItem('customerEmail', 'customerEmail');
 
@@ -99,6 +107,9 @@ async function _placeBroadbandOrder() {
     );
     _spinner(false);
     _errorMessage('Order Submitted Successfully...', 'success');
+
+    oneTouchBroadbandOrderPageFive.style.display = 'none';
+    oneTouchBroadbandOrderPageOne.style.display = 'block';
   } catch (err) {
     console.log(err);
     _errorMessage(err);

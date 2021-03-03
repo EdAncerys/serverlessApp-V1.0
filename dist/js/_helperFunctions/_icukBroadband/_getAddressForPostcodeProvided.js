@@ -15,7 +15,6 @@ async function _getAddressForPostcodeProvided(postcode) {
   );
   const orderAddressContainer = document.createElement('div');
   orderAddressContainer.id = 'oneTouchBroadbandOrderPageTwo';
-  orderAddressContainer.classList.add('center');
 
   try {
     const response = await fetch(URL);
@@ -31,6 +30,7 @@ async function _getAddressForPostcodeProvided(postcode) {
     }
     if (data.addresses.length === 0) {
       _errorMessage('Provided postcode not valid');
+      _spinner(false);
       return;
     }
 
@@ -86,6 +86,7 @@ async function _getAddressForPostcodeProvided(postcode) {
   } catch (err) {
     console.log(err);
     _errorMessage(err);
+    _spinner(false);
   }
 }
 
