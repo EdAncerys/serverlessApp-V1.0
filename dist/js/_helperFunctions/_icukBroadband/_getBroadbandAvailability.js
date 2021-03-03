@@ -23,42 +23,46 @@ async function _getBroadbandAvailability() {
   if (validateInput === 'selectionID') {
     _spinner(false);
     _errorMessage('Please Choose Address', 'warning');
-  } else {
-    let body = {
-      sub_premises: sessionStorage.getItem('sub_premises'),
-      premises_name: sessionStorage.getItem('premises_name'),
-      thoroughfare_number: sessionStorage.getItem('thoroughfare_number'),
-      thoroughfare_name: sessionStorage.getItem('thoroughfare_name'),
-      locality: sessionStorage.getItem('locality'),
-      post_town: sessionStorage.getItem('post_town'),
-      county: sessionStorage.getItem('county'),
-      postcode: sessionStorage.getItem('postcode'),
-      district_id: sessionStorage.getItem('district_id'),
-      nad_key: sessionStorage.getItem('nad_key'),
-    };
-    console.log(body);
+    return;
+  }
 
-    const config = {
-      method: 'POST',
-      body: JSON.stringify(body),
-    };
+  let body = {
+    sub_premises: sessionStorage.getItem('sub_premises'),
+    premises_name: sessionStorage.getItem('premises_name'),
+    thoroughfare_number: sessionStorage.getItem('thoroughfare_number'),
+    thoroughfare_name: sessionStorage.getItem('thoroughfare_name'),
+    locality: sessionStorage.getItem('locality'),
+    post_town: sessionStorage.getItem('post_town'),
+    county: sessionStorage.getItem('county'),
+    postcode: sessionStorage.getItem('postcode'),
+    district_id: sessionStorage.getItem('district_id'),
+    nad_key: sessionStorage.getItem('nad_key'),
+  };
+  console.log(body);
 
-    try {
-      const response = await fetch(URL, config);
-      const data = await response.json();
-      console.log(data);
+  const config = {
+    method: 'POST',
+    body: JSON.stringify(body),
+  };
 
-      let orderData = '';
-      if (data.length === 0) {
-        oneTouchBroadbandAvailability.innerHTML = `<div class='fullHeight center'>
+  try {
+    const response = await fetch(URL, config);
+    const data = await response.json();
+    console.log(data);
+
+    let orderData = '';
+    if (data.length === 0) {
+      oneTouchBroadbandAvailability.innerHTML = `<div class='fullHeight center'>
                                                     <div class='fontH4 boxContainer backgroundWhiteT01'>
                                                       No Broadband Data Provided!
                                                     </div>
                                                   </div>`;
-        _spinner(false);
-      } else {
-        _sortBroadbandData(data, 'name', true).map((order) => {
-          orderData += `<div class="boxContainer backgroundWhiteT01 broadbandDataContainerHover fontH2">
+      _spinner(false);
+      return;
+    }
+
+    _sortBroadbandData(data, 'name', true).map((order) => {
+      orderData += `<div class="boxContainer backgroundWhiteT01 broadbandDataContainerHover fontH2">
                           <div class="broadbandDataContainer">
                             <div class="tableCell">${order.name}</div>
                             <div class="tableCell">${order.provider}</div>
@@ -81,9 +85,9 @@ async function _getBroadbandAvailability() {
                           </div>
                           </div>
                         </div>`;
-        });
+    });
 
-        oneTouchBroadbandAvailability.innerHTML = `<div class='alignHorizontally'>
+    oneTouchBroadbandAvailability.innerHTML = `<div class='alignHorizontally'>
                                                     <div class="boxContainer broadbandDataContainer backgroundWhite fontH3">
                                                       <div class="tableCell">Supplier</div>
                                                       <div class="tableCell">Provider</div>
@@ -95,17 +99,15 @@ async function _getBroadbandAvailability() {
                                                     </div>
                                                     ${orderData}
                                                   </div>`;
-      }
 
-      _spinner(false);
+    _spinner(false);
 
-      oneTouchBroadbandOrderPageTwo.classList.add('hidden');
-      oneTouchSlider.appendChild(oneTouchBroadbandAvailability);
-    } catch (err) {
-      console.log(err);
-      _errorMessage(err);
-      _spinner(false);
-    }
+    oneTouchBroadbandOrderPageTwo.classList.add('hidden');
+    oneTouchSlider.appendChild(oneTouchBroadbandAvailability);
+  } catch (err) {
+    console.log(err);
+    _errorMessage(err);
+    _spinner(false);
   }
 }
 
