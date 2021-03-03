@@ -1,5 +1,10 @@
 const _termsAndConditions = () => {
   console.log('Review Terms & Conditions');
+
+  // Removing user previous data
+  const removeData = document.querySelector('#oneTouchBroadbandOrderPageFive');
+  if (removeData) removeData.remove();
+
   const oneTouchSlider = document.querySelector('#oneTouchSlider');
   const oneTouchBroadbandOrderPageFour = document.querySelector(
     '#oneTouchBroadbandOrderPageFour'

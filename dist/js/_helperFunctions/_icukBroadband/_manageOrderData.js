@@ -14,6 +14,11 @@ const _manageOrderData = (
     price,
     installation
   );
+
+  // Removing user previous data
+  const removeData = document.querySelector('#oneTouchBroadbandOrderPageFour');
+  if (removeData) removeData.remove();
+
   const oneTouchSlider = document.querySelector('#oneTouchSlider');
   const oneTouchBroadbandOrderPageThree = document.querySelector(
     '#oneTouchBroadbandOrderPageThree'

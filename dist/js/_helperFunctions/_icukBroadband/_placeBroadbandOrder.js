@@ -6,7 +6,6 @@ async function _placeBroadbandOrder() {
   console.log('Placing Broadband Order...');
   _spinner(true);
 
-  const oneTouchSlider = document.querySelector('#oneTouchSlider');
   const oneTouchBroadbandOrderPageOne = document.querySelector(
     '#oneTouchBroadbandOrderPageOne'
   );

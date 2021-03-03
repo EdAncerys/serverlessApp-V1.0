@@ -9,6 +9,10 @@ async function _getAddressForPostcodeProvided(postcode) {
   const URL = '/ndg/getAddresses/' + postcode;
   console.log(URL);
 
+  // Removing user previous data
+  const removeData = document.querySelector('#oneTouchBroadbandOrderPageTwo');
+  if (removeData) removeData.remove();
+
   const oneTouchSlider = document.querySelector('#oneTouchSlider');
   const oneTouchBroadbandOrderPageOne = document.querySelector(
     '#oneTouchBroadbandOrderPageOne'

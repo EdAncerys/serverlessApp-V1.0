@@ -8,6 +8,11 @@ async function _getBroadbandAvailability() {
 
   const URL = '/ndg/broadbandAvailability';
   const validateInput = document.getElementById('selectedAddress').value;
+
+  // Removing user previous data
+  const removeData = document.querySelector('#oneTouchBroadbandOrderPageThree');
+  if (removeData) removeData.remove();
+
   const oneTouchSlider = document.querySelector('#oneTouchSlider');
   const oneTouchBroadbandOrderPageTwo = document.querySelector(
     '#oneTouchBroadbandOrderPageTwo'
