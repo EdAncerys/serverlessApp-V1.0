@@ -63,7 +63,7 @@ const _manageOrderData = (
                                       <div class="tableCell">Order</div>
                                     </div>
                                       ${orderData}
-                                    </div>`;
+                                  </div>`;
 
   oneTouchBroadbandOrderPageThree.classList.add('hidden');
   oneTouchSlider.appendChild(oneTouchOrderReview);
