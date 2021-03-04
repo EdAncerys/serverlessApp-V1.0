@@ -34,6 +34,39 @@ const _manageOrderData = (
   sessionStorage.setItem('price', price);
   sessionStorage.setItem('installation', installation);
 
+  let sub_premises =
+    sessionStorage.getItem('sub_premises') === 'null'
+      ? ''
+      : sessionStorage.getItem('sub_premises');
+  let premises_name =
+    sessionStorage.getItem('premises_name') === 'null'
+      ? ''
+      : sessionStorage.getItem('premises_name');
+  let thoroughfare_number =
+    sessionStorage.getItem('thoroughfare_number') === 'null'
+      ? ''
+      : sessionStorage.getItem('thoroughfare_number');
+  let thoroughfare_name =
+    sessionStorage.getItem('thoroughfare_name') === 'null'
+      ? ''
+      : sessionStorage.getItem('thoroughfare_name');
+  let locality =
+    sessionStorage.getItem('locality') === 'null'
+      ? ''
+      : sessionStorage.getItem('locality');
+  let post_town =
+    sessionStorage.getItem('post_town') === 'null'
+      ? ''
+      : sessionStorage.getItem('post_town');
+  let county =
+    sessionStorage.getItem('county') === 'null'
+      ? ''
+      : sessionStorage.getItem('county');
+  let postcode =
+    sessionStorage.getItem('postcode') === 'null'
+      ? ''
+      : sessionStorage.getItem('postcode');
+
   const orderData = `<div class="boxContainer backgroundWhiteT01 broadbandDataContainerHover fontH2">
                       <div class="broadbandDataContainer">
                         <div class="tableCell">${name}</div>
@@ -53,6 +86,10 @@ const _manageOrderData = (
                     </div>`;
 
   oneTouchOrderReview.innerHTML = `<div class='alignHorizontally'>
+                                    <div class="headerMsgTitle colorWhite">
+                                      <div class="fontH4">Review Your Order</div>
+                                      <div class="fontH2">Order details will be submitted as per bellow information</div>
+                                    </div>
                                     <div class="boxContainer broadbandDataContainer backgroundWhite">
                                       <div class="tableCell">Supplier</div>
                                       <div class="tableCell">Provider</div>
@@ -62,7 +99,15 @@ const _manageOrderData = (
                                       <div class="tableCell">Installation</div>
                                       <div class="tableCell">Order</div>
                                     </div>
-                                      ${orderData}
+                                    ${orderData}
+                                    <div class="boxContainer backgroundWhiteT01 broadbandDataContainerHover">
+                                      <div class="broadbandOrderReviewContainer">
+                                        <div class="fontH3">Full Address Provided:</div>
+                                        <div class="fontH2">${sub_premises} ${premises_name}  ${thoroughfare_number} ${thoroughfare_name} ${locality} ${post_town} ${county} ${postcode}</div>
+                                        <div class="fontH3">Customer Details:</div>
+                                        <div class="fontH2">Email: Full Name:</div>
+                                      </div>
+                                    </div>
                                   </div>`;
 
   oneTouchBroadbandOrderPageThree.classList.add('hidden');
