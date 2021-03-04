@@ -108,7 +108,13 @@ document.querySelector('body').addEventListener('click', (event) => {
     return;
   }
   if (goToPageOne) {
-    console.log('goToPageOne');
+    document
+      .querySelector('#oneTouchBroadbandOrderPageTwo')
+      .classList.add('hidden');
+    document
+      .querySelector('#oneTouchBroadbandOrderPageOne')
+      .classList.remove('hidden');
+
     return;
   }
 });
