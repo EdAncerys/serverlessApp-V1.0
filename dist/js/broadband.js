@@ -70,6 +70,8 @@ document.querySelector('body').addEventListener('click', (event) => {
   const agreeWithTermsAndConditions =
     event.target.nodeName === 'LABEL' || 'INPUT';
   const oneTouchPlaceOrder = event.target.nodeName === 'ONETOUCHPLACEORDER';
+  // Slider nav functionality
+  const goToPageOne = event.target.nodeName === 'GOTOPAGEONE';
 
   // console.log(event.target);
   if (getBroadbandAvailability) {
@@ -105,7 +107,12 @@ document.querySelector('body').addEventListener('click', (event) => {
     _placeBroadbandOrder();
     return;
   }
+  if (goToPageOne) {
+    console.log('goToPageOne');
+    return;
+  }
 });
+
 document.querySelector('body').addEventListener('change', (event) => {
   const saveAddressData = event.target.nodeName === 'SELECT';
   if (saveAddressData) {
