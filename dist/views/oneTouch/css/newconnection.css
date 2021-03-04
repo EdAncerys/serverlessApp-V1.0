@@ -74,7 +74,7 @@
   grid-template-rows: 80px 1fr 1fr 1fr;
   align-items: center;
   row-gap: 20px;
-  padding: 20px 10px;
+  margin-top: 40px;
   min-width: 400px;
   border-radius: 10px;
 }
@@ -94,6 +94,15 @@
   row-gap: 10px;
   text-align: left;
   padding: 10px 20px;
+}
+.sliderNav {
+  display: grid;
+  align-self: flex-start;
+  padding: 40px 0;
+}
+.btnBack {
+  margin-right: 50%;
+  background-color: #cbd76d;
 }
 /* Terms And Condition */
 .oneTouchTermsAndConditions {

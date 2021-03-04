@@ -69,7 +69,7 @@ async function _getAddressForPostcodeProvided(postcode) {
     _spinner(false);
 
     orderAddressContainer.innerHTML = `<div class='alignHorizontally'>
-                                        <div class='addressSearchContainer boxContainer backgroundWhiteT01'>
+                                        <div class='boxContainer addressSearchContainer backgroundWhiteT01'>
                                           <div class='oneTouchIcon'></div>
                                           <div class='alignHorizontally'>
                                             <div class='fontH4'>Please Choose Address</div>
@@ -83,7 +83,12 @@ async function _getAddressForPostcodeProvided(postcode) {
                                             Check Availability
                                           </getBroadbandAvailability>
                                         </div>
-                                      <div>`;
+                                      <div>
+                                      <div class='sliderNav'>
+                                        <goToPageOne class="btnOneTouch btnBack" role="button">
+                                          Go Back
+                                        </goToPageOne>
+                                      </div>`;
 
     oneTouchSlider.appendChild(orderAddressContainer);
     oneTouchBroadbandOrderPageOne.classList.add('hidden');

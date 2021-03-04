@@ -87,7 +87,7 @@ const _manageOrderData = (
 
   oneTouchOrderReview.innerHTML = `<div class='alignHorizontally'>
                                     <div class="headerMsgTitle colorWhite">
-                                      <div class="fontH4">Review Your Order</div>
+                                      <div class="fontH4">Review Your Order!</div>
                                       <div class="fontH2">Order details will be submitted as per bellow information</div>
                                     </div>
                                     <div class="boxContainer broadbandDataContainer backgroundWhite">
