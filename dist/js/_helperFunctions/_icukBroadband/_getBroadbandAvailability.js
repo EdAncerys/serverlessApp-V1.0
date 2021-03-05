@@ -51,12 +51,10 @@ async function _getBroadbandAvailability() {
     console.log(data);
 
     let orderData = '';
-    if (data.length === 0) {
-      oneTouchBroadbandAvailability.innerHTML = `<div class='fullHeight center'>
-                                                    <div class='fontH4 boxContainer backgroundWhiteT01'>
-                                                      No Broadband Data Provided!
-                                                    </div>
-                                                  </div>`;
+
+    if (data.name === 'Error') {
+      console.log('Error');
+      _errorMessage(data.message, 'warning');
       _spinner(false);
       return;
     }
