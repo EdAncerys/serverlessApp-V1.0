@@ -10,6 +10,9 @@
 .backgroundWhite {
   background-color: #f7f7f7;
 }
+.backgroundGray {
+  background-color: #f1f1f1;
+}
 .backgroundWhiteT01 {
   background-color: rgba(255, 255, 255, 0.65);
 }
