@@ -54,7 +54,10 @@ async function _getBroadbandAvailability() {
 
     if (data.name === 'Error') {
       console.log('Error');
-      _errorMessage(data.message, 'warning');
+      _errorMessage(
+        `Broadband not available for address provided. ${data.message}`,
+        'warning'
+      );
       _spinner(false);
       return;
     }
