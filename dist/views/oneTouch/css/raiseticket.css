@@ -1,8 +1,8 @@
 .raiseTicketContent {
-  padding-top: 5%;
+  padding-top: 50px;
 }
 .raiseTicketContainer {
-  width: 300px;
+  min-width: 300px;
   border-radius: 15px;
   background-color: #f2f2f2;
   padding: 20px;
@@ -18,6 +18,11 @@
   display: block;
   content: ' ';
   padding-bottom: 5px;
+}
+.raiseTicketContainer btnSubmit {
+  display: grid;
+  justify-content: initial;
+  margin: 10px 0;
 }
 
 #raiseTicketImgContainer {
