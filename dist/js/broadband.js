@@ -71,7 +71,7 @@ document.querySelector('body').addEventListener('click', (event) => {
     event.target.nodeName === 'LABEL' || 'INPUT';
   const oneTouchPlaceOrder = event.target.nodeName === 'ONETOUCHPLACEORDER';
   // Slider nav functionality
-  const goToPage = event.target.nodeName === 'GOTOPAGE';
+  const goBackBtn = event.target.nodeName === 'GOBACKBTN';
 
   // console.log(event.target);
   if (getBroadbandAvailability) {
@@ -107,15 +107,31 @@ document.querySelector('body').addEventListener('click', (event) => {
     _placeBroadbandOrder();
     return;
   }
-  if (goToPage) {
+  if (goBackBtn) {
     const id = event.target.id;
     console.log(event.target.id);
     if (id === 'pageOne') {
-      document
-        .querySelector('#oneTouchBroadbandOrderPageTwo')
-        .classList.add('hidden');
+      document.querySelector('#oneTouchBroadbandOrderPageTwo').remove();
       document
         .querySelector('#oneTouchBroadbandOrderPageOne')
+        .classList.remove('hidden');
+    }
+    if (id === 'pageTwo') {
+      document.querySelector('#oneTouchBroadbandOrderPageThree').remove();
+      document
+        .querySelector('#oneTouchBroadbandOrderPageTwo')
+        .classList.remove('hidden');
+    }
+    if (id === 'pageThree') {
+      document.querySelector('#oneTouchBroadbandOrderPageFour').remove();
+      document
+        .querySelector('#oneTouchBroadbandOrderPageThree')
+        .classList.remove('hidden');
+    }
+    if (id === 'pageFour') {
+      document.querySelector('#oneTouchBroadbandOrderPageFive').remove();
+      document
+        .querySelector('#oneTouchBroadbandOrderPageFour')
         .classList.remove('hidden');
     }
 

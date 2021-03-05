@@ -46,6 +46,11 @@ const _termsAndConditions = () => {
                         </oneTouchPlaceOrder>
                       </div>
                     </div>
+                    <div class='sliderNav'>
+                      <goBackBtn id='pageFour' class="btnOneTouch btnBack" role="button">
+                        Go Back
+                      </goBackBtn>
+                    </div>
                   </div>`;
 
   oneTouchTermsAndConditions.innerHTML = data;

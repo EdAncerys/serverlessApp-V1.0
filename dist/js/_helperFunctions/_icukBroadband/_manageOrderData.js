@@ -108,6 +108,11 @@ const _manageOrderData = (
                                         <div class="fontH2">Email: Full Name:</div>
                                       </div>
                                     </div>
+                                    <div class='sliderNav'>
+                                      <goBackBtn id='pageThree' class="btnOneTouch btnBack" role="button">
+                                        Go Back
+                                      </goBackBtn>
+                                    </div>
                                   </div>`;
 
   oneTouchBroadbandOrderPageThree.classList.add('hidden');

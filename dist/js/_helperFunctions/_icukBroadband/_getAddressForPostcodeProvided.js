@@ -85,9 +85,9 @@ async function _getAddressForPostcodeProvided(postcode) {
                                         </div>
                                       <div>
                                       <div class='sliderNav'>
-                                        <goToPage id='pageOne' class="btnOneTouch btnBack" role="button">
+                                        <goBackBtn id='pageOne' class="btnOneTouch btnBack" role="button">
                                           Go Back
-                                        </goToPage>
+                                        </goBackBtn>
                                       </div>`;
 
     oneTouchSlider.appendChild(orderAddressContainer);
