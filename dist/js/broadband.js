@@ -71,7 +71,7 @@ document.querySelector('body').addEventListener('click', (event) => {
     event.target.nodeName === 'LABEL' || 'INPUT';
   const oneTouchPlaceOrder = event.target.nodeName === 'ONETOUCHPLACEORDER';
   // Slider nav functionality
-  const goToPageOne = event.target.nodeName === 'GOTOPAGEONE';
+  const goToPage = event.target.nodeName === 'GOTOPAGE';
 
   // console.log(event.target);
   if (getBroadbandAvailability) {
@@ -107,13 +107,17 @@ document.querySelector('body').addEventListener('click', (event) => {
     _placeBroadbandOrder();
     return;
   }
-  if (goToPageOne) {
-    document
-      .querySelector('#oneTouchBroadbandOrderPageTwo')
-      .classList.add('hidden');
-    document
-      .querySelector('#oneTouchBroadbandOrderPageOne')
-      .classList.remove('hidden');
+  if (goToPage) {
+    const id = event.target.id;
+    console.log(event.target.id);
+    if (id === 'pageOne') {
+      document
+        .querySelector('#oneTouchBroadbandOrderPageTwo')
+        .classList.add('hidden');
+      document
+        .querySelector('#oneTouchBroadbandOrderPageOne')
+        .classList.remove('hidden');
+    }
 
     return;
   }
