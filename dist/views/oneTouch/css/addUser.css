@@ -8,8 +8,6 @@
   grid-template-rows: 1fr 1fr;
   align-items: center;
   row-gap: 10px;
-  margin: 10px 0;
-  padding: 10px 5px;
   border-radius: 10px;
 }
 .userAddressFormNav {

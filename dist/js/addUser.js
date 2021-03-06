@@ -21,7 +21,9 @@ document.querySelector('body').addEventListener('click', (event) => {
     return;
   }
   if (goBackBtn) {
-    console.log('go back');
+    document.querySelector('#selectAddressContainer').remove();
+    document.querySelector('#userPostcodeContainer').classList.remove('hidden');
+    document.querySelector('#postcode').value = '';
     return;
   }
 });
