@@ -1,0 +1,27 @@
+import { _validatePostcode } from '../../_icukBroadband/_validatePostcode.js';
+import { _handleErrors } from '../../_handleErrors.js';
+
+const fetchUserAddress = () => {
+  console.log('Validating From...');
+
+  let postcode = document.getElementById('postcode').value.replace(/\s/g, '');
+  let errors = [];
+
+  console.log(postcode);
+
+  if (!postcode) errors.push({ msg: 'Please enter your postcode' });
+
+  if (!_validatePostcode(postcode) && postcode)
+    errors.push({ msg: 'Postcode not valid' });
+
+  if (errors.length > 0) {
+    console.log('Postcode not valid...');
+    _handleErrors(errors);
+  } else {
+    console.log('success');
+    // sessionStorage.setItem('oderPostcode', postcode);
+    // _getAddressForPostcodeProvided(postcode);
+  }
+};
+
+export { fetchUserAddress };
