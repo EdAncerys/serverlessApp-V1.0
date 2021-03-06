@@ -1,12 +1,12 @@
 import { _newOrderPostcodeValidation } from './_helperFunctions/_icukBroadband/_newOrderPostcodeValidation.js';
-import { _errorMessage } from '../js/_helperFunctions/_errorMessage.js';
+import { _errorMessage } from './_helperFunctions/_errorMessage.js';
 import { _placeBroadbandOrder } from './_helperFunctions/_icukBroadband/_placeBroadbandOrder.js';
 import { _saveAddressData } from './_helperFunctions/_icukBroadband/_saveAddressData.js';
 import { _manageOrderData } from './_helperFunctions/_icukBroadband/_manageOrderData.js';
 import { _termsAndConditions } from './_helperFunctions/_icukBroadband/_termsAndConditions.js';
 import { _getBroadbandAvailability } from './_helperFunctions/_icukBroadband/_getBroadbandAvailability.js';
 
-import { _spinner } from '../js/_helperFunctions/_spinner.js';
+import { _spinner } from './_helperFunctions/_spinner.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   document
