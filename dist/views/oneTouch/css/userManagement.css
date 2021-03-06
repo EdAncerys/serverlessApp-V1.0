@@ -1,3 +1,13 @@
 .userManagementContent {
   padding-top: 50px;
 }
+
+/* Media Queries */
+@media only screen and (max-width: 800px) {
+  .userManagementContent {
+    padding-top: 10px;
+  }
+  .userManagementContent .feature-container {
+    margin: 0 40px;
+  }
+}
