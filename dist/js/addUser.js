@@ -1,4 +1,5 @@
 import { _fetchUserAddress } from './_helperFunctions/mongoDB/oneTouchUsers/_fetchUserAddress.js';
+import { _saveAddressData } from './_helperFunctions/_icukBroadband/_saveAddressData.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   document
@@ -31,8 +32,8 @@ document.querySelector('body').addEventListener('click', (event) => {
 document.querySelector('body').addEventListener('change', (event) => {
   const saveAddressData = event.target.nodeName === 'SELECT';
   if (saveAddressData) {
-    // _saveAddressData();
-    console.log('selecting new address');
+    _saveAddressData();
+    console.log(event.target);
     return;
   }
 });
