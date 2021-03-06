@@ -1,4 +1,4 @@
-import { fetchUserAddress } from './_helperFunctions/mongoDB/oneTouchUsers/fetchUserAddress.js';
+import { _fetchUserAddress } from './_helperFunctions/mongoDB/oneTouchUsers/_fetchUserAddress.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   document
@@ -8,5 +8,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const userAddressSearch = (ev) => {
   ev.preventDefault();
-  fetchUserAddress();
+  _fetchUserAddress();
 };
+
+document.querySelector('body').addEventListener('click', (event) => {
+  const selectUserAddress = event.target.nodeName === 'SELECTUSERADDRESS';
+  const goBackBtn = event.target.nodeName === 'GOBACKBTN';
+
+  // console.log(event.target);
+  if (selectUserAddress) {
+    console.log('select user address');
+    return;
+  }
+  if (goBackBtn) {
+    console.log('go back');
+    return;
+  }
+});
+
+document.querySelector('body').addEventListener('change', (event) => {
+  const saveAddressData = event.target.nodeName === 'SELECT';
+  if (saveAddressData) {
+    // _saveAddressData();
+    console.log('selecting new address');
+    return;
+  }
+});

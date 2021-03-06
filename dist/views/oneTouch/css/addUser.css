@@ -3,3 +3,17 @@
   grid-template-columns: 1fr 1fr;
   gap: 10px;
 }
+.selectAddressContainer {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  align-items: center;
+  row-gap: 10px;
+  margin: 10px 0;
+  padding: 10px 5px;
+  border-radius: 10px;
+}
+.userAddressFormNav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}

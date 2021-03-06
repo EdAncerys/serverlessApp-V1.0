@@ -1,7 +1,8 @@
 import { _validatePostcode } from '../../_icukBroadband/_validatePostcode.js';
 import { _handleErrors } from '../../_handleErrors.js';
+import { _userAddressForPostcodeProvided } from './_userAddressForPostcodeProvided.js';
 
-const fetchUserAddress = () => {
+const _fetchUserAddress = () => {
   console.log('Validating From...');
 
   let postcode = document.getElementById('postcode').value.replace(/\s/g, '');
@@ -18,10 +19,8 @@ const fetchUserAddress = () => {
     console.log('Postcode not valid...');
     _handleErrors(errors);
   } else {
-    console.log('success');
-    // sessionStorage.setItem('oderPostcode', postcode);
-    // _getAddressForPostcodeProvided(postcode);
+    _userAddressForPostcodeProvided(postcode);
   }
 };
 
-export { fetchUserAddress };
+export { _fetchUserAddress };

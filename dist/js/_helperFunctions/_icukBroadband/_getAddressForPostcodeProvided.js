@@ -1,6 +1,5 @@
 import { _errorMessage } from '../_errorMessage.js';
 import { _sortAddresses } from './_sortAddresses.js';
-import { _getBroadbandAvailability } from './_getBroadbandAvailability.js';
 import { _spinner } from '../_spinner.js';
 
 async function _getAddressForPostcodeProvided(postcode) {
