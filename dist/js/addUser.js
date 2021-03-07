@@ -7,11 +7,23 @@ document.addEventListener('DOMContentLoaded', () => {
   document
     .getElementById('userAddressSearch')
     .addEventListener('click', userAddressSearch);
+  document.getElementById('addUser').addEventListener('click', addUser);
 });
 
 const userAddressSearch = (ev) => {
   ev.preventDefault();
   _fetchUserAddress();
+};
+
+const addUser = (ev) => {
+  ev.preventDefault();
+  const userAddressValidation = sessionStorage.getItem('userAddressValidation');
+  if (userAddressValidation) {
+    _errorMessage('Add User', 'success');
+  } else {
+    _errorMessage('Please Complete The From!');
+  }
+  return;
 };
 
 document.querySelector('body').addEventListener('click', (event) => {
