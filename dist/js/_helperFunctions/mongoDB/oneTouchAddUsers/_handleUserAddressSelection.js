@@ -15,27 +15,27 @@ async function _handleUserAddressSelection() {
   selectionContainer.id = 'selectionContainer';
 
   const thoroughfare_number =
-    sessionStorage.getItem('thoroughfare_number') === null
+    sessionStorage.getItem('thoroughfare_number') === 'null'
       ? ''
       : sessionStorage.getItem('thoroughfare_number');
   const thoroughfare_name =
-    sessionStorage.getItem('thoroughfare_name') === null
+    sessionStorage.getItem('thoroughfare_name') === 'null'
       ? ''
       : sessionStorage.getItem('thoroughfare_name');
   const postcode =
-    sessionStorage.getItem('postcode') === null
+    sessionStorage.getItem('postcode') === 'null'
       ? ''
       : sessionStorage.getItem('postcode');
   const sub_premises =
-    sessionStorage.getItem('sub_premises') === null
+    sessionStorage.getItem('sub_premises') === 'null'
       ? ''
       : sessionStorage.getItem('sub_premises');
   const county =
-    sessionStorage.getItem('county') === null
+    sessionStorage.getItem('county') === 'null'
       ? ''
       : sessionStorage.getItem('county');
   const premises_name =
-    sessionStorage.getItem('premises_name') === null
+    sessionStorage.getItem('premises_name') === 'null'
       ? ''
       : sessionStorage.getItem('premises_name');
 

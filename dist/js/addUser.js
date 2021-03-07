@@ -3,6 +3,7 @@ import { _handleUserAddressSelection } from './_helperFunctions/mongoDB/oneTouch
 import { _addOneTouchUserToDB } from './_helperFunctions/mongoDB/oneTouchAddUsers/_addOneTouchUserToDB.js';
 import { _saveAddressData } from './_helperFunctions/_icukBroadband/_saveAddressData.js';
 import { _errorMessage } from './_helperFunctions/_errorMessage.js';
+import { _validateEmail } from '../js/_helperFunctions/_validateEmail.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   document
@@ -70,13 +71,19 @@ const userAddressSearch = (ev) => {
 
 const addUser = (ev) => {
   ev.preventDefault();
-  const userAddressValidation = sessionStorage.getItem('userAddressValidation');
-  if (userAddressValidation === 'true') {
-    console.log('userAddressValidation');
-    _addOneTouchUserToDB();
-  } else {
-    _errorMessage('Please Complete The From!');
-  }
+  const fullName = document.getElementById('fullName').value === '';
+  const email = document.getElementById('email').value;
+  const userAddressValidation =
+    sessionStorage.getItem('userAddressValidation') === 'true';
+  const userFromValidation = !fullName && _validateEmail(email);
+
+  if (fullName) _errorMessage('Full Name Not Provided!', 'warring');
+  if (!_validateEmail(email))
+    _errorMessage('Email Not Provided or Incorrect!', 'warring');
+  if (!userAddressValidation)
+    _errorMessage('Please Add User Address!', 'warring');
+  if (userFromValidation && userAddressValidation) _addOneTouchUserToDB();
+
   return;
 };
 
