@@ -1,16 +1,14 @@
-import { _oneTouchUsers } from './_oneTouchUsers.js';
-import { _errorMessage } from '../_errorMessage.js';
-import { _spinner } from '../_spinner.js';
+import { _oneTouchUsers } from '../_oneTouchUsers.js';
+import { _errorMessage } from '../../_errorMessage.js';
+import { _spinner } from '../../_spinner.js';
 
-async function _createOneTouchUser() {
+async function _addOneTouchUserToDB() {
   _spinner(true);
   const URL = '/oneTouch/users';
-  let name = document.getElementById('name').value;
-  let phoneNumber = document.getElementById('phoneNumber').value;
-  let email = document.getElementById('email').value;
-  let address = document.getElementById('address').value;
-  let postcode = document.getElementById('postcode').value;
-  let notes = document.getElementById('notes').value;
+  const fullName = document.getElementById('fullName').value;
+  const phoneNumber = document.getElementById('phoneNumber').value;
+  const email = document.getElementById('email').value;
+  const notes = document.getElementById('notes').value;
 
   console.log('Adding user. Full Name: ' + name);
 
@@ -44,4 +42,4 @@ async function _createOneTouchUser() {
   }
 }
 
-export { _createOneTouchUser };
+export { _addOneTouchUserToDB };
