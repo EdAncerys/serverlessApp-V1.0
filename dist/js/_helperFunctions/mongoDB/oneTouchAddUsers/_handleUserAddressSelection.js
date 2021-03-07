@@ -4,10 +4,7 @@ import { _spinner } from '../../_spinner.js';
 
 async function _handleUserAddressSelection() {
   console.log('User Address Selected...');
-  const userAddressValidation = sessionStorage.setItem(
-    'userAddressValidation',
-    true
-  );
+  sessionStorage.setItem('userAddressValidation', true);
 
   // DOM manipulation
   const userAddressContainer = document.querySelector('#userAddressContainer');
@@ -54,7 +51,7 @@ async function _handleUserAddressSelection() {
                                   <div>`;
 
   userAddressContainer.appendChild(selectionContainer);
-  selectAddressContainer.classList.add('hidden');
+  selectAddressContainer.remove();
 }
 
 export { _handleUserAddressSelection };

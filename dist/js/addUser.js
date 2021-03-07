@@ -48,6 +48,10 @@ const addUser = (ev) => {
   ev.preventDefault();
   const userAddressValidation = sessionStorage.getItem('userAddressValidation');
   if (userAddressValidation) {
+    document.querySelector('#selectionContainer').remove();
+    document.querySelector('#userPostcodeContainer').classList.remove('hidden');
+    document.querySelector('#postcode').value = '';
+
     _errorMessage('Add User', 'success');
   } else {
     _errorMessage('Please Complete The From!');
