@@ -10,6 +10,35 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('addUser').addEventListener('click', addUser);
 });
 
+// Persist user data on reload
+const oneTouchDOMBody = sessionStorage.getItem('oneTouchDOMBody');
+if (
+  performance.navigation.type === PerformanceNavigation.TYPE_RELOAD &&
+  oneTouchDOMBody
+) {
+  console.info('Page reloaded');
+  const body = document.querySelector('#oneTouchBodyContainer');
+  body.innerHTML = oneTouchDOMBody;
+}
+// Create custom event
+const observer = new MutationObserver((list) => {
+  const evt = new CustomEvent('dom-changed', { detail: list });
+  document.body.dispatchEvent(evt);
+});
+// Listen to DOM changes
+observer.observe(document.body, {
+  attributes: true,
+  childList: true,
+  subtree: true,
+});
+// Save DOM changes to localStorage
+document.body.addEventListener('dom-changed', (e) => {
+  console.info('Saving DOM Body data to sessionStorage...');
+  const oneTouchDOMBody = document.querySelector('#oneTouchBodyContainer')
+    .innerHTML;
+  sessionStorage.setItem('oneTouchDOMBody', oneTouchDOMBody);
+});
+
 const userAddressSearch = (ev) => {
   ev.preventDefault();
   _fetchUserAddress();
