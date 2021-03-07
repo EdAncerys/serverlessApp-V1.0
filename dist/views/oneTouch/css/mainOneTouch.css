@@ -4,10 +4,11 @@
 @import url('./indexOneTouch.css');
 @import url('./supportDocs.css');
 @import url('./raiseTicket.css');
-@import url('./userManagement.css');
 @import url('./liveConnections.css');
 @import url('./oneTouchColors.css');
+@import url('./userManagement.css');
 @import url('./addUser.css');
+@import url('./manageUsers.css');
 @import url('../../../css/fonts.css');
 @import url('../../../css/spinner.css');
 @import url('../../../css/fontSize.css');
