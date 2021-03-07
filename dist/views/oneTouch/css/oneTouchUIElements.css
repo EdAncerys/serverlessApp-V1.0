@@ -84,7 +84,6 @@
 .feature-container a,
 .feature-container a:visited {
   text-decoration: none;
-  color: #333;
 }
 .feature-container:hover {
   -ms-transform: scale(1.05);

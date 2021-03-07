@@ -5,6 +5,9 @@
 .userManagementContent .feature-container {
   flex-basis: 40%;
 }
+.userManagementContent a {
+  color: #fff;
+}
 
 /* Media Queries */
 @media only screen and (max-width: 800px) {
