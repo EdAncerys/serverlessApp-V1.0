@@ -1,5 +1,6 @@
 import { _fetchUserAddress } from './_helperFunctions/mongoDB/oneTouchAddUsers/_fetchUserAddress.js';
 import { _handleUserAddressSelection } from './_helperFunctions/mongoDB/oneTouchAddUsers/_handleUserAddressSelection.js';
+import { _addOneTouchUserToDB } from './_helperFunctions/mongoDB/oneTouchAddUsers/_addOneTouchUserToDB.js';
 import { _saveAddressData } from './_helperFunctions/_icukBroadband/_saveAddressData.js';
 import { _errorMessage } from './_helperFunctions/_errorMessage.js';
 
@@ -48,11 +49,7 @@ const addUser = (ev) => {
   ev.preventDefault();
   const userAddressValidation = sessionStorage.getItem('userAddressValidation');
   if (userAddressValidation) {
-    document.querySelector('#selectionContainer').remove();
-    document.querySelector('#userPostcodeContainer').classList.remove('hidden');
-    document.querySelector('#postcode').value = '';
-
-    _errorMessage('Add User', 'success');
+    _addOneTouchUserToDB();
   } else {
     _errorMessage('Please Complete The From!');
   }
@@ -85,7 +82,7 @@ document.querySelector('body').addEventListener('change', (event) => {
   const saveAddressData = event.target.nodeName === 'SELECT';
   if (saveAddressData) {
     _saveAddressData();
-    console.log(event.target);
+    // console.log(event.target);
     return;
   }
 });
