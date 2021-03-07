@@ -51,18 +51,26 @@ async function _addOneTouchUserToDB() {
     if (!response.ok) throw new Error(data.msg);
 
     console.log(data);
-    sessionStorage.setItem('userAddressValidation', false);
-    document.querySelector('#selectionContainer').remove();
-    document.querySelector('#userPostcodeContainer').classList.remove('hidden');
-    document.querySelector('#postcode').value = '';
+    _domDataManipulation();
 
     _errorMessage(data.msg, 'success');
     _spinner(false);
   } catch (err) {
     console.log(err);
-    _errorMessage(err.msg);
+    _errorMessage(err);
     _spinner(false);
   }
 }
+
+const _domDataManipulation = () => {
+  sessionStorage.setItem('userAddressValidation', false);
+  document.querySelector('#selectionContainer').remove();
+  document.querySelector('#userPostcodeContainer').classList.remove('hidden');
+  document.querySelector('#fullName').value = '';
+  document.querySelector('#phoneNumber').value = '';
+  document.querySelector('#email').value = '';
+  document.querySelector('#postcode').value = '';
+  document.querySelector('#notes').value = '';
+};
 
 export { _addOneTouchUserToDB };

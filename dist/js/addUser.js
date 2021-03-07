@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Persist user data on reload
 const oneTouchDOMBody = sessionStorage.getItem('oneTouchDOMBody');
+
 if (
   performance.navigation.type === PerformanceNavigation.TYPE_RELOAD &&
   oneTouchDOMBody
@@ -20,6 +21,19 @@ if (
   console.info('Page reloaded');
   const body = document.querySelector('#oneTouchBodyContainer');
   body.innerHTML = oneTouchDOMBody;
+
+  document.querySelector('#fullName').value = sessionStorage.getItem(
+    'addUserFormFullName'
+  );
+  document.querySelector('#phoneNumber').value = sessionStorage.getItem(
+    'addUserFormPhoneNumber'
+  );
+  document.querySelector('#email').value = sessionStorage.getItem(
+    'addUserFormEmail'
+  );
+  document.querySelector('#notes').value = sessionStorage.getItem(
+    'addUserFormNotes'
+  );
 }
 // Create custom event
 const observer = new MutationObserver((list) => {
@@ -37,7 +51,16 @@ document.body.addEventListener('dom-changed', (e) => {
   console.info('Saving DOM Body data to sessionStorage...');
   const oneTouchDOMBody = document.querySelector('#oneTouchBodyContainer')
     .innerHTML;
+  const addUserFormFullName = document.querySelector('#fullName').value;
+  const addUserFormPhoneNumber = document.querySelector('#phoneNumber').value;
+  const addUserFormEmail = document.querySelector('#email').value;
+  const addUserFormNotes = document.querySelector('#notes').value;
+
   sessionStorage.setItem('oneTouchDOMBody', oneTouchDOMBody);
+  sessionStorage.setItem('addUserFormFullName', addUserFormFullName);
+  sessionStorage.setItem('addUserFormPhoneNumber', addUserFormPhoneNumber);
+  sessionStorage.setItem('addUserFormEmail', addUserFormEmail);
+  sessionStorage.setItem('addUserFormNotes', addUserFormNotes);
 });
 
 const userAddressSearch = (ev) => {
@@ -48,7 +71,8 @@ const userAddressSearch = (ev) => {
 const addUser = (ev) => {
   ev.preventDefault();
   const userAddressValidation = sessionStorage.getItem('userAddressValidation');
-  if (userAddressValidation) {
+  if (userAddressValidation === 'true') {
+    console.log('userAddressValidation');
     _addOneTouchUserToDB();
   } else {
     _errorMessage('Please Complete The From!');
