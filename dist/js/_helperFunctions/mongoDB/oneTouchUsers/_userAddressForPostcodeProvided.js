@@ -68,7 +68,7 @@ async function _userAddressForPostcodeProvided(postcode) {
                                           <label for="fname">Select User Address</label>
                                           <div class='selectAddressContainer'>
                                             <select id="selectedAddress" name="selectedAddress">
-                                              <option selected disabled hidden value='selectionID'>Please Choose Your Address</option>
+                                              <option selected disabled hidden value='userSelection'>Please Choose Your Address</option>
                                               ${content}
                                             </select>
                                             <div class='userAddressFormNav'>

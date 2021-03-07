@@ -1,5 +1,6 @@
 import { _fetchUserAddress } from './_helperFunctions/mongoDB/oneTouchUsers/_fetchUserAddress.js';
 import { _saveAddressData } from './_helperFunctions/_icukBroadband/_saveAddressData.js';
+import { _errorMessage } from './_helperFunctions/_errorMessage.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   document
@@ -18,7 +19,9 @@ document.querySelector('body').addEventListener('click', (event) => {
 
   // console.log(event.target);
   if (selectUserAddress) {
-    console.log('select user address');
+    const userSelection = document.getElementById('selectedAddress').value;
+    if (userSelection !== 'userSelection') console.log('run function ');
+    _errorMessage('Please Select User Address From The List Provided!');
     return;
   }
   if (goBackBtn) {
