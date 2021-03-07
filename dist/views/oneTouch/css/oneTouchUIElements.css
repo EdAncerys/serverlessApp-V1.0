@@ -26,15 +26,13 @@
   box-shadow: 4px 4px 12px -4px rgb(0 0 0 / 50%);
 }
 .btnB01 {
-  color: #6ec5dd;
-  background-color: #16214d;
-  border-radius: 10px;
+  background-color: #f0ad4e;
+  border-radius: 999px;
   padding: 5px 15px;
   font-size: 0.75rem;
 }
 .btnB01:hover {
-  color: #f7f7f7;
-  background-color: #44c7f4;
+  background-color: #5bc0de;
   box-shadow: 4px 4px 12px -4px rgb(0 0 0 / 50%);
   -ms-transform: scale(0.98);
   -webkit-transform: scale(0.98);
