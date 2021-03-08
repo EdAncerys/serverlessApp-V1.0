@@ -26,6 +26,13 @@
     rgba(95, 175, 201, 1) 91.1%
   );
 }
+.backgroundLG03 {
+  background-image: linear-gradient(
+    109.6deg,
+    rgba(44, 83, 131, 0.2) 18.9%,
+    rgba(95, 175, 201, 0.05) 91.1%
+  );
+}
 
 .colorBlack {
   color: #333;

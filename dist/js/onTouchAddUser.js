@@ -57,6 +57,7 @@ document.body.addEventListener('dom-changed', (e) => {
   const addUserFormEmail = document.querySelector('#email').value;
   const addUserFormNotes = document.querySelector('#notes').value;
 
+  sessionStorage.setItem('oneTouchBodyName', 'add-user');
   sessionStorage.setItem('oneTouchDOMBody', oneTouchDOMBody);
   sessionStorage.setItem('addUserFormFullName', addUserFormFullName);
   sessionStorage.setItem('addUserFormPhoneNumber', addUserFormPhoneNumber);

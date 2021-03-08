@@ -49,6 +49,7 @@ document.body.addEventListener('dom-changed', (e) => {
   console.info('Saving DOM Body data to sessionStorage...');
   const oneTouchDOMBody = document.querySelector('#oneTouchBodyContainer')
     .innerHTML;
+  sessionStorage.setItem('oneTouchBodyName', 'order-new-connection');
   sessionStorage.setItem('oneTouchDOMBody', oneTouchDOMBody);
 });
 

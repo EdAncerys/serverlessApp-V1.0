@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     sessionStorage.getItem('oneTouchBodyName') === 'manage-users';
 
   console.log(oneTouchDOMBody, oneTouchBodyName);
-  if (oneTouchDOMBody) {
+  if (oneTouchDOMBody || !oneTouchBodyName) {
     fetchOneTouchUsersFromDB();
   }
   if (!oneTouchDOMBody && oneTouchBodyName) {
