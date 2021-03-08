@@ -1,24 +1,24 @@
-import { _fetchOneTouchUsers } from './_helperFunctions/mongoDB/oneTouchManageUsers/_fetchOneTouchUsers.js';
+import { _fetchOneTouchUsersFromDB } from './_helperFunctions/mongoDB/oneTouchManageUsers/_fetchOneTouchUsersFromDB.js';
 import { _errorMessage } from './_helperFunctions/_errorMessage.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const oneTouchDOMBody = sessionStorage.getItem('oneTouchDOMBody') === null;
-  const oneTouchBody =
-    sessionStorage.getItem('oneTouchBody') === 'manage-users';
+  const oneTouchBodyName =
+    sessionStorage.getItem('oneTouchBodyName') === 'manage-users';
 
-  console.log(oneTouchDOMBody, oneTouchBody);
+  console.log(oneTouchDOMBody, oneTouchBodyName);
   if (oneTouchDOMBody) {
     fetchOneTouchUsersFromDB();
   }
-  if (!oneTouchDOMBody && oneTouchBody) {
-    console.log('page reloaded');
+  if (!oneTouchDOMBody && oneTouchBodyName) {
+    console.log('Page Reloaded');
     const oneTouchDOMBody = document.querySelector('#oneTouchBodyContainer');
     oneTouchDOMBody.innerHTML = sessionStorage.getItem('oneTouchDOMBody');
   }
 });
 
 const fetchOneTouchUsersFromDB = () => {
-  _fetchOneTouchUsers();
+  _fetchOneTouchUsersFromDB();
 };
 
 document.querySelector('body').addEventListener('click', (event) => {

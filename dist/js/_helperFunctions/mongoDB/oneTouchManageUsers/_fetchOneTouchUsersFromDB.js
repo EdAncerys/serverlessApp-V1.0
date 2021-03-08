@@ -2,7 +2,7 @@ import { _deleteOneTouchUser } from './_deleteOneTouchUser.js';
 import { _errorMessage } from '../../_errorMessage.js';
 import { _spinner } from '../../_spinner.js';
 
-async function _fetchOneTouchUsers() {
+async function _fetchOneTouchUsersFromDB() {
   console.log('Fetching users from db...');
   _spinner(true, 'Loading Active Users...');
   const URL = '/oneTouch/users';
@@ -66,7 +66,7 @@ async function _fetchOneTouchUsers() {
       }
     });
 
-    sessionStorage.setItem('oneTouchBody', 'manage-users');
+    sessionStorage.setItem('oneTouchBodyName', 'manage-users');
     const oneTouchDOMBody = document.querySelector('#oneTouchBodyContainer')
       .innerHTML;
     sessionStorage.setItem('oneTouchDOMBody', oneTouchDOMBody);
@@ -76,4 +76,4 @@ async function _fetchOneTouchUsers() {
   }
 }
 
-export { _fetchOneTouchUsers };
+export { _fetchOneTouchUsersFromDB };
