@@ -1,3 +1,6 @@
 .manageUsersContent {
   padding-top: 20px;
 }
+.manageUsersContent .flex-container {
+  color: #fff;
+}

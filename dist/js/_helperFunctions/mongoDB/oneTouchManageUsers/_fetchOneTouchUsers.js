@@ -1,8 +1,8 @@
 import { _deleteOneTouchUser } from './_deleteOneTouchUser.js';
-import { _errorMessage } from '../_errorMessage.js';
-import { _spinner } from '../_spinner.js';
+import { _errorMessage } from '../../_errorMessage.js';
+import { _spinner } from '../../_spinner.js';
 
-async function _oneTouchUsers() {
+async function _fetchOneTouchUsers() {
   console.log('Fetching users from db...');
   _spinner(true, 'Loading Active Users...');
   const URL = '/oneTouch/users';
@@ -41,6 +41,7 @@ async function _oneTouchUsers() {
                               </div>
                               ${userData}
                             </div>`;
+
     _spinner(false);
     document.querySelector('body').addEventListener('click', (event) => {
       const btnInfoUser = event.target.nodeName === 'BTNINFOUSER';
@@ -64,10 +65,15 @@ async function _oneTouchUsers() {
         _errorMessage(`User will be deleted! Email ${email} `);
       }
     });
+
+    sessionStorage.setItem('oneTouchBody', 'manage-users');
+    const oneTouchDOMBody = document.querySelector('#oneTouchBodyContainer')
+      .innerHTML;
+    sessionStorage.setItem('oneTouchDOMBody', oneTouchDOMBody);
   } catch (err) {
     console.log(err);
     _errorMessage(err);
   }
 }
 
-export { _oneTouchUsers };
+export { _fetchOneTouchUsers };

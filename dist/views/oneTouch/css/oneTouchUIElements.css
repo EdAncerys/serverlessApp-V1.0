@@ -75,7 +75,8 @@
   padding: 10px 0;
   justify-content: space-evenly;
 }
-.feature-container {
+.feature-container,
+.flex-container {
   flex-basis: 30%;
   margin: 10px;
   padding: 10px;
