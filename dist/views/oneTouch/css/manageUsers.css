@@ -2,5 +2,20 @@
   padding-top: 20px;
 }
 .manageUsersContent .flex-container {
-  color: #fff;
+  color: #333;
+}
+.manageUsersContent headerText {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  gap: 10px;
+}
+.manageUsersRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 5px 0;
+  min-width: 400px;
+}
+.manageUsersBtnRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }

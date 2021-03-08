@@ -1,5 +1,6 @@
-import { _fetchOneTouchUsersFromDB } from './_helperFunctions/mongoDB/oneTouchManageUsers/_fetchOneTouchUsersFromDB.js';
 import { _errorMessage } from './_helperFunctions/_errorMessage.js';
+import { _fetchOneTouchUsersFromDB } from './_helperFunctions/mongoDB/oneTouchManageUsers/_fetchOneTouchUsersFromDB.js';
+import { _deleteOneTouchUser } from './_helperFunctions/mongoDB/oneTouchManageUsers/_deleteOneTouchUser.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const oneTouchDOMBody = sessionStorage.getItem('oneTouchDOMBody') === null;
@@ -22,23 +23,23 @@ const fetchOneTouchUsersFromDB = () => {
 };
 
 document.querySelector('body').addEventListener('click', (event) => {
-  const selectUserAddress = event.target.nodeName === 'SELECTUSERADDRESS';
-  const goBackBtn = event.target.nodeName === 'GOBACKBTN';
+  const btnInfoUser = event.target.nodeName === 'BTNINFOUSER';
+  const btnUpdateUser = event.target.nodeName === 'BTNUPDATEUSER';
+  const btnDeleteUser = event.target.nodeName === 'BTNDELETEUSER';
 
-  // console.log(event.target);
-  if (selectUserAddress) {
-    const userSelection = document.getElementById('selectedAddress').value;
-    if (userSelection !== 'userSelection') {
-      _handleUserAddressSelection();
-    } else {
-      _errorMessage('Please Select User Address From The List Provided!');
-    }
-    return;
+  let id = event.target.getAttribute('id');
+
+  if (btnInfoUser) {
+    console.log(id);
+    _errorMessage(id, 'success');
   }
-  if (goBackBtn) {
-    document.querySelector('#selectAddressContainer').remove();
-    document.querySelector('#userPostcodeContainer').classList.remove('hidden');
-    document.querySelector('#postcode').value = '';
-    return;
+  if (btnUpdateUser) {
+    console.log(id);
+    _errorMessage(id, 'warning');
+  }
+  if (btnDeleteUser) {
+    console.log(id);
+    // _deleteOneTouchUser(id);
+    _errorMessage(`User will be deleted! ID ${id} `);
   }
 });

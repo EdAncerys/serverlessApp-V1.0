@@ -1,4 +1,3 @@
-import { _deleteOneTouchUser } from './_deleteOneTouchUser.js';
 import { _errorMessage } from '../../_errorMessage.js';
 import { _spinner } from '../../_spinner.js';
 
@@ -16,18 +15,18 @@ async function _fetchOneTouchUsersFromDB() {
     let userData = '';
     data.map((user) => {
       userData += `<div class='boxContainer'>
-                    <div class="userDataContainer">
-                      <div class="tableCell">${user.name}</div>
+                    <div class="manageUsersRow">
+                      <div class="tableCell">${user.fullName}</div>
                       <div class="tableCell">${user.email}</div>
                     </div>
-                    <div class="manageUserDataComponent">
-                      <btnInfoUser id='${user._id}' email='${user.email}' value='${user._id}' class="btnB01" role="button">
+                    <div class="manageUsersBtnRow">
+                      <btnInfoUser id='${user._id}' email='${user.email}' class="btnB01" role="button">
                         Info
                       </btnInfoUser>
-                      <btnUpdateUser id='${user._id}' email='${user.email}' value='${user._id}' class="btnB01" role="button">
+                      <btnUpdateUser id='${user._id}' email='${user.email}' class="btnB01" role="button">
                         Update
                       </btnUpdateUser>
-                        <btnDeleteUser id='${user._id}' email='${user.email}' value='${user._id}' class="btnB01" role="button">
+                        <btnDeleteUser id='${user._id}' email='${user.email}' class="btnB01" role="button">
                         Delete
                       </btnDeleteUser>
                     </div>
@@ -35,36 +34,14 @@ async function _fetchOneTouchUsersFromDB() {
     });
 
     oneTouchUsers.innerHTML = `<div class='umContainer'>
-                              <div class="userDataContainer boxContainer">
-                                <div class="tableCell">Name</div>
+                              <div class="manageUsersRow boxContainer">
+                                <div class="tableCell">Full Name</div>
                                 <div class="tableCell">Email</div>
                               </div>
                               ${userData}
                             </div>`;
 
     _spinner(false);
-    document.querySelector('body').addEventListener('click', (event) => {
-      const btnInfoUser = event.target.nodeName === 'BTNINFOUSER';
-      const btnUpdateUser = event.target.nodeName === 'BTNUPDATEUSER';
-      const btnDeleteUser = event.target.nodeName === 'BTNDELETEUSER';
-
-      let id = event.target.getAttribute('id');
-      let email = event.target.getAttribute('email');
-
-      if (btnInfoUser) {
-        console.log(id);
-        _errorMessage(email, 'success');
-      }
-      if (btnUpdateUser) {
-        console.log(id);
-        _errorMessage(email, 'warning');
-      }
-      if (btnDeleteUser) {
-        console.log(email);
-        _deleteOneTouchUser(id);
-        _errorMessage(`User will be deleted! Email ${email} `);
-      }
-    });
 
     sessionStorage.setItem('oneTouchBodyName', 'manage-users');
     const oneTouchDOMBody = document.querySelector('#oneTouchBodyContainer')
