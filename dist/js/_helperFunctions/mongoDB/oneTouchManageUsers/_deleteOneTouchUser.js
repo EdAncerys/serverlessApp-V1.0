@@ -1,4 +1,4 @@
-// import { _oneTouchUsers } from './_oneTouchUsers.js';
+import { _fetchOneTouchUsersFromDB } from './_fetchOneTouchUsersFromDB.js';
 import { _errorMessage } from '../../_errorMessage.js';
 import { _spinner } from '../../_spinner.js';
 
@@ -20,7 +20,7 @@ async function _deleteOneTouchUser(id) {
     if (!response.ok) throw new Error(response);
     const data = await response.json();
 
-    // _oneTouchUsers();
+    _fetchOneTouchUsersFromDB();
     _errorMessage(data.msg, 'success');
     _spinner(false);
     console.log(data);

@@ -40,6 +40,5 @@ document.querySelector('body').addEventListener('click', (event) => {
   if (btnDeleteUser) {
     console.log(id);
     _deleteOneTouchUser(id);
-    _errorMessage(`User will be deleted! ID ${id} `);
   }
 });
