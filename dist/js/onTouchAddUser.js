@@ -3,7 +3,7 @@ import { _handleUserAddressSelection } from './_helperFunctions/mongoDB/oneTouch
 import { _addOneTouchUserToDB } from './_helperFunctions/mongoDB/oneTouchAddUsers/_addOneTouchUserToDB.js';
 import { _saveAddressData } from './_helperFunctions/_icukBroadband/_saveAddressData.js';
 import { _errorMessage } from './_helperFunctions/_errorMessage.js';
-import { _validateEmail } from '../js/_helperFunctions/_validateEmail.js';
+import { _validateEmail } from './_helperFunctions/_validateEmail.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   document
