@@ -31,11 +31,11 @@ document.querySelector('body').addEventListener('click', (event) => {
 
   if (btnInfoUser) {
     console.log(id);
-    _errorMessage(id, 'success');
+    _errorMessage('Info User Content', 'success');
   }
   if (btnUpdateUser) {
     console.log(id);
-    _errorMessage(id, 'warning');
+    _errorMessage('Update User Content', 'warning');
   }
   if (btnDeleteUser) {
     console.log(id);
