@@ -75,7 +75,6 @@ async function _manageOrderData(
     const orderData = `<div class="boxContainer backgroundWhiteT01 broadbandDataContainerHover fontH2">
                         <div class="broadbandDataContainer">
                           <div class="tableCell">${name}</div>
-                          <div class="tableCell">${provider}</div>
                           <div class="tableCell">${likely_down_speed}</div>
                           <div class="tableCell">${likely_up_speed}</div>
                           <div class="tableCell">${price}</div>
@@ -97,7 +96,6 @@ async function _manageOrderData(
                                       </div>
                                       <div class="boxContainer broadbandDataContainer backgroundWhite">
                                         <div class="tableCell">Supplier</div>
-                                        <div class="tableCell">Provider</div>
                                         <div class="tableCell">Download</div>
                                         <div class="tableCell">Upload</div>
                                         <div class="tableCell">Price</div>

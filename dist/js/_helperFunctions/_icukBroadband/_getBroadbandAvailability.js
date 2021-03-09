@@ -67,7 +67,6 @@ async function _getBroadbandAvailability() {
       orderData += `<div class="boxContainer backgroundWhiteT01 broadbandDataContainerHover fontH2">
                           <div class="broadbandDataContainer">
                             <div class="tableCell">${order.name}</div>
-                            <div class="tableCell">${order.provider}</div>
                             <div class="tableCell">${order.likely_down_speed}</div>
                             <div class="tableCell">${order.likely_up_speed}</div>
                             <div class="tableCell">${order.price}</div>
@@ -92,7 +91,6 @@ async function _getBroadbandAvailability() {
     oneTouchBroadbandAvailability.innerHTML = `<div class='alignHorizontally'>
                                                     <div class="boxContainer broadbandDataContainer backgroundWhite fontH3">
                                                       <div class="tableCell">Supplier</div>
-                                                      <div class="tableCell">Provider</div>
                                                       <div class="tableCell">Download</div>
                                                       <div class="tableCell">Upload</div>
                                                       <div class="tableCell">Price</div>

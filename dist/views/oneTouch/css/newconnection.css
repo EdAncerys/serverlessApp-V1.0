@@ -62,7 +62,7 @@
 }
 .broadbandDataContainer {
   display: grid;
-  grid-template-columns: 200px 80px 80px 80px 80px 100px 100px;
+  grid-template-columns: 200px 100px 100px 100px 100px 100px;
 }
 .broadbandDataContainerHover:hover {
   background-color: #fff;
