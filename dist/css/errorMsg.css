@@ -1,3 +1,9 @@
+errorMessage {
+  position: absolute;
+  width: 100%;
+  z-index: 99;
+  top: 100px;
+}
 .errorMsgContainer {
   display: grid;
   justify-items: center;

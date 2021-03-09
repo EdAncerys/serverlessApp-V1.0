@@ -32,12 +32,6 @@ body {
   padding-top: 66px;
   text-align: center;
 }
-errorMessage {
-  position: absolute;
-  width: 100%;
-  z-index: 99;
-  top: 100px;
-}
 .center {
   display: grid;
   justify-content: center;
