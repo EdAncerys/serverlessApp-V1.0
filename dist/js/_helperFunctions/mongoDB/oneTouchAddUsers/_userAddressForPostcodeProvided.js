@@ -1,3 +1,4 @@
+import { persistDOMData } from '../../../persistDOMData.js';
 import { _errorMessage } from '../../_errorMessage.js';
 import { _sortAddresses } from '../../_icukBroadband/_sortAddresses.js';
 import { _spinner } from '../../_spinner.js';
@@ -84,6 +85,7 @@ async function _userAddressForPostcodeProvided(postcode) {
 
     userAddressContainer.appendChild(selectAddressContainer);
     userPostcodeContainer.classList.add('hidden');
+    persistDOMData('oneTouchBodyContainer', 'add-user');
   } catch (err) {
     console.log(err);
     _errorMessage(err);

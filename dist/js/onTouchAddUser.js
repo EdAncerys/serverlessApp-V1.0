@@ -4,65 +4,25 @@ import { _addOneTouchUserToDB } from './_helperFunctions/mongoDB/oneTouchAddUser
 import { _saveAddressData } from './_helperFunctions/_icukBroadband/_saveAddressData.js';
 import { _errorMessage } from './_helperFunctions/_errorMessage.js';
 import { _validateEmail } from './_helperFunctions/_validateEmail.js';
+import { persistDOMData } from './persistDOMData.js';
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Persist user data on reload
+  const oneTouchDOMBody = sessionStorage.getItem('oneTouchDOMBody') === null;
+  const oneTouchBodyName =
+    sessionStorage.getItem('oneTouchBodyName') === 'add-user';
+
+  console.log(oneTouchDOMBody, oneTouchBodyName);
+  if (!oneTouchDOMBody && oneTouchBodyName) {
+    console.log('Page Reloaded');
+    const oneTouchDOMBody = document.querySelector('#oneTouchBodyContainer');
+    oneTouchDOMBody.innerHTML = sessionStorage.getItem('oneTouchDOMBody');
+  }
+  // Btn event listeners
   document
     .getElementById('userAddressSearch')
     .addEventListener('click', userAddressSearch);
   document.getElementById('addUser').addEventListener('click', addUser);
-});
-
-// Persist user data on reload
-const oneTouchDOMBody = sessionStorage.getItem('oneTouchDOMBody');
-
-if (
-  performance.navigation.type === PerformanceNavigation.TYPE_RELOAD &&
-  oneTouchDOMBody
-) {
-  console.info('Page reloaded');
-  const body = document.querySelector('#oneTouchBodyContainer');
-  body.innerHTML = oneTouchDOMBody;
-
-  document.querySelector('#fullName').value = sessionStorage.getItem(
-    'addUserFormFullName'
-  );
-  document.querySelector('#phoneNumber').value = sessionStorage.getItem(
-    'addUserFormPhoneNumber'
-  );
-  document.querySelector('#email').value = sessionStorage.getItem(
-    'addUserFormEmail'
-  );
-  document.querySelector('#notes').value = sessionStorage.getItem(
-    'addUserFormNotes'
-  );
-}
-// Create custom event
-const observer = new MutationObserver((list) => {
-  const evt = new CustomEvent('dom-changed', { detail: list });
-  document.body.dispatchEvent(evt);
-});
-// Listen to DOM changes
-observer.observe(document.body, {
-  attributes: true,
-  childList: true,
-  subtree: true,
-});
-// Save DOM changes to localStorage
-document.body.addEventListener('dom-changed', (e) => {
-  console.info('Saving DOM Body data to sessionStorage...');
-  const oneTouchDOMBody = document.querySelector('#oneTouchBodyContainer')
-    .innerHTML;
-  const addUserFormFullName = document.querySelector('#fullName').value;
-  const addUserFormPhoneNumber = document.querySelector('#phoneNumber').value;
-  const addUserFormEmail = document.querySelector('#email').value;
-  const addUserFormNotes = document.querySelector('#notes').value;
-
-  sessionStorage.setItem('oneTouchBodyName', 'add-user');
-  sessionStorage.setItem('oneTouchDOMBody', oneTouchDOMBody);
-  sessionStorage.setItem('addUserFormFullName', addUserFormFullName);
-  sessionStorage.setItem('addUserFormPhoneNumber', addUserFormPhoneNumber);
-  sessionStorage.setItem('addUserFormEmail', addUserFormEmail);
-  sessionStorage.setItem('addUserFormNotes', addUserFormNotes);
 });
 
 const userAddressSearch = (ev) => {
@@ -106,6 +66,8 @@ document.querySelector('body').addEventListener('click', (event) => {
     document.querySelector('#selectAddressContainer').remove();
     document.querySelector('#userPostcodeContainer').classList.remove('hidden');
     document.querySelector('#postcode').value = '';
+    persistDOMData('oneTouchBodyContainer', 'add-user');
+
     return;
   }
 });

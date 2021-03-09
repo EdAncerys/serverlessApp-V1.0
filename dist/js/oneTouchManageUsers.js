@@ -3,11 +3,11 @@ import { _fetchOneTouchUsersFromDB } from './_helperFunctions/mongoDB/oneTouchMa
 import { _deleteOneTouchUser } from './_helperFunctions/mongoDB/oneTouchManageUsers/_deleteOneTouchUser.js';
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Persist user data on reload
   const oneTouchDOMBody = sessionStorage.getItem('oneTouchDOMBody') === null;
   const oneTouchBodyName =
     sessionStorage.getItem('oneTouchBodyName') === 'manage-users';
 
-  console.log(oneTouchDOMBody, oneTouchBodyName);
   if (oneTouchDOMBody || !oneTouchBodyName) {
     fetchOneTouchUsersFromDB();
   }

@@ -1,3 +1,4 @@
+import { persistDOMData } from '../../../persistDOMData.js';
 import { _errorMessage } from '../../_errorMessage.js';
 import { _sortAddresses } from '../../_icukBroadband/_sortAddresses.js';
 import { _spinner } from '../../_spinner.js';
@@ -52,6 +53,7 @@ async function _handleUserAddressSelection() {
 
   userAddressContainer.appendChild(selectionContainer);
   selectAddressContainer.remove();
+  persistDOMData('oneTouchBodyContainer', 'add-user');
 }
 
 export { _handleUserAddressSelection };
