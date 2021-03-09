@@ -28,38 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
     .getElementById('oneTouchUsers')
     .addEventListener('click', oneTouchUsers);
 });
-// // Persist user data on reload
-// const oneTouchDOMBody = sessionStorage.getItem('oneTouchDOMBody');
-// if (
-//   performance.navigation.type === PerformanceNavigation.TYPE_RELOAD &&
-//   oneTouchDOMBody
-// ) {
-//   console.info('Page reloaded');
-//   const body = document.querySelector('#oneTouchBodyContainer');
-//   body.innerHTML = oneTouchDOMBody;
-//   // Add classList if checkbox not checked upon reload
-//   let oneTouchPlaceOrder = document.querySelector('oneTouchPlaceOrder');
-//   if (oneTouchPlaceOrder) oneTouchPlaceOrder.classList.add('btnDisable');
-// }
-// // Create custom event
-// const observer = new MutationObserver((list) => {
-//   const evt = new CustomEvent('dom-changed', { detail: list });
-//   document.body.dispatchEvent(evt);
-// });
-// // Listen to DOM changes
-// observer.observe(document.body, {
-//   attributes: true,
-//   childList: true,
-//   subtree: true,
-// });
-// // Save DOM changes to localStorage
-// document.body.addEventListener('dom-changed', (e) => {
-//   console.info('Saving DOM Body data to sessionStorage...');
-//   const oneTouchDOMBody = document.querySelector('#oneTouchBodyContainer')
-//     .innerHTML;
-//   sessionStorage.setItem('oneTouchBodyName', 'order-new-connection');
-//   sessionStorage.setItem('oneTouchDOMBody', oneTouchDOMBody);
-// });
 
 const getAddressForPostcodeProvided = (ev) => {
   ev.preventDefault();
