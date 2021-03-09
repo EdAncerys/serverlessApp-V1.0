@@ -1,3 +1,4 @@
+import { persistDOMData } from '../../../persistDOMData.js';
 import { _errorMessage } from '../../_errorMessage.js';
 import { _spinner } from '../../_spinner.js';
 
@@ -42,11 +43,7 @@ async function _fetchOneTouchUsersFromDB() {
                             </div>`;
 
     _spinner(false);
-
-    sessionStorage.setItem('oneTouchBodyName', 'manage-users');
-    const oneTouchDOMBody = document.querySelector('#oneTouchBodyContainer')
-      .innerHTML;
-    sessionStorage.setItem('oneTouchDOMBody', oneTouchDOMBody);
+    persistDOMData('oneTouchBodyContainer', 'manage-users');
   } catch (err) {
     console.log(err);
     _errorMessage(err);
