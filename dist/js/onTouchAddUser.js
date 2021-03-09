@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const oneTouchBodyName =
     sessionStorage.getItem('oneTouchBodyName') === 'add-user';
 
-  console.log(oneTouchDOMBody, oneTouchBodyName);
   if (!oneTouchDOMBody && oneTouchBodyName) {
     console.log('Page Reloaded');
     const oneTouchDOMBody = document.querySelector('#oneTouchBodyContainer');

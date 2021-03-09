@@ -1,18 +1,23 @@
-const _termsAndConditions = () => {
+import { persistDOMData } from '../../persistDOMData.js';
+
+async function _termsAndConditions() {
   console.log('Review Terms & Conditions');
 
-  // Removing user previous data
-  const removeData = document.querySelector('#oneTouchBroadbandOrderPageFive');
-  if (removeData) removeData.remove();
+  try {
+    // Removing user previous data
+    const removeData = document.querySelector(
+      '#oneTouchBroadbandOrderPageFive'
+    );
+    if (removeData) removeData.remove();
 
-  const oneTouchSlider = document.querySelector('#oneTouchSlider');
-  const oneTouchBroadbandOrderPageFour = document.querySelector(
-    '#oneTouchBroadbandOrderPageFour'
-  );
-  const oneTouchTermsAndConditions = document.createElement('div');
-  oneTouchTermsAndConditions.id = 'oneTouchBroadbandOrderPageFive';
+    const oneTouchSlider = document.querySelector('#oneTouchSlider');
+    const oneTouchBroadbandOrderPageFour = document.querySelector(
+      '#oneTouchBroadbandOrderPageFour'
+    );
+    const oneTouchTermsAndConditions = document.createElement('div');
+    oneTouchTermsAndConditions.id = 'oneTouchBroadbandOrderPageFive';
 
-  const data = `   <div class="alignHorizontally">
+    const data = `   <div class="alignHorizontally">
                     <div class="oneTouchTermsAndConditions backgroundWhiteT01">
                       <div class="fontH4">Terms And Conditions</div>
                       <div class="oneTouchTermsAndConditionsText justifyText fontH2">
@@ -53,10 +58,14 @@ const _termsAndConditions = () => {
                     </div>
                   </div>`;
 
-  oneTouchTermsAndConditions.innerHTML = data;
+    oneTouchTermsAndConditions.innerHTML = data;
+    oneTouchBroadbandOrderPageFour.classList.add('hidden');
+    oneTouchSlider.appendChild(oneTouchTermsAndConditions);
 
-  oneTouchBroadbandOrderPageFour.classList.add('hidden');
-  oneTouchSlider.appendChild(oneTouchTermsAndConditions);
-};
+    persistDOMData('oneTouchBodyContainer', 'order-new-connection');
+  } catch (err) {
+    console.log(err);
+  }
+}
 
 export { _termsAndConditions };

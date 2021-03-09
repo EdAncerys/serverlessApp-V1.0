@@ -1,4 +1,5 @@
 import { _createOneTouchOrder } from '../mongoDB/_createOneTouchOrder.js';
+import { persistDOMData } from '../../persistDOMData.js';
 import { _errorMessage } from '../_errorMessage.js';
 import { _spinner } from '../_spinner.js';
 
@@ -110,6 +111,7 @@ async function _placeBroadbandOrder() {
     oneTouchBroadbandOrderPageFive.classList.add('hidden');
     oneTouchBroadbandOrderPageOne.classList.remove('hidden');
     document.getElementById('postcode').value = '';
+    persistDOMData('oneTouchBodyContainer', 'order-new-connection');
   } catch (err) {
     console.log(err);
     _errorMessage(err);

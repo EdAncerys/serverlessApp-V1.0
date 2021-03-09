@@ -1,3 +1,4 @@
+import { persistDOMData } from '../../persistDOMData.js';
 import { _errorMessage } from '../_errorMessage.js';
 import { _sortBroadbandData } from './_sortBroadbandData.js';
 import { _spinner } from '../_spinner.js';
@@ -110,6 +111,7 @@ async function _getBroadbandAvailability() {
 
     oneTouchBroadbandOrderPageTwo.classList.add('hidden');
     oneTouchSlider.appendChild(oneTouchBroadbandAvailability);
+    persistDOMData('oneTouchBodyContainer', 'order-new-connection');
   } catch (err) {
     console.log(err);
     _errorMessage(err);

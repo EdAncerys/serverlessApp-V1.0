@@ -1,3 +1,4 @@
+import { persistDOMData } from '../../persistDOMData.js';
 import { _errorMessage } from '../_errorMessage.js';
 import { _sortAddresses } from './_sortAddresses.js';
 import { _spinner } from '../_spinner.js';
@@ -91,6 +92,7 @@ async function _getAddressForPostcodeProvided(postcode) {
 
     oneTouchSlider.appendChild(orderAddressContainer);
     oneTouchBroadbandOrderPageOne.classList.add('hidden');
+    persistDOMData('oneTouchBodyContainer', 'order-new-connection');
   } catch (err) {
     console.log(err);
     _errorMessage(err);
