@@ -13,6 +13,9 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   margin: 5px 0;
+}
+.manageUsersRow,
+.manageUsersContent headerText {
   min-width: 600px;
 }
 .userRowNAU {

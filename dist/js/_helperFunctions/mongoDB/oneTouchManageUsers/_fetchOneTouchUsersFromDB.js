@@ -31,13 +31,18 @@ async function _fetchOneTouchUsersFromDB(pageName) {
     oneTouchUsers = document.createElement('div');
     oneTouchUsers.id = 'oneTouchBroadbandOrderPageTwo';
   }
-  // if (pageName === 'order-new-connection') {
-  //   sliderNav = `<div class='sliderNav'>
-  //                 <goBackBtn id='pageOne' class="btnOneTouch btnBack" role="button">
-  //                   Go Back
-  //                 </goBackBtn>
-  //               </div>`;
-  // }
+  if (pageName === 'order-new-connection') {
+    sliderNav = `<div class='sliderNavNUA alignHorizontally'>
+                  <goBackBtn id='pageOne' class="btnOneTouch backgroundSecondary" role="button">
+                    Go Back
+                  </goBackBtn>
+                  <addUser class="btnOneTouch" 
+                            role="button"
+                            onclick = "location.href='../../../../views/oneTouch/add-user.html'";>
+                    Add User
+                  </addUser>
+                </div>`;
+  }
 
   try {
     const response = await fetch(URL);
@@ -67,12 +72,6 @@ async function _fetchOneTouchUsersFromDB(pageName) {
                             Select
                           </selectUser>
                         </div>`;
-
-        sliderNav = `<div class='sliderNav'>
-                        <goBackBtn id='pageOne' class="btnOneTouch btnBack" role="button">
-                          Go Back
-                        </goBackBtn>
-                      </div>`;
       }
 
       userData += `<div class='boxContainer backgroundWhiteT01'>
@@ -86,24 +85,12 @@ async function _fetchOneTouchUsersFromDB(pageName) {
     });
 
     if (data.length === 0) {
-      let sliderNav = '';
-      if (pageName === 'order-new-connection')
-        sliderNav = `<div class='sliderNavNUA alignHorizontally'>
-                      <goBackBtn id='pageOne' class="btnOneTouch backgroundSecondary" role="button">
-                        Go Back
-                      </goBackBtn>
-                      <addUser class="btnOneTouch" 
-                                role="button"
-                                onclick = "location.href='../../../../views/oneTouch/add-user.html'";>
-                        Add User
-                      </addUser>
-                    </div>`;
       oneTouchUsers.innerHTML = `<div class='alignHorizontally'>
-                                    <div class='userRowNAU'>
-                                      <div>No Users Added To DB!</div>
-                                      ${sliderNav}
-                                    </div>
-                                  </div>`;
+                                  <div class='userRowNAU'>
+                                    <div>No Users Added To DB!</div>
+                                    ${sliderNav}
+                                  </div>
+                                </div>`;
     } else {
       oneTouchUsers.innerHTML = `<div class='alignHorizontally'>
                                   <div class='manageUserContainer'>
@@ -126,6 +113,7 @@ async function _fetchOneTouchUsersFromDB(pageName) {
     }
   } catch (err) {
     console.log(err);
+    _spinner(false);
     _errorMessage(err);
   }
 }
