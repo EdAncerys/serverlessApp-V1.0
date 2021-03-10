@@ -2,11 +2,31 @@ import { persistDOMData } from '../../../persistDOMData.js';
 import { _errorMessage } from '../../_errorMessage.js';
 import { _spinner } from '../../_spinner.js';
 
-async function _fetchOneTouchUsersFromDB() {
+async function _fetchOneTouchUsersFromDB(pageName) {
   console.log('Fetching users from db...');
   _spinner(true, 'Loading Active Users...');
   const URL = '/oneTouch/users';
-  const oneTouchUsers = document.querySelector('oneTouchUsers');
+
+  let oneTouchUsers = '';
+  let oneTouchSlider = '';
+  let oneTouchBroadbandOrderPageOne = '';
+
+  // User management page
+  if (pageName === 'manage-users')
+    oneTouchUsers = document.querySelector('oneTouchUsers');
+  // Broadband order page
+  if (pageName === 'order-new-connection') {
+    // Removing user previous data
+    const removeData = document.querySelector('#oneTouchBroadbandOrderPageTwo');
+    if (removeData) removeData.remove();
+
+    oneTouchSlider = document.querySelector('#oneTouchSlider');
+    oneTouchBroadbandOrderPageOne = document.querySelector(
+      '#oneTouchBroadbandOrderPageOne'
+    );
+    oneTouchUsers = document.createElement('div');
+    oneTouchUsers.id = 'oneTouchUsers';
+  }
 
   try {
     const response = await fetch(URL);
@@ -43,7 +63,10 @@ async function _fetchOneTouchUsersFromDB() {
                             </div>`;
 
     _spinner(false);
-    persistDOMData('oneTouchBodyContainer', 'manage-users');
+    if (pageName === 'manage-users')
+      persistDOMData('oneTouchBodyContainer', 'manage-users');
+    if (pageName === 'order-new-connection')
+      persistDOMData('oneTouchBodyContainer', 'order-new-connection');
   } catch (err) {
     console.log(err);
     _errorMessage(err);
