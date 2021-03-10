@@ -31,6 +31,13 @@ async function _fetchOneTouchUsersFromDB(pageName) {
     oneTouchUsers = document.createElement('div');
     oneTouchUsers.id = 'oneTouchBroadbandOrderPageTwo';
   }
+  // if (pageName === 'order-new-connection') {
+  //   sliderNav = `<div class='sliderNav'>
+  //                 <goBackBtn id='pageOne' class="btnOneTouch btnBack" role="button">
+  //                   Go Back
+  //                 </goBackBtn>
+  //               </div>`;
+  // }
 
   try {
     const response = await fetch(URL);
@@ -78,15 +85,34 @@ async function _fetchOneTouchUsersFromDB(pageName) {
                     ${sliderNav}`;
     });
 
-    oneTouchUsers.innerHTML = `<div class='alignHorizontally'>
-                                <div class='umContainer'>
-                                  <div class="manageUsersRow boxContainer backgroundWhiteT01">
-                                    <div class="tableCell">Full Name</div>
-                                    <div class="tableCell">Email</div>
-                                  </div>
-                                    ${userData}
-                                  </div>
-                                </div>`;
+    if (data.length === 0) {
+      let sliderNav = '';
+      if (pageName === 'order-new-connection')
+        sliderNav = `<div class='sliderNavNUA alignHorizontally'>
+                      <goBackBtn id='pageOne' class="btnOneTouch" role="button">
+                        Go Back
+                      </goBackBtn>
+                      <addUser class="btnOneTouch" role="button">
+                        Add User
+                      </addUser>
+                    </div>`;
+      oneTouchUsers.innerHTML = `<div class='alignHorizontally'>
+                                    <div class='userRowNAU'>
+                                      <div>No Users Added To DB!</div>
+                                      ${sliderNav}
+                                    </div>
+                                  </div>`;
+    } else {
+      oneTouchUsers.innerHTML = `<div class='alignHorizontally'>
+                                  <div class='manageUserContainer'>
+                                    <div class="manageUsersRow boxContainer backgroundWhiteT01">
+                                      <div class="tableCell">Full Name</div>
+                                      <div class="tableCell">Email</div>
+                                    </div>
+                                      ${userData}
+                                    </div>
+                                  </div>`;
+    }
 
     _spinner(false);
     if (pageName === 'manage-users')

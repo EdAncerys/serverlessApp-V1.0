@@ -15,6 +15,17 @@
   margin: 5px 0;
   min-width: 600px;
 }
+.userRowNAU {
+  display: grid;
+  align-items: center;
+  margin: 20px 0;
+  min-width: 300px;
+}
+.sliderNavNUA {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  margin: 20px 0;
+}
 .manageUsersNav,
 .manageUsersNavNC {
   display: grid;
