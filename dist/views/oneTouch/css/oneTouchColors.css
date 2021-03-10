@@ -43,3 +43,8 @@
 .colorWhite {
   color: #f7f7f7;
 }
+<form action="../../../../views/oneTouch/add-user.html">
+<addUser class="btnOneTouch" role="button">
+  Add User
+</addUser>
+</form>

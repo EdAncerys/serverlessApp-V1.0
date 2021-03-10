@@ -89,10 +89,12 @@ async function _fetchOneTouchUsersFromDB(pageName) {
       let sliderNav = '';
       if (pageName === 'order-new-connection')
         sliderNav = `<div class='sliderNavNUA alignHorizontally'>
-                      <goBackBtn id='pageOne' class="btnOneTouch" role="button">
+                      <goBackBtn id='pageOne' class="btnOneTouch backgroundSecondary" role="button">
                         Go Back
                       </goBackBtn>
-                      <addUser class="btnOneTouch" role="button">
+                      <addUser class="btnOneTouch" 
+                                role="button"
+                                onclick = "location.href='../../../../views/oneTouch/add-user.html'";>
                         Add User
                       </addUser>
                     </div>`;

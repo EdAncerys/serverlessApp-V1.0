@@ -25,6 +25,7 @@
   display: grid;
   grid-template-columns: 1fr 2fr;
   margin: 20px 0;
+  gap: 10px;
 }
 .manageUsersNav,
 .manageUsersNavNC {
