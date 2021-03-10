@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 const fetchOneTouchUsersFromDB = () => {
-  _fetchOneTouchUsersFromDB();
+  _fetchOneTouchUsersFromDB('manage-users');
 };
 
 document.querySelector('body').addEventListener('click', (event) => {
