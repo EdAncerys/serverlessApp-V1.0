@@ -94,8 +94,7 @@ async function _fetchOneTouchUsersFromDB(pageName) {
                       <div class="tableCell">${user.email}</div>
                     </div>
                     ${manageUsersNav}
-                  </div>
-                    ${sliderNav}`;
+                  </div>`;
     });
 
     if (data.length === 0) {
@@ -114,6 +113,7 @@ async function _fetchOneTouchUsersFromDB(pageName) {
                                     </div>
                                       ${userData}
                                     </div>
+                                    ${sliderNav}
                                   </div>`;
     }
 

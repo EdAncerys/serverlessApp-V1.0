@@ -14,8 +14,8 @@ async function _placeBroadbandOrder() {
     '#oneTouchBroadbandOrderPageFive'
   );
 
-  let customerName = sessionStorage.getItem('customerName');
-  let customerEmail = sessionStorage.getItem('customerEmail');
+  let customerName = sessionStorage.getItem('fullName');
+  let customerEmail = sessionStorage.getItem('email');
   let oderSubject =
     'Broadband Order' + ' | Created at: ' + new Date().toLocaleString();
 
