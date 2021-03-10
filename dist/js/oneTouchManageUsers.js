@@ -23,22 +23,22 @@ const fetchOneTouchUsersFromDB = () => {
 };
 
 document.querySelector('body').addEventListener('click', (event) => {
-  const btnInfoUser = event.target.nodeName === 'BTNINFOUSER';
-  const btnUpdateUser = event.target.nodeName === 'BTNUPDATEUSER';
-  const btnDeleteUser = event.target.nodeName === 'BTNDELETEUSER';
+  const userInfo = event.target.nodeName === 'USERINFO';
+  const updateUser = event.target.nodeName === 'UPDATEUSER';
+  const deleteUser = event.target.nodeName === 'DELETEUSER';
 
   let id = event.target.getAttribute('id');
 
-  if (btnInfoUser) {
+  if (userInfo) {
     console.log(id);
     _errorMessage('Info User Content', 'success');
   }
-  if (btnUpdateUser) {
+  if (updateUser) {
     console.log(id);
     _errorMessage('Update User Content', 'warning');
   }
-  if (btnDeleteUser) {
+  if (deleteUser) {
     console.log(id);
-    _deleteOneTouchUser(id);
+    _deleteOneTouchUser(id, 'manage-users');
   }
 });

@@ -13,9 +13,13 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   margin: 5px 0;
-  min-width: 400px;
+  min-width: 600px;
 }
-.manageUsersBtnRow {
+.manageUsersNav,
+.manageUsersNavNC {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+}
+.manageUsersNavNC {
+  grid-template-columns: 1fr 2fr;
 }
