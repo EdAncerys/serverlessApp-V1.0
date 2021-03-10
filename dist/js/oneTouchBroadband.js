@@ -48,8 +48,35 @@ document.querySelector('body').addEventListener('click', (event) => {
   const agreeWithTermsAndConditions =
     event.target.nodeName === 'LABEL' || 'INPUT';
   const oneTouchPlaceOrder = event.target.nodeName === 'ONETOUCHPLACEORDER';
+  const userInfo = event.target.nodeName === 'USERINFO';
+  const selectUser = event.target.nodeName === 'SELECTUSER';
   // Slider nav functionality
   const goBackBtn = event.target.nodeName === 'GOBACKBTN';
+
+  async function asyncGetBroadbandAvailability(
+    sub_premises,
+    premises_name,
+    thoroughfare_number,
+    thoroughfare_name,
+    locality,
+    post_town,
+    county,
+    postcode,
+    district_id,
+    nad_key
+  ) {
+    await sessionStorage.setItem('sub_premises', sub_premises);
+    await sessionStorage.setItem('premises_name', premises_name);
+    await sessionStorage.setItem('thoroughfare_number', thoroughfare_number);
+    await sessionStorage.setItem('thoroughfare_name', thoroughfare_name);
+    await sessionStorage.setItem('locality', locality);
+    await sessionStorage.setItem('post_town', post_town);
+    await sessionStorage.setItem('county', county);
+    await sessionStorage.setItem('postcode', postcode);
+    await sessionStorage.setItem('district_id', district_id);
+    await sessionStorage.setItem('nad_key', nad_key);
+    _getBroadbandAvailability();
+  }
 
   // console.log(event.target);
   if (getBroadbandAvailability) {
@@ -85,6 +112,38 @@ document.querySelector('body').addEventListener('click', (event) => {
     _placeBroadbandOrder();
     return;
   }
+  if (userInfo) {
+    _errorMessage('User Info', 'warning');
+    return;
+  }
+  if (selectUser) {
+    const sub_premises = event.target.getAttribute('sub_premises');
+    const premises_name = event.target.getAttribute('premises_name');
+    const thoroughfare_number = event.target.getAttribute(
+      'thoroughfare_number'
+    );
+    const thoroughfare_name = event.target.getAttribute('thoroughfare_name');
+    const locality = event.target.getAttribute('locality');
+    const post_town = event.target.getAttribute('post_town');
+    const county = event.target.getAttribute('county');
+    const postcode = event.target.getAttribute('postcode');
+    const district_id = event.target.getAttribute('district_id');
+    const nad_key = event.target.getAttribute('nad_key');
+
+    asyncGetBroadbandAvailability(
+      sub_premises,
+      premises_name,
+      thoroughfare_number,
+      thoroughfare_name,
+      locality,
+      post_town,
+      county,
+      postcode,
+      district_id,
+      nad_key
+    );
+    return;
+  }
   if (goBackBtn) {
     const id = event.target.id;
     console.log(event.target.id);
@@ -112,8 +171,8 @@ document.querySelector('body').addEventListener('click', (event) => {
         .querySelector('#oneTouchBroadbandOrderPageFour')
         .classList.remove('hidden');
     }
-    persistDOMData('oneTouchBodyContainer', 'order-new-connection');
 
+    persistDOMData('oneTouchBodyContainer', 'order-new-connection');
     return;
   }
 });

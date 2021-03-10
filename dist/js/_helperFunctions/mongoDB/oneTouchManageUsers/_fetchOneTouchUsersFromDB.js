@@ -68,7 +68,19 @@ async function _fetchOneTouchUsersFromDB(pageName) {
                           <userInfo id='${user._id}' email='${user.email}' class="btnB01" role="button">
                             Info
                           </userInfo>
-                          <selectUser id='${user._id}' email='${user.email}' class="btnB01" role="button">
+                          <selectUser id='${user._id}' 
+                                      sub_premises='${user.sub_premises}'
+                                      premises_name='${user.premises_name}' 
+                                      thoroughfare_number='${user.thoroughfare_number}' 
+                                      thoroughfare_name='${user.thoroughfare_name}' 
+                                      locality='${user.locality}'
+                                      post_town='${user.post_town}'
+                                      county='${user.county}' 
+                                      postcode='${user.postcode}' 
+                                      district_id='${user.district_id}' 
+                                      nad_key='${user.nad_key}'  
+                                      class="btnB01" 
+                                      role="button">
                             Select
                           </selectUser>
                         </div>`;
