@@ -69,6 +69,8 @@ async function _fetchOneTouchUsersFromDB(pageName) {
                             Info
                           </userInfo>
                           <selectUser id='${user._id}' 
+                                      fullName='${user.fullName}'
+                                      email='${user.email}'
                                       sub_premises='${user.sub_premises}'
                                       premises_name='${user.premises_name}' 
                                       thoroughfare_number='${user.thoroughfare_number}' 

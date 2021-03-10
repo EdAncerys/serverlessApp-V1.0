@@ -14,9 +14,6 @@ async function _placeBroadbandOrder() {
     '#oneTouchBroadbandOrderPageFive'
   );
 
-  sessionStorage.setItem('customerName', 'customerName');
-  sessionStorage.setItem('customerEmail', 'customerEmail');
-
   let customerName = sessionStorage.getItem('customerName');
   let customerEmail = sessionStorage.getItem('customerEmail');
   let oderSubject =

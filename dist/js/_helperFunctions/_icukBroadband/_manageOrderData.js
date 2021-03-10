@@ -39,6 +39,8 @@ async function _manageOrderData(
     sessionStorage.setItem('price', price);
     sessionStorage.setItem('installation', installation);
 
+    const fullName = sessionStorage.getItem('fullName');
+    const email = sessionStorage.getItem('email');
     let sub_premises =
       sessionStorage.getItem('sub_premises') === 'null'
         ? ''
@@ -108,7 +110,7 @@ async function _manageOrderData(
                                           <div class="fontH3">Full Address Provided:</div>
                                           <div class="fontH2">${sub_premises} ${premises_name}  ${thoroughfare_number} ${thoroughfare_name} ${locality} ${post_town} ${county} ${postcode}</div>
                                           <div class="fontH3">Customer Details:</div>
-                                          <div class="fontH2">Email: Full Name:</div>
+                                          <div class="fontH2 colorDanger">Full Name: ${fullName} | Email: ${email}</div>
                                         </div>
                                       </div>
                                       <div class='sliderNav'>

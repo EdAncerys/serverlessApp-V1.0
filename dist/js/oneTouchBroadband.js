@@ -54,6 +54,8 @@ document.querySelector('body').addEventListener('click', (event) => {
   const goBackBtn = event.target.nodeName === 'GOBACKBTN';
 
   async function asyncGetBroadbandAvailability(
+    fullName,
+    email,
     sub_premises,
     premises_name,
     thoroughfare_number,
@@ -65,6 +67,8 @@ document.querySelector('body').addEventListener('click', (event) => {
     district_id,
     nad_key
   ) {
+    await sessionStorage.setItem('fullName', fullName);
+    await sessionStorage.setItem('email', email);
     await sessionStorage.setItem('sub_premises', sub_premises);
     await sessionStorage.setItem('premises_name', premises_name);
     await sessionStorage.setItem('thoroughfare_number', thoroughfare_number);
@@ -75,6 +79,7 @@ document.querySelector('body').addEventListener('click', (event) => {
     await sessionStorage.setItem('postcode', postcode);
     await sessionStorage.setItem('district_id', district_id);
     await sessionStorage.setItem('nad_key', nad_key);
+    console.log(fullName, email);
     _getBroadbandAvailability();
   }
 
@@ -117,6 +122,8 @@ document.querySelector('body').addEventListener('click', (event) => {
     return;
   }
   if (selectUser) {
+    const fullName = event.target.getAttribute('fullName');
+    const email = event.target.getAttribute('email');
     const sub_premises = event.target.getAttribute('sub_premises');
     const premises_name = event.target.getAttribute('premises_name');
     const thoroughfare_number = event.target.getAttribute(
@@ -131,6 +138,8 @@ document.querySelector('body').addEventListener('click', (event) => {
     const nad_key = event.target.getAttribute('nad_key');
 
     asyncGetBroadbandAvailability(
+      fullName,
+      email,
       sub_premises,
       premises_name,
       thoroughfare_number,
