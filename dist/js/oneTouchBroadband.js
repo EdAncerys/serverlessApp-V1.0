@@ -6,6 +6,7 @@ import { _manageOrderData } from './_helperFunctions/_icukBroadband/_manageOrder
 import { _termsAndConditions } from './_helperFunctions/_icukBroadband/_termsAndConditions.js';
 import { _getBroadbandAvailability } from './_helperFunctions/_icukBroadband/_getBroadbandAvailability.js';
 import { persistDOMData } from './persistDOMData.js';
+import { _fetchOneTouchUsersFromDB } from './_helperFunctions/mongoDB/oneTouchManageUsers/_fetchOneTouchUsersFromDB.js';
 
 import { _spinner } from './_helperFunctions/_spinner.js';
 
@@ -36,7 +37,7 @@ const getAddressForPostcodeProvided = (ev) => {
 
 const oneTouchUsers = (ev) => {
   ev.preventDefault();
-  _errorMessage('Load Users From DB', 'success');
+  _fetchOneTouchUsersFromDB('order-new-connection');
 };
 
 document.querySelector('body').addEventListener('click', (event) => {

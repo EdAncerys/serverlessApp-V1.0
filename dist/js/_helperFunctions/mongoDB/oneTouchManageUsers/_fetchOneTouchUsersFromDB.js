@@ -25,7 +25,7 @@ async function _fetchOneTouchUsersFromDB(pageName) {
       '#oneTouchBroadbandOrderPageOne'
     );
     oneTouchUsers = document.createElement('div');
-    oneTouchUsers.id = 'oneTouchUsers';
+    oneTouchUsers.id = 'oneTouchBroadbandOrderPageTwo';
   }
 
   try {
@@ -35,7 +35,7 @@ async function _fetchOneTouchUsersFromDB(pageName) {
 
     let userData = '';
     data.map((user) => {
-      userData += `<div class='boxContainer'>
+      userData += `<div class='boxContainer backgroundWhiteT01'>
                     <div class="manageUsersRow">
                       <div class="tableCell">${user.fullName}</div>
                       <div class="tableCell">${user.email}</div>
@@ -54,19 +54,24 @@ async function _fetchOneTouchUsersFromDB(pageName) {
                   </div>`;
     });
 
-    oneTouchUsers.innerHTML = `<div class='umContainer'>
-                              <div class="manageUsersRow boxContainer">
-                                <div class="tableCell">Full Name</div>
-                                <div class="tableCell">Email</div>
-                              </div>
-                              ${userData}
-                            </div>`;
+    oneTouchUsers.innerHTML = `<div class='alignHorizontally'>
+                                <div class='umContainer'>
+                                  <div class="manageUsersRow boxContainer backgroundWhiteT01">
+                                    <div class="tableCell">Full Name</div>
+                                    <div class="tableCell">Email</div>
+                                  </div>
+                                    ${userData}
+                                  </div>
+                                </div>`;
 
     _spinner(false);
     if (pageName === 'manage-users')
       persistDOMData('oneTouchBodyContainer', 'manage-users');
-    if (pageName === 'order-new-connection')
+    if (pageName === 'order-new-connection') {
+      oneTouchSlider.appendChild(oneTouchUsers);
+      oneTouchBroadbandOrderPageOne.classList.add('hidden');
       persistDOMData('oneTouchBodyContainer', 'order-new-connection');
+    }
   } catch (err) {
     console.log(err);
     _errorMessage(err);
