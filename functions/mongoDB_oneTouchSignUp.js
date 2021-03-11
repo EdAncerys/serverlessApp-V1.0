@@ -2,7 +2,7 @@ const MongoClient = require('mongodb').MongoClient;
 
 const MONGODB_URI = process.env.MONGODB_URI;
 const DB_NAME = 'oneTouchDB';
-const COLLECTION = 'oneTouchUsers';
+const COLLECTION = 'oneTouchSupperUsers';
 
 let cachedDb = null;
 
@@ -18,23 +18,29 @@ const connectToDatabase = async (uri) => {
   return cachedDb;
 };
 
-const oneTouchLogin = async (db, data) => {
-  const loginUser = {
-    email: data.email,
-    password: data.password,
+const oneTouchSignUp = async (db, data) => {
+  const signUpUser = {
+    oneTouchSignUpEmail: data.oneTouchSignUpEmail,
+    oneTouchSignUpPassword: data.oneTouchSignUpPassword,
+    oneTouchSignUpConfirmationPassword: data.oneTouchSignUpConfirmationPassword,
   };
-  console.table(loginUser);
+  console.table(signUpUser);
   const user = await db
     .collection(COLLECTION)
-    .find({ email: loginUser.email })
+    .find({ oneTouchSignUpEmail: signUpUser.oneTouchSignUpEmail })
     .toArray();
   console.log(user);
 
+  const passwordMach =
+    signUpUser.oneTouchSignUpPassword ===
+    signUpUser.oneTouchSignUpConfirmationPassword;
+
   const userValid = !user[0];
-  if (userValid && login.email && loginUser.password) {
+  if (userValid && passwordMach) {
+    await db.collection(COLLECTION).insertMany([data]);
     const msg =
       `You successfully logged in! Welcome to One Touch Portal ` +
-      loginUser.email;
+      signUpUser.oneTouchSignUpEmail;
     console.log(msg);
 
     return {
@@ -46,7 +52,8 @@ const oneTouchLogin = async (db, data) => {
     };
   } else {
     const msg =
-      `Access denied! Username or password do not mach for: ` + loginUser.email;
+      `Access denied! User exists or passwords do not mach for: ` +
+      signUpUser.oneTouchSignUpEmail;
     console.log(msg);
 
     return {
@@ -67,7 +74,7 @@ module.exports.handler = async (event, context) => {
 
   switch (event.httpMethod) {
     case 'POST':
-      return oneTouchLogin(db, body);
+      return oneTouchSignUp(db, body);
     default:
       return { statusCode: 400 };
   }

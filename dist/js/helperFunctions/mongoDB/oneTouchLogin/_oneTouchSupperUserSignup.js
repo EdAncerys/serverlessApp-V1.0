@@ -32,7 +32,7 @@ async function _oneTouchSupperUserSignup() {
     const response = await fetch(URL, config);
     const data = await response.json();
     console.log(data);
-
+    _errorMessage(data.msg, 'success');
     _spinner(false);
   } catch (err) {
     console.log(err);

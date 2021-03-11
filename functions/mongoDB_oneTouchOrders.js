@@ -38,9 +38,9 @@ const oneTouchAddOrder = async (db, data) => {
   };
 
   if (createOrder.broadband_name) {
+    await db.collection(COLLECTION).insertMany([data]);
     const msg =
       `Order successfully been created for: ` + createOrder.broadband_name;
-    await db.collection(COLLECTION).insertMany([data]);
     console.log(msg);
 
     return {
