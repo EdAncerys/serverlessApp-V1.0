@@ -28,12 +28,13 @@ const oneTouchLogin = async (db, data) => {
     .collection(COLLECTION)
     .find({ email: loginUser.email })
     .toArray();
-  const userValid = user[0];
-  console.table(user);
+  console.log(user);
 
-  if (userValid && loginUser.password) {
+  const userValid = !user[0];
+  if (userValid && login.email && loginUser.password) {
     const msg =
-      `Successful logged in! Welcome to One Touch Portal ` + loginUser.email;
+      `You successfully logged in! Welcome to One Touch Portal ` +
+      loginUser.email;
     console.log(msg);
 
     return {
@@ -45,8 +46,7 @@ const oneTouchLogin = async (db, data) => {
     };
   } else {
     const msg =
-      `Access denied! Username or password do not exist or mach for: ` +
-      loginUser.email;
+      `Access denied! Username or password do not mach for: ` + loginUser.email;
     console.log(msg);
 
     return {
