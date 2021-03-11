@@ -2,11 +2,12 @@
   padding-top: 20px;
 }
 .raiseTicketContainer {
-  min-width: 300px;
+  width: 300px;
   border-radius: 15px;
   background-color: #f2f2f2;
   padding: 20px;
   text-align: left;
+  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 30%);
 }
 .form-container {
   flex-basis: 30%;
