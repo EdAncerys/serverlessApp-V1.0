@@ -1,4 +1,4 @@
-import { _validatePostcode } from '../../_icukBroadband/_validatePostcode.js';
+import { _validatePostcode } from '../../icukBroadband/_validatePostcode.js';
 import { _handleErrors } from '../../_handleErrors.js';
 import { _userAddressForPostcodeProvided } from './_userAddressForPostcodeProvided.js';
 

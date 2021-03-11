@@ -1,6 +1,6 @@
 import { persistDOMData } from '../../../persistDOMData.js';
 import { _errorMessage } from '../../_errorMessage.js';
-import { _sortAddresses } from '../../_icukBroadband/_sortAddresses.js';
+import { _sortAddresses } from '../../icukBroadband/_sortAddresses.js';
 import { _spinner } from '../../_spinner.js';
 
 async function _userAddressForPostcodeProvided(postcode) {

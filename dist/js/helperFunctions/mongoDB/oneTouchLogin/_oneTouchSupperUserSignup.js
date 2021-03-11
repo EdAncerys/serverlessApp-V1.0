@@ -1,5 +1,5 @@
-import { _errorMessage } from '../_errorMessage.js';
-import { _spinner } from '../_spinner.js';
+import { _errorMessage } from '../_errorMessage.js.js';
+import { _spinner } from '../_spinner.js.js';
 
 async function _oneTouchSupperUserLogin() {
   console.log('Supper User Login');

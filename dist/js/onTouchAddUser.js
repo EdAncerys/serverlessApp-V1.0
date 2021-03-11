@@ -1,9 +1,9 @@
-import { _fetchUserAddress } from './_helperFunctions/mongoDB/oneTouchAddUsers/_fetchUserAddress.js';
-import { _handleUserAddressSelection } from './_helperFunctions/mongoDB/oneTouchAddUsers/_handleUserAddressSelection.js';
-import { _addOneTouchUserToDB } from './_helperFunctions/mongoDB/oneTouchAddUsers/_addOneTouchUserToDB.js';
-import { _saveAddressData } from './_helperFunctions/_icukBroadband/_saveAddressData.js';
-import { _errorMessage } from './_helperFunctions/_errorMessage.js';
-import { _validateEmail } from './_helperFunctions/_validateEmail.js';
+import { _fetchUserAddress } from './helperFunctions/mongoDB/oneTouchAddUsers/_fetchUserAddress.js';
+import { _handleUserAddressSelection } from './helperFunctions/mongoDB/oneTouchAddUsers/_handleUserAddressSelection.js';
+import { _addOneTouchUserToDB } from './helperFunctions/mongoDB/oneTouchAddUsers/_addOneTouchUserToDB.js';
+import { _saveAddressData } from './helperFunctions/icukBroadband/_saveAddressData.js';
+import { _errorMessage } from './helperFunctions/_errorMessage.js';
+import { _validateEmail } from './helperFunctions/_validateEmail.js';
 import { persistDOMData } from './persistDOMData.js';
 
 document.addEventListener('DOMContentLoaded', () => {

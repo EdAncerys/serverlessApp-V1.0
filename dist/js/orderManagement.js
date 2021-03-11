@@ -1,4 +1,4 @@
-import { _oneTouchOrders } from '../JS/_helperFunctions/mongoDB/_oneTouchOrders.js';
+import { _oneTouchOrders } from '../JS/helperFunctions/mongoDB/_oneTouchOrders.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   document

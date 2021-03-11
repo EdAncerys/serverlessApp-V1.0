@@ -1,4 +1,4 @@
-import { _errorMessage } from './_helperFunctions/_errorMessage.js';
+import { _errorMessage } from './helperFunctions/_errorMessage.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('raiseTicket').addEventListener('click', raiseTicket);

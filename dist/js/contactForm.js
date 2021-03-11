@@ -1,4 +1,4 @@
-import { _handleFormValidation } from './_helperFunctions/_handleFormValidation.js';
+import { _handleFormValidation } from './helperFunctions/_handleFormValidation.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   document

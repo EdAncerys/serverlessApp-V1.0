@@ -1,14 +1,14 @@
-import { _newOrderPostcodeValidation } from './_helperFunctions/_icukBroadband/_newOrderPostcodeValidation.js';
-import { _errorMessage } from './_helperFunctions/_errorMessage.js';
-import { _placeBroadbandOrder } from './_helperFunctions/_icukBroadband/_placeBroadbandOrder.js';
-import { _saveAddressData } from './_helperFunctions/_icukBroadband/_saveAddressData.js';
-import { _manageOrderData } from './_helperFunctions/_icukBroadband/_manageOrderData.js';
-import { _termsAndConditions } from './_helperFunctions/_icukBroadband/_termsAndConditions.js';
-import { _getBroadbandAvailability } from './_helperFunctions/_icukBroadband/_getBroadbandAvailability.js';
+import { _newOrderPostcodeValidation } from './helperFunctions/icukBroadband/_newOrderPostcodeValidation.js';
+import { _errorMessage } from './helperFunctions/_errorMessage.js';
+import { _placeBroadbandOrder } from './helperFunctions/icukBroadband/_placeBroadbandOrder.js';
+import { _saveAddressData } from './helperFunctions/icukBroadband/_saveAddressData.js';
+import { _manageOrderData } from './helperFunctions/icukBroadband/_manageOrderData.js';
+import { _termsAndConditions } from './helperFunctions/icukBroadband/_termsAndConditions.js';
+import { _getBroadbandAvailability } from './helperFunctions/icukBroadband/_getBroadbandAvailability.js';
 import { persistDOMData } from './persistDOMData.js';
-import { _fetchOneTouchUsersFromDB } from './_helperFunctions/mongoDB/oneTouchManageUsers/_fetchOneTouchUsersFromDB.js';
+import { _fetchOneTouchUsersFromDB } from './helperFunctions/mongoDB/oneTouchManageUsers/_fetchOneTouchUsersFromDB.js';
 
-import { _spinner } from './_helperFunctions/_spinner.js';
+import { _spinner } from './helperFunctions/_spinner.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   // Persist user data on reload

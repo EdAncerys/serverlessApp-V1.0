@@ -1,5 +1,5 @@
-import { _handleFormValidation } from './_helperFunctions/_handleFormValidation.js';
-import { _freshDeskTickets } from './_helperFunctions/_freshDesk/_freshDeskTickets.js';
+import { _handleFormValidation } from './helperFunctions/_handleFormValidation.js';
+import { _freshDeskTickets } from './helperFunctions/freshDesk/_freshDeskTickets.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   document
