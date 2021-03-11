@@ -21,7 +21,7 @@
     <spinnerContainer></spinnerContainer>
 
     <div class="oneTouchBodyContainer">
-      <div class="oneTouchWrapper alignHorizontally">
+      <div class="oneTouchWrapper">
         <div class="raiseTicketContent">
           <div class="features">
             <div class="form-container">
@@ -50,6 +50,49 @@
                   <btnSubmit>
                     <input
                       id="oneTouchLogin"
+                      class="btnOneTouch"
+                      type="submit"
+                      value="Login"
+                    />
+                  </btnSubmit>
+                </form>
+              </div>
+            </div>
+
+            <div class="form-container">
+              <div class="raiseTicketContainer">
+                <div id="raiseTicketImgContainer">
+                  <div class="oneTouchIcon"></div>
+                </div>
+
+                <form action="/">
+                  <label for="fname">Email</label>
+                  <input
+                    type="text"
+                    id="signUpEmail"
+                    name="email"
+                    placeholder="Your email..."
+                  />
+
+                  <label for="fname">Password</label>
+                  <input
+                    type="password"
+                    id="signUpPassword"
+                    name="password"
+                    placeholder="Your password..."
+                  />
+
+                  <label for="fname">Confirm Password</label>
+                  <input
+                    type="password"
+                    id="signUpConfirmPassword"
+                    name="password"
+                    placeholder="Confirm your password..."
+                  />
+
+                  <btnSubmit>
+                    <input
+                      id="oneTouchSignUp"
                       class="btnOneTouch"
                       type="submit"
                       value="Login"
