@@ -5,17 +5,21 @@ async function _oneTouchSupperUserLogin() {
   console.log('Supper User Login');
   _spinner(true);
 
-  const URL = '/ndg/oneTouchLogin';
+  const URL = '/ndg/oneTouchSignup';
 
-  const oneTouchLoginEmail = document.getElementById('#oneTouchLoginEmail')
+  const oneTouchSignUpEmail = document.getElementById('#oneTouchSignUpEmail')
     .value;
-  const oneTouchLoginPassword = document.getElementById(
-    '#oneTouchLoginPassword'
+  const oneTouchSignUpPassword = document.getElementById(
+    '#oneTouchSignUpPassword'
+  ).value;
+  const oneTouchSignUpConfirmationPassword = document.getElementById(
+    '#oneTouchSignUpConfirmationPassword'
   ).value;
 
   const body = {
-    oneTouchLoginEmail,
-    oneTouchLoginPassword,
+    oneTouchSignUpEmail,
+    oneTouchSignUpPassword,
+    oneTouchSignUpConfirmationPassword,
   };
   console.log(body);
 
