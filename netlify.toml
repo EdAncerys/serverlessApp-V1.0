@@ -61,8 +61,13 @@
   status = 200
 
 [[redirects]]
-  from = "/oneTouch/login"
+  from = "/oneTouch/oneTouchLogin"
   to = "/.netlify/functions/mongoDB_oneTouchLogin"
+  status = 200
+
+[[redirects]]
+  from = "/oneTouch/oneTouchSignUp"
+  to = "/.netlify/functions/mongoDB_oneTouchSignUp"
   status = 200
 
 [[redirects]]
