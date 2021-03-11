@@ -1,25 +1,25 @@
-import { _errorMessage } from '../_errorMessage.js.js';
-import { _spinner } from '../_spinner.js.js';
+import { _errorMessage } from '../../_errorMessage.js';
+import { _spinner } from '../../_spinner.js';
 
-async function _oneTouchSupperUserLogin() {
-  console.log('Supper User Login');
+async function _oneTouchSupperUserSignup() {
+  console.log('Supper User Signup');
   _spinner(true);
 
   const URL = '/ndg/oneTouchSignup';
 
-  const oneTouchSignUpEmail = document.getElementById('#oneTouchSignUpEmail')
+  const oneTouchSignupEmail = document.querySelector('#oneTouchSignupEmail')
     .value;
-  const oneTouchSignUpPassword = document.getElementById(
-    '#oneTouchSignUpPassword'
+  const oneTouchSignupPassword = document.querySelector(
+    '#oneTouchSignupPassword'
   ).value;
-  const oneTouchSignUpConfirmationPassword = document.getElementById(
-    '#oneTouchSignUpConfirmationPassword'
+  const oneTouchSignupConfirmationPassword = document.querySelector(
+    '#oneTouchSignupConfirmationPassword'
   ).value;
 
   const body = {
-    oneTouchSignUpEmail,
-    oneTouchSignUpPassword,
-    oneTouchSignUpConfirmationPassword,
+    oneTouchSignupEmail,
+    oneTouchSignupPassword,
+    oneTouchSignupConfirmationPassword,
   };
   console.log(body);
 
@@ -41,4 +41,4 @@ async function _oneTouchSupperUserLogin() {
   }
 }
 
-export { _oneTouchSupperUserLogin };
+export { _oneTouchSupperUserSignup };

@@ -1,4 +1,5 @@
-import { _errorMessage } from './helperFunctions/.js.js';
+import { _oneTouchSupperUserSignup } from './helperFunctions/mongoDB/oneTouchLogin/_oneTouchSupperUserSignup.js';
+import { _oneTouchSupperUserLogin } from './helperFunctions/mongoDB/oneTouchLogin/_oneTouchSupperUserLogin.js';
 import { _errorMessage } from './helperFunctions/_errorMessage.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -18,5 +19,5 @@ const oneTouchLogin = (e) => {
 
 const oneTouchSignUp = (e) => {
   e.preventDefault();
-  _errorMessage('SignUp to account', 'success');
+  _oneTouchSupperUserSignup();
 };
