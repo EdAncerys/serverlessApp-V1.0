@@ -31,6 +31,8 @@ async function _oneTouchSupperUserSignup() {
   try {
     const response = await fetch(URL, config);
     const data = await response.json();
+    if (!response.ok) throw new Error(data.msg);
+
     console.log(data);
     _errorMessage(data.msg, 'success');
     _spinner(false);
