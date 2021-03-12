@@ -20,21 +20,28 @@ const connectToDatabase = async (uri) => {
 
 const oneTouchLogin = async (db, data) => {
   const loginUser = {
-    oneTouchLoginEmail: data.oneTouchLoginEmail,
-    oneTouchLoginPassword: data.oneTouchLoginPassword,
+    email: data.email,
+    password: data.password,
   };
-  console.table(loginUser);
+  console.log(loginUser);
   const user = await db
     .collection(COLLECTION)
-    .find({ email: loginUser.oneTouchLoginEmail })
+    .find({ email: loginUser.email })
     .toArray();
   console.log(user);
 
-  const userValid = !user[0];
-  if (userValid && login.oneTouchLoginEmail && loginUser.oneTouchLoginPassword) {
+  const userValid = user[0];
+  let passwordValid = false;
+
+  if (userValid) {
+    passwordValid = loginUser.password === user[0].password;
+    console.log(loginUser.password, user.password);
+  }
+
+  if (userValid && passwordValid) {
     const msg =
       `You successfully logged in! Welcome to One Touch Portal ` +
-      loginUser.oneTouchLoginPassword;
+      loginUser.email;
     console.log(msg);
 
     return {

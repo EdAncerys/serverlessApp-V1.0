@@ -30,6 +30,7 @@ const oneTouchSignUp = async (db, data) => {
   console.log(user);
 
   const userValid = !user[0];
+
   if (userValid && signUpUser.email) {
     await db.collection(COLLECTION).insertMany([data]);
     const msg =

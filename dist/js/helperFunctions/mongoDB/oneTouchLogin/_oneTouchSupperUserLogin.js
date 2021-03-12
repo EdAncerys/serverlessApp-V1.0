@@ -3,19 +3,18 @@ import { _spinner } from '../../_spinner.js';
 
 async function _oneTouchSupperUserLogin() {
   console.log('Supper User Login');
-  _spinner(true);
+  _spinner(true, 'Signing in to One Touch portal account');
 
-  const URL = '/ndg/oneTouchLogin';
+  const URL = '/oneTouch/oneTouchLogin';
 
-  const oneTouchLoginEmail = document.getElementById('#oneTouchLoginEmail')
+  const oneTouchLoginEmail = document.querySelector('#oneTouchLoginEmail')
     .value;
-  const oneTouchLoginPassword = document.getElementById(
-    '#oneTouchLoginPassword'
-  ).value;
+  const oneTouchLoginPassword = document.querySelector('#oneTouchLoginPassword')
+    .value;
 
   const body = {
-    oneTouchLoginEmail,
-    oneTouchLoginPassword,
+    email: oneTouchLoginEmail,
+    password: oneTouchLoginPassword,
   };
   console.log(body);
 
@@ -27,8 +26,10 @@ async function _oneTouchSupperUserLogin() {
   try {
     const response = await fetch(URL, config);
     const data = await response.json();
-    console.log(data);
+    if (!response.ok) throw new Error(data.msg);
 
+    console.log(data);
+    _errorMessage(data.msg, 'success');
     _spinner(false);
   } catch (err) {
     console.log(err);

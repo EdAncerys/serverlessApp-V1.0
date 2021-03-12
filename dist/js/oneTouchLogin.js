@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const oneTouchLogin = (e) => {
   e.preventDefault();
-  _errorMessage('Login to account', 'success');
+  _oneTouchSupperUserLogin();
 };
 
 const oneTouchSignUp = (e) => {
