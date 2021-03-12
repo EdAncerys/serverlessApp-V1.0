@@ -29,6 +29,7 @@ async function _oneTouchSupperUserLogin() {
     if (!response.ok) throw new Error(data.msg);
 
     console.log(data);
+    sessionStorage.setItem('oneTouchSuperUser', data.user);
     _errorMessage(data.msg, 'success');
     _spinner(false);
   } catch (err) {
