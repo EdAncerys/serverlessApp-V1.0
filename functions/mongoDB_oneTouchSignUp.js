@@ -31,9 +31,9 @@ const oneTouchSignUp = async (db, data) => {
     .toArray();
   console.log(user);
 
-  const userValid = !user[0];
+  const userValid = user.length > 0;
 
-  if (userValid && signUpUser.email) {
+  if (!userValid && signUpUser.email) {
     const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(signUpUser.password, saltRounds);
 

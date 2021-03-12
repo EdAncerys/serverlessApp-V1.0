@@ -1,4 +1,5 @@
 const MongoClient = require('mongodb').MongoClient;
+const bcrypt = require('bcrypt');
 
 const MONGODB_URI = process.env.MONGODB_URI;
 const DB_NAME = 'oneTouchDB';
@@ -28,16 +29,15 @@ const oneTouchLogin = async (db, data) => {
     .collection(COLLECTION)
     .find({ email: loginUser.email })
     .toArray();
-  console.log(user);
+  console.log('DB User:', user);
 
-  const userValid = user[0];
+  const userValid = user.length > 0;
   let passwordValid = false;
+  console.log(userValid === true);
 
   if (userValid) {
-    passwordValid = loginUser.password === user[0].password;
-    console.log(loginUser.password, user.password);
+    passwordValid = await bcrypt.compare(loginUser.password, user[0].password);
   }
-
   if (userValid && passwordValid) {
     const msg =
       `You successfully logged in! Welcome to One Touch Portal ` +
