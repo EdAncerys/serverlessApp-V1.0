@@ -20,27 +20,21 @@ const connectToDatabase = async (uri) => {
 
 const oneTouchSignUp = async (db, data) => {
   const signUpUser = {
-    oneTouchSignUpEmail: data.oneTouchSignUpEmail,
-    oneTouchSignUpPassword: data.oneTouchSignUpPassword,
-    oneTouchSignUpConfirmationPassword: data.oneTouchSignUpConfirmationPassword,
+    email: data.email,
   };
   console.table(signUpUser);
   const user = await db
     .collection(COLLECTION)
-    .find({ oneTouchSignUpEmail: signUpUser.oneTouchSignUpEmail })
+    .find({ email: signUpUser.email })
     .toArray();
   console.log(user);
 
-  const passwordMach =
-    signUpUser.oneTouchSignUpPassword ===
-    signUpUser.oneTouchSignUpConfirmationPassword;
-
   const userValid = !user[0];
-  if (userValid && passwordMach) {
+  if (userValid && signUpUser.email) {
     await db.collection(COLLECTION).insertMany([data]);
     const msg =
-      `You successfully logged in! Welcome to One Touch Portal ` +
-      signUpUser.oneTouchSignUpEmail;
+      `Account created successfully! Welcome to One Touch Portal ` +
+      signUpUser.email;
     console.log(msg);
 
     return {
@@ -52,8 +46,8 @@ const oneTouchSignUp = async (db, data) => {
     };
   } else {
     const msg =
-      `Access denied! User exists or passwords do not mach for: ` +
-      signUpUser.oneTouchSignUpEmail;
+      `Failed to create account! User already exists with email: ` +
+      signUpUser.email;
     console.log(msg);
 
     return {

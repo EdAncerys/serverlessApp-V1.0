@@ -2,7 +2,7 @@ const MongoClient = require('mongodb').MongoClient;
 
 const MONGODB_URI = process.env.MONGODB_URI;
 const DB_NAME = 'oneTouchDB';
-const COLLECTION = 'oneTouchUsers';
+const COLLECTION = 'oneTouchSupperUsers';
 
 let cachedDb = null;
 
@@ -20,21 +20,21 @@ const connectToDatabase = async (uri) => {
 
 const oneTouchLogin = async (db, data) => {
   const loginUser = {
-    email: data.email,
-    password: data.password,
+    oneTouchLoginEmail: data.oneTouchLoginEmail,
+    oneTouchLoginPassword: data.oneTouchLoginPassword,
   };
   console.table(loginUser);
   const user = await db
     .collection(COLLECTION)
-    .find({ email: loginUser.email })
+    .find({ email: loginUser.oneTouchLoginEmail })
     .toArray();
   console.log(user);
 
   const userValid = !user[0];
-  if (userValid && login.email && loginUser.password) {
+  if (userValid && login.oneTouchLoginEmail && loginUser.oneTouchLoginPassword) {
     const msg =
       `You successfully logged in! Welcome to One Touch Portal ` +
-      loginUser.email;
+      loginUser.oneTouchLoginPassword;
     console.log(msg);
 
     return {

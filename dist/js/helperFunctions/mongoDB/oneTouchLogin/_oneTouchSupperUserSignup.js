@@ -1,9 +1,10 @@
+import { _validateEmail } from '../../_validateEmail.js';
 import { _errorMessage } from '../../_errorMessage.js';
 import { _spinner } from '../../_spinner.js';
 
 async function _oneTouchSupperUserSignup() {
   console.log('Supper User Signup');
-  _spinner(true);
+  _spinner(true, 'Creating One Touch portal account');
 
   const URL = '/oneTouch/oneTouchSignUp';
 
@@ -16,10 +17,25 @@ async function _oneTouchSupperUserSignup() {
     '#oneTouchSignUpConfirmationPassword'
   ).value;
 
+  if (!_validateEmail(oneTouchSignUpEmail)) {
+    _errorMessage('Email not valid!');
+    _spinner(false);
+    return;
+  }
+  if (oneTouchSignUpPassword.length < 6) {
+    _errorMessage('Passwords must be at least 6 characters in length!');
+    _spinner(false);
+    return;
+  }
+  if (oneTouchSignUpPassword !== oneTouchSignUpConfirmationPassword) {
+    _errorMessage('Passwords do not match!');
+    _spinner(false);
+    return;
+  }
+
   const body = {
-    oneTouchSignUpEmail,
-    oneTouchSignUpPassword,
-    oneTouchSignUpConfirmationPassword,
+    email: oneTouchSignUpEmail,
+    password: oneTouchSignUpPassword,
   };
   console.log(body);
 
