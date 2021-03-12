@@ -1,4 +1,5 @@
 const MongoClient = require('mongodb').MongoClient;
+const bcrypt = require('bcrypt');
 
 const MONGODB_URI = process.env.MONGODB_URI;
 const DB_NAME = 'oneTouchDB';
@@ -21,6 +22,7 @@ const connectToDatabase = async (uri) => {
 const oneTouchSignUp = async (db, data) => {
   const signUpUser = {
     email: data.email,
+    password: data.password,
   };
   console.table(signUpUser);
   const user = await db
@@ -32,11 +34,14 @@ const oneTouchSignUp = async (db, data) => {
   const userValid = !user[0];
 
   if (userValid && signUpUser.email) {
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(signUpUser.password, saltRounds);
+
+    data.password = hashedPassword;
     await db.collection(COLLECTION).insertMany([data]);
     const msg =
       `Account created successfully! Welcome to One Touch Portal ` +
       signUpUser.email;
-    console.log(msg);
 
     return {
       statusCode: 201,
