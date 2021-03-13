@@ -1,5 +1,7 @@
+require('dotenv').config(); // Enabling to load Environment variables from a .env File
 const MongoClient = require('mongodb').MongoClient;
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 const MONGODB_URI = process.env.MONGODB_URI;
 const DB_NAME = 'oneTouchDB';
@@ -67,19 +69,35 @@ const oneTouchLogin = async (db, data) => {
   }
 };
 
-const eventFunc = (event, context, body) => {
-  event.headers.jwt = 'my token value';
-  console.log('Body', body);
-  console.log('JWT', event.headers.jwt);
-  console.log('Event Headers', event.headers);
+async function eventFunc(event, context, body) {
+  const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
+  console.log('ACCESS_TOKEN_SECRET', ACCESS_TOKEN_SECRET);
+
+  await jwt.sign(
+    {
+      data: 'foobar',
+    },
+    ACCESS_TOKEN_SECRET,
+    { expiresIn: '1h' },
+    (err, token) => {
+      if (err) {
+        console.log(err);
+      } else {
+        event.token = token;
+        console.log(token);
+        console.log(event);
+      }
+    }
+  );
+
   return {
     statusCode: 201,
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ user: 'user', msg: 'Testing API' }),
+    body: JSON.stringify({ user: 'token', msg: 'Testing API' }),
   };
-};
+}
 
 module.exports.handler = async (event, context) => {
   context.callbackWaitsForEmptyEventLoop = false;

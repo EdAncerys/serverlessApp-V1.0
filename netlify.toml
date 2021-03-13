@@ -71,7 +71,7 @@
   status = 200
 
 [[redirects]]
-  from = "/views/oneTouch/hello"
+  from = "/oneTouch/oneTouchUserAuthentication"
   to = "/.netlify/functions/oneTouchUserAuthentication"
   status = 200
   force = true
