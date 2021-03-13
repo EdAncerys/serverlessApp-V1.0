@@ -31,10 +31,10 @@ async function userAuthentication(e) {
   console.log('userAuthentication');
 
   const URL = '/oneTouch/oneTouchUserAuthentication';
+  const token = sessionStorage.getItem('token');
 
   const body = {
-    email: 'oneTouchLoginEmail',
-    password: 'oneTouchLoginPassword',
+    token,
   };
   console.log(body);
 
@@ -49,8 +49,7 @@ async function userAuthentication(e) {
     if (!response.ok) throw new Error(data.msg);
 
     console.log(data);
-    // sessionStorage.setItem('oneTouchSuperUser', data.user);
-    _errorMessage(data.msg, 'success');
+    _errorMessage(data.name, 'success');
   } catch (err) {
     console.log(err);
     _errorMessage(err);

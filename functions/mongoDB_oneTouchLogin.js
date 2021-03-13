@@ -69,33 +69,20 @@ const oneTouchLogin = async (db, data) => {
   }
 };
 
-async function eventFunc(event, context, body) {
+async function eventLogin(event, context, body) {
   const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
   console.log('ACCESS_TOKEN_SECRET', ACCESS_TOKEN_SECRET);
 
-  await jwt.sign(
-    {
-      data: 'foobar',
-    },
-    ACCESS_TOKEN_SECRET,
-    { expiresIn: '1h' },
-    (err, token) => {
-      if (err) {
-        console.log(err);
-      } else {
-        event.token = token;
-        console.log(token);
-        console.log(event);
-      }
-    }
-  );
+  const user = { name: 'userName' };
+
+  const token = jwt.sign(user, ACCESS_TOKEN_SECRET, { expiresIn: '15s' });
 
   return {
     statusCode: 201,
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ user: 'token', msg: 'Testing API' }),
+    body: JSON.stringify({ token: token, msg: 'Testing API' }),
   };
 }
 
@@ -108,7 +95,7 @@ module.exports.handler = async (event, context) => {
   switch (event.httpMethod) {
     case 'POST':
       // return oneTouchLogin(db, body);
-      return eventFunc(event, context, body);
+      return eventLogin(event, context, body);
     default:
       return { statusCode: 400 };
   }
