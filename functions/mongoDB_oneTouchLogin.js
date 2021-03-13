@@ -67,6 +67,20 @@ const oneTouchLogin = async (db, data) => {
   }
 };
 
+const eventFunc = (event, context, body) => {
+  event.headers.jwt = 'my token value';
+  console.log('Body', body);
+  console.log('JWT', event.headers.jwt);
+  console.log('Event Headers', event.headers);
+  return {
+    statusCode: 201,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ user: 'user', msg: 'Testing API' }),
+  };
+};
+
 module.exports.handler = async (event, context) => {
   context.callbackWaitsForEmptyEventLoop = false;
 
@@ -75,7 +89,8 @@ module.exports.handler = async (event, context) => {
 
   switch (event.httpMethod) {
     case 'POST':
-      return oneTouchLogin(db, body);
+      // return oneTouchLogin(db, body);
+      return eventFunc(event, context, body);
     default:
       return { statusCode: 400 };
   }

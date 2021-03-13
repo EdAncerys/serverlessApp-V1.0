@@ -12,6 +12,7 @@
     "dns": "^0.1.2",
     "dotenv": "latest",
     "js-sha512": "latest",
+    "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.6.3",
     "node-fetch": "latest",
     "nodemailer": "latest"
