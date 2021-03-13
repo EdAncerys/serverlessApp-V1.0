@@ -1,13 +1,13 @@
 exports.handler = async (event, context, callback) => {
+  // const redirectURL = './oneTouch/one-touch-login.html';
   const redirectURL = '/views/oneTouch/login.html';
   console.log('Access denied. You been redirected to: ' + redirectURL);
 
-  const response = {
-    statusCode: 301,
+  return {
+    statusCode: 201,
     headers: {
-      Location: redirectURL,
+      'Content-Type': 'application/json',
     },
+    body: JSON.stringify({ user: 'response data' }),
   };
-
-  return response;
 };

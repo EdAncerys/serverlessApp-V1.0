@@ -33,10 +33,11 @@ const oneTouchLogin = async (db, data) => {
 
   const userValid = user.length > 0;
   let passwordValid = false;
-  console.log(userValid === true);
+  console.log('userValid:', userValid === true);
 
   if (userValid) {
     passwordValid = await bcrypt.compare(loginUser.password, user[0].password);
+    console.log('passwordValid:', passwordValid);
   }
   if (userValid && passwordValid) {
     const msg =
