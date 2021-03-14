@@ -2,8 +2,6 @@ require('dotenv').config(); // Enabling to load Environment variables from a .en
 const jwt = require('jsonwebtoken');
 
 exports.handler = async (event, context, callback) => {
-  // const redirectURL = '/views/oneTouch/ne-touch-login.html';
-  // console.log('Access denied. You been redirected to: ' + redirectURL);
   const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
   const { access_token } = JSON.parse(event.body);
   console.log('Passed access token: ', access_token);
@@ -24,24 +22,24 @@ exports.handler = async (event, context, callback) => {
   console.log(authToken._id);
 
   if (authToken._id) {
-    const msg = `Authentication successful`;
+    const msg = `Welcome to One Touch Portal ${authToken.email}`;
 
     return {
       statusCode: 201,
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ access_token: authToken, msg: msg }),
+      body: JSON.stringify({ msg: msg }),
     };
   } else {
-    const msg = `Authentication successful`;
+    const msg = `You need to signed in to perform this action.`;
 
     return {
       statusCode: 403,
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ access_token: authToken, msg: msg }),
+      body: JSON.stringify({ msg: msg }),
     };
   }
 };

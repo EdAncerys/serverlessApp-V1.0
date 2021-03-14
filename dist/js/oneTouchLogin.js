@@ -1,5 +1,6 @@
 import { _oneTouchSupperUserSignup } from './helperFunctions/mongoDB/oneTouchLogin/_oneTouchSupperUserSignUp.js';
 import { _oneTouchSupperUserLogin } from './helperFunctions/mongoDB/oneTouchLogin/_oneTouchSupperUserLogin.js';
+import { _oneTouchUserAuthentication } from './helperFunctions/mongoDB/oneTouchLogin/_oneTouchUserAuthentication.js';
 import { _errorMessage } from './helperFunctions/_errorMessage.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -26,32 +27,7 @@ const oneTouchSignUp = (e) => {
   _oneTouchSupperUserSignup();
 };
 
-async function userAuthentication(e) {
+const userAuthentication = (e) => {
   e.preventDefault();
-  console.log('User Authentication middleware');
-
-  const URL = '/oneTouch/oneTouchUserAuthentication';
-  const access_token = sessionStorage.getItem('access_token');
-
-  const body = {
-    access_token,
-  };
-  console.log(body);
-
-  const config = {
-    method: 'POST',
-    body: JSON.stringify(body),
-  };
-
-  try {
-    const response = await fetch(URL, config);
-    const data = await response.json();
-    if (!response.ok)
-      throw new Error(`You need to be logged! ${data.access_token.name}`);
-
-    window.location.href = '/views/oneTouch/index.html';
-    // _errorMessage(`Logged in user: ${data.access_token.email}`, 'success');
-  } catch (err) {
-    window.location.href = '/views/oneTouch/one-touch-login.html';
-  }
-}
+  _oneTouchUserAuthentication();
+};

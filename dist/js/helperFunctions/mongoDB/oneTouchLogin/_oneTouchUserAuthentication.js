@@ -1,5 +1,3 @@
-import { _errorMessage } from '../../_errorMessage.js';
-
 async function _oneTouchUserAuthentication() {
   console.log('User Authentication middleware');
 
@@ -19,12 +17,12 @@ async function _oneTouchUserAuthentication() {
   try {
     const response = await fetch(URL, config);
     const data = await response.json();
-    if (!response.ok)
-      throw new Error(`You need to be logged! ${data.access_token.name}`);
+    if (!response.ok) throw new Error(data.msg);
+    await sessionStorage.setItem('authMsg', data.msg);
 
     window.location.href = '/views/oneTouch/index.html';
-    // _errorMessage(`Logged in user: ${data.access_token.email}`, 'success');
   } catch (err) {
+    await sessionStorage.setItem('authMsg', err);
     window.location.href = '/views/oneTouch/one-touch-login.html';
   }
 }
