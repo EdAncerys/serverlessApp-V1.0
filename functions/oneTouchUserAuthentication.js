@@ -21,24 +21,27 @@ exports.handler = async (event, context, callback) => {
       }
     }
   );
-  console.log(authToken == true);
   console.log(authToken._id);
 
   if (authToken._id) {
+    const msg = `Authentication successful`;
+
     return {
       statusCode: 201,
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ access_token: authToken, msg: authToken }),
+      body: JSON.stringify({ access_token: authToken, msg: msg }),
     };
   } else {
+    const msg = `Authentication successful`;
+
     return {
       statusCode: 403,
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ access_token: authToken, msg: authToken }),
+      body: JSON.stringify({ access_token: authToken, msg: msg }),
     };
   }
 };

@@ -28,7 +28,7 @@ const oneTouchSignUp = (e) => {
 
 async function userAuthentication(e) {
   e.preventDefault();
-  console.log('userAuthentication');
+  console.log('User Authentication middleware');
 
   const URL = '/oneTouch/oneTouchUserAuthentication';
   const access_token = sessionStorage.getItem('access_token');
@@ -49,10 +49,9 @@ async function userAuthentication(e) {
     if (!response.ok)
       throw new Error(`You need to be logged! ${data.access_token.name}`);
 
-    console.log(data);
-    _errorMessage(`Logged in user: ${data.access_token.email}`, 'success');
+    window.location.href = '/views/oneTouch/index.html';
+    // _errorMessage(`Logged in user: ${data.access_token.email}`, 'success');
   } catch (err) {
-    console.log(err);
-    _errorMessage(err, 'error');
+    window.location.href = '/views/oneTouch/one-touch-login.html';
   }
 }

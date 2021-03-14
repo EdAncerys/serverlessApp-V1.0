@@ -51,7 +51,7 @@ const oneTouchLogin = async (db, data) => {
     delete user[0]['password'];
     const userData = user[0];
     const expTime = '30s';
-    console.log(userData);
+    console.log('User data passed on to JWT: ', userData);
 
     const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
     const access_token = jwt.sign(userData, ACCESS_TOKEN_SECRET, {
@@ -62,6 +62,9 @@ const oneTouchLogin = async (db, data) => {
       statusCode: 201,
       headers: {
         'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers':
+          'Origin, X-Requested-With, Content-Type, Accept, Authorization',
       },
       body: JSON.stringify({ access_token, msg: msg }),
     };
