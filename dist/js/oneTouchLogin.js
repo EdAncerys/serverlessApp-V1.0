@@ -31,10 +31,10 @@ async function userAuthentication(e) {
   console.log('userAuthentication');
 
   const URL = '/oneTouch/oneTouchUserAuthentication';
-  const token = sessionStorage.getItem('token');
+  const access_token = sessionStorage.getItem('access_token');
 
   const body = {
-    token,
+    access_token,
   };
   console.log(body);
 
@@ -46,12 +46,13 @@ async function userAuthentication(e) {
   try {
     const response = await fetch(URL, config);
     const data = await response.json();
-    if (!response.ok) throw new Error(data.msg);
+    if (!response.ok)
+      throw new Error(`You need to be logged! ${data.access_token.name}`);
 
     console.log(data);
-    _errorMessage(data.name, 'success');
+    _errorMessage(`Logged in user: ${data.access_token.email}`, 'success');
   } catch (err) {
     console.log(err);
-    _errorMessage(err);
+    _errorMessage(err, 'error');
   }
 }

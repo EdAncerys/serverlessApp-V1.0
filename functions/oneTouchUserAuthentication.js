@@ -5,29 +5,32 @@ exports.handler = async (event, context, callback) => {
   // const redirectURL = '/views/oneTouch/ne-touch-login.html';
   // console.log('Access denied. You been redirected to: ' + redirectURL);
   const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
-  const { token } = JSON.parse(event.body);
-  console.log(token);
+  const { access_token } = JSON.parse(event.body);
+  console.log('Passed access token: ', access_token);
 
-  const authData = jwt.verify(token, ACCESS_TOKEN_SECRET, (err, authData) => {
-    if (err) {
-      console.log(err);
-      return err;
-    } else {
-      console.log(authData);
-      return authData;
+  const authToken = jwt.verify(
+    access_token,
+    ACCESS_TOKEN_SECRET,
+    (err, authData) => {
+      if (err) {
+        console.log(err);
+        return err;
+      } else {
+        console.log(authData);
+        return authData;
+      }
     }
-  });
+  );
+  console.log(authToken == true);
+  console.log(authToken._id);
 
-  // const authData = jwt.verify(token, ACCESS_TOKEN_SECRET);
-
-  console.log(authData.iat);
-  if (authData.iat) {
+  if (authToken._id) {
     return {
       statusCode: 201,
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ data: authData, msg: token }),
+      body: JSON.stringify({ access_token: authToken, msg: authToken }),
     };
   } else {
     return {
@@ -35,7 +38,7 @@ exports.handler = async (event, context, callback) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ data: authData, msg: token }),
+      body: JSON.stringify({ access_token: authToken, msg: authToken }),
     };
   }
 };

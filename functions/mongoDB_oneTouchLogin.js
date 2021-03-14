@@ -47,12 +47,21 @@ const oneTouchLogin = async (db, data) => {
       loginUser.email;
     console.log(msg);
 
+    // JWT configuration
+    const userData = user[0];
+    const expTime = '30s';
+
+    const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
+    const access_token = jwt.sign(userData, ACCESS_TOKEN_SECRET, {
+      expiresIn: expTime,
+    });
+
     return {
       statusCode: 201,
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ user: data, msg: msg }),
+      body: JSON.stringify({ access_token, msg: msg }),
     };
   } else {
     const msg =
@@ -64,7 +73,7 @@ const oneTouchLogin = async (db, data) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ statusCode: 404, user: data, msg: msg }),
+      body: JSON.stringify({ msg: msg }),
     };
   }
 };
@@ -73,16 +82,21 @@ async function eventLogin(event, context, body) {
   const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
   console.log('ACCESS_TOKEN_SECRET', ACCESS_TOKEN_SECRET);
 
-  const user = { name: 'userName' };
+  const user = { name: 'userName', password: 'password' };
 
-  const token = jwt.sign(user, ACCESS_TOKEN_SECRET, { expiresIn: '15s' });
+  const access_token = jwt.sign(user, ACCESS_TOKEN_SECRET, {
+    expiresIn: '30s',
+  });
 
   return {
     statusCode: 201,
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ token: token, msg: 'Testing API' }),
+    body: JSON.stringify({
+      access_token,
+      msg: 'Testing access_token',
+    }),
   };
 }
 
@@ -94,8 +108,7 @@ module.exports.handler = async (event, context) => {
 
   switch (event.httpMethod) {
     case 'POST':
-      // return oneTouchLogin(db, body);
-      return eventLogin(event, context, body);
+      return oneTouchLogin(db, body);
     default:
       return { statusCode: 400 };
   }
