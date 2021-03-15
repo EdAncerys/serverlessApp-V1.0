@@ -1,0 +1,20 @@
+.customerManagementContent {
+  /* padding-top: 50px; */
+}
+
+.customerManagementContent .feature-container {
+  flex-basis: 40%;
+}
+.customerManagementContent a {
+  color: #333;
+}
+
+/* Media Queries */
+@media only screen and (max-width: 800px) {
+  .customerManagementContent {
+    padding-top: 10px;
+  }
+  .customerManagementContent .feature-container {
+    margin: 0 40px;
+  }
+}

@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Persist user data on reload
   const oneTouchDOMBody = sessionStorage.getItem('oneTouchDOMBody') === null;
   const oneTouchBodyName =
-    sessionStorage.getItem('oneTouchBodyName') === 'add-user';
+    sessionStorage.getItem('oneTouchBodyName') === 'add-customer';
 
   if (!oneTouchDOMBody && oneTouchBodyName) {
     console.log('Page Reloaded');
@@ -65,7 +65,7 @@ document.querySelector('body').addEventListener('click', (event) => {
     document.querySelector('#selectAddressContainer').remove();
     document.querySelector('#userPostcodeContainer').classList.remove('hidden');
     document.querySelector('#postcode').value = '';
-    persistDOMData('oneTouchBodyContainer', 'add-user');
+    persistDOMData('oneTouchBodyContainer', 'add-customer');
 
     return;
   }

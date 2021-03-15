@@ -15,7 +15,7 @@ async function _fetchOneTouchUsersFromDB(pageName) {
   let manageUsersNav = '';
 
   // User management page
-  if (pageName === 'manage-users')
+  if (pageName === 'manage-customers')
     oneTouchUsers = document.querySelector('oneTouchUsers');
 
   // Broadband order page
@@ -38,7 +38,7 @@ async function _fetchOneTouchUsersFromDB(pageName) {
                   </goBackBtn>
                   <addUser class="btnOneTouch" 
                             role="button"
-                            onclick = "location.href='../../../../views/oneTouch/add-user.html'";>
+                            onclick = "location.href='../../../../views/oneTouch/add-customer.html'";>
                     Add User
                   </addUser>
                 </div>`;
@@ -50,7 +50,7 @@ async function _fetchOneTouchUsersFromDB(pageName) {
     console.log(data);
 
     data.map((user) => {
-      if (pageName === 'manage-users') {
+      if (pageName === 'manage-customers') {
         manageUsersNav = `<div class="manageUsersNav">
                           <userInfo id='${user._id}' email='${user.email}' class="btnB01" role="button">
                             Info
@@ -118,8 +118,8 @@ async function _fetchOneTouchUsersFromDB(pageName) {
     }
 
     _spinner(false);
-    if (pageName === 'manage-users')
-      persistDOMData('oneTouchBodyContainer', 'manage-users');
+    if (pageName === 'manage-customers')
+      persistDOMData('oneTouchBodyContainer', 'manage-customers');
     if (pageName === 'order-new-connection') {
       oneTouchSlider.appendChild(oneTouchUsers);
       oneTouchBroadbandOrderPageOne.classList.add('hidden');

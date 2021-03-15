@@ -85,7 +85,7 @@ async function _userAddressForPostcodeProvided(postcode) {
 
     userAddressContainer.appendChild(selectAddressContainer);
     userPostcodeContainer.classList.add('hidden');
-    persistDOMData('oneTouchBodyContainer', 'add-user');
+    persistDOMData('oneTouchBodyContainer', 'add-customer');
   } catch (err) {
     console.log(err);
     _errorMessage(err);

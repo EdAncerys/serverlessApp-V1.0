@@ -53,7 +53,7 @@ async function _handleUserAddressSelection() {
 
   userAddressContainer.appendChild(selectionContainer);
   selectAddressContainer.remove();
-  persistDOMData('oneTouchBodyContainer', 'add-user');
+  persistDOMData('oneTouchBodyContainer', 'add-customer');
 }
 
 export { _handleUserAddressSelection };

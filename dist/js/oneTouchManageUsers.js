@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Persist user data on reload
   const oneTouchDOMBody = sessionStorage.getItem('oneTouchDOMBody') === null;
   const oneTouchBodyName =
-    sessionStorage.getItem('oneTouchBodyName') === 'manage-users';
+    sessionStorage.getItem('oneTouchBodyName') === 'manage-customers';
 
   if (oneTouchDOMBody || !oneTouchBodyName) {
     fetchOneTouchUsersFromDB();
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 const fetchOneTouchUsersFromDB = () => {
-  _fetchOneTouchUsersFromDB('manage-users');
+  _fetchOneTouchUsersFromDB('manage-customers');
 };
 
 document.querySelector('body').addEventListener('click', (event) => {
@@ -39,6 +39,6 @@ document.querySelector('body').addEventListener('click', (event) => {
   }
   if (deleteUser) {
     console.log(id);
-    _deleteOneTouchUser(id, 'manage-users');
+    _deleteOneTouchUser(id, 'manage-customers');
   }
 });
