@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>oneTouch Navigation</title>
   </head>
   <body>
@@ -90,6 +91,7 @@
 </html>
 
 <script>
+  //Navigation css
   (function ($) {
     $(function () {
       //  open and close nav
@@ -118,9 +120,6 @@
     });
   })(jQuery);
 
-  // document.querySelector('login').addEventListener('click', () => {
-  //   sessionStorage.setItem('user', { user: 'user' });
-  // });
   document.querySelector('clearSessionsBtn').addEventListener('click', () => {
     // location.reload();
     sessionStorage.clear();

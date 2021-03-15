@@ -23,6 +23,7 @@ async function _oneTouchUserAuthentication() {
     window.location.href = '/views/oneTouch/index.html';
   } catch (err) {
     await sessionStorage.setItem('authMsg', err);
+
     window.location.href = '/views/oneTouch/one-touch-login.html';
   }
 }
