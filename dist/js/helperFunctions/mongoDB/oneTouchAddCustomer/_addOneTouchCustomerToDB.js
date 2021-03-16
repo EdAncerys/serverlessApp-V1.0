@@ -37,7 +37,7 @@ async function _addOneTouchCustomerToDB() {
   const district_id = sessionStorage.getItem('district_id');
   const nad_key = sessionStorage.getItem('nad_key');
 
-  console.log('Adding user to DB. Full Name: ' + fullName);
+  console.log('Adding user to DB. Full Name: ' + customerFullName);
 
   const body = {
     customerCreated,
@@ -106,6 +106,9 @@ const _domDataManipulation = () => {
   document.querySelector('#contactName').value = '';
   document.querySelector('#contactPhoneNumber').value = '';
   document.querySelector('#contactEmail').value = '';
+
+  document.querySelector('#installationPostcode').value = '';
+  document.querySelector('#customerNotes').value = '';
 };
 
 export { _addOneTouchCustomerToDB };

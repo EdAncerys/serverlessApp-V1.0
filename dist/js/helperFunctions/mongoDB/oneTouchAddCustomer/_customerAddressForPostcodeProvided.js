@@ -94,10 +94,10 @@ async function _customerAddressForPostcodeProvided() {
                                           </div>
                                           <div class='fullWidth'>
                                             <div class="addCustomerSelectAddressNav">
-                                              <selectUserAddress class="btnB01" role="button">
+                                              <selectUserAddress class="btnOneTouch backgroundSecondary" role="button">
                                                 Select Address
                                               </selectUserAddress>
-                                              <goBackBtn class="btnB01" role="button">
+                                              <goBackBtn class="btnOneTouch backgroundSecondary" role="button">
                                                 New Search
                                               </goBackBtn>
                                             </div>
