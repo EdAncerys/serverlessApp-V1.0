@@ -27,17 +27,17 @@ const oneTouchOrders = (ev) => {
 };
 
 document.querySelector('body').addEventListener('click', (event) => {
-  const btnInfoOrder = event.target.nodeName === 'BTNINFOORDER';
-  const btnDeleteOrder = event.target.nodeName === 'BTNDELETEORDER';
+  const orderInfo = event.target.nodeName === 'ORDERINFO';
+  const deleteOrder = event.target.nodeName === 'DELETEORDER';
 
   let id = event.target.getAttribute('id');
   let name = event.target.getAttribute('name');
 
-  if (btnInfoOrder) {
+  if (orderInfo) {
     console.log(name);
     _errorMessage(name, 'success');
   }
-  if (btnDeleteOrder) {
+  if (deleteOrder) {
     console.log(name);
     _deleteOneTouchOrder(id);
   }

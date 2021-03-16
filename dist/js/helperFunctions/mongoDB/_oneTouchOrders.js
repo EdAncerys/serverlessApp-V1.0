@@ -28,12 +28,12 @@ async function _oneTouchOrders() {
                           <div class="tableCell">${order.broadband_installation}</div>
                         </div>
                         <div class="manageOrderDataComponent">
-                          <btnInfoOrder id='${order._id}' name='${order.broadband_name}' value='${order._id}' class="btnB01" role="button">
+                          <orderInfo id='${order._id}' name='${order.broadband_name}' value='${order._id}' class="btnB01" role="button">
                             Info
-                          </btnInfoOrder>
-                          <btnDeleteOrder id='${order._id}' name='${order.broadband_name}' value='${order._id}' class="btnB01" role="button">
+                          </orderInfo>
+                          <deleteOrder id='${order._id}' name='${order.broadband_name}' value='${order._id}' class="btnB01" role="button">
                             Delete
-                          </btnDeleteOrder>
+                          </deleteOrder>
                         </div>
                       </div>`;
       });
