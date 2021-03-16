@@ -3,7 +3,7 @@ import { _errorMessage } from '../../_errorMessage.js';
 import { _sortAddresses } from '../../icukBroadband/_sortAddresses.js';
 import { _spinner } from '../../_spinner.js';
 
-async function _userAddressForPostcodeProvided(postcode) {
+async function _customerAddressForPostcodeProvided(postcode) {
   console.log('Fetching addresses for postcode provided...');
   _spinner(true);
   const URL = '/ndg/getAddresses/' + postcode;
@@ -93,4 +93,4 @@ async function _userAddressForPostcodeProvided(postcode) {
   }
 }
 
-export { _userAddressForPostcodeProvided };
+export { _customerAddressForPostcodeProvided };

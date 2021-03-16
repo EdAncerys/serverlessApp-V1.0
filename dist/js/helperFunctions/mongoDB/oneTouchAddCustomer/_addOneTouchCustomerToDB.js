@@ -1,7 +1,7 @@
 import { _errorMessage } from '../../_errorMessage.js';
 import { _spinner } from '../../_spinner.js';
 
-async function _addOneTouchUserToDB() {
+async function _addOneTouchCustomerToDB() {
   _spinner(true);
   const URL = '/oneTouch/customer';
 
@@ -73,4 +73,4 @@ const _domDataManipulation = () => {
   document.querySelector('#notes').value = '';
 };
 
-export { _addOneTouchUserToDB };
+export { _addOneTouchCustomerToDB };

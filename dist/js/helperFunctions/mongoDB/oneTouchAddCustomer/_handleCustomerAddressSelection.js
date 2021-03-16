@@ -3,7 +3,7 @@ import { _errorMessage } from '../../_errorMessage.js';
 import { _sortAddresses } from '../../icukBroadband/_sortAddresses.js';
 import { _spinner } from '../../_spinner.js';
 
-async function _handleUserAddressSelection() {
+async function _handleCustomerAddressSelection() {
   console.log('User Address Selected...');
   sessionStorage.setItem('userAddressValidation', true);
 
@@ -56,4 +56,4 @@ async function _handleUserAddressSelection() {
   persistDOMData('oneTouchBodyContainer', 'add-customer');
 }
 
-export { _handleUserAddressSelection };
+export { _handleCustomerAddressSelection };

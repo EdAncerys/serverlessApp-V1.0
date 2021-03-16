@@ -1,6 +1,6 @@
-import { _fetchUserAddress } from './helperFunctions/mongoDB/oneTouchAddCustomer/_fetchUserAddress.js';
-import { _handleUserAddressSelection } from './helperFunctions/mongoDB/oneTouchAddCustomer/_handleUserAddressSelection.js';
-import { _addOneTouchUserToDB } from './helperFunctions/mongoDB/oneTouchAddCustomer/_addOneTouchUserToDB.js';
+import { _fetchCustomerAddress } from './helperFunctions/mongoDB/oneTouchAddCustomer/_fetchCustomerAddress.js';
+import { _handleCustomerAddressSelection } from './helperFunctions/mongoDB/oneTouchAddCustomer/_handleCustomerAddressSelection.js';
+import { _addOneTouchCustomerToDB } from './helperFunctions/mongoDB/oneTouchAddCustomer/_addOneTouchCustomerToDB.js';
 import { _saveAddressData } from './helperFunctions/icukBroadband/_saveAddressData.js';
 import { _errorMessage } from './helperFunctions/_errorMessage.js';
 import { _validateEmail } from './helperFunctions/_validateEmail.js';
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const userAddressSearch = (ev) => {
   ev.preventDefault();
-  _fetchUserAddress();
+  _fetchCustomerAddress();
 };
 
 const addUser = (ev) => {
@@ -42,7 +42,7 @@ const addUser = (ev) => {
     _errorMessage('Email Not Provided or Incorrect!', 'warring');
   if (!userAddressValidation)
     _errorMessage('Please Add User Address!', 'warring');
-  if (userFromValidation && userAddressValidation) _addOneTouchUserToDB();
+  if (userFromValidation && userAddressValidation) _addOneTouchCustomerToDB();
 
   return;
 };
@@ -55,7 +55,7 @@ document.querySelector('body').addEventListener('click', (event) => {
   if (selectUserAddress) {
     const userSelection = document.getElementById('selectedAddress').value;
     if (userSelection !== 'userSelection') {
-      _handleUserAddressSelection();
+      _handleCustomerAddressSelection();
     } else {
       _errorMessage('Please Select User Address From The List Provided!');
     }
