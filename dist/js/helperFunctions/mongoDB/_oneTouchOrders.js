@@ -1,5 +1,4 @@
 import { persistDOMData } from '../../persistDOMData.js';
-import { _deleteOneTouchOrder } from '../mongoDB/_deleteOneTouchOrder.js';
 import { _errorMessage } from '../_errorMessage.js';
 import { _spinner } from '../_spinner.js';
 
@@ -50,26 +49,8 @@ async function _oneTouchOrders() {
                                   </div>`;
     }
 
-    _spinner(false);
     persistDOMData('oneTouchBodyContainer', 'live-connections');
-
-    document.querySelector('body').addEventListener('click', (event) => {
-      const btnInfoOrder = event.target.nodeName === 'BTNINFOORDER';
-      const btnDeleteOrder = event.target.nodeName === 'BTNDELETEORDER';
-
-      let id = event.target.getAttribute('id');
-      let name = event.target.getAttribute('name');
-
-      if (btnInfoOrder) {
-        console.log(name);
-        _errorMessage(name, 'success');
-      }
-      if (btnDeleteOrder) {
-        console.log(name);
-        _deleteOneTouchOrder(id);
-        _errorMessage(`Order will be deleted! Order ${name} `);
-      }
-    });
+    _spinner(false);
   } catch (err) {
     console.log(err);
     _errorMessage(err);

@@ -18,12 +18,12 @@ async function _deleteOneTouchOrder(id) {
   try {
     const response = await fetch(URL, config);
     if (!response.ok) throw new Error(response);
-    const data = await response.json();
 
+    const data = await response.json();
+    console.log(data);
     _oneTouchOrders();
     _errorMessage(data.msg, 'success');
     _spinner(false);
-    console.log(data);
   } catch (err) {
     console.log(err);
     _errorMessage(err);
