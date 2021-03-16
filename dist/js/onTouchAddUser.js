@@ -1,6 +1,6 @@
-import { _fetchUserAddress } from './helperFunctions/mongoDB/oneTouchAddUsers/_fetchUserAddress.js';
-import { _handleUserAddressSelection } from './helperFunctions/mongoDB/oneTouchAddUsers/_handleUserAddressSelection.js';
-import { _addOneTouchUserToDB } from './helperFunctions/mongoDB/oneTouchAddUsers/_addOneTouchUserToDB.js';
+import { _fetchUserAddress } from './helperFunctions/mongoDB/oneTouchAddCustomer/_fetchUserAddress.js';
+import { _handleUserAddressSelection } from './helperFunctions/mongoDB/oneTouchAddCustomer/_handleUserAddressSelection.js';
+import { _addOneTouchUserToDB } from './helperFunctions/mongoDB/oneTouchAddCustomer/_addOneTouchUserToDB.js';
 import { _saveAddressData } from './helperFunctions/icukBroadband/_saveAddressData.js';
 import { _errorMessage } from './helperFunctions/_errorMessage.js';
 import { _validateEmail } from './helperFunctions/_validateEmail.js';
