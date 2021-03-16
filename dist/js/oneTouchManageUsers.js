@@ -1,6 +1,6 @@
 import { _errorMessage } from './helperFunctions/_errorMessage.js';
-import { _fetchOneTouchUsersFromDB } from './helperFunctions/mongoDB/oneTouchManageCustomer/_fetchOneTouchUsersFromDB.js';
-import { _deleteOneTouchUser } from './helperFunctions/mongoDB/oneTouchManageCustomer/_deleteOneTouchUser.js';
+import { _fetchOneTouchCustomerFromDB } from './helperFunctions/mongoDB/oneTouchManageCustomer/_fetchOneTouchCustomerFromDB.js';
+import { _deleteOneTouchCustomer } from './helperFunctions/mongoDB/oneTouchManageCustomer/_deleteOneTouchCustomer.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   // Persist user data on reload
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 const fetchOneTouchUsersFromDB = () => {
-  _fetchOneTouchUsersFromDB('manage-customers');
+  _fetchOneTouchCustomerFromDB('manage-customers');
 };
 
 document.querySelector('body').addEventListener('click', (event) => {
@@ -39,6 +39,6 @@ document.querySelector('body').addEventListener('click', (event) => {
   }
   if (deleteUser) {
     console.log(id);
-    _deleteOneTouchUser(id, 'manage-customers');
+    _deleteOneTouchCustomer(id, 'manage-customers');
   }
 });
