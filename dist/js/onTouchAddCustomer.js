@@ -31,18 +31,39 @@ const customerAddressSearch = (ev) => {
 
 const addUser = (ev) => {
   ev.preventDefault();
-  const fullName = document.getElementById('fullName').value === '';
-  const email = document.getElementById('email').value;
+  const customerFullName =
+    document.getElementById('customerFullName').value === '';
+  const customerEmail = document
+    .getElementById('customerEmail')
+    .value.replace(/\s/g, '');
+  const companyEmail = document
+    .getElementById('companyEmail')
+    .value.replace(/\s/g, '');
+  const contactEmail = document
+    .getElementById('contactEmail')
+    .value.replace(/\s/g, '');
   const userAddressValidation =
     sessionStorage.getItem('userAddressValidation') === 'true';
-  const userFromValidation = !fullName && _validateEmail(email);
+  const userFromValidation =
+    !customerFullName &&
+    _validateEmail(customerEmail) &&
+    _validateEmail(companyEmail) &&
+    _validateEmail(contactEmail);
 
-  if (fullName) {
+  if (customerFullName) {
     _errorMessage('Full Name Not Provided!', 'warning');
     return;
   }
-  if (!_validateEmail(email)) {
-    _errorMessage('Email Not Provided or Incorrect!', 'warning');
+  if (!_validateEmail(customerEmail)) {
+    _errorMessage('Customer Email Not Provided or Incorrect!', 'warning');
+    return;
+  }
+  if (!_validateEmail(companyEmail)) {
+    _errorMessage('Company Email Not Provided or Incorrect!', 'warning');
+    return;
+  }
+  if (!_validateEmail(contactEmail)) {
+    _errorMessage('Site Contact Email Not Provided or Incorrect!', 'warning');
     return;
   }
   if (!userAddressValidation) {
@@ -64,7 +85,10 @@ document.querySelector('body').addEventListener('click', (event) => {
     if (userSelection !== 'userSelection') {
       _handleCustomerAddressSelection();
     } else {
-      _errorMessage('Please Select User Address From The List Provided!');
+      _errorMessage(
+        'Please Select User Address From The List Provided!',
+        'warning'
+      );
     }
     return;
   }
