@@ -26,9 +26,11 @@
   box-shadow: 4px 4px 12px -4px rgb(0 0 0 / 50%);
 }
 .btnB01 {
-  background-color: #f0ad4e;
-  border-radius: 999px;
-  padding: 5px 15px;
+  background-color: #a8a8a8;
+  border: 1px solid #8c8c8c;
+  border-radius: 3px;
+  padding: 3px 15px;
+  margin: 0 2px;
   font-size: 0.75rem;
 }
 .btnB01:hover {
@@ -38,9 +40,13 @@
   -webkit-transform: scale(0.98);
   transform: scale(0.98);
 }
+.rowContainer {
+  padding: 2px 5px;
+  border: 1px solid #e8e9e9;
+}
 .boxContainer {
   margin: 1px 0;
-  padding: 2px 5px;
+  padding: 5px 5px;
   border: 1px solid #e8e9e9;
   box-shadow: 0 2px 4px 0 rgb(0 0 0 / 30%);
   transition: all 250ms ease-in-out;

@@ -99,11 +99,11 @@ async function _fetchOneTouchCustomerFromDB(pageName) {
 
     if (data.length === 0) {
       oneTouchCustomer.innerHTML = `<div class='alignHorizontally'>
-                                  <div class='userRowNAU'>
-                                    <div>No Users Added To DB!</div>
-                                    ${sliderNav}
-                                  </div>
-                                </div>`;
+                                      <div class='userRowNAU'>
+                                        <div>No Users Added To DB!</div>
+                                        ${sliderNav}
+                                      </div>
+                                    </div>`;
     } else {
       oneTouchCustomer.innerHTML = `<div class='alignHorizontally'>
                                   <div class='manageUserContainer'>

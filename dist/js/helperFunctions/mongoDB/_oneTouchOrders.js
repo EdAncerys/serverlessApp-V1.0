@@ -20,7 +20,7 @@ async function _oneTouchOrders() {
                                   </div>`;
     } else {
       data.map((order) => {
-        orderData += `<div class='boxContainer'>
+        orderData += `<div class='rowContainer'>
                         <div class="orderDataContainer">
                           <div class="tableCell">${order.broadband_name}</div>
                           <div class="tableCell">${order.broadband_provider}</div>
@@ -53,6 +53,7 @@ async function _oneTouchOrders() {
     _spinner(false);
   } catch (err) {
     console.log(err);
+    _spinner(false);
     _errorMessage(err);
   }
 }

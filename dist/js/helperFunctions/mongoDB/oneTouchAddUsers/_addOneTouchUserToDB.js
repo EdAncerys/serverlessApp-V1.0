@@ -3,7 +3,7 @@ import { _spinner } from '../../_spinner.js';
 
 async function _addOneTouchUserToDB() {
   _spinner(true);
-  const URL = '/oneTouch/users';
+  const URL = '/oneTouch/customer';
 
   const userCreated = new Date().toLocaleString();
   const fullName = document.getElementById('fullName').value;
