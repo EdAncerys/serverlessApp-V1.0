@@ -3,7 +3,7 @@ let ObjectId = require('mongodb').ObjectID;
 
 const MONGODB_URI = process.env.MONGODB_URI;
 const DB_NAME = 'oneTouchDB';
-const COLLECTION = 'oneTouchUsers';
+const COLLECTION = 'oneTouchCustomer';
 
 let cachedDb = null;
 

@@ -1,6 +1,6 @@
 import { _errorMessage } from './helperFunctions/_errorMessage.js';
-import { _fetchOneTouchUsersFromDB } from './helperFunctions/mongoDB/oneTouchManageUsers/_fetchOneTouchUsersFromDB.js';
-import { _deleteOneTouchUser } from './helperFunctions/mongoDB/oneTouchManageUsers/_deleteOneTouchUser.js';
+import { _fetchOneTouchUsersFromDB } from './helperFunctions/mongoDB/oneTouchManageCustomer/_fetchOneTouchUsersFromDB.js';
+import { _deleteOneTouchUser } from './helperFunctions/mongoDB/oneTouchManageCustomer/_deleteOneTouchUser.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   // Persist user data on reload

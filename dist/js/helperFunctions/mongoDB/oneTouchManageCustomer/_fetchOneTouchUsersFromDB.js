@@ -5,18 +5,18 @@ import { _spinner } from '../../_spinner.js';
 async function _fetchOneTouchUsersFromDB(pageName) {
   console.log('Fetching users from db...');
   _spinner(true, 'Loading Active Users...');
-  const URL = '/oneTouch/users';
+  const URL = '/oneTouch/customer';
 
   let userData = '';
   let sliderNav = '';
-  let oneTouchUsers = '';
+  let oneTouchCustomer = '';
   let oneTouchSlider = '';
   let oneTouchBroadbandOrderPageOne = '';
   let manageUsersNav = '';
 
   // User management page
   if (pageName === 'manage-customers')
-    oneTouchUsers = document.querySelector('oneTouchUsers');
+    oneTouchCustomer = document.querySelector('oneTouchCustomer');
 
   // Broadband order page
   if (pageName === 'order-new-connection') {
@@ -28,8 +28,8 @@ async function _fetchOneTouchUsersFromDB(pageName) {
     oneTouchBroadbandOrderPageOne = document.querySelector(
       '#oneTouchBroadbandOrderPageOne'
     );
-    oneTouchUsers = document.createElement('div');
-    oneTouchUsers.id = 'oneTouchBroadbandOrderPageTwo';
+    oneTouchCustomer = document.createElement('div');
+    oneTouchCustomer.id = 'oneTouchBroadbandOrderPageTwo';
   }
   if (pageName === 'order-new-connection') {
     sliderNav = `<div class='sliderNavNUA alignHorizontally'>
@@ -98,14 +98,14 @@ async function _fetchOneTouchUsersFromDB(pageName) {
     });
 
     if (data.length === 0) {
-      oneTouchUsers.innerHTML = `<div class='alignHorizontally'>
+      oneTouchCustomer.innerHTML = `<div class='alignHorizontally'>
                                   <div class='userRowNAU'>
                                     <div>No Users Added To DB!</div>
                                     ${sliderNav}
                                   </div>
                                 </div>`;
     } else {
-      oneTouchUsers.innerHTML = `<div class='alignHorizontally'>
+      oneTouchCustomer.innerHTML = `<div class='alignHorizontally'>
                                   <div class='manageUserContainer'>
                                     <div class="manageUsersRow boxContainer backgroundWhiteT01">
                                       <div class="tableCell">Full Name</div>
@@ -121,7 +121,7 @@ async function _fetchOneTouchUsersFromDB(pageName) {
     if (pageName === 'manage-customers')
       persistDOMData('oneTouchBodyContainer', 'manage-customers');
     if (pageName === 'order-new-connection') {
-      oneTouchSlider.appendChild(oneTouchUsers);
+      oneTouchSlider.appendChild(oneTouchCustomer);
       oneTouchBroadbandOrderPageOne.classList.add('hidden');
       persistDOMData('oneTouchBodyContainer', 'order-new-connection');
     }

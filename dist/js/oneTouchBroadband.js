@@ -6,7 +6,7 @@ import { _manageOrderData } from './helperFunctions/icukBroadband/_manageOrderDa
 import { _termsAndConditions } from './helperFunctions/icukBroadband/_termsAndConditions.js';
 import { _getBroadbandAvailability } from './helperFunctions/icukBroadband/_getBroadbandAvailability.js';
 import { persistDOMData } from './persistDOMData.js';
-import { _fetchOneTouchUsersFromDB } from './helperFunctions/mongoDB/oneTouchManageUsers/_fetchOneTouchUsersFromDB.js';
+import { _fetchOneTouchUsersFromDB } from './helperFunctions/mongoDB/oneTouchManageCustomer/_fetchOneTouchUsersFromDB.js';
 
 import { _spinner } from './helperFunctions/_spinner.js';
 
@@ -26,8 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
     .getElementById('getAddressForPostcodeProvided')
     .addEventListener('click', getAddressForPostcodeProvided);
   document
-    .getElementById('oneTouchUsers')
-    .addEventListener('click', oneTouchUsers);
+    .getElementById('oneTouchCustomer')
+    .addEventListener('click', oneTouchCustomer);
 });
 
 const getAddressForPostcodeProvided = (ev) => {
@@ -35,7 +35,7 @@ const getAddressForPostcodeProvided = (ev) => {
   _newOrderPostcodeValidation();
 };
 
-const oneTouchUsers = (ev) => {
+const oneTouchCustomer = (ev) => {
   ev.preventDefault();
   _fetchOneTouchUsersFromDB('order-new-connection');
 };
