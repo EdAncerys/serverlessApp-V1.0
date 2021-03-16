@@ -32,19 +32,19 @@ const oneTouchQueryUsers = async (db) => {
   };
 };
 
-const oneTouchAddUser = async (db, data) => {
-  const addUser = {
-    fullName: data.fullName,
-    email: data.email,
+const oneTouchAddCustomer = async (db, data) => {
+  const addCustomer = {
+    customerFullName: data.customerFullName,
+    customerEmail: data.customerEmail,
   };
   const user = await db
     .collection(COLLECTION)
-    .find({ email: addUser.email })
+    .find({ customerEmail: addCustomer.customerEmail })
     .toArray();
   const userValid = !user[0];
 
-  if (userValid && addUser.fullName && addUser.email) {
-    const msg = `User successfully added to DB with email: ` + addUser.email;
+  if (userValid && addCustomer.customerFullName && addCustomer.customerEmail) {
+    const msg = `User successfully added to DB with email: ` + addCustomer.customerEmail;
     await db.collection(COLLECTION).insertMany([data]);
     console.log(msg);
 
@@ -57,7 +57,7 @@ const oneTouchAddUser = async (db, data) => {
     };
   } else {
     const msg =
-      `User Exists. Error adding user to DB with email: ` + addUser.email;
+      `User Exists. Error adding user to DB with email: ` + addCustomer.customerEmail;
     console.log(msg);
 
     return {
@@ -70,18 +70,18 @@ const oneTouchAddUser = async (db, data) => {
   }
 };
 
-const oneTouchDeleteUser = async (db, data) => {
-  const deleteUser = {
+const oneTouchDeleteCustomer = async (db, data) => {
+  const deleteCustomer = {
     _id: data._id,
-    email: data.email,
+    customerEmail: data.customerEmail,
   };
-  const userID = new ObjectId(deleteUser._id);
+  const userID = new ObjectId(deleteCustomer._id);
   const user = await db.collection(COLLECTION).find({ _id: userID }).toArray();
   const userValid = user[0];
 
-  if (userValid && deleteUser._id) {
+  if (userValid && deleteCustomer._id) {
     const msg =
-      `User been successfully deleted from DB with email: ` + deleteUser.email;
+      `User been successfully deleted from DB with email: ` + deleteCustomer.customerEmail;
     await db.collection(COLLECTION).deleteOne({ _id: userID });
     console.log(msg);
 
@@ -95,7 +95,7 @@ const oneTouchDeleteUser = async (db, data) => {
   } else {
     const msg =
       `User not found! Error deleting user from DB where email: ` +
-      deleteUser.email;
+      deleteCustomer.customerEmail;
     console.log(msg);
 
     return {
@@ -159,9 +159,9 @@ module.exports.handler = async (event, context) => {
     case 'GET':
       return oneTouchQueryUsers(db);
     case 'POST':
-      return oneTouchAddUser(db, JSON.parse(event.body));
+      return oneTouchAddCustomer(db, JSON.parse(event.body));
     case 'DELETE':
-      return oneTouchDeleteUser(db, JSON.parse(event.body));
+      return oneTouchDeleteCustomer(db, JSON.parse(event.body));
     case 'PATCH':
       return oneTouchUpdateUser(db, JSON.parse(event.body));
     default:
