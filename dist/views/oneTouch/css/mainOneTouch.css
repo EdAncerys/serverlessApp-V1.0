@@ -75,3 +75,15 @@ textarea {
   border-radius: 4px;
   padding: 5px;
 }
+textarea {
+  resize: vertical; /* user can resize vertically, but width is fixed */
+}
+/* Remove Arrows/Spinners */
+input::-webkit-outer-spin-button, /* Chrome, Safari, Edge, Opera */
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] { /* Firefox */
+  -moz-appearance: textfield;
+}

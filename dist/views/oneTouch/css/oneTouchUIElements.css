@@ -10,6 +10,7 @@
   font-family: 'Expert Sans Regular', 'Trebuchet MS', Arial, Verdana, sans-serif;
   line-height: 1.25;
   padding: 11px 30px;
+  width: 100%;
   text-align: center;
   text-decoration: none;
   transition: background-color 300ms cubic-bezier(0.19, 1, 0.22, 1),

@@ -24,165 +24,187 @@
     <spinnerContainer></spinnerContainer>
 
     <div id="oneTouchBodyContainer" class="oneTouchBodyContainer">
-      <div class="oneTouchWrapper alignHorizontally">
+      <div class="oneTouchWrapper">
         <div class="raiseTicketContent">
           <div class="features">
             <div class="form-container">
-              <div class="raiseTicketContainer">
+              <div class="addCustomerFormContainer">
                 <div id="raiseTicketImgContainer">
                   <div class="oneTouchIcon"></div>
                 </div>
-
+                <div class="alignHorizontally fontH5">Add Customer Details</div>
                 <form action="/">
-                  <label for="fname">Full Name</label>
-                  <input
-                    type="text"
-                    id="fullName"
-                    name="fullName"
-                    placeholder="Customer full name..."
-                  />
+                  <div class="addCustomerInfoHeader fontH3">
+                    Customer Information
+                  </div>
+                  <div class="addCustomerRowContainer">
+                    <div>
+                      <label for="fname">Full Name</label>
+                      <input
+                        type="text"
+                        id="fullName"
+                        name="fullName"
+                        placeholder="Customer full name..."
+                      />
+                    </div>
+                    <div>
+                      <label for="lname">Phone Number</label>
+                      <input
+                        type="number"
+                        id="phoneNumber"
+                        name="phoneNumber"
+                        placeholder="Customer phone number..."
+                      />
+                    </div>
+                  </div>
 
-                  <label for="lname">Phone Number</label>
-                  <input
-                    type="number"
-                    id="phoneNumber"
-                    name="phoneNumber"
-                    placeholder="Customer phone number..."
-                  />
+                  <div class="addCustomerRowContainer">
+                    <div>
+                      <label for="fname">Email</label>
+                      <input
+                        type="text"
+                        id="email"
+                        name="email"
+                        placeholder="Customer email..."
+                      />
+                    </div>
+                  </div>
 
-                  <label for="lname">Email</label>
-                  <input
-                    type="text"
-                    id="email"
-                    name="email"
-                    placeholder="Customer email address..."
-                  />
+                  <div class="addCustomerInfoHeader fontH3">
+                    Company Information
+                  </div>
+                  <div class="addCustomerRowContainer">
+                    <div>
+                      <label for="fname">Company Name</label>
+                      <input
+                        type="text"
+                        id="companyName"
+                        name="companyName"
+                        placeholder="Company name..."
+                      />
+                    </div>
+                    <div>
+                      <label for="lname">Product Type</label>
+                      <input
+                        type="text"
+                        id="productType"
+                        name="productType"
+                        placeholder="Product Type..."
+                      />
+                    </div>
+                  </div>
 
-                  <label for="name"><b>Username</b></label>
-                  <input
-                    type="text"
-                    placeholder="Enter Username"
-                    name="username"
-                    required
-                  />
+                  <div class="addCustomerRowContainer">
+                    <div>
+                      <label for="fname">Company email</label>
+                      <input
+                        type="text"
+                        id="companyEmail"
+                        name="companyEmail"
+                        placeholder="Company email..."
+                      />
+                    </div>
+                    <div>
+                      <label for="lname">Company Phone Number</label>
+                      <input
+                        type="text"
+                        id="companyPhoneNumber"
+                        name="companyPhoneNumber"
+                        placeholder="Company phone number..."
+                      />
+                    </div>
+                  </div>
 
-                  <label for="name"><b>Password</b></label>
-                  <input
-                    type="text"
-                    placeholder="Enter Password"
-                    name="password"
-                    required
-                  />
+                  <div class="addCustomerRowContainer">
+                    <div>
+                      <label for="fname">Account Manager</label>
+                      <input
+                        type="text"
+                        id="accountManager"
+                        name="accountManager"
+                        placeholder="Account Manager..."
+                      />
+                    </div>
+                    <div>
+                      <label for="lname">Company Registration</label>
+                      <input
+                        type="text"
+                        id="companyRegistration"
+                        name="companyRegistration"
+                        placeholder="Company Registration..."
+                      />
+                    </div>
+                  </div>
 
-                  <label for="name"><b>Company Name</b></label>
-                  <input
-                    type="text"
-                    placeholder="Enter Name"
-                    name="companyName"
-                    required
-                  />
+                  <div class="addCustomerInfoHeader fontH3">
+                    Site Installation Details
+                  </div>
+                  <div class="addCustomerRowContainer">
+                    <div>
+                      <label for="fname">Contact Name</label>
+                      <input
+                        type="text"
+                        id="contactName"
+                        name="contactName"
+                        placeholder="Contact name..."
+                      />
+                    </div>
+                    <div>
+                      <label for="lname">Contact Phone Number</label>
+                      <input
+                        type="number"
+                        id="contactPhoneNumber"
+                        name="contactPhoneNumber"
+                        placeholder="Site contact phone number..."
+                      />
+                    </div>
+                  </div>
 
-                  <label for="email"><b>Company Email</b></label>
-                  <input
-                    type="text"
-                    placeholder="Enter Email"
-                    name="email"
-                    required
-                  />
-
-                  <label for="email"><b>Company Phone Number</b></label>
-                  <input
-                    type="text"
-                    placeholder="Enter Company Phone Number"
-                    name="phoneNumber"
-                    required
-                  />
-
-                  <label for="name"><b>Company Address</b></label>
-                  <input
-                    type="text"
-                    placeholder="Enter Address"
-                    name="companyAddress"
-                    required
-                  />
-
-                  <label for="email"><b>Contact Email</b></label>
-                  <input
-                    type="text"
-                    placeholder="Enter Email"
-                    name="email"
-                    required
-                  />
-
-                  <label for="name"><b>Contact Name</b></label>
-                  <input
-                    type="text"
-                    placeholder="Enter Name"
-                    name="name"
-                    required
-                  />
-
-                  <label for="name"><b>Contact Address</b></label>
-                  <input
-                    type="text"
-                    placeholder="Enter Address"
-                    name="name"
-                    required
-                  />
-
-                  <label for="name"><b>Company Registration</b></label>
-                  <input
-                    type="text"
-                    placeholder="Reference"
-                    name="name"
-                    required
-                  />
-
-                  <label for="name"><b>Account Manager</b></label>
-                  <input
-                    type="text"
-                    placeholder="Enter Name"
-                    name="name"
-                    required
-                  />
-
-                  <label>
-                    <input type="checkbox" checked="checked" name="remember" />
-                    Remember me
-                  </label>
-
-                  <p>
-                    By creating an account you agree to our
-                    <a href="#" style="color: dodgerblue">Terms & Privacy</a>.
-                  </p>
+                  <div class="addCustomerRowContainer">
+                    <div>
+                      <label for="fname">Contact Email</label>
+                      <input
+                        type="text"
+                        id="contactEmail"
+                        name="contactEmail"
+                        placeholder="Contact email..."
+                      />
+                    </div>
+                  </div>
 
                   <div id="userAddressContainer">
                     <div id="userPostcodeContainer">
-                      <label for="fname">Postcode</label>
-                      <div class="userPostcodeSearchContainer">
-                        <input
-                          type="text"
-                          id="postcode"
-                          name="postcode"
-                          placeholder="Customer postcode..."
-                        />
-                        <input
-                          id="userAddressSearch"
-                          class="btnOneTouch"
-                          type="submit"
-                          value="Search"
-                        />
+                      <div class="addCustomerRowContainer">
+                        <div>
+                          <label for="fname">Installation Postcode</label>
+                          <input
+                            type="text"
+                            id="installationPostcode"
+                            name="installationPostcode"
+                            placeholder="Installation postcode..."
+                          />
+                        </div>
+                        <div>
+                          <input
+                            id="userAddressSearch"
+                            class="btnOneTouch"
+                            type="submit"
+                            value="Search"
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
 
-                  <label for="subject">Notes</label>
-                  <textarea
-                    id="notes"
-                    name="notes"
-                    placeholder="User specific notes..."
-                    style="height: 200px"
-                  ></textarea>
+                  <div class="addCustomerNoteContainer">
+                    <label for="subject">Customer Notes</label>
+                    <textarea
+                      id="customerNotes"
+                      name="customerNotes"
+                      placeholder="Customer notes..."
+                      style="height: 200px"
+                    ></textarea>
+                  </div>
 
                   <btnSubmit>
                     <input
