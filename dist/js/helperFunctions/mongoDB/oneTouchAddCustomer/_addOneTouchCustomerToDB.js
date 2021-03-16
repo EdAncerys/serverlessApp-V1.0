@@ -5,10 +5,27 @@ async function _addOneTouchCustomerToDB() {
   _spinner(true);
   const URL = '/oneTouch/customer';
 
-  const userCreated = new Date().toLocaleString();
-  const fullName = document.getElementById('fullName').value;
-  const phoneNumber = document.getElementById('phoneNumber').value;
-  const email = document.getElementById('email').value;
+  const customerCreated = new Date().toLocaleString();
+  const customerFullName = document.getElementById('customerFullName').value;
+  const customerPhoneNumber = document.getElementById('customerPhoneNumber')
+    .value;
+  const customerEmail = document.getElementById('customerEmail').value;
+  const customerNotes = document.getElementById('customerNotes').value;
+
+  const companyName = document.getElementById('companyName').value;
+  const productType = document.getElementById('productType').value;
+  const companyEmail = document.getElementById('companyEmail').value;
+  const companyPhoneNumber = document.getElementById('companyPhoneNumber')
+    .value;
+  const accountManager = document.getElementById('accountManager').value;
+  const companyRegistration = document.getElementById('companyRegistration')
+    .value;
+
+  const contactName = document.getElementById('contactName').value;
+  const contactPhoneNumber = document.getElementById('contactPhoneNumber')
+    .value;
+  const contactEmail = document.getElementById('contactEmail').value;
+
   const sub_premises = sessionStorage.getItem('sub_premises');
   const premises_name = sessionStorage.getItem('premises_name');
   const thoroughfare_number = sessionStorage.getItem('thoroughfare_number');
@@ -19,15 +36,24 @@ async function _addOneTouchCustomerToDB() {
   const postcode = sessionStorage.getItem('postcode');
   const district_id = sessionStorage.getItem('district_id');
   const nad_key = sessionStorage.getItem('nad_key');
-  const notes = document.getElementById('notes').value;
 
   console.log('Adding user to DB. Full Name: ' + fullName);
 
   const body = {
-    userCreated,
-    fullName,
-    phoneNumber,
-    email,
+    customerCreated,
+    customerFullName,
+    customerPhoneNumber,
+    customerEmail,
+    companyName,
+    productType,
+    companyEmail,
+    companyPhoneNumber,
+    accountManager,
+    companyRegistration,
+    contactName,
+    contactPhoneNumber,
+    contactEmail,
+    customerNotes,
     sub_premises,
     premises_name,
     thoroughfare_number,
@@ -38,7 +64,6 @@ async function _addOneTouchCustomerToDB() {
     postcode,
     district_id,
     nad_key,
-    notes,
   };
   const config = {
     method: 'POST',
@@ -66,11 +91,21 @@ const _domDataManipulation = () => {
   sessionStorage.setItem('userAddressValidation', false);
   document.querySelector('#selectionContainer').remove();
   document.querySelector('#userPostcodeContainer').classList.remove('hidden');
-  document.querySelector('#fullName').value = '';
-  document.querySelector('#phoneNumber').value = '';
-  document.querySelector('#email').value = '';
-  document.querySelector('#postcode').value = '';
-  document.querySelector('#notes').value = '';
+
+  document.querySelector('#customerFullName').value = '';
+  document.querySelector('#customerPhoneNumber').value = '';
+  document.querySelector('#customerEmail').value = '';
+
+  document.querySelector('#companyName').value = '';
+  document.querySelector('#productType').value = '';
+  document.querySelector('#companyEmail').value = '';
+  document.querySelector('#companyPhoneNumber').value = '';
+  document.querySelector('#accountManager').value = '';
+  document.querySelector('#companyRegistration').value = '';
+
+  document.querySelector('#contactName').value = '';
+  document.querySelector('#contactPhoneNumber').value = '';
+  document.querySelector('#contactEmail').value = '';
 };
 
 export { _addOneTouchCustomerToDB };
