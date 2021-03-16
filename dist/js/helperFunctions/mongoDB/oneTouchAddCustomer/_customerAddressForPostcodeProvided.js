@@ -1,11 +1,28 @@
 import { persistDOMData } from '../../../persistDOMData.js';
+import { _validatePostcode } from '../../icukBroadband/_validatePostcode.js';
 import { _errorMessage } from '../../_errorMessage.js';
 import { _sortAddresses } from '../../icukBroadband/_sortAddresses.js';
 import { _spinner } from '../../_spinner.js';
 
-async function _customerAddressForPostcodeProvided(postcode) {
+async function _customerAddressForPostcodeProvided() {
   console.log('Fetching addresses for postcode provided...');
   _spinner(true);
+  const postcode = document
+    .getElementById('installationPostcode')
+    .value.replace(/\s/g, '');
+  console.log(postcode);
+
+  if (!postcode) {
+    _errorMessage('Please enter the postcode!');
+    _spinner(false);
+    return;
+  }
+  if (!_validatePostcode(postcode)) {
+    _errorMessage('Provided postcode not valid!');
+    _spinner(false);
+    return;
+  }
+
   const URL = '/ndg/getAddresses/' + postcode;
   console.log(URL);
 

@@ -1,4 +1,4 @@
-import { _fetchCustomerAddress } from './helperFunctions/mongoDB/oneTouchAddCustomer/_fetchCustomerAddress.js';
+import { _customerAddressForPostcodeProvided } from './helperFunctions/mongoDB/oneTouchAddCustomer/_customerAddressForPostcodeProvided.js';
 import { _handleCustomerAddressSelection } from './helperFunctions/mongoDB/oneTouchAddCustomer/_handleCustomerAddressSelection.js';
 import { _addOneTouchCustomerToDB } from './helperFunctions/mongoDB/oneTouchAddCustomer/_addOneTouchCustomerToDB.js';
 import { _saveAddressData } from './helperFunctions/icukBroadband/_saveAddressData.js';
@@ -19,14 +19,14 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   // Btn event listeners
   document
-    .getElementById('userAddressSearch')
-    .addEventListener('click', userAddressSearch);
+    .getElementById('customerAddressSearch')
+    .addEventListener('click', customerAddressSearch);
   document.getElementById('addUser').addEventListener('click', addUser);
 });
 
-const userAddressSearch = (ev) => {
+const customerAddressSearch = (ev) => {
   ev.preventDefault();
-  _fetchCustomerAddress();
+  _customerAddressForPostcodeProvided();
 };
 
 const addUser = (ev) => {
@@ -37,11 +37,18 @@ const addUser = (ev) => {
     sessionStorage.getItem('userAddressValidation') === 'true';
   const userFromValidation = !fullName && _validateEmail(email);
 
-  if (fullName) _errorMessage('Full Name Not Provided!', 'warring');
-  if (!_validateEmail(email))
-    _errorMessage('Email Not Provided or Incorrect!', 'warring');
-  if (!userAddressValidation)
-    _errorMessage('Please Add User Address!', 'warring');
+  if (fullName) {
+    _errorMessage('Full Name Not Provided!', 'warning');
+    return;
+  }
+  if (!_validateEmail(email)) {
+    _errorMessage('Email Not Provided or Incorrect!', 'warning');
+    return;
+  }
+  if (!userAddressValidation) {
+    _errorMessage('Please Add User Address!', 'warning');
+    return;
+  }
   if (userFromValidation && userAddressValidation) _addOneTouchCustomerToDB();
 
   return;
@@ -64,7 +71,7 @@ document.querySelector('body').addEventListener('click', (event) => {
   if (goBackBtn) {
     document.querySelector('#selectAddressContainer').remove();
     document.querySelector('#userPostcodeContainer').classList.remove('hidden');
-    document.querySelector('#postcode').value = '';
+    document.querySelector('#installationPostcode').value = '';
     persistDOMData('oneTouchBodyContainer', 'add-customer');
 
     return;
