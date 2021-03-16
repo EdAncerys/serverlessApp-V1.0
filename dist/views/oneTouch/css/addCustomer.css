@@ -23,3 +23,9 @@
 .addCustomerInfoHeader {
   padding: 15px 0;
 }
+.addCustomerSelectAddressContainer {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  padding: 5px 0;
+  gap: 10px;
+}

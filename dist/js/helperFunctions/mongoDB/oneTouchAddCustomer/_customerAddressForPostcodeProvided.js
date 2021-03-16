@@ -82,8 +82,8 @@ async function _customerAddressForPostcodeProvided() {
     });
     _spinner(false);
 
-    selectAddressContainer.innerHTML = `<div class='alignHorizontally'>
-                                          <label for="fname">Select User Address</label>
+    selectAddressContainer.innerHTML = `<div class='addCustomerSelectAddressContainer'>
+                                          <label>Select User Address</label>
                                           <div class='selectAddressContainer'>
                                             <select id="selectedAddress" name="selectedAddress">
                                               <option selected disabled hidden value='userSelection'>Please Choose Your Address</option>
