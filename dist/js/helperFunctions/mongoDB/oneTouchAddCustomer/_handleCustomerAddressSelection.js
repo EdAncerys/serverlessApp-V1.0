@@ -41,8 +41,8 @@ async function _handleCustomerAddressSelection() {
       : sessionStorage.getItem('premises_name');
 
   selectionContainer.innerHTML = `<div class='selectAddressContainer'>
-                                    <div>
-                                      <label for="fname">User Address:</label>
+                                    <div class='addCustomerSelectAddressContainer'>
+                                      <div>Installation Address:</div>
                                       <div>${thoroughfare_number} ${premises_name} ${sub_premises} ${thoroughfare_name} ${county}</div>
                                     </div>
                                     <div>

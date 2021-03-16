@@ -29,3 +29,9 @@
   padding: 5px 0;
   gap: 10px;
 }
+.addCustomerSelectAddressNav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 5px 0;
+  gap: 10px;
+}

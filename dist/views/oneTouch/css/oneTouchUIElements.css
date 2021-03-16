@@ -5,12 +5,10 @@
   color: #fff;
   border: 1px solid transparent;
   border-radius: 999px;
-  cursor: pointer;
   display: inline-block;
   font-family: 'Expert Sans Regular', 'Trebuchet MS', Arial, Verdana, sans-serif;
   line-height: 1.25;
   padding: 11px 30px;
-  width: 100%;
   text-align: center;
   text-decoration: none;
   transition: background-color 300ms cubic-bezier(0.19, 1, 0.22, 1),
@@ -27,6 +25,8 @@
   box-shadow: 4px 4px 12px -4px rgb(0 0 0 / 50%);
 }
 .btnB01 {
+  display: grid;
+  align-items: center;
   background-color: #a8a8a8;
   border: 1px solid #8c8c8c;
   border-radius: 3px;

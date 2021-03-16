@@ -82,14 +82,18 @@ async function _customerAddressForPostcodeProvided() {
     });
     _spinner(false);
 
-    selectAddressContainer.innerHTML = `<div class='addCustomerSelectAddressContainer'>
-                                          <label>Select User Address</label>
-                                          <div class='selectAddressContainer'>
+    selectAddressContainer.innerHTML = `<div class="addCustomerSelectAddressContainer">
+                                          <div>
+                                            <label for="selectedAddress">Select User Address</label>
                                             <select id="selectedAddress" name="selectedAddress">
-                                              <option selected disabled hidden value='userSelection'>Please Choose Your Address</option>
+                                              <option selected disabled hidden value="userSelection">
+                                                Please Choose Your Address
+                                              </option>
                                               ${content}
                                             </select>
-                                            <div class='userAddressFormNav'>
+                                          </div>
+                                          <div class='fullWidth'>
+                                            <div class="addCustomerSelectAddressNav">
                                               <selectUserAddress class="btnB01" role="button">
                                                 Select Address
                                               </selectUserAddress>
@@ -97,7 +101,7 @@ async function _customerAddressForPostcodeProvided() {
                                                 New Search
                                               </goBackBtn>
                                             </div>
-                                          <div>
+                                          </div>
                                         </div>`;
 
     userAddressContainer.appendChild(selectAddressContainer);

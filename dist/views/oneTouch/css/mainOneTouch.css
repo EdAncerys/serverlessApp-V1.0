@@ -55,6 +55,7 @@ body {
   height: 100%;
 }
 .fullWidth {
+  display: grid;
   width: 100%;
 }
 .hidden {
