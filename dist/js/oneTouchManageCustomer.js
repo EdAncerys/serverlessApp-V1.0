@@ -23,22 +23,23 @@ const fetchOneTouchUsersFromDB = () => {
 };
 
 document.querySelector('body').addEventListener('click', (event) => {
-  const userInfo = event.target.nodeName === 'USERINFO';
-  const updateUser = event.target.nodeName === 'UPDATEUSER';
-  const deleteUser = event.target.nodeName === 'DELETEUSER';
+  const customerInfo = event.target.nodeName === 'CUSTOMERINFO';
+  const updateCustomer = event.target.nodeName === 'UPDATECUSTOMER';
+  const deleteCustomer = event.target.nodeName === 'DELETECUSTOMER';
 
   let id = event.target.getAttribute('id');
+  let customerEmail = event.target.getAttribute('customerEmail');
 
-  if (userInfo) {
+  if (customerInfo) {
     console.log(id);
     _errorMessage('Info User Content', 'success');
   }
-  if (updateUser) {
+  if (updateCustomer) {
     console.log(id);
     _errorMessage('Update User Content', 'warning');
   }
-  if (deleteUser) {
-    console.log(id);
-    _deleteOneTouchCustomer(id, 'manage-customers');
+  if (deleteCustomer) {
+    console.log(id, customerEmail);
+    _deleteOneTouchCustomer(id, customerEmail, 'manage-customers');
   }
 });

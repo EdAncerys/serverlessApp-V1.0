@@ -3,11 +3,11 @@ import { _errorMessage } from '../../_errorMessage.js';
 import { _spinner } from '../../_spinner.js';
 
 async function _fetchOneTouchCustomerFromDB(pageName) {
-  console.log('Fetching users from db...');
+  console.log('Fetching customers from db...');
   _spinner(true, 'Loading Active Users...');
   const URL = '/oneTouch/customer';
 
-  let userData = '';
+  let customerData = '';
   let sliderNav = '';
   let oneTouchCustomer = '';
   let oneTouchSlider = '';
@@ -20,7 +20,7 @@ async function _fetchOneTouchCustomerFromDB(pageName) {
 
   // Broadband order page
   if (pageName === 'order-new-connection') {
-    // Removing user previous data
+    // Removing customer previous data
     const removeData = document.querySelector('#oneTouchBroadbandOrderPageTwo');
     if (removeData) removeData.remove();
 
@@ -49,38 +49,38 @@ async function _fetchOneTouchCustomerFromDB(pageName) {
     const data = await response.json();
     console.log(data);
 
-    data.map((user) => {
+    data.map((customer) => {
       if (pageName === 'manage-customers') {
         manageUsersNav = `<div class="manageUsersNav">
-                          <userInfo id='${user._id}' email='${user.email}' class="btnB01" role="button">
+                          <customerInfo id='${customer._id}' customerEmail='${customer.customerEmail}' class="btnB01" role="button">
                             Info
-                          </userInfo>
-                          <updateUser id='${user._id}' email='${user.email}' class="btnB01" role="button">
+                          </customerInfo>
+                          <updateCustomer id='${customer._id}' customerEmail='${customer.customerEmail}' class="btnB01" role="button">
                             Update
-                          </updateUser>
-                            <deleteUser id='${user._id}' email='${user.email}' class="btnB01" role="button">
+                          </updateCustomer>
+                            <deleteCustomer id='${customer._id}' customerEmail='${customer.customerEmail}' class="btnB01" role="button">
                             Delete
-                          </deleteUser>
+                          </deleteCustomer>
                         </div>`;
       }
       if (pageName === 'order-new-connection') {
         manageUsersNav = `<div class="manageUsersNavNC">
-                          <userInfo id='${user._id}' email='${user.email}' class="btnB01" role="button">
+                          <customerInfo id='${customer._id}' customerEmail='${customer.customerEmail}' class="btnB01" role="button">
                             Info
-                          </userInfo>
-                          <selectUser id='${user._id}' 
-                                      fullName='${user.fullName}'
-                                      email='${user.email}'
-                                      sub_premises='${user.sub_premises}'
-                                      premises_name='${user.premises_name}' 
-                                      thoroughfare_number='${user.thoroughfare_number}' 
-                                      thoroughfare_name='${user.thoroughfare_name}' 
-                                      locality='${user.locality}'
-                                      post_town='${user.post_town}'
-                                      county='${user.county}' 
-                                      postcode='${user.postcode}' 
-                                      district_id='${user.district_id}' 
-                                      nad_key='${user.nad_key}'  
+                          </customerInfo>
+                          <selectUser id='${customer._id}' 
+                                      customerFullName='${customer.customerFullName}'
+                                      customerEmail='${customer.customerEmail}'
+                                      sub_premises='${customer.sub_premises}'
+                                      premises_name='${customer.premises_name}' 
+                                      thoroughfare_number='${customer.thoroughfare_number}' 
+                                      thoroughfare_name='${customer.thoroughfare_name}' 
+                                      locality='${customer.locality}'
+                                      post_town='${customer.post_town}'
+                                      county='${customer.county}' 
+                                      postcode='${customer.postcode}' 
+                                      district_id='${customer.district_id}' 
+                                      nad_key='${customer.nad_key}'  
                                       class="btnB01" 
                                       role="button">
                             Select
@@ -88,10 +88,10 @@ async function _fetchOneTouchCustomerFromDB(pageName) {
                         </div>`;
       }
 
-      userData += `<div class='rowContainer backgroundWhiteT01'>
+      customerData += `<div class='rowContainer backgroundWhiteT01'>
                     <div class="manageUsersRow">
-                      <div class="tableCell">${user.fullName}</div>
-                      <div class="tableCell">${user.email}</div>
+                      <div class="tableCell">${customer.customerFullName}</div>
+                      <div class="tableCell">${customer.customerEmail}</div>
                     </div>
                     ${manageUsersNav}
                   </div>`;
@@ -99,7 +99,7 @@ async function _fetchOneTouchCustomerFromDB(pageName) {
 
     if (data.length === 0) {
       oneTouchCustomer.innerHTML = `<div class='alignHorizontally'>
-                                      <div class='userRowNAU'>
+                                      <div class='customerRowNAU'>
                                         <div>You have no customers added</div>
                                         ${sliderNav}
                                       </div>
@@ -111,7 +111,7 @@ async function _fetchOneTouchCustomerFromDB(pageName) {
                                       <div class="tableCell">Full Name</div>
                                       <div class="tableCell">Email</div>
                                     </div>
-                                      ${userData}
+                                      ${customerData}
                                     </div>
                                     ${sliderNav}
                                   </div>`;

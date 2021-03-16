@@ -2,13 +2,14 @@ import { _fetchOneTouchCustomerFromDB } from './_fetchOneTouchCustomerFromDB.js'
 import { _errorMessage } from '../../_errorMessage.js';
 import { _spinner } from '../../_spinner.js';
 
-async function _deleteOneTouchCustomer(id, pageName) {
-  console.log('Deleting User. ID: ' + id);
+async function _deleteOneTouchCustomer(_id, customerEmail, pageName) {
+  console.log('Deleting User With ID: ' + _id);
   _spinner(true);
 
   const URL = '/oneTouch/customer';
   const body = {
-    _id: id,
+    _id,
+    customerEmail,
   };
   const config = {
     method: 'DELETE',
