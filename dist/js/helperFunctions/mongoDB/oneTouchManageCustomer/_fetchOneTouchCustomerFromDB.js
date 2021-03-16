@@ -88,7 +88,7 @@ async function _fetchOneTouchCustomerFromDB(pageName) {
                         </div>`;
       }
 
-      userData += `<div class='boxContainer backgroundWhiteT01'>
+      userData += `<div class='rowContainer backgroundWhiteT01'>
                     <div class="manageUsersRow">
                       <div class="tableCell">${user.fullName}</div>
                       <div class="tableCell">${user.email}</div>
@@ -100,7 +100,7 @@ async function _fetchOneTouchCustomerFromDB(pageName) {
     if (data.length === 0) {
       oneTouchCustomer.innerHTML = `<div class='alignHorizontally'>
                                       <div class='userRowNAU'>
-                                        <div>No Users Added To DB!</div>
+                                        <div>You have no customers added</div>
                                         ${sliderNav}
                                       </div>
                                     </div>`;

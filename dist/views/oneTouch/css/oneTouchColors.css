@@ -1,21 +1,36 @@
 .backgroundPrimary {
   background-color: #6ec5dd;
 }
+.colorPrimary {
+  color: #6ec5dd;
+}
+
 .backgroundSecondary {
   background-color: #cbd76d;
+}
+.colorSecondary {
+  color: #cbd76d;
+}
+
+.backgroundWhite {
+  background-color: #f7f7f7;
 }
 .backgroundSilver {
   background-color: #f2f2f2;
 }
-.backgroundWhite {
-  background-color: #f7f7f7;
-}
 .backgroundGray {
   background-color: #f1f1f1;
 }
-.backgroundWhiteT01 {
-  background-color: rgba(255, 255, 255, 0.65);
+.colorBlack {
+  color: #333;
 }
+.colorWhite {
+  color: #f7f7f7;
+}
+.colorDanger {
+  color: #d9534f;
+}
+
 .backgroundLG01 {
   background: linear-gradient(#e66465, #9198e5);
 }
@@ -32,17 +47,4 @@
     rgba(44, 83, 131, 0.1) 18.9%,
     rgba(95, 175, 201, 0.02) 91.1%
   );
-}
-
-.colorBlack {
-  color: #333;
-}
-.colorPrimary {
-  color: #6ec5dd;
-}
-.colorWhite {
-  color: #f7f7f7;
-}
-.colorDanger {
-  color: #d9534f;
 }

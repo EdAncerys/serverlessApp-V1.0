@@ -6,7 +6,7 @@ async function _deleteOneTouchCustomer(id, pageName) {
   console.log('Deleting User. ID: ' + id);
   _spinner(true);
 
-  const URL = '/oneTouch/users';
+  const URL = '/oneTouch/customer';
   const body = {
     _id: id,
   };
