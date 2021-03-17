@@ -66,7 +66,7 @@ async function _getBroadbandAvailability() {
     }
 
     _sortBroadbandData(data, 'name', true).map((order) => {
-      orderData += `<div class="boxContainer backgroundWhiteT01 broadbandDataContainerHover fontH2">
+      orderData += `<div class="boxContainer backgroundLG03 broadbandDataContainerHover fontH2">
                           <div class="broadbandDataContainer">
                             <div class="tableCell">${order.name}</div>
                             <div class="tableCell">${order.likely_down_speed}</div>

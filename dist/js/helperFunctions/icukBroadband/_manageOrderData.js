@@ -74,7 +74,7 @@ async function _manageOrderData(
         ? ''
         : sessionStorage.getItem('postcode');
 
-    const orderData = `<div class="boxContainer backgroundWhiteT01 broadbandDataContainerHover fontH2">
+    const orderData = `<div class="boxContainer backgroundLG03 broadbandDataContainerHover fontH2">
                         <div class="broadbandDataContainer">
                           <div class="tableCell">${name}</div>
                           <div class="tableCell">${likely_down_speed}</div>
@@ -105,7 +105,7 @@ async function _manageOrderData(
                                         <div class="tableCell">Order</div>
                                       </div>
                                       ${orderData}
-                                      <div class="boxContainer backgroundWhiteT01 broadbandDataContainerHover">
+                                      <div class="boxContainer backgroundLG03 broadbandDataContainerHover">
                                         <div class="broadbandOrderReviewContainer">
                                           <div class="fontH3">Full Address Provided:</div>
                                           <div class="fontH2">${sub_premises} ${premises_name}  ${thoroughfare_number} ${thoroughfare_name} ${locality} ${post_town} ${county} ${postcode}</div>

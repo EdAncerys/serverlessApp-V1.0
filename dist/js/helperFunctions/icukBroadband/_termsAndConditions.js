@@ -18,7 +18,7 @@ async function _termsAndConditions() {
     oneTouchTermsAndConditions.id = 'oneTouchBroadbandOrderPageFive';
 
     const data = `   <div class="alignHorizontally">
-                    <div class="oneTouchTermsAndConditions backgroundWhiteT01">
+                    <div class="oneTouchTermsAndConditions backgroundWhite">
                       <div class="fontH4">Terms And Conditions</div>
                       <div class="oneTouchTermsAndConditionsText justifyText fontH2">
                         <div>

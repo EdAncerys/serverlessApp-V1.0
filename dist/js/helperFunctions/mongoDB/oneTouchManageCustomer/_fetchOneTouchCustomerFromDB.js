@@ -88,7 +88,7 @@ async function _fetchOneTouchCustomerFromDB(pageName) {
                         </div>`;
       }
 
-      customerData += `<div class='rowContainer backgroundWhiteT01'>
+      customerData += `<div class='rowContainer backgroundLG03'>
                     <div class="manageUsersRow">
                       <div class="tableCell">${customer.customerFullName}</div>
                       <div class="tableCell">${customer.customerEmail}</div>
@@ -107,7 +107,7 @@ async function _fetchOneTouchCustomerFromDB(pageName) {
     } else {
       oneTouchCustomer.innerHTML = `<div class='alignHorizontally'>
                                   <div class='manageUserContainer'>
-                                    <div class="manageUsersRow boxContainer backgroundWhiteT01">
+                                    <div class="manageUsersRow boxContainer backgroundLG03">
                                       <div class="tableCell">Full Name</div>
                                       <div class="tableCell">Email</div>
                                     </div>

@@ -69,7 +69,7 @@ async function _getAddressForPostcodeProvided(postcode) {
     _spinner(false);
 
     orderAddressContainer.innerHTML = `<div class='alignHorizontally'>
-                                        <div class='boxContainer addressSearchContainer backgroundWhiteT01'>
+                                        <div class='boxContainer addressSearchContainer backgroundLG03'>
                                           <div class='oneTouchIcon'></div>
                                           <div class='alignHorizontally'>
                                             <div class='fontH4'>Please Choose Address</div>
