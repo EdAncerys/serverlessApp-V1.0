@@ -20,14 +20,15 @@
   box-shadow: none;
   cursor: pointer;
 }
-.btnOneTouch:hover {
+.btnOneTouch:hover, 
+.btnB01:hover {
   background-color: #0074a6d3;
   box-shadow: 4px 4px 12px -4px rgb(0 0 0 / 50%);
 }
 .btnB01 {
   display: grid;
   align-items: center;
-  background-color: #a8a8a8;
+  background-color: #b8b8b8;
   border: 1px solid #8c8c8c;
   border-radius: 3px;
   padding: 3px 15px;
@@ -35,8 +36,6 @@
   font-size: 0.75rem;
 }
 .btnB01:hover {
-  background-color: #5bc0de;
-  box-shadow: 4px 4px 12px -4px rgb(0 0 0 / 50%);
   -ms-transform: scale(0.98);
   -webkit-transform: scale(0.98);
   transform: scale(0.98);
