@@ -33,8 +33,9 @@ const oneTouchQueryOrders = async (db) => {
 };
 
 const oneTouchAddOrder = async (db, data) => {
+  console.log(data);
   const createOrder = {
-    broadband_name: data.broadband_name,
+    broadband_name: data.oneTouchData.name,
   };
 
   if (createOrder.broadband_name) {
