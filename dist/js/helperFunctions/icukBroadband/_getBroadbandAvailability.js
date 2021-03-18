@@ -68,6 +68,8 @@ async function _getBroadbandAvailability() {
     }
 
     _sortBroadbandData(data, 'name', true).map((order) => {
+      const oneTouchOrderData = JSON.stringify(order);
+
       orderData += `<div class="boxContainer backgroundLG03 broadbandDataContainerHover fontH2">
                           <div class="broadbandDataContainer">
                             <div class="tableCell">${order.name}</div>
@@ -77,13 +79,11 @@ async function _getBroadbandAvailability() {
                             <div class="tableCell">${order.installation}</div>
                             <div class="tableCell">
                             <div class='center'>
-                              <selectOrder name='${order.name}' 
-                                              provider='${order.provider}' 
-                                              likely_down_speed='${order.likely_down_speed}' 
-                                              likely_up_speed='${order.likely_up_speed}' 
-                                              price='${order.price}' 
-                                              installation='${order.installation}' 
-                                              class="btnB01" role="button">
+                              <selectOrder
+                                oneTouchOrderData='${oneTouchOrderData}'
+                                class="btnB01" 
+                                role="button"
+                                >
                                 Select
                               </selectOrder>
                             </div>
