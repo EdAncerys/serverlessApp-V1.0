@@ -50,6 +50,8 @@ async function _fetchOneTouchCustomerFromDB(pageName) {
     console.log(data);
 
     data.map((customer) => {
+      const customerDBData = JSON.stringify(customer);
+
       if (pageName === 'manage-customers') {
         manageUsersNav = `<div class="manageUsersNav">
                           <customerInfo id='${customer._id}' customerEmail='${customer.customerEmail}' class="btnB01" role="button">
@@ -65,26 +67,15 @@ async function _fetchOneTouchCustomerFromDB(pageName) {
       }
       if (pageName === 'order-new-connection') {
         manageUsersNav = `<div class="manageUsersNavNC">
-                          <customerInfo id='${customer._id}' customerEmail='${customer.customerEmail}' class="btnB01" role="button">
+                          <customerInfo id='${customer._id}' customerDBData='${customerDBData}' class="btnB01" role="button">
                             Info
                           </customerInfo>
-                          <selectUser id='${customer._id}' 
-                                      customerFullName='${customer.customerFullName}'
-                                      customerEmail='${customer.customerEmail}'
-                                      sub_premises='${customer.sub_premises}'
-                                      premises_name='${customer.premises_name}' 
-                                      thoroughfare_number='${customer.thoroughfare_number}' 
-                                      thoroughfare_name='${customer.thoroughfare_name}' 
-                                      locality='${customer.locality}'
-                                      post_town='${customer.post_town}'
-                                      county='${customer.county}' 
-                                      postcode='${customer.postcode}' 
-                                      district_id='${customer.district_id}' 
-                                      nad_key='${customer.nad_key}'  
+                          <selectCustomer id='${customer._id}'
+                                      customerDBData='${customerDBData}'
                                       class="btnB01" 
                                       role="button">
                             Select
-                          </selectUser>
+                          </selectCustomer>
                         </div>`;
       }
 
