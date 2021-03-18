@@ -15,7 +15,7 @@ async function _oneTouchOrders() {
 
     let orderData = '';
     if (data.length === 0) {
-      oneTouchOrders.innerHTML = `<div class='umContainer alignHorizontally noOrders'>
+      oneTouchOrders.innerHTML = `<div class='alignHorizontally noOrders'>
                                     No Order Yet!
                                   </div>`;
     } else {
@@ -38,7 +38,7 @@ async function _oneTouchOrders() {
                       </div>`;
       });
 
-      oneTouchOrders.innerHTML = `<div class='umContainer'>
+      oneTouchOrders.innerHTML = `<div>
                                     <div class="orderDataContainer boxContainer">
                                       <div class="tableCell">Supplier</div>
                                       <div class="tableCell">Provider</div>

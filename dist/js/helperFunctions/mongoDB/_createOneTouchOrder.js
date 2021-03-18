@@ -1,21 +1,9 @@
-async function _createOneTouchOrder(
-  broadband_name,
-  broadband_provider,
-  broadband_likely_down_speed,
-  broadband_likely_up_speed,
-  broadband_price,
-  broadband_installation
-) {
-  console.log('Creating Broadband Order. Name: ' + broadband_name);
+async function _createOneTouchOrder(oneTouchData) {
+  console.log('Creating Broadband Order. Name: ' + oneTouchData.name);
 
   const URL = '/oneTouch/orders';
   const body = {
-    broadband_name,
-    broadband_provider,
-    broadband_likely_down_speed,
-    broadband_likely_up_speed,
-    broadband_price,
-    broadband_installation,
+    oneTouchData,
   };
   const config = {
     method: 'POST',

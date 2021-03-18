@@ -15,23 +15,29 @@ async function _placeBroadbandOrder() {
   );
 
   const oneTouchData = JSON.parse(sessionStorage.getItem('oneTouchData'));
+  console.log(oneTouchData);
   const oderSubject =
     'Broadband Order' + ' | Created at: ' + new Date().toLocaleString();
 
   const sub_premises =
-    mergedData.sub_premises === 'null' ? '' : mergedData.sub_premises;
+    oneTouchData.sub_premises === 'null' ? '' : oneTouchData.sub_premises;
   const premises_name =
-    mergedData.premises_name === 'null' ? '' : mergedData.premises_name;
+    oneTouchData.premises_name === 'null' ? '' : oneTouchData.premises_name;
   const thoroughfare_number =
-    mergedData.thoroughfare_number === 'null'
+    oneTouchData.thoroughfare_number === 'null'
       ? ''
-      : mergedData.thoroughfare_number;
+      : oneTouchData.thoroughfare_number;
   const thoroughfare_name =
-    mergedData.thoroughfare_name === 'null' ? '' : mergedData.thoroughfare_name;
-  const locality = mergedData.locality === 'null' ? '' : mergedData.locality;
-  const post_town = mergedData.post_town === 'null' ? '' : mergedData.post_town;
-  const county = mergedData.county === 'null' ? '' : mergedData.county;
-  const postcode = mergedData.postcode === 'null' ? '' : mergedData.postcode;
+    oneTouchData.thoroughfare_name === 'null'
+      ? ''
+      : oneTouchData.thoroughfare_name;
+  const locality =
+    oneTouchData.locality === 'null' ? '' : oneTouchData.locality;
+  const post_town =
+    oneTouchData.post_town === 'null' ? '' : oneTouchData.post_town;
+  const county = oneTouchData.county === 'null' ? '' : oneTouchData.county;
+  const postcode =
+    oneTouchData.postcode === 'null' ? '' : oneTouchData.postcode;
 
   const cssStyle = `
                     margin: 1px 0;
