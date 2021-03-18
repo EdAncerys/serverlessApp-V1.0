@@ -14,73 +14,60 @@ async function _placeBroadbandOrder() {
     '#oneTouchBroadbandOrderPageFive'
   );
 
-  let customerName = sessionStorage.getItem('fullName');
-  let customerEmail = sessionStorage.getItem('email');
-  let oderSubject =
+  const oneTouchData = JSON.parse(sessionStorage.getItem('oneTouchData'));
+  const oderSubject =
     'Broadband Order' + ' | Created at: ' + new Date().toLocaleString();
 
-  let broadband_name = sessionStorage.getItem('name');
-  let broadband_provider = sessionStorage.getItem('provider');
-  let broadband_likely_down_speed = sessionStorage.getItem('likely_down_speed');
-  let broadband_likely_up_speed = sessionStorage.getItem('likely_up_speed');
-  let broadband_price = sessionStorage.getItem('price');
-  let broadband_installation = sessionStorage.getItem('installation');
+  const sub_premises =
+    mergedData.sub_premises === 'null' ? '' : mergedData.sub_premises;
+  const premises_name =
+    mergedData.premises_name === 'null' ? '' : mergedData.premises_name;
+  const thoroughfare_number =
+    mergedData.thoroughfare_number === 'null'
+      ? ''
+      : mergedData.thoroughfare_number;
+  const thoroughfare_name =
+    mergedData.thoroughfare_name === 'null' ? '' : mergedData.thoroughfare_name;
+  const locality = mergedData.locality === 'null' ? '' : mergedData.locality;
+  const post_town = mergedData.post_town === 'null' ? '' : mergedData.post_town;
+  const county = mergedData.county === 'null' ? '' : mergedData.county;
+  const postcode = mergedData.postcode === 'null' ? '' : mergedData.postcode;
 
-  let sub_premises = sessionStorage.getItem('sub_premises');
-  let premises_name = sessionStorage.getItem('premises_name');
-  let thoroughfare_number = sessionStorage.getItem('thoroughfare_number');
-  let thoroughfare_name = sessionStorage.getItem('thoroughfare_name');
-  let locality = sessionStorage.getItem('locality');
-  let post_town = sessionStorage.getItem('post_town');
-  let county = sessionStorage.getItem('county');
-  let postcode = sessionStorage.getItem('postcode');
-  let district_id = sessionStorage.getItem('district_id');
-  let nad_key = sessionStorage.getItem('nad_key');
+  const cssStyle = `
+                    margin: 1px 0;
+                    padding: 5px 5px;
+                    border: 1px solid #e8e9e9;
+                    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 30%);
+                    `;
 
-  let order_sub_premises = sub_premises === 'null' ? '' : sub_premises;
-  let order_premises_name = premises_name === 'null' ? '' : premises_name;
-  let order_thoroughfare_number =
-    thoroughfare_number === 'null' ? '' : thoroughfare_number;
-  let order_thoroughfare_name =
-    thoroughfare_name === 'null' ? '' : thoroughfare_name;
-  let order_locality = locality === 'null' ? '' : locality;
-  let order_county = county === 'null' ? '' : county;
-  let order_post_town = post_town === 'null' ? '' : post_town;
-  let order_postcode = postcode === 'null' ? '' : postcode;
-  let order_district_id = district_id === 'null' ? '' : district_id;
-  let order_nad_key = nad_key === 'null' ? '' : nad_key;
+  const orderAddressSummary = `<div style=${cssStyle}>
+                                ${sub_premises} ${premises_name}  ${thoroughfare_number} ${thoroughfare_name} ${locality} ${post_town} ${county} ${postcode}
+                              </div>`;
 
-  let orderAddressSummary = ` ${order_sub_premises}
-                              ${order_premises_name}
-                              ${order_thoroughfare_number}
-                              ${order_thoroughfare_name}
-                              ${order_locality}
-                              ${order_post_town}
-                              ${order_county}
-                              ${order_postcode}
-                              ${order_district_id}
-                              ${order_nad_key}`;
+  const orderBroadbandSummary = `<div style=${cssStyle}>
+                                    <div>Name: ${oneTouchData.name}</div>
+                                    <div>Provider: ${oneTouchData.provider}</div>
+                                    <div>Down Speed: ${oneTouchData.likely_down_speed}</div>
+                                    <div>Up Speed: ${oneTouchData.likely_up_speed}</div>
+                                    <div>Price: ${oneTouchData.price}</div>
+                                    <div>Installation: ${oneTouchData.installation}</div>
+                                  </div>`;
 
-  let orderBroadbandSummary = ` <div>Name: ${broadband_name}</div>
-                                <div>Provider: ${broadband_provider}</div>
-                                <div>Down Speed: ${broadband_likely_down_speed}</div>
-                                <div>Up Speed: ${broadband_likely_up_speed}</div>
-                                <div>Price: ${broadband_price}</div>
-                                <div>Installation: ${broadband_installation}</div>`;
-
-  let orderSummary = `<div style='color: #5cb85c'>
-                        <h4>Order Address</h4>
-                        ${orderAddressSummary}
-                      </div>
-                      <div style='color: #5bc0de'>
-                        <h4>broadband Deal</h4>
-                        ${orderBroadbandSummary}
-                      </div>`;
+  const orderSummary = `<div style=${cssStyle}>
+                          <div>
+                            <h4>Order Address</h4>
+                          </div>
+                          <div>${orderAddressSummary}</div>
+                          <div>
+                            <h4>Selected Broadband Details</h4>
+                          </div>
+                          <div>${orderBroadbandSummary}</div>
+                        </div>`;
 
   const URL = '/ndg/contactUs';
   const body = {
-    name: customerName,
-    email: customerEmail,
+    name: oneTouchData.customerFullName,
+    email: oneTouchData.customerEmail,
     subject: oderSubject,
     description: orderSummary,
   };
@@ -94,16 +81,9 @@ async function _placeBroadbandOrder() {
     const data = await response.json();
     console.log(data);
 
-    _createOneTouchOrder(
-      broadband_name,
-      broadband_provider,
-      broadband_likely_down_speed,
-      broadband_likely_up_speed,
-      broadband_price,
-      broadband_installation
-    );
+    _createOneTouchOrder(oneTouchData);
     _spinner(false);
-    _errorMessage('Order Submitted Successfully...', 'success');
+    _errorMessage('Order Submitted Successfully!', 'success');
 
     oneTouchBroadbandOrderPageFive.classList.add('hidden');
     oneTouchBroadbandOrderPageOne.classList.remove('hidden');

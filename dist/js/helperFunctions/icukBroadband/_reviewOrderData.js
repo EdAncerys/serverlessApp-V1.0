@@ -23,8 +23,6 @@ async function _reviewOrderData(oneTouchOrderData) {
     // Save data to session storage
     sessionStorage.setItem('oneTouchData', JSON.stringify(mergedData));
 
-    const customerFullName = mergedData.customerFullName;
-    const customerEmail = mergedData.customerEmail;
     const sub_premises =
       mergedData.sub_premises === 'null' ? '' : mergedData.sub_premises;
     const premises_name =
