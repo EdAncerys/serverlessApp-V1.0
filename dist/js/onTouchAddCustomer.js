@@ -42,8 +42,7 @@ const addUser = (ev) => {
   const contactEmail = document
     .getElementById('contactEmail')
     .value.replace(/\s/g, '');
-  const oneTouchAddressData =
-    sessionStorage.getItem('oneTouchAddressData') === null;
+  const oneTouchData = sessionStorage.getItem('oneTouchData') === null;
   const userFromValidation =
     !customerFullName &&
     _validateEmail(customerEmail) &&
@@ -66,11 +65,11 @@ const addUser = (ev) => {
     _errorMessage('Site Contact Email Not Provided or Incorrect!', 'warning');
     return;
   }
-  if (!oneTouchAddressData) {
+  if (!oneTouchData) {
     _errorMessage('Please Add User Address!', 'warning');
     return;
   }
-  if (userFromValidation && oneTouchAddressData) _addOneTouchCustomerToDB();
+  if (userFromValidation && oneTouchData) _addOneTouchCustomerToDB();
 
   return;
 };

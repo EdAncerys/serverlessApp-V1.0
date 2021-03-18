@@ -91,11 +91,9 @@ document.querySelector('body').addEventListener('click', (event) => {
     return;
   }
   if (selectCustomer) {
-    const oneTouchCustomerData = event.target.getAttribute(
-      'oneTouchCustomerData'
-    );
-    console.log(JSON.parse(oneTouchCustomerData));
-    sessionStorage.setItem('oneTouchCustomerData', oneTouchCustomerData);
+    const oneTouchData = event.target.getAttribute('oneTouchData');
+    console.log(JSON.parse(oneTouchData));
+    sessionStorage.setItem('oneTouchData', oneTouchData);
 
     _getBroadbandAvailability();
     return;

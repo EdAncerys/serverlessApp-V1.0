@@ -29,21 +29,19 @@ async function _getBroadbandAvailability() {
     return;
   }
 
-  const oneTouchAddressData = JSON.parse(
-    sessionStorage.getItem('oneTouchCustomerData')
-  );
+  const oneTouchData = JSON.parse(sessionStorage.getItem('oneTouchData'));
 
   const body = {
-    sub_premises: oneTouchAddressData.sub_premises,
-    premises_name: oneTouchAddressData.premises_name,
-    thoroughfare_number: oneTouchAddressData.thoroughfare_number,
-    thoroughfare_name: oneTouchAddressData.thoroughfare_name,
-    locality: oneTouchAddressData.locality,
-    post_town: oneTouchAddressData.post_town,
-    county: oneTouchAddressData.county,
-    postcode: oneTouchAddressData.postcode,
-    district_id: oneTouchAddressData.district_id,
-    nad_key: oneTouchAddressData.nad_key,
+    sub_premises: oneTouchData.sub_premises,
+    premises_name: oneTouchData.premises_name,
+    thoroughfare_number: oneTouchData.thoroughfare_number,
+    thoroughfare_name: oneTouchData.thoroughfare_name,
+    locality: oneTouchData.locality,
+    post_town: oneTouchData.post_town,
+    county: oneTouchData.county,
+    postcode: oneTouchData.postcode,
+    district_id: oneTouchData.district_id,
+    nad_key: oneTouchData.nad_key,
   };
   console.log(body);
 
