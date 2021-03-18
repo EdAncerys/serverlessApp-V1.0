@@ -26,16 +26,19 @@ async function _addOneTouchCustomerToDB() {
     .value;
   const contactEmail = document.getElementById('contactEmail').value;
 
-  const sub_premises = sessionStorage.getItem('sub_premises');
-  const premises_name = sessionStorage.getItem('premises_name');
-  const thoroughfare_number = sessionStorage.getItem('thoroughfare_number');
-  const thoroughfare_name = sessionStorage.getItem('thoroughfare_name');
-  const locality = sessionStorage.getItem('locality');
-  const post_town = sessionStorage.getItem('post_town');
-  const county = sessionStorage.getItem('county');
-  const postcode = sessionStorage.getItem('postcode');
-  const district_id = sessionStorage.getItem('district_id');
-  const nad_key = sessionStorage.getItem('nad_key');
+  const oneTouchAddressData = JSON.parse(
+    sessionStorage.getItem('oneTouchAddressData')
+  );
+  const sub_premises = oneTouchAddressData.sub_premises;
+  const premises_name = oneTouchAddressData.premises_name;
+  const thoroughfare_number = oneTouchAddressData.thoroughfare_number;
+  const thoroughfare_name = oneTouchAddressData.thoroughfare_name;
+  const locality = oneTouchAddressData.locality;
+  const post_town = oneTouchAddressData.post_town;
+  const county = oneTouchAddressData.county;
+  const postcode = oneTouchAddressData.postcode;
+  const district_id = oneTouchAddressData.district_id;
+  const nad_key = oneTouchAddressData.nad_key;
 
   console.log('Adding user to DB. Full Name: ' + customerFullName);
 

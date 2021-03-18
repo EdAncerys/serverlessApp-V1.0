@@ -46,17 +46,6 @@ const _saveAddressData = () => {
   };
 
   sessionStorage.setItem('oneTouchAddressData', JSON.stringify(data));
-
-  // sessionStorage.setItem('sub_premises', sub_premises);
-  // sessionStorage.setItem('premises_name', premises_name);
-  // sessionStorage.setItem('thoroughfare_number', thoroughfare_number);
-  // sessionStorage.setItem('thoroughfare_name', thoroughfare_name);
-  // sessionStorage.setItem('locality', locality);
-  // sessionStorage.setItem('post_town', post_town);
-  // sessionStorage.setItem('county', county);
-  // sessionStorage.setItem('postcode', postcode);
-  // sessionStorage.setItem('district_id', district_id);
-  // sessionStorage.setItem('nad_key', nad_key);
 };
 
 export { _saveAddressData };

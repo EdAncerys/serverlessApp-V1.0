@@ -42,8 +42,8 @@ const addUser = (ev) => {
   const contactEmail = document
     .getElementById('contactEmail')
     .value.replace(/\s/g, '');
-  const userAddressValidation =
-    sessionStorage.getItem('userAddressValidation') === 'true';
+  const oneTouchAddressData =
+    sessionStorage.getItem('oneTouchAddressData') === null;
   const userFromValidation =
     !customerFullName &&
     _validateEmail(customerEmail) &&
@@ -66,21 +66,22 @@ const addUser = (ev) => {
     _errorMessage('Site Contact Email Not Provided or Incorrect!', 'warning');
     return;
   }
-  if (!userAddressValidation) {
+  if (!oneTouchAddressData) {
     _errorMessage('Please Add User Address!', 'warning');
     return;
   }
-  if (userFromValidation && userAddressValidation) _addOneTouchCustomerToDB();
+  if (userFromValidation && oneTouchAddressData) _addOneTouchCustomerToDB();
 
   return;
 };
 
 document.querySelector('body').addEventListener('click', (event) => {
-  const selectUserAddress = event.target.nodeName === 'SELECTUSERADDRESS';
+  const selectCustomerAddress =
+    event.target.nodeName === 'SELECTCUSTOMERADDRESS';
   const goBackBtn = event.target.nodeName === 'GOBACKBTN';
 
   // console.log(event.target);
-  if (selectUserAddress) {
+  if (selectCustomerAddress) {
     const userSelection = document.getElementById('selectedAddress').value;
     if (userSelection !== 'userSelection') {
       _handleCustomerAddressSelection();

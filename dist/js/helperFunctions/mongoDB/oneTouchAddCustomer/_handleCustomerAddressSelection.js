@@ -5,7 +5,6 @@ import { _spinner } from '../../_spinner.js';
 
 async function _handleCustomerAddressSelection() {
   console.log('User Address Selected...');
-  sessionStorage.setItem('userAddressValidation', true);
 
   // DOM manipulation
   const userAddressContainer = document.querySelector('#userAddressContainer');
@@ -15,30 +14,29 @@ async function _handleCustomerAddressSelection() {
   const selectionContainer = document.createElement('div');
   selectionContainer.id = 'selectionContainer';
 
-  const thoroughfare_number =
-    sessionStorage.getItem('thoroughfare_number') === 'null'
-      ? ''
-      : sessionStorage.getItem('thoroughfare_number');
-  const thoroughfare_name =
-    sessionStorage.getItem('thoroughfare_name') === 'null'
-      ? ''
-      : sessionStorage.getItem('thoroughfare_name');
-  const postcode =
-    sessionStorage.getItem('postcode') === 'null'
-      ? ''
-      : sessionStorage.getItem('postcode');
+  const oneTouchAddressData = JSON.parse(
+    sessionStorage.getItem('oneTouchAddressData')
+  );
   const sub_premises =
-    sessionStorage.getItem('sub_premises') === 'null'
+    oneTouchAddressData.sub_premises === 'null'
       ? ''
-      : sessionStorage.getItem('sub_premises');
-  const county =
-    sessionStorage.getItem('county') === 'null'
-      ? ''
-      : sessionStorage.getItem('county');
+      : oneTouchAddressData.sub_premises;
   const premises_name =
-    sessionStorage.getItem('premises_name') === 'null'
+    oneTouchAddressData.premises_name === 'null'
       ? ''
-      : sessionStorage.getItem('premises_name');
+      : oneTouchAddressData.premises_name;
+  const thoroughfare_number =
+    oneTouchAddressData.thoroughfare_number === 'null'
+      ? ''
+      : oneTouchAddressData.thoroughfare_number;
+  const thoroughfare_name =
+    oneTouchAddressData.thoroughfare_name === 'null'
+      ? ''
+      : oneTouchAddressData.thoroughfare_name;
+  const county =
+    oneTouchAddressData.county === 'null' ? '' : oneTouchAddressData.county;
+  const postcode =
+    oneTouchAddressData.postcode === 'null' ? '' : oneTouchAddressData.postcode;
 
   selectionContainer.innerHTML = `<div class='selectAddressContainer'>
                                     <div class='addCustomerSelectAddressContainer'>

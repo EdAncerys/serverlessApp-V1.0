@@ -13,12 +13,12 @@ async function _customerAddressForPostcodeProvided() {
   console.log(postcode);
 
   if (!postcode) {
-    _errorMessage('Please enter the postcode!');
+    _errorMessage('Please provide the postcode!', 'warning');
     _spinner(false);
     return;
   }
   if (!_validatePostcode(postcode)) {
-    _errorMessage('Provided postcode not valid!');
+    _errorMessage('Provided postcode not valid!', 'warning');
     _spinner(false);
     return;
   }
@@ -94,9 +94,9 @@ async function _customerAddressForPostcodeProvided() {
                                           </div>
                                           <div class='fullWidth'>
                                             <div class="addCustomerSelectAddressNav">
-                                              <selectUserAddress class="btnOneTouch backgroundSecondary" role="button">
+                                              <selectCustomerAddress class="btnOneTouch backgroundSecondary" role="button">
                                                 Select Address
-                                              </selectUserAddress>
+                                              </selectCustomerAddress>
                                               <goBackBtn class="btnOneTouch backgroundSecondary" role="button">
                                                 New Search
                                               </goBackBtn>
