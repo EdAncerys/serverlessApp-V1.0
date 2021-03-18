@@ -2,7 +2,7 @@ import { _newOrderPostcodeValidation } from './helperFunctions/icukBroadband/_ne
 import { _errorMessage } from './helperFunctions/_errorMessage.js';
 import { _placeBroadbandOrder } from './helperFunctions/icukBroadband/_placeBroadbandOrder.js';
 import { _saveAddressData } from './helperFunctions/icukBroadband/_saveAddressData.js';
-import { _manageOrderData } from './helperFunctions/icukBroadband/_manageOrderData.js';
+import { _reviewOrderData } from './helperFunctions/icukBroadband/_reviewOrderData.js';
 import { _termsAndConditions } from './helperFunctions/icukBroadband/_termsAndConditions.js';
 import { _getBroadbandAvailability } from './helperFunctions/icukBroadband/_getBroadbandAvailability.js';
 import { persistDOMData } from './persistDOMData.js';
@@ -58,14 +58,10 @@ document.querySelector('body').addEventListener('click', (event) => {
     return;
   }
   if (selectOrder) {
-    _manageOrderData(
-      event.target.getAttribute('name'),
-      event.target.getAttribute('provider'),
-      event.target.getAttribute('likely_down_speed'),
-      event.target.getAttribute('likely_up_speed'),
-      event.target.getAttribute('price'),
-      event.target.getAttribute('installation')
+    const oneTouchOrderData = JSON.parse(
+      event.target.getAttribute('oneTouchOrderData')
     );
+    _reviewOrderData(oneTouchOrderData);
     return;
   }
   if (termsAndConditions) {

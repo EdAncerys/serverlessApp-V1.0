@@ -1,21 +1,7 @@
 import { persistDOMData } from '../../persistDOMData.js';
 
-async function _manageOrderData(
-  name,
-  provider,
-  likely_down_speed,
-  likely_up_speed,
-  price,
-  installation
-) {
-  console.table(
-    name,
-    provider,
-    likely_down_speed,
-    likely_up_speed,
-    price,
-    installation
-  );
+async function _reviewOrderData(oneTouchOrderData) {
+  console.table(oneTouchOrderData);
 
   try {
     // Removing user previous data
@@ -31,13 +17,11 @@ async function _manageOrderData(
     const oneTouchOrderReview = document.createElement('div');
     oneTouchOrderReview.id = 'oneTouchBroadbandOrderPageFour';
 
+    const oneTouchData = JSON.parse(sessionStorage.getItem('oneTouchData'));
+    const mergedData = { ...oneTouchData, ...oneTouchOrderData };
+
     // Save data to session storage
-    sessionStorage.setItem('name', name);
-    sessionStorage.setItem('provider', provider);
-    sessionStorage.setItem('likely_down_speed', likely_down_speed);
-    sessionStorage.setItem('likely_up_speed', likely_up_speed);
-    sessionStorage.setItem('price', price);
-    sessionStorage.setItem('installation', installation);
+    sessionStorage.setItem('oneTouchData', JSON.stringify(mergedData));
 
     const fullName = sessionStorage.getItem('fullName');
     const email = sessionStorage.getItem('email');
@@ -128,4 +112,4 @@ async function _manageOrderData(
   }
 }
 
-export { _manageOrderData };
+export { _reviewOrderData };
