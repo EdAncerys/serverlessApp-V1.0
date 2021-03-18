@@ -5,13 +5,13 @@ import { _deleteOneTouchCustomer } from './helperFunctions/mongoDB/oneTouchManag
 document.addEventListener('DOMContentLoaded', () => {
   // Persist user data on reload
   const oneTouchDOMBody = sessionStorage.getItem('oneTouchDOMBody') === null;
-  const oneTouchBodyName =
-    sessionStorage.getItem('oneTouchBodyName') === 'manage-customers';
+  const oneTouchPageName =
+    sessionStorage.getItem('oneTouchPageName') === 'manage-customers';
 
-  if (oneTouchDOMBody || !oneTouchBodyName) {
+  if (oneTouchDOMBody || !oneTouchPageName) {
     fetchOneTouchUsersFromDB();
   }
-  if (!oneTouchDOMBody && oneTouchBodyName) {
+  if (!oneTouchDOMBody && oneTouchPageName) {
     console.log('Page Reloaded');
     const oneTouchDOMBody = document.querySelector('#oneTouchBodyContainer');
     oneTouchDOMBody.innerHTML = sessionStorage.getItem('oneTouchDOMBody');

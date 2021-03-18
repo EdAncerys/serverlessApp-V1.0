@@ -9,10 +9,10 @@ import { persistDOMData } from './persistDOMData.js';
 document.addEventListener('DOMContentLoaded', () => {
   // Persist user data on reload
   const oneTouchDOMBody = sessionStorage.getItem('oneTouchDOMBody') === null;
-  const oneTouchBodyName =
-    sessionStorage.getItem('oneTouchBodyName') === 'add-customer';
+  const oneTouchPageName =
+    sessionStorage.getItem('oneTouchPageName') === 'add-customer';
 
-  if (!oneTouchDOMBody && oneTouchBodyName) {
+  if (!oneTouchDOMBody && oneTouchPageName) {
     console.log('Page Reloaded');
     const oneTouchDOMBody = document.querySelector('#oneTouchBodyContainer');
     oneTouchDOMBody.innerHTML = sessionStorage.getItem('oneTouchDOMBody');

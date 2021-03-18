@@ -12,10 +12,10 @@ import { _spinner } from './helperFunctions/_spinner.js';
 document.addEventListener('DOMContentLoaded', () => {
   // Persist user data on reload
   const oneTouchDOMBody = sessionStorage.getItem('oneTouchDOMBody') === null;
-  const oneTouchBodyName =
-    sessionStorage.getItem('oneTouchBodyName') === 'order-new-connection';
+  const oneTouchPageName =
+    sessionStorage.getItem('oneTouchPageName') === 'order-new-connection';
 
-  if (!oneTouchDOMBody && oneTouchBodyName) {
+  if (!oneTouchDOMBody && oneTouchPageName) {
     console.log('Page Reloaded');
     const oneTouchDOMBody = document.querySelector('#oneTouchBodyContainer');
     oneTouchDOMBody.innerHTML = sessionStorage.getItem('oneTouchDOMBody');

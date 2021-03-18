@@ -5,10 +5,10 @@ import { _errorMessage } from './helperFunctions/_errorMessage.js';
 document.addEventListener('DOMContentLoaded', () => {
   // Persist user data on reload
   const oneTouchDOMBody = sessionStorage.getItem('oneTouchDOMBody') === null;
-  const oneTouchBodyName =
-    sessionStorage.getItem('oneTouchBodyName') === 'live-connections';
+  const oneTouchPageName =
+    sessionStorage.getItem('oneTouchPageName') === 'live-connections';
 
-  if (!oneTouchDOMBody && oneTouchBodyName) {
+  if (!oneTouchDOMBody && oneTouchPageName) {
     console.log('Page Reloaded');
     const oneTouchDOMBody = document.querySelector('#oneTouchBodyContainer');
     oneTouchDOMBody.innerHTML = sessionStorage.getItem('oneTouchDOMBody');

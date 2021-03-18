@@ -23,48 +23,33 @@ async function _reviewOrderData(oneTouchOrderData) {
     // Save data to session storage
     sessionStorage.setItem('oneTouchData', JSON.stringify(mergedData));
 
-    const fullName = sessionStorage.getItem('fullName');
-    const email = sessionStorage.getItem('email');
-    let sub_premises =
-      sessionStorage.getItem('sub_premises') === 'null'
+    const customerFullName = mergedData.customerFullName;
+    const customerEmail = mergedData.customerEmail;
+    const sub_premises =
+      mergedData.sub_premises === 'null' ? '' : mergedData.sub_premises;
+    const premises_name =
+      mergedData.premises_name === 'null' ? '' : mergedData.premises_name;
+    const thoroughfare_number =
+      mergedData.thoroughfare_number === 'null'
         ? ''
-        : sessionStorage.getItem('sub_premises');
-    let premises_name =
-      sessionStorage.getItem('premises_name') === 'null'
+        : mergedData.thoroughfare_number;
+    const thoroughfare_name =
+      mergedData.thoroughfare_name === 'null'
         ? ''
-        : sessionStorage.getItem('premises_name');
-    let thoroughfare_number =
-      sessionStorage.getItem('thoroughfare_number') === 'null'
-        ? ''
-        : sessionStorage.getItem('thoroughfare_number');
-    let thoroughfare_name =
-      sessionStorage.getItem('thoroughfare_name') === 'null'
-        ? ''
-        : sessionStorage.getItem('thoroughfare_name');
-    let locality =
-      sessionStorage.getItem('locality') === 'null'
-        ? ''
-        : sessionStorage.getItem('locality');
-    let post_town =
-      sessionStorage.getItem('post_town') === 'null'
-        ? ''
-        : sessionStorage.getItem('post_town');
-    let county =
-      sessionStorage.getItem('county') === 'null'
-        ? ''
-        : sessionStorage.getItem('county');
-    let postcode =
-      sessionStorage.getItem('postcode') === 'null'
-        ? ''
-        : sessionStorage.getItem('postcode');
+        : mergedData.thoroughfare_name;
+    const locality = mergedData.locality === 'null' ? '' : mergedData.locality;
+    const post_town =
+      mergedData.post_town === 'null' ? '' : mergedData.post_town;
+    const county = mergedData.county === 'null' ? '' : mergedData.county;
+    const postcode = mergedData.postcode === 'null' ? '' : mergedData.postcode;
 
     const orderData = `<div class="boxContainer backgroundLG03 broadbandDataContainerHover fontH2">
                         <div class="broadbandDataContainer">
-                          <div class="tableCell">${name}</div>
-                          <div class="tableCell">${likely_down_speed}</div>
-                          <div class="tableCell">${likely_up_speed}</div>
-                          <div class="tableCell">${price}</div>
-                          <div class="tableCell">${installation}</div>
+                          <div class="tableCell">${mergedData.name}</div>
+                          <div class="tableCell">${mergedData.likely_down_speed}</div>
+                          <div class="tableCell">${mergedData.likely_up_speed}</div>
+                          <div class="tableCell">${mergedData.price}</div>
+                          <div class="tableCell">${mergedData.installation}</div>
                           <div class="tableCell">
                           <div class='center'>
                             <termsAndConditions class="btnB01" role="button">
@@ -94,7 +79,7 @@ async function _reviewOrderData(oneTouchOrderData) {
                                           <div class="fontH3">Full Address Provided:</div>
                                           <div class="fontH2">${sub_premises} ${premises_name}  ${thoroughfare_number} ${thoroughfare_name} ${locality} ${post_town} ${county} ${postcode}</div>
                                           <div class="fontH3">Customer Details:</div>
-                                          <div class="fontH2 colorDanger">Full Name: ${fullName} | Email: ${email}</div>
+                                          <div class="fontH2 colorDanger">Full Name: ${mergedData.customerFullName} | Email: ${mergedData.customerEmail}</div>
                                         </div>
                                       </div>
                                       <div class='sliderNav'>
