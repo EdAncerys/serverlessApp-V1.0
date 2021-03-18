@@ -50,7 +50,7 @@ async function _fetchOneTouchCustomerFromDB(pageName) {
     console.log(data);
 
     data.map((customer) => {
-      const customerDBData = JSON.stringify(customer);
+      const oneTouchCustomerData = JSON.stringify(customer);
 
       if (pageName === 'manage-customers') {
         manageUsersNav = `<div class="manageUsersNav">
@@ -67,11 +67,11 @@ async function _fetchOneTouchCustomerFromDB(pageName) {
       }
       if (pageName === 'order-new-connection') {
         manageUsersNav = `<div class="manageUsersNavNC">
-                          <customerInfo id='${customer._id}' customerDBData='${customerDBData}' class="btnB01" role="button">
+                          <customerInfo id='${customer._id}' oneTouchCustomerData='${oneTouchCustomerData}' class="btnB01" role="button">
                             Info
                           </customerInfo>
                           <selectCustomer id='${customer._id}'
-                                      customerDBData='${customerDBData}'
+                                      oneTouchCustomerData='${oneTouchCustomerData}'
                                       class="btnB01" 
                                       role="button">
                             Select

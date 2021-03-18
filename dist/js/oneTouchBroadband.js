@@ -91,39 +91,13 @@ document.querySelector('body').addEventListener('click', (event) => {
     return;
   }
   if (selectCustomer) {
-    const fullName = event.target.getAttribute('fullName');
-    const email = event.target.getAttribute('email');
-    const customerDBData = event.target.getAttribute('customerDBData');
-    console.log(JSON.parse(customerDBData));
-
-    const sub_premises = event.target.getAttribute('sub_premises');
-    const premises_name = event.target.getAttribute('premises_name');
-    const thoroughfare_number = event.target.getAttribute(
-      'thoroughfare_number'
+    const oneTouchCustomerData = event.target.getAttribute(
+      'oneTouchCustomerData'
     );
-    const thoroughfare_name = event.target.getAttribute('thoroughfare_name');
-    const locality = event.target.getAttribute('locality');
-    const post_town = event.target.getAttribute('post_town');
-    const county = event.target.getAttribute('county');
-    const postcode = event.target.getAttribute('postcode');
-    const district_id = event.target.getAttribute('district_id');
-    const nad_key = event.target.getAttribute('nad_key');
+    console.log(JSON.parse(oneTouchCustomerData));
+    sessionStorage.setItem('oneTouchCustomerData', oneTouchCustomerData);
 
-    const data = {
-      county,
-      district_id,
-      locality,
-      nad_key,
-      post_town,
-      postcode,
-      premises_name,
-      sub_premises,
-      thoroughfare_name,
-      thoroughfare_number,
-    };
-    sessionStorage.setItem('oneTouchAddressData', JSON.stringify(data));
-
-    // _getBroadbandAvailability();
+    _getBroadbandAvailability();
     return;
   }
   if (goBackBtn) {

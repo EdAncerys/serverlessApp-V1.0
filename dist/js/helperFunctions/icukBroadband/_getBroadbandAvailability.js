@@ -30,30 +30,20 @@ async function _getBroadbandAvailability() {
   }
 
   const oneTouchAddressData = JSON.parse(
-    sessionStorage.getItem('oneTouchAddressData')
+    sessionStorage.getItem('oneTouchCustomerData')
   );
-  const sub_premises = oneTouchAddressData.sub_premises;
-  const premises_name = oneTouchAddressData.premises_name;
-  const thoroughfare_number = oneTouchAddressData.thoroughfare_number;
-  const thoroughfare_name = oneTouchAddressData.thoroughfare_name;
-  const locality = oneTouchAddressData.locality;
-  const post_town = oneTouchAddressData.post_town;
-  const county = oneTouchAddressData.county;
-  const postcode = oneTouchAddressData.postcode;
-  const district_id = oneTouchAddressData.district_id;
-  const nad_key = oneTouchAddressData.nad_key;
 
-  let body = {
-    sub_premises,
-    premises_name,
-    thoroughfare_number,
-    thoroughfare_name,
-    locality,
-    post_town,
-    county,
-    postcode,
-    district_id,
-    nad_key,
+  const body = {
+    sub_premises: oneTouchAddressData.sub_premises,
+    premises_name: oneTouchAddressData.premises_name,
+    thoroughfare_number: oneTouchAddressData.thoroughfare_number,
+    thoroughfare_name: oneTouchAddressData.thoroughfare_name,
+    locality: oneTouchAddressData.locality,
+    post_town: oneTouchAddressData.post_town,
+    county: oneTouchAddressData.county,
+    postcode: oneTouchAddressData.postcode,
+    district_id: oneTouchAddressData.district_id,
+    nad_key: oneTouchAddressData.nad_key,
   };
   console.log(body);
 
