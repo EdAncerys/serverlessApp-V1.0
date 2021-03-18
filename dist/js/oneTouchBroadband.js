@@ -7,7 +7,6 @@ import { _termsAndConditions } from './helperFunctions/icukBroadband/_termsAndCo
 import { _getBroadbandAvailability } from './helperFunctions/icukBroadband/_getBroadbandAvailability.js';
 import { persistDOMData } from './persistDOMData.js';
 import { _fetchOneTouchCustomerFromDB } from './helperFunctions/mongoDB/oneTouchManageCustomer/_fetchOneTouchCustomerFromDB.js';
-
 import { _spinner } from './helperFunctions/_spinner.js';
 
 document.addEventListener('DOMContentLoaded', () => {

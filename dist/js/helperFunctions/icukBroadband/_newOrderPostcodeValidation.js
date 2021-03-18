@@ -19,7 +19,6 @@ const _newOrderPostcodeValidation = () => {
     console.log('Postcode not valid...');
     _handleErrors(errors);
   } else {
-    sessionStorage.setItem('oderPostcode', postcode);
     _getAddressForPostcodeProvided(postcode);
   }
 };

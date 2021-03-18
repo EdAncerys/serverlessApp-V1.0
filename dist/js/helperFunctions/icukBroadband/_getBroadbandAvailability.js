@@ -29,17 +29,31 @@ async function _getBroadbandAvailability() {
     return;
   }
 
+  const oneTouchAddressData = JSON.parse(
+    sessionStorage.getItem('oneTouchAddressData')
+  );
+  const sub_premises = oneTouchAddressData.sub_premises;
+  const premises_name = oneTouchAddressData.premises_name;
+  const thoroughfare_number = oneTouchAddressData.thoroughfare_number;
+  const thoroughfare_name = oneTouchAddressData.thoroughfare_name;
+  const locality = oneTouchAddressData.locality;
+  const post_town = oneTouchAddressData.post_town;
+  const county = oneTouchAddressData.county;
+  const postcode = oneTouchAddressData.postcode;
+  const district_id = oneTouchAddressData.district_id;
+  const nad_key = oneTouchAddressData.nad_key;
+
   let body = {
-    sub_premises: sessionStorage.getItem('sub_premises'),
-    premises_name: sessionStorage.getItem('premises_name'),
-    thoroughfare_number: sessionStorage.getItem('thoroughfare_number'),
-    thoroughfare_name: sessionStorage.getItem('thoroughfare_name'),
-    locality: sessionStorage.getItem('locality'),
-    post_town: sessionStorage.getItem('post_town'),
-    county: sessionStorage.getItem('county'),
-    postcode: sessionStorage.getItem('postcode'),
-    district_id: sessionStorage.getItem('district_id'),
-    nad_key: sessionStorage.getItem('nad_key'),
+    sub_premises,
+    premises_name,
+    thoroughfare_number,
+    thoroughfare_name,
+    locality,
+    post_town,
+    county,
+    postcode,
+    district_id,
+    nad_key,
   };
   console.log(body);
 
