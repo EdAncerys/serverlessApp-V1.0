@@ -22,16 +22,16 @@ async function _oneTouchOrders() {
       data.map((order) => {
         orderData += `<div class='rowContainer'>
                         <div class="orderDataContainer">
-                          <div class="tableCell">${order.broadband_name}</div>
-                          <div class="tableCell">${order.broadband_provider}</div>
-                          <div class="tableCell">${order.broadband_price}</div>
-                          <div class="tableCell">${order.broadband_installation}</div>
+                          <div class="tableCell">${order.oneTouchData.name}</div>
+                          <div class="tableCell">${order.oneTouchData.provider}</div>
+                          <div class="tableCell">${order.oneTouchData.price}</div>
+                          <div class="tableCell">${order.oneTouchData.installation}</div>
                         </div>
                         <div class="manageOrderDataComponent">
-                          <orderInfo id='${order._id}' name='${order.broadband_name}' value='${order._id}' class="btnB01" role="button">
+                          <orderInfo id='${order._id}' oneTouchData='${order.oneTouchData}' class="btnB01" role="button">
                             Info
                           </orderInfo>
-                          <deleteOrder id='${order._id}' name='${order.broadband_name}' value='${order._id}' class="btnB01" role="button">
+                          <deleteOrder id='${order._id}' oneTouchData='${order.oneTouchData}' class="btnB01" role="button">
                             Delete
                           </deleteOrder>
                         </div>
