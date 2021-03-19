@@ -22,14 +22,13 @@ document.querySelector('body').addEventListener('click', (event) => {
   const deleteOrder = event.target.nodeName === 'DELETEORDER';
 
   let id = event.target.getAttribute('id');
-  let name = event.target.getAttribute('name');
 
   if (orderInfo) {
-    console.log(name);
-    _errorMessage(name, 'success');
+    console.log(id);
+    _errorMessage(id, 'success');
   }
   if (deleteOrder) {
-    console.log(name);
+    console.log(id);
     _deleteOneTouchOrder(id);
   }
 });

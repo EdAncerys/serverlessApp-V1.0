@@ -15,7 +15,6 @@ errorMessage {
   color: #f7f7f7;
   margin: 5px 0;
   border-radius: 10px;
-  opacity: 0.8;
 }
 .errorMsgLeftContainer {
   border-radius: 10px 0 0 10px;
@@ -37,4 +36,16 @@ errorMessage {
   display: grid;
   justify-items: center;
   align-content: center;
+}
+/* Add fade in animation to error message */
+errorMessage #errorMsgWrapper {
+  animation: fadeImage 1.5s ease forwards;
+}
+@keyframes fadeImage {
+  from {
+    opacity: 0.1;
+  }
+  to {
+    opacity: 0.9;
+  }
 }

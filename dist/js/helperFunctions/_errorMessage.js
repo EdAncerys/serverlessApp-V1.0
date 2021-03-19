@@ -23,6 +23,7 @@ const _errorMessage = (message, type) => {
 
   const errorMsg = `<div class='errorMsgContainer'>
                       <div
+                        id='errorMsgWrapper'
                         class='errorMsgWrapper'
                         style="background-color: ${msgColor};"
                       >
@@ -39,7 +40,7 @@ const _errorMessage = (message, type) => {
                       </div>
                     </div>`;
 
-  let newErrorMsg = document.createElement('div');
+  const newErrorMsg = document.createElement('div');
   newErrorMsg.id = `errorMessage_${msgID}`;
   newErrorMsg.classList.add('errorMessage');
   newErrorMsg.innerHTML = errorMsg;
