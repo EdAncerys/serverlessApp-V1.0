@@ -15,16 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   } else {
     _oneTouchOrders();
   }
-  // Btn event listeners
-  document
-    .getElementById('oneTouchOrders')
-    .addEventListener('click', oneTouchOrders);
 });
-
-const oneTouchOrders = (ev) => {
-  ev.preventDefault();
-  _oneTouchOrders();
-};
 
 document.querySelector('body').addEventListener('click', (event) => {
   const orderInfo = event.target.nodeName === 'ORDERINFO';
