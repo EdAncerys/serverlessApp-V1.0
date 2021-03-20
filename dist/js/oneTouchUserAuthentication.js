@@ -1,4 +1,4 @@
-async function _oneTouchUserAuthentication() {
+async function oneTouchUserAuthentication() {
   console.log('User Authentication middleware');
 
   const URL = '/oneTouch/oneTouchUserAuthentication';
@@ -18,14 +18,13 @@ async function _oneTouchUserAuthentication() {
     const response = await fetch(URL, config);
     const data = await response.json();
     if (!response.ok) throw new Error(data.msg);
-    console.log('Logged in successfully. Welcome to One Touch Portal.');
-    // await sessionStorage.setItem('authMsg', data.msg);
-    // window.location.href = '/views/oneTouch/index.html';
+
+    console.log(data);
+    return true;
   } catch (err) {
-    console.log('Access not authorized.');
-    // await sessionStorage.setItem('authMsg', err);
-    // window.location.href = '/views/oneTouch/one-touch-login.html';
+    window.location.replace('/views/oneTouch/one-touch-login.html');
+    return false;
   }
 }
 
-export { _oneTouchUserAuthentication };
+export { oneTouchUserAuthentication };
