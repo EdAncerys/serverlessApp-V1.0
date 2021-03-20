@@ -50,7 +50,7 @@ const oneTouchLogin = async (db, data) => {
     // JWT configuration
     delete user[0]['password'];
     const userData = user[0];
-    const expTime = '30s';
+    const expTime = '1h';
     console.log('User data passed on to JWT: ', userData);
 
     const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;

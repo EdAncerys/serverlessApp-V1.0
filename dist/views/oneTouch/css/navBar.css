@@ -76,6 +76,10 @@ nav ul li ul li a {
   z-index: 1;
   box-shadow: 0 0 35px 0 rgba(0, 0, 0, 0.25);
 }
+.logOutBtnContainer:hover,
+.logOutBtnContainer:visited:hover {
+  cursor: pointer;
+}
 /* Mobile navigation */
 .nav-mobile {
   display: none;

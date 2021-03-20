@@ -69,8 +69,8 @@
                 </li>
               </ul>
             </li>
-            <li>
-              <a href="#!">Logout</a>
+            <li class="logOutBtnContainer" onclick="logout()">
+              <a>Logout</a>
             </li>
           </ul>
         </nav>
@@ -126,6 +126,11 @@
       });
     });
   })(jQuery);
+
+  const logout = (e) => {
+    sessionStorage.clear();
+    location.reload();
+  };
 
   document.querySelector('clearSessionsBtn').addEventListener('click', () => {
     // location.reload();
