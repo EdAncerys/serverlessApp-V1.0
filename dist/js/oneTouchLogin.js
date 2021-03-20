@@ -1,7 +1,7 @@
 import { _oneTouchSupperUserSignup } from './helperFunctions/mongoDB/oneTouchLogin/_oneTouchSupperUserSignUp.js';
 import { _oneTouchSupperUserLogin } from './helperFunctions/mongoDB/oneTouchLogin/_oneTouchSupperUserLogin.js';
-import { oneTouchUserAuthentication } from './oneTouchUserAuthentication.js';
 import { _errorMessage } from './helperFunctions/_errorMessage.js';
+import { _oneTouchUserAuthentication } from './helperFunctions/mongoDB/oneTouchLogin/_oneTouchUserAuthentication.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   document
@@ -29,7 +29,7 @@ const oneTouchSignUp = (e) => {
 
 async function authenticateUser(e) {
   e.preventDefault();
-  const authenticated = await oneTouchUserAuthentication();
+  const authenticated = await _oneTouchUserAuthentication();
   console.log(authenticated);
   if (authenticated) {
     console.log('Authorized');

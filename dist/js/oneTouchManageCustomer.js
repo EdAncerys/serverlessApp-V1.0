@@ -1,9 +1,6 @@
 import { _errorMessage } from './helperFunctions/_errorMessage.js';
 import { _fetchOneTouchCustomerFromDB } from './helperFunctions/mongoDB/oneTouchManageCustomer/_fetchOneTouchCustomerFromDB.js';
 import { _deleteOneTouchCustomer } from './helperFunctions/mongoDB/oneTouchManageCustomer/_deleteOneTouchCustomer.js';
-import { oneTouchUserAuthentication } from './oneTouchUserAuthentication.js';
-
-oneTouchUserAuthentication(); // User authentication
 
 document.addEventListener('DOMContentLoaded', () => {
   // Persist user data on reload

@@ -8,9 +8,6 @@ import { _getBroadbandAvailability } from './helperFunctions/icukBroadband/_getB
 import { persistDOMData } from './persistDOMData.js';
 import { _fetchOneTouchCustomerFromDB } from './helperFunctions/mongoDB/oneTouchManageCustomer/_fetchOneTouchCustomerFromDB.js';
 import { _spinner } from './helperFunctions/_spinner.js';
-import { oneTouchUserAuthentication } from './oneTouchUserAuthentication.js';
-
-oneTouchUserAuthentication(); // User authentication
 
 document.addEventListener('DOMContentLoaded', () => {
   // Persist user data on reload

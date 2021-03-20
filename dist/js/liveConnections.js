@@ -1,9 +1,6 @@
 import { _oneTouchOrders } from './helperFunctions/mongoDB/_oneTouchOrders.js';
 import { _deleteOneTouchOrder } from './helperFunctions/mongoDB/_deleteOneTouchOrder.js';
 import { _errorMessage } from './helperFunctions/_errorMessage.js';
-import { oneTouchUserAuthentication } from './oneTouchUserAuthentication.js';
-
-oneTouchUserAuthentication(); // User authentication
 
 document.addEventListener('DOMContentLoaded', () => {
   // Persist user data on reload

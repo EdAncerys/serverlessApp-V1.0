@@ -1,4 +1,4 @@
-async function oneTouchUserAuthentication() {
+async function _oneTouchUserAuthentication() {
   console.log('User Authentication middleware');
 
   const URL = '/oneTouch/oneTouchUserAuthentication';
@@ -7,7 +7,7 @@ async function oneTouchUserAuthentication() {
   const body = {
     access_token,
   };
-  console.log(body);
+  // console.log(body);
 
   const config = {
     method: 'POST',
@@ -22,9 +22,10 @@ async function oneTouchUserAuthentication() {
     console.log(data);
     return true;
   } catch (err) {
+    sessionStorage.clear();
     window.location.replace('/views/oneTouch/one-touch-login.html');
     return false;
   }
 }
 
-export { oneTouchUserAuthentication };
+export { _oneTouchUserAuthentication };

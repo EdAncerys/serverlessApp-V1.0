@@ -5,9 +5,6 @@ import { _saveAddressData } from './helperFunctions/icukBroadband/_saveAddressDa
 import { _errorMessage } from './helperFunctions/_errorMessage.js';
 import { _validateEmail } from './helperFunctions/_validateEmail.js';
 import { persistDOMData } from './persistDOMData.js';
-import { oneTouchUserAuthentication } from './oneTouchUserAuthentication.js';
-
-oneTouchUserAuthentication(); // User authentication
 
 document.addEventListener('DOMContentLoaded', () => {
   // Persist user data on reload
