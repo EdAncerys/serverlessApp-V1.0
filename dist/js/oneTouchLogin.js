@@ -1,6 +1,6 @@
 import { _oneTouchSupperUserSignup } from './helperFunctions/mongoDB/oneTouchLogin/_oneTouchSupperUserSignUp.js';
 import { _oneTouchSupperUserLogin } from './helperFunctions/mongoDB/oneTouchLogin/_oneTouchSupperUserLogin.js';
-import { _oneTouchUserAuthentication } from './helperFunctions/mongoDB/oneTouchLogin/_oneTouchUserAuthentication.js';
+import { _oneTouchUserAuthentication } from './oneTouchUserAuthentication.js';
 import { _errorMessage } from './helperFunctions/_errorMessage.js';
 
 document.addEventListener('DOMContentLoaded', () => {

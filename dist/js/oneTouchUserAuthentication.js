@@ -18,13 +18,13 @@ async function _oneTouchUserAuthentication() {
     const response = await fetch(URL, config);
     const data = await response.json();
     if (!response.ok) throw new Error(data.msg);
-    await sessionStorage.setItem('authMsg', data.msg);
-
-    window.location.href = '/views/oneTouch/index.html';
+    console.log('Logged in successfully. Welcome to One Touch Portal.');
+    // await sessionStorage.setItem('authMsg', data.msg);
+    // window.location.href = '/views/oneTouch/index.html';
   } catch (err) {
-    await sessionStorage.setItem('authMsg', err);
-
-    window.location.href = '/views/oneTouch/one-touch-login.html';
+    console.log('Access not authorized.');
+    // await sessionStorage.setItem('authMsg', err);
+    // window.location.href = '/views/oneTouch/one-touch-login.html';
   }
 }
 
