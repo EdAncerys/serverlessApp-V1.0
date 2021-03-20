@@ -3,9 +3,9 @@ import { _deleteOneTouchOrder } from './helperFunctions/mongoDB/_deleteOneTouchO
 import { _errorMessage } from './helperFunctions/_errorMessage.js';
 import { oneTouchUserAuthentication } from './oneTouchUserAuthentication.js';
 
-document.addEventListener('DOMContentLoaded', () => {
-  oneTouchUserAuthentication(); // User authentication
+oneTouchUserAuthentication(); // User authentication
 
+document.addEventListener('DOMContentLoaded', () => {
   // Persist user data on reload
   const oneTouchDOMBody = sessionStorage.getItem('oneTouchDOMBody') === null;
   const oneTouchPageName =

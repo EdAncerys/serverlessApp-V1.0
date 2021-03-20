@@ -10,9 +10,9 @@ import { _fetchOneTouchCustomerFromDB } from './helperFunctions/mongoDB/oneTouch
 import { _spinner } from './helperFunctions/_spinner.js';
 import { oneTouchUserAuthentication } from './oneTouchUserAuthentication.js';
 
-document.addEventListener('DOMContentLoaded', () => {
-  oneTouchUserAuthentication(); // User authentication
+oneTouchUserAuthentication(); // User authentication
 
+document.addEventListener('DOMContentLoaded', () => {
   // Persist user data on reload
   const oneTouchDOMBody = sessionStorage.getItem('oneTouchDOMBody') === null;
   const oneTouchPageName =
