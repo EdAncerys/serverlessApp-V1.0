@@ -1,8 +1,11 @@
-import { _oneTouchOrders } from '../JS/helperFunctions/mongoDB/_oneTouchOrders.js';
+import { _oneTouchOrders } from './helperFunctions/mongoDB/_oneTouchOrders.js';
 import { _deleteOneTouchOrder } from './helperFunctions/mongoDB/_deleteOneTouchOrder.js';
 import { _errorMessage } from './helperFunctions/_errorMessage.js';
+import { oneTouchUserAuthentication } from './oneTouchUserAuthentication.js';
 
 document.addEventListener('DOMContentLoaded', () => {
+  oneTouchUserAuthentication(); // User authentication
+
   // Persist user data on reload
   const oneTouchDOMBody = sessionStorage.getItem('oneTouchDOMBody') === null;
   const oneTouchPageName =

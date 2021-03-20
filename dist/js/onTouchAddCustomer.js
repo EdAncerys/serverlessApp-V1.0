@@ -5,8 +5,11 @@ import { _saveAddressData } from './helperFunctions/icukBroadband/_saveAddressDa
 import { _errorMessage } from './helperFunctions/_errorMessage.js';
 import { _validateEmail } from './helperFunctions/_validateEmail.js';
 import { persistDOMData } from './persistDOMData.js';
+import { oneTouchUserAuthentication } from './oneTouchUserAuthentication.js';
 
 document.addEventListener('DOMContentLoaded', () => {
+  oneTouchUserAuthentication(); // User authentication
+
   // Persist user data on reload
   const oneTouchDOMBody = sessionStorage.getItem('oneTouchDOMBody') === null;
   const oneTouchPageName =
