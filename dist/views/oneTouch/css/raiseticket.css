@@ -1,7 +1,7 @@
 .raiseTicketContent {
   padding-top: 20px;
 }
-.raiseTicketContainer {
+.oneTouchFormContainer {
   width: 350px;
   -webkit-box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
   box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
@@ -15,18 +15,18 @@
   flex-basis: 30%;
   margin-top: 10px;
 }
-.raiseTicketContainer label:before {
+.oneTouchFormContainer label:before {
   display: block;
   content: ' ';
   padding-top: 5px;
 }
 
-.raiseTicketContainer label:after {
+.oneTouchFormContainer label:after {
   display: block;
   content: ' ';
   padding-bottom: 5px;
 }
-.raiseTicketContainer btnSubmit {
+.oneTouchFormContainer btnSubmit {
   display: grid;
   justify-content: initial;
   margin: 10px 0;
