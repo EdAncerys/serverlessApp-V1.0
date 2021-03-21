@@ -20,7 +20,7 @@
   box-shadow: none;
   cursor: pointer;
 }
-.btnOneTouch:hover, 
+.btnOneTouch:hover,
 .btnB01:hover {
   background-color: #0074a6d3;
   box-shadow: 4px 4px 12px -4px rgb(0 0 0 / 50%);
@@ -103,6 +103,13 @@
   width: 100%;
   margin: 15px 0;
   border-radius: 20px;
+}
+dividerComponent {
+  align-items: center;
+  border-bottom: 1px solid #dadde1;
+  display: flex;
+  margin: 20px 0;
+  text-align: center;
 }
 /* Media Queries */
 @media only screen and (max-width: 800px) {

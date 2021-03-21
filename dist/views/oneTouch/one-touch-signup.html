@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-    <script defer type="module" src="../../JS/oneTouchLogin.js"></script>
+    <script defer type="module" src="../../JS/oneTouchSignUp.js"></script>
 
     <!-- Spinner script -->
     <link
@@ -34,7 +34,7 @@
                   <label for="fname">Email</label>
                   <input
                     type="text"
-                    id="oneTouchLoginEmail"
+                    id="oneTouchLogInEmail"
                     name="email"
                     placeholder="Your email..."
                   />
@@ -42,26 +42,65 @@
                   <label for="fname">Password</label>
                   <input
                     type="password"
-                    id="oneTouchLoginPassword"
+                    id="oneTouchLogInPassword"
                     name="password"
                     placeholder="Your password..."
                   />
 
                   <btnSubmit>
                     <input
-                      id="oneTouchLogin"
+                      id="oneTouchLogIn"
                       class="btnOneTouch"
                       type="submit"
                       value="Login"
                     />
                   </btnSubmit>
-                  <dividerComponent></dividerComponent>
+                </form>
+              </div>
+            </div>
+
+            <div class="form-container">
+              <div class="raiseTicketContainer">
+                <div id="raiseTicketImgContainer">
+                  <div class="oneTouchIcon"></div>
+                </div>
+
+                <form action="/">
+                  <label for="fname">Email</label>
+                  <input
+                    type="text"
+                    id="oneTouchSignUpEmail"
+                    name="email"
+                    placeholder="Your email..."
+                  />
+
+                  <label for="fname">Password</label>
+                  <input
+                    type="password"
+                    id="oneTouchSignUpPassword"
+                    name="password"
+                    placeholder="Your password..."
+                  />
+
+                  <label for="fname">Confirm Password</label>
+                  <input
+                    type="password"
+                    id="oneTouchSignUpConfirmationPassword"
+                    name="password"
+                    placeholder="Confirm your password..."
+                  />
+
+                  <div class="termsAndConditions fontH2">
+                    By creating an account you agree to our
+                    <a href="#">Terms & Privacy</a>.
+                  </div>
+
                   <btnSubmit>
                     <input
                       id="oneTouchSignUp"
                       class="btnOneTouch"
                       type="submit"
-                      value="Create New Account"
+                      value="Create Account"
                     />
                   </btnSubmit>
                 </form>
