@@ -2,13 +2,14 @@
   padding-top: 20px;
 }
 .raiseTicketContainer {
-  width: 300px;
-  border-radius: 15px;
-  background-color: #f2f2f2;
-  margin: 0 5vw;
-  padding: 20px;
+  width: 350px;
+  -webkit-box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
+  box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
+  padding: 24px 32px 32px;
+  border-radius: 8px;
+  margin: 0 auto;
+  background: #fff;
   text-align: left;
-  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 30%);
 }
 .form-container {
   flex-basis: 30%;

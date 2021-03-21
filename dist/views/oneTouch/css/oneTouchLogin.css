@@ -1,0 +1,12 @@
+.termsAndConditions {
+  padding: 10px 0;
+}
+#oneTouchLogin,
+#oneTouchSignUp {
+  margin: 10px 0;
+}
+div a,
+div a:visited {
+  color: #d9534f;
+  text-decoration: none;
+}
