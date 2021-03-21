@@ -24,7 +24,6 @@ const fetchOneTouchUsersFromDB = () => {
 
 document.querySelector('body').addEventListener('click', (event) => {
   const customerInfo = event.target.nodeName === 'CUSTOMERINFO';
-  const updateCustomer = event.target.nodeName === 'UPDATECUSTOMER';
   const deleteCustomer = event.target.nodeName === 'DELETECUSTOMER';
 
   let id = event.target.getAttribute('id');
@@ -33,10 +32,6 @@ document.querySelector('body').addEventListener('click', (event) => {
   if (customerInfo) {
     console.log(id);
     _errorMessage('Info User Content', 'success');
-  }
-  if (updateCustomer) {
-    console.log(id);
-    _errorMessage('Update User Content', 'warning');
   }
   if (deleteCustomer) {
     console.log(id, customerEmail);

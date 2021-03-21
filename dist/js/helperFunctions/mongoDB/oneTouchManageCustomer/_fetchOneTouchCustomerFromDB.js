@@ -54,24 +54,20 @@ async function _fetchOneTouchCustomerFromDB(pageName) {
 
       if (pageName === 'manage-customers') {
         manageUsersNav = `<div class="manageUsersNav">
-                          <customerInfo id='${customer._id}' customerEmail='${customer.customerEmail}' class="btnB01" role="button">
+                          <customerInfo id='${customer._id}' class="btnB01" role="button">
                             Info
                           </customerInfo>
-                          <updateCustomer id='${customer._id}' customerEmail='${customer.customerEmail}' class="btnB01" role="button">
-                            Update
-                          </updateCustomer>
-                            <deleteCustomer id='${customer._id}' customerEmail='${customer.customerEmail}' class="btnB01" role="button">
+                          <deleteCustomer id='${customer._id}' class="btnB01" role="button">
                             Delete
                           </deleteCustomer>
                         </div>`;
       }
       if (pageName === 'order-new-connection') {
         manageUsersNav = `<div class="manageUsersNavNC">
-                          <customerInfo id='${customer._id}' oneTouchData='${oneTouchData}' class="btnB01" role="button">
+                          <customerInfo id='${customer._id}' class="btnB01" role="button">
                             Info
                           </customerInfo>
                           <selectCustomer id='${customer._id}'
-                                      oneTouchData='${oneTouchData}'
                                       class="btnB01" 
                                       role="button">
                             Select
@@ -82,6 +78,7 @@ async function _fetchOneTouchCustomerFromDB(pageName) {
       customerData += `<div class='rowContainer backgroundLG03'>
                     <div class="manageUsersRow">
                       <div class="tableCell">${customer.customerFullName}</div>
+                      <div class="tableCell">${customer.customerPhoneNumber}</div>
                       <div class="tableCell">${customer.customerEmail}</div>
                     </div>
                     ${manageUsersNav}
@@ -100,6 +97,7 @@ async function _fetchOneTouchCustomerFromDB(pageName) {
                                   <div class='manageUserContainer'>
                                     <div class="manageUsersRow boxContainer backgroundLG03">
                                       <div class="tableCell">Full Name</div>
+                                      <div class="tableCell">Phone Number</div>
                                       <div class="tableCell">Email</div>
                                     </div>
                                       ${customerData}

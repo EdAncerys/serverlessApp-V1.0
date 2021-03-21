@@ -11,7 +11,7 @@
 }
 .manageUsersRow {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   margin: 5px 0;
 }
 .manageUsersRow,
@@ -33,7 +33,7 @@
 .manageUsersNav,
 .manageUsersNavNC {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   padding: 5px 0;
 }
 .manageUsersNavNC {
