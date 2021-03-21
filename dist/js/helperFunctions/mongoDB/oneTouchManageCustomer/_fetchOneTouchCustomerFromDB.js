@@ -14,7 +14,7 @@ async function _fetchOneTouchCustomerFromDB(pageName) {
   let oneTouchBroadbandOrderPageOne = '';
   let manageUsersNav = '';
 
-  // User management page
+  // Manage Customer page
   if (pageName === 'manage-customers')
     oneTouchCustomer = document.querySelector('oneTouchCustomer');
 
@@ -94,7 +94,7 @@ async function _fetchOneTouchCustomerFromDB(pageName) {
                                     </div>`;
     } else {
       oneTouchCustomer.innerHTML = `<div class='alignHorizontally'>
-                                  <div class='manageUserContainer'>
+                                  <div class='manageCustomerContainer'>
                                     <div class="manageUsersRow boxContainer backgroundLG03">
                                       <div class="tableCell">Full Name</div>
                                       <div class="tableCell">Phone Number</div>

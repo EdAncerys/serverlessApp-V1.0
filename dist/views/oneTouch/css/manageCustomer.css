@@ -1,10 +1,10 @@
-.manageUsersContent {
+.manageCustomerContainer {
   padding-top: 20px;
 }
-.manageUsersContent .flex-container {
+.manageCustomerContainer .flex-container {
   color: #333;
 }
-.manageUsersContent headerText {
+.manageCustomerContainer headerText {
   display: grid;
   grid-template-rows: 1fr 1fr;
   gap: 10px;
@@ -15,7 +15,7 @@
   margin: 5px 0;
 }
 .manageUsersRow,
-.manageUsersContent headerText {
+.manageCustomerContainer headerText {
   min-width: 600px;
 }
 .userRowNAU {
