@@ -1,4 +1,3 @@
-import { _oneTouchSupperUserSignup } from './helperFunctions/mongoDB/oneTouchLogin/_oneTouchSupperUserSignUp.js';
 import { _oneTouchSupperUserLogin } from './helperFunctions/mongoDB/oneTouchLogin/_oneTouchSupperUserLogin.js';
 import { _errorMessage } from './helperFunctions/_errorMessage.js';
 import { _oneTouchUserAuthentication } from './helperFunctions/mongoDB/oneTouchLogin/_oneTouchUserAuthentication.js';
@@ -7,10 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
   document
     .querySelector('#oneTouchLogin')
     .addEventListener('click', oneTouchLogin);
-
-  document
-    .querySelector('#oneTouchSignUp')
-    .addEventListener('click', oneTouchSignUp);
 
   document
     .querySelector('authenticateUser')
@@ -22,10 +17,15 @@ const oneTouchLogin = (e) => {
   _oneTouchSupperUserLogin();
 };
 
-const oneTouchSignUp = (e) => {
-  e.preventDefault();
-  _oneTouchSupperUserSignup();
-};
+document.querySelector('body').addEventListener('click', (event) => {
+  const oneTouchSignUp = event.target.id === 'oneTouchSignUp';
+
+  // console.log(event.target);
+  if (oneTouchSignUp) {
+    window.location.replace('/views/oneTouch/one-touch-signup.html');
+    return;
+  }
+});
 
 async function authenticateUser(e) {
   e.preventDefault();
