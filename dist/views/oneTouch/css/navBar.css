@@ -78,6 +78,8 @@ nav ul li ul li a {
 }
 .logOutBtnContainer:hover,
 .logOutBtnContainer:visited:hover {
+  background: #d9534f;
+  color: #fff;
   cursor: pointer;
 }
 /* Mobile navigation */

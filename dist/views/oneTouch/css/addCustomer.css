@@ -13,11 +13,12 @@
 }
 .addCustomerRowContainer {
   display: grid;
+  align-items: center;
   grid-template-columns: 1fr 1fr;
   padding: 5px 0;
   gap: 10px;
 }
-.addCustomerNoteContainer{
+.addCustomerNoteContainer {
   padding: 15px 0;
 }
 .addCustomerInfoHeader {
