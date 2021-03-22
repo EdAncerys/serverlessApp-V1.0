@@ -5,7 +5,9 @@ async function _addOneTouchCustomerToDB() {
   _spinner(true);
   const URL = '/oneTouch/customer';
 
+  const access_token = sessionStorage.getItem('access_token');
   const customerCreated = new Date().toLocaleString();
+
   const customerFullName = document.getElementById('customerFullName').value;
   const customerPhoneNumber = document.getElementById('customerPhoneNumber')
     .value;
@@ -41,6 +43,7 @@ async function _addOneTouchCustomerToDB() {
   console.log('Adding user to DB. Full Name: ' + customerFullName);
 
   const body = {
+    access_token,
     customerCreated,
     customerFullName,
     customerPhoneNumber,
@@ -77,7 +80,7 @@ async function _addOneTouchCustomerToDB() {
     if (!response.ok) throw new Error(data.msg);
 
     console.log(data);
-    _domDataManipulation();
+    clearFormData();
 
     _errorMessage(data.msg, 'success');
     _spinner(false);
@@ -88,7 +91,7 @@ async function _addOneTouchCustomerToDB() {
   }
 }
 
-const _domDataManipulation = () => {
+const clearFormData = () => {
   sessionStorage.setItem('userAddressValidation', false);
   document.querySelector('#selectionContainer').remove();
   document.querySelector('#userPostcodeContainer').classList.remove('hidden');

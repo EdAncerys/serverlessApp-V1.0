@@ -7,6 +7,7 @@ import { _validateEmail } from './helperFunctions/_validateEmail.js';
 import { persistDOMData } from './persistDOMData.js';
 
 document.addEventListener('DOMContentLoaded', () => {
+  addFormData();
   // Persist user data on reload
   const oneTouchDOMBody = sessionStorage.getItem('oneTouchDOMBody') === null;
   const oneTouchPageName =
@@ -65,11 +66,11 @@ const addUser = (ev) => {
     _errorMessage('Site Contact Email Not Provided or Incorrect!', 'warning');
     return;
   }
-  if (!oneTouchData) {
-    _errorMessage('Please Add User Address!', 'warning');
+  if (oneTouchData) {
+    _errorMessage('Please Add Customer Address!', 'warning');
     return;
   }
-  if (userFromValidation && oneTouchData) _addOneTouchCustomerToDB();
+  if (userFromValidation && !oneTouchData) _addOneTouchCustomerToDB();
 
   return;
 };
@@ -110,3 +111,23 @@ document.querySelector('body').addEventListener('change', (event) => {
     return;
   }
 });
+
+const addFormData = () => {
+  document.querySelector('#customerFullName').value = 'John Doe';
+  document.querySelector('#customerPhoneNumber').value = '0799988877';
+  document.querySelector('#customerEmail').value = 'john@email.com';
+
+  document.querySelector('#companyName').value = 'Company Name';
+  document.querySelector('#productType').value = 'Product Type';
+  document.querySelector('#companyEmail').value = 'company@email.com';
+  document.querySelector('#companyPhoneNumber').value = '0799988877';
+  document.querySelector('#accountManager').value = 'Account Manager';
+  document.querySelector('#companyRegistration').value = 'Company Registration';
+
+  document.querySelector('#contactName').value = 'John Doe';
+  document.querySelector('#contactPhoneNumber').value = '0799988877';
+  document.querySelector('#contactEmail').value = 'contact@email.com';
+
+  document.querySelector('#installationPostcode').value = 'E163DY';
+  document.querySelector('#customerNotes').value = 'Customer Notes';
+};

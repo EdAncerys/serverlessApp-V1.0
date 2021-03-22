@@ -1,5 +1,7 @@
 const MongoClient = require('mongodb').MongoClient;
 let ObjectId = require('mongodb').ObjectID;
+require('dotenv').config(); // Enabling to load Environment variables from a .env File
+const jwt = require('jsonwebtoken');
 
 const MONGODB_URI = process.env.MONGODB_URI;
 const DB_NAME = 'oneTouchDB';
@@ -19,7 +21,7 @@ const connectToDatabase = async (uri) => {
   return cachedDb;
 };
 
-const oneTouchQueryUsers = async (db) => {
+const oneTouchQueryAllUsers = async (db) => {
   const dbData = await db.collection(COLLECTION).find({}).toArray();
   console.table(dbData);
 
@@ -34,19 +36,43 @@ const oneTouchQueryUsers = async (db) => {
 
 const oneTouchAddCustomer = async (db, data) => {
   const addCustomer = {
-    customerFullName: data.customerFullName,
+    access_token: data.access_token,
     customerEmail: data.customerEmail,
+    customerFullName: data.customerFullName,
   };
+  console.log(addCustomer);
+
   const user = await db
     .collection(COLLECTION)
     .find({ customerEmail: addCustomer.customerEmail })
     .toArray();
   const userValid = !user[0];
+  console.log(userValid);
 
   if (userValid && addCustomer.customerFullName && addCustomer.customerEmail) {
-    const msg = `User successfully added to DB with email: ` + addCustomer.customerEmail;
+    const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
+    const authToken = jwt.verify(
+      addCustomer.access_token,
+      ACCESS_TOKEN_SECRET,
+      (err, authData) => {
+        if (err) {
+          console.log(err);
+          return false;
+        } else {
+          console.log(authData);
+          return authData;
+        }
+      }
+    );
+    console.log(authToken);
+    delete data['access_token']; // Remove access_token from data
+    data['oneTouchSuperUser'] = authToken.email; // Add oneTouchSuperUser data
+
     await db.collection(COLLECTION).insertMany([data]);
+    const msg =
+      `User successfully added to DB with email: ` + addCustomer.customerEmail;
     console.log(msg);
+    console.log(data);
 
     return {
       statusCode: 201,
@@ -57,7 +83,8 @@ const oneTouchAddCustomer = async (db, data) => {
     };
   } else {
     const msg =
-      `User Exists. Error adding user to DB with email: ` + addCustomer.customerEmail;
+      `User Exists. Error adding user to DB with email: ` +
+      addCustomer.customerEmail;
     console.log(msg);
 
     return {
@@ -81,7 +108,8 @@ const oneTouchDeleteCustomer = async (db, data) => {
 
   if (userValid && deleteCustomer._id) {
     const msg =
-      `User been successfully deleted from DB with email: ` + deleteCustomer.customerEmail;
+      `User been successfully deleted from DB with email: ` +
+      deleteCustomer.customerEmail;
     await db.collection(COLLECTION).deleteOne({ _id: userID });
     console.log(msg);
 
@@ -150,20 +178,55 @@ const oneTouchUpdateUser = async (db, data) => {
   }
 };
 
+const oneTouchFindOneCustomer = async (db, data) => {
+  const findOneCustomer = {
+    id: data.id,
+  };
+  const user = await db
+    .collection(COLLECTION)
+    .find({ id: findOneCustomer.id })
+    .toArray();
+  const userValid = user.length > 0;
+
+  if (userValid && findOneCustomer.id) {
+    return {
+      statusCode: 201,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ user: data }),
+    };
+  } else {
+    const msg =
+      `User Not Found. Error fetching customer from DB with id: ` +
+      findOneCustomer.id;
+    console.log(msg);
+
+    return {
+      statusCode: 422,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ msg }),
+    };
+  }
+};
+
 module.exports.handler = async (event, context) => {
   context.callbackWaitsForEmptyEventLoop = false;
 
   const db = await connectToDatabase(MONGODB_URI);
+  const body = JSON.parse(event.body);
 
   switch (event.httpMethod) {
     case 'GET':
-      return oneTouchQueryUsers(db);
+      return oneTouchQueryAllUsers(db);
     case 'POST':
-      return oneTouchAddCustomer(db, JSON.parse(event.body));
+      return oneTouchAddCustomer(db, body);
     case 'DELETE':
-      return oneTouchDeleteCustomer(db, JSON.parse(event.body));
+      return oneTouchDeleteCustomer(db, body);
     case 'PATCH':
-      return oneTouchUpdateUser(db, JSON.parse(event.body));
+      return oneTouchUpdateUser(db, body);
     default:
       return { statusCode: 400 };
   }
