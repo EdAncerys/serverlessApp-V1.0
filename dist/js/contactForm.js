@@ -1,3 +1,4 @@
+import { authenticateUser } from './authenticateUser.js';
 import { _handleFormValidation } from './helperFunctions/_handleFormValidation.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -6,7 +7,9 @@ document.addEventListener('DOMContentLoaded', () => {
     .addEventListener('click', submitContactForm);
 });
 
-const submitContactForm = (ev) => {
+const submitContactForm = async (ev) => {
   ev.preventDefault();
+  await authenticateUser();
+
   _handleFormValidation('_submitContactForm');
 };

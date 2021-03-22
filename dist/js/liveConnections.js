@@ -1,3 +1,4 @@
+import { authenticateUser } from './authenticateUser.js';
 import { _oneTouchOrders } from './helperFunctions/mongoDB/_oneTouchOrders.js';
 import { _deleteOneTouchOrder } from './helperFunctions/mongoDB/_deleteOneTouchOrder.js';
 import { _errorMessage } from './helperFunctions/_errorMessage.js';
@@ -13,6 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const oneTouchDOMBody = document.querySelector('#oneTouchBodyContainer');
     oneTouchDOMBody.innerHTML = sessionStorage.getItem('oneTouchDOMBody');
   } else {
+    authenticateUser();
+
     _oneTouchOrders();
   }
 });
@@ -24,11 +27,13 @@ document.querySelector('body').addEventListener('click', (event) => {
   let id = event.target.getAttribute('id');
 
   if (orderInfo) {
-    console.log(id);
+    authenticateUser();
+
     _errorMessage(id, 'success');
   }
   if (deleteOrder) {
-    console.log(id);
+    authenticateUser();
+
     _deleteOneTouchOrder(id);
   }
 });

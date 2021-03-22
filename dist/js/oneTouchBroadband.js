@@ -1,3 +1,4 @@
+import { authenticateUser } from './authenticateUser.js';
 import { _newOrderPostcodeValidation } from './helperFunctions/icukBroadband/_newOrderPostcodeValidation.js';
 import { _errorMessage } from './helperFunctions/_errorMessage.js';
 import { _placeBroadbandOrder } from './helperFunctions/icukBroadband/_placeBroadbandOrder.js';
@@ -29,13 +30,17 @@ document.addEventListener('DOMContentLoaded', () => {
     .addEventListener('click', oneTouchCustomer);
 });
 
-const getAddressForPostcodeProvided = (ev) => {
+const getAddressForPostcodeProvided = async (ev) => {
   ev.preventDefault();
+  await authenticateUser();
+
   _newOrderPostcodeValidation();
 };
 
-const oneTouchCustomer = (ev) => {
+const oneTouchCustomer = async (ev) => {
   ev.preventDefault();
+  await authenticateUser();
+
   _fetchOneTouchCustomerFromDB('order-new-connection');
 };
 
@@ -54,10 +59,14 @@ document.querySelector('body').addEventListener('click', (event) => {
 
   // console.log(event.target);
   if (getBroadbandAvailability) {
+    authenticateUser();
+
     _getBroadbandAvailability();
     return;
   }
   if (selectOrder) {
+    authenticateUser();
+
     const oneTouchOrderData = JSON.parse(
       event.target.getAttribute('oneTouchOrderData')
     );
@@ -65,10 +74,14 @@ document.querySelector('body').addEventListener('click', (event) => {
     return;
   }
   if (termsAndConditions) {
+    authenticateUser();
+
     _termsAndConditions();
     return;
   }
   if (agreeWithTermsAndConditions && event.target.type === 'checkbox') {
+    authenticateUser();
+
     let checkbox = event.target.checked;
     let oneTouchPlaceOrder = document.querySelector('oneTouchPlaceOrder');
 
@@ -79,14 +92,20 @@ document.querySelector('body').addEventListener('click', (event) => {
     }
   }
   if (oneTouchPlaceOrder) {
+    authenticateUser();
+
     _placeBroadbandOrder();
     return;
   }
   if (userInfo) {
+    authenticateUser();
+
     _errorMessage('User Info', 'warning');
     return;
   }
   if (selectCustomer) {
+    authenticateUser();
+
     const oneTouchData = event.target.getAttribute('oneTouchData');
     console.log(JSON.parse(oneTouchData));
     sessionStorage.setItem('oneTouchData', oneTouchData);
@@ -95,6 +114,8 @@ document.querySelector('body').addEventListener('click', (event) => {
     return;
   }
   if (goBackBtn) {
+    authenticateUser();
+
     const id = event.target.id;
     console.log(event.target.id);
     if (id === 'pageOne') {
@@ -130,6 +151,8 @@ document.querySelector('body').addEventListener('click', (event) => {
 document.querySelector('body').addEventListener('change', (event) => {
   const saveAddressData = event.target.nodeName === 'SELECT';
   if (saveAddressData) {
+    authenticateUser();
+
     _saveAddressData();
     return;
   }

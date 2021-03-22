@@ -1,3 +1,4 @@
+import { authenticateUser } from './authenticateUser.js';
 import { _errorMessage } from './helperFunctions/_errorMessage.js';
 import { _fetchOneTouchCustomerFromDB } from './helperFunctions/mongoDB/oneTouchManageCustomer/_fetchOneTouchCustomerFromDB.js';
 import { _deleteOneTouchCustomer } from './helperFunctions/mongoDB/oneTouchManageCustomer/_deleteOneTouchCustomer.js';
@@ -18,7 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-const fetchOneTouchUsersFromDB = () => {
+const fetchOneTouchUsersFromDB = async () => {
+  await authenticateUser();
   _fetchOneTouchCustomerFromDB('manage-customers');
 };
 
@@ -30,11 +32,13 @@ document.querySelector('body').addEventListener('click', (event) => {
   let customerEmail = event.target.getAttribute('customerEmail');
 
   if (customerInfo) {
-    console.log(id);
+    authenticateUser();
+
     _errorMessage('Info User Content', 'success');
   }
   if (deleteCustomer) {
-    console.log(id, customerEmail);
+    authenticateUser();
+
     _deleteOneTouchCustomer(id, customerEmail, 'manage-customers');
   }
 });
