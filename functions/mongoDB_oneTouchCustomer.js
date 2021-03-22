@@ -24,7 +24,7 @@ const connectToDatabase = async (uri) => {
 const oneTouchQueryAllUsers = async (db) => {
   console.table('hello world');
   const dbData = await db.collection(COLLECTION).find({}).toArray();
-  console.table('dbData: ', dbData);
+  console.table(dbData);
 
   try {
     return {
@@ -73,8 +73,8 @@ const oneTouchAddCustomer = async (db, data) => {
     .collection(COLLECTION)
     .find({ customerEmail: addCustomer.customerEmail })
     .toArray();
-  const userValid = user[0]['oneTouchSuperUser'] === authToken.email;
-  console.log(userValid);
+  const userValid = user['oneTouchSuperUser'] === authToken.email;
+  console.log(!userValid);
 
   if (!userValid && addCustomer.customerFullName && addCustomer.customerEmail) {
     delete data['access_token']; // Remove access_token from data
@@ -190,6 +190,52 @@ const oneTouchUpdateUser = async (db, data) => {
   }
 };
 
+const oneTouchReturnFilteredCustomers = async (db, data) => {
+  const filterCustomers = {
+    access_token: data.access_token,
+  };
+  const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
+  const authToken = await jwt.verify(
+    filterCustomers.access_token,
+    ACCESS_TOKEN_SECRET,
+    (err, authData) => {
+      if (err) {
+        console.log(err);
+        return false;
+      } else {
+        console.log(authData);
+        return authData;
+      }
+    }
+  );
+  console.log(authToken);
+
+  const dbData = await db
+    .collection(COLLECTION)
+    .find({ oneTouchSuperUser: authToken.email })
+    .toArray();
+  console.table(dbData);
+
+  try {
+    return {
+      statusCode: 200,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(dbData),
+    };
+  } catch (err) {
+    console.log(err);
+    return {
+      statusCode: 401,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(err),
+    };
+  }
+};
+
 const oneTouchFindOneCustomer = async (db, data) => {
   const findOneCustomer = {
     id: data.id,
@@ -233,7 +279,11 @@ module.exports.handler = async (event, context) => {
     case 'GET':
       return oneTouchQueryAllUsers(db);
     case 'POST':
-      return oneTouchAddCustomer(db, JSON.parse(event.body));
+      const body = JSON.parse(event.body);
+      if (body.customerEmail) {
+        return oneTouchAddCustomer(db, body);
+      }
+      return oneTouchReturnFilteredCustomers(db, body);
     case 'DELETE':
       return oneTouchDeleteCustomer(db, JSON.parse(event.body));
     case 'PATCH':

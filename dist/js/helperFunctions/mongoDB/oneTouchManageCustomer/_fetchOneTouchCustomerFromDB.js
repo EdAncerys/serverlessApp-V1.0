@@ -6,6 +6,15 @@ async function _fetchOneTouchCustomerFromDB(pageName) {
   console.log('Fetching customers from db...');
   _spinner(true, 'Loading Active Users...');
   const URL = '/oneTouch/customer';
+  const access_token = sessionStorage.getItem('access_token');
+
+  const body = {
+    access_token,
+  };
+  const config = {
+    method: 'POST',
+    body: JSON.stringify(body),
+  };
 
   let customerData = '';
   let sliderNav = '';
@@ -45,7 +54,7 @@ async function _fetchOneTouchCustomerFromDB(pageName) {
   }
 
   try {
-    const response = await fetch(URL);
+    const response = await fetch(URL, config);
     const data = await response.json();
     if (!response.ok) throw new Error(data);
 
