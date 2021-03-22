@@ -47,11 +47,11 @@ async function _fetchOneTouchCustomerFromDB(pageName) {
   try {
     const response = await fetch(URL);
     const data = await response.json();
+    if (!response.ok) throw new Error(data);
+
     console.log(data);
 
     data.map((customer) => {
-      const oneTouchData = JSON.stringify(customer);
-
       if (pageName === 'manage-customers') {
         manageUsersNav = `<div class="manageUsersNav">
                           <customerInfo id='${customer._id}' class="btnB01" role="button">

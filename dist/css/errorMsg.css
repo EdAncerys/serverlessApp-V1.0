@@ -39,13 +39,13 @@ errorMessage {
 }
 /* Add fade in animation to error message */
 errorMessage #errorMsgWrapper {
-  animation: fadeInElement 1.5s ease forwards;
+  animation: fadeInElement 1.25s ease forwards;
 }
 @keyframes fadeInElement {
   from {
     opacity: 0.1;
   }
   to {
-    opacity: 0.9;
+    opacity: 0.95;
   }
 }

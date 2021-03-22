@@ -22,16 +22,28 @@ const connectToDatabase = async (uri) => {
 };
 
 const oneTouchQueryAllUsers = async (db) => {
+  console.table('hello world');
   const dbData = await db.collection(COLLECTION).find({}).toArray();
-  console.table(dbData);
+  console.table('dbData: ', dbData);
 
-  return {
-    statusCode: 200,
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(dbData),
-  };
+  try {
+    return {
+      statusCode: 200,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(dbData),
+    };
+  } catch (err) {
+    console.log(err);
+    return {
+      statusCode: 401,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(err),
+    };
+  }
 };
 
 const oneTouchAddCustomer = async (db, data) => {
@@ -41,30 +53,30 @@ const oneTouchAddCustomer = async (db, data) => {
     customerFullName: data.customerFullName,
   };
   console.log(addCustomer);
+  const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
+  const authToken = await jwt.verify(
+    addCustomer.access_token,
+    ACCESS_TOKEN_SECRET,
+    (err, authData) => {
+      if (err) {
+        console.log(err);
+        return false;
+      } else {
+        console.log(authData);
+        return authData;
+      }
+    }
+  );
+  console.log(authToken);
 
   const user = await db
     .collection(COLLECTION)
     .find({ customerEmail: addCustomer.customerEmail })
     .toArray();
-  const userValid = !user[0];
+  const userValid = user[0]['oneTouchSuperUser'] === authToken.email;
   console.log(userValid);
 
-  if (userValid && addCustomer.customerFullName && addCustomer.customerEmail) {
-    const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
-    const authToken = jwt.verify(
-      addCustomer.access_token,
-      ACCESS_TOKEN_SECRET,
-      (err, authData) => {
-        if (err) {
-          console.log(err);
-          return false;
-        } else {
-          console.log(authData);
-          return authData;
-        }
-      }
-    );
-    console.log(authToken);
+  if (!userValid && addCustomer.customerFullName && addCustomer.customerEmail) {
     delete data['access_token']; // Remove access_token from data
     data['oneTouchSuperUser'] = authToken.email; // Add oneTouchSuperUser data
 
@@ -92,7 +104,7 @@ const oneTouchAddCustomer = async (db, data) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ user: data, msg: msg, dbUser: user }),
+      body: JSON.stringify({ msg }),
     };
   }
 };
@@ -216,17 +228,16 @@ module.exports.handler = async (event, context) => {
   context.callbackWaitsForEmptyEventLoop = false;
 
   const db = await connectToDatabase(MONGODB_URI);
-  const body = JSON.parse(event.body);
 
   switch (event.httpMethod) {
     case 'GET':
       return oneTouchQueryAllUsers(db);
     case 'POST':
-      return oneTouchAddCustomer(db, body);
+      return oneTouchAddCustomer(db, JSON.parse(event.body));
     case 'DELETE':
-      return oneTouchDeleteCustomer(db, body);
+      return oneTouchDeleteCustomer(db, JSON.parse(event.body));
     case 'PATCH':
-      return oneTouchUpdateUser(db, body);
+      return oneTouchUpdateUser(db, JSON.parse(event.body));
     default:
       return { statusCode: 400 };
   }

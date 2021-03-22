@@ -6,6 +6,7 @@ async function _fetchOneTouchCustomerFromDB(id, pageName) {
   console.log('Customer Summary Info...');
   _spinner(true, 'Loading Customer Information...');
   const URL = '/oneTouch/customer';
+  let customerData;
 
   const body = {
     id,
@@ -24,7 +25,7 @@ async function _fetchOneTouchCustomerFromDB(id, pageName) {
     console.log(data);
 
     data.map((customer) => {
-      const customerData = `<div class='rowContainer backgroundLG03'>
+      customerData = `<div class='rowContainer backgroundLG03'>
                               <div class="manageUsersRow">
                                 <div class="tableCell">${customer.customerFullName}</div>
                                 <div class="tableCell">${customer.customerPhoneNumber}</div>
