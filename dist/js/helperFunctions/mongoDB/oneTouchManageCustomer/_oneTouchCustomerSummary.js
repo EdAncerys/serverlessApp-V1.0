@@ -26,7 +26,7 @@ async function _fetchOneTouchCustomerFromDB(id, pageName) {
 
     data.map((customer) => {
       customerData = `<div class='rowContainer backgroundLG03'>
-                              <div class="manageUsersRow">
+                              <div class="manageCustomerRow">
                                 <div class="tableCell">${customer.customerFullName}</div>
                                 <div class="tableCell">${customer.customerPhoneNumber}</div>
                                 <div class="tableCell">${customer.customerEmail}</div>

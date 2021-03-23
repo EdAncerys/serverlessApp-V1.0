@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const fetchOneTouchUsersFromDB = async () => {
   await authenticateUser();
+
   _fetchOneTouchCustomerFromDB('manage-customers');
 };
 

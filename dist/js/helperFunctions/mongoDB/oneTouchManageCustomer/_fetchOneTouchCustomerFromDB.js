@@ -21,7 +21,7 @@ async function _fetchOneTouchCustomerFromDB(pageName) {
   let oneTouchCustomer = '';
   let oneTouchSlider = '';
   let oneTouchBroadbandOrderPageOne = '';
-  let manageUsersNav = '';
+  let customerNawRow = '';
 
   // Manage Customer page
   if (pageName === 'manage-customers')
@@ -61,8 +61,9 @@ async function _fetchOneTouchCustomerFromDB(pageName) {
     console.log(data);
 
     data.map((customer) => {
+      //Btn selection option
       if (pageName === 'manage-customers') {
-        manageUsersNav = `<div class="manageUsersNav">
+        customerNawRow = `<div class="customerNawRow">
                           <customerInfo id='${customer._id}' class="btnB01" role="button">
                             Info
                           </customerInfo>
@@ -71,8 +72,9 @@ async function _fetchOneTouchCustomerFromDB(pageName) {
                           </deleteCustomer>
                         </div>`;
       }
+      //Btn selection option
       if (pageName === 'order-new-connection') {
-        manageUsersNav = `<div class="manageUsersNavNC">
+        customerNawRow = `<div class="customerNawRow">
                           <customerInfo id='${customer._id}' class="btnB01" role="button">
                             Info
                           </customerInfo>
@@ -84,14 +86,25 @@ async function _fetchOneTouchCustomerFromDB(pageName) {
                         </div>`;
       }
 
-      customerData += `<div class='rowContainer backgroundLG03'>
-                    <div class="manageUsersRow">
-                      <div class="tableCell">${customer.customerFullName}</div>
-                      <div class="tableCell">${customer.customerPhoneNumber}</div>
-                      <div class="tableCell">${customer.customerEmail}</div>
-                    </div>
-                    ${manageUsersNav}
-                  </div>`;
+      customerData += `<div class="rowContainer backgroundLG03">
+                        <div class="manageCustomerRow">
+                          <div class="rowDataWrapper">
+                            <div>${customer.customerFullName}</div>
+                            <div class="bottomDataRow">${customer.customerCreated}</div>
+                          </div>
+                          <div class="rowDataWrapper">
+                            <div>${customer.customerPhoneNumber}</div>
+                            <div class="bottomDataRow">${customer.customerEmail}</div>
+                          </div>
+                          <div class="rowDataWrapper">
+                            <div>${customer.thoroughfare_number} ${customer.thoroughfare_name}</div>
+                            <div class="bottomDataRow">${customer.postcode}</div>
+                          </div>
+                          <div class="rowDataWrapper">
+                            <div>${customerNawRow}</div>
+                          </div>
+                        </div>
+                      </div>`;
     });
 
     if (data.length === 0) {
@@ -102,17 +115,16 @@ async function _fetchOneTouchCustomerFromDB(pageName) {
                                       </div>
                                     </div>`;
     } else {
-      oneTouchCustomer.innerHTML = `<div class='alignHorizontally'>
+      oneTouchCustomer.innerHTML = `
                                   <div class='manageCustomerContainer'>
-                                    <div class="manageUsersRow boxContainer backgroundLG03">
-                                      <div class="tableCell">Full Name</div>
-                                      <div class="tableCell">Phone Number</div>
-                                      <div class="tableCell">Email</div>
+                                    <div class="manageCustomerRow boxContainer backgroundGray">
+                                      <div class="rowDataWrapper">Customer</div>
+                                      <div class="rowDataWrapper">Contact Details</div>
+                                      <div class="rowDataWrapper">Address</div>
+                                      <div class="rowDataWrapper">Selection</div>
                                     </div>
                                       ${customerData}
-                                    </div>
-                                    ${sliderNav}
-                                  </div>`;
+                                    </div>`;
     }
 
     _spinner(false);

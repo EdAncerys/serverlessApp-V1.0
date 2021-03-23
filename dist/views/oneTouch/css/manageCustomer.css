@@ -9,14 +9,23 @@
   grid-template-rows: 1fr 1fr;
   gap: 10px;
 }
-.manageUsersRow {
+.manageCustomerRow {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   margin: 5px 0;
 }
-.manageUsersRow,
+.manageCustomerRow,
 .manageCustomerContainer headerText {
   min-width: 600px;
+}
+.rowDataWrapper {
+  display: grid;
+  padding: 0 10px;
+  text-align: left;
+}
+.bottomDataRow {
+  font-size: 10px;
+  color: #8c8c8c;
 }
 .userRowNAU {
   display: grid;
@@ -26,16 +35,11 @@
 }
 .sliderNavNUA {
   display: grid;
-  grid-template-columns: 1fr 2fr;
-  margin: 20px 0;
-  gap: 10px;
+  grid-template-columns: 2fr 1fr;
+  gap: 5px;
 }
-.manageUsersNav,
-.manageUsersNavNC {
+.customerNawRow {
   display: grid;
   grid-template-columns: 1fr 1fr;
   padding: 5px 0;
-}
-.manageUsersNavNC {
-  grid-template-columns: 1fr 2fr;
 }
