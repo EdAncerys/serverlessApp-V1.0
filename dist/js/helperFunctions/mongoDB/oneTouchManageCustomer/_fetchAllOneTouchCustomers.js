@@ -116,7 +116,7 @@ async function _fetchAllOneTouchCustomers(pageName) {
                                     </div>`;
     } else {
       oneTouchCustomer.innerHTML = `
-                                  <div class='customerDataContainer'>
+                                  <div id='customerDataContainer' class='customerDataContainer'>
                                     <div class="manageCustomerRow boxContainer backgroundGray">
                                       <div class="rowDataWrapper">Customer</div>
                                       <div class="rowDataWrapper">Contact Details</div>

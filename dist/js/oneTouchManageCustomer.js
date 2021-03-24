@@ -2,6 +2,7 @@ import { authenticateUser } from './authenticateUser.js';
 import { _errorMessage } from './helperFunctions/_errorMessage.js';
 import { _fetchAllOneTouchCustomers } from './helperFunctions/mongoDB/oneTouchManageCustomer/_fetchAllOneTouchCustomers.js';
 import { _deleteOneTouchCustomer } from './helperFunctions/mongoDB/oneTouchManageCustomer/_deleteOneTouchCustomer.js';
+import { _oneTouchCustomerSummary } from './helperFunctions/mongoDB/oneTouchManageCustomer/_oneTouchCustomerSummary.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   // Persist user data on reload
@@ -29,12 +30,12 @@ document.querySelector('body').addEventListener('click', (event) => {
   const customerInfo = event.target.nodeName === 'CUSTOMERINFO';
   const deleteCustomer = event.target.nodeName === 'DELETECUSTOMER';
 
-  let id = event.target.getAttribute('id');
-
   if (customerInfo) {
     authenticateUser();
 
-    _errorMessage(`Info User ID: ${id} `, 'success');
+    const id = event.target.getAttribute('id');
+    _oneTouchCustomerSummary(id, 'order-new-connection');
+    // _errorMessage(`Info User ID: ${id} `, 'success');
   }
   if (deleteCustomer) {
     authenticateUser();
