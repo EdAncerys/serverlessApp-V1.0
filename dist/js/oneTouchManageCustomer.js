@@ -39,6 +39,6 @@ document.querySelector('body').addEventListener('click', (event) => {
   if (deleteCustomer) {
     authenticateUser();
 
-    _deleteOneTouchCustomer(id, customerEmail, 'manage-customers');
+    _deleteOneTouchCustomer(id, 'manage-customers');
   }
 });

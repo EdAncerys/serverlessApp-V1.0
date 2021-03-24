@@ -111,17 +111,15 @@ const oneTouchAddCustomer = async (db, data) => {
 
 const oneTouchDeleteCustomer = async (db, data) => {
   const deleteCustomer = {
-    _id: data._id,
-    customerEmail: data.customerEmail,
+    _id: data.id,
   };
   const userID = new ObjectId(deleteCustomer._id);
   const user = await db.collection(COLLECTION).find({ _id: userID }).toArray();
-  const userValid = user[0];
+  const userValid = user.length > 0;
 
   if (userValid && deleteCustomer._id) {
     const msg =
-      `User been successfully deleted from DB with email: ` +
-      deleteCustomer.customerEmail;
+      `User been successfully deleted from DB with ID: ` + deleteCustomer._id;
     await db.collection(COLLECTION).deleteOne({ _id: userID });
     console.log(msg);
 
@@ -134,8 +132,8 @@ const oneTouchDeleteCustomer = async (db, data) => {
     };
   } else {
     const msg =
-      `User not found! Error deleting user from DB where email: ` +
-      deleteCustomer.customerEmail;
+      `User not found! Error deleting user from DB with ID: ` +
+      deleteCustomer._id;
     console.log(msg);
 
     return {
@@ -143,7 +141,7 @@ const oneTouchDeleteCustomer = async (db, data) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ user: data, msg: msg }),
+      body: JSON.stringify({ msg }),
     };
   }
 };
