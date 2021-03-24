@@ -1,4 +1,3 @@
-import { persistDOMData } from '../../../persistDOMData.js';
 import { _errorMessage } from '../../_errorMessage.js';
 import { _spinner } from '../../_spinner.js';
 
@@ -8,7 +7,7 @@ async function _fetchOneTouchCustomerDataById(id) {
   const URL = '/oneTouch/customer';
 
   const body = {
-    id,
+    findOneById: id,
   };
   console.log(body);
 

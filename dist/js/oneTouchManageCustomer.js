@@ -30,12 +30,11 @@ document.querySelector('body').addEventListener('click', (event) => {
   const deleteCustomer = event.target.nodeName === 'DELETECUSTOMER';
 
   let id = event.target.getAttribute('id');
-  let customerEmail = event.target.getAttribute('customerEmail');
 
   if (customerInfo) {
     authenticateUser();
 
-    _errorMessage('Info User Content', 'success');
+    _errorMessage(`Info User ID: ${id} `, 'success');
   }
   if (deleteCustomer) {
     authenticateUser();

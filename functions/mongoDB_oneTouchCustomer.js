@@ -190,7 +190,7 @@ const oneTouchUpdateUser = async (db, data) => {
   }
 };
 
-const oneTouchReturnFilteredCustomers = async (db, data) => {
+const oneTouchFilterCustomers = async (db, data) => {
   const filterCustomers = {
     access_token: data.access_token,
   };
@@ -236,28 +236,31 @@ const oneTouchReturnFilteredCustomers = async (db, data) => {
   }
 };
 
-const oneTouchFindOneCustomer = async (db, data) => {
-  const findOneCustomer = {
-    id: data.id,
+const oneTouchFindCustomersById = async (db, data) => {
+  const findCustomer = {
+    id: data.findOneById,
   };
-  const user = await db
-    .collection(COLLECTION)
-    .find({ id: findOneCustomer.id })
-    .toArray();
-  const userValid = user.length > 0;
 
-  if (userValid && findOneCustomer.id) {
+  const customerID = new ObjectId(findCustomer.id);
+  const customerData = await db
+    .collection(COLLECTION)
+    .find({ _id: customerID })
+    .toArray();
+
+  console.log(customerData);
+  const customerValid = customerData.length > 0;
+  console.table(customerValid);
+
+  if (customerValid) {
     return {
-      statusCode: 201,
+      statusCode: 200,
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ user: data }),
+      body: JSON.stringify(customerData[0]),
     };
   } else {
-    const msg =
-      `User Not Found. Error fetching customer from DB with id: ` +
-      findOneCustomer.id;
+    const msg = `Error finding customer. Customer ID: ` + findCustomer.id;
     console.log(msg);
 
     return {
@@ -283,7 +286,10 @@ module.exports.handler = async (event, context) => {
       if (body.customerEmail) {
         return oneTouchAddCustomer(db, body);
       }
-      return oneTouchReturnFilteredCustomers(db, body);
+      if (body.findOneById) {
+        return oneTouchFindCustomersById(db, body);
+      }
+      return oneTouchFilterCustomers(db, body);
     case 'DELETE':
       return oneTouchDeleteCustomer(db, JSON.parse(event.body));
     case 'PATCH':

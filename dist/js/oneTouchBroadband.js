@@ -8,6 +8,7 @@ import { _termsAndConditions } from './helperFunctions/icukBroadband/_termsAndCo
 import { _getBroadbandAvailability } from './helperFunctions/icukBroadband/_getBroadbandAvailability.js';
 import { persistDOMData } from './persistDOMData.js';
 import { _fetchAllOneTouchCustomers } from './helperFunctions/mongoDB/oneTouchManageCustomer/_fetchAllOneTouchCustomers.js';
+import { _fetchOneTouchCustomerDataById } from './helperFunctions/mongoDB/oneTouchManageCustomer/_fetchOneTouchCustomerDataById.js';
 import { _spinner } from './helperFunctions/_spinner.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -107,11 +108,19 @@ document.querySelector('body').addEventListener('click', (event) => {
   if (selectCustomer) {
     authenticateUser();
 
-    const oneTouchData = event.target.getAttribute('oneTouchData');
-    console.log(JSON.parse(oneTouchData));
-    sessionStorage.setItem('oneTouchData', oneTouchData);
+    async function asyncDataRequest() {
+      const id = event.target.id;
+      console.log(id);
+      const oneTouchData = await _fetchOneTouchCustomerDataById(id);
+      console.log(oneTouchData);
+      await sessionStorage.setItem(
+        'oneTouchData',
+        JSON.stringify(oneTouchData)
+      );
 
-    // _getBroadbandAvailability();
+      _getBroadbandAvailability();
+    }
+    asyncDataRequest();
     return;
   }
   if (goBackBtn) {
@@ -150,7 +159,8 @@ document.querySelector('body').addEventListener('click', (event) => {
   if (customerInfo) {
     authenticateUser();
 
-    _errorMessage(event.target.id, 'warning');
+    const id = event.target.id;
+    _errorMessage(`Customer ID: ${id}`, 'warning');
     return;
   }
 });
