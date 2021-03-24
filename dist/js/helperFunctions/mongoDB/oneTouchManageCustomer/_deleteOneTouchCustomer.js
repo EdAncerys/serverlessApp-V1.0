@@ -1,4 +1,4 @@
-import { _fetchOneTouchCustomerFromDB } from './_fetchOneTouchCustomerFromDB.js';
+import { _fetchAllOneTouchCustomers } from './_fetchAllOneTouchCustomers.js';
 import { _errorMessage } from '../../_errorMessage.js';
 import { _spinner } from '../../_spinner.js';
 
@@ -21,7 +21,7 @@ async function _deleteOneTouchCustomer(_id, customerEmail, pageName) {
     if (!response.ok) throw new Error(response);
     const data = await response.json();
 
-    _fetchOneTouchCustomerFromDB(pageName);
+    _fetchAllOneTouchCustomers(pageName);
     _errorMessage(data.msg, 'success');
     _spinner(false);
     console.log(data);

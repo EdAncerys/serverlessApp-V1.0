@@ -2,7 +2,7 @@ import { persistDOMData } from '../../../persistDOMData.js';
 import { _errorMessage } from '../../_errorMessage.js';
 import { _spinner } from '../../_spinner.js';
 
-async function _fetchOneTouchCustomerFromDB(pageName) {
+async function _fetchAllOneTouchCustomers(pageName) {
   console.log('Fetching customers from db...');
   _spinner(true, 'Loading Active Users...');
   const URL = '/oneTouch/customer';
@@ -143,4 +143,4 @@ async function _fetchOneTouchCustomerFromDB(pageName) {
   }
 }
 
-export { _fetchOneTouchCustomerFromDB };
+export { _fetchAllOneTouchCustomers };

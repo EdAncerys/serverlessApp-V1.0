@@ -7,7 +7,7 @@ import { _reviewOrderData } from './helperFunctions/icukBroadband/_reviewOrderDa
 import { _termsAndConditions } from './helperFunctions/icukBroadband/_termsAndConditions.js';
 import { _getBroadbandAvailability } from './helperFunctions/icukBroadband/_getBroadbandAvailability.js';
 import { persistDOMData } from './persistDOMData.js';
-import { _fetchOneTouchCustomerFromDB } from './helperFunctions/mongoDB/oneTouchManageCustomer/_fetchOneTouchCustomerFromDB.js';
+import { _fetchAllOneTouchCustomers } from './helperFunctions/mongoDB/oneTouchManageCustomer/_fetchAllOneTouchCustomers.js';
 import { _spinner } from './helperFunctions/_spinner.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -41,7 +41,7 @@ const oneTouchCustomer = async (ev) => {
   ev.preventDefault();
   await authenticateUser();
 
-  _fetchOneTouchCustomerFromDB('order-new-connection');
+  _fetchAllOneTouchCustomers('order-new-connection');
 };
 
 document.querySelector('body').addEventListener('click', (event) => {
@@ -111,7 +111,7 @@ document.querySelector('body').addEventListener('click', (event) => {
     console.log(JSON.parse(oneTouchData));
     sessionStorage.setItem('oneTouchData', oneTouchData);
 
-    _getBroadbandAvailability();
+    // _getBroadbandAvailability();
     return;
   }
   if (goBackBtn) {

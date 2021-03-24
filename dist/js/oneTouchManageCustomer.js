@@ -1,6 +1,6 @@
 import { authenticateUser } from './authenticateUser.js';
 import { _errorMessage } from './helperFunctions/_errorMessage.js';
-import { _fetchOneTouchCustomerFromDB } from './helperFunctions/mongoDB/oneTouchManageCustomer/_fetchOneTouchCustomerFromDB.js';
+import { _fetchAllOneTouchCustomers } from './helperFunctions/mongoDB/oneTouchManageCustomer/_fetchAllOneTouchCustomers.js';
 import { _deleteOneTouchCustomer } from './helperFunctions/mongoDB/oneTouchManageCustomer/_deleteOneTouchCustomer.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
 const fetchOneTouchUsersFromDB = async () => {
   await authenticateUser();
 
-  _fetchOneTouchCustomerFromDB('manage-customers');
+  _fetchAllOneTouchCustomers('manage-customers');
 };
 
 document.querySelector('body').addEventListener('click', (event) => {
