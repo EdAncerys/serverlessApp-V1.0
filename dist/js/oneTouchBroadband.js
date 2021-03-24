@@ -56,6 +56,7 @@ document.querySelector('body').addEventListener('click', (event) => {
   const selectCustomer = event.target.nodeName === 'SELECTCUSTOMER';
   // Slider nav functionality
   const goBackBtn = event.target.nodeName === 'GOBACKBTN';
+  const customerInfo = event.target.nodeName === 'CUSTOMERINFO';
 
   // console.log(event.target);
   if (getBroadbandAvailability) {
@@ -144,6 +145,12 @@ document.querySelector('body').addEventListener('click', (event) => {
     }
 
     persistDOMData('oneTouchBodyContainer', 'order-new-connection');
+    return;
+  }
+  if (customerInfo) {
+    authenticateUser();
+
+    _errorMessage(event.target.id, 'warning');
     return;
   }
 });

@@ -41,7 +41,7 @@ async function _fetchOneTouchCustomerFromDB(pageName) {
     oneTouchCustomer.id = 'oneTouchBroadbandOrderPageTwo';
   }
   if (pageName === 'order-new-connection') {
-    sliderNav = `<div class='sliderNavNUA alignHorizontally'>
+    sliderNav = `<div class='navWrapper alignHorizontally'>
                   <goBackBtn id='pageOne' class="btnOneTouch backgroundSecondary" role="button">
                     Go Back
                   </goBackBtn>
@@ -116,7 +116,7 @@ async function _fetchOneTouchCustomerFromDB(pageName) {
                                     </div>`;
     } else {
       oneTouchCustomer.innerHTML = `
-                                  <div class='manageCustomerContainer'>
+                                  <div class='customerDataContainer'>
                                     <div class="manageCustomerRow boxContainer backgroundGray">
                                       <div class="rowDataWrapper">Customer</div>
                                       <div class="rowDataWrapper">Contact Details</div>
@@ -124,7 +124,8 @@ async function _fetchOneTouchCustomerFromDB(pageName) {
                                       <div class="rowDataWrapper">Selection</div>
                                     </div>
                                       ${customerData}
-                                    </div>`;
+                                      ${sliderNav}
+                                  </div>`;
     }
 
     _spinner(false);

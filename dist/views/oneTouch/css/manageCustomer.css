@@ -9,6 +9,10 @@
   grid-template-rows: 1fr 1fr;
   gap: 10px;
 }
+.customerDataContainer {
+  display: grid;
+  justify-content: center;
+}
 .manageCustomerRow {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -33,10 +37,11 @@
   margin: 20px 0;
   min-width: 300px;
 }
-.sliderNavNUA {
+.navWrapper {
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 5px;
+  margin: 50px 0;
 }
 .customerNawRow {
   display: grid;
