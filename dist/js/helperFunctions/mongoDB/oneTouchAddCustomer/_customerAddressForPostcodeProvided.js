@@ -97,9 +97,9 @@ async function _customerAddressForPostcodeProvided() {
                                               <selectCustomerAddress class="btnOneTouch backgroundSecondary" role="button">
                                                 Select Address
                                               </selectCustomerAddress>
-                                              <goBackBtn class="btnOneTouch backgroundSecondary" role="button">
+                                              <goPageBack class="btnOneTouch backgroundSecondary" role="button">
                                                 New Search
-                                              </goBackBtn>
+                                              </goPageBack>
                                             </div>
                                           </div>
                                         </div>`;

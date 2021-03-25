@@ -83,7 +83,7 @@ const addUser = async (ev) => {
 document.querySelector('body').addEventListener('click', (event) => {
   const selectCustomerAddress =
     event.target.nodeName === 'SELECTCUSTOMERADDRESS';
-  const goBackBtn = event.target.nodeName === 'GOBACKBTN';
+  const goPageBack = event.target.nodeName === 'GOBACKBTN';
 
   // console.log(event.target);
   if (selectCustomerAddress) {
@@ -100,7 +100,7 @@ document.querySelector('body').addEventListener('click', (event) => {
     }
     return;
   }
-  if (goBackBtn) {
+  if (goPageBack) {
     authenticateUser();
 
     document.querySelector('#selectAddressContainer').remove();

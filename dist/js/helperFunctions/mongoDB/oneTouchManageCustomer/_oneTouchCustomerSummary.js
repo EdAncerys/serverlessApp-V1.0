@@ -9,19 +9,27 @@ async function _oneTouchCustomerSummary(id, pageName) {
   const data = await _fetchOneTouchCustomerDataById(id);
   console.log(data);
 
-  const customerData = `<div class='rowContainer backgroundLG03'>
-                              <div class="manageCustomerRow">
-                                <div class="tableCell">${data.customerFullName}</div>
-                                <div class="tableCell">${data.customerPhoneNumber}</div>
-                                <div class="tableCell">${data.customerEmail}</div>
-                              </div>
-                            </div>
-                            <goBackBtn class="btnOneTouch" role="button">
-                                Go Back
-                            </goBackBtn>`;
+  const customerDataContainer = document.createElement('div');
+  customerDataContainer.id = 'customerDataContainer';
+  customerDataContainer.innerHTML = `
+                                      <div class='alignHorizontally'>
+                                        <div class="manageCustomerRow">
+                                          <div class="tableCell">${data.customerFullName}</div>
+                                          <div class="tableCell">${data.customerPhoneNumber}</div>
+                                          <div class="tableCell">${data.customerEmail}</div>
+                                        </div>
+                                      </div>
+                                      <goPageBack class="btnOneTouch" role="button">
+                                          Go Back
+                                      </goPageBack>`;
 
-  if (pageName === 'order-new-connection') {
-    console.log(customerData);
+  if (pageName === 'manage-customer') {
+    const oneTouchWrapper = document.getElementById('oneTouchWrapper');
+    const manageCustomerContent = document.getElementById(
+      'manageCustomerContent'
+    );
+    oneTouchWrapper.appendChild(customerDataContainer);
+    manageCustomerContent.classList.add('hidden');
   }
 
   persistDOMData('oneTouchBodyContainer', pageName);

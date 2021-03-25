@@ -42,9 +42,9 @@ async function _fetchAllOneTouchCustomers(pageName) {
   }
   if (pageName === 'order-new-connection') {
     sliderNav = `<div class='navWrapper alignHorizontally'>
-                  <goBackBtn id='pageOne' class="btnOneTouch backgroundSecondary" role="button">
+                  <goPageBack id='pageOne' class="btnOneTouch backgroundSecondary" role="button">
                     Go Back
-                  </goBackBtn>
+                  </goPageBack>
                   <addUser class="btnOneTouch" 
                             role="button"
                             onclick = "location.href='../../../../views/oneTouch/add-customer.html'";>

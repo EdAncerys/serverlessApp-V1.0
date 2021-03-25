@@ -103,9 +103,9 @@ async function _getBroadbandAvailability() {
                                                     </div>
                                                     ${orderData}
                                                     <div class='sliderNav'>
-                                                      <goBackBtn id='pageTwo' class="btnOneTouch btnBack" role="button">
+                                                      <goPageBack id='pageTwo' class="btnOneTouch btnBack" role="button">
                                                         Go Back
-                                                      </goBackBtn>
+                                                      </goPageBack>
                                                     </div>
                                                   </div>`;
 

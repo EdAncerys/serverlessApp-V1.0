@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Persist user data on reload
   const oneTouchDOMBody = sessionStorage.getItem('oneTouchDOMBody') === null;
   const oneTouchPageName =
-    sessionStorage.getItem('oneTouchPageName') === 'manage-customers';
+    sessionStorage.getItem('oneTouchPageName') === 'manage-customer';
 
   if (oneTouchDOMBody || !oneTouchPageName) {
     fetchOneTouchUsersFromDB();
@@ -34,12 +34,12 @@ document.querySelector('body').addEventListener('click', (event) => {
     authenticateUser();
 
     const id = event.target.getAttribute('id');
-    _oneTouchCustomerSummary(id, 'order-new-connection');
+    _oneTouchCustomerSummary(id, 'manage-customer');
     // _errorMessage(`Info User ID: ${id} `, 'success');
   }
   if (deleteCustomer) {
     authenticateUser();
 
-    _deleteOneTouchCustomer(id, 'manage-customers');
+    _deleteOneTouchCustomer(id, 'manage-customer');
   }
 });

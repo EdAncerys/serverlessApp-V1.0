@@ -52,9 +52,9 @@ async function _termsAndConditions() {
                       </div>
                     </div>
                     <div class='sliderNav'>
-                      <goBackBtn id='pageFour' class="btnOneTouch btnBack" role="button">
+                      <goPageBack id='pageFour' class="btnOneTouch btnBack" role="button">
                         Go Back
-                      </goBackBtn>
+                      </goPageBack>
                     </div>
                   </div>`;
 
