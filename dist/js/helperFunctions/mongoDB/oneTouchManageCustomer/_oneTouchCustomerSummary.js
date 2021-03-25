@@ -11,7 +11,7 @@ async function _oneTouchCustomerSummary(id, pageName) {
 
   const customerDataContainer = document.createElement('div');
   customerDataContainer.id = 'customerDataContainer';
-  customerDataContainer.innerHTML = `<div class='alignHorizontally'>
+  const customerDataHTML = `<div class='alignHorizontally'>
                                         <div class="manageCustomerRow">
                                           <div class="tableCell">${data.customerFullName}</div>
                                           <div class="tableCell">${data.customerPhoneNumber}</div>
@@ -22,13 +22,18 @@ async function _oneTouchCustomerSummary(id, pageName) {
                                           Go Back
                                       </goPageBack>`;
 
+  const oneTouchCustomer = document.createElement('div');
+  oneTouchCustomer.id = 'oneTouchBroadbandOrderPageTwo';
+  oneTouchCustomer.innerHTML = customerDataHTML;
+
   if (pageName === 'manage-customer') {
-    const oneTouchWrapper = document.getElementById('oneTouchWrapper');
-    const manageCustomerContent = document.getElementById(
-      'manageCustomerContent'
+    const oneTouchWrapper = document.querySelector('#oneTouchWrapper');
+    const oneTouchManageCustomerPageOne = document.querySelector(
+      '#oneTouchManageCustomerPageOne'
     );
-    oneTouchWrapper.appendChild(customerDataContainer);
-    manageCustomerContent.classList.add('hidden');
+
+    oneTouchManageCustomerPageOne.classList.add('hidden');
+    oneTouchWrapper.appendChild(oneTouchCustomer);
   }
 
   persistDOMData('oneTouchBodyContainer', pageName);

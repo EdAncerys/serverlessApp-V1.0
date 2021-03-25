@@ -113,13 +113,8 @@ async function _fetchAllOneTouchCustomers(pageName) {
       const manageCustomerWrapper = document.querySelector(
         '#manageCustomerWrapper'
       );
-      const oneTouchManageCustomerPageOne = document.querySelector(
-        '#oneTouchManageCustomerPageOne'
-      );
 
-      oneTouchManageCustomerPageOne.classList.add('hidden');
       manageCustomerWrapper.appendChild(oneTouchCustomer);
-      persistDOMData('oneTouchBodyContainer', pageName);
     }
     if (pageName === 'order-new-connection') {
       // Removing customer previous data
@@ -135,8 +130,9 @@ async function _fetchAllOneTouchCustomers(pageName) {
 
       oneTouchBroadbandOrderPageOne.classList.add('hidden');
       oneTouchSlider.appendChild(oneTouchCustomer);
-      persistDOMData('oneTouchBodyContainer', pageName);
     }
+
+    persistDOMData('oneTouchBodyContainer', pageName);
     _spinner(false);
   } catch (err) {
     console.log(err);
