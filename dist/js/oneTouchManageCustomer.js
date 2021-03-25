@@ -3,6 +3,7 @@ import { _errorMessage } from './helperFunctions/_errorMessage.js';
 import { _fetchAllOneTouchCustomers } from './helperFunctions/mongoDB/oneTouchManageCustomer/_fetchAllOneTouchCustomers.js';
 import { _deleteOneTouchCustomer } from './helperFunctions/mongoDB/oneTouchManageCustomer/_deleteOneTouchCustomer.js';
 import { _oneTouchCustomerSummary } from './helperFunctions/mongoDB/oneTouchManageCustomer/_oneTouchCustomerSummary.js';
+import { persistDOMData } from './persistDOMData.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   // Persist user data on reload
@@ -35,7 +36,8 @@ document.querySelector('body').addEventListener('click', (event) => {
     authenticateUser();
 
     const id = event.target.getAttribute('id');
-    _oneTouchCustomerSummary(id, 'manage-customer');
+    _errorMessage('Passing customer info page', 'success');
+    // _oneTouchCustomerSummary(id, 'manage-customer');
   }
   if (deleteCustomer) {
     authenticateUser();
@@ -45,14 +47,14 @@ document.querySelector('body').addEventListener('click', (event) => {
   if (goPageBack) {
     authenticateUser();
 
-    const manageCustomerContent = document.getElementById(
-      'manageCustomerContent'
+    const oneTouchManageCustomerPageOne = document.getElementById(
+      'oneTouchManageCustomerPageOne'
     );
-    const customerDataContainer = document.getElementById(
-      'customerDataContainer'
+    const oneTouchBroadbandOrderPageTwo = document.getElementById(
+      'oneTouchBroadbandOrderPageTwo'
     );
-    customerDataContainer.remove();
-    manageCustomerContent.classList.remove('hidden');
+    oneTouchBroadbandOrderPageTwo.remove();
+    oneTouchManageCustomerPageOne.classList.remove('hidden');
     persistDOMData('oneTouchBodyContainer', 'manage-customer');
   }
 });
