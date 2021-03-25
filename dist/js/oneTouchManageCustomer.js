@@ -23,23 +23,36 @@ document.addEventListener('DOMContentLoaded', () => {
 const fetchOneTouchUsersFromDB = async () => {
   await authenticateUser();
 
-  _fetchAllOneTouchCustomers('manage-customers');
+  _fetchAllOneTouchCustomers('manage-customer');
 };
 
 document.querySelector('body').addEventListener('click', (event) => {
   const customerInfo = event.target.nodeName === 'CUSTOMERINFO';
   const deleteCustomer = event.target.nodeName === 'DELETECUSTOMER';
+  const goPageBack = event.target.nodeName === 'GOPAGEBACK';
 
   if (customerInfo) {
     authenticateUser();
 
     const id = event.target.getAttribute('id');
     _oneTouchCustomerSummary(id, 'manage-customer');
-    // _errorMessage(`Info User ID: ${id} `, 'success');
   }
   if (deleteCustomer) {
     authenticateUser();
 
     _deleteOneTouchCustomer(id, 'manage-customer');
+  }
+  if (goPageBack) {
+    authenticateUser();
+
+    const manageCustomerContent = document.getElementById(
+      'manageCustomerContent'
+    );
+    const customerDataContainer = document.getElementById(
+      'customerDataContainer'
+    );
+    customerDataContainer.remove();
+    manageCustomerContent.classList.remove('hidden');
+    persistDOMData('oneTouchBodyContainer', 'manage-customer');
   }
 });

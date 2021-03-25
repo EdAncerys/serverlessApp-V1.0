@@ -4,7 +4,7 @@
 .manageCustomerContainer .flex-container {
   color: #333;
 }
-.manageCustomerContainer headerText {
+.headerText {
   display: grid;
   grid-template-rows: 1fr 1fr;
   gap: 10px;
@@ -19,7 +19,7 @@
   margin: 5px 0;
 }
 .manageCustomerRow,
-.manageCustomerContainer headerText {
+.headerText {
   min-width: 600px;
 }
 .rowDataWrapper {

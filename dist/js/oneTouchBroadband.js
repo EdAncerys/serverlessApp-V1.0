@@ -56,7 +56,7 @@ document.querySelector('body').addEventListener('click', (event) => {
   const userInfo = event.target.nodeName === 'USERINFO';
   const selectCustomer = event.target.nodeName === 'SELECTCUSTOMER';
   // Slider nav functionality
-  const goPageBack = event.target.nodeName === 'GOBACKBTN';
+  const goPageBack = event.target.nodeName === 'GOPAGEBACK';
   const customerInfo = event.target.nodeName === 'CUSTOMERINFO';
 
   // console.log(event.target);

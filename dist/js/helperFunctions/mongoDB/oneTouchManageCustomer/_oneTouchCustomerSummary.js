@@ -11,8 +11,7 @@ async function _oneTouchCustomerSummary(id, pageName) {
 
   const customerDataContainer = document.createElement('div');
   customerDataContainer.id = 'customerDataContainer';
-  customerDataContainer.innerHTML = `
-                                      <div class='alignHorizontally'>
+  customerDataContainer.innerHTML = `<div class='alignHorizontally'>
                                         <div class="manageCustomerRow">
                                           <div class="tableCell">${data.customerFullName}</div>
                                           <div class="tableCell">${data.customerPhoneNumber}</div>
