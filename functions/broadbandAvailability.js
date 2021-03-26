@@ -2,7 +2,7 @@ const axios = require('axios'); // Axios module
 require('dotenv').config(); // Enabling to load Environment variables from a .env File
 const sha512 = require('js-sha512'); // component to compute the SHA512
 
-exports.handler = function (event, context, callback) {
+exports.handler = (event, context, callback) => {
   const {
     sub_premises,
     premises_name,

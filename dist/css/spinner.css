@@ -1,0 +1,29 @@
+spinnerContainer {
+  /* position: -webkit-sticky;
+  position: sticky; */
+}
+spinnerWrapper {
+  position: absolute;
+  z-index: 99;
+  padding: 100px 0;
+  background: rgb(0 0 0 / 40%);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+errMsgContent {
+  display: grid;
+  justify-content: center;
+  color: #fff;
+}
+spinnerMsg {
+  text-align: center;
+  font-size: 2em;
+  margin: 15px 0;
+}
+spinnerIconContainer {
+  display: grid;
+  font-size: 4em;
+  justify-content: center;
+}

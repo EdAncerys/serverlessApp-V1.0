@@ -4,7 +4,7 @@
   # the root website directory
   publish = "./dist"
   # the root website directory
-  command = "echo 'I be building' "
+  command = "echo 'Build in progress...' "
   # the build command
   functions = "functions/"
 
@@ -26,8 +26,8 @@
   status = 200
 
 [[redirects]]
-  from = "/lambdaGET"
-  to = "/.netlify/functions/lambdaGET"
+  from = "/ndg/contactForm"
+  to = "/.netlify/functions/nodeMailerIONOS"
   status = 200
 
 [[redirects]]
@@ -50,3 +50,28 @@
   to = "/.netlify/functions/broadbandAvailability"
   status = 200
 
+[[redirects]]
+  from = "/oneTouch/customer"
+  to = "/.netlify/functions/mongoDB_oneTouchCustomer"
+  status = 200
+
+[[redirects]]
+  from = "/oneTouch/orders"
+  to = "/.netlify/functions/mongoDB_oneTouchOrders"
+  status = 200
+
+[[redirects]]
+  from = "/oneTouch/oneTouchLogin"
+  to = "/.netlify/functions/mongoDB_oneTouchLogin"
+  status = 200
+
+[[redirects]]
+  from = "/oneTouch/oneTouchSignUp"
+  to = "/.netlify/functions/mongoDB_oneTouchSignUp"
+  status = 200
+
+[[redirects]]
+  from = "/oneTouch/oneTouchUserAuthentication"
+  to = "/.netlify/functions/oneTouchUserAuthentication"
+  status = 200
+  force = true

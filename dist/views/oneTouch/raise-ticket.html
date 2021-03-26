@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <!-- Navigation Partial script -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./JS/oneTouchNav.js"></script>
+
+    <script defer type="module" src="../../JS/raiseTicket.js"></script>
+
+    <!-- Spinner script -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="./css/mainOneTouch.css" />
+    <title>Order New Connection – NDG Super Net</title>
+  </head>
+  <body>
+    <navigation></navigation>
+    <errorMessage></errorMessage>
+    <spinnerContainer></spinnerContainer>
+
+    <div class="oneTouchBodyContainer">
+      <div class="oneTouchWrapper alignHorizontally">
+        <div class="raiseTicketContent">
+          <div class="features">
+            <div class="form-container">
+              <div class="oneTouchFormContainer">
+                <div id="raiseTicketImgContainer">
+                  <div class="raiseTicketImg"></div>
+                </div>
+
+                <form action="/">
+                  <label for="contactReason">Reason For Contacting</label>
+                  <select id="contactReason" name="contactReason">
+                    <option selected disabled hidden value="selectionID">
+                      Please Choose Your Reason
+                    </option>
+                    <option value="Query">Query</option>
+                    <option value="Faulty">Faulty</option>
+                  </select>
+
+                  <label for="fname">Name</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Your name..."
+                  />
+
+                  <label for="lname">Phone Number</label>
+                  <input
+                    type="text"
+                    id="phoneNumber"
+                    name="phoneNumber"
+                    placeholder="Your phone number..."
+                  />
+
+                  <label for="subject">Description</label>
+                  <textarea
+                    id="description"
+                    name="description"
+                    placeholder="Describe the issue..."
+                    style="height: 200px"
+                  ></textarea>
+
+                  <btnSubmit>
+                    <input
+                      id="raiseTicket"
+                      class="btnOneTouch"
+                      type="submit"
+                      value="Submit"
+                    />
+                  </btnSubmit>
+                </form>
+              </div>
+            </div>
+            <div class="form-container">
+              <div class="oneTouchFormContainer">
+                <div class="alignHorizontally fontH3">Raised Tickets</div>
+                <div class="fontH2 justifyText">
+                  The standard chunk of Lorem Ipsum used since the 1500s is
+                  reproduced below for those interested. Sections 1.10.32 and
+                  1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are
+                  also reproduced in their exact original form, accompanied by
+                  English versions from the 1914 translation by H. Rackham.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

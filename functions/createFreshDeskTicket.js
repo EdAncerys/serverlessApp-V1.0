@@ -1,8 +1,17 @@
 const axios = require('axios'); // Axios module
 require('dotenv').config(); // Enabling to load Environment variables from a .env File
 
-exports.handler = function (event, context, callback) {
-  const body = JSON.parse(event.body);
+exports.handler = (event, context, callback) => {
+  const { name, email, subject, description } = JSON.parse(event.body);
+
+  const body = {
+    name,
+    email,
+    subject,
+    description,
+    status: 2,
+    priority: 1,
+  };
 
   let PATH = 'api/v2/tickets';
   const URL = `https://${process.env.FD_ENDPOINT}.freshdesk.com/${PATH}`;

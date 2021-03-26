@@ -1,0 +1,50 @@
+.backgroundPrimary {
+  background-color: #6ec5dd;
+}
+.colorPrimary {
+  color: #6ec5dd;
+}
+
+.backgroundSecondary {
+  background-color: #cbd76d;
+}
+.colorSecondary {
+  color: #cbd76d;
+}
+
+.backgroundWhite {
+  background-color: #f7f7f7;
+}
+.backgroundSilver {
+  background-color: #f2f2f2;
+}
+.backgroundGray {
+  background-color: #f1f1f1;
+}
+.colorBlack {
+  color: #333;
+}
+.colorWhite {
+  color: #f7f7f7;
+}
+.colorDanger {
+  color: #d9534f;
+}
+
+.backgroundLG01 {
+  background: linear-gradient(#e66465, #9198e5);
+}
+.backgroundLG02 {
+  background-image: linear-gradient(
+    109.6deg,
+    rgba(44, 83, 131, 0.6) 18.9%,
+    rgba(95, 175, 201, 0.3) 91.1%
+  );
+}
+.backgroundLG03 {
+  background-image: linear-gradient(
+    109.6deg,
+    rgba(44, 83, 131, 0.1) 18.9%,
+    rgba(95, 175, 201, 0.02) 91.1%
+  );
+}

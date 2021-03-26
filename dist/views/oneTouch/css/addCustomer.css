@@ -1,0 +1,38 @@
+.userPostcodeSearchContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.addCustomerFormContainer {
+  min-width: 600px;
+  border-radius: 15px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  text-align: left;
+  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 30%);
+}
+.addCustomerRowContainer {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 1fr;
+  padding: 5px 0;
+  gap: 10px;
+}
+.addCustomerNoteContainer {
+  padding: 15px 0;
+}
+.addCustomerInfoHeader {
+  padding: 15px 0;
+}
+.addCustomerSelectAddressContainer {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  padding: 5px 0;
+  gap: 10px;
+}
+.addCustomerSelectAddressNav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 5px 0;
+  gap: 10px;
+}

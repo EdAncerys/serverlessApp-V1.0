@@ -1,0 +1,51 @@
+errorMessage {
+  position: absolute;
+  width: 100%;
+  z-index: 99;
+  top: 100px;
+}
+.errorMsgContainer {
+  display: grid;
+  justify-items: center;
+}
+.errorMsgWrapper {
+  display: grid;
+  grid-template-columns: 10px 1fr 6fr 40px;
+  width: 80%;
+  color: #f7f7f7;
+  margin: 5px 0;
+  border-radius: 10px;
+}
+.errorMsgLeftContainer {
+  border-radius: 10px 0 0 10px;
+  height: 60px;
+  background-color: #dfdfdf;
+}
+.errorMsgType {
+  display: grid;
+  align-content: center;
+  padding-left: 10px;
+}
+.errorMsg {
+  display: grid;
+  align-content: center;
+  overflow: auto;
+}
+.errorIdContainer {
+  cursor: pointer;
+  display: grid;
+  justify-items: center;
+  align-content: center;
+}
+/* Add fade in animation to error message */
+errorMessage #errorMsgWrapper {
+  animation: fadeInElement 1.25s ease forwards;
+}
+@keyframes fadeInElement {
+  from {
+    opacity: 0.1;
+  }
+  to {
+    opacity: 0.95;
+  }
+}

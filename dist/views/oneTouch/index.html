@@ -4,73 +4,54 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Home page – NDG Supernet</title>
-    <link rel="icon" href="./images/icon.png" />
-    <link rel="stylesheet" href="./css/style.css" />
+
+    <!-- Navigation Partial script -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./JS/oneTouchNav.js"></script>
+
+    <link rel="stylesheet" href="./css/mainOneTouch.css" />
+    <title>Home page – NDG Super Net</title>
   </head>
   <body>
-    <header>
-      <div class="container">
-        <a href="./index.html"
-          ><img src="./images/color_logo_transparent.png" alt="" class="logo"
-        /></a>
+    <navigation></navigation>
 
-        <nav>
-          <ul class="topnav">
-            <li><a href="../../index.html">NDG Home</a></li>
-            <li><a href="./index.html">Home</a></li>
-            <li class="dropdown right">
-              <a class="dropbtn" href="#">Admin</a>
-              <div class="dropdown-content">
-                <a class="change" href="#">Edit Users</a>
-                <a class="change" href="#">Add Users</a>
-                <a class="change" href="./raise_ticket.html">Create Ticket</a>
-              </div>
-            </li>
-            <li class="dropdown right">
-              <a class="dropbtn" href="#">Hosted</a>
-              <div class="dropdown-content">
-                <a class="change" href="./voip.html"
-                  >Order a New Voip Connection
-                </a>
-                <a class="change" href="./cloudtouch.html">Cloud Touch</a>
-              </div>
-            </li>
-            <li class="dropdown right">
-              <a class="dropbtn" href="#">Broadband</a>
-              <div class="dropdown-content">
-                <a class="change" href="./order_new_connection.html"
-                  >Order a New Connection</a
-                >
-                <a class="change" href="#">Order Status</a>
-                <a class="change" href="#">Connection</a>
-                <a class="change" href="./make_a_new_connection.html"
-                  >Make a Connection</a
-                >
-              </div>
-            </li>
-            <li><a href="./support_docs.html">Support Doc's</a></li>
-          </ul>
-        </nav>
+    <div class="oneTouchBodyContainer">
+      <div class="oneTouchWrapper">
+        <div class="indexContent">
+          <a href="./support-docs.html"
+            ><img class="indexIcon" src="./images/Cloud.png" alt=""
+          /></a>
+          <a href="./raise-ticket.html"
+            ><img class="indexIcon" src="./images/rasie_a_ticket.png" alt=""
+          /></a>
+          <a href="./live-connections.html"
+            ><img class="indexIcon" src="./images/Live_Connections.png" alt=""
+          /></a>
+          <a href="./order-new-connection.html"
+            ><img
+              class="indexIcon"
+              src="./images/Connection_Checker.png"
+              alt=""
+          /></a>
+          <a href="./manage-customer.html"
+            ><img class="indexIcon" src="./images/User_Management.png" alt=""
+          /></a>
+        </div>
+
+        <section class="features backgroundLG02">
+          <div class="flex-container">
+            <!-- <img src="../../images/pic02.jpg" alt="NDG" /> -->
+            <div class="fontH3">Index Banner</div>
+            <div class="fontH2 justifyText">
+              The standard chunk of Lorem Ipsum used since the 1500s is
+              reproduced below for those interested. Sections 1.10.32 and
+              1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also
+              reproduced in their exact original form, accompanied by English
+              versions from the 1914 translation by H. Rackham.
+            </div>
+          </div>
+        </section>
       </div>
-    </header>
-    <div style="padding-top: 10%" class="center">
-      <a href="./support_docs.html"
-        ><img class="cloud" src="./images/Cloud.png" alt=""
-      /></a>
-      <a href="./raise_ticket.html"
-        ><img class="raise" src="./images/rasie_a_ticket.png" alt=""
-      /></a>
-      <a href="./live_connections.html"
-        ><img class="live" src="./images/Live_Connections.png" alt=""
-      /></a>
-      <a href="./order_new_connection.html"
-        ><img class="connection" src="./images/Connection_Checker.png" alt=""
-      /></a>
-      <a href="./user_management.html"
-        ><img class="user" src="./images/User_Management.png" alt=""
-      /></a>
     </div>
-    <div class=""></div>
   </body>
 </html>

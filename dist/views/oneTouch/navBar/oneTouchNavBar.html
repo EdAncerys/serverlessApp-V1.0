@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- User Authentication script -->
+    <script type="module" src="./js/authenticateUserNavBar.js"></script>
+
+    <title>oneTouch Navigation</title>
+  </head>
+  <body>
+    <section class="navigation">
+      <div class="nav-container">
+        <div class="brand">
+          <a href="./index.html"
+            ><img src="./images/color_logo_transparent.png" alt="oneTouch"
+          /></a>
+        </div>
+        <nav>
+          <div class="nav-mobile">
+            <a id="navbar-toggle" href="#!"><span></span></a>
+          </div>
+          <ul class="nav-list">
+            <li>
+              <a href="./index.html">Home</a>
+            </li>
+            <li>
+              <a>Admin</a>
+              <ul class="navbar-dropdown">
+                <li>
+                  <a href="#">Account Overview</a>
+                </li>
+                <li>
+                  <a href="#">Reseller Customers</a>
+                </li>
+                <li>
+                  <a href="../oneTouch/support-docs.html">Support Doc's</a>
+                </li>
+                <li>
+                  <a href="./raise-ticket.html">Raise Ticket</a>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <a>Customers</a>
+              <ul class="navbar-dropdown">
+                <li>
+                  <a href="#">Address Book</a>
+                </li>
+                <li>
+                  <a href="./manage-customer.html">Manage Customer</a>
+                </li>
+                <li>
+                  <a href="./add-customer.html">Add Customer</a>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <a>Broadband</a>
+              <ul class="navbar-dropdown">
+                <li>
+                  <a href="#">Broadband Accounts</a>
+                </li>
+                <li>
+                  <a href="#">Add Broadband</a>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <a>Web Hosting</a>
+              <ul class="navbar-dropdown">
+                <li>
+                  <a href="#">Hosting Accounts</a>
+                </li>
+                <li>
+                  <a href="#">Add Hosting</a>
+                </li>
+              </ul>
+            </li>
+
+            <li onclick="logout()">
+              <a class="logOutBtnContainer">Logout</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </section>
+
+    <div
+      style="
+        position: absolute;
+        bottom: 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+      "
+    >
+      <loginPage
+        class="btnB01 backgroundLG01"
+        onclick="location.href='./one-touch-login.html';"
+        >loginPage</loginPage
+      >
+      <clearSessionsBtn class="btnB01 backgroundPrimary"
+        >Clear Sessions</clearSessionsBtn
+      >
+    </div>
+  </body>
+</html>
+
+<script>
+  //Navigation css
+  (function ($) {
+    $(function () {
+      //  open and close nav
+      $('#navbar-toggle').click(function () {
+        $('nav ul').slideToggle();
+      });
+
+      // Hamburger toggle
+      $('#navbar-toggle').on('click', function () {
+        this.classList.toggle('active');
+      });
+
+      // If a link has a dropdown, add sub menu toggle.
+      $('nav ul li a:not(:only-child)').click(function (e) {
+        $(this).siblings('.navbar-dropdown').slideToggle('slow');
+
+        // Close dropdown when select another dropdown
+        $('.navbar-dropdown').not($(this).siblings()).hide('slow');
+        e.stopPropagation();
+      });
+
+      // Click outside the dropdown will remove the dropdown class
+      $('html').click(function () {
+        $('.navbar-dropdown').hide();
+      });
+    });
+  })(jQuery);
+
+  const logout = (e) => {
+    sessionStorage.clear();
+    location.reload();
+  };
+
+  document.querySelector('clearSessionsBtn').addEventListener('click', () => {
+    // location.reload();
+    sessionStorage.clear();
+  });
+</script>
