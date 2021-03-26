@@ -27,14 +27,16 @@
       <div class="oneTouchWrapper">
         <section class="features">
           <div class="flex-container boxContainer">
+            <div class="tableCell">Added at: ${data.customerCreated}</div>
             <div class="tableCell">${data.customerFullName}</div>
             <div class="tableCell">${data.customerPhoneNumber}</div>
             <div class="tableCell">${data.customerEmail}</div>
-          </div>
-          <div class="flex-container boxContainer">
-            <goPageBack class="btnOneTouch" role="button"> Go Back </goPageBack>
+            <div class="tableCell">${data.postcode}</div>
           </div>
         </section>
+        <div style="position: absolute; top: 80px; right: 20px; display: grid">
+          <goPageBack class="btnOneTouch" role="button"> Go Back </goPageBack>
+        </div>
 
         <section class="features">
           <div class="flex-container boxContainer">
