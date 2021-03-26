@@ -36,8 +36,7 @@ document.querySelector('body').addEventListener('click', (event) => {
     authenticateUser();
 
     const id = event.target.getAttribute('id');
-    _errorMessage('Passing customer info page', 'success');
-    // _oneTouchCustomerSummary(id, 'manage-customer');
+    _oneTouchCustomerSummary(id, 'manage-customer');
   }
   if (deleteCustomer) {
     authenticateUser();
@@ -47,14 +46,12 @@ document.querySelector('body').addEventListener('click', (event) => {
   if (goPageBack) {
     authenticateUser();
 
+    const oneTouchCustomer = document.getElementById('oneTouchCustomer');
     const oneTouchManageCustomerPageOne = document.getElementById(
       'oneTouchManageCustomerPageOne'
     );
-    const oneTouchBroadbandOrderPageTwo = document.getElementById(
-      'oneTouchBroadbandOrderPageTwo'
-    );
-    oneTouchBroadbandOrderPageTwo.remove();
     oneTouchManageCustomerPageOne.classList.remove('hidden');
+    oneTouchCustomer.remove();
     persistDOMData('oneTouchBodyContainer', 'manage-customer');
   }
 });

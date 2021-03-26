@@ -22,18 +22,20 @@ async function _oneTouchCustomerSummary(id, pageName) {
                                           Go Back
                                       </goPageBack>`;
 
-  const oneTouchCustomer = document.createElement('div');
-  oneTouchCustomer.id = 'oneTouchBroadbandOrderPageTwo';
-  oneTouchCustomer.innerHTML = customerDataHTML;
-
   if (pageName === 'manage-customer') {
-    const oneTouchWrapper = document.querySelector('#oneTouchWrapper');
+    const oneTouchCustomer = document.createElement('div');
+    oneTouchCustomer.id = 'oneTouchCustomer';
+    oneTouchCustomer.innerHTML = customerDataHTML;
+
+    const manageCustomerContainer = document.querySelector(
+      '#manageCustomerContainer'
+    );
     const oneTouchManageCustomerPageOne = document.querySelector(
       '#oneTouchManageCustomerPageOne'
     );
 
     oneTouchManageCustomerPageOne.classList.add('hidden');
-    oneTouchWrapper.appendChild(oneTouchCustomer);
+    manageCustomerContainer.appendChild(oneTouchCustomer);
   }
 
   persistDOMData('oneTouchBodyContainer', pageName);
