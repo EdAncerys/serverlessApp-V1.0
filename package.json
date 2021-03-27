@@ -11,6 +11,7 @@
     "bcrypt": "^5.0.1",
     "dns": "^0.1.2",
     "dotenv": "latest",
+    "https-proxy-agent": "^5.0.0",
     "js-sha512": "latest",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.6.3",
