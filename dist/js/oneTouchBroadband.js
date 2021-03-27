@@ -56,7 +56,8 @@ document.querySelector('body').addEventListener('click', (event) => {
 
       try {
         const response = await fetch(URL);
-        if (!response.ok) throw new Error(response);
+        console.log(response);
+        if (!response.ok) throw new Error(response.statusText);
 
         const data = await response.json();
         console.log(data);

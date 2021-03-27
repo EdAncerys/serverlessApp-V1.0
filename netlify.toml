@@ -27,7 +27,7 @@
 
 [[redirects]]
   from = "/oneTouch/icuk_oneTouchAPI/*"
-  to = "/.netlify/functions/icuk_oneTouchAPI"
+  to = "/.netlify/functions/icuk_proxyServerAPI"
   status = 200
 
 [[redirects]]
