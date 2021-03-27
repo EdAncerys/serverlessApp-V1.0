@@ -45,6 +45,24 @@ document.querySelector('body').addEventListener('click', (event) => {
   const quotaguard = event.target.nodeName === 'QUOTAGUARD';
   if (quotaguard) {
     console.log('quotaguard');
+
+    async function _getAddressForPostcodeProvided() {
+      let postcode = document
+        .getElementById('postcode')
+        .value.replace(/\s/g, '');
+
+      const URL = '/ndg/getAddresses/' + postcode;
+      console.log(URL);
+
+      try {
+        const response = await fetch(URL);
+        const data = await response.json();
+        console.log(data);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
     return;
   }
 
