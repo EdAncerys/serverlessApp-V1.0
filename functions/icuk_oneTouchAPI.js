@@ -1,6 +1,36 @@
 const axios = require('axios'); // Axios module
 require('dotenv').config(); // Enabling to load Environment variables from a .env File
 const sha512 = require('js-sha512'); // component to compute the SHA512
+const HttpsProxyAgent = require('https-proxy-agent'); // Proxy server
+const request = require('request');
+
+const quataguardProxyServer = async (event) => {
+  const QUOTAGUARDSTATIC_URL = process.env.QUOTAGUARDSTATIC_URL;
+  const agent = new HttpsProxyAgent(QUOTAGUARDSTATIC_URL);
+
+  const uri =
+    'https://obixmhl8nfs7cj:z35ktq5trmoqb9n2mdss3wifw2@eu-central-shield-01.quotaguard.com:9294';
+
+  request(
+    {
+      agent: agent,
+      timeout: 10000,
+      followRedirect: true,
+      maxRedirects: 10,
+      uri,
+      method: 'POST',
+      headers: {
+        'content-type': 'application/x-www-form-urlencoded',
+      },
+      body: 'name=john',
+    },
+    function (error, response, body) {
+      console.log('Error' + error);
+      console.log('Response: ' + response);
+      console.log('Body: ' + body);
+    }
+  );
+};
 
 const oneTouchAddressesForPostcodeProvided = async (event) => {
   console.table('Getting Addresses For Postcode Provided');
