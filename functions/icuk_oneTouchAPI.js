@@ -5,11 +5,24 @@ const HttpsProxyAgent = require('https-proxy-agent'); // Proxy server
 const request = require('request');
 
 const quataguardProxyServer = async (event) => {
+  console.log('quataguardProxyServer');
+  const body = JSON.parse(event.body);
+  console.log(body);
+
   const QUOTAGUARDSTATIC_URL = process.env.QUOTAGUARDSTATIC_URL;
   const agent = new HttpsProxyAgent(QUOTAGUARDSTATIC_URL);
 
+  let response;
+  const method = 'GET';
   const uri =
     'https://obixmhl8nfs7cj:z35ktq5trmoqb9n2mdss3wifw2@eu-central-shield-01.quotaguard.com:9294';
+
+  const sendResponse = (body) => {
+    callback(null, {
+      statusCode: 200,
+      body: JSON.stringify(body),
+    });
+  };
 
   request(
     {
@@ -18,18 +31,25 @@ const quataguardProxyServer = async (event) => {
       followRedirect: true,
       maxRedirects: 10,
       uri,
-      method: 'POST',
+      method,
       headers: {
         'content-type': 'application/x-www-form-urlencoded',
       },
       body: 'name=john',
     },
+
     function (error, response, body) {
       console.log('Error' + error);
       console.log('Response: ' + response);
       console.log('Body: ' + body);
+
+      if (error) response = sendResponse(error);
+      if (response) response = sendResponse(error);
+      if (body) response = sendResponse(error);
     }
   );
+
+  return response;
 };
 
 const oneTouchAddressesForPostcodeProvided = async (event) => {
@@ -43,8 +63,8 @@ const oneTouchAddressesForPostcodeProvided = async (event) => {
   const ICUK_END_POINT = '/broadband/address_search/';
   const HASH = sha512(ICUK_END_POINT + postCode + ICUK_API_KEY);
   const URL = ICUK_URL + ICUK_END_POINT + postCode;
+  console.log(URL);
 
-  // Send user response
   const headers = {
     User: 'icukapi',
     Hash: HASH,
@@ -53,92 +73,34 @@ const oneTouchAddressesForPostcodeProvided = async (event) => {
   };
   console.log(headers);
 
-  const sendResponse = (body) => {
-    callback(null, {
-      statusCode: 200,
-      body: JSON.stringify(body),
-    });
-  };
-
-  axios
-    .post(URL, { headers: headers })
+  const response = await axios
+    .get(URL, { headers: headers })
     .then((res) => {
-      console.log(res.data);
-      sendResponse(res.data);
+      const body = res.data.addresses;
+      console.log(body.length);
+      return {
+        statusCode: 200,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ body }),
+      };
     })
     .catch((err) => {
-      console.log(err.response);
-      console.log(err.response.data);
-      sendResponse(err);
+      const body = err.response.data;
+      console.log(body);
+      return {
+        statusCode: 200,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+      };
     });
-
-  return sendResponse;
+  return response;
 };
 
-exports.handler = (event, context, callback) => {
-  const {
-    sub_premises,
-    premises_name,
-    thoroughfare_number,
-    thoroughfare_name,
-    locality,
-    post_town,
-    county,
-    postcode,
-    district_id,
-    nad_key,
-  } = JSON.parse(event.body);
-
-  // Send user response
-  const headers = {
-    User: 'icukapi',
-    Hash: HASH,
-    Encryption: 'SHA-512',
-    'Content-Type': 'application/json',
-  };
-
-  const body = {
-    sub_premises,
-    premises_name,
-    thoroughfare_number,
-    thoroughfare_name,
-    locality,
-    post_town,
-    county,
-    postcode,
-    district_id,
-    nad_key,
-  };
-
-  const sendResponse = (body) => {
-    callback(null, {
-      statusCode: 200,
-      body: JSON.stringify(body),
-    });
-  };
-
-  // Perform API call
-  const broadbandAvailability = () => {
-    axios
-      .post(URL, body, { headers: headers })
-      .then((res) => {
-        console.log(res.data);
-        sendResponse(res.data);
-      })
-      .catch((err) => {
-        console.log(err.response);
-        console.log(err.response.data);
-        sendResponse(err);
-      });
-  };
-
-  // Make sure method is GET
-  if (event.httpMethod == 'POST') {
-    broadbandAvailability();
-  }
-};
-
-module.exports.handler = async (event, context) => {
+module.exports.handler = async (event, context, callback) => {
   switch (event.httpMethod) {
     case 'GET':
       return oneTouchAddressesForPostcodeProvided(event);

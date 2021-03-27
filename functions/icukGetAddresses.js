@@ -11,7 +11,7 @@ exports.handler = (event, context, callback) => {
   const ICUK_END_POINT = '/broadband/address_search/';
   const HASH = sha512(ICUK_END_POINT + postCode + ICUK_API_KEY);
   const URL = ICUK_URL + ICUK_END_POINT + postCode;
-
+  console.log(URL);
   // Send user response
   const headers = {
     User: 'icukapi',

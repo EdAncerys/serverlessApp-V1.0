@@ -46,23 +46,25 @@ document.querySelector('body').addEventListener('click', (event) => {
   if (quotaguard) {
     console.log('quotaguard');
 
-    async function _getAddressForPostcodeProvided() {
+    (async () => {
       let postcode = document
         .getElementById('postcode')
         .value.replace(/\s/g, '');
 
-      const URL = '/ndg/getAddresses/' + postcode;
+      const URL = '/oneTouch/icuk_oneTouchAPI/' + postcode;
       console.log(URL);
 
       try {
         const response = await fetch(URL);
+        if (!response.ok) throw new Error(response);
+
         const data = await response.json();
         console.log(data);
       } catch (err) {
         console.log(err);
       }
-    }
-    _getAddressForPostcodeProvided();
+    })();
+
     return;
   }
 
