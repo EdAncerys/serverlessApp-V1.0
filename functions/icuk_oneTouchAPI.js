@@ -101,12 +101,13 @@ const oneTouchAddressesForPostcodeProvided = async (event) => {
 };
 
 module.exports.handler = async (event, context, callback) => {
+  let body;
+  if (event.body) body = JSON.parse(event.body);
+
   switch (event.httpMethod) {
     case 'GET':
       return oneTouchAddressesForPostcodeProvided(event);
     case 'POST':
-      const body = JSON.parse(event.body);
-
       return console.log(event.httpMethod);
     case 'DELETE':
       return console.log(event.httpMethod);
