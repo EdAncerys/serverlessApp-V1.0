@@ -22,30 +22,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const oneTouchDOMBody = document.querySelector('#oneTouchBodyContainer');
     oneTouchDOMBody.innerHTML = sessionStorage.getItem('oneTouchDOMBody');
   }
-  // Btn event listeners
-  document
-    .getElementById('getAddressForPostcodeProvided')
-    .addEventListener('click', getAddressForPostcodeProvided);
-  document
-    .getElementById('oneTouchCustomer')
-    .addEventListener('click', oneTouchCustomer);
 });
 
-const getAddressForPostcodeProvided = async (ev) => {
-  ev.preventDefault();
-  await authenticateUser();
-
-  _newOrderPostcodeValidation();
-};
-
-const oneTouchCustomer = async (ev) => {
-  ev.preventDefault();
-  await authenticateUser();
-
-  _fetchAllOneTouchCustomers('order-new-connection');
-};
-
 document.querySelector('body').addEventListener('click', (event) => {
+  const getAddressForPostcodeProvided =
+    event.target.nodeName === 'GETADDRESSFORPOSTCODEPROVIDED';
+  const oneTouchCustomers = event.target.nodeName === 'ONETOUCHCUSTOMERS';
+
   const getBroadbandAvailability =
     event.target.nodeName === 'GETBROADBANDAVAILABILITY';
   const selectOrder = event.target.nodeName === 'SELECTORDER';
@@ -59,7 +42,25 @@ document.querySelector('body').addEventListener('click', (event) => {
   const goPageBack = event.target.nodeName === 'GOPAGEBACK';
   const customerInfo = event.target.nodeName === 'CUSTOMERINFO';
 
+  const quotaguard = event.target.nodeName === 'QUOTAGUARD';
+  if (quotaguard) {
+    console.log('quotaguard');
+    return;
+  }
+
   // console.log(event.target);
+  if (getAddressForPostcodeProvided) {
+    authenticateUser();
+
+    _newOrderPostcodeValidation();
+    return;
+  }
+  if (oneTouchCustomers) {
+    authenticateUser();
+
+    _fetchAllOneTouchCustomers('order-new-connection');
+    return;
+  }
   if (getBroadbandAvailability) {
     authenticateUser();
 

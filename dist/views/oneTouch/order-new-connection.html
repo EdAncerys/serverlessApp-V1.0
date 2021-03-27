@@ -24,6 +24,10 @@
     <errorMessage></errorMessage>
     <spinnerContainer></spinnerContainer>
 
+    <div style="position: absolute; top: 80px; right: 20px">
+      <quotaguard class="btnB01 backgroundLG01">QuatAGuard</quotaguard>
+    </div>
+
     <div id="oneTouchBodyContainer" class="oneTouchBodyContainer">
       <div class="oneTouchWrapper">
         <div class="newConnectionContent">
@@ -42,21 +46,18 @@
                       class="dslFormInput"
                       type="text"
                     />
-                    <button
-                      id="getAddressForPostcodeProvided"
-                      class="btnOneTouch"
-                    >
+                    <getAddressForPostcodeProvided class="btnOneTouch">
                       Get Addresses
-                    </button>
+                    </getAddressForPostcodeProvided>
                   </div>
                 </form>
               </div>
 
               <div class="ncUserSelection">
                 <dividerComponent></dividerComponent>
-                <button id="oneTouchCustomer" class="btnOneTouch">
+                <oneTouchCustomers class="btnOneTouch">
                   Select User
-                </button>
+                </oneTouchCustomers>
               </div>
             </div>
           </section>

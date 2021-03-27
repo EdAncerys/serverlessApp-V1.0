@@ -11,12 +11,7 @@
 # App routing
 
 [[redirects]]
-  from = "/ndg/tickets"
-  to = "/.netlify/functions/freshDeskTickets"
-  status = 200
-
-[[redirects]]
-  from = "/ndg/createTicket"
+  from = "/oneTouch/createTicket"
   to = "/.netlify/functions/createFreshDeskTicket"
   status = 200
 
@@ -31,8 +26,8 @@
   status = 200
 
 [[redirects]]
-  from = "/ndg/broadBand"
-  to = "/.netlify/functions/icuk"
+  from = "/oneTouch/icuk_broadband"
+  to = "/.netlify/functions/icuk_broadband"
   status = 200
 
 [[redirects]]
