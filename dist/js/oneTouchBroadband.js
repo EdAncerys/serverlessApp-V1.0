@@ -62,7 +62,7 @@ document.querySelector('body').addEventListener('click', (event) => {
         console.log(err);
       }
     }
-
+    _getAddressForPostcodeProvided();
     return;
   }
 

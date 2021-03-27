@@ -26,8 +26,8 @@
   status = 200
 
 [[redirects]]
-  from = "/oneTouch/icuk_broadband"
-  to = "/.netlify/functions/icuk_broadband"
+  from = "/oneTouch/icuk_oneTouchAPI"
+  to = "/.netlify/functions/icuk_oneTouchAPI"
   status = 200
 
 [[redirects]]
