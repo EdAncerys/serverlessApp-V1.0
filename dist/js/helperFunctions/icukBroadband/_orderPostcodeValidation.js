@@ -2,7 +2,7 @@ import { _validatePostcode } from './_validatePostcode.js';
 import { _errorMessage } from '../_errorMessage.js';
 import { _fetchAddressesForPostcodeProvided } from './_fetchAddressesForPostcodeProvided.js';
 
-const _newOrderPostcodeValidation = () => {
+const _orderPostcodeValidation = () => {
   console.log('Validating From...');
 
   let postcode = document.getElementById('postcode').value.replace(/\s/g, '');
@@ -21,4 +21,4 @@ const _newOrderPostcodeValidation = () => {
   _fetchAddressesForPostcodeProvided(postcode);
 };
 
-export { _newOrderPostcodeValidation };
+export { _orderPostcodeValidation };

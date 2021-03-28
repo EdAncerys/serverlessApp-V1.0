@@ -52,20 +52,12 @@ async function _getBroadbandAvailability() {
 
   try {
     const response = await fetch(URL, config);
+    if (!response.ok) throw new Error(response.statusText);
+
     const data = await response.json();
     console.log(data);
 
     let orderData = '';
-
-    if (data.name === 'Error') {
-      console.log('Error');
-      _errorMessage(
-        `Broadband not available for address provided. ${data.message}`,
-        'warning'
-      );
-      _spinner(false);
-      return;
-    }
 
     _sortBroadbandData(data, 'name', true).map((order) => {
       const oneTouchOrderData = JSON.stringify(order);
@@ -116,7 +108,10 @@ async function _getBroadbandAvailability() {
     persistDOMData('oneTouchBodyContainer', 'order-new-connection');
   } catch (err) {
     console.log(err);
-    _errorMessage(err);
+    _errorMessage(
+      `Broadband not available for address provided. ` + err,
+      'warning'
+    );
     _spinner(false);
   }
 }

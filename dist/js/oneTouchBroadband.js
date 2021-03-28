@@ -1,5 +1,5 @@
 import { authenticateUser } from './authenticateUser.js';
-import { _newOrderPostcodeValidation } from './helperFunctions/icukBroadband/_newOrderPostcodeValidation.js';
+import { _orderPostcodeValidation } from './helperFunctions/icukBroadband/_orderPostcodeValidation.js';
 import { _errorMessage } from './helperFunctions/_errorMessage.js';
 import { _placeBroadbandOrder } from './helperFunctions/icukBroadband/_placeBroadbandOrder.js';
 import { _saveAddressData } from './helperFunctions/icukBroadband/_saveAddressData.js';
@@ -42,38 +42,11 @@ document.querySelector('body').addEventListener('click', (event) => {
   const goPageBack = event.target.nodeName === 'GOPAGEBACK';
   const customerInfo = event.target.nodeName === 'CUSTOMERINFO';
 
-  const quotaguard = event.target.nodeName === 'QUOTAGUARD';
-  if (quotaguard) {
-    console.log('quotaguard');
-
-    (async () => {
-      let postcode = document
-        .getElementById('postcode')
-        .value.replace(/\s/g, '');
-
-      const URL = '/oneTouch/icuk_oneTouchAPI/' + postcode;
-      console.log(URL);
-
-      try {
-        const response = await fetch(URL);
-        console.log(response);
-        if (!response.ok) throw new Error(response.statusText);
-
-        const data = await response.json();
-        console.log(data);
-      } catch (err) {
-        console.log(err);
-      }
-    })();
-
-    return;
-  }
-
   // console.log(event.target);
   if (fetchAddressesForPostcodeProvided) {
     authenticateUser();
 
-    _newOrderPostcodeValidation();
+    _orderPostcodeValidation();
     return;
   }
   if (oneTouchCustomers) {
