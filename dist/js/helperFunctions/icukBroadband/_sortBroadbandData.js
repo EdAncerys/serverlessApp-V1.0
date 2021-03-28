@@ -1,5 +1,5 @@
 const _sortBroadbandData = (data, prop, asc) => {
-  const dataWithPrice = data.products.map((broadband) => {
+  const dataWithPrice = data.map((broadband) => {
     if (broadband.name === '20CN ADSL Max') {
       broadband.price = '£20.20';
       broadband.installation = '£115.00';
