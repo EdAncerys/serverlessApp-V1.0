@@ -1,4 +1,4 @@
-import { _fetchAllOneTouchCustomers } from './_fetchAllOneTouchCustomers.js';
+import { _fetchOneTouchCustomersFromDB } from './_fetchOneTouchCustomersFromDB.js';
 import { _errorMessage } from '../../_errorMessage.js';
 import { _spinner } from '../../_spinner.js';
 
@@ -17,16 +17,18 @@ async function _deleteOneTouchCustomer(id, pageName) {
 
   try {
     const response = await fetch(URL, config);
-    if (!response.ok) throw new Error(response);
+    if (!response.ok) throw new Error(response.statusText);
     const data = await response.json();
 
-    _fetchAllOneTouchCustomers(pageName);
+    _fetchOneTouchCustomersFromDB(pageName);
+
     _errorMessage(data.msg, 'success');
     _spinner(false);
     console.log(data);
   } catch (err) {
     console.log(err);
-    _errorMessage(err);
+
+    _errorMessage(`User Not Found ` + err, 'warning');
     _spinner(false);
   }
 }

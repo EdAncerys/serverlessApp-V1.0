@@ -37,6 +37,7 @@ const addUser = async (ev) => {
   ev.preventDefault();
   await authenticateUser();
 
+  // Form validation
   const customerFullName =
     document.getElementById('customerFullName').value === '';
   const customerEmail = document

@@ -1,6 +1,6 @@
 import { authenticateUser } from './authenticateUser.js';
 import { _errorMessage } from './helperFunctions/_errorMessage.js';
-import { _fetchAllOneTouchCustomers } from './helperFunctions/mongoDB/oneTouchManageCustomer/_fetchAllOneTouchCustomers.js';
+import { _fetchOneTouchCustomersFromDB } from './helperFunctions/mongoDB/oneTouchManageCustomer/_fetchOneTouchCustomersFromDB.js';
 import { _deleteOneTouchCustomer } from './helperFunctions/mongoDB/oneTouchManageCustomer/_deleteOneTouchCustomer.js';
 import { _oneTouchCustomerSummary } from './helperFunctions/mongoDB/oneTouchManageCustomer/_oneTouchCustomerSummary.js';
 import { persistDOMData } from './persistDOMData.js';
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     sessionStorage.getItem('oneTouchPageName') === 'manage-customer';
 
   if (oneTouchDOMBody || !oneTouchPageName) {
-    fetchOneTouchUsersFromDB();
+    fetchOneTouchCustomersFromDB();
   }
   if (!oneTouchDOMBody && oneTouchPageName) {
     console.log('Page Reloaded');
@@ -21,10 +21,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-const fetchOneTouchUsersFromDB = async () => {
+const fetchOneTouchCustomersFromDB = async () => {
   await authenticateUser();
 
-  _fetchAllOneTouchCustomers('manage-customer');
+  _fetchOneTouchCustomersFromDB('manage-customer');
 };
 
 document.querySelector('body').addEventListener('click', (event) => {
@@ -32,10 +32,12 @@ document.querySelector('body').addEventListener('click', (event) => {
   const deleteCustomer = event.target.nodeName === 'DELETECUSTOMER';
   const goPageBack = event.target.nodeName === 'GOPAGEBACK';
 
+  let id;
+  if (event.target.getAttribute('id')) id = event.target.getAttribute('id');
+
   if (customerInfo) {
     authenticateUser();
 
-    const id = event.target.getAttribute('id');
     _oneTouchCustomerSummary(id, 'manage-customer');
   }
   if (deleteCustomer) {

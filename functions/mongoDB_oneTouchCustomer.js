@@ -274,13 +274,14 @@ const oneTouchFindCustomersById = async (db, data) => {
 module.exports.handler = async (event, context) => {
   context.callbackWaitsForEmptyEventLoop = false;
 
+  let body;
+  if (event.body) body = JSON.parse(event.body);
   const db = await connectToDatabase(MONGODB_URI);
 
   switch (event.httpMethod) {
     case 'GET':
       return oneTouchQueryAllUsers(db);
     case 'POST':
-      const body = JSON.parse(event.body);
       if (body.customerEmail) {
         return oneTouchAddCustomer(db, body);
       }
