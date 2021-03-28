@@ -20,7 +20,7 @@ const connectToDatabase = async (uri) => {
   return cachedDb;
 };
 
-const oneTouchQueryOrders = async (db) => {
+const oneTouchQueryAllOrders = async (db) => {
   const dbData = await db.collection(COLLECTION).find({}).toArray();
   console.table(dbData);
 
@@ -31,6 +31,54 @@ const oneTouchQueryOrders = async (db) => {
     },
     body: JSON.stringify(dbData),
   };
+};
+
+const oneTouchFilterOrder = async (db, data) => {
+  const filterOrders = {
+    access_token: data.access_token,
+  };
+
+  const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
+  const authToken = await jwt.verify(
+    filterOrders.access_token,
+    ACCESS_TOKEN_SECRET,
+    (err, authData) => {
+      if (err) {
+        console.log(err);
+        return false;
+      } else {
+        console.log(authData);
+        return authData;
+      }
+    }
+  );
+
+  if (filterOrders.access_token) {
+    const dbData = await db
+      .collection(COLLECTION)
+      .find({ oneTouchSuperUser: authToken.email })
+      .toArray();
+    console.log(dbData);
+
+    return {
+      statusCode: 201,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ data: dbData }),
+    };
+  } else {
+    const msg = `Error accured finding orders for: ` + authToken.email;
+    console.log(msg);
+
+    return {
+      statusCode: 403,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ msg: msg }),
+    };
+  }
 };
 
 const oneTouchAddOrder = async (db, data) => {
@@ -93,7 +141,7 @@ const oneTouchDeleteOrder = async (db, data) => {
     .collection(COLLECTION)
     .find({ _id: orderID })
     .toArray();
-  const orderValid = order[0];
+  const orderValid = order.length > 0;
 
   if (orderValid && deleteOrder._id) {
     const msg =
@@ -124,62 +172,6 @@ const oneTouchDeleteOrder = async (db, data) => {
   }
 };
 
-const oneTouchUpdateOrder = async (db, data) => {
-  const updateOrder = {
-    _id: data._id,
-    name: data.name,
-    likely_down_speed: data.likely_down_speed,
-    likely_up_speed: data.likely_up_speed,
-    price: data.price,
-    installation: data.installation,
-  };
-  const orderID = new ObjectId(updateOrder._id);
-  const order = await db
-    .collection(COLLECTION)
-    .find({ _id: orderID })
-    .toArray();
-  const orderValid = order[0];
-
-  if (orderValid && updateOrder._id) {
-    const msg =
-      `Order been successfully updated in DB. Order ID: ` + updateOrder._id;
-    const oneTouchOrder = { _id: orderID };
-    const updatedValues = {
-      $set: {
-        name: updateOrder.name,
-        likely_down_speed: updateOrder.likely_down_speed,
-        likely_up_speed: updateOrder.likely_up_speed,
-        price: updateOrder.price,
-        installation: updateOrder.installation,
-      },
-    };
-
-    await db.collection(COLLECTION).updateOne(oneTouchOrder, updatedValues);
-    console.log(msg);
-
-    return {
-      statusCode: 201,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ updateOrder: data, msg: msg }),
-    };
-  } else {
-    const msg =
-      `Order not found! Error updating order in DB. Order ID: ` +
-      updateOrder._id;
-    console.log(msg);
-
-    return {
-      statusCode: 422,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ updateOrder: data, msg: msg }),
-    };
-  }
-};
-
 module.exports.handler = async (event, context) => {
   context.callbackWaitsForEmptyEventLoop = false;
 
@@ -189,9 +181,11 @@ module.exports.handler = async (event, context) => {
 
   switch (event.httpMethod) {
     case 'GET':
-      return oneTouchQueryOrders(db);
+      return oneTouchQueryAllOrders(db);
     case 'POST':
-      return oneTouchAddOrder(db, body);
+      if (body.oneTouchData && body.access_token)
+        return oneTouchAddOrder(db, body);
+      if (body.access_token) return oneTouchFilterOrder(db, body);
     case 'DELETE':
       return oneTouchDeleteOrder(db, body);
     case 'PATCH':

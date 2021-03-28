@@ -5,12 +5,23 @@ import { _spinner } from '../_spinner.js';
 async function _oneTouchOrders() {
   console.log('Fetching all orders...');
   _spinner(true, 'Loading Orders...');
-  const URL = '/oneTouch/orders';
   const oneTouchOrders = document.querySelector('oneTouchOrders');
+  const URL = '/oneTouch/orders';
+  const access_token = await sessionStorage.getItem('access_token');
+  const body = {
+    access_token,
+  };
+  const config = {
+    method: 'POST',
+    body: JSON.stringify(body),
+  };
 
   try {
-    const response = await fetch(URL);
-    const data = await response.json();
+    const response = await fetch(URL, config);
+    if (!response.ok) throw new Error(response.statusText);
+
+    const dbData = await response.json();
+    const data = dbData.data;
     console.log(data);
 
     let orderData = '';
