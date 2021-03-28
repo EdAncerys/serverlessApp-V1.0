@@ -16,33 +16,13 @@
   status = 200
 
 [[redirects]]
-  from = "/ndg/contactUs"
+  from = "/oneTouch/contactUs"
   to = "/.netlify/functions/nodeMailer"
-  status = 200
-
-[[redirects]]
-  from = "/ndg/contactForm"
-  to = "/.netlify/functions/nodeMailerIONOS"
   status = 200
 
 [[redirects]]
   from = "/oneTouch/icuk_oneTouchAPI/*"
   to = "/.netlify/functions/icuk_proxyServerAPI"
-  status = 200
-
-[[redirects]]
-  from = "/ndg/getAddresses/*"
-  to = "/.netlify/functions/icukGetAddresses"
-  status = 200
-
-[[redirects]]
-  from = "/ndg/getAreaBroadbandAvailability/*"
-  to = "/.netlify/functions/icukAreaBroadbandAvailability"
-  status = 200
-  
-[[redirects]]
-  from = "/ndg/broadbandAvailability"
-  to = "/.netlify/functions/broadbandAvailability"
   status = 200
 
 [[redirects]]

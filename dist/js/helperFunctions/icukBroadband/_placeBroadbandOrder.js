@@ -70,7 +70,7 @@ async function _placeBroadbandOrder() {
                           <div>${orderBroadbandSummary}</div>
                         </div>`;
 
-  const URL = '/ndg/contactUs';
+  const URL = '/oneTouch/contactUs';
   const body = {
     name: oneTouchData.customerFullName,
     email: oneTouchData.customerEmail,

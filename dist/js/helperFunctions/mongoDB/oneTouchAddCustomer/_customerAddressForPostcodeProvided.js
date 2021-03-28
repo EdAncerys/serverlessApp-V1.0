@@ -23,7 +23,7 @@ async function _customerAddressForPostcodeProvided() {
     return;
   }
 
-  const URL = '/ndg/getAddresses/' + postcode;
+  const URL = '/oneTouch/icuk_oneTouchAPI/' + postcode;
   console.log(URL);
 
   // DOM manipulation

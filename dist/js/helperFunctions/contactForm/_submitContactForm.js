@@ -6,7 +6,7 @@ const _submitContactForm = (name, email, subject, description) => {
   console.log('Sending Email...');
   console.log(name, email, subject, description);
 
-  const URL = '/ndg/contactUs';
+  const URL = '/oneTouch/contactUs';
   const body = {
     name,
     email,
