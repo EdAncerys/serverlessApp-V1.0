@@ -3,10 +3,10 @@ import { _errorMessage } from '../_errorMessage.js';
 import { _sortAddresses } from './_sortAddresses.js';
 import { _spinner } from '../_spinner.js';
 
-async function _getAddressForPostcodeProvided(postcode) {
+async function _fetchAddressesForPostcodeProvided(postcode) {
   console.log('Fetching addresses for postcode provided...');
   _spinner(true);
-  const URL = '/ndg/getAddresses/' + postcode;
+  const URL = '/oneTouch/icuk_oneTouchAPI/' + postcode;
   console.log(URL);
 
   // Removing user previous data
@@ -22,10 +22,12 @@ async function _getAddressForPostcodeProvided(postcode) {
 
   try {
     const response = await fetch(URL);
+    if (!response.ok) throw new Error(response.statusText);
+
     const data = await response.json();
     console.log(data);
-
     let value = 0;
+
     if (data.message === 'Request failed with status code 403') {
       console.log('IP not whitelisted...');
       _errorMessage('IP not whitelisted');
@@ -100,4 +102,4 @@ async function _getAddressForPostcodeProvided(postcode) {
   }
 }
 
-export { _getAddressForPostcodeProvided };
+export { _fetchAddressesForPostcodeProvided };

@@ -25,8 +25,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 document.querySelector('body').addEventListener('click', (event) => {
-  const getAddressForPostcodeProvided =
-    event.target.nodeName === 'GETADDRESSFORPOSTCODEPROVIDED';
+  const fetchAddressesForPostcodeProvided =
+    event.target.nodeName === 'FETCHADDRESSESFORPOSTCODEPROVIDED';
   const oneTouchCustomers = event.target.nodeName === 'ONETOUCHCUSTOMERS';
 
   const getBroadbandAvailability =
@@ -70,7 +70,7 @@ document.querySelector('body').addEventListener('click', (event) => {
   }
 
   // console.log(event.target);
-  if (getAddressForPostcodeProvided) {
+  if (fetchAddressesForPostcodeProvided) {
     authenticateUser();
 
     _newOrderPostcodeValidation();

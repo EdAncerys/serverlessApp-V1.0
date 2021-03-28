@@ -1,6 +1,6 @@
 import { _validatePostcode } from './_validatePostcode.js';
 import { _errorMessage } from '../_errorMessage.js';
-import { _getAddressForPostcodeProvided } from './_getAddressForPostcodeProvided.js';
+import { _fetchAddressesForPostcodeProvided } from './_fetchAddressesForPostcodeProvided.js';
 
 const _newOrderPostcodeValidation = () => {
   console.log('Validating From...');
@@ -18,7 +18,7 @@ const _newOrderPostcodeValidation = () => {
     return;
   }
 
-  _getAddressForPostcodeProvided(postcode);
+  _fetchAddressesForPostcodeProvided(postcode);
 };
 
 export { _newOrderPostcodeValidation };

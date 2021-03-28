@@ -3,7 +3,7 @@ const sha512 = require('js-sha512'); // component to compute the SHA512
 const HttpsProxyAgent = require('https-proxy-agent'); // Proxy server
 const fetch = require('node-fetch');
 
-const oneTouchAddressesForPostcodeProvided = async (event) => {
+const icUKAddressesForPostcodeProvided = async (event) => {
   console.log('QuatAGuard Proxy Server Agent');
 
   const urlPath = event.path;
@@ -41,13 +41,13 @@ const oneTouchAddressesForPostcodeProvided = async (event) => {
     if (!response.ok) throw new Error(response.statusText);
 
     const data = await response.json();
-    console.log(data);
+    console.log(data.addresses);
     return {
       statusCode: 200,
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ data }),
+      body: JSON.stringify({ addresses: data.addresses }),
     };
   } catch (err) {
     console.log(err);
@@ -67,8 +67,7 @@ module.exports.handler = async (event, context, callback) => {
 
   switch (event.httpMethod) {
     case 'GET':
-      // return oneTouchAddressesForPostcodeProvided(event);
-      return oneTouchAddressesForPostcodeProvided(event);
+      return icUKAddressesForPostcodeProvided(event);
     case 'POST':
       return console.log(event.httpMethod);
     case 'DELETE':
