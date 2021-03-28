@@ -1,5 +1,6 @@
 const MongoClient = require('mongodb').MongoClient;
 let ObjectId = require('mongodb').ObjectID;
+const jwt = require('jsonwebtoken');
 
 const MONGODB_URI = process.env.MONGODB_URI;
 const DB_NAME = 'oneTouchDB';
@@ -35,8 +36,26 @@ const oneTouchQueryOrders = async (db) => {
 const oneTouchAddOrder = async (db, data) => {
   console.log(data);
   const createOrder = {
+    access_token: data.access_token,
     broadband_name: data.oneTouchData.name,
   };
+
+  const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
+  const authToken = await jwt.verify(
+    createOrder.access_token,
+    ACCESS_TOKEN_SECRET,
+    (err, authData) => {
+      if (err) {
+        console.log(err);
+        return false;
+      } else {
+        console.log(authData);
+        return authData;
+      }
+    }
+  );
+  delete data['access_token']; // Removing access_token from data object
+  data['oneTouchSuperUser'] = authToken.email;
 
   if (createOrder.broadband_name) {
     await db.collection(COLLECTION).insertMany([data]);
@@ -164,17 +183,19 @@ const oneTouchUpdateOrder = async (db, data) => {
 module.exports.handler = async (event, context) => {
   context.callbackWaitsForEmptyEventLoop = false;
 
+  let body;
+  if (event.body) body = JSON.parse(event.body);
   const db = await connectToDatabase(MONGODB_URI);
 
   switch (event.httpMethod) {
     case 'GET':
       return oneTouchQueryOrders(db);
     case 'POST':
-      return oneTouchAddOrder(db, JSON.parse(event.body));
+      return oneTouchAddOrder(db, body);
     case 'DELETE':
-      return oneTouchDeleteOrder(db, JSON.parse(event.body));
+      return oneTouchDeleteOrder(db, body);
     case 'PATCH':
-      return oneTouchUpdateOrder(db, JSON.parse(event.body));
+      return oneTouchUpdateOrder(db, body);
     default:
       return { statusCode: 400 };
   }

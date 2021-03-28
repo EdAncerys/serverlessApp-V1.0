@@ -1,9 +1,10 @@
-async function _createOneTouchOrder(oneTouchData) {
+async function _createOneTouchOrder(access_token, oneTouchData) {
   console.log('Creating Broadband Order. Name: ' + oneTouchData.name);
 
   const URL = '/oneTouch/orders';
   const body = {
     oneTouchData,
+    access_token,
   };
   const config = {
     method: 'POST',
