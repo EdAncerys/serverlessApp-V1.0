@@ -41,7 +41,7 @@ async function _reviewOrderData(oneTouchOrderData) {
     const county = mergedData.county === 'null' ? '' : mergedData.county;
     const postcode = mergedData.postcode === 'null' ? '' : mergedData.postcode;
 
-    const orderData = `<div class="boxContainer backgroundLG03 broadbandDataContainerHover fontH2">
+    const orderData = `<div class="boxContainer bgGradientSilver broadbandDataContainerHover fontH2">
                         <div class="broadbandDataContainer">
                           <div class="tableCell">${mergedData.name}</div>
                           <div class="tableCell">${mergedData.likely_down_speed}</div>
@@ -59,11 +59,11 @@ async function _reviewOrderData(oneTouchOrderData) {
                       </div>`;
 
     oneTouchOrderReview.innerHTML = `<div class='alignHorizontally'>
-                                      <div class="headerMsgTitle colorWhite">
+                                      <div class="headerMsgTitle textWhite">
                                         <div class="fontH4">Review Your Order!</div>
                                         <div class="fontH2">Order details will be submitted as per bellow information</div>
                                       </div>
-                                      <div class="boxContainer broadbandDataContainer backgroundWhite">
+                                      <div class="boxContainer broadbandDataContainer bgWhite">
                                         <div class="tableCell">Supplier</div>
                                         <div class="tableCell">Download</div>
                                         <div class="tableCell">Upload</div>
@@ -72,12 +72,12 @@ async function _reviewOrderData(oneTouchOrderData) {
                                         <div class="tableCell">Order</div>
                                       </div>
                                       ${orderData}
-                                      <div class="boxContainer backgroundLG03 broadbandDataContainerHover">
+                                      <div class="boxContainer bgGradientSilver broadbandDataContainerHover">
                                         <div class="broadbandOrderReviewContainer">
                                           <div class="fontH3">Full Address Provided:</div>
                                           <div class="fontH2">${sub_premises} ${premises_name}  ${thoroughfare_number} ${thoroughfare_name} ${locality} ${post_town} ${county} ${postcode}</div>
                                           <div class="fontH3">Customer Details:</div>
-                                          <div class="fontH2 colorDanger">Full Name: ${mergedData.customerFullName} | Email: ${mergedData.customerEmail}</div>
+                                          <div class="fontH2 textDanger">Full Name: ${mergedData.customerFullName} | Email: ${mergedData.customerEmail}</div>
                                         </div>
                                       </div>
                                       <div class='sliderNav'>

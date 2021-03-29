@@ -73,7 +73,7 @@ async function _fetchOneTouchCustomersFromDB(pageName) {
                       </div>`;
       }
 
-      customerData += `<div class="rowContainer backgroundLG03">
+      customerData += `<div class="rowContainer bgGradientSilver">
                         <div class="manageCustomerRow">
                           <div class="rowDataWrapper">
                             <div>${customer.customerFullName}</div>
@@ -95,7 +95,7 @@ async function _fetchOneTouchCustomersFromDB(pageName) {
     });
 
     customerDataHTML = `<div id='customerDataContainer' class='customerDataContainer'>
-                          <div class="manageCustomerRow boxContainer backgroundGray">
+                          <div class="manageCustomerRow boxContainer bgGray">
                             <div class="rowDataWrapper">Customer</div>
                             <div class="rowDataWrapper">Contact Details</div>
                             <div class="rowDataWrapper">Address</div>

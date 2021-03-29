@@ -62,7 +62,7 @@ async function _getBroadbandAvailability() {
     _sortBroadbandData(data, 'name', true).map((order) => {
       const oneTouchOrderData = JSON.stringify(order);
 
-      orderData += `<div class="boxContainer backgroundLG03 broadbandDataContainerHover fontH2">
+      orderData += `<div class="boxContainer bgGradientSilver broadbandDataContainerHover fontH2">
                           <div class="broadbandDataContainer">
                             <div class="tableCell">${order.name}</div>
                             <div class="tableCell">${order.likely_down_speed}</div>
@@ -85,7 +85,7 @@ async function _getBroadbandAvailability() {
     });
 
     oneTouchBroadbandAvailability.innerHTML = `<div class='alignHorizontally'>
-                                                    <div class="boxContainer broadbandDataContainer backgroundWhite fontH3">
+                                                    <div class="boxContainer broadbandDataContainer bgWhite fontH3">
                                                       <div class="tableCell">Supplier</div>
                                                       <div class="tableCell">Download</div>
                                                       <div class="tableCell">Upload</div>
