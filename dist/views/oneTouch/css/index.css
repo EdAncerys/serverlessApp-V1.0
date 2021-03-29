@@ -1,5 +1,5 @@
 .indexContent {
-  margin: 100px 0;
+  margin: 50px 0;
 }
 .indexIcon {
   width: 150px;
@@ -12,4 +12,9 @@
   -ms-transform: scale(1.1);
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
+}
+.indexBanner {
+  display: grid;
+  gap: 10px;
+  margin: 10px;
 }
