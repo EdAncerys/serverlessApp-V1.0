@@ -4,7 +4,7 @@ import { _successMessage } from '../_successMessage.js';
 const _submitTicket = (name, email, subject, description) => {
   console.log('Submit Ticket To freshDeskTickets...');
 
-  const URL = '/ndg/createTicket';
+  const URL = '/oneTouch/createTicket';
   const body = {
     name: name,
     email: email,

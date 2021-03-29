@@ -92,7 +92,7 @@ async function _addOneTouchCustomerToDB() {
 }
 
 const clearFormData = () => {
-  sessionStorage.setItem('userAddressValidation', false);
+  sessionStorage.removeItem('oneTouchData');
   document.querySelector('#selectionContainer').remove();
   document.querySelector('#userPostcodeContainer').classList.remove('hidden');
 

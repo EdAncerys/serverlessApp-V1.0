@@ -14,7 +14,8 @@ async function _placeBroadbandOrder() {
     '#oneTouchBroadbandOrderPageFive'
   );
 
-  const oneTouchData = JSON.parse(sessionStorage.getItem('oneTouchData'));
+  const access_token = await sessionStorage.getItem('access_token');
+  const oneTouchData = await JSON.parse(sessionStorage.getItem('oneTouchData'));
   console.log(oneTouchData);
   const oderSubject =
     'Broadband Order' + ' | Created at: ' + new Date().toLocaleString();
@@ -70,7 +71,7 @@ async function _placeBroadbandOrder() {
                           <div>${orderBroadbandSummary}</div>
                         </div>`;
 
-  const URL = '/ndg/contactUs';
+  const URL = '/oneTouch/contactUs';
   const body = {
     name: oneTouchData.customerFullName,
     email: oneTouchData.customerEmail,
@@ -82,12 +83,13 @@ async function _placeBroadbandOrder() {
     method: 'POST',
     body: JSON.stringify(body),
   };
+
   try {
     const response = await fetch(URL, config);
     const data = await response.json();
     console.log(data);
 
-    _createOneTouchOrder(oneTouchData);
+    _createOneTouchOrder(access_token, oneTouchData);
     _spinner(false);
     _errorMessage('Order Submitted Successfully!', 'success');
 

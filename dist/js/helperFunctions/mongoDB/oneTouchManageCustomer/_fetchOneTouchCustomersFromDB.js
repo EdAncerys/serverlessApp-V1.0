@@ -2,7 +2,7 @@ import { persistDOMData } from '../../../persistDOMData.js';
 import { _errorMessage } from '../../_errorMessage.js';
 import { _spinner } from '../../_spinner.js';
 
-async function _fetchAllOneTouchCustomers(pageName) {
+async function _fetchOneTouchCustomersFromDB(pageName) {
   console.log('Fetching customers from db...');
   _spinner(true, 'Loading Active Users...');
   const URL = '/oneTouch/customer';
@@ -114,6 +114,11 @@ async function _fetchAllOneTouchCustomers(pageName) {
         '#manageCustomerWrapper'
       );
 
+      const removeData = document.querySelector(
+        '#oneTouchBroadbandOrderPageTwo'
+      );
+      if (removeData) removeData.remove();
+
       manageCustomerWrapper.appendChild(oneTouchCustomer);
     }
     if (pageName === 'order-new-connection') {
@@ -141,4 +146,4 @@ async function _fetchAllOneTouchCustomers(pageName) {
   }
 }
 
-export { _fetchAllOneTouchCustomers };
+export { _fetchOneTouchCustomersFromDB };

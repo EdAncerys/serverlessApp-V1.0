@@ -7,7 +7,7 @@ async function _getBroadbandAvailability() {
   console.log('Getting Broadband Availability...');
   _spinner(true);
 
-  const URL = '/ndg/broadbandAvailability';
+  const URL = '/oneTouch/icuk_oneTouchAPI/';
   const dropDown = document.getElementById('selectedAddress');
   let validateInput = '';
   if (dropDown)
@@ -23,7 +23,7 @@ async function _getBroadbandAvailability() {
   const oneTouchBroadbandAvailability = document.createElement('div');
   oneTouchBroadbandAvailability.id = 'oneTouchBroadbandOrderPageThree';
 
-  if (validateInput === 'selectionID') {
+  if (validateInput === 'selectAddress') {
     _spinner(false);
     _errorMessage('Please Choose Address', 'warning');
     return;
@@ -52,20 +52,12 @@ async function _getBroadbandAvailability() {
 
   try {
     const response = await fetch(URL, config);
+    if (!response.ok) throw new Error(response.statusText);
+
     const data = await response.json();
     console.log(data);
 
     let orderData = '';
-
-    if (data.name === 'Error') {
-      console.log('Error');
-      _errorMessage(
-        `Broadband not available for address provided. ${data.message}`,
-        'warning'
-      );
-      _spinner(false);
-      return;
-    }
 
     _sortBroadbandData(data, 'name', true).map((order) => {
       const oneTouchOrderData = JSON.stringify(order);
@@ -116,38 +108,12 @@ async function _getBroadbandAvailability() {
     persistDOMData('oneTouchBodyContainer', 'order-new-connection');
   } catch (err) {
     console.log(err);
-    _errorMessage(err);
+    _errorMessage(
+      `Broadband not available for address provided. ` + err,
+      'warning'
+    );
     _spinner(false);
   }
 }
-
-const _getAreaBroadbandAvailability = () => {
-  const oderPostcode = _handlePostcode(sessionStorage.getItem('postcode'));
-
-  const URL = '/ndg/getAreaBroadbandAvailability/' + oderPostcode;
-  console.log(URL);
-  fetch(URL)
-    .then((res) => res.json())
-    .then((data) => {
-      _spinner(false);
-      _errorMessage('Area Deal Fallback helper function...', 'warning');
-      console.table(data);
-    })
-    .catch((err) => {
-      _spinner(false);
-      _errorMessage(
-        'Fall back function. woops...something went wrong please try again',
-        'warning'
-      );
-
-      console.log('error');
-      console.log(err);
-    });
-};
-
-const _handlePostcode = (postcode) => {
-  postcode = postcode.replace(/\+|\(|\)|\-|\s/gi, '');
-  return postcode;
-};
 
 export { _getBroadbandAvailability };

@@ -37,6 +37,7 @@ const addUser = async (ev) => {
   ev.preventDefault();
   await authenticateUser();
 
+  // Form validation
   const customerFullName =
     document.getElementById('customerFullName').value === '';
   const customerEmail = document
@@ -83,7 +84,7 @@ const addUser = async (ev) => {
 document.querySelector('body').addEventListener('click', (event) => {
   const selectCustomerAddress =
     event.target.nodeName === 'SELECTCUSTOMERADDRESS';
-  const goPageBack = event.target.nodeName === 'GOBACKBTN';
+  const goPageBack = event.target.nodeName === 'GOPAGEBACK';
 
   // console.log(event.target);
   if (selectCustomerAddress) {
@@ -92,12 +93,12 @@ document.querySelector('body').addEventListener('click', (event) => {
     const userSelection = document.getElementById('selectedAddress').value;
     if (userSelection !== 'userSelection') {
       _handleCustomerAddressSelection();
-    } else {
-      _errorMessage(
-        'Please Select User Address From The List Provided!',
-        'warning'
-      );
+      return;
     }
+    _errorMessage(
+      'Please Select User Address From The List Provided!',
+      'warning'
+    );
     return;
   }
   if (goPageBack) {

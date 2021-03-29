@@ -22,7 +22,6 @@ const connectToDatabase = async (uri) => {
 };
 
 const oneTouchQueryAllUsers = async (db) => {
-  console.table('hello world');
   const dbData = await db.collection(COLLECTION).find({}).toArray();
   console.table(dbData);
 
@@ -50,7 +49,6 @@ const oneTouchAddCustomer = async (db, data) => {
   const addCustomer = {
     access_token: data.access_token,
     customerEmail: data.customerEmail,
-    customerFullName: data.customerFullName,
   };
   console.log(addCustomer);
   const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
@@ -67,16 +65,18 @@ const oneTouchAddCustomer = async (db, data) => {
       }
     }
   );
-  console.log(authToken);
 
   const user = await db
     .collection(COLLECTION)
-    .find({ customerEmail: addCustomer.customerEmail })
+    .find({
+      oneTouchSuperUser: authToken.email,
+      customerEmail: addCustomer.customerEmail,
+    })
     .toArray();
-  const userValid = user['oneTouchSuperUser'] === authToken.email;
-  console.log(!userValid);
+  console.log(user);
+  const userExist = user.length > 0;
 
-  if (!userValid && addCustomer.customerFullName && addCustomer.customerEmail) {
+  if (!userExist && addCustomer.customerEmail) {
     delete data['access_token']; // Remove access_token from data
     data['oneTouchSuperUser'] = authToken.email; // Add oneTouchSuperUser data
 
@@ -94,9 +94,7 @@ const oneTouchAddCustomer = async (db, data) => {
       body: JSON.stringify({ user: data, msg: msg }),
     };
   } else {
-    const msg =
-      `User Exists. Error adding user to DB with email: ` +
-      addCustomer.customerEmail;
+    const msg = `User Already Exists With email: ` + addCustomer.customerEmail;
     console.log(msg);
 
     return {
@@ -115,9 +113,9 @@ const oneTouchDeleteCustomer = async (db, data) => {
   };
   const userID = new ObjectId(deleteCustomer._id);
   const user = await db.collection(COLLECTION).find({ _id: userID }).toArray();
-  const userValid = user.length > 0;
+  const userExist = user.length > 0;
 
-  if (userValid && deleteCustomer._id) {
+  if (userExist && deleteCustomer._id) {
     const msg =
       `User been successfully deleted from DB with ID: ` + deleteCustomer._id;
     await db.collection(COLLECTION).deleteOne({ _id: userID });
@@ -154,9 +152,9 @@ const oneTouchUpdateUser = async (db, data) => {
     .collection(COLLECTION)
     .find({ email: updateUser.email })
     .toArray();
-  const userValid = user[0];
+  const userExist = user[0];
 
-  if (userValid && updateUser.email) {
+  if (userExist && updateUser.email) {
     const msg =
       `User been successfully updated in DB with email: ` + updateUser.email;
     const oneTouchUser = { email: updateUser.email };
@@ -274,13 +272,14 @@ const oneTouchFindCustomersById = async (db, data) => {
 module.exports.handler = async (event, context) => {
   context.callbackWaitsForEmptyEventLoop = false;
 
+  let body;
+  if (event.body) body = JSON.parse(event.body);
   const db = await connectToDatabase(MONGODB_URI);
 
   switch (event.httpMethod) {
     case 'GET':
       return oneTouchQueryAllUsers(db);
     case 'POST':
-      const body = JSON.parse(event.body);
       if (body.customerEmail) {
         return oneTouchAddCustomer(db, body);
       }

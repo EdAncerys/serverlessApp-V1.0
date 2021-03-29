@@ -30,6 +30,7 @@ errorMessage {
   display: grid;
   align-content: center;
   overflow: auto;
+  text-transform: capitalize;
 }
 .errorIdContainer {
   cursor: pointer;

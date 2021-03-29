@@ -1,5 +1,5 @@
 import { authenticateUser } from './authenticateUser.js';
-import { _newOrderPostcodeValidation } from './helperFunctions/icukBroadband/_newOrderPostcodeValidation.js';
+import { _orderPostcodeValidation } from './helperFunctions/icukBroadband/_orderPostcodeValidation.js';
 import { _errorMessage } from './helperFunctions/_errorMessage.js';
 import { _placeBroadbandOrder } from './helperFunctions/icukBroadband/_placeBroadbandOrder.js';
 import { _saveAddressData } from './helperFunctions/icukBroadband/_saveAddressData.js';
@@ -7,7 +7,7 @@ import { _reviewOrderData } from './helperFunctions/icukBroadband/_reviewOrderDa
 import { _termsAndConditions } from './helperFunctions/icukBroadband/_termsAndConditions.js';
 import { _getBroadbandAvailability } from './helperFunctions/icukBroadband/_getBroadbandAvailability.js';
 import { persistDOMData } from './persistDOMData.js';
-import { _fetchAllOneTouchCustomers } from './helperFunctions/mongoDB/oneTouchManageCustomer/_fetchAllOneTouchCustomers.js';
+import { _fetchOneTouchCustomersFromDB } from './helperFunctions/mongoDB/oneTouchManageCustomer/_fetchOneTouchCustomersFromDB.js';
 import { _fetchOneTouchCustomerDataById } from './helperFunctions/mongoDB/oneTouchManageCustomer/_fetchOneTouchCustomerDataById.js';
 import { _spinner } from './helperFunctions/_spinner.js';
 
@@ -22,30 +22,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const oneTouchDOMBody = document.querySelector('#oneTouchBodyContainer');
     oneTouchDOMBody.innerHTML = sessionStorage.getItem('oneTouchDOMBody');
   }
-  // Btn event listeners
-  document
-    .getElementById('getAddressForPostcodeProvided')
-    .addEventListener('click', getAddressForPostcodeProvided);
-  document
-    .getElementById('oneTouchCustomer')
-    .addEventListener('click', oneTouchCustomer);
 });
 
-const getAddressForPostcodeProvided = async (ev) => {
-  ev.preventDefault();
-  await authenticateUser();
-
-  _newOrderPostcodeValidation();
-};
-
-const oneTouchCustomer = async (ev) => {
-  ev.preventDefault();
-  await authenticateUser();
-
-  _fetchAllOneTouchCustomers('order-new-connection');
-};
-
 document.querySelector('body').addEventListener('click', (event) => {
+  const fetchAddressesForPostcodeProvided =
+    event.target.nodeName === 'FETCHADDRESSESFORPOSTCODEPROVIDED';
+  const oneTouchCustomers = event.target.nodeName === 'ONETOUCHCUSTOMERS';
+
   const getBroadbandAvailability =
     event.target.nodeName === 'GETBROADBANDAVAILABILITY';
   const selectOrder = event.target.nodeName === 'SELECTORDER';
@@ -60,6 +43,18 @@ document.querySelector('body').addEventListener('click', (event) => {
   const customerInfo = event.target.nodeName === 'CUSTOMERINFO';
 
   // console.log(event.target);
+  if (fetchAddressesForPostcodeProvided) {
+    authenticateUser();
+
+    _orderPostcodeValidation();
+    return;
+  }
+  if (oneTouchCustomers) {
+    authenticateUser();
+
+    _fetchOneTouchCustomersFromDB('order-new-connection');
+    return;
+  }
   if (getBroadbandAvailability) {
     authenticateUser();
 
