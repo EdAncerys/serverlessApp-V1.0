@@ -62,7 +62,7 @@ async function _fetchOneTouchCustomersFromDB(pageName) {
                         </div>`;
 
         sliderNav = `<div class='navWrapper alignHorizontally'>
-                        <goPageBack id='pageOne' class="btnOneTouch backgroundSecondary" role="button">
+                        <goPageBack id='pageOne' class="btnOneTouch bgSecondary" role="button">
                           Go Back
                         </goPageBack>
                         <addUser class="btnOneTouch" 

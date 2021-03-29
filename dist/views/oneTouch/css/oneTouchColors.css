@@ -1,15 +1,15 @@
-.backgroundPrimary {
-  background-color: #6ec5dd;
+.bgPrimary {
+  background-color: #61d2b3;
 }
-.colorPrimary {
-  color: #6ec5dd;
+.textPrimary {
+  color: #61d2b3;
 }
 
-.backgroundSecondary {
-  background-color: #cbd76d;
+.bgSecondary {
+  background-color: #202a6b;
 }
-.colorSecondary {
-  color: #cbd76d;
+.textSecondary {
+  color: #202a6b;
 }
 
 .backgroundWhite {
