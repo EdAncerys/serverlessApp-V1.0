@@ -26,7 +26,7 @@
   content: ' ';
   padding-bottom: 5px;
 }
-.oneTouchFormContainer btnSubmit {
+.oneTouchFormContainer submitForm {
   display: grid;
   justify-content: initial;
   margin: 10px 0;
