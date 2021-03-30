@@ -27,6 +27,7 @@
 }
 .nav-list-main {
   text-align: center;
+  cursor: pointer;
 }
 nav {
   float: right;
