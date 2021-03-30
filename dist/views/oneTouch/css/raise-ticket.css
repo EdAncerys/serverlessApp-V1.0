@@ -32,9 +32,9 @@
   margin: 10px 0;
 }
 
-#raiseTicketImgContainer {
-  height: 60px;
-  padding: 1vw;
+.oneTouchIconContainer {
+  height: 80px;
+  padding: 5px;
 }
 .raiseTicketImg {
   height: 100%;
