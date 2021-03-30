@@ -12,6 +12,12 @@ async function _oneTouchSupperUserLogin() {
   const oneTouchLoginPassword = document.querySelector('#oneTouchLoginPassword')
     .value;
 
+  if (oneTouchLoginEmail === '' || oneTouchLoginPassword === '') {
+    _spinner(false);
+    _errorMessage('Please fill in all required fields', 'warning');
+    return;
+  }
+
   const body = {
     email: oneTouchLoginEmail,
     password: oneTouchLoginPassword,
