@@ -32,7 +32,7 @@ exports.handler = async (event, context, callback) => {
       body: JSON.stringify({ msg: msg }),
     };
   } else {
-    const msg = `Access not authorized. You need to login.`;
+    const msg = `Access Not Authorized.`;
 
     return {
       statusCode: 401,
