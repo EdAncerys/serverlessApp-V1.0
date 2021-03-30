@@ -9,5 +9,5 @@ const raiseTicket = async (ev) => {
   ev.preventDefault();
   await authenticateUser();
 
-  _errorMessage('Form Not active yet...', 'warning');
+  _errorMessage('Coming Soon...', 'warning');
 };

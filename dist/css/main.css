@@ -1,6 +1,12 @@
 @import url(font-awesome.min.css);
 @import url('https://fonts.googleapis.com/css?family=Lato:300,400,700|Pacifico');
 
+oneTouchPortal {
+  cursor: pointer;
+  color: #fff;
+  font-weight: 800;
+}
+
 /* Reset */
 
 html,
