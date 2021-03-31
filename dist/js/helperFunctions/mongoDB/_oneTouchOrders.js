@@ -27,13 +27,13 @@ async function _oneTouchOrders() {
     let orderData = '';
     if (data.length === 0) {
       oneTouchOrders.innerHTML = `<section class="features">
-                                    <div class="flex-container">
+                                    <div class="flex-container-30">
                                       <div class="alignHorizontally fontH5">No Orders Placed!</div>
                                       <placeNewOrder class="btnOneTouch">Place New Order</placeNewOrder>
                                     </div>
                                   </section>
                                   <section class="features">
-                                  <div class="flex-container">
+                                  <div class="flex-container-30">
                                     <div class="fontH2">
                                       <div class="indexBanner">
                                         <div class="ndgIcon"></div>
@@ -57,7 +57,7 @@ async function _oneTouchOrders() {
                             </orderInfo>
                           </div>
                           <div>
-                          <deleteOrder id='${order._id}' oneTouchData='${order.oneTouchData}' class="btnB01" role="button">
+                          <deleteOrder id='${order._id}' oneTouchData='${order.oneTouchData}' class="btnB01 bgDanger" role="button">
                             Delete
                           </deleteOrder>
                         </div>

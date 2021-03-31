@@ -38,11 +38,17 @@ document.querySelector('body').addEventListener('click', (event) => {
   const oneTouchPlaceOrder = event.target.nodeName === 'ONETOUCHPLACEORDER';
   const userInfo = event.target.nodeName === 'USERINFO';
   const selectCustomer = event.target.nodeName === 'SELECTCUSTOMER';
+  const customerInfo = event.target.nodeName === 'CUSTOMERINFO';
   // Slider nav functionality
   const goPageBack = event.target.nodeName === 'GOPAGEBACK';
-  const customerInfo = event.target.nodeName === 'CUSTOMERINFO';
+  const searchEthernetAvailability =
+    event.target.nodeName === 'SEARCHETHERNETAVAILABILITY';
 
   // console.log(event.target);
+  if (searchEthernetAvailability) {
+    _errorMessage('Coming Soon...', 'warning');
+    return;
+  }
   if (fetchAddressesForPostcodeProvided) {
     authenticateUser();
 

@@ -14,14 +14,14 @@ async function _oneTouchCustomerSummary(id, pageName) {
   const customerDataHTML = ` <div id="oneTouchBodyContainer" class="oneTouchBodyContainer">
   <div class="oneTouchWrapper">
     <section class="features" style="text-align: initial;">
-      <div class="flex-container boxContainer">
+      <div class="flex-container-30 boxContainer">
         <div class="tableCell">Created at: ${data.customerCreated}</div>
         <div class="tableCell">Full Name: ${data.customerFullName}</div>
         <div class="tableCell">Phone Number: ${data.customerPhoneNumber}</div>
         <div class="tableCell">Email: ${data.customerEmail}</div>
         <div class="tableCell">Postcode: ${data.postcode}</div>
       </div>
-      <div class="flex-container boxContainer">
+      <div class="flex-container-30 boxContainer">
         <div class="fontH3">Customer Specific Notes</div>
         <div class="tableCell">${data.customerNotes}</div>
       </div>
@@ -32,7 +32,7 @@ async function _oneTouchCustomerSummary(id, pageName) {
     </div>
 
     <section class="features">
-      <div class="flex-container boxContainer">
+      <div class="flex-container-30 boxContainer">
         <div class="fontH3">Manage Customer Data</div>
         <div class="fontH2 justifyText">
           The standard chunk of Lorem Ipsum used since the 1500s is
@@ -42,7 +42,7 @@ async function _oneTouchCustomerSummary(id, pageName) {
           versions from the 1914 translation by H. Rackham.
         </div>
       </div>
-      <div class="flex-container boxContainer">
+      <div class="flex-container-30 boxContainer">
         <div class="fontH3">Manage Customer Data</div>
         <div class="fontH2 justifyText">
           The standard chunk of Lorem Ipsum used since the 1500s is
@@ -52,7 +52,7 @@ async function _oneTouchCustomerSummary(id, pageName) {
           versions from the 1914 translation by H. Rackham.
         </div>
       </div>
-      <div class="flex-container boxContainer">
+      <div class="flex-container-30 boxContainer">
         <!-- <img src="../../images/pic02.jpg" alt="NDG" /> -->
         <div class="fontH3">Manage Customer Data</div>
         <div class="fontH2 justifyText">
@@ -65,7 +65,7 @@ async function _oneTouchCustomerSummary(id, pageName) {
       </div>
     </section>
     <section class="features">
-      <div class="flex-container boxContainer">
+      <div class="flex-container-30 boxContainer">
         <div class="fontH3">Manage Customer Data</div>
         <div class="fontH2 justifyText">
           The standard chunk of Lorem Ipsum used since the 1500s is
@@ -75,7 +75,7 @@ async function _oneTouchCustomerSummary(id, pageName) {
           versions from the 1914 translation by H. Rackham.
         </div>
       </div>
-      <div class="flex-container boxContainer">
+      <div class="flex-container-30 boxContainer">
         <div class="fontH3">Manage Customer Data</div>
         <div class="fontH2 justifyText">
           The standard chunk of Lorem Ipsum used since the 1500s is
@@ -85,7 +85,7 @@ async function _oneTouchCustomerSummary(id, pageName) {
           versions from the 1914 translation by H. Rackham.
         </div>
       </div>
-      <div class="flex-container boxContainer">
+      <div class="flex-container-30 boxContainer">
         <div class="fontH3">Manage Customer Data</div>
         <div class="fontH2 justifyText">
           The standard chunk of Lorem Ipsum used since the 1500s is
@@ -95,7 +95,7 @@ async function _oneTouchCustomerSummary(id, pageName) {
           versions from the 1914 translation by H. Rackham.
         </div>
       </div>
-      <div class="flex-container boxContainer">
+      <div class="flex-container-30 boxContainer">
         <div class="fontH3">Manage Customer Data</div>
         <div class="fontH2 justifyText">
           The standard chunk of Lorem Ipsum used since the 1500s is
@@ -107,7 +107,7 @@ async function _oneTouchCustomerSummary(id, pageName) {
       </div>
     </section>
     <section class="features">
-      <div class="flex-container boxContainer">
+      <div class="flex-container-30 boxContainer">
         <div class="fontH3">Manage Customer Data</div>
         <div class="fontH2 justifyText">
           The standard chunk of Lorem Ipsum used since the 1500s is
@@ -117,7 +117,7 @@ async function _oneTouchCustomerSummary(id, pageName) {
           versions from the 1914 translation by H. Rackham.
         </div>
       </div>
-      <div class="flex-container boxContainer">
+      <div class="flex-container-30 boxContainer">
         <!-- <img src="../../images/pic02.jpg" alt="NDG" /> -->
         <div class="fontH3">Manage Customer Data</div>
         <div class="fontH2 justifyText">

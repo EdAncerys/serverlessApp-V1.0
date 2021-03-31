@@ -16,7 +16,7 @@
   background-color: #f7f7f7;
 }
 .bgSilver {
-  background-color: #F7F8F8;
+  background-color: #f7f8f8;
 }
 .bgGray {
   background-color: #f1f1f1;
@@ -26,6 +26,9 @@
 }
 .textWhite {
   color: #f7f7f7;
+}
+.bgDanger {
+  background-color: #d9534f;
 }
 .textDanger {
   color: #d9534f;

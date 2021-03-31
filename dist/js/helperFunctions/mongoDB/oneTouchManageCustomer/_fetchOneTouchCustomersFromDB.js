@@ -41,22 +41,22 @@ async function _fetchOneTouchCustomersFromDB(pageName) {
                                   <customerInfo id='${customer._id}' class="btnB01" role="button">
                                     Info
                                   </customerInfo>
-                                  <deleteCustomer id='${customer._id}' class="btnB01" role="button">
+                                  <deleteCustomer id='${customer._id}' class="btnB01 bgDanger" role="button">
                                     Delete
                                   </deleteCustomer>
                                 </div>`;
       }
       if (pageName === 'order-new-connection') {
         customerRowSelection = `<div class="customerRowSelection">
-                          <customerInfo id='${customer._id}' class="btnB01" role="button">
-                            Info
-                          </customerInfo>
-                          <selectCustomer id='${customer._id}'
-                                      class="btnB01" 
-                                      role="button">
-                            Select
-                          </selectCustomer>
-                        </div>`;
+                                  <customerInfo id='${customer._id}' class="btnB01" role="button">
+                                    Info
+                                  </customerInfo>
+                                  <selectCustomer id='${customer._id}'
+                                              class="btnB01 bgPrimary" 
+                                              role="button">
+                                    Place Order
+                                  </selectCustomer>
+                                </div>`;
 
         sliderNav = `<div class='navWrapper alignHorizontally'>
                         <goPageBack id='pageOne' class="btnOneTouch bgSecondary" role="button">

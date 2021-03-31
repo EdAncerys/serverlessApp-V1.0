@@ -1,4 +1,3 @@
-@import url('./oneTouchColors.css');
 @import url('./oneTouchUIElements.css');
 @import url('./nav-bar.css');
 @import url('./index.css');
@@ -13,6 +12,8 @@
 @import url('../../../css/fonts.css');
 @import url('../../../css/spinner.css');
 @import url('../../../css/fontSize.css');
+/* Load helper css files after this comment */
+@import url('./oneTouchColors.css');
 
 * {
   padding: 0;

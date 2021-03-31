@@ -11,10 +11,6 @@
   background: #fff;
   text-align: left;
 }
-.form-container {
-  flex-basis: 30%;
-  margin-top: 10px;
-}
 .oneTouchFormContainer label:before {
   display: block;
   content: ' ';
