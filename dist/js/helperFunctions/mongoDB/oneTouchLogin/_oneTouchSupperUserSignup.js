@@ -59,8 +59,8 @@ async function _oneTouchSupperUserSignup() {
     if (!response.ok) throw new Error(data.msg);
 
     console.log(data);
-    _errorMessage(data.msg, 'success');
     _spinner(false);
+    window.location.replace('/views/oneTouch/index.html');
   } catch (err) {
     console.log(err);
     _errorMessage(err);
