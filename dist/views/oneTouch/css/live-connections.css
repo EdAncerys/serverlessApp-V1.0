@@ -16,7 +16,6 @@ lcComponent {
   justify-content: center;
   grid-template-columns: 1fr 1fr;
 }
-.noOrders {
-  margin: 5px 0;
-  color: #393b3c;
+.flex-container placeNewOrder {
+  margin: 20px 0;
 }

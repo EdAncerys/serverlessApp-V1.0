@@ -26,9 +26,25 @@ async function _oneTouchOrders() {
 
     let orderData = '';
     if (data.length === 0) {
-      oneTouchOrders.innerHTML = `<div class='alignHorizontally noOrders'>
-                                    No Order Yet!
-                                  </div>`;
+      oneTouchOrders.innerHTML = `<section class="features">
+                                    <div class="flex-container">
+                                      <div class="alignHorizontally fontH5">No Orders Placed!</div>
+                                      <placeNewOrder class="btnOneTouch">Place New Order</placeNewOrder>
+                                    </div>
+                                  </section>
+                                  <section class="features">
+                                    <div class="flex-container">
+                                      <div class="fontH2">
+                                        <div class="indexBanner">
+                                          <div>
+                                            <img src="../../images/NDG.png" alt="NDG" />
+                                          </div>
+                                          <div>Unit 4, Saddlers Court, Oakham LE15 7GH</div>
+                                          <div>Phone: 024 7509 2481</div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </section>`;
     } else {
       data.map((order) => {
         orderData += `<div class='rowContainer'>
