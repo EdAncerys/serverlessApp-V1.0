@@ -29,11 +29,8 @@ async function _fetchOneTouchCustomersFromDB(pageName) {
     let customerDataHTML;
 
     if (data.length === 0) {
-      customerDataHTML = `<div class='alignHorizontally'>
-                            <div>You have no customers added</div>
-                            ${sliderNav}
-                          </div>`;
       _spinner(false);
+      _errorMessage('You Have No Cusstomers added', 'warning');
       return;
     }
 
