@@ -17,14 +17,23 @@ async function _oneTouchSupperUserSignup() {
     '#oneTouchSignUpConfirmationPassword'
   ).value;
 
-  if (!_validateEmail(oneTouchSignUpEmail)) {
-    _errorMessage('Email not valid!');
+  if (
+    oneTouchSignUpEmail === '' ||
+    oneTouchSignUpPassword === '' ||
+    oneTouchSignUpConfirmationPassword === ''
+  ) {
     _spinner(false);
+    _errorMessage('Please fill in all required fields', 'warning');
+    return;
+  }
+  if (!_validateEmail(oneTouchSignUpEmail)) {
+    _spinner(false);
+    _errorMessage('Email not valid!');
     return;
   }
   if (oneTouchSignUpPassword.length < 6) {
-    _errorMessage('Passwords must be at least 6 characters in length!');
     _spinner(false);
+    _errorMessage('Passwords must be at least 6 characters in length!');
     return;
   }
   if (oneTouchSignUpPassword !== oneTouchSignUpConfirmationPassword) {
@@ -50,8 +59,8 @@ async function _oneTouchSupperUserSignup() {
     if (!response.ok) throw new Error(data.msg);
 
     console.log(data);
-    _errorMessage(data.msg, 'success');
     _spinner(false);
+    window.location.replace('/views/oneTouch/index.html');
   } catch (err) {
     console.log(err);
     _errorMessage(err);
