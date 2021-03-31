@@ -16,3 +16,9 @@ document.querySelector('body').addEventListener('click', (event) => {
     return;
   }
 });
+
+document.querySelector('body').addEventListener('keyup', (event) => {
+  if (event.key === 'Enter') {
+    _oneTouchSupperUserLogin();
+  }
+});
