@@ -117,6 +117,9 @@ nav ul li ul li a {
   .nav-mobile {
     display: block;
   }
+  .nav-list-main {
+    text-align: left;
+  }
   nav {
     width: 100%;
     padding: 55px 0 15px;
