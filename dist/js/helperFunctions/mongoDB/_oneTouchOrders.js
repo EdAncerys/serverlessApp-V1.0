@@ -45,30 +45,38 @@ async function _oneTouchOrders() {
                                 </section>`;
     } else {
       data.map((order) => {
-        orderData += `<div class='rowContainer'>
-                        <div class="orderDataContainer">
+        orderData += `<div class="boxContainer bgGradientSilver broadbandDataContainerHover fontH2">
+                        <div class="broadbandDataContainer">
                           <div class="tableCell">${order.oneTouchData.name}</div>
                           <div class="tableCell">${order.oneTouchData.provider}</div>
                           <div class="tableCell">${order.oneTouchData.price}</div>
                           <div class="tableCell">${order.oneTouchData.installation}</div>
-                        </div>
-                        <div class="manageOrderDataComponent">
-                          <orderInfo id='${order._id}' oneTouchData='${order.oneTouchData}' class="btnB01" role="button">
-                            Info
-                          </orderInfo>
+                          <div>
+                            <orderInfo id='${order._id}' oneTouchData='${order.oneTouchData}' class="btnB01" role="button">
+                              Info
+                            </orderInfo>
+                          </div>
+                          <div>
                           <deleteOrder id='${order._id}' oneTouchData='${order.oneTouchData}' class="btnB01" role="button">
                             Delete
                           </deleteOrder>
                         </div>
+                        </div>
                       </div>`;
       });
 
-      oneTouchOrders.innerHTML = `<div>
-                                    <div class="orderDataContainer boxContainer">
+      oneTouchOrders.innerHTML = `<div class='alignHorizontally'>
+                                    <div class="headerMsgTitle">
+                                      <div class="fontH4">Review Your Order!</div>
+                                      <div class="fontH2">Order details will be submitted as per bellow information</div>
+                                    </div>
+                                    <div class="boxContainer broadbandDataContainer bgWhite">
                                       <div class="tableCell">Supplier</div>
-                                      <div class="tableCell">Provider</div>
+                                      <div class="tableCell">Download</div>
+                                      <div class="tableCell">Upload</div>
                                       <div class="tableCell">Price</div>
-                                      <div class="tableCell">Installation</div>
+                                      <div class="tableCell">Information</div>
+                                      <div class="tableCell">Delete Order</div>
                                     </div>
                                     ${orderData}
                                   </div>`;
