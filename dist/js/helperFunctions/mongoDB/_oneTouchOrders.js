@@ -33,18 +33,16 @@ async function _oneTouchOrders() {
                                     </div>
                                   </section>
                                   <section class="features">
-                                    <div class="flex-container">
-                                      <div class="fontH2">
-                                        <div class="indexBanner">
-                                          <div>
-                                            <img src="../../images/NDG.png" alt="NDG" />
-                                          </div>
-                                          <div>Unit 4, Saddlers Court, Oakham LE15 7GH</div>
-                                          <div>Phone: 024 7509 2481</div>
-                                        </div>
+                                  <div class="flex-container">
+                                    <div class="fontH2">
+                                      <div class="indexBanner">
+                                        <div class="ndgIcon"></div>
+                                        <div>Unit 4, Saddlers Court, Oakham LE15 7GH</div>
+                                        <div>Phone: 024 7509 2481</div>
                                       </div>
                                     </div>
-                                  </section>`;
+                                  </div>
+                                </section>`;
     } else {
       data.map((order) => {
         orderData += `<div class='rowContainer'>

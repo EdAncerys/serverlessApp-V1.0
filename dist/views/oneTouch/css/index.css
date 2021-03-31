@@ -15,9 +15,17 @@
 }
 .indexBanner {
   display: grid;
+  grid-template-rows: 100px 1fr 1fr;
   justify-content: center;
   gap: 10px;
-  margin: 10px;
+  margin: 10px 0;
+  min-width: 200px;
+}
+.ndgIcon {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-image: url(../../../images/NDG.png);
+  background-size: contain;
 }
 .oneTouchWrapper .oneTouch-bg-Icon {
   position: absolute;
