@@ -8,7 +8,8 @@ import { _validateEmail } from './helperFunctions/_validateEmail.js';
 import { persistDOMData } from './persistDOMData.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-  addFormData();
+  // addFormData();
+
   // Persist user data on reload
   const oneTouchDOMBody = sessionStorage.getItem('oneTouchDOMBody') === null;
   const oneTouchPageName =
