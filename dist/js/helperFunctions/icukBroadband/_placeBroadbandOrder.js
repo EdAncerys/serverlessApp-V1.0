@@ -85,9 +85,9 @@ async function _placeBroadbandOrder() {
   };
 
   try {
-    const response = await fetch(URL, config);
-    const data = await response.json();
-    console.log(data);
+    // const response = await fetch(URL, config); //Send email
+    // const data = await response.json();
+    // console.log(data);
 
     _createOneTouchOrder(access_token, oneTouchData);
     _spinner(false);
