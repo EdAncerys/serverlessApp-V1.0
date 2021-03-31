@@ -9,7 +9,7 @@ const _orderPostcodeValidation = () => {
   console.log(postcode);
 
   if (!postcode) {
-    _errorMessage('Please enter your postcode');
+    _errorMessage('Please enter your postcode', 'warning');
     return;
   }
 
