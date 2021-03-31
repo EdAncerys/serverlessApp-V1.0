@@ -1,9 +1,6 @@
 .manageCustomerContainer {
   padding-top: 20px;
 }
-.manageCustomerContainer .flex-container {
-  color: #333;
-}
 .headerText {
   display: grid;
   grid-template-rows: 1fr 1fr;

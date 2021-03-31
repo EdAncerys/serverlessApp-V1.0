@@ -28,40 +28,87 @@
     <div id="oneTouchBodyContainer" class="oneTouchBodyContainer">
       <div class="oneTouchWrapper">
         <div class="newConnectionContent">
-          <section
-            id="oneTouchBrodbandContainer"
-            class="oneTouchBrodbandContainer"
-          >
-            <div id="oneTouchBroadbandOrderPageOne" class="alignHorizontally">
-              <div>
-                <div class="fontH4">Broadband Order</div>
-                <div class="fontH2">Enter Postcode to start your order</div>
-              </div>
-              <div class="dslFormBackground">
-                <form action="/">
-                  <div class="postcodeSearchContainer">
-                    <input
-                      id="postcode"
-                      name="postcode"
-                      class="dslFormInput"
-                      type="text"
-                    />
-                    <fetchAddressesForPostcodeProvided class="btnOneTouch">
-                      Get Addresses
-                    </fetchAddressesForPostcodeProvided>
+          <section class="features">
+            <div class="flex-container-30">
+              <div
+                id="oneTouchBrodbandContainer"
+                class="oneTouchBrodbandContainer"
+              >
+                <div
+                  id="oneTouchBroadbandOrderPageOne"
+                  class="alignHorizontally"
+                >
+                  <div>
+                    <div class="fontH4">Place Broadband Order</div>
+                    <div class="fontH2">Enter Postcode to start your order</div>
                   </div>
-                </form>
-              </div>
+                  <div class="dslFormBackground">
+                    <form action="/">
+                      <div class="postcodeSearchContainer">
+                        <input
+                          id="postcode"
+                          name="postcode"
+                          class="dslFormInput"
+                          type="text"
+                        />
+                        <searchBroadbandAvailability
+                          class="btnOneTouch bgPrimary"
+                        >
+                          Search
+                        </searchBroadbandAvailability>
+                      </div>
+                    </form>
+                  </div>
 
-              <div class="ncUserSelection">
-                <dividerComponent></dividerComponent>
-                <oneTouchCustomers class="btnOneTouch">
-                  Select User
-                </oneTouchCustomers>
+                  <div class="ncUserSelection">
+                    <dividerComponent></dividerComponent>
+                    <oneTouchCustomers class="btnOneTouch bgPrimary">
+                      Select User
+                    </oneTouchCustomers>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex-container-30">
+              <div
+                id="oneTouchBrodbandContainer"
+                class="oneTouchBrodbandContainer"
+              >
+                <div
+                  id="oneTouchBroadbandOrderPageOne"
+                  class="alignHorizontally"
+                >
+                  <div>
+                    <div class="fontH4">Place Ethernet Order</div>
+                    <div class="fontH2">Enter Postcode to start your order</div>
+                  </div>
+                  <div class="ethernetFormBackground">
+                    <form action="/">
+                      <div class="postcodeSearchContainer">
+                        <input
+                          id="postcode"
+                          name="postcode"
+                          class="dslFormInput"
+                          type="text"
+                        />
+                        <searchEthernetAvailability class="btnOneTouch">
+                          Search
+                        </searchEthernetAvailability>
+                      </div>
+                    </form>
+                  </div>
+
+                  <div class="ncUserSelection">
+                    <dividerComponent></dividerComponent>
+                    <searchEthernetAvailability class="btnOneTouch">
+                      Select User
+                    </searchEthernetAvailability>
+                  </div>
+                </div>
               </div>
             </div>
           </section>
-          <div></div>
         </div>
       </div>
     </div>
