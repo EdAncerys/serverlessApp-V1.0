@@ -2,9 +2,6 @@
   position: absolute;
   z-index: 99;
   width: 100%;
-  height: 66px;
-  background-color: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 4px 12px -4px rgb(0 0 0 / 10%);
 }
 .brand {
   position: absolute;
@@ -22,8 +19,15 @@
   text-decoration: none;
 }
 .nav-container {
+  height: 66px;
+  background-color: rgba(248, 248, 248, 0.95);
+  box-shadow: 0 4px 12px -4px rgb(0 0 0 / 10%);
   max-width: 1000px;
   margin: 0 auto;
+}
+.nav-list-main {
+  text-align: center;
+  cursor: pointer;
 }
 nav {
   float: right;
@@ -76,6 +80,15 @@ nav ul li ul li a {
   z-index: 1;
   box-shadow: 0 0 35px 0 rgba(0, 0, 0, 0.25);
 }
+.logOutBtnContainer:before {
+  content: '';
+  position: absolute;
+  top: 20%;
+  left: 0;
+  height: 60%;
+  border-left: 1px solid #dedede;
+}
+
 .logOutBtnContainer:hover,
 .logOutBtnContainer:visited:hover {
   background: #d9534f;
@@ -133,6 +146,9 @@ nav ul li ul li a {
   }
   .navbar-dropdown {
     position: static;
+  }
+  .logOutBtnContainer:before {
+    display: none;
   }
 }
 @media screen and (min-width: 800px) {

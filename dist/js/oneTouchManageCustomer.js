@@ -37,8 +37,8 @@ document.querySelector('body').addEventListener('click', (event) => {
 
   if (customerInfo) {
     authenticateUser();
-
-    _oneTouchCustomerSummary(id, 'manage-customer');
+    _errorMessage('Coming Soon...', 'warning');
+    // _oneTouchCustomerSummary(id, 'manage-customer');
   }
   if (deleteCustomer) {
     authenticateUser();

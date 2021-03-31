@@ -19,23 +19,17 @@
         </div>
         <nav>
           <div class="nav-mobile">
-            <a id="navbar-toggle" href="#!"><span></span></a>
+            <a id="navbar-toggle"><span></span></a>
           </div>
           <ul class="nav-list">
             <li>
-              <a href="./index.html">Home</a>
-            </li>
-            <li>
-              <a>Admin</a>
+              <a class="nav-list-main">Admin</a>
               <ul class="navbar-dropdown">
                 <li>
-                  <a href="#">Account Overview</a>
+                  <a href="./version-two.html">Account Overview</a>
                 </li>
                 <li>
-                  <a href="#">Reseller Customers</a>
-                </li>
-                <li>
-                  <a href="../oneTouch/support-docs.html">Support Doc's</a>
+                  <a href="./version-two.html">Reseller Customers</a>
                 </li>
                 <li>
                   <a href="./raise-ticket.html">Raise Ticket</a>
@@ -44,10 +38,10 @@
             </li>
 
             <li>
-              <a>Customers</a>
+              <a class="nav-list-main">Customers</a>
               <ul class="navbar-dropdown">
                 <li>
-                  <a href="#">Address Book</a>
+                  <a href="./version-two.html">Address Book</a>
                 </li>
                 <li>
                   <a href="./manage-customer.html">Manage Customer</a>
@@ -59,44 +53,36 @@
             </li>
 
             <li>
-              <a>Broadband</a>
+              <a class="nav-list-main">Broadband</a>
               <ul class="navbar-dropdown">
                 <li>
-                  <a href="#">Broadband Accounts</a>
+                  <a href="./live-connections.html">Broadband Accounts</a>
                 </li>
                 <li>
-                  <a href="#">Add Broadband</a>
+                  <a href="./order-new-connection.html">Add Broadband</a>
                 </li>
               </ul>
             </li>
 
             <li>
-              <a>Web Hosting</a>
-              <ul class="navbar-dropdown">
-                <li>
-                  <a href="#">Hosting Accounts</a>
-                </li>
-                <li>
-                  <a href="#">Add Hosting</a>
-                </li>
-              </ul>
+              <a class="nav-list-main" href="./support-docs.html">Docs</a>
             </li>
 
             <li onclick="logout()">
-              <a class="logOutBtnContainer">Logout</a>
+              <a class="logOutBtnContainer nav-list-main">Logout</a>
             </li>
           </ul>
         </nav>
       </div>
     </section>
 
-    <div style="position: absolute; bottom: 10px; right: 10px">
+    <div style="position: absolute; bottom: 10px; right: 10px; display: none">
       <loginPage
-        class="btnB01 backgroundLG01"
+        class="btnB01 bgGradientRP"
         onclick="location.href='./one-touch-login.html';"
         >loginPage</loginPage
       >
-      <clearSessionsBtn class="btnB01 backgroundPrimary"
+      <clearSessionsBtn class="btnB01 bgPrimary"
         >Clear Sessions</clearSessionsBtn
       >
     </div>

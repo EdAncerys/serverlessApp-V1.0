@@ -1,47 +1,47 @@
-.backgroundPrimary {
-  background-color: #6ec5dd;
+.bgPrimary {
+  background-color: #61d2b3;
 }
-.colorPrimary {
-  color: #6ec5dd;
-}
-
-.backgroundSecondary {
-  background-color: #cbd76d;
-}
-.colorSecondary {
-  color: #cbd76d;
+.textPrimary {
+  color: #61d2b3;
 }
 
-.backgroundWhite {
+.bgSecondary {
+  background-color: #202a6b;
+}
+.textSecondary {
+  color: #202a6b;
+}
+
+.bgWhite {
   background-color: #f7f7f7;
 }
-.backgroundSilver {
-  background-color: #f2f2f2;
+.bgSilver {
+  background-color: #F7F8F8;
 }
-.backgroundGray {
+.bgGray {
   background-color: #f1f1f1;
 }
-.colorBlack {
+.textBlack {
   color: #333;
 }
-.colorWhite {
+.textWhite {
   color: #f7f7f7;
 }
-.colorDanger {
+.textDanger {
   color: #d9534f;
 }
 
-.backgroundLG01 {
+.bgGradientRP {
   background: linear-gradient(#e66465, #9198e5);
 }
-.backgroundLG02 {
+.bgGradientGray {
   background-image: linear-gradient(
     109.6deg,
     rgba(44, 83, 131, 0.6) 18.9%,
     rgba(95, 175, 201, 0.3) 91.1%
   );
 }
-.backgroundLG03 {
+.bgGradientSilver {
   background-image: linear-gradient(
     109.6deg,
     rgba(44, 83, 131, 0.1) 18.9%,

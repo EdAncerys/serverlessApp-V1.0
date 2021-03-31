@@ -1,5 +1,5 @@
 .indexContent {
-  margin: 50px 0;
+  margin: 50px 0 20px 0;
 }
 .indexIcon {
   width: 150px;
@@ -15,6 +15,18 @@
 }
 .indexBanner {
   display: grid;
+  justify-content: center;
   gap: 10px;
   margin: 10px;
+}
+.oneTouchWrapper .oneTouch-bg-Icon {
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 700px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-image: url(../images/icon.png);
+  background-size: contain;
+  opacity: 0.08;
 }

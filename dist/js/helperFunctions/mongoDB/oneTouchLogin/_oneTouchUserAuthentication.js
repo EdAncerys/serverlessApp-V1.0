@@ -7,7 +7,6 @@ async function _oneTouchUserAuthentication() {
   const body = {
     access_token,
   };
-  // console.log(body);
 
   const config = {
     method: 'POST',
