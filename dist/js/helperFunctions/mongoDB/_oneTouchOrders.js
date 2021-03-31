@@ -67,8 +67,8 @@ async function _oneTouchOrders() {
 
       oneTouchOrders.innerHTML = `<div class='alignHorizontally'>
                                     <div class="headerMsgTitle">
-                                      <div class="fontH4">Review Your Order!</div>
-                                      <div class="fontH2">Order details will be submitted as per bellow information</div>
+                                      <div class="fontH4">Manage All Placed Orders</div>
+                                      <div class="fontH2">Manage all placed orders in one place with a touch of a finger!</div>
                                     </div>
                                     <div class="boxContainer broadbandDataContainer bgWhite">
                                       <div class="tableCell">Supplier</div>
