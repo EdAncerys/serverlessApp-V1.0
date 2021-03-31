@@ -57,7 +57,7 @@ async function _oneTouchOrders() {
                             </orderInfo>
                           </div>
                           <div>
-                          <deleteOrder id='${order._id}' oneTouchData='${order.oneTouchData}' class="btnB01" role="button">
+                          <deleteOrder id='${order._id}' oneTouchData='${order.oneTouchData}' class="btnB01 bgDanger" role="button">
                             Delete
                           </deleteOrder>
                         </div>

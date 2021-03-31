@@ -41,7 +41,7 @@ async function _fetchOneTouchCustomersFromDB(pageName) {
                                   <customerInfo id='${customer._id}' class="btnB01" role="button">
                                     Info
                                   </customerInfo>
-                                  <deleteCustomer id='${customer._id}' class="btnB01 bgSecondary" role="button">
+                                  <deleteCustomer id='${customer._id}' class="btnB01 bgDanger" role="button">
                                     Delete
                                   </deleteCustomer>
                                 </div>`;
