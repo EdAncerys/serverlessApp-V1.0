@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
 document.querySelector('body').addEventListener('click', (event) => {
   const orderInfo = event.target.nodeName === 'ORDERINFO';
   const deleteOrder = event.target.nodeName === 'DELETEORDER';
+  const placeNewOrder = event.target.nodeName === 'PLACENEWORDER';
 
   let id = event.target.getAttribute('id');
 
@@ -35,5 +36,8 @@ document.querySelector('body').addEventListener('click', (event) => {
     authenticateUser();
 
     _deleteOneTouchOrder(id);
+  }
+  if (placeNewOrder) {
+    window.location.replace('/views/oneTouch/order-new-connection.html');
   }
 });

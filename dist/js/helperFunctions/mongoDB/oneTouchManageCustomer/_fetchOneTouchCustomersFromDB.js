@@ -128,13 +128,15 @@ async function _fetchOneTouchCustomersFromDB(pageName) {
       );
       if (removeData) removeData.remove();
 
-      const oneTouchSlider = document.querySelector('#oneTouchSlider');
+      const oneTouchBrodbandContainer = document.querySelector(
+        '#oneTouchBrodbandContainer'
+      );
       const oneTouchBroadbandOrderPageOne = document.getElementById(
         'oneTouchBroadbandOrderPageOne'
       );
 
       oneTouchBroadbandOrderPageOne.classList.add('hidden');
-      oneTouchSlider.appendChild(oneTouchCustomer);
+      oneTouchBrodbandContainer.appendChild(oneTouchCustomer);
     }
 
     persistDOMData('oneTouchBodyContainer', pageName);

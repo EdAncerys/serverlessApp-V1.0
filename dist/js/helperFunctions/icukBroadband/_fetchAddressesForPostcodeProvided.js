@@ -13,7 +13,9 @@ async function _fetchAddressesForPostcodeProvided(postcode) {
   const removeData = document.querySelector('#oneTouchBroadbandOrderPageTwo');
   if (removeData) removeData.remove();
 
-  const oneTouchSlider = document.querySelector('#oneTouchSlider');
+  const oneTouchBrodbandContainer = document.querySelector(
+    '#oneTouchBrodbandContainer'
+  );
   const oneTouchBroadbandOrderPageOne = document.querySelector(
     '#oneTouchBroadbandOrderPageOne'
   );
@@ -92,7 +94,7 @@ async function _fetchAddressesForPostcodeProvided(postcode) {
                                         </goPageBack>
                                       </div>`;
 
-    oneTouchSlider.appendChild(orderAddressContainer);
+    oneTouchBrodbandContainer.appendChild(orderAddressContainer);
     oneTouchBroadbandOrderPageOne.classList.add('hidden');
     persistDOMData('oneTouchBodyContainer', 'order-new-connection');
   } catch (err) {

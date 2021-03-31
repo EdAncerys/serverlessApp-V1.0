@@ -16,7 +16,9 @@ async function _getBroadbandAvailability() {
   const removeData = document.querySelector('#oneTouchBroadbandOrderPageThree');
   if (removeData) removeData.remove();
 
-  const oneTouchSlider = document.querySelector('#oneTouchSlider');
+  const oneTouchBrodbandContainer = document.querySelector(
+    '#oneTouchBrodbandContainer'
+  );
   const oneTouchBroadbandOrderPageTwo = document.querySelector(
     '#oneTouchBroadbandOrderPageTwo'
   );
@@ -104,7 +106,7 @@ async function _getBroadbandAvailability() {
     _spinner(false);
 
     oneTouchBroadbandOrderPageTwo.classList.add('hidden');
-    oneTouchSlider.appendChild(oneTouchBroadbandAvailability);
+    oneTouchBrodbandContainer.appendChild(oneTouchBroadbandAvailability);
     persistDOMData('oneTouchBodyContainer', 'order-new-connection');
   } catch (err) {
     console.log(err);

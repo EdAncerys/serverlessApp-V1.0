@@ -10,7 +10,9 @@ async function _reviewOrderData(oneTouchOrderData) {
     );
     if (removeData) removeData.remove();
 
-    const oneTouchSlider = document.querySelector('#oneTouchSlider');
+    const oneTouchBrodbandContainer = document.querySelector(
+      '#oneTouchBrodbandContainer'
+    );
     const oneTouchBroadbandOrderPageThree = document.querySelector(
       '#oneTouchBroadbandOrderPageThree'
     );
@@ -59,7 +61,7 @@ async function _reviewOrderData(oneTouchOrderData) {
                       </div>`;
 
     oneTouchOrderReview.innerHTML = `<div class='alignHorizontally'>
-                                      <div class="headerMsgTitle textWhite">
+                                      <div class="headerMsgTitle">
                                         <div class="fontH4">Review Your Order!</div>
                                         <div class="fontH2">Order details will be submitted as per bellow information</div>
                                       </div>
@@ -88,7 +90,7 @@ async function _reviewOrderData(oneTouchOrderData) {
                                     </div>`;
 
     oneTouchBroadbandOrderPageThree.classList.add('hidden');
-    oneTouchSlider.appendChild(oneTouchOrderReview);
+    oneTouchBrodbandContainer.appendChild(oneTouchOrderReview);
     persistDOMData('oneTouchBodyContainer', 'order-new-connection');
   } catch (err) {
     console.log(err);

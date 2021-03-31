@@ -10,7 +10,9 @@ async function _termsAndConditions() {
     );
     if (removeData) removeData.remove();
 
-    const oneTouchSlider = document.querySelector('#oneTouchSlider');
+    const oneTouchBrodbandContainer = document.querySelector(
+      '#oneTouchBrodbandContainer'
+    );
     const oneTouchBroadbandOrderPageFour = document.querySelector(
       '#oneTouchBroadbandOrderPageFour'
     );
@@ -60,7 +62,7 @@ async function _termsAndConditions() {
 
     oneTouchTermsAndConditions.innerHTML = data;
     oneTouchBroadbandOrderPageFour.classList.add('hidden');
-    oneTouchSlider.appendChild(oneTouchTermsAndConditions);
+    oneTouchBrodbandContainer.appendChild(oneTouchTermsAndConditions);
 
     persistDOMData('oneTouchBodyContainer', 'order-new-connection');
   } catch (err) {
