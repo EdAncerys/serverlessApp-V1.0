@@ -30,7 +30,7 @@ async function _fetchOneTouchCustomersFromDB(pageName) {
 
     if (data.length === 0) {
       _spinner(false);
-      _errorMessage('You Have No Cusstomers added', 'warning');
+      _errorMessage('You Have No Customers added', 'warning');
       return;
     }
 
@@ -59,7 +59,7 @@ async function _fetchOneTouchCustomersFromDB(pageName) {
                                 </div>`;
 
         sliderNav = `<div class='navWrapper alignHorizontally'>
-                        <goPageBack id='pageOne' class="btnOneTouch bgSecondary" role="button">
+                        <goPageBack id='pageOne' class="btnOneTouch" role="button">
                           Go Back
                         </goPageBack>
                         <addUser class="btnOneTouch" 
