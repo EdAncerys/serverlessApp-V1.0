@@ -28,12 +28,6 @@ async function _fetchOneTouchCustomersFromDB(pageName) {
     let sliderNav = '';
     let customerDataHTML;
 
-    if (data.length === 0) {
-      _spinner(false);
-      _errorMessage('You Have No Customers added', 'warning');
-      return;
-    }
-
     console.log(data);
     data.map((customer) => {
       if (pageName === 'manage-customer') {
@@ -101,6 +95,12 @@ async function _fetchOneTouchCustomersFromDB(pageName) {
                             ${customerData}
                             ${sliderNav}
                         </div>`;
+
+    if (data.length === 0) {
+      _spinner(false);
+      _errorMessage('You Have No Customers added', 'warning');
+      customerDataHTML = '';
+    }
 
     const oneTouchCustomer = document.createElement('div');
     oneTouchCustomer.id = 'oneTouchBroadbandOrderPageTwo';
