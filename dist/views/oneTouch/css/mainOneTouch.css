@@ -24,6 +24,7 @@ body {
   width: 100%;
   height: 100%;
   user-select: none;
+  color: #393b3c;
 }
 .oneTouchBodyContainer {
   height: 100%;
