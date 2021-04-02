@@ -9,8 +9,8 @@ async function _oneTouchCustomerSummary(id, pageName) {
   const data = await _fetchOneTouchCustomerDataById(id);
   console.log(data);
 
-  const customerDataContainer = document.createElement('div');
-  customerDataContainer.id = 'customerDataContainer';
+  const dataWrapper = document.createElement('div');
+  dataWrapper.id = 'dataWrapper';
   const customerDataHTML = ` <div id="oneTouchBodyContainer" class="oneTouchBodyContainer">
   <div class="oneTouchWrapper">
     <section class="features" style="text-align: initial;">
