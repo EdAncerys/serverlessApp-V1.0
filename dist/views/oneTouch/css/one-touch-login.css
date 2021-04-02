@@ -5,8 +5,6 @@
 #oneTouchSignUp {
   margin: 10px 0;
 }
-div a,
-div a:visited {
-  color: #d9534f;
-  text-decoration: none;
+termsAndConditions {
+  cursor: pointer;
 }
