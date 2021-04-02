@@ -15,8 +15,13 @@ const oneTouchSignUp = (e) => {
 
 document.querySelector('body').addEventListener('click', (event) => {
   const oneTouchSignUp = event.target.id === 'oneTouchLogin';
+  const termsAndConditions = event.target.nodeName === 'TERMSANDCONDITIONS';
 
   // console.log(event.target);
+  if (termsAndConditions) {
+    _errorMessage('Terms & Conditions', 'warning');
+    return;
+  }
   if (oneTouchSignUp) {
     window.location.replace('/views/oneTouch/one-touch-login.html');
     return;

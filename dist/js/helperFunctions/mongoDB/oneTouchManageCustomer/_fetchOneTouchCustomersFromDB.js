@@ -21,23 +21,17 @@ async function _fetchOneTouchCustomersFromDB(pageName) {
     const data = await response.json();
     if (!response.ok) throw new Error(data);
 
-    const customerDataContainer = document.createElement('div');
-    customerDataContainer.id = 'customerDataContainer';
-    let customerRowSelection;
+    const dataWrapper = document.createElement('div');
+    dataWrapper.id = 'dataWrapper';
+    let rowDataSelection;
     let customerData = '';
     let sliderNav = '';
     let customerDataHTML;
 
-    if (data.length === 0) {
-      _spinner(false);
-      _errorMessage('You Have No Cusstomers added', 'warning');
-      return;
-    }
-
     console.log(data);
     data.map((customer) => {
       if (pageName === 'manage-customer') {
-        customerRowSelection = `<div class="customerRowSelection">
+        rowDataSelection = `<div class="rowDataSelection">
                                   <customerInfo id='${customer._id}' class="btnB01" role="button">
                                     Info
                                   </customerInfo>
@@ -47,7 +41,7 @@ async function _fetchOneTouchCustomersFromDB(pageName) {
                                 </div>`;
       }
       if (pageName === 'order-new-connection') {
-        customerRowSelection = `<div class="customerRowSelection">
+        rowDataSelection = `<div class="rowDataSelection">
                                   <customerInfo id='${customer._id}' class="btnB01" role="button">
                                     Info
                                   </customerInfo>
@@ -59,7 +53,7 @@ async function _fetchOneTouchCustomersFromDB(pageName) {
                                 </div>`;
 
         sliderNav = `<div class='navWrapper alignHorizontally'>
-                        <goPageBack id='pageOne' class="btnOneTouch bgSecondary" role="button">
+                        <goPageBack id='pageOne' class="btnOneTouch" role="button">
                           Go Back
                         </goPageBack>
                         <addUser class="btnOneTouch" 
@@ -71,7 +65,7 @@ async function _fetchOneTouchCustomersFromDB(pageName) {
       }
 
       customerData += `<div class="rowContainer bgGradientSilver">
-                        <div class="manageCustomerRow">
+                        <div class="rowDataContainer-4">
                           <div class="rowDataWrapper">
                             <div>${customer.customerFullName}</div>
                             <div class="bottomDataRow">${customer.customerCreated}</div>
@@ -85,14 +79,14 @@ async function _fetchOneTouchCustomersFromDB(pageName) {
                             <div class="bottomDataRow">${customer.postcode}</div>
                           </div>
                           <div class="rowDataWrapper">
-                            <div>${customerRowSelection}</div>
+                            ${rowDataSelection}
                           </div>
                         </div>
                       </div>`;
     });
 
-    customerDataHTML = `<div id='customerDataContainer' class='customerDataContainer'>
-                          <div class="manageCustomerRow boxContainer bgGray">
+    customerDataHTML = `<div id='dataWrapper' class='dataWrapper'>
+                          <div class="rowDataContainer-4 boxContainer bgGray">
                             <div class="rowDataWrapper">Customer</div>
                             <div class="rowDataWrapper">Contact Details</div>
                             <div class="rowDataWrapper">Address</div>
@@ -101,6 +95,12 @@ async function _fetchOneTouchCustomersFromDB(pageName) {
                             ${customerData}
                             ${sliderNav}
                         </div>`;
+
+    if (data.length === 0) {
+      _spinner(false);
+      _errorMessage('You Have No Customers added', 'warning');
+      customerDataHTML = '';
+    }
 
     const oneTouchCustomer = document.createElement('div');
     oneTouchCustomer.id = 'oneTouchBroadbandOrderPageTwo';

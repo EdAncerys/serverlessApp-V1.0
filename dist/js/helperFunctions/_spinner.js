@@ -14,7 +14,8 @@ const _spinner = (active, msg) => {
     errMsgContent.appendChild(spinnerIconContainer);
     spinnerIconContainer.appendChild(spinner);
     errMsgContent.appendChild(spinnerMsg);
-    spinner.classList.add('fa', 'fa-cog', 'fa-spin');
+    // spinner.classList.add('fa', 'fa-cog', 'fa-spin'); // Add spinner icon
+    spinner.classList.add('fa-spin'); // Add oneTouch icon
     spinnerMsg.innerHTML = newMsg;
   }
   if (!active) {

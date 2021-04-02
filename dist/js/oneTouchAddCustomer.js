@@ -1,14 +1,14 @@
 import { authenticateUser } from './authenticateUser.js';
-import { _customerAddressForPostcodeProvided } from './helperFunctions/mongoDB/oneTouchAddCustomer/_customerAddressForPostcodeProvided.js';
-import { _handleCustomerAddressSelection } from './helperFunctions/mongoDB/oneTouchAddCustomer/_handleCustomerAddressSelection.js';
-import { _addOneTouchCustomerToDB } from './helperFunctions/mongoDB/oneTouchAddCustomer/_addOneTouchCustomerToDB.js';
+import { _customerAddressForPostcodeProvided } from './helperFunctions/mongoDB/oneTouchManageCustomer/_customerAddressForPostcodeProvided.js';
+import { _handleCustomerAddressSelection } from './helperFunctions/mongoDB/oneTouchManageCustomer/_handleCustomerAddressSelection.js';
+import { _addOneTouchCustomerToDB } from './helperFunctions/mongoDB/oneTouchManageCustomer/_addOneTouchCustomerToDB.js';
 import { _saveAddressData } from './helperFunctions/icukBroadband/_saveAddressData.js';
 import { _errorMessage } from './helperFunctions/_errorMessage.js';
 import { _validateEmail } from './helperFunctions/_validateEmail.js';
 import { persistDOMData } from './persistDOMData.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-  // addFormData();
+  addFormData();
 
   // Persist user data on reload
   const oneTouchDOMBody = sessionStorage.getItem('oneTouchDOMBody') === null;

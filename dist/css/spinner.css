@@ -1,12 +1,19 @@
 spinnerContainer {
-  /* position: -webkit-sticky;
-  position: sticky; */
+  color: #61d2b3;
+}
+spinner {
+  width: 60px;
+  height: 60px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-image: url(../views/oneTouch/images/icon.png);
+  background-size: contain;
 }
 spinnerWrapper {
   position: absolute;
   z-index: 99;
   padding: 100px 0;
-  background: rgb(0 0 0 / 40%);
+  background: rgb(0 0 0 / 70%);
   top: 0;
   right: 0;
   bottom: 0;
@@ -14,13 +21,14 @@ spinnerWrapper {
 }
 errMsgContent {
   display: grid;
+  grid-template-rows: 1fr 1fr;
+  gap: 10px;
+  margin-top: 50px;
   justify-content: center;
-  color: #fff;
 }
 spinnerMsg {
   text-align: center;
   font-size: 2em;
-  margin: 15px 0;
 }
 spinnerIconContainer {
   display: grid;

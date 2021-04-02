@@ -6,16 +6,16 @@
   grid-template-rows: 1fr 1fr;
   gap: 10px;
 }
-.customerDataContainer {
+.dataWrapper {
   display: grid;
   justify-content: center;
 }
-.manageCustomerRow {
+.rowDataContainer-4 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   margin: 5px 0;
 }
-.manageCustomerRow,
+.rowDataContainer-4,
 .headerText {
   min-width: 600px;
 }
@@ -23,6 +23,10 @@
   display: grid;
   padding: 0 10px;
   text-align: left;
+}
+.rowDataSelection {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
 }
 .bottomDataRow {
   font-size: 10px;
@@ -48,4 +52,12 @@
 
 /* Media Queries */
 @media only screen and (max-width: 800px) {
+  .rowDataContainer-4,
+  .headerText {
+    min-width: 90vw;
+  }
+  .rowDataSelection {
+    display: grid;
+    row-gap: 10px;
+  }
 }
