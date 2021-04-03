@@ -11,6 +11,11 @@
 # App routing
 
 [[redirects]]
+  from = "/*"
+  to = "/.netlify/functions/oneTouch"
+  status = 200
+
+[[redirects]]
   from = "/oneTouch/createTicket"
   to = "/.netlify/functions/createFreshDeskTicket"
   status = 200
