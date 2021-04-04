@@ -62,14 +62,8 @@ const oneTouchLogin = async (db, data) => {
     });
 
     return {
-      statusCode: 201,
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers':
-          'Origin, X-Requested-With, Content-Type, Accept, Authorization',
-      },
-      body: JSON.stringify({ access_token, msg: msg }),
+      statusCode: 200,
+      body: JSON.stringify({ access_token, msg }),
     };
   } else {
     const msg =
@@ -81,7 +75,7 @@ const oneTouchLogin = async (db, data) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ msg: msg }),
+      body: JSON.stringify({ msg }),
     };
   }
 };
