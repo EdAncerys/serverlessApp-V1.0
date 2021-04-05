@@ -149,6 +149,20 @@ const oneTouchLogin = async (db, data) => {
   }
 };
 
+const oneTouchPortalHTML = [
+  '/views/oneTouch/add-customer',
+  '/views/oneTouch/dev',
+  '/views/oneTouch/index',
+  '/views/oneTouch/live-connections',
+  '/views/oneTouch/manage-customer',
+  '/views/oneTouch/one-touch-login',
+  '/views/oneTouch/one-touch-signup',
+  '/views/oneTouch/order-new-connection',
+  '/views/oneTouch/raise-ticket',
+  '/views/oneTouch/support-docs',
+  '/views/oneTouch/version-two',
+];
+
 module.exports.handler = async (event, context) => {
   context.callbackWaitsForEmptyEventLoop = false;
 
@@ -159,15 +173,15 @@ module.exports.handler = async (event, context) => {
   let body = null;
   if (event.body) body = JSON.parse(event.body);
 
-  // switch (event.httpMethod) {
-  //   case 'GET':
-  //     return {
-  //       statusCode: 301,
-  //       headers: {
-  //         Location: '/views/oneTouch/index.html',
-  //       },
-  //     };
-  // }
+  if (event.httpMethod === 'GET' && !oneTouchPortalHTML.includes(path)) {
+    console.log('Path end point not found');
+    return {
+      statusCode: 301,
+      headers: {
+        Location: '/views/oneTouch/error.html',
+      },
+    };
+  }
 
   switch (path) {
     case '/oneTouch/oneTouchLogin':
