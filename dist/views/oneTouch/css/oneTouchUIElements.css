@@ -82,12 +82,16 @@
   padding: 10px 0;
   justify-content: space-evenly;
 }
-.flex-container-hover-30,
-.flex-container-30 {
+.flex-container-30,
+.flex-container-60,
+.flex-container-hover-30 {
   flex-basis: 30%;
   margin: 10px;
   padding: 10px;
   transition: transform 0.6s;
+}
+.flex-container-60 {
+  flex-basis: 60%;
 }
 .flex-container-hover-30 a,
 .flex-container-hover-30 a:visited {

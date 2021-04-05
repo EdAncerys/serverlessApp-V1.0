@@ -159,15 +159,15 @@ module.exports.handler = async (event, context) => {
   let body = null;
   if (event.body) body = JSON.parse(event.body);
 
-  switch (event.httpMethod) {
-    case 'GET':
-      return {
-        statusCode: 301,
-        headers: {
-          Location: '/views/oneTouch/index.html',
-        },
-      };
-  }
+  // switch (event.httpMethod) {
+  //   case 'GET':
+  //     return {
+  //       statusCode: 301,
+  //       headers: {
+  //         Location: '/views/oneTouch/index.html',
+  //       },
+  //     };
+  // }
 
   switch (path) {
     case '/oneTouch/oneTouchLogin':
