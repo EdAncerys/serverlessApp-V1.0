@@ -15,15 +15,15 @@ async function _oneTouchUserAuthentication() {
 
   try {
     const response = await fetch(URL, config);
-    const data = await response.json();
-    if (!response.ok) throw new Error(data.msg);
-
-    console.log(data);
+    console.log(response);
+    if (response.redirected) {
+      sessionStorage.clear();
+      window.location.replace(response.url);
+    }
     return;
   } catch (err) {
-    sessionStorage.clear();
-    window.location.replace('/views/oneTouch/one-touch-login.html');
-    return false;
+    console.log(err);
+    return;
   }
 }
 

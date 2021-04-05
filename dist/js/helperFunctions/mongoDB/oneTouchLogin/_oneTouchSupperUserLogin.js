@@ -38,7 +38,6 @@ async function _oneTouchSupperUserLogin() {
     await sessionStorage.setItem('access_token', data.access_token); // Storing access_token in sessions
     _spinner(false);
     window.location.replace('/views/oneTouch/index.html');
-    _errorMessage('Access');
   } catch (err) {
     console.log(err);
     _errorMessage(err);

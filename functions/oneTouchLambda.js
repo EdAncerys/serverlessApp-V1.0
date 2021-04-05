@@ -13,7 +13,15 @@ let cachedAuthentication = null;
 const userAuthentication = async (body) => {
   if (cachedAuthentication) return cachedAuthentication;
 
-  console.log(body);
+  if (!body.access_token) {
+    return {
+      statusCode: 301,
+      headers: {
+        Location: '/views/oneTouch/one-touch-login.html',
+      },
+    };
+  }
+
   const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
   const authToken = await jwt.verify(
     body.access_token,
@@ -44,9 +52,9 @@ const userAuthentication = async (body) => {
     const msg = `Not Authorized.`;
 
     return {
-      statusCode: 401,
+      statusCode: 301,
       headers: {
-        'Content-Type': 'application/json',
+        Location: '/views/oneTouch/one-touch-login.html',
       },
       body: JSON.stringify({ msg }),
     };
@@ -172,6 +180,17 @@ module.exports.handler = async (event, context) => {
 
   let body = null;
   if (event.body) body = JSON.parse(event.body);
+
+  if (event.httpMethod === 'POST' && false) {
+    console.log('User Authentication');
+    console.log(event);
+    return {
+      statusCode: 301,
+      headers: {
+        Location: '/views/oneTouch/error.html',
+      },
+    };
+  }
 
   if (event.httpMethod === 'GET' && !oneTouchPortalHTML.includes(path)) {
     console.log('Path end point not found');
