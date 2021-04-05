@@ -19,7 +19,7 @@ async function _oneTouchUserAuthentication() {
     if (!response.ok) throw new Error(data.msg);
 
     console.log(data);
-    return true;
+    return;
   } catch (err) {
     sessionStorage.clear();
     window.location.replace('/views/oneTouch/one-touch-login.html');

@@ -31,12 +31,14 @@ async function _oneTouchSupperUserLogin() {
 
   try {
     const response = await fetch(URL, config);
+    console.log(response);
     const data = await response.json();
     if (!response.ok) throw new Error(data.msg);
 
-    sessionStorage.setItem('access_token', data.access_token); // Storing access_token in sessions
+    await sessionStorage.setItem('access_token', data.access_token); // Storing access_token in sessions
     _spinner(false);
     window.location.replace('/views/oneTouch/index.html');
+    _errorMessage('Access');
   } catch (err) {
     console.log(err);
     _errorMessage(err);

@@ -8,8 +8,69 @@ const jwt = require('jsonwebtoken');
 const MONGODB_URI = process.env.MONGODB_URI;
 const DB_NAME = 'oneTouchDB';
 
-let cachedDb = null;
+// lambda middleware
+let cachedAuthentication = null;
+const userAuthentication = async (body) => {
+  if (cachedAuthentication) return cachedAuthentication;
 
+  console.log(body);
+  const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
+  const authToken = await jwt.verify(
+    body.access_token,
+    ACCESS_TOKEN_SECRET,
+    (err, authData) => {
+      if (err) {
+        console.log(err);
+        return false;
+      } else {
+        console.log(authData);
+        return authData;
+      }
+    }
+  );
+
+  if (authToken) {
+    cachedAuthentication = authToken;
+    const msg = `User Authorized.`;
+
+    return {
+      statusCode: 200,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ msg }),
+    };
+  } else {
+    const msg = `Not Authorized.`;
+
+    return {
+      statusCode: 401,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ msg }),
+    };
+  }
+};
+const middleware = async (event) => {
+  console.log('Lambda middleware');
+  const statusCode = 401;
+  const ok = false;
+  const msg = `Not Authorized.`;
+
+  const response = {
+    statusCode,
+    ok,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ msg }),
+  };
+
+  return response;
+};
+
+let cachedDb = null;
 const connectToDatabase = async (uri) => {
   if (cachedDb) return cachedDb;
 
@@ -23,6 +84,14 @@ const connectToDatabase = async (uri) => {
 };
 
 const oneTouchLogin = async (db, data) => {
+  // const response = await middleware(data);
+  // if (!response.ok) {
+  //   return {
+  //     statusCode: response.statusCode,
+  //     body: response.body,
+  //   };
+  // }
+
   const COLLECTION = 'oneTouchSupperUsers';
 
   const loginUser = {
@@ -80,39 +149,6 @@ const oneTouchLogin = async (db, data) => {
   }
 };
 
-const userAuthentication = async (token) => {
-  console.log(token);
-
-  const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
-  const authToken = await jwt.verify(
-    token,
-    ACCESS_TOKEN_SECRET,
-    (err, authData) => {
-      if (err) {
-        console.log(err);
-        return false;
-      } else {
-        console.log(authData);
-        return authData;
-      }
-    }
-  );
-
-  if (authToken) {
-    return true;
-  } else {
-    const msg = `Not Authorized.`;
-
-    return {
-      statusCode: 401,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ msg }),
-    };
-  }
-};
-
 module.exports.handler = async (event, context) => {
   context.callbackWaitsForEmptyEventLoop = false;
 
@@ -120,14 +156,26 @@ module.exports.handler = async (event, context) => {
   const path = event.path;
   console.log(path);
 
-  let body;
+  let body = null;
   if (event.body) body = JSON.parse(event.body);
+
+  switch (event.httpMethod) {
+    case 'GET':
+      return {
+        statusCode: 301,
+        headers: {
+          Location: '/views/oneTouch/index.html',
+        },
+      };
+  }
 
   switch (path) {
     case '/oneTouch/oneTouchLogin':
       return oneTouchLogin(db, body);
-    case '/hello':
-      return oneTouchDeleteCustomer(db, JSON.parse(event.body));
+    case '/oneTouch/oneTouchUserAuthentication':
+      return userAuthentication(body);
+    case '*':
+      return console.log('/views/oneTouch/index.html');
     default:
       return { statusCode: 400 };
   }
