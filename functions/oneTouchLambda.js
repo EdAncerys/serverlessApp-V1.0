@@ -17,7 +17,7 @@ const userAuthentication = async (body) => {
     return {
       statusCode: 301,
       headers: {
-        Location: '/views/oneTouch/one-touch-login.html',
+        Location: '/one-touch-login.html',
       },
     };
   }
@@ -54,12 +54,13 @@ const userAuthentication = async (body) => {
     return {
       statusCode: 301,
       headers: {
-        Location: '/views/oneTouch/one-touch-login.html',
+        Location: '/one-touch-login.html',
       },
       body: JSON.stringify({ msg }),
     };
   }
 };
+
 const middleware = async (event) => {
   console.log('Lambda middleware');
   const statusCode = 401;
@@ -158,12 +159,12 @@ const oneTouchLogin = async (db, data) => {
 };
 
 const oneTouchPortalHTML = [
+  '/*',
   '/views/oneTouch/add-customer',
   '/views/oneTouch/dev',
   '/views/oneTouch/index',
   '/views/oneTouch/live-connections',
   '/views/oneTouch/manage-customer',
-  '/views/oneTouch/one-touch-login',
   '/views/oneTouch/one-touch-signup',
   '/views/oneTouch/order-new-connection',
   '/views/oneTouch/raise-ticket',
@@ -181,19 +182,20 @@ module.exports.handler = async (event, context) => {
   let body = null;
   if (event.body) body = JSON.parse(event.body);
 
-  if (event.httpMethod === 'POST' && false) {
-    console.log('User Authentication');
-    console.log(event);
+  if (event.httpMethod === 'GET' && path === '/') {
+    console.log('Redirect to login page');
+    console.log(path);
     return {
       statusCode: 301,
       headers: {
-        Location: '/views/oneTouch/error.html',
+        Location: '/one-touch-login.html',
       },
     };
   }
 
   if (event.httpMethod === 'GET' && !oneTouchPortalHTML.includes(path)) {
     console.log('Path end point not found');
+    console.log(path);
     return {
       statusCode: 301,
       headers: {

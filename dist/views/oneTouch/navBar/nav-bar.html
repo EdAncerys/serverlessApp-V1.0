@@ -4,15 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <meta http-equiv="cache-control" content="no-cache" />
-    <!-- tells browser not to cache -->
-    <meta http-equiv="expires" content="0" />
-    <!-- says that the cache expires 'now' -->
-    <meta http-equiv="pragma" content="no-cache" />
-    <!-- says not to use cached stuff, if there is any -->
-
     <!-- User Authentication script -->
-    <script type="module" src="./js/authenticateUserNavBar.js"></script>
+    <!-- <script type="module" src="./js/authenticateUserNavBar.js"></script> -->
 
     <title>oneTouch Navigation</title>
   </head>
@@ -128,13 +121,13 @@
 
   const logout = (e) => {
     sessionStorage.clear();
-    location.reload();
+    window.location.replace('/one-touch-login.html');
 
     return;
   };
 
   document.querySelector('clearSessionsBtn').addEventListener('click', () => {
-    // location.reload();
     sessionStorage.clear();
+    location.reload();
   });
 </script>
