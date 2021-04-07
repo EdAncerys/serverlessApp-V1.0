@@ -6,7 +6,7 @@ async function _deleteOneTouchOrder(id) {
   console.log('Deleting Broadband Order. ID: ' + id);
   _spinner(true);
 
-  const URL = '/oneTouch/orders';
+  const URL = '/oneTouch/orders/deleteOrder';
   const body = {
     _id: id,
   };

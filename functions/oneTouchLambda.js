@@ -7,6 +7,8 @@ const jwt = require('jsonwebtoken');
 
 const MONGODB_URI = process.env.MONGODB_URI;
 const DB_NAME = 'oneTouchDB';
+const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
+const COLLECTION_ONE_TOUCH_ORDERS = 'oneTouchOrders';
 
 // lambda middleware
 let cachedAuthentication = null;
@@ -22,7 +24,6 @@ const userAuthentication = async (body) => {
     };
   }
 
-  const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
   const authToken = await jwt.verify(
     body.access_token,
     ACCESS_TOKEN_SECRET,
@@ -134,7 +135,6 @@ const oneTouchLogin = async (db, data) => {
     const expTime = '1h';
     console.log('User data passed on to JWT: ', userData);
 
-    const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
     const access_token = jwt.sign(userData, ACCESS_TOKEN_SECRET, {
       expiresIn: expTime,
     });
@@ -160,13 +160,10 @@ const oneTouchLogin = async (db, data) => {
 
 // oneTouch Orders
 const allPlacedOrders = async (db, data) => {
-  const COLLECTION = 'oneTouchOrders';
-
   const filterOrders = {
     access_token: data.access_token,
   };
 
-  const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
   const authToken = await jwt.verify(
     filterOrders.access_token,
     ACCESS_TOKEN_SECRET,
@@ -183,7 +180,7 @@ const allPlacedOrders = async (db, data) => {
 
   if (filterOrders.access_token) {
     const dbData = await db
-      .collection(COLLECTION)
+      .collection(COLLECTION_ONE_TOUCH_ORDERS)
       .find({ oneTouchSuperUser: authToken.email })
       .toArray();
     console.log(dbData);
@@ -208,7 +205,96 @@ const allPlacedOrders = async (db, data) => {
     };
   }
 };
+const addOrder = async (db, data) => {
+  console.log(data);
+  const createOrder = {
+    access_token: data.access_token,
+    broadband_name: data.oneTouchData.name,
+  };
 
+  const authToken = await jwt.verify(
+    createOrder.access_token,
+    ACCESS_TOKEN_SECRET,
+    (err, authData) => {
+      if (err) {
+        console.log(err);
+        return false;
+      } else {
+        console.log(authData);
+        return authData;
+      }
+    }
+  );
+  delete data['access_token']; // Removing access_token from data object
+  data['oneTouchSuperUser'] = authToken.email;
+
+  if (createOrder.broadband_name) {
+    await db.collection(COLLECTION).insertMany([data]);
+    const msg =
+      `Order successfully been created for: ` + createOrder.broadband_name;
+    console.log(msg);
+
+    return {
+      statusCode: 201,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ order: data, msg: msg }),
+    };
+  } else {
+    const msg = `Error creating order for: ` + createOrder.broadband_name;
+    console.log(msg);
+
+    return {
+      statusCode: 422,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ order: data, msg: msg }),
+    };
+  }
+};
+const deleteOrder = async (db, data) => {
+  const deleteOrder = {
+    _id: data._id,
+  };
+  const orderID = new ObjectId(deleteOrder._id);
+  const order = await db
+    .collection(COLLECTION_ONE_TOUCH_ORDERS)
+    .find({ _id: orderID })
+    .toArray();
+  const orderValid = order.length > 0;
+
+  if (orderValid && deleteOrder._id) {
+    const msg =
+      `Oder been successfully deleted from DB. Order ID: ` + deleteOrder._id;
+    await db.collection(COLLECTION_ONE_TOUCH_ORDERS).deleteOne({ _id: orderID });
+    console.log(msg);
+
+    return {
+      statusCode: 201,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ order: data, msg: msg }),
+    };
+  } else {
+    const msg =
+      `Order not found! Error deleting order from DB. Order ID: ` +
+      deleteOrder._id;
+    console.log(msg);
+
+    return {
+      statusCode: 422,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ user: data, msg: msg }),
+    };
+  }
+};
+
+// Error page handling response
 const oneTouchPortalHTML = [
   '/',
   '/views/oneTouch/add-customer',
@@ -252,6 +338,10 @@ module.exports.handler = async (event, context) => {
       return userAuthentication(body);
     case '/oneTouch/orders/allPlacedOrders':
       return allPlacedOrders(db, body);
+    case '/oneTouch/orders/addOrder':
+      return addOrder(db, body);
+    case '/oneTouch/orders/deleteOrder':
+      return deleteOrder(db, body);
     default:
       return { statusCode: 400 };
   }
