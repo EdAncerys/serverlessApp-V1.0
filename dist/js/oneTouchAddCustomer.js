@@ -108,7 +108,8 @@ document.querySelector('body').addEventListener('click', (event) => {
     document.querySelector('#selectAddressContainer').remove();
     document.querySelector('#userPostcodeContainer').classList.remove('hidden');
     document.querySelector('#installationPostcode').value = '';
-    persistDOMData('oneTouchBodyContainer', 'add-customer');
+    const endPoint = location.href.split('/').slice(-1)[0];
+    persistDOMData(endPoint);
 
     return;
   }

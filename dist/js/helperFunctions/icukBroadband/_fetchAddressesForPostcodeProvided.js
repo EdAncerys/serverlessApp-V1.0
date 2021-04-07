@@ -96,7 +96,8 @@ async function _fetchAddressesForPostcodeProvided(postcode) {
 
     oneTouchBrodbandContainer.appendChild(orderAddressContainer);
     oneTouchBroadbandOrderPageOne.classList.add('hidden');
-    persistDOMData('oneTouchBodyContainer', 'order-new-connection');
+    const endPoint = location.href.split('/').slice(-1)[0];
+    persistDOMData(endPoint);
   } catch (err) {
     console.log(err);
     _errorMessage(err);

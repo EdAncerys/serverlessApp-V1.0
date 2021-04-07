@@ -107,7 +107,8 @@ async function _getBroadbandAvailability() {
 
     oneTouchBroadbandOrderPageTwo.classList.add('hidden');
     oneTouchBrodbandContainer.appendChild(oneTouchBroadbandAvailability);
-    persistDOMData('oneTouchBodyContainer', 'order-new-connection');
+    const endPoint = location.href.split('/').slice(-1)[0];
+    persistDOMData(endPoint);
   } catch (err) {
     console.log(err);
     _errorMessage(

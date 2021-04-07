@@ -106,7 +106,8 @@ async function _customerAddressForPostcodeProvided() {
 
     userAddressContainer.appendChild(selectAddressContainer);
     userPostcodeContainer.classList.add('hidden');
-    persistDOMData('oneTouchBodyContainer', 'add-customer');
+    const endPoint = location.href.split('/').slice(-1)[0];
+    persistDOMData(endPoint);
   } catch (err) {
     console.log(err);
     _errorMessage(err);

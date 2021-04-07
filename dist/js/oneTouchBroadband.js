@@ -154,7 +154,8 @@ document.querySelector('body').addEventListener('click', (event) => {
         .classList.remove('hidden');
     }
 
-    persistDOMData('oneTouchBodyContainer', 'order-new-connection');
+    const endPoint = location.href.split('/').slice(-1)[0];
+    persistDOMData(endPoint);
     return;
   }
   if (customerInfo) {

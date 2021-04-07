@@ -82,7 +82,8 @@ async function _oneTouchOrders() {
                                   </div>`;
     }
 
-    persistDOMData('oneTouchBodyContainer', 'live-connections');
+    const endPoint = location.href.split('/').slice(-1)[0];
+    persistDOMData(endPoint);
     _spinner(false);
   } catch (err) {
     console.log(err);

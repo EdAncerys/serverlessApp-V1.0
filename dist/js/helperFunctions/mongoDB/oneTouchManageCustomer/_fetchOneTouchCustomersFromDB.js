@@ -136,7 +136,8 @@ async function _fetchOneTouchCustomersFromDB(pageName) {
       oneTouchBrodbandContainer.appendChild(oneTouchCustomer);
     }
 
-    persistDOMData('oneTouchBodyContainer', pageName);
+    const endPoint = location.href.split('/').slice(-1)[0];
+    persistDOMData(endPoint);
     _spinner(false);
   } catch (err) {
     console.log(err);

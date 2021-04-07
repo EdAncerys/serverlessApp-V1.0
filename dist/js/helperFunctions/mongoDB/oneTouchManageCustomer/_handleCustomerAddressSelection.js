@@ -44,7 +44,8 @@ async function _handleCustomerAddressSelection() {
 
   userAddressContainer.appendChild(selectionContainer);
   selectAddressContainer.remove();
-  persistDOMData('oneTouchBodyContainer', 'add-customer');
+  const endPoint = location.href.split('/').slice(-1)[0];
+  persistDOMData(endPoint);
 }
 
 export { _handleCustomerAddressSelection };

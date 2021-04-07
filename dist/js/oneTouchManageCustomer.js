@@ -54,6 +54,7 @@ document.querySelector('body').addEventListener('click', (event) => {
     );
     oneTouchManageCustomerPageOne.classList.remove('hidden');
     oneTouchCustomer.remove();
-    persistDOMData('oneTouchBodyContainer', 'manage-customer');
+    const endPoint = location.href.split('/').slice(-1)[0];
+    persistDOMData(endPoint);
   }
 });
