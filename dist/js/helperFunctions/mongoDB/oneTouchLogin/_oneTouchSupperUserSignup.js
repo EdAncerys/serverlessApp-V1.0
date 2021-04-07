@@ -60,7 +60,7 @@ async function _oneTouchSupperUserSignup() {
 
     console.log(data);
     _spinner(false);
-    window.location.replace('/views/oneTouch/one-touch-login.html');
+    window.location.replace('/index.html');
   } catch (err) {
     console.log(err);
     _errorMessage(err);

@@ -3,7 +3,7 @@
 [build]
   # the root website directory
   publish = "./dist"
-  # the root website directory
+  # built command
   command = "echo 'Build in progress...' "
   # the build command
   functions = "functions/"
@@ -13,11 +13,6 @@
 [[redirects]]
   from = "/*"
   to = "/.netlify/functions/oneTouchLambda"
-  status = 200
-
-[[redirects]]
-  from = "/oneTouch/createTicket"
-  to = "/.netlify/functions/createFreshDeskTicket"
   status = 200
 
 [[redirects]]

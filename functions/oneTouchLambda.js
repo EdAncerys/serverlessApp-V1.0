@@ -17,7 +17,7 @@ const userAuthentication = async (body) => {
     return {
       statusCode: 301,
       headers: {
-        Location: '/one-touch-login.html',
+        Location: '/index.html',
       },
     };
   }
@@ -159,7 +159,7 @@ const oneTouchLogin = async (db, data) => {
 };
 
 const oneTouchPortalHTML = [
-  '/*',
+  '/',
   '/views/oneTouch/add-customer',
   '/views/oneTouch/dev',
   '/views/oneTouch/index',
@@ -182,17 +182,7 @@ module.exports.handler = async (event, context) => {
   let body = null;
   if (event.body) body = JSON.parse(event.body);
 
-  if (event.httpMethod === 'GET' && path === '/') {
-    console.log('Redirect to login page');
-    console.log(path);
-    return {
-      statusCode: 301,
-      headers: {
-        Location: '/one-touch-login.html',
-      },
-    };
-  }
-
+  // Redirects to error html
   if (event.httpMethod === 'GET' && !oneTouchPortalHTML.includes(path)) {
     console.log('Path end point not found');
     console.log(path);
@@ -209,8 +199,8 @@ module.exports.handler = async (event, context) => {
       return oneTouchLogin(db, body);
     case '/oneTouch/oneTouchUserAuthentication':
       return userAuthentication(body);
-    case '*':
-      return console.log('/views/oneTouch/index.html');
+    case '/oneTouch/icuk_oneTouchAPI/*':
+      return console.log(body);
     default:
       return { statusCode: 400 };
   }
