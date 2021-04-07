@@ -16,6 +16,8 @@ async function _oneTouchUserAuthentication() {
   try {
     const response = await fetch(URL, config);
     console.log(response);
+    if (!response.ok) throw new Error(data);
+
     if (response.redirected) {
       sessionStorage.clear();
       window.location.replace(response.url);

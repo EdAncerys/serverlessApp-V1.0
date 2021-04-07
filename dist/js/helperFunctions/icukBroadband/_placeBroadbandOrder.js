@@ -1,4 +1,4 @@
-import { _createOneTouchOrder } from '../mongoDB/_createOneTouchOrder.js';
+import { _createOneTouchOrder } from '../mongoDB/oneTouchOrders/_createOneTouchOrder.js';
 import { persistDOMData } from '../../persistDOMData.js';
 import { _errorMessage } from '../_errorMessage.js';
 import { _spinner } from '../_spinner.js';

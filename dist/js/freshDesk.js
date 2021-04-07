@@ -1,4 +1,3 @@
-import { authenticateUser } from './authenticateUser.js';
 import { _handleFormValidation } from './helperFunctions/_handleFormValidation.js';
 import { _freshDeskTickets } from './helperFunctions/freshDesk/_freshDeskTickets.js';
 
@@ -13,14 +12,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const submitFreshDeskTicket = async (ev) => {
   ev.preventDefault();
-  await authenticateUser();
-
-  _handleFormValidation('_submitTicket');
+  await _handleFormValidation('_submitTicket');
 };
 
 const getFreshDeskTicket = async (ev) => {
   ev.preventDefault();
-  await authenticateUser();
-
-  _freshDeskTickets();
+  await _freshDeskTickets();
 };

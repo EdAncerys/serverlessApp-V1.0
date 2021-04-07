@@ -1,6 +1,6 @@
 import { _oneTouchCustomer } from './_oneTouchCustomer.js';
-import { _errorMessage } from '../_errorMessage.js';
-import { _spinner } from '../_spinner.js';
+import { _errorMessage } from '../../_errorMessage.js';
+import { _spinner } from '../../_spinner.js';
 
 async function _oneTouchUserLogin() {
   _spinner(true);

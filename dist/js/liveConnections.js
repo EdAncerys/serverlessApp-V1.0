@@ -1,22 +1,21 @@
-import { authenticateUser } from './authenticateUser.js';
-import { _oneTouchOrders } from './helperFunctions/mongoDB/_oneTouchOrders.js';
-import { _deleteOneTouchOrder } from './helperFunctions/mongoDB/_deleteOneTouchOrder.js';
+import { _deleteOneTouchOrder } from './helperFunctions/mongoDB/oneTouchOrders/_deleteOneTouchOrder.js';
 import { _errorMessage } from './helperFunctions/_errorMessage.js';
+import { _oneTouchAllPlacedOrders } from './helperFunctions/mongoDB/oneTouchOrders/_oneTouchAllPlacedOrders.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   // Persist user data on reload
+  const endPoint = location.href.split('/').slice(-1)[0];
   const oneTouchDOMBody = sessionStorage.getItem('oneTouchDOMBody') === null;
   const oneTouchPageName =
-    sessionStorage.getItem('oneTouchPageName') === 'live-connections';
+    sessionStorage.getItem('oneTouchPageName') === endPoint;
 
   if (!oneTouchDOMBody && oneTouchPageName) {
     console.log('Page Reloaded');
     const oneTouchDOMBody = document.querySelector('#oneTouchBodyContainer');
     oneTouchDOMBody.innerHTML = sessionStorage.getItem('oneTouchDOMBody');
   } else {
-    authenticateUser();
-
-    _oneTouchOrders();
+    console.log('Fetching Orders');
+    _oneTouchAllPlacedOrders();
   }
 });
 
@@ -28,13 +27,9 @@ document.querySelector('body').addEventListener('click', (event) => {
   let id = event.target.getAttribute('id');
 
   if (orderInfo) {
-    authenticateUser();
-
     _errorMessage(id, 'success');
   }
   if (deleteOrder) {
-    authenticateUser();
-
     _deleteOneTouchOrder(id);
   }
   if (placeNewOrder) {

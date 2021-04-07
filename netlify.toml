@@ -32,7 +32,7 @@
 
 [[redirects]]
   from = "/oneTouch/orders"
-  to = "/.netlify/functions/mongoDB_oneTouchOrders"
+  to = "/.netlify/functions/mongoDB_oneTouchAllPlacedOrders"
   status = 200
 
 [[redirects]]

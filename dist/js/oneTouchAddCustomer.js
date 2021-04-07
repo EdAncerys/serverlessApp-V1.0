@@ -1,4 +1,3 @@
-import { authenticateUser } from './authenticateUser.js';
 import { _customerAddressForPostcodeProvided } from './helperFunctions/mongoDB/oneTouchManageCustomer/_customerAddressForPostcodeProvided.js';
 import { _handleCustomerAddressSelection } from './helperFunctions/mongoDB/oneTouchManageCustomer/_handleCustomerAddressSelection.js';
 import { _addOneTouchCustomerToDB } from './helperFunctions/mongoDB/oneTouchManageCustomer/_addOneTouchCustomerToDB.js';
@@ -29,14 +28,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const customerAddressSearch = async (ev) => {
   ev.preventDefault();
-  await authenticateUser();
+  await 
 
   _customerAddressForPostcodeProvided();
 };
 
 const addUser = async (ev) => {
   ev.preventDefault();
-  await authenticateUser();
+  await 
 
   // Form validation
   const customerFullName =
@@ -89,7 +88,7 @@ document.querySelector('body').addEventListener('click', (event) => {
 
   // console.log(event.target);
   if (selectCustomerAddress) {
-    authenticateUser();
+    
 
     const userSelection = document.getElementById('selectedAddress').value;
     if (userSelection !== 'userSelection') {
@@ -103,7 +102,7 @@ document.querySelector('body').addEventListener('click', (event) => {
     return;
   }
   if (goPageBack) {
-    authenticateUser();
+    
 
     document.querySelector('#selectAddressContainer').remove();
     document.querySelector('#userPostcodeContainer').classList.remove('hidden');
@@ -118,7 +117,7 @@ document.querySelector('body').addEventListener('click', (event) => {
 document.querySelector('body').addEventListener('change', (event) => {
   const saveAddressData = event.target.nodeName === 'SELECT';
   if (saveAddressData) {
-    authenticateUser();
+    
 
     _saveAddressData();
     // console.log(event.target);

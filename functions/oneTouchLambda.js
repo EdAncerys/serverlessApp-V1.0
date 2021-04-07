@@ -158,6 +158,57 @@ const oneTouchLogin = async (db, data) => {
   }
 };
 
+// oneTouch Orders
+const allPlacedOrders = async (db, data) => {
+  const COLLECTION = 'oneTouchOrders';
+
+  const filterOrders = {
+    access_token: data.access_token,
+  };
+
+  const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
+  const authToken = await jwt.verify(
+    filterOrders.access_token,
+    ACCESS_TOKEN_SECRET,
+    (err, authData) => {
+      if (err) {
+        console.log(err);
+        return false;
+      } else {
+        console.log(authData);
+        return authData;
+      }
+    }
+  );
+
+  if (filterOrders.access_token) {
+    const dbData = await db
+      .collection(COLLECTION)
+      .find({ oneTouchSuperUser: authToken.email })
+      .toArray();
+    console.log(dbData);
+
+    return {
+      statusCode: 201,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ data: dbData }),
+    };
+  } else {
+    const msg = `Error accrued. No orders found for: ` + authToken.email;
+    console.log(msg);
+
+    return {
+      statusCode: 404,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ msg: msg }),
+    };
+  }
+};
+
 const oneTouchPortalHTML = [
   '/',
   '/views/oneTouch/add-customer',
@@ -199,8 +250,8 @@ module.exports.handler = async (event, context) => {
       return oneTouchLogin(db, body);
     case '/oneTouch/oneTouchUserAuthentication':
       return userAuthentication(body);
-    case '/oneTouch/icuk_oneTouchAPI/*':
-      return console.log(body);
+    case '/oneTouch/orders/allPlacedOrders':
+      return allPlacedOrders(db, body);
     default:
       return { statusCode: 400 };
   }
