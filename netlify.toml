@@ -30,10 +30,7 @@
   to = "/.netlify/functions/mongoDB_oneTouchCustomer"
   status = 200
 
-[[redirects]]
-  from = "/oneTouch/orders"
-  to = "/.netlify/functions/mongoDB_oneTouchAllPlacedOrders"
-  status = 200
+
 
 [[redirects]]
   from = "/oneTouch/oneTouchLogin"

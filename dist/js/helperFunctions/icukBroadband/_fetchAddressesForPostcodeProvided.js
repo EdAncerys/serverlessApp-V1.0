@@ -6,8 +6,18 @@ import { _spinner } from '../_spinner.js';
 async function _fetchAddressesForPostcodeProvided(postcode) {
   console.log('Fetching addresses for postcode provided...');
   _spinner(true);
-  const URL = '/oneTouch/icuk_oneTouchAPI/' + postcode;
-  console.log(URL);
+  const URL = '/oneTouch/icUK/addressesForPostcodeProvided';
+
+  const body = {
+    postcode: postcode,
+  };
+  console.log(body);
+
+  const config = {
+    method: 'POST',
+    body: JSON.stringify(body),
+  };
+  console.log(config);
 
   // Removing user previous data
   const removeData = document.querySelector('#oneTouchBroadbandOrderPageTwo');
@@ -23,7 +33,8 @@ async function _fetchAddressesForPostcodeProvided(postcode) {
   orderAddressContainer.id = 'oneTouchBroadbandOrderPageTwo';
 
   try {
-    const response = await fetch(URL);
+    const response = await fetch(URL, config);
+    console.log(response);
     if (!response.ok) throw new Error(response.statusText);
 
     const data = await response.json();

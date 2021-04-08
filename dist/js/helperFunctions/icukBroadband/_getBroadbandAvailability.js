@@ -7,7 +7,7 @@ async function _getBroadbandAvailability() {
   console.log('Getting Broadband Availability...');
   _spinner(true);
 
-  const URL = '/oneTouch/icuk_oneTouchAPI/';
+  const URL = '/oneTouch/icUKBroadbandDeals/';
   const dropDown = document.getElementById('selectedAddress');
   let validateInput = '';
   if (dropDown)

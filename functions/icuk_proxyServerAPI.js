@@ -7,7 +7,7 @@ const icUKAddressesForPostcodeProvided = async (event) => {
   console.log('QuatAGuard Proxy Server Agent');
 
   const urlPath = event.path;
-  const postCode = urlPath.substr(urlPath.lastIndexOf('/') + 1);
+  const postcode = urlPath.substr(urlPath.lastIndexOf('/') + 1);
   // Proxy Server Agent configuration
   const QUOTAGUARD_STATIC_URL = process.env.QUOTAGUARD_STATIC_URL;
   const proxyAgent = new HttpsProxyAgent(QUOTAGUARD_STATIC_URL);
@@ -16,8 +16,8 @@ const icUKAddressesForPostcodeProvided = async (event) => {
   const ICUK_URL = process.env.ICUK_URL;
   const ICUK_API_KEY = process.env.ICUK_API_KEY;
   const ICUK_END_POINT = '/broadband/address_search/';
-  const HASH = sha512(ICUK_END_POINT + postCode + ICUK_API_KEY);
-  const URL = ICUK_URL + ICUK_END_POINT + postCode;
+  const HASH = sha512(ICUK_END_POINT + postcode + ICUK_API_KEY);
+  const URL = ICUK_URL + ICUK_END_POINT + postcode;
   console.log(URL);
 
   const headers = {
@@ -65,7 +65,7 @@ const icUKAddressesForPostcodeProvided = async (event) => {
 const icUKBroadbandDeals = async (body) => {
   console.log('QuatAGuard Proxy Server Agent');
 
-  let postCode = body.postcode.replace(/\s/g, '');
+  let postcode = body.postcode.replace(/\s/g, '');
   // Proxy Server Agent configuration
   const QUOTAGUARD_STATIC_URL = process.env.QUOTAGUARD_STATIC_URL;
   const proxyAgent = new HttpsProxyAgent(QUOTAGUARD_STATIC_URL);
@@ -74,8 +74,8 @@ const icUKBroadbandDeals = async (body) => {
   const ICUK_URL = process.env.ICUK_URL;
   const ICUK_API_KEY = process.env.ICUK_API_KEY;
   const ICUK_END_POINT = '/broadband/availability/';
-  const HASH = sha512(ICUK_END_POINT + postCode + ICUK_API_KEY);
-  const URL = ICUK_URL + ICUK_END_POINT + postCode;
+  const HASH = sha512(ICUK_END_POINT + postcode + ICUK_API_KEY);
+  const URL = ICUK_URL + ICUK_END_POINT + postcode;
   console.log(URL);
 
   const headers = {
