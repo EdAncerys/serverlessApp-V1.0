@@ -15,9 +15,10 @@ import { _fetchOneTouchCustomerDataById } from './helperFunctions/mongoDB/oneTou
 
 document.addEventListener('DOMContentLoaded', () => {
   // Persist user data on reload
+  const endPoint = location.href.split('/').slice(-1)[0];
   const oneTouchDOMBody = sessionStorage.getItem('oneTouchDOMBody') === null;
   const oneTouchPageName =
-    sessionStorage.getItem('oneTouchPageName') === 'order-new-connection';
+    sessionStorage.getItem('oneTouchPageName') === endPoint;
 
   if (!oneTouchDOMBody && oneTouchPageName) {
     console.log('Page Reloaded');
