@@ -20,10 +20,6 @@
   to = "/.netlify/functions/nodeMailer"
   status = 200
 
-[[redirects]]
-  from = "/oneTouch/icuk_oneTouchAPI/*"
-  to = "/.netlify/functions/icuk_proxyServerAPI"
-  status = 200
 
 [[redirects]]
   from = "/oneTouch/customer"
@@ -31,11 +27,6 @@
   status = 200
 
 
-
-[[redirects]]
-  from = "/oneTouch/oneTouchLogin"
-  to = "/.netlify/functions/mongoDB_oneTouchLogin"
-  status = 200
 
 [[redirects]]
   from = "/oneTouch/oneTouchSignUp"

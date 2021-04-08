@@ -13,6 +13,7 @@ const MONGODB_URI = process.env.MONGODB_URI;
 const DB_NAME = 'oneTouchDB';
 const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
 const COLLECTION_ONE_TOUCH_ORDERS = 'oneTouchOrders';
+const COLLECTION_ONE_TOUCH_SUPER_USER = 'oneTouchSupperUsers';
 
 // lambda middleware
 let cachedAuthentication = null;
@@ -71,23 +72,13 @@ const connectToDatabase = async (uri) => {
 };
 // oneTouch Portal login & signup
 const oneTouchLogin = async (db, data) => {
-  // const response = await middleware(data);
-  // if (!response.ok) {
-  //   return {
-  //     statusCode: response.statusCode,
-  //     body: response.body,
-  //   };
-  // }
-
-  const COLLECTION = 'oneTouchSupperUsers';
-
   const loginUser = {
     email: data.email,
     password: data.password,
   };
   console.log(loginUser);
   const user = await db
-    .collection(COLLECTION)
+    .collection(COLLECTION_ONE_TOUCH_SUPER_USER)
     .find({ email: loginUser.email })
     .toArray();
   console.log('DB User:', user);
@@ -141,7 +132,7 @@ const oneTouchSignUp = async (db, data) => {
   };
   console.table(signUpUser);
   const user = await db
-    .collection(COLLECTION)
+    .collection(COLLECTION_ONE_TOUCH_SUPER_USER)
     .find({ email: signUpUser.email })
     .toArray();
   console.log(user);
@@ -153,7 +144,7 @@ const oneTouchSignUp = async (db, data) => {
     const hashedPassword = await bcrypt.hash(signUpUser.password, saltRounds);
 
     data.password = hashedPassword;
-    await db.collection(COLLECTION).insertMany([data]);
+    await db.collection(COLLECTION_ONE_TOUCH_SUPER_USER).insertMany([data]);
     const msg =
       `Account created successfully! Welcome to One Touch Portal ` +
       signUpUser.email;
@@ -180,7 +171,6 @@ const oneTouchSignUp = async (db, data) => {
     };
   }
 };
-
 
 // oneTouch Orders
 const allPlacedOrders = async (db, data) => {
@@ -476,9 +466,11 @@ module.exports.handler = async (event, context) => {
   }
 
   switch (path) {
-    // Login endPoint
+    // Login & logout endPoint
     case '/oneTouch/oneTouchLogin':
       return oneTouchLogin(db, body);
+    case '/oneTouch/oneTouchSignUp':
+      return oneTouchSignUp(db, body);
     // Authentication endPoints
     case '/oneTouch/oneTouchUserAuthentication':
       return userAuthentication(body);
