@@ -494,6 +494,47 @@ const findCustomersById = async (db, data) => {
     };
   }
 };
+const oneTouchUpdateUser = async (db, data) => {
+  const updateUser = {
+    email: data.email,
+  };
+  const user = await db
+    .collection(COLLECTION)
+    .find({ email: updateUser.email })
+    .toArray();
+  const userExist = user[0];
+
+  if (userExist && updateUser.email) {
+    const msg =
+      `User been successfully updated in DB with email: ` + updateUser.email;
+    const oneTouchUser = { email: updateUser.email };
+    const updatedValues = { $set: data };
+
+    await db.collection(COLLECTION).updateOne(oneTouchUser, updatedValues);
+    console.log(msg);
+
+    return {
+      statusCode: 201,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ updatedUser: data, msg: msg, user: user }),
+    };
+  } else {
+    const msg =
+      `User not found! Error updating user in DB where email: ` +
+      updateUser.email;
+    console.log(msg);
+
+    return {
+      statusCode: 422,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ updatedUser: data, msg: msg, user: user }),
+    };
+  }
+};
 
 // icUK data
 const addressesForPostcodeProvided = async (body) => {

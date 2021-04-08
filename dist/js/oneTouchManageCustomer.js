@@ -28,6 +28,7 @@ document.querySelector('body').addEventListener('click', (event) => {
   const customerInfo = event.target.nodeName === 'CUSTOMERINFO';
   const deleteCustomer = event.target.nodeName === 'DELETECUSTOMER';
   const goPageBack = event.target.nodeName === 'GOPAGEBACK';
+  const addCustomer = event.target.nodeName === 'ADDCUSTOMER';
 
   let id;
   if (event.target.getAttribute('id')) id = event.target.getAttribute('id');
@@ -48,5 +49,8 @@ document.querySelector('body').addEventListener('click', (event) => {
     oneTouchCustomer.remove();
     const endPoint = location.href.split('/').slice(-1)[0];
     persistDOMData(endPoint);
+  }
+  if (addCustomer) {
+    window.location.replace('/views/oneTouch/add-customer');
   }
 });

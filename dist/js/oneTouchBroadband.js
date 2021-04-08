@@ -45,6 +45,7 @@ document.querySelector('body').addEventListener('click', (event) => {
   const goPageBack = event.target.nodeName === 'GOPAGEBACK';
   const searchEthernetAvailability =
     event.target.nodeName === 'SEARCHETHERNETAVAILABILITY';
+  const addCustomer = event.target.nodeName === 'ADDCUSTOMER';
 
   // console.log(event.target);
   if (searchEthernetAvailability) {
@@ -144,6 +145,9 @@ document.querySelector('body').addEventListener('click', (event) => {
     const id = event.target.id;
     _errorMessage(`Customer ID: ${id}`, 'warning');
     return;
+  }
+  if (addCustomer) {
+    window.location.replace('/views/oneTouch/add-customer');
   }
 });
 

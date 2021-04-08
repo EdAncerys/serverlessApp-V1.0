@@ -14,10 +14,3 @@
   from = "/*"
   to = "/.netlify/functions/oneTouchLambda"
   status = 200
-
-
-
-[[redirects]]
-  from = "/oneTouch/customer"
-  to = "/.netlify/functions/mongoDB_oneTouchCustomer"
-  status = 200

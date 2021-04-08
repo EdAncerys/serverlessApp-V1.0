@@ -85,7 +85,14 @@ async function _fetchOneTouchCustomersFromDB(pageName) {
                       </div>`;
     });
 
-    customerDataHTML = `<div id='dataWrapper' class='dataWrapper'>
+    customerDataHTML = `<div class="headerText">
+                          <div class="fontH4">Your Customer List</div>
+                          <div class="fontH2">
+                            Manage all customers in one place. View address, contact
+                            information, etc. & any personal notes.
+                          </div>
+                        </div>
+                        <div id='dataWrapper' class='dataWrapper'>
                           <div class="rowDataContainer-4 boxContainer bgGray">
                             <div class="rowDataWrapper">Customer</div>
                             <div class="rowDataWrapper">Contact Details</div>
@@ -99,7 +106,14 @@ async function _fetchOneTouchCustomersFromDB(pageName) {
     if (data.length === 0) {
       _spinner(false);
       _errorMessage('You Have No Customers added', 'warning');
-      customerDataHTML = '';
+      customerDataHTML = `<section class="features">
+                            <div class="flex-container-30">
+                              <div class="headerText alignHorizontally">
+                                <div class="fontH3">Your Have No Customers Added!</div>
+                                <addCustomer class="btnOneTouch">Add New Customer</addCustomer>
+                              </div>
+                            </div>
+                          </section>`;
     }
 
     const oneTouchCustomer = document.createElement('div');
