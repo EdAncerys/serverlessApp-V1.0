@@ -5,7 +5,9 @@ import { _fetchAddressesForPostcodeProvided } from './_fetchAddressesForPostcode
 const _orderPostcodeValidation = () => {
   console.log('Validating From...');
 
-  let postcode = document.getElementById('postcode').value.replace(/\s/g, '');
+  let postcode = document
+    .getElementById('postcodeBroadband')
+    .value.replace(/\s/g, '');
   console.log(postcode);
 
   if (!postcode) {
