@@ -14,6 +14,7 @@ const DB_NAME = 'oneTouchDB';
 const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
 const COLLECTION_ONE_TOUCH_ORDERS = 'oneTouchOrders';
 const COLLECTION_ONE_TOUCH_SUPER_USER = 'oneTouchSupperUsers';
+const COLLECTION_ONE_TOUCH_CUSTOMER = 'oneTouchCustomer';
 
 // lambda middleware
 let cachedAuthentication = null;
@@ -309,7 +310,192 @@ const deleteOrder = async (db, data) => {
     };
   }
 };
-// icUK Orders
+// oneTouch Customers
+const addCustomer = async (db, data) => {
+  const addCustomer = {
+    access_token: data.access_token,
+    customerEmail: data.customerEmail,
+  };
+  console.log(addCustomer);
+  const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
+  const authToken = await jwt.verify(
+    addCustomer.access_token,
+    ACCESS_TOKEN_SECRET,
+    (err, authData) => {
+      if (err) {
+        console.log(err);
+        return false;
+      } else {
+        console.log(authData);
+        return authData;
+      }
+    }
+  );
+
+  const user = await db
+    .collection(COLLECTION_ONE_TOUCH_CUSTOMER)
+    .find({
+      oneTouchSuperUser: authToken.email,
+      customerEmail: addCustomer.customerEmail,
+    })
+    .toArray();
+  console.log(user);
+  const userExist = user.length > 0;
+
+  if (!userExist && addCustomer.customerEmail) {
+    delete data['access_token']; // Remove access_token from data
+    data['oneTouchSuperUser'] = authToken.email; // Add oneTouchSuperUser data
+
+    await db.collection(COLLECTION_ONE_TOUCH_CUSTOMER).insertMany([data]);
+    const msg =
+      `User successfully added to DB with email: ` + addCustomer.customerEmail;
+    console.log(msg);
+    console.log(data);
+
+    return {
+      statusCode: 201,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ user: data, msg: msg }),
+    };
+  } else {
+    const msg = `User Already Exists With email: ` + addCustomer.customerEmail;
+    console.log(msg);
+
+    return {
+      statusCode: 422,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ msg }),
+    };
+  }
+};
+const deleteCustomer = async (db, data) => {
+  const deleteCustomer = {
+    _id: data.id,
+  };
+  const userID = new ObjectId(deleteCustomer._id);
+  const user = await db
+    .collection(COLLECTION_ONE_TOUCH_CUSTOMER)
+    .find({ _id: userID })
+    .toArray();
+  const userExist = user.length > 0;
+
+  if (userExist && deleteCustomer._id) {
+    const msg =
+      `User been successfully deleted from DB with ID: ` + deleteCustomer._id;
+    await db
+      .collection(COLLECTION_ONE_TOUCH_CUSTOMER)
+      .deleteOne({ _id: userID });
+    console.log(msg);
+
+    return {
+      statusCode: 201,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ user: data, msg: msg }),
+    };
+  } else {
+    const msg =
+      `User not found! Error deleting user from DB with ID: ` +
+      deleteCustomer._id;
+    console.log(msg);
+
+    return {
+      statusCode: 422,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ msg }),
+    };
+  }
+};
+const filterCustomers = async (db, data) => {
+  const filterCustomers = {
+    access_token: data.access_token,
+  };
+  const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
+  const authToken = await jwt.verify(
+    filterCustomers.access_token,
+    ACCESS_TOKEN_SECRET,
+    (err, authData) => {
+      if (err) {
+        console.log(err);
+        return false;
+      } else {
+        console.log(authData);
+        return authData;
+      }
+    }
+  );
+  console.log(authToken);
+
+  const dbData = await db
+    .collection(COLLECTION_ONE_TOUCH_CUSTOMER)
+    .find({ oneTouchSuperUser: authToken.email })
+    .toArray();
+  console.table(dbData);
+
+  try {
+    return {
+      statusCode: 200,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(dbData),
+    };
+  } catch (err) {
+    console.log(err);
+    return {
+      statusCode: 401,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(err),
+    };
+  }
+};
+const findCustomersById = async (db, data) => {
+  const findCustomer = {
+    id: data.findOneById,
+  };
+
+  const customerID = new ObjectId(findCustomer.id);
+  const customerData = await db
+    .collection(COLLECTION_ONE_TOUCH_CUSTOMER)
+    .find({ _id: customerID })
+    .toArray();
+
+  console.log(customerData);
+  const customerValid = customerData.length > 0;
+  console.table(customerValid);
+
+  if (customerValid) {
+    return {
+      statusCode: 200,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(customerData[0]),
+    };
+  } else {
+    const msg = `Error finding customer. Customer ID: ` + findCustomer.id;
+    console.log(msg);
+
+    return {
+      statusCode: 422,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ msg }),
+    };
+  }
+};
+
+// icUK data
 const addressesForPostcodeProvided = async (body) => {
   console.log('QuatAGuard Proxy Server Agent');
 
@@ -427,7 +613,7 @@ const broadbandAvailability = async (body) => {
   }
 };
 
-// Error page handling response
+// Error page handling response endpoints
 const oneTouchPortalHTML = [
   '/',
   '/views/oneTouch/add-customer',
@@ -481,6 +667,15 @@ module.exports.handler = async (event, context) => {
       return addOrder(db, body);
     case '/oneTouch/orders/deleteOrder':
       return deleteOrder(db, body);
+    // oneTouch customer endPoints
+    case '/oneTouch/customer/addCustomer':
+      return addCustomer(db, body);
+    case '/oneTouch/customer/deleteCustomer':
+      return deleteCustomer(db, body);
+    case '/oneTouch/customer/filterCustomers':
+      return filterCustomers(db, body);
+    case '/oneTouch/customer/findCustomersById':
+      return findCustomersById(db, body);
     // icUK endPoints
     case '/oneTouch/icUK/addressesForPostcodeProvided':
       return addressesForPostcodeProvided(body);

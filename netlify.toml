@@ -15,26 +15,9 @@
   to = "/.netlify/functions/oneTouchLambda"
   status = 200
 
-[[redirects]]
-  from = "/oneTouch/contactUs"
-  to = "/.netlify/functions/nodeMailer"
-  status = 200
 
 
 [[redirects]]
   from = "/oneTouch/customer"
   to = "/.netlify/functions/mongoDB_oneTouchCustomer"
   status = 200
-
-
-
-[[redirects]]
-  from = "/oneTouch/oneTouchSignUp"
-  to = "/.netlify/functions/mongoDB_oneTouchSignUp"
-  status = 200
-
-[[redirects]]
-  from = "/oneTouch/oneTouchUserAuthentication"
-  to = "/.netlify/functions/oneTouchUserAuthentication"
-  status = 200
-  force = true

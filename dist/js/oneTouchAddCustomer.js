@@ -28,14 +28,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const customerAddressSearch = async (ev) => {
   ev.preventDefault();
-  await 
-
-  _customerAddressForPostcodeProvided();
+  await _customerAddressForPostcodeProvided();
 };
 
 const addUser = async (ev) => {
   ev.preventDefault();
-  await 
 
   // Form validation
   const customerFullName =
@@ -88,8 +85,6 @@ document.querySelector('body').addEventListener('click', (event) => {
 
   // console.log(event.target);
   if (selectCustomerAddress) {
-    
-
     const userSelection = document.getElementById('selectedAddress').value;
     if (userSelection !== 'userSelection') {
       _handleCustomerAddressSelection();
@@ -102,8 +97,6 @@ document.querySelector('body').addEventListener('click', (event) => {
     return;
   }
   if (goPageBack) {
-    
-
     document.querySelector('#selectAddressContainer').remove();
     document.querySelector('#userPostcodeContainer').classList.remove('hidden');
     document.querySelector('#installationPostcode').value = '';
@@ -117,8 +110,6 @@ document.querySelector('body').addEventListener('click', (event) => {
 document.querySelector('body').addEventListener('change', (event) => {
   const saveAddressData = event.target.nodeName === 'SELECT';
   if (saveAddressData) {
-    
-
     _saveAddressData();
     // console.log(event.target);
     return;

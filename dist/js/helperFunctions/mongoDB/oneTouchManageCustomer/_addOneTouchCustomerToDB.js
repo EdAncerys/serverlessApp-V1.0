@@ -3,7 +3,7 @@ import { _spinner } from '../../_spinner.js';
 
 async function _addOneTouchCustomerToDB() {
   _spinner(true);
-  const URL = '/oneTouch/customer';
+  const URL = '/oneTouch/customer/addCustomer';
 
   const access_token = sessionStorage.getItem('access_token');
   const customerCreated = new Date().toLocaleString();

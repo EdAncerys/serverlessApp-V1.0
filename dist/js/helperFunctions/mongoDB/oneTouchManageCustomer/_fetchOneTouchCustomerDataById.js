@@ -4,7 +4,7 @@ import { _spinner } from '../../_spinner.js';
 async function _fetchOneTouchCustomerDataById(id) {
   console.log('Fetching Customer Data...');
   _spinner(true, 'Loading Customer Information...');
-  const URL = '/oneTouch/customer';
+  const URL = '/oneTouch/customer/findCustomersById';
 
   const body = {
     findOneById: id,
