@@ -57,24 +57,6 @@ const userAuthentication = async (body) => {
   }
 };
 
-const middleware = async (event) => {
-  console.log('Lambda middleware');
-  const statusCode = 401;
-  const ok = false;
-  const msg = `Not Authorized.`;
-
-  const response = {
-    statusCode,
-    ok,
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ msg }),
-  };
-
-  return response;
-};
-
 let cachedDb = null;
 const connectToDatabase = async (uri) => {
   if (cachedDb) return cachedDb;
@@ -87,7 +69,7 @@ const connectToDatabase = async (uri) => {
 
   return cachedDb;
 };
-
+// oneTouch Portal login & signup
 const oneTouchLogin = async (db, data) => {
   // const response = await middleware(data);
   // if (!response.ok) {
@@ -152,6 +134,53 @@ const oneTouchLogin = async (db, data) => {
     };
   }
 };
+const oneTouchSignUp = async (db, data) => {
+  const signUpUser = {
+    email: data.email,
+    password: data.password,
+  };
+  console.table(signUpUser);
+  const user = await db
+    .collection(COLLECTION)
+    .find({ email: signUpUser.email })
+    .toArray();
+  console.log(user);
+
+  const userValid = user.length > 0;
+
+  if (!userValid && signUpUser.email) {
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(signUpUser.password, saltRounds);
+
+    data.password = hashedPassword;
+    await db.collection(COLLECTION).insertMany([data]);
+    const msg =
+      `Account created successfully! Welcome to One Touch Portal ` +
+      signUpUser.email;
+
+    return {
+      statusCode: 201,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ user: data, msg: msg }),
+    };
+  } else {
+    const msg =
+      `Failed to create account! User already exists with email: ` +
+      signUpUser.email;
+    console.log(msg);
+
+    return {
+      statusCode: 404,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ statusCode: 404, user: data, msg: msg }),
+    };
+  }
+};
+
 
 // oneTouch Orders
 const allPlacedOrders = async (db, data) => {
