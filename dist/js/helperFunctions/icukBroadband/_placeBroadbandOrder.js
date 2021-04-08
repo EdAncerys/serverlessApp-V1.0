@@ -95,7 +95,7 @@ async function _placeBroadbandOrder() {
 
     oneTouchBroadbandOrderPageFive.classList.add('hidden');
     oneTouchBroadbandOrderPageOne.classList.remove('hidden');
-    document.getElementById('postcode').value = '';
+    document.getElementById('postcodeBroadband').value = '';
     const endPoint = location.href.split('/').slice(-1)[0];
     persistDOMData(endPoint);
   } catch (err) {

@@ -224,7 +224,7 @@ const addOrder = async (db, data) => {
   data['oneTouchSuperUser'] = authToken.email;
 
   if (createOrder.broadband_name) {
-    await db.collection(COLLECTION).insertMany([data]);
+    await db.collection(COLLECTION_ONE_TOUCH_ORDERS).insertMany([data]);
     const msg =
       `Order successfully been created for: ` + createOrder.broadband_name;
     console.log(msg);
