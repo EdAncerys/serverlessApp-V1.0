@@ -663,7 +663,7 @@ const oneTouchPortalHTML = [
   '/views/oneTouch/live-connections',
   '/views/oneTouch/manage-customer',
   '/views/oneTouch/one-touch-signup',
-  '/views/oneTouch/order-new-connection',
+  '/views/oneTouch/connection-checker',
   '/views/oneTouch/raise-ticket',
   '/views/oneTouch/support-docs',
   '/views/oneTouch/version-two',

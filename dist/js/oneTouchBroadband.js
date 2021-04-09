@@ -58,7 +58,7 @@ document.querySelector('body').addEventListener('click', (event) => {
     return;
   }
   if (oneTouchCustomers) {
-    _fetchOneTouchCustomersFromDB('order-new-connection');
+    _fetchOneTouchCustomersFromDB('connection-checker');
     return;
   }
   if (getBroadbandAvailability) {

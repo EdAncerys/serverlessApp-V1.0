@@ -33,6 +33,6 @@ document.querySelector('body').addEventListener('click', (event) => {
     _deleteOneTouchOrder(id);
   }
   if (placeNewOrder) {
-    window.location.replace('/views/oneTouch/order-new-connection.html');
+    window.location.replace('/views/oneTouch/connection-checker.html');
   }
 });

@@ -7,12 +7,12 @@ const endPoint = location.href.split('/').slice(-1)[0];
 persistDOMData(endPoint);
 
 document.querySelector('body').addEventListener('click', (event) => {
-  const href = event.target.getAttribute('href');
-
+  const href = event.target.getAttribute('href').substring(2);
+  // console.log(event.target);
   if (href) {
     event.preventDefault();
-    console.log(event.target);
     console.log(href);
+    window.location.replace(`/views/oneTouch/${href}`);
 
     return;
   }

@@ -40,7 +40,7 @@ async function _fetchOneTouchCustomersFromDB(pageName) {
                                   </deleteCustomer>
                                 </div>`;
       }
-      if (pageName === 'order-new-connection') {
+      if (pageName === 'connection-checker') {
         rowDataSelection = `<div class="rowDataSelection">
                                   <customerInfo id='${customer._id}' class="btnB01" role="button">
                                     Info
@@ -132,7 +132,7 @@ async function _fetchOneTouchCustomersFromDB(pageName) {
 
       manageCustomerWrapper.appendChild(oneTouchCustomer);
     }
-    if (pageName === 'order-new-connection') {
+    if (pageName === 'connection-checker') {
       // Removing customer previous data
       const removeData = document.querySelector(
         '#oneTouchBroadbandOrderPageTwo'
