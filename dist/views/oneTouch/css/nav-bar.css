@@ -3,12 +3,20 @@
   z-index: 99;
   width: 100%;
 }
+.oneTouchLogo {
+  height: 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-image: url(../images/one-touch-logo.png);
+  background-size: contain;
+}
 .brand {
   position: absolute;
   float: left;
   display: grid;
   align-items: center;
   height: 100%;
+  width: 200px;
   padding-left: 10px;
 }
 .brand img {
