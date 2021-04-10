@@ -5,7 +5,7 @@ import { _spinner } from '../../_spinner.js';
 async function _fetchOneTouchCustomersFromDB(pageName) {
   console.log('Fetching customers from db...');
   _spinner(true, 'Loading Active Users...');
-  const URL = '/oneTouch/customer';
+  const URL = '/oneTouch/customer/filterCustomers';
   const access_token = sessionStorage.getItem('access_token');
 
   const body = {
@@ -40,7 +40,7 @@ async function _fetchOneTouchCustomersFromDB(pageName) {
                                   </deleteCustomer>
                                 </div>`;
       }
-      if (pageName === 'order-new-connection') {
+      if (pageName === 'connection-checker') {
         rowDataSelection = `<div class="rowDataSelection">
                                   <customerInfo id='${customer._id}' class="btnB01" role="button">
                                     Info
@@ -85,7 +85,14 @@ async function _fetchOneTouchCustomersFromDB(pageName) {
                       </div>`;
     });
 
-    customerDataHTML = `<div id='dataWrapper' class='dataWrapper'>
+    customerDataHTML = `<div class="headerText">
+                          <div class="fontH4">Your Customer List</div>
+                          <div class="fontH2">
+                            Manage all customers in one place. View address, contact
+                            information, etc. & any personal notes.
+                          </div>
+                        </div>
+                        <div id='dataWrapper' class='dataWrapper'>
                           <div class="rowDataContainer-4 boxContainer bgGray">
                             <div class="rowDataWrapper">Customer</div>
                             <div class="rowDataWrapper">Contact Details</div>
@@ -99,7 +106,14 @@ async function _fetchOneTouchCustomersFromDB(pageName) {
     if (data.length === 0) {
       _spinner(false);
       _errorMessage('You Have No Customers added', 'warning');
-      customerDataHTML = '';
+      customerDataHTML = `<section class="features">
+                            <div class="flex-container-30">
+                              <div class="headerText alignHorizontally">
+                                <div class="fontH3">Your Have No Customers Added!</div>
+                                <addCustomer class="btnOneTouch">Add New Customer</addCustomer>
+                              </div>
+                            </div>
+                          </section>`;
     }
 
     const oneTouchCustomer = document.createElement('div');
@@ -118,7 +132,7 @@ async function _fetchOneTouchCustomersFromDB(pageName) {
 
       manageCustomerWrapper.appendChild(oneTouchCustomer);
     }
-    if (pageName === 'order-new-connection') {
+    if (pageName === 'connection-checker') {
       // Removing customer previous data
       const removeData = document.querySelector(
         '#oneTouchBroadbandOrderPageTwo'
@@ -136,7 +150,8 @@ async function _fetchOneTouchCustomersFromDB(pageName) {
       oneTouchBrodbandContainer.appendChild(oneTouchCustomer);
     }
 
-    persistDOMData('oneTouchBodyContainer', pageName);
+    const endPoint = location.href.split('/').slice(-1)[0];
+    persistDOMData(endPoint);
     _spinner(false);
   } catch (err) {
     console.log(err);

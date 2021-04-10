@@ -1,4 +1,3 @@
-import { authenticateUser } from './authenticateUser.js';
 import { _customerAddressForPostcodeProvided } from './helperFunctions/mongoDB/oneTouchManageCustomer/_customerAddressForPostcodeProvided.js';
 import { _handleCustomerAddressSelection } from './helperFunctions/mongoDB/oneTouchManageCustomer/_handleCustomerAddressSelection.js';
 import { _addOneTouchCustomerToDB } from './helperFunctions/mongoDB/oneTouchManageCustomer/_addOneTouchCustomerToDB.js';
@@ -11,9 +10,10 @@ document.addEventListener('DOMContentLoaded', () => {
   addFormData();
 
   // Persist user data on reload
+  const endPoint = location.href.split('/').slice(-1)[0];
   const oneTouchDOMBody = sessionStorage.getItem('oneTouchDOMBody') === null;
   const oneTouchPageName =
-    sessionStorage.getItem('oneTouchPageName') === 'add-customer';
+    sessionStorage.getItem('oneTouchPageName') === endPoint;
 
   if (!oneTouchDOMBody && oneTouchPageName) {
     console.log('Page Reloaded');
@@ -29,14 +29,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const customerAddressSearch = async (ev) => {
   ev.preventDefault();
-  await authenticateUser();
-
-  _customerAddressForPostcodeProvided();
+  await _customerAddressForPostcodeProvided();
 };
 
 const addUser = async (ev) => {
   ev.preventDefault();
-  await authenticateUser();
 
   // Form validation
   const customerFullName =
@@ -89,8 +86,6 @@ document.querySelector('body').addEventListener('click', (event) => {
 
   // console.log(event.target);
   if (selectCustomerAddress) {
-    authenticateUser();
-
     const userSelection = document.getElementById('selectedAddress').value;
     if (userSelection !== 'userSelection') {
       _handleCustomerAddressSelection();
@@ -103,12 +98,11 @@ document.querySelector('body').addEventListener('click', (event) => {
     return;
   }
   if (goPageBack) {
-    authenticateUser();
-
     document.querySelector('#selectAddressContainer').remove();
     document.querySelector('#userPostcodeContainer').classList.remove('hidden');
     document.querySelector('#installationPostcode').value = '';
-    persistDOMData('oneTouchBodyContainer', 'add-customer');
+    const endPoint = location.href.split('/').slice(-1)[0];
+    persistDOMData(endPoint);
 
     return;
   }
@@ -117,8 +111,6 @@ document.querySelector('body').addEventListener('click', (event) => {
 document.querySelector('body').addEventListener('change', (event) => {
   const saveAddressData = event.target.nodeName === 'SELECT';
   if (saveAddressData) {
-    authenticateUser();
-
     _saveAddressData();
     // console.log(event.target);
     return;

@@ -1,12 +1,12 @@
-import { persistDOMData } from '../../persistDOMData.js';
-import { _errorMessage } from '../_errorMessage.js';
-import { _spinner } from '../_spinner.js';
+import { persistDOMData } from '../../../persistDOMData.js';
+import { _errorMessage } from '../../_errorMessage.js';
+import { _spinner } from '../../_spinner.js';
 
-async function _oneTouchOrders() {
+async function _oneTouchAllPlacedOrders() {
   console.log('Fetching all orders...');
   _spinner(true, 'Loading Orders...');
   const oneTouchOrders = document.querySelector('oneTouchOrders');
-  const URL = '/oneTouch/orders';
+  const URL = '/oneTouch/orders/allPlacedOrders';
   const access_token = await sessionStorage.getItem('access_token');
   const body = {
     access_token,
@@ -82,7 +82,8 @@ async function _oneTouchOrders() {
                                   </div>`;
     }
 
-    persistDOMData('oneTouchBodyContainer', 'live-connections');
+    const endPoint = location.href.split('/').slice(-1)[0];
+    persistDOMData(endPoint);
     _spinner(false);
   } catch (err) {
     console.log(err);
@@ -91,4 +92,4 @@ async function _oneTouchOrders() {
   }
 }
 
-export { _oneTouchOrders };
+export { _oneTouchAllPlacedOrders };

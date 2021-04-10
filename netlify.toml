@@ -3,7 +3,7 @@
 [build]
   # the root website directory
   publish = "./dist"
-  # the root website directory
+  # built command
   command = "echo 'Build in progress...' "
   # the build command
   functions = "functions/"
@@ -11,42 +11,6 @@
 # App routing
 
 [[redirects]]
-  from = "/oneTouch/createTicket"
-  to = "/.netlify/functions/createFreshDeskTicket"
+  from = "/*"
+  to = "/.netlify/functions/oneTouchLambda"
   status = 200
-
-[[redirects]]
-  from = "/oneTouch/contactUs"
-  to = "/.netlify/functions/nodeMailer"
-  status = 200
-
-[[redirects]]
-  from = "/oneTouch/icuk_oneTouchAPI/*"
-  to = "/.netlify/functions/icuk_proxyServerAPI"
-  status = 200
-
-[[redirects]]
-  from = "/oneTouch/customer"
-  to = "/.netlify/functions/mongoDB_oneTouchCustomer"
-  status = 200
-
-[[redirects]]
-  from = "/oneTouch/orders"
-  to = "/.netlify/functions/mongoDB_oneTouchOrders"
-  status = 200
-
-[[redirects]]
-  from = "/oneTouch/oneTouchLogin"
-  to = "/.netlify/functions/mongoDB_oneTouchLogin"
-  status = 200
-
-[[redirects]]
-  from = "/oneTouch/oneTouchSignUp"
-  to = "/.netlify/functions/mongoDB_oneTouchSignUp"
-  status = 200
-
-[[redirects]]
-  from = "/oneTouch/oneTouchUserAuthentication"
-  to = "/.netlify/functions/oneTouchUserAuthentication"
-  status = 200
-  force = true

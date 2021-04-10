@@ -13,9 +13,7 @@
     <section class="navigation">
       <div class="nav-container">
         <div class="brand">
-          <a href="./index.html"
-            ><img src="./images/color_logo_transparent.png" alt="oneTouch"
-          /></a>
+          <a class="oneTouchLogo" href="./index.html" method="GET"></a>
         </div>
         <nav>
           <div class="nav-mobile">
@@ -59,7 +57,7 @@
                   <a href="./live-connections.html">Broadband Accounts</a>
                 </li>
                 <li>
-                  <a href="./order-new-connection.html">Add Broadband</a>
+                  <a href="./connection-checker.html">Add Broadband</a>
                 </li>
               </ul>
             </li>
@@ -120,12 +118,17 @@
   })(jQuery);
 
   const logout = (e) => {
+    const oneTouchLoginURL = '/index.html';
     sessionStorage.clear();
-    location.reload();
+    let backLength = history.length - 1;
+    history.go(-backLength);
+    window.location.replace(oneTouchLoginURL);
+
+    return;
   };
 
   document.querySelector('clearSessionsBtn').addEventListener('click', () => {
-    // location.reload();
     sessionStorage.clear();
+    location.reload();
   });
 </script>

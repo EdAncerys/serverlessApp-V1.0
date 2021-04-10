@@ -148,7 +148,8 @@ async function _oneTouchCustomerSummary(id, pageName) {
     manageCustomerContainer.appendChild(oneTouchCustomer);
   }
 
-  persistDOMData('oneTouchBodyContainer', pageName);
+  const endPoint = location.href.split('/').slice(-1)[0];
+  persistDOMData(endPoint);
 }
 
 export { _oneTouchCustomerSummary };

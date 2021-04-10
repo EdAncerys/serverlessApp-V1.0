@@ -91,7 +91,8 @@ async function _reviewOrderData(oneTouchOrderData) {
 
     oneTouchBroadbandOrderPageThree.classList.add('hidden');
     oneTouchBrodbandContainer.appendChild(oneTouchOrderReview);
-    persistDOMData('oneTouchBodyContainer', 'order-new-connection');
+    const endPoint = location.href.split('/').slice(-1)[0];
+    persistDOMData(endPoint);
   } catch (err) {
     console.log(err);
   }

@@ -23,8 +23,18 @@ async function _customerAddressForPostcodeProvided() {
     return;
   }
 
-  const URL = '/oneTouch/icuk_oneTouchAPI/' + postcode;
-  console.log(URL);
+  const URL = '/oneTouch/icUK/addressesForPostcodeProvided';
+
+  const body = {
+    postcode: postcode,
+  };
+  console.log(body);
+
+  const config = {
+    method: 'POST',
+    body: JSON.stringify(body),
+  };
+  console.log(config);
 
   // DOM manipulation
   const userAddressContainer = document.querySelector('#userAddressContainer');
@@ -35,7 +45,8 @@ async function _customerAddressForPostcodeProvided() {
   selectAddressContainer.id = 'selectAddressContainer';
 
   try {
-    const response = await fetch(URL);
+    const response = await fetch(URL, config);
+    if (!response.ok) throw new Error(response.statusText);
     const data = await response.json();
     console.log(data);
 
@@ -106,7 +117,8 @@ async function _customerAddressForPostcodeProvided() {
 
     userAddressContainer.appendChild(selectAddressContainer);
     userPostcodeContainer.classList.add('hidden');
-    persistDOMData('oneTouchBodyContainer', 'add-customer');
+    const endPoint = location.href.split('/').slice(-1)[0];
+    persistDOMData(endPoint);
   } catch (err) {
     console.log(err);
     _errorMessage(err);

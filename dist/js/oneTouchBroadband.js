@@ -1,21 +1,24 @@
-import { authenticateUser } from './authenticateUser.js';
-import { _orderPostcodeValidation } from './helperFunctions/icukBroadband/_orderPostcodeValidation.js';
+import { persistDOMData } from './persistDOMData.js';
+
 import { _errorMessage } from './helperFunctions/_errorMessage.js';
+import { _spinner } from './helperFunctions/_spinner.js';
+
+import { _orderPostcodeValidation } from './helperFunctions/icukBroadband/_orderPostcodeValidation.js';
 import { _placeBroadbandOrder } from './helperFunctions/icukBroadband/_placeBroadbandOrder.js';
 import { _saveAddressData } from './helperFunctions/icukBroadband/_saveAddressData.js';
 import { _reviewOrderData } from './helperFunctions/icukBroadband/_reviewOrderData.js';
 import { _termsAndConditions } from './helperFunctions/icukBroadband/_termsAndConditions.js';
 import { _getBroadbandAvailability } from './helperFunctions/icukBroadband/_getBroadbandAvailability.js';
-import { persistDOMData } from './persistDOMData.js';
+
 import { _fetchOneTouchCustomersFromDB } from './helperFunctions/mongoDB/oneTouchManageCustomer/_fetchOneTouchCustomersFromDB.js';
 import { _fetchOneTouchCustomerDataById } from './helperFunctions/mongoDB/oneTouchManageCustomer/_fetchOneTouchCustomerDataById.js';
-import { _spinner } from './helperFunctions/_spinner.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   // Persist user data on reload
+  const endPoint = location.href.split('/').slice(-1)[0];
   const oneTouchDOMBody = sessionStorage.getItem('oneTouchDOMBody') === null;
   const oneTouchPageName =
-    sessionStorage.getItem('oneTouchPageName') === 'order-new-connection';
+    sessionStorage.getItem('oneTouchPageName') === endPoint;
 
   if (!oneTouchDOMBody && oneTouchPageName) {
     console.log('Page Reloaded');
@@ -43,6 +46,7 @@ document.querySelector('body').addEventListener('click', (event) => {
   const goPageBack = event.target.nodeName === 'GOPAGEBACK';
   const searchEthernetAvailability =
     event.target.nodeName === 'SEARCHETHERNETAVAILABILITY';
+  const addCustomer = event.target.nodeName === 'ADDCUSTOMER';
 
   // console.log(event.target);
   if (searchEthernetAvailability) {
@@ -50,26 +54,18 @@ document.querySelector('body').addEventListener('click', (event) => {
     return;
   }
   if (searchBroadbandAvailability) {
-    authenticateUser();
-
     _orderPostcodeValidation();
     return;
   }
   if (oneTouchCustomers) {
-    authenticateUser();
-
-    _fetchOneTouchCustomersFromDB('order-new-connection');
+    _fetchOneTouchCustomersFromDB('connection-checker');
     return;
   }
   if (getBroadbandAvailability) {
-    authenticateUser();
-
     _getBroadbandAvailability();
     return;
   }
   if (selectOrder) {
-    authenticateUser();
-
     const oneTouchOrderData = JSON.parse(
       event.target.getAttribute('oneTouchOrderData')
     );
@@ -77,14 +73,10 @@ document.querySelector('body').addEventListener('click', (event) => {
     return;
   }
   if (termsAndConditions) {
-    authenticateUser();
-
     _termsAndConditions();
     return;
   }
   if (agreeWithTermsAndConditions && event.target.type === 'checkbox') {
-    authenticateUser();
-
     let checkbox = event.target.checked;
     let oneTouchPlaceOrder = document.querySelector('oneTouchPlaceOrder');
 
@@ -95,20 +87,14 @@ document.querySelector('body').addEventListener('click', (event) => {
     }
   }
   if (oneTouchPlaceOrder) {
-    authenticateUser();
-
     _placeBroadbandOrder();
     return;
   }
   if (userInfo) {
-    authenticateUser();
-
     _errorMessage('User Info', 'warning');
     return;
   }
   if (selectCustomer) {
-    authenticateUser();
-
     async function asyncDataRequest() {
       const id = event.target.id;
       console.log(id);
@@ -125,8 +111,6 @@ document.querySelector('body').addEventListener('click', (event) => {
     return;
   }
   if (goPageBack) {
-    authenticateUser();
-
     const id = event.target.id;
     console.log(event.target.id);
     if (id === 'pageOne') {
@@ -154,23 +138,23 @@ document.querySelector('body').addEventListener('click', (event) => {
         .classList.remove('hidden');
     }
 
-    persistDOMData('oneTouchBodyContainer', 'order-new-connection');
+    const endPoint = location.href.split('/').slice(-1)[0];
+    persistDOMData(endPoint);
     return;
   }
   if (customerInfo) {
-    authenticateUser();
-
     const id = event.target.id;
     _errorMessage(`Customer ID: ${id}`, 'warning');
     return;
+  }
+  if (addCustomer) {
+    window.location.replace('/views/oneTouch/add-customer');
   }
 });
 
 document.querySelector('body').addEventListener('change', (event) => {
   const saveAddressData = event.target.nodeName === 'SELECT';
   if (saveAddressData) {
-    authenticateUser();
-
     _saveAddressData();
     return;
   }

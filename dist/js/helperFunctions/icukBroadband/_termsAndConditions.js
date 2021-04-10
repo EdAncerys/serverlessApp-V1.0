@@ -64,7 +64,8 @@ async function _termsAndConditions() {
     oneTouchBroadbandOrderPageFour.classList.add('hidden');
     oneTouchBrodbandContainer.appendChild(oneTouchTermsAndConditions);
 
-    persistDOMData('oneTouchBodyContainer', 'order-new-connection');
+    const endPoint = location.href.split('/').slice(-1)[0];
+    persistDOMData(endPoint);
   } catch (err) {
     console.log(err);
   }

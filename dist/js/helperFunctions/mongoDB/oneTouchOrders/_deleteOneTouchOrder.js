@@ -1,12 +1,12 @@
-import { _oneTouchOrders } from './_oneTouchOrders.js';
-import { _errorMessage } from '../_errorMessage.js';
-import { _spinner } from '../_spinner.js';
+import { _oneTouchAllPlacedOrders } from './_oneTouchAllPlacedOrders.js';
+import { _errorMessage } from '../../_errorMessage.js';
+import { _spinner } from '../../_spinner.js';
 
 async function _deleteOneTouchOrder(id) {
   console.log('Deleting Broadband Order. ID: ' + id);
   _spinner(true);
 
-  const URL = '/oneTouch/orders';
+  const URL = '/oneTouch/orders/deleteOrder';
   const body = {
     _id: id,
   };
@@ -21,7 +21,7 @@ async function _deleteOneTouchOrder(id) {
 
     const data = await response.json();
     console.log(data);
-    _oneTouchOrders();
+    _oneTouchAllPlacedOrders();
     _errorMessage(data.msg, 'success');
     _spinner(false);
   } catch (err) {

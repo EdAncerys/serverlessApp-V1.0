@@ -7,7 +7,7 @@ async function _getBroadbandAvailability() {
   console.log('Getting Broadband Availability...');
   _spinner(true);
 
-  const URL = '/oneTouch/icuk_oneTouchAPI/';
+  const URL = '/oneTouch/icUK/broadbandAvailability';
   const dropDown = document.getElementById('selectedAddress');
   let validateInput = '';
   if (dropDown)
@@ -107,7 +107,8 @@ async function _getBroadbandAvailability() {
 
     oneTouchBroadbandOrderPageTwo.classList.add('hidden');
     oneTouchBrodbandContainer.appendChild(oneTouchBroadbandAvailability);
-    persistDOMData('oneTouchBodyContainer', 'order-new-connection');
+    const endPoint = location.href.split('/').slice(-1)[0];
+    persistDOMData(endPoint);
   } catch (err) {
     console.log(err);
     _errorMessage(

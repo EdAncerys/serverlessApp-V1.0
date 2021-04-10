@@ -2,16 +2,17 @@
   margin: 50px 0 20px 0;
 }
 .indexIcon {
-  width: 150px;
-  max-width: 250px;
-  margin: 1vw;
+  width: 165px;
+  height: 380px;
+  margin: 5px;
+  cursor: pointer;
   transition: transform 0.2s;
 }
 .indexIcon:hover,
 .supportIcon:hover {
-  -ms-transform: scale(1.1);
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
+  -ms-transform: scale(1.05);
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
 }
 .indexBanner {
   display: grid;
@@ -37,4 +38,39 @@
   background-image: url(../images/icon.png);
   background-size: contain;
   opacity: 0.08;
+}
+.cloud {
+  max-height: 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-image: url(../images/Cloud.png);
+  background-size: contain;
+}
+.rase-ticket {
+  max-height: 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-image: url(../images/Rase_Ticket.png);
+  background-size: contain;
+}
+.live-connections {
+  max-height: 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-image: url(../images/Live_Connections.png);
+  background-size: contain;
+}
+.connection-checker {
+  max-height: 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-image: url(../images/Connection_Checker.png);
+  background-size: contain;
+}
+.user-management {
+  max-height: 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-image: url(../images/User_Management.png);
+  background-size: contain;
 }

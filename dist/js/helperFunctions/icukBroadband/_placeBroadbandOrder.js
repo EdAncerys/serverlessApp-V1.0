@@ -1,4 +1,4 @@
-import { _createOneTouchOrder } from '../mongoDB/_createOneTouchOrder.js';
+import { _createOneTouchOrder } from '../mongoDB/oneTouchOrders/_createOneTouchOrder.js';
 import { persistDOMData } from '../../persistDOMData.js';
 import { _errorMessage } from '../_errorMessage.js';
 import { _spinner } from '../_spinner.js';
@@ -86,6 +86,7 @@ async function _placeBroadbandOrder() {
 
   try {
     // const response = await fetch(URL, config); //Send email
+    // if (!response.ok) throw new Error(response.statusText);
     // const data = await response.json();
     // console.log(data);
 
@@ -95,8 +96,9 @@ async function _placeBroadbandOrder() {
 
     oneTouchBroadbandOrderPageFive.classList.add('hidden');
     oneTouchBroadbandOrderPageOne.classList.remove('hidden');
-    document.getElementById('postcode').value = '';
-    persistDOMData('oneTouchBodyContainer', 'order-new-connection');
+    document.getElementById('postcodeBroadband').value = '';
+    const endPoint = location.href.split('/').slice(-1)[0];
+    persistDOMData(endPoint);
   } catch (err) {
     console.log(err);
     _errorMessage(err);

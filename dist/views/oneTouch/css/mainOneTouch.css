@@ -1,7 +1,7 @@
-@import url('./oneTouchUIElements.css');
+@import url('./oneTouchUI.css');
 @import url('./nav-bar.css');
 @import url('./index.css');
-@import url('./order-new-connection.css');
+@import url('./connection-checker.css');
 @import url('./support-docs.css');
 @import url('./raise-ticket.css');
 @import url('./live-connections.css');

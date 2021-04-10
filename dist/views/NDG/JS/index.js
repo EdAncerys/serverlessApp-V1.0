@@ -26,7 +26,7 @@ document.querySelector('body').addEventListener('click', (event) => {
         window.location.replace('/views/oneTouch/index.html');
       } catch (err) {
         sessionStorage.clear();
-        window.location.replace('/views/oneTouch/one-touch-login.html');
+        window.location.replace('/index.html');
         return false;
       }
     }

@@ -23,7 +23,7 @@ document.querySelector('body').addEventListener('click', (event) => {
     return;
   }
   if (oneTouchSignUp) {
-    window.location.replace('/views/oneTouch/one-touch-login.html');
+    window.location.replace('/index.html');
     return;
   }
 });

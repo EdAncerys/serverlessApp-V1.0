@@ -1,4 +1,4 @@
-async function _oneTouchUserAuthentication() {
+async function _oneTouchUserAuthentication(href) {
   console.log('User Authentication middleware');
 
   const URL = '/oneTouch/oneTouchUserAuthentication';
@@ -15,15 +15,18 @@ async function _oneTouchUserAuthentication() {
 
   try {
     const response = await fetch(URL, config);
-    const data = await response.json();
-    if (!response.ok) throw new Error(data.msg);
+    if (!response.ok) throw new Error(response.statusText);
+    if (response.redirected) {
+      sessionStorage.clear();
+      window.location.replace(response.url);
+    }
+    window.location.replace(`/views/oneTouch/${href}`);
 
-    console.log(data);
-    return true;
+    return;
   } catch (err) {
-    sessionStorage.clear();
-    window.location.replace('/views/oneTouch/one-touch-login.html');
-    return false;
+    console.log(err);
+
+    return;
   }
 }
 
