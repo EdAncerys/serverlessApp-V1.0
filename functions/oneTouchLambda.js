@@ -17,10 +17,7 @@ const COLLECTION_ONE_TOUCH_SUPER_USER = 'oneTouchSupperUsers';
 const COLLECTION_ONE_TOUCH_CUSTOMER = 'oneTouchCustomer';
 
 // lambda middleware
-let cachedAuthentication = null;
 const userAuthentication = async (body) => {
-  if (cachedAuthentication) return cachedAuthentication;
-
   const authToken = await jwt.verify(
     body.access_token,
     ACCESS_TOKEN_SECRET,
@@ -36,7 +33,6 @@ const userAuthentication = async (body) => {
   );
 
   if (authToken) {
-    cachedAuthentication = authToken;
     const msg = `User Authorized.`;
 
     return {
@@ -653,6 +649,48 @@ const broadbandAvailability = async (body) => {
     };
   }
 };
+// iONOS email account
+const iONOS = async (body) => {
+  console.log('Credentials obtained, sending email via iONOS...');
+
+  const subject = body.subject;
+  const description = body.description;
+
+  const transporter = nodemailer.createTransport({
+    host: process.env.IONOS_HOST,
+    port: process.env.IONOS_PORT,
+    secure: process.env.IONOS_SECURE,
+    auth: {
+      user: process.env.IONOS_USER, // replace with your email
+      pass: process.env.IONOS_PASS, // replace with your password
+    },
+  });
+
+  const mailOptions = {
+    from: `"Fred Foo 👻" <${process.env.IONOS_USER}>`, // replace with your email
+    to: process.env.IONOS_MAILING_LIST, // replace with your mailing list
+    subject: `${subject}`,
+    html: `${description}`,
+  };
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.log('Error occurred. ' + error.message);
+
+      return {
+        statusCode: 404,
+        body: JSON.stringify(body),
+      };
+    } else {
+      console.log(body);
+      console.log('Message sent: %s', info.messageId);
+      return {
+        statusCode: 200,
+        body: JSON.stringify(body),
+      };
+    }
+  });
+};
 
 // Error page handling response endpoints
 const oneTouchPortalHTML = [
@@ -722,6 +760,9 @@ module.exports.handler = async (event, context) => {
       return addressesForPostcodeProvided(body);
     case '/oneTouch/icUK/broadbandAvailability':
       return broadbandAvailability(body);
+    // iONOS endPoints
+    case '/oneTouch/iONOS':
+      return iONOS(body);
 
     default:
       return { statusCode: 400 };

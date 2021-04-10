@@ -86,6 +86,7 @@ async function _placeBroadbandOrder() {
 
   try {
     // const response = await fetch(URL, config); //Send email
+    // if (!response.ok) throw new Error(response.statusText);
     // const data = await response.json();
     // console.log(data);
 
