@@ -703,14 +703,17 @@ const iONOS = async (body, callback) => {
     if (error) {
       msg = error;
       console.log(error);
-      res.json({ error: error });
-      res.sendStatus(404);
+
+      callback(error);
     } else {
       msg = iONOSInfo;
-      console.log('Message sent: ' + iONOSInfo.messageId);
-      res
-        .status(200)
-        .json({ msg: `Email been sent successfully to: ${email}` });
+      console.log(info);
+      console.log('Message sent: %s', info.messageId);
+
+      callback(null, {
+        statusCode: 200,
+        body: JSON.stringify(body),
+      });
     }
   });
 
@@ -731,24 +734,6 @@ const iONOS = async (body, callback) => {
       body: JSON.stringify({ msg }),
     };
   }
-
-  // transporter.sendMail(mailOptions, (error, info) => {
-  //   if (error) {
-  //     callback(error);
-
-  //     console.log('Error occurred. ' + error.message);
-  //     iONOSEmail = error;
-  //   } else {
-  //     callback(null, {
-  //       statusCode: 200,
-  //       body: JSON.stringify(body),
-  //     });
-
-  //     console.log(info);
-  //     console.log('Message sent: %s', info.messageId);
-  //     iONOSEmail = info;
-  //   }
-  // });
 };
 const emailTemplateForm = (name, email, subject, description) => {
   const tableCellStyle = `style="border: 1px solid #c1c1c1;

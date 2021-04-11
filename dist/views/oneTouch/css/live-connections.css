@@ -15,3 +15,12 @@ lcComponent {
 .flex-container-30 placeNewOrder {
   margin: 20px 0;
 }
+
+/* Media Queries */
+@media only screen and (max-width: 800px) {
+  .broadbandDataContainer {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    align-items: center;
+    text-align: start;
+  }
+}
