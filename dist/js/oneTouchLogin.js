@@ -1,6 +1,5 @@
 import { _oneTouchSupperUserLogin } from './helperFunctions/mongoDB/oneTouchLogin/_oneTouchSupperUserLogin.js';
 import { _errorMessage } from './helperFunctions/_errorMessage.js';
-import { _oneTouchUserAuthentication } from './helperFunctions/mongoDB/oneTouchLogin/_oneTouchUserAuthentication.js';
 
 document.querySelector('body').addEventListener('click', (event) => {
   const oneTouchLogin = event.target.id === 'oneTouchLogin';

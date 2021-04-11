@@ -2,6 +2,8 @@ const MongoClient = require('mongodb').MongoClient;
 let ObjectId = require('mongodb').ObjectID;
 require('dotenv').config(); // Enabling to load Environment variables from a .env File
 
+const nodemailer = require('nodemailer');
+
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
@@ -650,7 +652,7 @@ const broadbandAvailability = async (body) => {
   }
 };
 // iONOS email account
-const iONOS = async (body) => {
+const iONOS = async (body, callback) => {
   console.log('Credentials obtained, sending email via iONOS...');
 
   const subject = body.subject;
@@ -675,19 +677,16 @@ const iONOS = async (body) => {
 
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
+      callback(error);
       console.log('Error occurred. ' + error.message);
-
-      return {
-        statusCode: 404,
-        body: JSON.stringify(body),
-      };
     } else {
-      console.log(body);
-      console.log('Message sent: %s', info.messageId);
-      return {
+      callback(null, {
         statusCode: 200,
         body: JSON.stringify(body),
-      };
+      });
+
+      console.log(body);
+      console.log('Message sent: %s', info.messageId);
     }
   });
 };
@@ -707,7 +706,7 @@ const oneTouchPortalHTML = [
   '/views/oneTouch/version-two',
 ];
 
-module.exports.handler = async (event, context) => {
+module.exports.handler = async (event, context, callback) => {
   context.callbackWaitsForEmptyEventLoop = false;
 
   const db = await connectToDatabase(MONGODB_URI);
@@ -762,7 +761,7 @@ module.exports.handler = async (event, context) => {
       return broadbandAvailability(body);
     // iONOS endPoints
     case '/oneTouch/iONOS':
-      return iONOS(body);
+      return iONOS(body, callback);
 
     default:
       return { statusCode: 400 };
