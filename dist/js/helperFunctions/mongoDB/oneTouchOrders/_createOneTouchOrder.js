@@ -13,6 +13,7 @@ async function _createOneTouchOrder(access_token, oneTouchData) {
 
   try {
     const response = await fetch(URL, config);
+    if (!response.ok) throw new Error(response.statusText);
     const data = await response.json();
     console.log(data);
   } catch (err) {

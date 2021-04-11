@@ -648,6 +648,12 @@ const broadbandAvailability = async (body) => {
 // iONOS email account
 const iONOS = async (body, callback) => {
   console.log('Credentials obtained, sending email via iONOS...');
+  const emailTemplate = emailTemplateForm(
+    body.name,
+    body.email,
+    body.subject,
+    body.description
+  );
 
   const authToken = await jwt.verify(
     body.access_token,
@@ -665,7 +671,6 @@ const iONOS = async (body, callback) => {
 
   const email = authToken.email;
   const subject = body.subject;
-  const description = body.description;
 
   const transporter = nodemailer.createTransport({
     host: process.env.IONOS_HOST,
@@ -678,29 +683,153 @@ const iONOS = async (body, callback) => {
   });
 
   const mailOptions = {
-    from: `"oneTouch Portal 👻" <${process.env.IONOS_USER}>`, // replace with your email
+    from: `"oneTouch Portal | " <${process.env.IONOS_USER}>`, // replace with your email
     to: email, // cc mailing list
     bcc: process.env.IONOS_MAILING_LIST, // bcc mailing list
     subject: `${subject}`,
-    html: `${description}`,
+    html: emailTemplate,
+    attachments: [
+      {
+        filename: 'NDGlogo.png',
+        path: __dirname + '/../dist/images/NDG.png',
+        cid: 'ndgLogo', //same cid value as in the html img src
+      },
+    ],
   };
 
-  transporter.sendMail(mailOptions, (error, info) => {
+  let iONOSEmail = true;
+  let msg;
+  transporter.sendMail(mailOptions, (error, iONOSInfo) => {
     if (error) {
-      callback(error);
-      console.log('Error occurred. ' + error.message);
+      msg = error;
+      console.log(error);
+      res.json({ error: error });
+      res.sendStatus(404);
     } else {
-      callback(null, {
-        statusCode: 200,
-        body: JSON.stringify(body),
-      });
-
-      console.log(body);
-      console.log(info);
-      console.log('Message sent: %s', info.messageId);
+      msg = iONOSInfo;
+      console.log('Message sent: ' + iONOSInfo.messageId);
+      res
+        .status(200)
+        .json({ msg: `Email been sent successfully to: ${email}` });
     }
   });
+
+  if (iONOSEmail) {
+    return {
+      statusCode: 201,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ msg }),
+    };
+  } else {
+    return {
+      statusCode: 400,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ msg }),
+    };
+  }
+
+  // transporter.sendMail(mailOptions, (error, info) => {
+  //   if (error) {
+  //     callback(error);
+
+  //     console.log('Error occurred. ' + error.message);
+  //     iONOSEmail = error;
+  //   } else {
+  //     callback(null, {
+  //       statusCode: 200,
+  //       body: JSON.stringify(body),
+  //     });
+
+  //     console.log(info);
+  //     console.log('Message sent: %s', info.messageId);
+  //     iONOSEmail = info;
+  //   }
+  // });
 };
+const emailTemplateForm = (name, email, subject, description) => {
+  const tableCellStyle = `style="border: 1px solid #c1c1c1;
+                          color: #2b2b2b;
+                          font-size: 16px;
+                          font-weight: normal;
+                          padding: 20px;
+                          text-align: justify;
+                          text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);"`;
+  return `<div style="display: grid; justify-content: center">
+            <table style="background-color: #f4f4f4; min-width: 400px; margin: 20px">
+              <tr>
+                <th
+                colspan="2"
+                style="
+                  color: #f4f4f4;
+                  background: #2b2b2b;
+                  border: 1px solid #343a45;
+                  text-align: center;
+                  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+                  vertical-align: middle;
+                  padding: 10px;
+                "
+                >
+                  <div style="display: grid; justify-content: center">
+                    <img src="cid:ndgLogo" alt="ndgLogo"/>
+                  </div>
+                </th>
+              </tr>
+
+              <tr style="padding: 5px">
+                <th
+                ${tableCellStyle}
+                >
+                  Name
+                </th>
+                <th
+                  ${tableCellStyle}
+                >
+                  ${name}
+                </th>
+              </tr>
+              <tr style="padding: 5px">
+                <th
+                  ${tableCellStyle}
+                >
+                  Email
+                </th>
+                <th
+                  ${tableCellStyle}
+                >
+                  ${email}
+                </th>
+              </tr>
+              <tr style="padding: 5px">
+                <th
+                  ${tableCellStyle}
+                >
+                  Subject
+                </th>
+                <th
+                  ${tableCellStyle}
+                >
+                  ${subject}
+                </th>
+              </tr>
+              <tr style="padding: 5px">
+                <th
+                  ${tableCellStyle}
+                >
+                  Description
+                </th>
+                <th
+                  ${tableCellStyle}
+                >
+                  ${description}
+                </th>
+              </tr>
+            </table>
+            </div>`;
+}; //Img url same cid value as in the html img src
 
 // Error page handling response endpoints
 const oneTouchPortalHTML = [

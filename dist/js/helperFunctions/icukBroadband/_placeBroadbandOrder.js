@@ -18,7 +18,9 @@ async function _placeBroadbandOrder() {
   const oneTouchData = await JSON.parse(sessionStorage.getItem('oneTouchData'));
   console.log(oneTouchData);
   const oderSubject =
-    'Broadband Order' + ' | Created at: ' + new Date().toLocaleString();
+    'oneTouch Broadband Order' +
+    ' | Created at: ' +
+    new Date().toLocaleString();
 
   const sub_premises =
     oneTouchData.sub_premises === 'null' ? '' : oneTouchData.sub_premises;
@@ -71,8 +73,9 @@ async function _placeBroadbandOrder() {
                           <div>${orderBroadbandSummary}</div>
                         </div>`;
 
-  const URL = '/oneTouch/contactUs';
+  const URL = '/oneTouch/iONOS';
   const body = {
+    access_token,
     name: oneTouchData.customerFullName,
     email: oneTouchData.customerEmail,
     subject: oderSubject,
@@ -85,18 +88,18 @@ async function _placeBroadbandOrder() {
   };
 
   try {
-    // const response = await fetch(URL, config); //Send email
-    // if (!response.ok) throw new Error(response.statusText);
-    // const data = await response.json();
-    // console.log(data);
+    const response = await fetch(URL, config); //Send email
+    console.log(response);
+    if (!response.ok) throw new Error(response.statusText);
+    await _createOneTouchOrder(access_token, oneTouchData); // save order to db
 
-    _createOneTouchOrder(access_token, oneTouchData);
     _spinner(false);
     _errorMessage('Order Submitted Successfully!', 'success');
 
     oneTouchBroadbandOrderPageFive.classList.add('hidden');
     oneTouchBroadbandOrderPageOne.classList.remove('hidden');
     document.getElementById('postcodeBroadband').value = '';
+
     const endPoint = location.href.split('/').slice(-1)[0];
     persistDOMData(endPoint);
   } catch (err) {
