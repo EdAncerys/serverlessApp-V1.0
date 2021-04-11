@@ -23,7 +23,8 @@ async function userAuthentication(href) {
       return;
     }
 
-    window.location.replace(`/views/oneTouch/${href}`);
+    console.log(href);
+    if (href !== '') window.location.replace(`/views/oneTouch/${href}`);
 
     return;
   } catch (err) {

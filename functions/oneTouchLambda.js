@@ -35,24 +35,18 @@ const userAuthentication = async (body) => {
   );
 
   if (authToken) {
-    const msg = `User Authorized.`;
-
     return {
       statusCode: 200,
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ msg }),
     };
   } else {
-    const msg = `Not Authorized.`;
-
     return {
       statusCode: 301,
       headers: {
         Location: '/index.html',
       },
-      body: JSON.stringify({ msg }),
     };
   }
 };
@@ -655,6 +649,21 @@ const broadbandAvailability = async (body) => {
 const iONOS = async (body, callback) => {
   console.log('Credentials obtained, sending email via iONOS...');
 
+  const authToken = await jwt.verify(
+    body.access_token,
+    ACCESS_TOKEN_SECRET,
+    (err, authData) => {
+      if (err) {
+        console.log(err);
+        return false;
+      } else {
+        console.log(authData);
+        return authData;
+      }
+    }
+  );
+
+  const email = authToken.email;
   const subject = body.subject;
   const description = body.description;
 
@@ -669,8 +678,9 @@ const iONOS = async (body, callback) => {
   });
 
   const mailOptions = {
-    from: `"Fred Foo 👻" <${process.env.IONOS_USER}>`, // replace with your email
-    to: process.env.IONOS_MAILING_LIST, // replace with your mailing list
+    from: `"oneTouch Portal 👻" <${process.env.IONOS_USER}>`, // replace with your email
+    to: email, // cc mailing list
+    bcc: process.env.IONOS_MAILING_LIST, // bcc mailing list
     subject: `${subject}`,
     html: `${description}`,
   };
@@ -686,6 +696,7 @@ const iONOS = async (body, callback) => {
       });
 
       console.log(body);
+      console.log(info);
       console.log('Message sent: %s', info.messageId);
     }
   });

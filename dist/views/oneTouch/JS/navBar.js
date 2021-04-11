@@ -1,4 +1,4 @@
-import { userAuthentication } from '../JS/userAuthentication.js';
+import { userAuthentication } from './userAuthentication.js';
 import { persistDOMData } from '../../../js/persistDOMData.js';
 
 const endPoint = location.href.split('/').slice(-1)[0];
@@ -8,11 +8,14 @@ async function _placeIONOSEmailOrder() {
   console.log('Sending Email via iNOS...');
   // _spinner(true, 'Creating Your Order');
   const URL = '/oneTouch/iONOS';
+  const access_token = sessionStorage.getItem('access_token');
 
-  const oderSubject = `Order oderSubject | ` + new Date().toLocaleString();
+  const oderSubject =
+    `oneTouch Broadband Order. Created at | ` + new Date().toLocaleString();
   const orderSummary = `Order Summary | ` + new Date().toLocaleString();
 
   const body = {
+    access_token,
     subject: oderSubject,
     description: orderSummary,
   };
@@ -24,7 +27,8 @@ async function _placeIONOSEmailOrder() {
 
   try {
     const response = await fetch(URL, config); //Send email
-    if (!response.ok) throw new Error(response.statusText);
+    console.log(response);
+    // if (!response.ok) throw new Error(response.statusText);
     // const data = await response.json();
     // console.log(data);
 
