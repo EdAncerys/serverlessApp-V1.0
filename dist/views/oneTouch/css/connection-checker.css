@@ -3,8 +3,8 @@
 }
 /* Page content */
 .oneTouchBrodbandContainer {
-  width: 100%;
-  padding: 10px 0;
+  width: auto;
+  padding: 10px 5px;
   display: flex;
   flex-direction: column;
 }
@@ -153,5 +153,17 @@ agreeWithTermsAndConditions label {
     &:focus {
       box-shadow: 0 0 0 3px #8cdaff;
     }
+  }
+}
+
+/* Media Queries */
+@media only screen and (max-width: 800px) {
+  .dataWrapper {
+    padding: 0 5px;
+  }
+  .broadbandDataContainer {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    align-items: center;
+    text-align: start;
   }
 }

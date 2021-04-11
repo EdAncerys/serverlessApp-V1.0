@@ -54,7 +54,7 @@
 @media only screen and (max-width: 800px) {
   .rowDataContainer-4,
   .headerText {
-    min-width: 90vw;
+    min-width: auto;
   }
   .rowDataSelection {
     display: grid;

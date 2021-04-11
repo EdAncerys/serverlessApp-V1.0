@@ -61,7 +61,7 @@
 .tableCell {
   display: grid;
   align-content: center;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
   padding: 0px 2px;
 }
 .btnDisable {
