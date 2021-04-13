@@ -27,6 +27,7 @@ async function userAuthentication(href) {
 
     console.log(href);
     if (href !== '') window.location.replace(`/views/oneTouch/${href}`);
+    // if (href !== '') window.location.href = `/views/oneTouch/${href}`;
 
     return;
   } catch (err) {

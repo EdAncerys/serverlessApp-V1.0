@@ -718,6 +718,12 @@ const iONOS = async (body, callback) => {
   });
 
   if (iONOSEmail) {
+    console.log(
+      `Email sent successfully to: | `,
+      email,
+      process.env.IONOS_MAILING_LIST
+    );
+
     return {
       statusCode: 201,
       headers: {
