@@ -16,7 +16,18 @@
   content: ' ';
   padding-top: 5px;
 }
-
+.ticketSummaryContainer {
+  display: grid;
+  gap: 5px;
+  margin: 20px 0;
+}
+.ticketRowDataWrapper {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 10px 15px;
+  border: solid 1px #61d2b3;
+  border-radius: 5px;
+}
 .oneTouchFormContainer label:after {
   display: block;
   content: ' ';
