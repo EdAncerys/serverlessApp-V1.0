@@ -1,3 +1,5 @@
+import { _errorMessage } from '../../../js/helperFunctions/_errorMessage.js';
+
 async function userAuthentication(href) {
   console.log('User Authentication middleware');
 
@@ -29,7 +31,8 @@ async function userAuthentication(href) {
     return;
   } catch (err) {
     console.log(err);
-
+    if (err == 'Error: Internal Server Error')
+      _errorMessage('Poor Connection or no signal!');
     return;
   }
 }
