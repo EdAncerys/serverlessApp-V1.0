@@ -15,8 +15,8 @@ document.querySelector('body').addEventListener('click', (event) => {
 
   // oneTouch App navigation
   if (href) {
-    event.preventDefault();
-    userAuthentication(href);
+    // event.preventDefault();
+    // userAuthentication(href); // Authenticate user on all requests
   }
 
   if (iONOS) {

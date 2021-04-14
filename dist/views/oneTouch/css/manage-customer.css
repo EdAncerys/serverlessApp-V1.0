@@ -8,16 +8,11 @@
 }
 .dataWrapper {
   display: grid;
-  justify-content: center;
 }
 .rowDataContainer-4 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   margin: 5px 0;
-}
-.rowDataContainer-4,
-.headerText {
-  min-width: 600px;
 }
 .rowDataWrapper {
   display: grid;

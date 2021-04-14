@@ -19,22 +19,28 @@ const COLLECTION_ONE_TOUCH_SUPER_USER = 'oneTouchSupperUsers';
 const COLLECTION_ONE_TOUCH_CUSTOMER = 'oneTouchCustomer';
 
 // lambda middleware
+let cachedAuthToken = null;
 const userAuthentication = async (body) => {
-  const authToken = await jwt.verify(
-    body.access_token,
-    ACCESS_TOKEN_SECRET,
-    (err, authData) => {
-      if (err) {
-        console.log(err);
-        return false;
-      } else {
-        console.log(authData);
-        return authData;
+  let value = null;
+  console.log(value);
+  if (cachedAuthToken) console.log(`Cashed Token`);
+  if (!cachedAuthToken)
+    cachedAuthToken = await jwt.verify(
+      body.access_token,
+      ACCESS_TOKEN_SECRET,
+      (err, authData) => {
+        if (err) {
+          console.log(err);
+          return false;
+        } else {
+          console.log(authData);
+          value = authData;
+          return authData;
+        }
       }
-    }
-  );
+    );
 
-  if (authToken) {
+  if (cachedAuthToken) {
     return {
       statusCode: 200,
       headers: {

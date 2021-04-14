@@ -2,7 +2,6 @@
   padding-top: 20px;
 }
 .oneTouchFormContainer {
-  width: 300px;
   -webkit-box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
   box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
   padding: 24px 32px 32px;
@@ -16,17 +15,23 @@
   content: ' ';
   padding-top: 5px;
 }
-.ticketSummaryContainer {
+.dataSummaryContainer {
   display: grid;
   gap: 5px;
   margin: 20px 0;
 }
-.ticketRowDataWrapper {
-  display: table-cell;
-  vertical-align: middle;
+.dataRowSummaryContainer {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
   padding: 10px 15px;
   border: solid 1px #61d2b3;
   border-radius: 5px;
+}
+.rowDisplayStart {
+  text-align: start;
+}
+.rowDisplayEnd {
+  text-align: end;
 }
 .oneTouchFormContainer label:after {
   display: block;
