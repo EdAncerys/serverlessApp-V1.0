@@ -67,8 +67,8 @@ async function _fetchOneTouchCustomersFromDB(pageName) {
       customerData += `<div class="rowContainer bgGradientSilver">
                         <div class="rowDataContainer-4">
                           <div class="rowDataWrapper">
-                            <div>${customer.customerFullName}</div>
-                            <div class="bottomDataRow">${customer.customerCreated}</div>
+                            <div>${customer.companyName}</div>
+                            <div class="bottomDataRow">${customer.customerFullName}</div>
                           </div>
                           <div class="rowDataWrapper">
                             <div>${customer.customerPhoneNumber}</div>
@@ -94,10 +94,10 @@ async function _fetchOneTouchCustomersFromDB(pageName) {
                         </div>
                         <div id='dataWrapper' class='dataWrapper'>
                           <div class="rowDataContainer-4 boxContainer bgGray">
-                            <div class="rowDataWrapper">Customer</div>
+                            <div class="rowDataWrapper">Business Contact</div>
                             <div class="rowDataWrapper">Contact Details</div>
                             <div class="rowDataWrapper">Address</div>
-                            <div class="rowDataWrapper">Selection</div>
+                            <div class="rowDataWrapper">Option</div>
                           </div>
                             ${customerData}
                             ${sliderNav}
