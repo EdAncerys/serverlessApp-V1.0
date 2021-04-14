@@ -830,6 +830,11 @@ const iONOS = async (body, callback) => {
 };
 const gmail = async (body, callback) => {
   console.log('Credentials obtained, sending email via iONOS...');
+
+  // Proxy Server Agent configuration
+  const QUOTAGUARD_STATIC_URL = process.env.QUOTAGUARD_STATIC_URL;
+  const proxyAgent = new HttpsProxyAgent(QUOTAGUARD_STATIC_URL);
+
   const emailTemplate = emailTemplateForm(
     body.name,
     body.email,
@@ -877,9 +882,18 @@ const gmail = async (body, callback) => {
     ],
   };
 
+  const config = {
+    mailOptions,
+    method: 'POST',
+    agent: proxyAgent,
+    timeout: 10000,
+    followRedirect: true,
+    maxRedirects: 10,
+  };
+
   let gmail = true;
   let msg;
-  transporter.sendMail(mailOptions, (error, iONOSInfo) => {
+  transporter.sendMail(config, (error, iONOSInfo) => {
     if (error) {
       gmail = false;
       msg = error;

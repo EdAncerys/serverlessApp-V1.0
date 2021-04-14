@@ -85,23 +85,27 @@ async function _fetchOneTouchCustomersFromDB(pageName) {
                       </div>`;
     });
 
-    customerDataHTML = `<div class="headerText">
-                          <div class="fontH4">Your Customer List</div>
-                          <div class="fontH2">
-                            Manage all customers in one place. View address, contact
-                            information, etc. & any personal notes.
-                          </div>
-                        </div>
-                        <div id='dataWrapper' class='dataWrapper'>
-                          <div class="rowDataContainer-4 boxContainer bgGray">
-                            <div class="rowDataWrapper">Business Contact</div>
-                            <div class="rowDataWrapper">Contact Details</div>
-                            <div class="rowDataWrapper">Address</div>
-                            <div class="rowDataWrapper">Option</div>
-                          </div>
-                            ${customerData}
-                            ${sliderNav}
-                        </div>`;
+    customerDataHTML = ` <div class="features">
+                            <div class="flex-container-60">
+                              <div class="headerText">
+                                <div class="fontH4">Your Customer List</div>
+                                <div class="fontH2">
+                                  Manage all customers in one place. View address, contact
+                                  information, etc. & any personal notes.
+                                </div>
+                              </div>
+                              <div id='dataWrapper' class='dataWrapper'>
+                                <div class="rowDataContainer-4 boxContainer bgGray">
+                                  <div class="rowDataWrapper">Business Contact</div>
+                                  <div class="rowDataWrapper">Contact Details</div>
+                                  <div class="rowDataWrapper">Address</div>
+                                  <div class="rowDataWrapper">Option</div>
+                                </div>
+                                  ${customerData}
+                                  ${sliderNav}
+                              </div>
+                            </div>
+                          </div>`;
 
     if (data.length === 0) {
       _spinner(false);
