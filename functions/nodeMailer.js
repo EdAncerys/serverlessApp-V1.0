@@ -12,10 +12,10 @@ exports.handler = (event, context, callback) => {
   const emailTemplate = emailTemplateForm(name, email, subject, description);
 
   const transporter = nodemailer.createTransport({
-    service: process.env.EMAIL_SERVICE, // replace with service provider
+    service: process.env.GMAIL_SERVICE, // replace with service provider
     auth: {
-      user: process.env.EMAIL_NAME, // replace with your email
-      pass: process.env.EMAIL_PASSWORD, // replace with your password
+      user: process.env.GMAIL_NAME, // replace with your email
+      pass: process.env.GMAIL_PASSWORD, // replace with your password
     },
   });
 

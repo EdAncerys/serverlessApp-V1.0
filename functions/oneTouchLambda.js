@@ -651,102 +651,7 @@ const broadbandAvailability = async (body) => {
     };
   }
 };
-// iONOS email account
-const iONOS = async (body, callback) => {
-  console.log('Credentials obtained, sending email via iONOS...');
-  const emailTemplate = emailTemplateForm(
-    body.name,
-    body.email,
-    body.subject,
-    body.description
-  );
-
-  const authToken = await jwt.verify(
-    body.access_token,
-    ACCESS_TOKEN_SECRET,
-    (err, authData) => {
-      if (err) {
-        console.log(err);
-        return false;
-      } else {
-        console.log(authData);
-        return authData;
-      }
-    }
-  );
-
-  const email = authToken.email;
-  const subject = body.subject;
-
-  const transporter = nodemailer.createTransport({
-    host: process.env.IONOS_HOST,
-    port: process.env.IONOS_PORT,
-    secure: process.env.IONOS_SECURE,
-    auth: {
-      user: process.env.IONOS_USER, // replace with your email
-      pass: process.env.IONOS_PASS, // replace with your password
-    },
-  });
-
-  const mailOptions = {
-    from: `"oneTouch Portal | " <${process.env.IONOS_USER}>`, // replace with your email
-    to: email, // cc mailing list
-    bcc: process.env.IONOS_MAILING_LIST, // bcc mailing list
-    subject: `${subject}`,
-    html: emailTemplate,
-    attachments: [
-      {
-        filename: 'NDGlogo.png',
-        path: __dirname + '/../dist/images/NDG.png',
-        cid: 'ndgLogo', //same cid value as in the html img src
-      },
-    ],
-  };
-
-  let iONOSEmail = true;
-  let msg;
-  transporter.sendMail(mailOptions, (error, iONOSInfo) => {
-    if (error) {
-      msg = error;
-      console.log(error);
-
-      callback(error);
-    } else {
-      msg = iONOSInfo;
-      console.log(info);
-      console.log('Message sent: %s', info.messageId);
-
-      callback(null, {
-        statusCode: 200,
-        body: JSON.stringify(body),
-      });
-    }
-  });
-
-  if (iONOSEmail) {
-    console.log(
-      `Email sent successfully to: | `,
-      email,
-      process.env.IONOS_MAILING_LIST
-    );
-
-    return {
-      statusCode: 201,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ msg }),
-    };
-  } else {
-    return {
-      statusCode: 400,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ msg }),
-    };
-  }
-};
+// gmail & iONOS email account
 const emailTemplateForm = (name, email, subject, description) => {
   const tableCellStyle = `style="border: 1px solid #c1c1c1;
                           color: #2b2b2b;
@@ -827,6 +732,196 @@ const emailTemplateForm = (name, email, subject, description) => {
             </table>
             </div>`;
 }; //Img url same cid value as in the html img src
+const iONOS = async (body, callback) => {
+  console.log('Credentials obtained, sending email via iONOS...');
+  const emailTemplate = emailTemplateForm(
+    body.name,
+    body.email,
+    body.subject,
+    body.description
+  );
+
+  const authToken = await jwt.verify(
+    body.access_token,
+    ACCESS_TOKEN_SECRET,
+    (err, authData) => {
+      if (err) {
+        console.log(err);
+        return false;
+      } else {
+        console.log(authData);
+        return authData;
+      }
+    }
+  );
+
+  const email = authToken.email;
+  const subject = body.subject;
+
+  const transporter = nodemailer.createTransport({
+    host: process.env.IONOS_HOST,
+    port: process.env.IONOS_PORT,
+    secure: process.env.IONOS_SECURE,
+    auth: {
+      user: process.env.IONOS_USER, // replace with your email
+      pass: process.env.IONOS_PASS, // replace with your password
+    },
+  });
+
+  const mailOptions = {
+    from: `"oneTouch Portal | " <${process.env.IONOS_USER}>`, // replace with your email
+    to: email, // cc mailing list
+    bcc: process.env.IONOS_MAILING_LIST, // bcc mailing list
+    subject: `${subject}`,
+    html: emailTemplate,
+    attachments: [
+      {
+        filename: 'NDGlogo.png',
+        path: __dirname + '/../dist/images/NDG.png',
+        cid: 'ndgLogo', //same cid value as in the html img src
+      },
+    ],
+  };
+
+  let iONOSEmail = true;
+  let msg;
+  transporter.sendMail(mailOptions, (error, iONOSInfo) => {
+    if (error) {
+      iONOSEmail = false;
+      msg = error;
+      console.log(error);
+
+      callback(error);
+    } else {
+      msg = iONOSInfo;
+      console.log(info);
+      console.log('Message sent: %s', info.messageId);
+
+      callback(null, {
+        statusCode: 200,
+        body: JSON.stringify(body),
+      });
+    }
+  });
+
+  if (iONOSEmail) {
+    console.log(
+      `Email sent successfully to: | `,
+      email,
+      process.env.IONOS_MAILING_LIST
+    );
+
+    return {
+      statusCode: 201,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ msg }),
+    };
+  } else {
+    return {
+      statusCode: 400,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ msg }),
+    };
+  }
+};
+const gmail = async (body, callback) => {
+  console.log('Credentials obtained, sending email via iONOS...');
+  const emailTemplate = emailTemplateForm(
+    body.name,
+    body.email,
+    body.subject,
+    body.description
+  );
+
+  const authToken = await jwt.verify(
+    body.access_token,
+    ACCESS_TOKEN_SECRET,
+    (err, authData) => {
+      if (err) {
+        console.log(err);
+        return false;
+      } else {
+        console.log(authData);
+        return authData;
+      }
+    }
+  );
+
+  const email = authToken.email;
+  const subject = body.subject;
+
+  const transporter = nodemailer.createTransport({
+    service: process.env.GMAIL_SERVICE, // replace with service provider
+    auth: {
+      user: process.env.GMAIL_NAME, // replace with your email
+      pass: process.env.GMAIL_PASSWORD, // replace with your password
+    },
+  });
+
+  const mailOptions = {
+    from: `"oneTouch Portal | " <${process.env.IONOS_USER}>`, // replace with your email
+    to: email, // cc mailing list
+    bcc: process.env.GMAIL_MAILING_LIST, // bcc mailing list
+    subject: `${subject}`,
+    html: emailTemplate,
+    attachments: [
+      {
+        filename: 'NDGlogo.png',
+        path: __dirname + '/../dist/images/NDG.png',
+        cid: 'ndgLogo', //same cid value as in the html img src
+      },
+    ],
+  };
+
+  let gmail = true;
+  let msg;
+  transporter.sendMail(mailOptions, (error, iONOSInfo) => {
+    if (error) {
+      gmail = false;
+      msg = error;
+      console.log(error);
+
+      callback(error);
+    } else {
+      msg = iONOSInfo;
+      console.log(info);
+      console.log('Message sent: %s', info.messageId);
+
+      callback(null, {
+        statusCode: 200,
+        body: JSON.stringify(body),
+      });
+    }
+  });
+
+  if (gmail) {
+    console.log(
+      `Email sent successfully to: | `,
+      email,
+      process.env.IONOS_MAILING_LIST
+    );
+
+    return {
+      statusCode: 201,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ msg }),
+    };
+  } else {
+    return {
+      statusCode: 400,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ msg }),
+    };
+  }
+};
 
 // Error page handling response endpoints
 const oneTouchPortalHTML = [
@@ -896,9 +991,11 @@ module.exports.handler = async (event, context, callback) => {
       return addressesForPostcodeProvided(body);
     case '/oneTouch/icUK/broadbandAvailability':
       return broadbandAvailability(body);
-    // iONOS endPoints
-    case '/oneTouch/iONOS':
+    // gmail & iONOS endPoints
+    case '/oneTouch/gmail':
       return iONOS(body, callback);
+    case '/oneTouch/iONOS':
+      return gmail(body);
 
     default:
       return { statusCode: 400 };

@@ -73,7 +73,7 @@ async function _placeBroadbandOrder() {
                           <div>${orderBroadbandSummary}</div>
                         </div>`;
 
-  const URL = '/oneTouch/iONOS';
+  const URL = '/oneTouch/gmail';
   const body = {
     access_token,
     name: oneTouchData.customerFullName,
