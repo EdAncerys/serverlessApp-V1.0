@@ -1,5 +1,5 @@
 .raiseTicketContent {
-  padding-top: 20px;
+  width: min(95vw, 1000px);
 }
 .oneTouchFormContainer {
   -webkit-box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
@@ -54,4 +54,10 @@
   background-repeat: no-repeat;
   background-image: url(../images/raise.png);
   background-size: contain;
+}
+/* Media Queries */
+@media only screen and (max-width: 800px) {
+  .raiseTicketContent {
+    width: 95vw;
+  }
 }
