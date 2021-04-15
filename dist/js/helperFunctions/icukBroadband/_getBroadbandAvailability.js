@@ -86,7 +86,8 @@ async function _getBroadbandAvailability() {
                         </div>`;
     });
 
-    oneTouchBroadbandAvailability.innerHTML = `<div class='alignHorizontally'>
+    oneTouchBroadbandAvailability.innerHTML = `<section class="features">
+                                                  <div class="flex-container-60">
                                                     <div class="boxContainer broadbandDataContainer bgWhite fontH3">
                                                       <div class="tableCell">Supplier</div>
                                                       <div class="tableCell">Download</div>
@@ -101,7 +102,8 @@ async function _getBroadbandAvailability() {
                                                         Go Back
                                                       </goPageBack>
                                                     </div>
-                                                  </div>`;
+                                                  </div>
+                                                </section>`;
 
     _spinner(false);
 

@@ -1,3 +1,6 @@
+.liveConnectionContent {
+  width: min(95vw, 1000px);
+}
 lcComponent {
   display: grid;
   color: #f4f4f4;

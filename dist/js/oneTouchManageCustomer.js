@@ -39,7 +39,7 @@ document.querySelector('body').addEventListener('click', (event) => {
     // _oneTouchCustomerSummary(id, 'manage-customer');
   }
   if (deleteCustomer) {
-    _deleteOneTouchCustomer(id, 'manage-customer');
+    _deleteOneTouchCustomer(id);
   }
   if (goPageBack) {
     const oneTouchCustomer = document.getElementById('oneTouchCustomer');

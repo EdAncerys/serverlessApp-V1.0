@@ -60,34 +60,36 @@ async function _reviewOrderData(oneTouchOrderData) {
                         </div>
                       </div>`;
 
-    oneTouchOrderReview.innerHTML = `<div class='alignHorizontally'>
-                                      <div class="headerMsgTitle">
-                                        <div class="fontH4">Review Your Order!</div>
-                                        <div class="fontH2">Order details will be submitted as per bellow information</div>
-                                      </div>
-                                      <div class="boxContainer broadbandDataContainer bgWhite">
-                                        <div class="tableCell">Supplier</div>
-                                        <div class="tableCell">Download</div>
-                                        <div class="tableCell">Upload</div>
-                                        <div class="tableCell">Price</div>
-                                        <div class="tableCell">Installation</div>
-                                        <div class="tableCell">Order</div>
-                                      </div>
-                                      ${orderData}
-                                      <div class="boxContainer bgGradientSilver broadbandDataContainerHover">
-                                        <div class="broadbandOrderReviewContainer">
-                                          <div class="fontH3">Full Address Provided:</div>
-                                          <div class="fontH2">${sub_premises} ${premises_name}  ${thoroughfare_number} ${thoroughfare_name} ${locality} ${post_town} ${county} ${postcode}</div>
-                                          <div class="fontH3">Customer Details:</div>
-                                          <div class="fontH2 textDanger">Full Name: ${mergedData.customerFullName} | Email: ${mergedData.customerEmail}</div>
+    oneTouchOrderReview.innerHTML = `<section class="features">
+                                      <div class="flex-container-60">
+                                        <div class="headerMsgTitle">
+                                          <div class="fontH4">Review Your Order!</div>
+                                          <div class="fontH2">Order details will be submitted as per bellow information</div>
+                                        </div>
+                                        <div class="boxContainer broadbandDataContainer bgWhite">
+                                          <div class="tableCell">Supplier</div>
+                                          <div class="tableCell">Download</div>
+                                          <div class="tableCell">Upload</div>
+                                          <div class="tableCell">Price</div>
+                                          <div class="tableCell">Installation</div>
+                                          <div class="tableCell">Order</div>
+                                        </div>
+                                        ${orderData}
+                                        <div class="boxContainer bgGradientSilver broadbandDataContainerHover">
+                                          <div class="broadbandOrderReviewContainer">
+                                            <div class="fontH3">Full Address Provided:</div>
+                                            <div class="fontH2">${sub_premises} ${premises_name}  ${thoroughfare_number} ${thoroughfare_name} ${locality} ${post_town} ${county} ${postcode}</div>
+                                            <div class="fontH3">Customer Details:</div>
+                                            <div class="fontH2 textDanger">Full Name: ${mergedData.customerFullName} | Email: ${mergedData.customerEmail}</div>
+                                          </div>
+                                        </div>
+                                        <div class='sliderNav'>
+                                          <goPageBack id='pageThree' class="btnOneTouch btnBack" role="button">
+                                            Go Back
+                                          </goPageBack>
                                         </div>
                                       </div>
-                                      <div class='sliderNav'>
-                                        <goPageBack id='pageThree' class="btnOneTouch btnBack" role="button">
-                                          Go Back
-                                        </goPageBack>
-                                      </div>
-                                    </div>`;
+                                    </section>`;
 
     oneTouchBroadbandOrderPageThree.classList.add('hidden');
     oneTouchBrodbandContainer.appendChild(oneTouchOrderReview);

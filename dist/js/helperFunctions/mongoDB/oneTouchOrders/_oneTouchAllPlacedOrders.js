@@ -33,16 +33,16 @@ async function _oneTouchAllPlacedOrders() {
                                     </div>
                                   </section>
                                   <section class="features">
-                                  <div class="flex-container-30">
-                                    <div class="fontH2">
-                                      <div class="indexBanner">
-                                        <div class="ndgIcon"></div>
-                                        <div>Unit 4, Saddlers Court, Oakham LE15 7GH</div>
-                                        <div>Phone: 024 7509 2481</div>
+                                    <div class="flex-container-30">
+                                      <div class="fontH2">
+                                        <div class="indexBanner">
+                                          <div class="ndgIcon"></div>
+                                          <div>Unit 4, Saddlers Court, Oakham LE15 7GH</div>
+                                          <div>Phone: 024 7509 2481</div>
+                                        </div>
                                       </div>
                                     </div>
-                                  </div>
-                                </section>`;
+                                  </section>`;
     } else {
       data.map((order) => {
         orderData += `<div class="boxContainer bgGradientSilver broadbandDataContainerHover fontH2">
@@ -65,22 +65,35 @@ async function _oneTouchAllPlacedOrders() {
                       </div>`;
       });
 
-      oneTouchOrders.innerHTML = `<div class='alignHorizontally'>
-                                    <div class="headerMsgTitle">
-                                      <div class="fontH4">Manage All Placed Orders</div>
-                                      <div class="fontH2">Manage all placed orders in one place with a touch of a finger!</div>
+      oneTouchOrders.innerHTML = `<section class="features">
+                                    <div class="flex-container-30">
+                                      <div class="headerMsgTitle">
+                                        <div class="fontH4">Manage All Placed Orders</div>
+                                        <div class="fontH2">Manage all placed orders in one place with a touch of a finger!</div>
+                                      </div>
+                                      <div class="boxContainer broadbandDataContainer bgWhite">
+                                        <div class="tableCell">Supplier</div>
+                                        <div class="tableCell">Download</div>
+                                        <div class="tableCell">Upload</div>
+                                        <div class="tableCell">Price</div>
+                                        <div class="tableCell">Information</div>
+                                        <div class="tableCell">Delete Order</div>
+                                      </div>
+                                      ${orderData}
                                     </div>
-                                    <div class="boxContainer broadbandDataContainer bgWhite">
-                                      <div class="tableCell">Supplier</div>
-                                      <div class="tableCell">Download</div>
-                                      <div class="tableCell">Upload</div>
-                                      <div class="tableCell">Price</div>
-                                      <div class="tableCell">Information</div>
-                                      <div class="tableCell">Delete Order</div>
+                                  </section>
+                                  <section class="features">
+                                    <div class="flex-container-30">
+                                      <div class="fontH2">
+                                        <div class="indexBanner">
+                                          <div class="ndgIcon"></div>
+                                          <div>Unit 4, Saddlers Court, Oakham LE15 7GH</div>
+                                          <div>Phone: 024 7509 2481</div>
+                                        </div>
+                                      </div>
                                     </div>
-                                    ${orderData}
-                                  </div>`;
-    }
+                                  </section>`;
+      }
 
     const endPoint = location.href.split('/').slice(-1)[0];
     persistDOMData(endPoint);

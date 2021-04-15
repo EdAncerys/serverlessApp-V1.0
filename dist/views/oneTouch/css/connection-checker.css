@@ -1,5 +1,5 @@
-.connectionChecker {
-  padding-top: 20px;
+.connectionCheckerContent {
+  width: min(95vw, 1000px);
 }
 /* Page content */
 .oneTouchBrodbandContainer {

@@ -1,8 +1,8 @@
-import { _fetchOneTouchCustomersFromDB } from './_fetchOneTouchCustomersFromDB.js';
+import { _oneTouchContracts } from '../oneTouchContracts/_oneTouchContracts.js';
 import { _errorMessage } from '../../_errorMessage.js';
 import { _spinner } from '../../_spinner.js';
 
-async function _deleteOneTouchCustomer(id, pageName) {
+async function _deleteOneTouchCustomer(id) {
   console.log('Deleting User With ID: ' + id);
   _spinner(true);
 
@@ -20,7 +20,7 @@ async function _deleteOneTouchCustomer(id, pageName) {
     if (!response.ok) throw new Error(response.statusText);
     const data = await response.json();
 
-    _fetchOneTouchCustomersFromDB(pageName);
+    _oneTouchContracts();
 
     _errorMessage(data.msg, 'success');
     _spinner(false);

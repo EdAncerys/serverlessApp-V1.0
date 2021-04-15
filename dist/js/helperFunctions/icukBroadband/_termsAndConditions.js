@@ -19,7 +19,8 @@ async function _termsAndConditions() {
     const oneTouchTermsAndConditions = document.createElement('div');
     oneTouchTermsAndConditions.id = 'oneTouchBroadbandOrderPageFive';
 
-    const data = `   <div class="alignHorizontally">
+    const data = `<section class="features">
+                    <div class="flex-container-30">
                     <div class="oneTouchTermsAndConditions bgWhite">
                       <div class="fontH4">Terms And Conditions</div>
                       <div class="oneTouchTermsAndConditionsText justifyText fontH2">
@@ -58,7 +59,8 @@ async function _termsAndConditions() {
                         Go Back
                       </goPageBack>
                     </div>
-                  </div>`;
+                  </div>
+                </section>`;
 
     oneTouchTermsAndConditions.innerHTML = data;
     oneTouchBroadbandOrderPageFour.classList.add('hidden');

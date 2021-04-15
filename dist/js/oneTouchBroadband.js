@@ -10,7 +10,7 @@ import { _reviewOrderData } from './helperFunctions/icukBroadband/_reviewOrderDa
 import { _termsAndConditions } from './helperFunctions/icukBroadband/_termsAndConditions.js';
 import { _getBroadbandAvailability } from './helperFunctions/icukBroadband/_getBroadbandAvailability.js';
 
-import { _fetchOneTouchCustomersFromDB } from './helperFunctions/mongoDB/oneTouchManageCustomer/_fetchOneTouchCustomersFromDB.js';
+import { _oneTouchCustomers } from './helperFunctions/mongoDB/oneTouchManageCustomer/_oneTouchCustomers.js';
 import { _fetchOneTouchCustomerDataById } from './helperFunctions/mongoDB/oneTouchManageCustomer/_fetchOneTouchCustomerDataById.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -58,7 +58,7 @@ document.querySelector('body').addEventListener('click', (event) => {
     return;
   }
   if (oneTouchCustomers) {
-    _fetchOneTouchCustomersFromDB('connection-checker');
+    _oneTouchCustomers();
     return;
   }
   if (getBroadbandAvailability) {

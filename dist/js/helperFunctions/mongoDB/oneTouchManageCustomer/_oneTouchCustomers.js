@@ -2,7 +2,7 @@ import { persistDOMData } from '../../../persistDOMData.js';
 import { _errorMessage } from '../../_errorMessage.js';
 import { _spinner } from '../../_spinner.js';
 
-async function _fetchOneTouchCustomersFromDB(pageName) {
+async function _oneTouchCustomers() {
   console.log('Fetching customers from db...');
   _spinner(true, 'Loading Active Users...');
   const URL = '/oneTouch/customer/filterCustomers';
@@ -30,18 +30,7 @@ async function _fetchOneTouchCustomersFromDB(pageName) {
 
     console.log(data);
     data.map((customer) => {
-      if (pageName === 'manage-customer') {
-        rowDataSelection = `<div class="rowDataSelection">
-                                  <customerInfo id='${customer._id}' class="btnB01" role="button">
-                                    Info
-                                  </customerInfo>
-                                  <deleteCustomer id='${customer._id}' class="btnB01 bgDanger" role="button">
-                                    Delete
-                                  </deleteCustomer>
-                                </div>`;
-      }
-      if (pageName === 'connection-checker') {
-        rowDataSelection = `<div class="rowDataSelection">
+      rowDataSelection = `<div class="rowDataSelection">
                                   <customerInfo id='${customer._id}' class="btnB01" role="button">
                                     Info
                                   </customerInfo>
@@ -52,7 +41,7 @@ async function _fetchOneTouchCustomersFromDB(pageName) {
                                   </selectCustomer>
                                 </div>`;
 
-        sliderNav = `<div class='navWrapper alignHorizontally'>
+      sliderNav = `<div class='navWrapper alignHorizontally'>
                         <goPageBack id='pageOne' class="btnOneTouch" role="button">
                           Go Back
                         </goPageBack>
@@ -62,7 +51,6 @@ async function _fetchOneTouchCustomersFromDB(pageName) {
                           Add User
                         </addUser>
                       </div>`;
-      }
 
       customerData += `<div class="rowContainer bgGradientSilver">
                         <div class="rowDataContainer-4">
@@ -112,7 +100,7 @@ async function _fetchOneTouchCustomersFromDB(pageName) {
       _errorMessage('You Have No Customers added', 'warning');
       customerDataHTML = `<section class="features">
                             <div class="flex-container-30">
-                              <div class="headerText alignHorizontally">
+                              <div class="headerText">
                                 <div class="fontH3">Your Have No Customers Added!</div>
                                 <addCustomer class="btnOneTouch">Add New Customer</addCustomer>
                               </div>
@@ -124,35 +112,19 @@ async function _fetchOneTouchCustomersFromDB(pageName) {
     oneTouchCustomer.id = 'oneTouchBroadbandOrderPageTwo';
     oneTouchCustomer.innerHTML = customerDataHTML;
 
-    if (pageName === 'manage-customer') {
-      const manageCustomerWrapper = document.querySelector(
-        '#manageCustomerWrapper'
-      );
+    // Removing customer previous data
+    const removeData = document.querySelector('#oneTouchBroadbandOrderPageTwo');
+    if (removeData) removeData.remove();
 
-      const removeData = document.querySelector(
-        '#oneTouchBroadbandOrderPageTwo'
-      );
-      if (removeData) removeData.remove();
+    const oneTouchBrodbandContainer = document.querySelector(
+      '#oneTouchBrodbandContainer'
+    );
+    const oneTouchBroadbandOrderPageOne = document.getElementById(
+      'oneTouchBroadbandOrderPageOne'
+    );
 
-      manageCustomerWrapper.appendChild(oneTouchCustomer);
-    }
-    if (pageName === 'connection-checker') {
-      // Removing customer previous data
-      const removeData = document.querySelector(
-        '#oneTouchBroadbandOrderPageTwo'
-      );
-      if (removeData) removeData.remove();
-
-      const oneTouchBrodbandContainer = document.querySelector(
-        '#oneTouchBrodbandContainer'
-      );
-      const oneTouchBroadbandOrderPageOne = document.getElementById(
-        'oneTouchBroadbandOrderPageOne'
-      );
-
-      oneTouchBroadbandOrderPageOne.classList.add('hidden');
-      oneTouchBrodbandContainer.appendChild(oneTouchCustomer);
-    }
+    oneTouchBroadbandOrderPageOne.classList.add('hidden');
+    oneTouchBrodbandContainer.appendChild(oneTouchCustomer);
 
     const endPoint = location.href.split('/').slice(-1)[0];
     persistDOMData(endPoint);
@@ -164,4 +136,4 @@ async function _fetchOneTouchCustomersFromDB(pageName) {
   }
 }
 
-export { _fetchOneTouchCustomersFromDB };
+export { _oneTouchCustomers };
