@@ -1,5 +1,5 @@
 import { _errorMessage } from './helperFunctions/_errorMessage.js';
-import { _fetchOneTouchCustomersFromDB } from './helperFunctions/mongoDB/oneTouchManageCustomer/_fetchOneTouchCustomersFromDB.js';
+import { _oneTouchContracts } from './helperFunctions/mongoDB/oneTouchContracts/_oneTouchContracts.js';
 import { _deleteOneTouchCustomer } from './helperFunctions/mongoDB/oneTouchManageCustomer/_deleteOneTouchCustomer.js';
 import { _oneTouchCustomerSummary } from './helperFunctions/mongoDB/oneTouchManageCustomer/_oneTouchCustomerSummary.js';
 import { persistDOMData } from './persistDOMData.js';
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     sessionStorage.getItem('oneTouchPageName') === endPoint;
 
   if (oneTouchDOMBody || !oneTouchPageName) {
-    fetchOneTouchCustomersFromDB();
+    oneTouchContracts();
   }
   if (!oneTouchDOMBody && oneTouchPageName) {
     console.log('Page Reloaded');
@@ -21,8 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-const fetchOneTouchCustomersFromDB = async () => {
-  await _fetchOneTouchCustomersFromDB('manage-customer');
+const oneTouchContracts = async () => {
+  await _oneTouchContracts('manage-customer');
 };
 
 document.querySelector('body').addEventListener('click', (event) => {
