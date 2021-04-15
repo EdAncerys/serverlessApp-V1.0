@@ -25,13 +25,11 @@ async function _oneTouchContracts(pageName) {
     dataWrapper.id = 'dataWrapper';
     let rowDataSelection;
     let customerData = '';
-    let sliderNav = '';
     let customerDataHTML;
 
     console.log(data);
     data.map((customer) => {
-      if (pageName === 'manage-customer') {
-        rowDataSelection = `<div class="rowDataSelection">
+      rowDataSelection = `<div class="rowDataSelection">
                                   <customerInfo id='${customer._id}' class="btnB01" role="button">
                                     Info
                                   </customerInfo>
@@ -39,30 +37,6 @@ async function _oneTouchContracts(pageName) {
                                     Delete
                                   </deleteCustomer>
                                 </div>`;
-      }
-      if (pageName === 'connection-checker') {
-        rowDataSelection = `<div class="rowDataSelection">
-                                  <customerInfo id='${customer._id}' class="btnB01" role="button">
-                                    Info
-                                  </customerInfo>
-                                  <selectCustomer id='${customer._id}'
-                                              class="btnB01 bgPrimary" 
-                                              role="button">
-                                    Place Order
-                                  </selectCustomer>
-                                </div>`;
-
-        sliderNav = `<div class='navWrapper alignHorizontally'>
-                        <goPageBack id='pageOne' class="btnOneTouch" role="button">
-                          Go Back
-                        </goPageBack>
-                        <addUser class="btnOneTouch" 
-                                  role="button"
-                                  onclick = "location.href='../../../../views/oneTouch/add-customer.html'";>
-                          Add User
-                        </addUser>
-                      </div>`;
-      }
 
       customerData += `<div class="rowContainer bgGradientSilver">
                         <div class="rowDataContainer-4">
@@ -85,30 +59,70 @@ async function _oneTouchContracts(pageName) {
                       </div>`;
     });
 
-    customerDataHTML = ` <div class="features">
-                            <div class="flex-container-60">
-                              <div class="headerText">
-                                <div class="fontH4">Your Customer List</div>
-                                <div class="fontH2">
-                                  Manage all customers in one place. View address, contact
-                                  information, etc. & any personal notes.
-                                </div>
+    customerDataHTML = `<div class="features">
+                          <div class="flex-container-30">
+                            <div class="oneTouchFormContainer bgGradientSilver">
+                              <div class="alignHorizontally fontH3">Contract Overview</div>
+                              <div class="fontH2">
+                                Manage and overview contracts - anytime, anywhere
                               </div>
-                              <div id='dataWrapper' class='dataWrapper'>
-                                <div class="rowDataContainer-4 boxContainer bgGray">
-                                  <div class="rowDataWrapper">Business Contact</div>
-                                  <div class="rowDataWrapper">Contact Details</div>
-                                  <div class="rowDataWrapper">Address</div>
-                                  <div class="rowDataWrapper">Option</div>
+                              <div class="dataSummaryContainer textSilver fontH2">
+                                <div class="dataRowSummaryContainer justifyText">
+                                  <div class="rowDisplayStart">Total Contracts</div>
+                                  <div class="rowDisplayEnd">0</div>
                                 </div>
-                                  ${customerData}
-                                  ${sliderNav}
+                                <div class="dataRowSummaryContainer justifyText">
+                                  <div class="rowDisplayStart">
+                                    Contracts with exp date > 6 month
+                                  </div>
+                                  <div class="rowDisplayEnd">0</div>
+                                </div>
+                                <div class="dataRowSummaryContainer justifyText">
+                                  <div class="rowDisplayStart">
+                                    Contracts with exp date < 6 month
+                                  </div>
+                                  <div class="rowDisplayEnd">0</div>
+                                </div>
+                                <div class="dataRowSummaryContainer justifyText">
+                                  <div class="rowDisplayStart">Expired Contracts</div>
+                                  <div class="rowDisplayEnd">0</div>
+                                </div>
                               </div>
                             </div>
-                          </div>`;
+                          </div>
+
+                          <div class="flex-container-60">
+                            <div class="headerText">
+                              <div class="fontH4">Your Customer List</div>
+                              <div class="fontH2">
+                                Manage all customers in one place. View address, contact
+                                information, etc. & any personal notes.
+                              </div>
+                            </div>
+                            <div id='dataWrapper' class='dataWrapper'>
+                              <div class="rowDataContainer-4 boxContainer bgGray">
+                                <div class="rowDataWrapper">Business Contact</div>
+                                <div class="rowDataWrapper">Contact Details</div>
+                                <div class="rowDataWrapper">Address</div>
+                                <div class="rowDataWrapper">Option</div>
+                              </div>
+                                ${customerData}
+                            </div>
+                          </div>
+                        </div>`;
+
+    const oneTouchCustomer = document.createElement('div');
+    oneTouchCustomer.id = 'oneTouchManageCustomerPageOne';
+    oneTouchCustomer.innerHTML = customerDataHTML;
+
+    const manageCustomerWrapper = document.querySelector(
+      '#manageCustomerWrapper'
+    );
+
+    const removeData = document.querySelector('#oneTouchManageCustomerPageTwo');
+    if (removeData) removeData.remove();
 
     if (data.length === 0) {
-      _spinner(false);
       _errorMessage('You Have No Customers added', 'warning');
       customerDataHTML = `<section class="features">
                             <div class="flex-container-30">
@@ -118,40 +132,10 @@ async function _oneTouchContracts(pageName) {
                               </div>
                             </div>
                           </section>`;
-    }
 
-    const oneTouchCustomer = document.createElement('div');
-    oneTouchCustomer.id = 'oneTouchBroadbandOrderPageTwo';
-    oneTouchCustomer.innerHTML = customerDataHTML;
-
-    if (pageName === 'manage-customer') {
-      const manageCustomerWrapper = document.querySelector(
-        '#manageCustomerWrapper'
-      );
-
-      const removeData = document.querySelector(
-        '#oneTouchBroadbandOrderPageTwo'
-      );
-      if (removeData) removeData.remove();
-
+      manageCustomerWrapper.innerHTML = customerDataHTML;
+    } else {
       manageCustomerWrapper.appendChild(oneTouchCustomer);
-    }
-    if (pageName === 'connection-checker') {
-      // Removing customer previous data
-      const removeData = document.querySelector(
-        '#oneTouchBroadbandOrderPageTwo'
-      );
-      if (removeData) removeData.remove();
-
-      const oneTouchBrodbandContainer = document.querySelector(
-        '#oneTouchBrodbandContainer'
-      );
-      const oneTouchBroadbandOrderPageOne = document.getElementById(
-        'oneTouchBroadbandOrderPageOne'
-      );
-
-      oneTouchBroadbandOrderPageOne.classList.add('hidden');
-      oneTouchBrodbandContainer.appendChild(oneTouchCustomer);
     }
 
     const endPoint = location.href.split('/').slice(-1)[0];

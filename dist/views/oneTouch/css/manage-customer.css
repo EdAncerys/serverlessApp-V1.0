@@ -1,5 +1,5 @@
-.manageCustomerContainer {
-  padding-top: 20px;
+.manageCustomerContent {
+  width: min(95vw, 1000px);
 }
 .headerText {
   display: grid;
