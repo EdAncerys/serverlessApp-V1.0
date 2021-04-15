@@ -89,8 +89,7 @@
 .flex-container-20,
 .flex-container-30,
 .flex-container-50,
-.flex-container-60,
-.flex-container-hover-30 {
+.flex-container-60 {
   flex-basis: 30%;
   padding: 10px;
   transition: transform 0.6s;
@@ -104,22 +103,7 @@
 .flex-container-60 {
   flex-basis: 60%;
 }
-.flex-container-hover-30 a,
-.flex-container-hover-30 a:visited {
-  text-decoration: none;
-}
-.flex-container-hover-30:hover {
-  -ms-transform: scale(1.05);
-  -webkit-transform: scale(1.05);
-  transform: scale(1.05);
-  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 30%);
-  cursor: pointer;
-}
-.flex-container-hover-30 img {
-  width: 100%;
-  margin: 15px 0;
-  border-radius: 20px;
-}
+
 .width-400 {
   width: 400px;
 }
@@ -134,8 +118,5 @@ dividerComponent {
 @media only screen and (max-width: 800px) {
   .features {
     flex-direction: column;
-  }
-  .flex-container-hover-30 {
-    padding: 20px 20px;
   }
 }

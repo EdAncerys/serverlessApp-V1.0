@@ -734,6 +734,11 @@ const emailTemplateForm = (name, email, subject, description) => {
 }; //Img url same cid value as in the html img src
 const iONOS = async (body, callback) => {
   console.log('Credentials obtained, sending email via iONOS...');
+
+  // Proxy Server Agent configuration
+  const QUOTAGUARD_STATIC_URL = process.env.QUOTAGUARD_STATIC_URL;
+  const proxyAgent = new HttpsProxyAgent(QUOTAGUARD_STATIC_URL);
+
   const emailTemplate = emailTemplateForm(
     body.name,
     body.email,
@@ -762,6 +767,7 @@ const iONOS = async (body, callback) => {
     host: process.env.IONOS_HOST,
     port: process.env.IONOS_PORT,
     secure: process.env.IONOS_SECURE,
+    proxy: proxyAgent,
     auth: {
       user: process.env.IONOS_USER, // replace with your email
       pass: process.env.IONOS_PASS, // replace with your password
@@ -861,6 +867,9 @@ const gmail = async (body, callback) => {
 
   const transporter = nodemailer.createTransport({
     service: process.env.GMAIL_SERVICE, // replace with service provider
+    port: 465,
+    secure: true,
+    proxy: proxyAgent,
     auth: {
       user: process.env.GMAIL_NAME, // replace with your email
       pass: process.env.GMAIL_PASSWORD, // replace with your password
@@ -882,18 +891,9 @@ const gmail = async (body, callback) => {
     ],
   };
 
-  const config = {
-    mailOptions,
-    method: 'POST',
-    agent: proxyAgent,
-    timeout: 10000,
-    followRedirect: true,
-    maxRedirects: 10,
-  };
-
   let gmail = true;
   let msg;
-  transporter.sendMail(config, (error, iONOSInfo) => {
+  transporter.sendMail(mailOptions, (error, iONOSInfo) => {
     if (error) {
       gmail = false;
       msg = error;
@@ -1006,9 +1006,9 @@ module.exports.handler = async (event, context, callback) => {
     case '/oneTouch/icUK/broadbandAvailability':
       return broadbandAvailability(body);
     // gmail & iONOS endPoints
-    case '/oneTouch/gmail':
-      return iONOS(body, callback);
     case '/oneTouch/iONOS':
+      return iONOS(body, callback);
+    case '/oneTouch/gmail':
       return gmail(body);
 
     default:

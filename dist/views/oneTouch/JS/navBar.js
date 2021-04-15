@@ -14,13 +14,34 @@ document.querySelector('body').addEventListener('click', (event) => {
   // console.log(event.target);
 
   // oneTouch App navigation
-  if (href) {
-    // event.preventDefault();
-    // userAuthentication(href); // Authenticate user on all requests
+  if (href && href.includes('.html')) {
+    event.preventDefault();
+    userAuthentication(href); // Authenticate user on all requests
   }
 
   if (iONOS) {
-    _placeIONOSEmailOrder();
-    console.log('iONOS');
+    async function email() {
+      console.log('iONOS');
+      const URL = '/oneTouch/iONOS';
+      const body = {
+        subject: 'oderSubject',
+        description: 'orderSummary',
+      };
+
+      const config = {
+        method: 'POST',
+        body: JSON.stringify(body),
+      };
+
+      try {
+        const response = await fetch(URL, config); //Send email
+        console.log(response);
+        if (!response.ok) throw new Error(response.statusText);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    email();
   }
 });
