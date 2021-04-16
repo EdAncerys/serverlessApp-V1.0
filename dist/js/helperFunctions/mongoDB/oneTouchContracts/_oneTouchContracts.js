@@ -30,13 +30,13 @@ async function _oneTouchContracts(pageName) {
     console.log(data);
     data.map((customer) => {
       rowDataSelection = `<div class="rowDataSelection">
-                                  <customerInfo id='${customer._id}' class="btnB01" role="button">
-                                    Info
-                                  </customerInfo>
-                                  <deleteCustomer id='${customer._id}' class="btnB01 bgDanger" role="button">
-                                    Delete
-                                  </deleteCustomer>
-                                </div>`;
+                            <customerInfo id='${customer._id}' class="btnB01" role="button">
+                              Info
+                            </customerInfo>
+                            <deleteCustomer id='${customer._id}' class="btnB01 bgDanger" role="button">
+                              Delete
+                            </deleteCustomer>
+                          </div>`;
 
       customerData += `<div class="rowContainer bgGradientSilver">
                         <div class="rowDataContainer-4">
