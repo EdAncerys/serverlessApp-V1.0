@@ -49,7 +49,7 @@ async function _oneTouchCustomers() {
                         <addUser class="btnOneTouch" 
                                   role="button"
                                   onclick = "location.href='../../../../views/oneTouch/add-customer.html'";>
-                          Add User
+                          Add New Customer
                         </addUser>
                       </div>`;
 
