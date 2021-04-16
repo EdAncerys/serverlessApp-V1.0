@@ -19,7 +19,7 @@
   padding: 0 10px;
   text-align: left;
 }
-.rowDataSelection {
+.dbRowData {
   display: grid;
   grid-template-rows: 1fr 1fr;
 }
@@ -51,7 +51,7 @@
   .headerText {
     min-width: auto;
   }
-  .rowDataSelection {
+  .dbRowData {
     display: grid;
     row-gap: 10px;
   }

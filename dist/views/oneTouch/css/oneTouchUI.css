@@ -89,9 +89,10 @@
 .flex-container-20,
 .flex-container-30,
 .flex-container-50,
-.flex-container-60 {
+.flex-container-60,
+.flex-container-70 {
   flex-basis: 30%;
-  padding: 10px;
+  padding: 5px;
   transition: transform 0.6s;
 }
 .flex-container-20 {
@@ -102,6 +103,9 @@
 }
 .flex-container-60 {
   flex-basis: 60%;
+}
+.flex-container-70 {
+  flex-basis: 70%;
 }
 
 .width-400 {

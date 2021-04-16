@@ -23,14 +23,14 @@ async function _oneTouchCustomers() {
 
     const dataWrapper = document.createElement('div');
     dataWrapper.id = 'dataWrapper';
-    let rowDataSelection;
+    let dbRowData;
     let customerData = '';
     let sliderNav = '';
     let customerDataHTML;
 
     console.log(data);
     data.map((customer) => {
-      rowDataSelection = `<div class="rowDataSelection">
+      dbRowData = `<div class="dbRowData">
                                   <customerInfo id='${customer._id}' class="btnB01" role="button">
                                     Info
                                   </customerInfo>
@@ -67,7 +67,7 @@ async function _oneTouchCustomers() {
                             <div class="bottomDataRow">${customer.postcode}</div>
                           </div>
                           <div class="rowDataWrapper">
-                            ${rowDataSelection}
+                            ${dbRowData}
                           </div>
                         </div>
                       </div>`;

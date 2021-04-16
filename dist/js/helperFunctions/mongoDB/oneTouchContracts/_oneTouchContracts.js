@@ -5,7 +5,7 @@ import { _spinner } from '../../_spinner.js';
 async function _oneTouchContracts(pageName) {
   console.log('Fetching customers from db...');
   _spinner(true, 'Loading Active Users...');
-  const URL = '/oneTouch/customer/filterCustomers';
+  const URL = '/oneTouch/orders/allPlacedOrders';
   const access_token = sessionStorage.getItem('access_token');
 
   const body = {
@@ -18,18 +18,19 @@ async function _oneTouchContracts(pageName) {
 
   try {
     const response = await fetch(URL, config);
-    const data = await response.json();
     if (!response.ok) throw new Error(data);
 
     const dataWrapper = document.createElement('div');
     dataWrapper.id = 'dataWrapper';
-    let rowDataSelection;
+    let dbRowData;
     let customerData = '';
     let customerDataHTML;
 
+    const dbData = await response.json();
+    const data = dbData.data;
     console.log(data);
     data.map((customer) => {
-      rowDataSelection = `<div class="rowDataSelection">
+      dbRowData = `<div class="dbRowData">
                             <customerInfo id='${customer._id}' class="btnB01" role="button">
                               Info
                             </customerInfo>
@@ -53,7 +54,7 @@ async function _oneTouchContracts(pageName) {
                             <div class="bottomDataRow">${customer.postcode}</div>
                           </div>
                           <div class="rowDataWrapper">
-                            ${rowDataSelection}
+                            ${dbRowData}
                           </div>
                         </div>
                       </div>`;
@@ -91,7 +92,7 @@ async function _oneTouchContracts(pageName) {
                             </div>
                           </div>
 
-                          <div class="flex-container-60">
+                          <div class="flex-container-70">
                             <div class="headerText">
                               <div class="fontH4">Your Customer List</div>
                               <div class="fontH2">
