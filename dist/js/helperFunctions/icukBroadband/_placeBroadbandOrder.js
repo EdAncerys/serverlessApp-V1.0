@@ -15,32 +15,25 @@ async function _placeBroadbandOrder() {
   );
 
   const access_token = await sessionStorage.getItem('access_token');
-  const oneTouchData = await JSON.parse(sessionStorage.getItem('oneTouchData'));
-  console.log(oneTouchData);
+  const oneTouch = await JSON.parse(sessionStorage.getItem('oneTouch'));
+  console.log(oneTouch);
   const oderSubject =
     'oneTouch Broadband Order' +
     ' | Created at: ' +
     new Date().toLocaleString();
 
   const sub_premises =
-    oneTouchData.sub_premises === 'null' ? '' : oneTouchData.sub_premises;
+    oneTouch.sub_premises === 'null' ? '' : oneTouch.sub_premises;
   const premises_name =
-    oneTouchData.premises_name === 'null' ? '' : oneTouchData.premises_name;
+    oneTouch.premises_name === 'null' ? '' : oneTouch.premises_name;
   const thoroughfare_number =
-    oneTouchData.thoroughfare_number === 'null'
-      ? ''
-      : oneTouchData.thoroughfare_number;
+    oneTouch.thoroughfare_number === 'null' ? '' : oneTouch.thoroughfare_number;
   const thoroughfare_name =
-    oneTouchData.thoroughfare_name === 'null'
-      ? ''
-      : oneTouchData.thoroughfare_name;
-  const locality =
-    oneTouchData.locality === 'null' ? '' : oneTouchData.locality;
-  const post_town =
-    oneTouchData.post_town === 'null' ? '' : oneTouchData.post_town;
-  const county = oneTouchData.county === 'null' ? '' : oneTouchData.county;
-  const postcode =
-    oneTouchData.postcode === 'null' ? '' : oneTouchData.postcode;
+    oneTouch.thoroughfare_name === 'null' ? '' : oneTouch.thoroughfare_name;
+  const locality = oneTouch.locality === 'null' ? '' : oneTouch.locality;
+  const post_town = oneTouch.post_town === 'null' ? '' : oneTouch.post_town;
+  const county = oneTouch.county === 'null' ? '' : oneTouch.county;
+  const postcode = oneTouch.postcode === 'null' ? '' : oneTouch.postcode;
 
   const cssStyle = `
                     margin: 1px 0;
@@ -54,12 +47,12 @@ async function _placeBroadbandOrder() {
                               </div>`;
 
   const orderBroadbandSummary = `<div style=${cssStyle}>
-                                    <div>Name: ${oneTouchData.name}</div>
-                                    <div>Provider: ${oneTouchData.provider}</div>
-                                    <div>Down Speed: ${oneTouchData.likely_down_speed}</div>
-                                    <div>Up Speed: ${oneTouchData.likely_up_speed}</div>
-                                    <div>Price: ${oneTouchData.price}</div>
-                                    <div>Installation: ${oneTouchData.installation}</div>
+                                    <div>Name: ${oneTouch.name}</div>
+                                    <div>Provider: ${oneTouch.provider}</div>
+                                    <div>Down Speed: ${oneTouch.likely_down_speed}</div>
+                                    <div>Up Speed: ${oneTouch.likely_up_speed}</div>
+                                    <div>Price: ${oneTouch.price}</div>
+                                    <div>Installation: ${oneTouch.installation}</div>
                                   </div>`;
 
   const orderSummary = `<div style=${cssStyle}>
@@ -76,8 +69,8 @@ async function _placeBroadbandOrder() {
   const URL = '/oneTouch/gmail';
   const body = {
     access_token,
-    name: oneTouchData.customerFullName,
-    email: oneTouchData.customerEmail,
+    name: oneTouch.customerFullName,
+    email: oneTouch.customerEmail,
     subject: oderSubject,
     description: orderSummary,
   };
@@ -91,7 +84,7 @@ async function _placeBroadbandOrder() {
     const response = await fetch(URL, config); //Send email
     console.log(response);
     if (!response.ok) throw new Error(response.statusText);
-    await _createOneTouchOrder(access_token, oneTouchData); // save order to db
+    await _createOneTouchOrder(access_token, oneTouch); // save order to db
 
     _spinner(false);
     _errorMessage('Order Submitted Successfully!', 'success');

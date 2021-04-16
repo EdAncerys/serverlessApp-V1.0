@@ -14,22 +14,17 @@ async function _handleCustomerAddressSelection() {
   const selectionContainer = document.createElement('div');
   selectionContainer.id = 'selectionContainer';
 
-  const oneTouchData = JSON.parse(sessionStorage.getItem('oneTouchData'));
+  const oneTouch = JSON.parse(sessionStorage.getItem('oneTouch'));
   const sub_premises =
-    oneTouchData.sub_premises === 'null' ? '' : oneTouchData.sub_premises;
+    oneTouch.sub_premises === 'null' ? '' : oneTouch.sub_premises;
   const premises_name =
-    oneTouchData.premises_name === 'null' ? '' : oneTouchData.premises_name;
+    oneTouch.premises_name === 'null' ? '' : oneTouch.premises_name;
   const thoroughfare_number =
-    oneTouchData.thoroughfare_number === 'null'
-      ? ''
-      : oneTouchData.thoroughfare_number;
+    oneTouch.thoroughfare_number === 'null' ? '' : oneTouch.thoroughfare_number;
   const thoroughfare_name =
-    oneTouchData.thoroughfare_name === 'null'
-      ? ''
-      : oneTouchData.thoroughfare_name;
-  const county = oneTouchData.county === 'null' ? '' : oneTouchData.county;
-  const postcode =
-    oneTouchData.postcode === 'null' ? '' : oneTouchData.postcode;
+    oneTouch.thoroughfare_name === 'null' ? '' : oneTouch.thoroughfare_name;
+  const county = oneTouch.county === 'null' ? '' : oneTouch.county;
+  const postcode = oneTouch.postcode === 'null' ? '' : oneTouch.postcode;
 
   selectionContainer.innerHTML = `<div class='selectAddressContainer'>
                                     <div class='addCustomerSelectAddressContainer'>

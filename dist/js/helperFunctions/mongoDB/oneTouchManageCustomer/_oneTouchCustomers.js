@@ -18,7 +18,6 @@ async function _oneTouchCustomers() {
 
   try {
     const response = await fetch(URL, config);
-    const data = await response.json();
     if (!response.ok) throw new Error(data);
 
     const dataWrapper = document.createElement('div');
@@ -28,7 +27,9 @@ async function _oneTouchCustomers() {
     let sliderNav = '';
     let customerDataHTML;
 
+    const data = await response.json();
     console.log(data);
+
     data.map((customer) => {
       dbRowData = `<div class="dbRowData">
                                   <customerInfo id='${customer._id}' class="btnB01" role="button">

@@ -98,12 +98,9 @@ document.querySelector('body').addEventListener('click', (event) => {
     async function asyncDataRequest() {
       const id = event.target.id;
       console.log(id);
-      const oneTouchData = await _fetchOneTouchCustomerDataById(id);
-      console.log(oneTouchData);
-      await sessionStorage.setItem(
-        'oneTouchData',
-        JSON.stringify(oneTouchData)
-      );
+      const oneTouch = await _fetchOneTouchCustomerDataById(id);
+      console.log(oneTouch);
+      await sessionStorage.setItem('oneTouch', JSON.stringify(oneTouch));
 
       _getBroadbandAvailability();
     }

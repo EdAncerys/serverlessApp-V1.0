@@ -19,11 +19,11 @@ async function _reviewOrderData(oneTouchOrderData) {
     const oneTouchOrderReview = document.createElement('div');
     oneTouchOrderReview.id = 'oneTouchBroadbandOrderPageFour';
 
-    const oneTouchData = JSON.parse(sessionStorage.getItem('oneTouchData'));
-    const mergedData = { ...oneTouchData, ...oneTouchOrderData };
+    const oneTouch = JSON.parse(sessionStorage.getItem('oneTouch'));
+    const mergedData = { ...oneTouch, ...oneTouchOrderData };
 
     // Save data to session storage
-    sessionStorage.setItem('oneTouchData', JSON.stringify(mergedData));
+    sessionStorage.setItem('oneTouch', JSON.stringify(mergedData));
 
     const sub_premises =
       mergedData.sub_premises === 'null' ? '' : mergedData.sub_premises;

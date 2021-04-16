@@ -222,7 +222,7 @@ const addOrder = async (db, data) => {
   console.log(data);
   const createOrder = {
     access_token: data.access_token,
-    broadband_name: data.oneTouchData.name,
+    broadband_name: data.oneTouch.name,
   };
 
   const authToken = await jwt.verify(

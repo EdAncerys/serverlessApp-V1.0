@@ -26,19 +26,19 @@ const oneTouchContracts = async () => {
 };
 
 document.querySelector('body').addEventListener('click', (event) => {
-  const customerInfo = event.target.nodeName === 'CUSTOMERINFO';
-  const deleteCustomer = event.target.nodeName === 'DELETECUSTOMER';
+  const contractInfo = event.target.nodeName === 'CONTRACTINFO';
+  const deleteContract = event.target.nodeName === 'DELETECONTRACT';
   const goPageBack = event.target.nodeName === 'GOPAGEBACK';
   const addCustomer = event.target.nodeName === 'ADDCUSTOMER';
 
   let id;
   if (event.target.getAttribute('id')) id = event.target.getAttribute('id');
 
-  if (customerInfo) {
-    _errorMessage('Coming Soon...', 'warning');
+  if (contractInfo) {
+    _errorMessage(`Contract ID: ` + id, 'warning');
     // _oneTouchCustomerSummary(id, 'manage-customer');
   }
-  if (deleteCustomer) {
+  if (deleteContract) {
     _deleteOneTouchCustomer(id);
   }
   if (goPageBack) {

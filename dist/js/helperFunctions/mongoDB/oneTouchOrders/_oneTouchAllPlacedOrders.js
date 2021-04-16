@@ -26,6 +26,8 @@ async function _oneTouchAllPlacedOrders() {
 
     let orderData = '';
     if (data.length === 0) {
+      _errorMessage('Have no Placed Orders!', 'warning');
+
       oneTouchOrders.innerHTML = `<section class="features">
                                     <div class="flex-container-30">
                                       <div class="alignHorizontally fontH5">No Orders Placed!</div>
@@ -47,17 +49,17 @@ async function _oneTouchAllPlacedOrders() {
       data.map((order) => {
         orderData += `<div class="boxContainer bgGradientSilver broadbandDataContainerHover fontH2">
                         <div class="broadbandDataContainer">
-                          <div class="tableCell">${order.oneTouchData.name}</div>
-                          <div class="tableCell">${order.oneTouchData.provider}</div>
-                          <div class="tableCell">${order.oneTouchData.price}</div>
-                          <div class="tableCell">${order.oneTouchData.installation}</div>
+                          <div class="tableCell">${order.oneTouch.name}</div>
+                          <div class="tableCell">${order.oneTouch.provider}</div>
+                          <div class="tableCell">${order.oneTouch.price}</div>
+                          <div class="tableCell">${order.oneTouch.installation}</div>
                           <div>
-                            <orderInfo id='${order._id}' oneTouchData='${order.oneTouchData}' class="btnB01" role="button">
+                            <orderInfo id='${order._id}' oneTouch='${order.oneTouch}' class="btnB01" role="button">
                               Info
                             </orderInfo>
                           </div>
                           <div>
-                          <deleteOrder id='${order._id}' oneTouchData='${order.oneTouchData}' class="btnB01 bgDanger" role="button">
+                          <deleteOrder id='${order._id}' oneTouch='${order.oneTouch}' class="btnB01 bgDanger" role="button">
                             Delete
                           </deleteOrder>
                         </div>
@@ -93,7 +95,7 @@ async function _oneTouchAllPlacedOrders() {
                                       </div>
                                     </div>
                                   </section>`;
-      }
+    }
 
     const endPoint = location.href.split('/').slice(-1)[0];
     persistDOMData(endPoint);

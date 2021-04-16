@@ -7,7 +7,7 @@ import { _validateEmail } from './helperFunctions/_validateEmail.js';
 import { persistDOMData } from './persistDOMData.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-  // addFormData();
+  addFormData();
 
   // Persist user data on reload
   const endPoint = location.href.split('/').slice(-1)[0];
@@ -47,7 +47,7 @@ const addUser = async (ev) => {
   const contactEmail = document
     .getElementById('contactEmail')
     .value.replace(/\s/g, '');
-  const oneTouchData = sessionStorage.getItem('oneTouchData') === null;
+  const oneTouch = sessionStorage.getItem('oneTouch') === null;
   const userFromValidation =
     !customerFullName &&
     _validateEmail(customerEmail) &&
@@ -70,11 +70,11 @@ const addUser = async (ev) => {
     _errorMessage('Site Contact Email Not Provided or Incorrect!', 'warning');
     return;
   }
-  if (oneTouchData) {
+  if (oneTouch) {
     _errorMessage('Please Add Customer Address!', 'warning');
     return;
   }
-  if (userFromValidation && !oneTouchData) _addOneTouchCustomerToDB();
+  if (userFromValidation && !oneTouch) _addOneTouchCustomerToDB();
 
   return;
 };
