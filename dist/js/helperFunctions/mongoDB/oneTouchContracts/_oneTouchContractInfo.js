@@ -43,7 +43,7 @@ async function _oneTouchContractInfo(findOneById) {
     let postcode = contractInfo.postcode;
 
     contractInfoData = `
-      <goBackButton class="goBackButton btnOneTouch">X</goBackButton>
+      <goBackBtn class="goBackButton btnOneTouch">x</goBackBtn>
 
       <div class="features">
         <div class="flex-container-50">
@@ -224,19 +224,7 @@ async function _oneTouchContractInfo(findOneById) {
             </div>
           </div>
         </div>
-      </div>
-
-      <section class="features">
-        <div class="flex-container-30">
-          <div class="fontH2">
-            <div class="indexBanner">
-              <div class="ndgIcon"></div>
-              <div>Unit 4, Saddlers Court, Oakham LE15 7GH</div>
-              <div>Phone: 024 7509 2481</div>
-            </div>
-          </div>
-        </div>
-      </section>`;
+      </div>`;
 
     const oneTouchContractInfo = document.createElement('div');
     oneTouchContractInfo.id = 'oneTouchManageCustomerPageTwo';

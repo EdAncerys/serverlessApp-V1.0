@@ -31,12 +31,24 @@ document.querySelector('body').addEventListener('click', (event) => {
   const deleteContract = event.target.nodeName === 'DELETECONTRACT';
   const goPageBack = event.target.nodeName === 'GOPAGEBACK';
   const addCustomer = event.target.nodeName === 'ADDCUSTOMER';
+  const goBackBtn = event.target.nodeName === 'GOBACKBTN';
 
   let id;
   if (event.target.getAttribute('id')) id = event.target.getAttribute('id');
 
+  if (goBackBtn) {
+    const oneTouchManageCustomerPageOne = document.querySelector(
+      '#oneTouchManageCustomerPageOne'
+    );
+    const oneTouchManageCustomerPageTwo = document.querySelector(
+      '#oneTouchManageCustomerPageTwo'
+    );
+    oneTouchManageCustomerPageOne.classList.remove('hidden');
+    oneTouchManageCustomerPageTwo.remove();
+    const endPoint = location.href.split('/').slice(-1)[0];
+    persistDOMData(endPoint);
+  }
   if (contractInfo) {
-    _errorMessage(`Contract ID: ` + id, 'warning');
     _oneTouchContractInfo(id);
   }
   if (deleteContract) {
