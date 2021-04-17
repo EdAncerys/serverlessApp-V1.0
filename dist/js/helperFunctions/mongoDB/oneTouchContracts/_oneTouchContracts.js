@@ -30,6 +30,26 @@ async function _oneTouchContracts(pageName) {
     const data = dbData.data;
     console.log(data);
     data.map((customer) => {
+      let thoroughfare_number =
+        customer.oneTouch.thoroughfare_number === 'null'
+          ? ''
+          : customer.oneTouch.thoroughfare_number;
+      let premises_name =
+        customer.oneTouch.premises_name === 'null'
+          ? ''
+          : customer.oneTouch.premises_name;
+      let sub_premises =
+        customer.oneTouch.sub_premises === 'null'
+          ? ''
+          : customer.oneTouch.sub_premises;
+      let thoroughfare_name =
+        customer.oneTouch.thoroughfare_name === 'null'
+          ? ''
+          : customer.oneTouch.thoroughfare_name;
+      let county =
+        customer.oneTouch.county === 'null' ? '' : customer.oneTouch.county;
+      let postcode = customer.oneTouch.postcode;
+
       dbRowData = `<div class="dbRowData">
                             <contractInfo id='${customer._id}' class="btnB01" role="button">
                               Info
@@ -50,8 +70,8 @@ async function _oneTouchContracts(pageName) {
                             <div class="bottomDataRow">${customer.oneTouch.customerEmail}</div>
                           </div>
                           <div class="rowDataWrapper">
-                            <div>${customer.oneTouch.thoroughfare_number} ${customer.thoroughfare_name}</div>
-                            <div class="bottomDataRow">${customer.oneTouch.postcode}</div>
+                            <div>${thoroughfare_number} ${premises_name} ${sub_premises} ${thoroughfare_name} ${county}</div>
+                            <div class="bottomDataRow">${postcode}</div>
                           </div>
                           <div class="rowDataWrapper">
                             ${dbRowData}

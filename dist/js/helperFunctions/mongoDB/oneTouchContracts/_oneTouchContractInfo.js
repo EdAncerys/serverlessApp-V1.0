@@ -8,6 +8,8 @@ async function _oneTouchContractInfo(findOneById) {
   const URL = '/oneTouch/contract/findContractById';
   const access_token = sessionStorage.getItem('access_token');
 
+  let contractInfoData = '';
+
   const body = {
     access_token,
     findOneById,
@@ -21,114 +23,242 @@ async function _oneTouchContractInfo(findOneById) {
     const response = await fetch(URL, config);
     if (!response.ok) throw new Error(data);
 
-    const dataWrapper = document.createElement('div');
-    dataWrapper.id = 'dataWrapper';
-    let dbRowData;
-    let customerData = '';
-    let customerDataHTML;
-
     const data = await response.json();
     console.log(data);
-    // data.map((customer) => {
-    //   dbRowData = `<div class="dbRowData">
-    //                         <contractInfo id='${customer._id}' class="btnB01" role="button">
-    //                           Info
-    //                         </contractInfo>
-    //                         <deleteContract id='${customer._id}' class="btnB01 bgDanger" role="button">
-    //                           Delete
-    //                         </deleteContract>
-    //                       </div>`;
+    const contractInfo = data.oneTouch;
 
-    //   customerData += `<div class="rowContainer bgGradientSilver">
-    //                     <div class="rowDataContainer-4">
-    //                       <div class="rowDataWrapper">
-    //                         <div>${customer.oneTouch.companyName}</div>
-    //                         <div class="bottomDataRow">${customer.oneTouch.customerFullName}</div>
-    //                       </div>
-    //                       <div class="rowDataWrapper">
-    //                         <div>${customer.oneTouch.customerPhoneNumber}</div>
-    //                         <div class="bottomDataRow">${customer.oneTouch.customerEmail}</div>
-    //                       </div>
-    //                       <div class="rowDataWrapper">
-    //                         <div>${customer.oneTouch.thoroughfare_number} ${customer.thoroughfare_name}</div>
-    //                         <div class="bottomDataRow">${customer.oneTouch.postcode}</div>
-    //                       </div>
-    //                       <div class="rowDataWrapper">
-    //                         ${dbRowData}
-    //                       </div>
-    //                     </div>
-    //                   </div>`;
-    // });
+    let thoroughfare_number =
+      contractInfo.thoroughfare_number === 'null'
+        ? ''
+        : contractInfo.thoroughfare_number;
+    let premises_name =
+      contractInfo.premises_name === 'null' ? '' : contractInfo.premises_name;
+    let sub_premises =
+      contractInfo.sub_premises === 'null' ? '' : contractInfo.sub_premises;
+    let thoroughfare_name =
+      contractInfo.thoroughfare_name === 'null'
+        ? ''
+        : contractInfo.thoroughfare_name;
+    let county = contractInfo.county === 'null' ? '' : contractInfo.county;
+    let postcode = contractInfo.postcode;
 
-    // const totalContracts = data.length;
+    contractInfoData = `
+      <goBackButton class="goBackButton btnOneTouch">X</goBackButton>
 
-    // customerDataHTML = `<div class="features">
-    //                       <div class="flex-container-30">
-    //                         <div class="oneTouchFormContainer bgGradientSilver">
-    //                           <div class="alignHorizontally fontH3">Contract Overview</div>
-    //                           <div class="fontH2">
-    //                             Manage and overview contracts - anytime, anywhere
-    //                           </div>
-    //                           <div class="dataSummaryContainer textSilver fontH2">
-    //                             <div class="dataRowSummaryContainer justifyText">
-    //                               <div class="rowDisplayStart">Total Contracts</div>
-    //                               <div class="rowDisplayEnd">${totalContracts}</div>
-    //                             </div>
-    //                             <div class="dataRowSummaryContainer justifyText">
-    //                               <div class="rowDisplayStart">
-    //                                 Contracts with exp date > 6 month
-    //                               </div>
-    //                               <div class="rowDisplayEnd">0</div>
-    //                             </div>
-    //                             <div class="dataRowSummaryContainer justifyText">
-    //                               <div class="rowDisplayStart">
-    //                                 Contracts with exp date < 6 month
-    //                               </div>
-    //                               <div class="rowDisplayEnd">0</div>
-    //                             </div>
-    //                             <div class="dataRowSummaryContainer justifyText">
-    //                               <div class="rowDisplayStart">Expired Contracts</div>
-    //                               <div class="rowDisplayEnd">0</div>
-    //                             </div>
-    //                           </div>
-    //                         </div>
-    //                       </div>
+      <div class="features">
+        <div class="flex-container-50">
+          <div class="oneTouchFormContainer">
+            <div class="fontH3">Company Information</div>
+            <div class="dataSummaryContainer textSilver fontH2">
+              <div class="dataRowSummaryContainer justifyText">
+                <div class="rowDisplayStart">Company Name</div>
+                <div class="rowDisplayEnd">${contractInfo.companyName}</div>
+              </div>
+              <div class="dataRowSummaryContainer justifyText">
+                <div class="rowDisplayStart">Product Type</div>
+                <div class="rowDisplayEnd">${contractInfo.productType}</div>
+              </div>
 
-    //                       <div class="flex-container-70">
-    //                         <div class="headerText">
-    //                           <div class="fontH4">Contract & Customer List</div>
-    //                           <div class="fontH2">
-    //                             Manage all customers in one place. View address, contact
-    //                             information, etc. & any personal notes.
-    //                           </div>
-    //                         </div>
-    //                         <div id='dataWrapper' class='dataWrapper'>
-    //                           <div class="rowDataContainer-4 boxContainer bgGray">
-    //                             <div class="rowDataWrapper">Business Contact</div>
-    //                             <div class="rowDataWrapper">Contact Details</div>
-    //                             <div class="rowDataWrapper">Address</div>
-    //                             <div class="rowDataWrapper">Option</div>
-    //                           </div>
-    //                             ${customerData}
-    //                         </div>
-    //                       </div>
-    //                     </div>`;
+              <div class="dataRowSummaryContainer justifyText">
+                <div class="rowDisplayStart">Company Email</div>
+                <div class="rowDisplayEnd">${contractInfo.companyEmail}</div>
+              </div>
+              <div class="dataRowSummaryContainer justifyText">
+                <div class="rowDisplayStart">Company Phone Number</div>
+                <div class="rowDisplayEnd">${
+                  contractInfo.companyPhoneNumber
+                }</div>
+              </div>
 
-    // const oneTouchCustomer = document.createElement('div');
-    // oneTouchCustomer.id = 'oneTouchManageCustomerPageTwo';
-    // oneTouchCustomer.innerHTML = customerDataHTML;
+              <div class="dataRowSummaryContainer justifyText">
+                <div class="rowDisplayStart">Account Manager</div>
+                <div class="rowDisplayEnd">${contractInfo.accountManager}</div>
+              </div>
+              <div class="dataRowSummaryContainer justifyText">
+                <div class="rowDisplayStart">Company Registration</div>
+                <div class="rowDisplayEnd">${
+                  contractInfo.companyRegistration
+                }</div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-    // const manageCustomerWrapper = document.querySelector(
-    //   '#manageCustomerWrapper'
-    // );
+        <div class="flex-container-50">
+          <div class="oneTouchFormContainer">
+            <div class="fontH3">Customer Information</div>
+            <div class="dataSummaryContainer textSilver fontH2">
+              <div class="dataRowSummaryContainer justifyText">
+                <div class="rowDisplayStart">Full Name</div>
+                <div class="rowDisplayEnd">${contractInfo.fullName}</div>
+              </div>
+              <div class="dataRowSummaryContainer justifyText">
+                <div class="rowDisplayStart">Phone Number</div>
+                <div class="rowDisplayEnd">${
+                  contractInfo.customerPhoneNumber
+                }</div>
+              </div>
 
-    // const removeData = document.querySelector('#oneTouchManageCustomerPageThree');
-    // if (removeData) removeData.remove();
+              <div class="dataRowSummaryContainer justifyText">
+                <div class="rowDisplayStart">Customer Email</div>
+                <div class="rowDisplayEnd">${contractInfo.customerEmail}</div>
+              </div>
+              <div class="dataRowSummaryContainer justifyText">
+                <div class="rowDisplayStart">
+                  Personal Notes: <br />
+                  ${contractInfo.customerNotes}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-    // manageCustomerWrapper.appendChild(oneTouchCustomer);
+      <div class="features">
+        <div class="flex-container-30">
+          <div class="oneTouchFormContainer">
+            <div class="fontH3">Contract Details</div>
+            <div class="dataSummaryContainer textSilver fontH2">
+              <div class="dataRowSummaryContainer justifyText">
+                <div class="rowDisplayStart">Installation Date</div>
+                <div class="rowDisplayEnd">${
+                  contractInfo.installationDate
+                }</div>
+              </div>
+              <div class="dataRowSummaryContainer justifyText">
+                <div class="rowDisplayStart">Contact Expiration Date</div>
+                <div class="rowDisplayEnd">${contractInfo.expansionDate}</div>
+              </div>
 
-    // const endPoint = location.href.split('/').slice(-1)[0];
-    // persistDOMData(endPoint);
+              <div class="dataRowSummaryContainer justifyText">
+                <div class="rowDisplayStart">Contact Length</div>
+                <div class="rowDisplayEnd">${contractInfo.contractLength}</div>
+              </div>
+              <div class="dataRowSummaryContainer justifyText">
+                <div class="rowDisplayStart">Contract Price</div>
+                <div class="rowDisplayEnd">${contractInfo.price}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex-container-40">
+          <div class="oneTouchFormContainer">
+            <div class="fontH3">Broadband Information</div>
+            <div class="dataSummaryContainer textSilver fontH2">
+              <div class="dataRowSummaryContainer justifyText">
+                <div class="rowDisplayStart">Broadband Name</div>
+                <div class="rowDisplayEnd">${contractInfo.name}</div>
+              </div>
+              <div class="dataRowSummaryContainer justifyText">
+                <div class="rowDisplayStart">Broadband Provider</div>
+                <div class="rowDisplayEnd">${contractInfo.provider}</div>
+              </div>
+              <div class="dataRowSummaryContainer justifyText">
+                <div class="rowDisplayStart">Broadband Technology</div>
+                <div class="rowDisplayEnd">${contractInfo.technology}</div>
+              </div>
+              <div class="dataRowSummaryContainer justifyText">
+                <div class="rowDisplayStart">Up Speed</div>
+                <div class="rowDisplayEnd">${contractInfo.likely_up_speed}</div>
+              </div>
+              <div class="dataRowSummaryContainer justifyText">
+                <div class="rowDisplayStart">Down Speed</div>
+                <div class="rowDisplayEnd">${
+                  contractInfo.likely_down_speed
+                }</div>
+              </div>
+              <div class="dataRowSummaryContainer justifyText">
+                <div class="rowDisplayStart">Broadband Price</div>
+                <div class="rowDisplayEnd">${contractInfo.price}</div>
+              </div>
+              <div class="dataRowSummaryContainer justifyText">
+                <div class="rowDisplayStart">
+                  Broadband Installation Price
+                </div>
+                <div class="rowDisplayEnd">${contractInfo.installation}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex-container-30">
+          <div class="oneTouchFormContainer">
+            <div class="fontH3">Site Installation Details</div>
+            <div class="dataSummaryContainer textSilver fontH2">
+              <div class="dataRowSummaryContainer justifyText">
+                <div class="rowDisplayStart">Contact Name</div>
+                <div class="rowDisplayEnd">${contractInfo.contactName}</div>
+              </div>
+              <div class="dataRowSummaryContainer justifyText">
+                <div class="rowDisplayStart">Contact Phone Number</div>
+                <div class="rowDisplayEnd">${
+                  contractInfo.contactPhoneNumber
+                }</div>
+              </div>
+
+              <div class="dataRowSummaryContainer justifyText">
+                <div class="rowDisplayStart">Contact Email</div>
+                <div class="rowDisplayEnd">${contractInfo.contactEmail}</div>
+              </div>
+              <div class="dataRowSummaryContainer justifyText">
+                <div class="rowDisplayStart">
+                  Installation Address: <br />
+                  ${thoroughfare_number} ${premises_name} ${sub_premises} ${thoroughfare_name} ${county} ${postcode}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="features-align-left">
+        <div class="flex-container-50">
+          <div class="oneTouchFormContainer">
+            <div class="fontH3">Extra Metrics</div>
+            <div class="dataSummaryContainer textSilver fontH2">
+              <div class="dataRowSummaryContainer justifyText">
+                <div class="rowDisplayStart">Extra Metrics</div>
+                <div class="rowDisplayEnd">${'extra metrics'}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <section class="features">
+        <div class="flex-container-30">
+          <div class="fontH2">
+            <div class="indexBanner">
+              <div class="ndgIcon"></div>
+              <div>Unit 4, Saddlers Court, Oakham LE15 7GH</div>
+              <div>Phone: 024 7509 2481</div>
+            </div>
+          </div>
+        </div>
+      </section>`;
+
+    const oneTouchContractInfo = document.createElement('div');
+    oneTouchContractInfo.id = 'oneTouchManageCustomerPageTwo';
+    oneTouchContractInfo.innerHTML = contractInfoData;
+
+    const manageCustomerWrapper = document.querySelector(
+      '#manageCustomerWrapper'
+    );
+
+    const removeData = document.querySelector(
+      '#oneTouchManageCustomerPageThree'
+    );
+    if (removeData) removeData.remove();
+
+    const oneTouchManageCustomerPageOne = document.querySelector(
+      '#oneTouchManageCustomerPageOne'
+    );
+    oneTouchManageCustomerPageOne.classList.add('hidden');
+    manageCustomerWrapper.appendChild(oneTouchContractInfo);
+
+    const endPoint = location.href.split('/').slice(-1)[0];
+    persistDOMData(endPoint);
     _spinner(false);
   } catch (err) {
     console.log(err);
