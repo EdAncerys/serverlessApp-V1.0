@@ -4,7 +4,7 @@
 .oneTouchFormContainer {
   -webkit-box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
   box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
-  padding: 24px 32px 32px;
+  padding: 15px 20px;
   border-radius: 8px;
   background: #fff;
   text-align: left;
@@ -17,7 +17,7 @@
 .dataSummaryContainer {
   display: grid;
   gap: 5px;
-  margin: 20px 0;
+  margin: 10px 0;
 }
 .dataRowSummaryContainer {
   display: grid;
@@ -25,6 +25,11 @@
   padding: 10px 15px;
   border: solid 1px #61d2b3;
   border-radius: 5px;
+  transition: all 250ms ease-in-out;
+}
+.dataRowSummaryContainer:hover {
+  box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
+  cursor: pointer;
 }
 .rowDisplayStart {
   text-align: start;

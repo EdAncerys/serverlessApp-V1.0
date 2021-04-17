@@ -52,12 +52,6 @@
   box-shadow: 0 2px 4px 0 rgb(0 0 0 / 30%);
   transition: all 250ms ease-in-out;
 }
-.boxContainerHover:hover {
-  -ms-transform: scale(1.1);
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
-  box-shadow: none;
-}
 .tableCell {
   display: grid;
   align-content: center;
@@ -75,6 +69,7 @@
 }
 /* Banner component  */
 .features,
+.features-align-left,
 .features-flex-wrap {
   width: 100%;
   height: auto;
@@ -86,17 +81,29 @@
 .features-flex-wrap {
   flex-wrap: wrap;
 }
+.features-align-left {
+  justify-content: flex-start;
+}
 .flex-container-20,
 .flex-container-30,
+.flex-container-40,
 .flex-container-50,
 .flex-container-60,
-.flex-container-70 {
+.flex-container-70,
+.flex-container-80,
+.flex-container-100 {
   flex-basis: 30%;
   padding: 5px;
   transition: transform 0.6s;
 }
 .flex-container-20 {
   flex-basis: 20%;
+}
+.flex-container-30 {
+  flex-basis: 30%;
+}
+.flex-container-40 {
+  flex-basis: 40%;
 }
 .flex-container-50 {
   flex-basis: 50%;
@@ -106,6 +113,12 @@
 }
 .flex-container-70 {
   flex-basis: 70%;
+}
+.flex-container-80 {
+  flex-basis: 80%;
+}
+.flex-container-100 {
+  flex-basis: 100%;
 }
 
 .width-400 {
@@ -120,7 +133,8 @@ dividerComponent {
 }
 /* Media Queries */
 @media only screen and (max-width: 800px) {
-  .features {
+  .features,
+  .features-align-left {
     flex-direction: column;
   }
 }

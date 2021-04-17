@@ -44,7 +44,12 @@
   grid-template-columns: 1fr 1fr;
   padding: 5px 0;
 }
-
+.goBackButton {
+  position: relative;
+  padding: 10px 15px;
+  margin-top: 20px;
+  left: 45%;
+}
 /* Media Queries */
 @media only screen and (max-width: 800px) {
   .rowDataContainer-4,
