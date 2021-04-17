@@ -114,22 +114,24 @@ async function _oneTouchContracts(pageName) {
                             </div>
                           </div>
 
-                          <div class="flex-container-70">
-                            <div class="headerText">
-                              <div class="fontH4">Contract & Customer List</div>
-                              <div class="fontH2">
-                                Manage all customers in one place. View address, contact
-                                information, etc. & any personal notes.
+                          <div class="contractWrapper">
+                            <div class="flex-container-70">
+                              <div class="headerText">
+                                <div class="fontH4">Contract & Customer List</div>
+                                <div class="fontH2">
+                                  Manage all customers in one place. View address, contact
+                                  information, etc. & any personal notes.
+                                </div>
                               </div>
-                            </div>
-                            <div id='dataWrapper' class='dataWrapper'>
-                              <div class="rowDataContainer-4 boxContainer bgGray">
-                                <div class="rowDataWrapper">Business Contact</div>
-                                <div class="rowDataWrapper">Contact Details</div>
-                                <div class="rowDataWrapper">Address</div>
-                                <div class="rowDataWrapper">Option</div>
+                              <div id='dataWrapper' class='dataWrapper'>
+                                <div class="rowDataContainer-4 boxContainer bgGray">
+                                  <div class="rowDataWrapper">Business Contact</div>
+                                  <div class="rowDataWrapper">Contact Details</div>
+                                  <div class="rowDataWrapper">Address</div>
+                                  <div class="rowDataWrapper">Option</div>
+                                </div>
+                                  ${customerData}
                               </div>
-                                ${customerData}
                             </div>
                           </div>
                         </div>`;

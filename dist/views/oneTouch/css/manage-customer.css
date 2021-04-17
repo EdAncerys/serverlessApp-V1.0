@@ -6,6 +6,10 @@
   grid-template-rows: 1fr 1fr;
   gap: 10px;
 }
+.contractWrapper {
+  max-height: 50vw;
+  overflow: auto;
+}
 .dataWrapper {
   display: grid;
 }
