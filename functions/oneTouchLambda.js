@@ -534,6 +534,44 @@ const oneTouchUpdateUser = async (db, data) => {
   }
 };
 
+// oneTouch contract endPoints
+const findContractById = async (db, data) => {
+  const findContract = {
+    id: data.findOneById,
+  };
+
+  const contractID = new ObjectId(findContract.id);
+  const contractData = await db
+    .collection(COLLECTION_ONE_TOUCH_ORDERS)
+    .find({ _id: contractID })
+    .toArray();
+
+  console.log(contractData);
+  const contractValid = contractData.length > 0;
+  console.table(contractValid);
+
+  if (contractValid) {
+    return {
+      statusCode: 200,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(customerData[0]),
+    };
+  } else {
+    const msg = `Error finding contract. Contract ID: ` + findContract.id;
+    console.log(msg);
+
+    return {
+      statusCode: 422,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ msg }),
+    };
+  }
+};
+
 // icUK data
 const addressesForPostcodeProvided = async (body) => {
   console.log('QuatAGuard Proxy Server Agent');
@@ -1000,6 +1038,9 @@ module.exports.handler = async (event, context, callback) => {
       return filterCustomers(db, body);
     case '/oneTouch/customer/findCustomersById':
       return findCustomersById(db, body);
+    // oneTouch contract endPoints
+    case '/oneTouch/contract/findContractById':
+      return findContractById(db, body);
     // icUK endPoints
     case '/oneTouch/icUK/addressesForPostcodeProvided':
       return addressesForPostcodeProvided(body);

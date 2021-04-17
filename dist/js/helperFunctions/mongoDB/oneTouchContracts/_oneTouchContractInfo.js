@@ -2,14 +2,15 @@ import { persistDOMData } from '../../../persistDOMData.js';
 import { _errorMessage } from '../../_errorMessage.js';
 import { _spinner } from '../../_spinner.js';
 
-async function _oneTouchContracts(pageName) {
+async function _oneTouchContracts(findOneById) {
   console.log('Fetching customers from db...');
-  _spinner(true, 'Loading Active Users...');
-  const URL = '/oneTouch/orders/allPlacedOrders';
+  _spinner(true, 'Loading Active Contract...');
+  const URL = '/oneTouch/contract/findContractById';
   const access_token = sessionStorage.getItem('access_token');
 
   const body = {
     access_token,
+    findOneById,
   };
   const config = {
     method: 'POST',
