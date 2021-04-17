@@ -1,5 +1,6 @@
 import { _errorMessage } from './helperFunctions/_errorMessage.js';
 import { _oneTouchContracts } from './helperFunctions/mongoDB/oneTouchContracts/_oneTouchContracts.js';
+import { _oneTouchContractInfo } from './helperFunctions/mongoDB/oneTouchContracts/_oneTouchContractInfo.js';
 import { _deleteOneTouchCustomer } from './helperFunctions/mongoDB/oneTouchManageCustomer/_deleteOneTouchCustomer.js';
 import { _oneTouchCustomerSummary } from './helperFunctions/mongoDB/oneTouchManageCustomer/_oneTouchCustomerSummary.js';
 import { persistDOMData } from './persistDOMData.js';
@@ -36,7 +37,7 @@ document.querySelector('body').addEventListener('click', (event) => {
 
   if (contractInfo) {
     _errorMessage(`Contract ID: ` + id, 'warning');
-    // _oneTouchCustomerSummary(id, 'manage-customer');
+    _oneTouchContractInfo(id);
   }
   if (deleteContract) {
     _deleteOneTouchCustomer(id);

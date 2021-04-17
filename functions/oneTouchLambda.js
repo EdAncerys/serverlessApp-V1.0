@@ -556,7 +556,7 @@ const findContractById = async (db, data) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(customerData[0]),
+      body: JSON.stringify(contractData[0]),
     };
   } else {
     const msg = `Error finding contract. Contract ID: ` + findContract.id;
