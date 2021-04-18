@@ -29,8 +29,12 @@ async function _oneTouchAllPlacedOrders() {
       _errorMessage('Have no Placed Orders!', 'warning');
 
       oneTouchOrders.innerHTML = `<section class="features">
-                                    <div class="flex-container-30">
-                                      <div class="alignHorizontally fontH5">No Orders Placed!</div>
+                                    <div class="flex-container-60">
+                                      <div class="fontH5">Have No Orders Placed!</div>
+                                    </div>
+                                  </section>
+                                  <section class="features">
+                                    <div class="flex-container-60">
                                       <placeNewOrder class="btnOneTouch">Place New Order</placeNewOrder>
                                     </div>
                                   </section>

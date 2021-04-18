@@ -16,8 +16,10 @@ async function _createOneTouchOrder(access_token, oneTouch) {
     if (!response.ok) throw new Error(response.statusText);
     const data = await response.json();
     console.log(data);
+    return { ok: true };
   } catch (err) {
     console.log(err);
+    return { ok: false };
   }
 }
 

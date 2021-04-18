@@ -75,7 +75,7 @@ async function _oneTouchCustomers() {
     });
 
     customerDataHTML = ` <div class="features">
-                            <div class="flex-container-60">
+                            <div class="flex-container-80">
                               <div class="headerText">
                                 <div class="fontH4">Your Customer List</div>
                                 <div class="fontH2">

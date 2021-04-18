@@ -16,18 +16,20 @@ async function userAuthentication(href) {
   };
 
   try {
-    const response = await fetch(URL, config);
-    if (!response.ok) throw new Error(response.statusText);
+    window.location.href = `/views/oneTouch/${href}`;
+    // User authentication middleware
 
-    if (response.redirected) {
-      sessionStorage.clear();
-      window.location.replace(response.url);
-      return;
-    }
+    // const response = await fetch(URL, config);
+    // if (!response.ok) throw new Error(response.statusText);
 
-    console.log(href);
-    if (href !== '') window.location.replace(`/views/oneTouch/${href}`);
-    // if (href !== '') window.location.href = `/views/oneTouch/${href}`;
+    // if (response.redirected) {
+    //   sessionStorage.clear();
+    //   window.location.replace(response.url);
+    //   return;
+    // }
+
+    // console.log(href);
+    // if (href !== '') window.location.replace(`/views/oneTouch/${href}`);
 
     return;
   } catch (err) {
