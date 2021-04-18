@@ -902,6 +902,7 @@ const gmail = async (body, callback) => {
 
   const email = authToken.email;
   const subject = body.subject;
+  const mailList = [`${email}`, `${process.env.GMAIL_MAILING_LIST}`];
 
   const transporter = nodemailer.createTransport({
     service: process.env.GMAIL_SERVICE, // replace with service provider
@@ -916,8 +917,8 @@ const gmail = async (body, callback) => {
 
   const mailOptions = {
     from: `"oneTouch Portal | " <${process.env.IONOS_USER}>`, // replace with your email
-    to: email, // cc mailing list
-    bcc: process.env.GMAIL_MAILING_LIST, // bcc mailing list
+    to: mailList, // cc mailing list
+    // bcc: process.env.GMAIL_MAILING_LIST, // bcc mailing list
     subject: `${subject}`,
     html: emailTemplate,
     attachments: [
