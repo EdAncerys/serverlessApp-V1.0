@@ -84,10 +84,9 @@ async function _placeBroadbandOrder() {
     const response = await fetch(URL, config); //Send email
     console.log(response);
     if (!response.ok) throw new Error(response.statusText);
-    _createOneTouchOrder(access_token, oneTouch); // save order to db
-    // const saveToDb = await _createOneTouchOrder(access_token, oneTouch); // save order to db
-    // console.log(saveToDb);
-    // if (!saveToDb.ok) throw new Error(response.statusText);
+    const saveToDb = await _createOneTouchOrder(access_token, oneTouch); // save order to db
+    console.log(saveToDb);
+    if (!saveToDb.ok) throw new Error(response.statusText);
 
     _spinner(false);
     _errorMessage('Order Submitted Successfully!', 'success');

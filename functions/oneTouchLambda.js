@@ -902,7 +902,7 @@ const gmail = async (body, callback) => {
 
   const email = authToken.email;
   const subject = body.subject;
-  const mailList = [`${email}`, `${process.env.GMAIL_MAILING_LIST}`];
+  // const mailList = [`${email}`, `${process.env.GMAIL_MAILING_LIST}`];
 
   const transporter = nodemailer.createTransport({
     service: process.env.GMAIL_SERVICE, // replace with service provider
@@ -917,8 +917,8 @@ const gmail = async (body, callback) => {
 
   const mailOptions = {
     from: `"oneTouch Portal | " <${process.env.IONOS_USER}>`, // replace with your email
-    to: mailList, // cc mailing list
-    // bcc: process.env.GMAIL_MAILING_LIST, // bcc mailing list
+    to: email, // cc mailing list
+    bcc: process.env.GMAIL_MAILING_LIST, // bcc mailing list
     subject: `${subject}`,
     html: emailTemplate,
     attachments: [
@@ -1051,7 +1051,7 @@ module.exports.handler = async (event, context, callback) => {
     case '/oneTouch/iONOS':
       return iONOS(body, callback);
     case '/oneTouch/gmail':
-      return gmail(body);
+      return gmail(body, callback);
 
     default:
       return { statusCode: 400 };
