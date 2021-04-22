@@ -24,9 +24,19 @@ document.querySelector('body').addEventListener('click', (event) => {
   const orderInfo = event.target.nodeName === 'ORDERINFO';
   const deleteOrder = event.target.nodeName === 'DELETEORDER';
   const placeNewOrder = event.target.nodeName === 'PLACENEWORDER';
+  const goBackBtn = event.target.nodeName === 'GOBACKBTN';
 
   let id = event.target.getAttribute('id');
 
+  if (goBackBtn) {
+    const allPlacedOrders = document.querySelector('#allPlacedOrders');
+    const allPlacedOrdersInfo = document.querySelector('#allPlacedOrdersInfo');
+
+    allPlacedOrders.classList.remove('hidden');
+    allPlacedOrdersInfo.remove();
+    const endPoint = location.href.split('/').slice(-1)[0];
+    persistDOMData(endPoint);
+  }
   if (orderInfo) {
     _oneTouchPendingContractInfo(id);
   }
