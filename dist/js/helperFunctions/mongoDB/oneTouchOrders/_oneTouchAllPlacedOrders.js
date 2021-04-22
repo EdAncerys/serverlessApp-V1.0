@@ -8,6 +8,7 @@ async function _oneTouchAllPlacedOrders() {
   const oneTouchOrders = document.querySelector('oneTouchOrders');
   const URL = '/oneTouch/orders/allPlacedOrders';
   const access_token = await sessionStorage.getItem('access_token');
+
   const body = {
     access_token,
   };
@@ -15,6 +16,10 @@ async function _oneTouchAllPlacedOrders() {
     method: 'POST',
     body: JSON.stringify(body),
   };
+
+  const allPlacedOrders = document.createElement('div');
+  allPlacedOrders.id = `allPlacedOrders`;
+  oneTouchOrders.appendChild(allPlacedOrders);
 
   try {
     const response = await fetch(URL, config);
@@ -28,7 +33,7 @@ async function _oneTouchAllPlacedOrders() {
     if (data.length === 0) {
       _errorMessage('Have no Placed Orders!', 'warning');
 
-      oneTouchOrders.innerHTML = `<section class="features">
+      allPlacedOrders.innerHTML = `<section class="features">
                                     <div class="flex-container-60">
                                       <div class="fontH5">Have No Orders Placed!</div>
                                     </div>
@@ -71,7 +76,7 @@ async function _oneTouchAllPlacedOrders() {
                       </div>`;
       });
 
-      oneTouchOrders.innerHTML = `<section class="features">
+      allPlacedOrders.innerHTML = `<section class="features">
                                     <div class="flex-container-30">
                                       <div class="headerMsgTitle">
                                         <div class="fontH4">Manage All Placed Orders</div>

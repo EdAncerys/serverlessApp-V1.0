@@ -16,7 +16,8 @@ async function userAuthentication(href) {
   };
 
   try {
-    window.location.href = `/views/oneTouch/${href}`;
+    window.location.replace(`/views/oneTouch/${href}`);
+    // window.location.href = `/views/oneTouch/${href}`;
     // User authentication middleware
 
     // const response = await fetch(URL, config);

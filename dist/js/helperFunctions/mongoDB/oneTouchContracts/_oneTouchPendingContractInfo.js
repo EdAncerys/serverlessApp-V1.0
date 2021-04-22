@@ -2,9 +2,9 @@ import { persistDOMData } from '../../../persistDOMData.js';
 import { _errorMessage } from '../../_errorMessage.js';
 import { _spinner } from '../../_spinner.js';
 
-async function _oneTouchContractInfo(findOneById) {
-  console.log('Fetching contract information...');
-  _spinner(true, 'Loading Active Contract...');
+async function _oneTouchPendingContractInfo(findOneById) {
+  console.log('Fetching placed order information...');
+  _spinner(true, 'Pending Order Information...');
   const URL = '/oneTouch/contract/findContractById';
   const access_token = sessionStorage.getItem('access_token');
 
@@ -65,9 +65,7 @@ async function _oneTouchContractInfo(findOneById) {
               </div>
               <div class="dataRowSummaryContainer justifyText">
                 <div class="rowDisplayStart">Company Phone Number</div>
-                <div class="rowDisplayEnd">${
-                  contractInfo.companyPhoneNumber
-                }</div>
+                <div class="rowDisplayEnd">${contractInfo.companyPhoneNumber}</div>
               </div>
 
               <div class="dataRowSummaryContainer justifyText">
@@ -76,9 +74,7 @@ async function _oneTouchContractInfo(findOneById) {
               </div>
               <div class="dataRowSummaryContainer justifyText">
                 <div class="rowDisplayStart">Company Registration</div>
-                <div class="rowDisplayEnd">${
-                  contractInfo.companyRegistration
-                }</div>
+                <div class="rowDisplayEnd">${contractInfo.companyRegistration}</div>
               </div>
             </div>
           </div>
@@ -94,9 +90,7 @@ async function _oneTouchContractInfo(findOneById) {
               </div>
               <div class="dataRowSummaryContainer justifyText">
                 <div class="rowDisplayStart">Phone Number</div>
-                <div class="rowDisplayEnd">${
-                  contractInfo.customerPhoneNumber
-                }</div>
+                <div class="rowDisplayEnd">${contractInfo.customerPhoneNumber}</div>
               </div>
 
               <div class="dataRowSummaryContainer justifyText">
@@ -115,7 +109,7 @@ async function _oneTouchContractInfo(findOneById) {
       </div>
 
       <div class="features">
-        <div class="flex-container-40">
+        <div class="flex-container-50">
           <div class="oneTouchFormContainer">
             <div class="fontH3">Broadband Information</div>
             <div class="dataSummaryContainer textSilver fontH2">
@@ -137,9 +131,7 @@ async function _oneTouchContractInfo(findOneById) {
               </div>
               <div class="dataRowSummaryContainer justifyText">
                 <div class="rowDisplayStart">Down Speed</div>
-                <div class="rowDisplayEnd">${
-                  contractInfo.likely_down_speed
-                }</div>
+                <div class="rowDisplayEnd">${contractInfo.likely_down_speed}</div>
               </div>
               <div class="dataRowSummaryContainer justifyText">
                 <div class="rowDisplayStart">Broadband Price</div>
@@ -155,34 +147,7 @@ async function _oneTouchContractInfo(findOneById) {
           </div>
         </div>
 
-        <div class="flex-container-30">
-          <div class="oneTouchFormContainer">
-            <div class="fontH3">Contract Details</div>
-            <div class="dataSummaryContainer textSilver fontH2">
-              <div class="dataRowSummaryContainer justifyText">
-                <div class="rowDisplayStart">Installation Date</div>
-                <div class="rowDisplayEnd">${
-                  contractInfo.installationDate
-                }</div>
-              </div>
-              <div class="dataRowSummaryContainer justifyText">
-                <div class="rowDisplayStart">Contact Expiration Date</div>
-                <div class="rowDisplayEnd">${contractInfo.expansionDate}</div>
-              </div>
-
-              <div class="dataRowSummaryContainer justifyText">
-                <div class="rowDisplayStart">Contact Length</div>
-                <div class="rowDisplayEnd">${contractInfo.contractLength}</div>
-              </div>
-              <div class="dataRowSummaryContainer justifyText">
-                <div class="rowDisplayStart">Contract Price</div>
-                <div class="rowDisplayEnd">${contractInfo.price}</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="flex-container-30">
+        <div class="flex-container-50">
           <div class="oneTouchFormContainer">
             <div class="fontH3">Site Installation Details</div>
             <div class="dataSummaryContainer textSilver fontH2">
@@ -192,9 +157,7 @@ async function _oneTouchContractInfo(findOneById) {
               </div>
               <div class="dataRowSummaryContainer justifyText">
                 <div class="rowDisplayStart">Contact Phone Number</div>
-                <div class="rowDisplayEnd">${
-                  contractInfo.contactPhoneNumber
-                }</div>
+                <div class="rowDisplayEnd">${contractInfo.contactPhoneNumber}</div>
               </div>
 
               <div class="dataRowSummaryContainer justifyText">
@@ -210,40 +173,16 @@ async function _oneTouchContractInfo(findOneById) {
             </div>
           </div>
         </div>
-      </div>
-
-      <div class="features-align-left">
-        <div class="flex-container-50">
-          <div class="oneTouchFormContainer">
-            <div class="fontH3">Extra Metrics</div>
-            <div class="dataSummaryContainer textSilver fontH2">
-              <div class="dataRowSummaryContainer justifyText">
-                <div class="rowDisplayStart">Extra Metrics</div>
-                <div class="rowDisplayEnd">${'extra metrics'}</div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>`;
 
     const oneTouchContractInfo = document.createElement('div');
-    oneTouchContractInfo.id = 'oneTouchManageCustomerPageTwo';
+    oneTouchContractInfo.id = 'allPlacedOrdersInfo';
     oneTouchContractInfo.innerHTML = contractInfoData;
 
-    const manageCustomerWrapper = document.querySelector(
-      '#manageCustomerWrapper'
-    );
-
-    const removeData = document.querySelector(
-      '#oneTouchManageCustomerPageThree'
-    );
-    if (removeData) removeData.remove();
-
-    const oneTouchManageCustomerPageOne = document.querySelector(
-      '#oneTouchManageCustomerPageOne'
-    );
-    oneTouchManageCustomerPageOne.classList.add('hidden');
-    manageCustomerWrapper.appendChild(oneTouchContractInfo);
+    const allPlacedOrders = document.querySelector('#allPlacedOrders');
+    const oneTouchOrders = document.querySelector('oneTouchOrders');
+    allPlacedOrders.classList.add('hidden');
+    oneTouchOrders.appendChild(oneTouchContractInfo);
 
     const endPoint = location.href.split('/').slice(-1)[0];
     persistDOMData(endPoint);
@@ -255,4 +194,4 @@ async function _oneTouchContractInfo(findOneById) {
   }
 }
 
-export { _oneTouchContractInfo };
+export { _oneTouchPendingContractInfo };

@@ -1,6 +1,7 @@
 import { _deleteOneTouchOrder } from './helperFunctions/mongoDB/oneTouchOrders/_deleteOneTouchOrder.js';
 import { _errorMessage } from './helperFunctions/_errorMessage.js';
 import { _oneTouchAllPlacedOrders } from './helperFunctions/mongoDB/oneTouchOrders/_oneTouchAllPlacedOrders.js';
+import { _oneTouchPendingContractInfo } from './helperFunctions/mongoDB/oneTouchContracts/_oneTouchPendingContractInfo.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   // Persist user data on reload
@@ -27,7 +28,7 @@ document.querySelector('body').addEventListener('click', (event) => {
   let id = event.target.getAttribute('id');
 
   if (orderInfo) {
-    _errorMessage(id, 'success');
+    _oneTouchPendingContractInfo(id);
   }
   if (deleteOrder) {
     _deleteOneTouchOrder(id);
