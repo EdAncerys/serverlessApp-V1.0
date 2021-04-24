@@ -7,7 +7,10 @@ async function _oneTouchCustomers() {
   _spinner(true, 'Loading Active Users...');
   const URL = '/oneTouch/customer/filterCustomers';
   const access_token = sessionStorage.getItem('access_token');
+
   const endPoint = location.href.split('/').slice(-1)[0];
+  const connectionChecker = 'connection-checker.html';
+  const addressBook = 'address-book.html';
 
   const body = {
     access_token,
@@ -23,7 +26,7 @@ async function _oneTouchCustomers() {
 
     const dataWrapper = document.createElement('div');
     dataWrapper.id = 'dataWrapper';
-    let dbRowData;
+    let manageDataContainer = '';
     let customerData = '';
     let sliderNav = '';
     let customerDataHTML;
@@ -32,27 +35,41 @@ async function _oneTouchCustomers() {
     console.log(data);
 
     data.map((customer) => {
-      dbRowData = `<div class="dbRowData">
-                    <customerInfo id='${customer._id}' class="btnB01" role="button">
-                      Info
-                    </customerInfo>
-                    <selectCustomer id='${customer._id}'
-                                class="btnB01 bgPrimary" 
-                                role="button">
-                      Place Order
-                    </selectCustomer>
-                  </div>`;
+      if (endPoint === connectionChecker)
+        manageDataContainer = `<div class="manageDataContainer">
+                                <customerInfo id='${customer._id}' class="btnB01" role="button">
+                                  Info
+                                </customerInfo>
+                                <selectCustomer id='${customer._id}'
+                                            class="btnB01 bgPrimary" 
+                                            role="button">
+                                  Place Order
+                                </selectCustomer>
+                              </div>`;
 
-      sliderNav = `<div class='navWrapper alignHorizontally'>
-                    <goPageBack id='pageOne' class="btnOneTouch" role="button">
-                      Go Back
-                    </goPageBack>
-                    <addUser class="btnOneTouch" 
-                              role="button"
-                              onclick = "location.href='../../../../views/oneTouch/add-customer.html'";>
-                      Add New Customer
-                    </addUser>
-                  </div>`;
+      if (endPoint === addressBook)
+        manageDataContainer = `<div class="manageDataContainer">
+                                  <customerInfo id='${customer._id}' class="btnB01" role="button">
+                                    Info
+                                  </customerInfo>
+                                  <selectCustomer id='${customer._id}'
+                                              class="btnB01 bgDanger" 
+                                              role="button">
+                                    Delete
+                                  </selectCustomer>
+                                </div>`;
+
+      if (endPoint === connectionChecker)
+        sliderNav = `<div class='navWrapper alignHorizontally'>
+                      <goPageBack id='pageOne' class="btnOneTouch" role="button">
+                        Go Back
+                      </goPageBack>
+                      <addUser class="btnOneTouch" 
+                                role="button"
+                                onclick = "location.href='../../../../views/oneTouch/add-customer.html'";>
+                        Add New Customer
+                      </addUser>
+                    </div>`;
 
       customerData += `<div class="rowContainer bgGradientSilver">
                         <div class="rowDataContainer-4">
@@ -69,7 +86,7 @@ async function _oneTouchCustomers() {
                             <div class="bottomDataRow">${customer.postcode}</div>
                           </div>
                           <div class="rowDataWrapper">
-                            ${dbRowData}
+                            ${manageDataContainer}
                           </div>
                         </div>
                       </div>`;
@@ -122,7 +139,6 @@ async function _oneTouchCustomers() {
     let hideDataContainer;
 
     // connection-checker DOM end pont
-    const connectionChecker = 'connection-checker.html';
     if (endPoint === connectionChecker)
       appendCustomersContainer = document.querySelector(
         '#oneTouchBroadbandContainer'
@@ -132,7 +148,6 @@ async function _oneTouchCustomers() {
         'oneTouchBroadbandOrderPageOne'
       );
     // connection-checker DOM end pont
-    const addressBook = 'address-book.html';
     if (endPoint === addressBook)
       appendCustomersContainer = document.querySelector(
         '#addressBookContainer'

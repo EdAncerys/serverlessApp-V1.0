@@ -22,7 +22,7 @@ async function _oneTouchContracts() {
 
     const dataWrapper = document.createElement('div');
     dataWrapper.id = 'dataWrapper';
-    let dbRowData;
+    let manageDataContainer;
     let customerData = '';
     let customerDataHTML;
 
@@ -50,7 +50,7 @@ async function _oneTouchContracts() {
         customer.oneTouch.county === 'null' ? '' : customer.oneTouch.county;
       let postcode = customer.oneTouch.postcode;
 
-      dbRowData = `<div class="dbRowData">
+      manageDataContainer = `<div class="manageDataContainer">
                             <contractInfo id='${customer._id}' class="btnB01" role="button">
                               Info
                             </contractInfo>
@@ -74,7 +74,7 @@ async function _oneTouchContracts() {
                             <div class="bottomDataRow">${postcode}</div>
                           </div>
                           <div class="rowDataWrapper">
-                            ${dbRowData}
+                            ${manageDataContainer}
                           </div>
                         </div>
                       </div>`;
