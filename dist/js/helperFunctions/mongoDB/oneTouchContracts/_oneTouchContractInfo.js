@@ -43,11 +43,11 @@ async function _oneTouchContractInfo(findOneById) {
     let postcode = contractInfo.postcode;
 
     contractInfoData = `
-        <div class="outer">
-          <inner class="inner">
-            <label>Back</label>
-          </inner>
-        </div>
+      <div class="outer">
+        <inner class="inner">
+          <label>Back</label>
+        </inner>
+      </div>
 
       <div class="features">
         <div class="flex-container-50">

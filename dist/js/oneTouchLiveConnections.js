@@ -24,7 +24,8 @@ document.querySelector('body').addEventListener('click', (event) => {
   const orderInfo = event.target.nodeName === 'ORDERINFO';
   const deleteOrder = event.target.nodeName === 'DELETEORDER';
   const placeNewOrder = event.target.nodeName === 'PLACENEWORDER';
-  const goBackBtn = event.target.nodeName === 'GOBACKBTN';
+  const goBackBtn =
+    event.target.nodeName === 'LABEL' || event.target.nodeName === 'INNER';
 
   let id = event.target.getAttribute('id');
 
