@@ -5,6 +5,9 @@
 #oneTouchSignUp {
   margin: 10px 0;
 }
+.formControl {
+  width: 350px;
+}
 termsAndConditions {
   cursor: pointer;
 }

@@ -10,8 +10,8 @@ async function _reviewOrderData(oneTouchOrderData) {
     );
     if (removeData) removeData.remove();
 
-    const oneTouchBrodbandContainer = document.querySelector(
-      '#oneTouchBrodbandContainer'
+    const oneTouchBroadbandContainer = document.querySelector(
+      '#oneTouchBroadbandContainer'
     );
     const oneTouchBroadbandOrderPageThree = document.querySelector(
       '#oneTouchBroadbandOrderPageThree'
@@ -92,7 +92,7 @@ async function _reviewOrderData(oneTouchOrderData) {
                                     </section>`;
 
     oneTouchBroadbandOrderPageThree.classList.add('hidden');
-    oneTouchBrodbandContainer.appendChild(oneTouchOrderReview);
+    oneTouchBroadbandContainer.appendChild(oneTouchOrderReview);
     const endPoint = location.href.split('/').slice(-1)[0];
     persistDOMData(endPoint);
   } catch (err) {

@@ -20,17 +20,17 @@ async function _fetchAddressesForPostcodeProvided(postcode) {
   console.log(config);
 
   // Removing user previous data
-  const removeData = document.querySelector('#oneTouchBroadbandOrderPageTwo');
+  const removeData = document.querySelector('#oneTouchCustomerList');
   if (removeData) removeData.remove();
 
-  const oneTouchBrodbandContainer = document.querySelector(
-    '#oneTouchBrodbandContainer'
+  const oneTouchBroadbandContainer = document.querySelector(
+    '#oneTouchBroadbandContainer'
   );
   const oneTouchBroadbandOrderPageOne = document.querySelector(
     '#oneTouchBroadbandOrderPageOne'
   );
   const orderAddressContainer = document.createElement('div');
-  orderAddressContainer.id = 'oneTouchBroadbandOrderPageTwo';
+  orderAddressContainer.id = 'oneTouchCustomerList';
 
   try {
     const response = await fetch(URL, config);
@@ -105,7 +105,7 @@ async function _fetchAddressesForPostcodeProvided(postcode) {
                                         </goPageBack>
                                       </div>`;
 
-    oneTouchBrodbandContainer.appendChild(orderAddressContainer);
+    oneTouchBroadbandContainer.appendChild(orderAddressContainer);
     oneTouchBroadbandOrderPageOne.classList.add('hidden');
     const endPoint = location.href.split('/').slice(-1)[0];
     persistDOMData(endPoint);

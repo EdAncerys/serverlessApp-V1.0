@@ -7,6 +7,7 @@ async function _oneTouchCustomers() {
   _spinner(true, 'Loading Active Users...');
   const URL = '/oneTouch/customer/filterCustomers';
   const access_token = sessionStorage.getItem('access_token');
+  const endPoint = location.href.split('/').slice(-1)[0];
 
   const body = {
     access_token,
@@ -32,26 +33,26 @@ async function _oneTouchCustomers() {
 
     data.map((customer) => {
       dbRowData = `<div class="dbRowData">
-                                  <customerInfo id='${customer._id}' class="btnB01" role="button">
-                                    Info
-                                  </customerInfo>
-                                  <selectCustomer id='${customer._id}'
-                                              class="btnB01 bgPrimary" 
-                                              role="button">
-                                    Place Order
-                                  </selectCustomer>
-                                </div>`;
+                    <customerInfo id='${customer._id}' class="btnB01" role="button">
+                      Info
+                    </customerInfo>
+                    <selectCustomer id='${customer._id}'
+                                class="btnB01 bgPrimary" 
+                                role="button">
+                      Place Order
+                    </selectCustomer>
+                  </div>`;
 
       sliderNav = `<div class='navWrapper alignHorizontally'>
-                        <goPageBack id='pageOne' class="btnOneTouch" role="button">
-                          Go Back
-                        </goPageBack>
-                        <addUser class="btnOneTouch" 
-                                  role="button"
-                                  onclick = "location.href='../../../../views/oneTouch/add-customer.html'";>
-                          Add New Customer
-                        </addUser>
-                      </div>`;
+                    <goPageBack id='pageOne' class="btnOneTouch" role="button">
+                      Go Back
+                    </goPageBack>
+                    <addUser class="btnOneTouch" 
+                              role="button"
+                              onclick = "location.href='../../../../views/oneTouch/add-customer.html'";>
+                      Add New Customer
+                    </addUser>
+                  </div>`;
 
       customerData += `<div class="rowContainer bgGradientSilver">
                         <div class="rowDataContainer-4">
@@ -109,25 +110,37 @@ async function _oneTouchCustomers() {
                           </section>`;
     }
 
-    const oneTouchCustomer = document.createElement('div');
-    oneTouchCustomer.id = 'oneTouchBroadbandOrderPageTwo';
-    oneTouchCustomer.innerHTML = customerDataHTML;
+    const oneTouchCustomers = document.createElement('div');
+    oneTouchCustomers.id = 'oneTouchCustomerList';
+    oneTouchCustomers.innerHTML = customerDataHTML;
 
     // Removing customer previous data
-    const removeData = document.querySelector('#oneTouchBroadbandOrderPageTwo');
+    const removeData = document.querySelector('#oneTouchCustomerList');
     if (removeData) removeData.remove();
 
-    const oneTouchBrodbandContainer = document.querySelector(
-      '#oneTouchBrodbandContainer'
-    );
-    const oneTouchBroadbandOrderPageOne = document.getElementById(
-      'oneTouchBroadbandOrderPageOne'
-    );
+    let appendCustomersContainer;
+    let hideDataContainer;
 
-    oneTouchBroadbandOrderPageOne.classList.add('hidden');
-    oneTouchBrodbandContainer.appendChild(oneTouchCustomer);
+    // connection-checker DOM end pont
+    const connectionChecker = 'connection-checker.html';
+    if (endPoint === connectionChecker)
+      appendCustomersContainer = document.querySelector(
+        '#oneTouchBroadbandContainer'
+      );
+    if (endPoint === connectionChecker)
+      hideDataContainer = document.getElementById(
+        'oneTouchBroadbandOrderPageOne'
+      );
+    // connection-checker DOM end pont
+    const addressBook = 'address-book.html';
+    if (endPoint === addressBook)
+      appendCustomersContainer = document.querySelector(
+        '#addressBookContainer'
+      );
 
-    const endPoint = location.href.split('/').slice(-1)[0];
+    if (hideDataContainer) hideDataContainer.classList.add('hidden');
+    appendCustomersContainer.appendChild(oneTouchCustomers);
+
     persistDOMData(endPoint);
     _spinner(false);
   } catch (err) {

@@ -2,7 +2,7 @@
   width: min(95vw, 1000px);
 }
 /* Page content */
-.oneTouchBrodbandContainer {
+.oneTouchBroadbandContainer {
   width: auto;
   padding: 10px 5px;
   display: flex;
@@ -43,7 +43,7 @@
   outline: none;
 }
 #oneTouchBroadbandOrderPageOne,
-#oneTouchBroadbandOrderPageTwo,
+#oneTouchCustomerList,
 #oneTouchBroadbandOrderPageThree {
   height: 100%;
 }

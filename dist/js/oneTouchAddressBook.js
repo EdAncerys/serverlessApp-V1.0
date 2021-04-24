@@ -1,9 +1,7 @@
 import { persistDOMData } from './persistDOMData.js';
 import { _errorMessage } from './helperFunctions/_errorMessage.js';
-import { _oneTouchContracts } from './helperFunctions/mongoDB/oneTouchContracts/_oneTouchContracts.js';
-import { _oneTouchContractInfo } from './helperFunctions/mongoDB/oneTouchContracts/_oneTouchContractInfo.js';
-import { _deleteOneTouchCustomer } from './helperFunctions/mongoDB/oneTouchManageCustomer/_deleteOneTouchCustomer.js';
-import { _oneTouchCustomerSummary } from './helperFunctions/mongoDB/oneTouchManageCustomer/_oneTouchCustomerSummary.js';
+
+import { _oneTouchCustomers } from './helperFunctions/mongoDB/oneTouchManageCustomer/_oneTouchCustomers.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   // Persist user data on reload
@@ -13,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     sessionStorage.getItem('oneTouchPageName') === endPoint;
 
   if (oneTouchDOMBody || !oneTouchPageName) {
-    oneTouchContracts();
+    oneTouchCustomers();
   }
   if (!oneTouchDOMBody && oneTouchPageName) {
     console.log('Page Reloaded');
@@ -22,19 +20,15 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-const oneTouchContracts = async () => {
-  await _oneTouchContracts();
+const oneTouchCustomers = async () => {
+  await _oneTouchCustomers();
 };
 
 document.querySelector('body').addEventListener('click', (event) => {
-  const contractInfo = event.target.nodeName === 'CONTRACTINFO';
-  const deleteContract = event.target.nodeName === 'DELETECONTRACT';
-  const goPageBack = event.target.nodeName === 'GOPAGEBACK';
-  const addCustomer = event.target.nodeName === 'ADDCUSTOMER';
   const goBackBtn =
     event.target.nodeName === 'LABEL' || event.target.nodeName === 'INNER';
 
-  console.log(event.target.getAttribute('id'), event.target.nodeName);
+  // console.log(event.target.getAttribute('id'), event.target.nodeName);
 
   let id;
   if (event.target.getAttribute('id')) id = event.target.getAttribute('id');
@@ -56,18 +50,5 @@ document.querySelector('body').addEventListener('click', (event) => {
   }
   if (deleteContract) {
     _deleteOneTouchCustomer(id);
-  }
-  if (goPageBack) {
-    const oneTouchCustomer = document.getElementById('oneTouchCustomer');
-    const oneTouchManageCustomerPageOne = document.getElementById(
-      'oneTouchManageCustomerPageOne'
-    );
-    oneTouchManageCustomerPageOne.classList.remove('hidden');
-    oneTouchCustomer.remove();
-    const endPoint = location.href.split('/').slice(-1)[0];
-    persistDOMData(endPoint);
-  }
-  if (addCustomer) {
-    window.location.replace('/views/oneTouch/add-customer');
   }
 });

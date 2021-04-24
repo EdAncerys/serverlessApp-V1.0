@@ -111,7 +111,7 @@ document.querySelector('body').addEventListener('click', (event) => {
     const id = event.target.id;
     console.log(event.target.id);
     if (id === 'pageOne') {
-      document.querySelector('#oneTouchBroadbandOrderPageTwo').remove();
+      document.querySelector('#oneTouchCustomerList').remove();
       document
         .querySelector('#oneTouchBroadbandOrderPageOne')
         .classList.remove('hidden');
@@ -119,7 +119,7 @@ document.querySelector('body').addEventListener('click', (event) => {
     if (id === 'pageTwo') {
       document.querySelector('#oneTouchBroadbandOrderPageThree').remove();
       document
-        .querySelector('#oneTouchBroadbandOrderPageTwo')
+        .querySelector('#oneTouchCustomerList')
         .classList.remove('hidden');
     }
     if (id === 'pageThree') {
