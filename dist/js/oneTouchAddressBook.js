@@ -2,6 +2,7 @@ import { persistDOMData } from './persistDOMData.js';
 import { _errorMessage } from './helperFunctions/_errorMessage.js';
 
 import { _oneTouchCustomers } from './helperFunctions/mongoDB/oneTouchManageCustomer/_oneTouchCustomers.js';
+import { _deleteOneTouchCustomer } from './helperFunctions/mongoDB/oneTouchManageCustomer/_deleteOneTouchCustomer.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   // Persist user data on reload
@@ -23,10 +24,16 @@ document.addEventListener('DOMContentLoaded', () => {
 const oneTouchCustomers = async () => {
   await _oneTouchCustomers();
 };
+const oneTouchDeleteCustomer = async (id) => {
+  await _deleteOneTouchCustomer(id);
+  await _oneTouchCustomers();
+};
 
 document.querySelector('body').addEventListener('click', (event) => {
   const goBackBtn =
     event.target.nodeName === 'LABEL' || event.target.nodeName === 'INNER';
+  const customerInfo = event.target.nodeName === 'CUSTOMERINFO';
+  const deleteCustomer = event.target.nodeName === 'DELETECUSTOMER';
 
   // console.log(event.target.getAttribute('id'), event.target.nodeName);
 
@@ -45,10 +52,11 @@ document.querySelector('body').addEventListener('click', (event) => {
     const endPoint = location.href.split('/').slice(-1)[0];
     persistDOMData(endPoint);
   }
-  if (contractInfo) {
-    _oneTouchContractInfo(id);
+  if (customerInfo) {
+    // _oneTouchContractInfo(id);
+    console.log(id);
   }
-  if (deleteContract) {
-    _deleteOneTouchCustomer(id);
+  if (deleteCustomer) {
+    oneTouchDeleteCustomer(id);
   }
 });

@@ -52,11 +52,11 @@ async function _oneTouchCustomers() {
                                   <customerInfo id='${customer._id}' class="btnB01" role="button">
                                     Info
                                   </customerInfo>
-                                  <selectCustomer id='${customer._id}'
+                                  <deleteCustomer id='${customer._id}'
                                               class="btnB01 bgDanger" 
                                               role="button">
                                     Delete
-                                  </selectCustomer>
+                                  </deleteCustomer>
                                 </div>`;
 
       if (endPoint === connectionChecker)

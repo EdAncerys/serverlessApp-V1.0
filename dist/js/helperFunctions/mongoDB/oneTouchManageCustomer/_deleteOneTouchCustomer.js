@@ -1,4 +1,3 @@
-import { _oneTouchContracts } from '../oneTouchContracts/_oneTouchContracts.js';
 import { _errorMessage } from '../../_errorMessage.js';
 import { _spinner } from '../../_spinner.js';
 
@@ -7,8 +6,11 @@ async function _deleteOneTouchCustomer(id) {
   _spinner(true);
 
   const URL = '/oneTouch/customer/deleteCustomer';
+  const access_token = sessionStorage.getItem('access_token');
+
   const body = {
     id,
+    access_token,
   };
   const config = {
     method: 'DELETE',
@@ -19,8 +21,6 @@ async function _deleteOneTouchCustomer(id) {
     const response = await fetch(URL, config);
     if (!response.ok) throw new Error(response.statusText);
     const data = await response.json();
-
-    _oneTouchContracts();
 
     _errorMessage(data.msg, 'success');
     _spinner(false);
