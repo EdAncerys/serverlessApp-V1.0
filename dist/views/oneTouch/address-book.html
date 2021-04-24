@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <!-- Navigation Partial script -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./JS/oneTouchNav.js"></script>
+
+    <script
+      defer
+      type="module"
+      src="../../js/oneTouchManageCustomer.js"
+    ></script>
+
+    <!-- Spinner script -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="./css/mainOneTouch.css" />
+    <link rel="icon" href="./images/icon.png" />
+    <title>One Touch Portal</title>
+  </head>
+  <body>
+    <navigation></navigation>
+    <errorMessage></errorMessage>
+    <spinnerContainer></spinnerContainer>
+
+    <div id="oneTouchBodyContainer" class="oneTouchBodyContainer">
+      <div id="oneTouchWrapper" class="oneTouchWrapper">
+        <div id="manageCustomerContainer" class="manageCustomerContent">
+          <div id="addressBookWrapper"></div>
+          <section class="features">
+            <div class="flex-container-60">
+              <div class="fontH2">
+                <div class="indexBanner">
+                  <div class="ndgIcon"></div>
+                  <div>Unit 4, Saddlers Court, Oakham LE15 7GH</div>
+                  <div>Phone: 024 7509 2481</div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

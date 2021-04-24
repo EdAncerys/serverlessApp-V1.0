@@ -1,3 +1,4 @@
+import { persistDOMData } from './persistDOMData.js';
 import { _deleteOneTouchOrder } from './helperFunctions/mongoDB/oneTouchOrders/_deleteOneTouchOrder.js';
 import { _errorMessage } from './helperFunctions/_errorMessage.js';
 import { _oneTouchAllPlacedOrders } from './helperFunctions/mongoDB/oneTouchOrders/_oneTouchAllPlacedOrders.js';

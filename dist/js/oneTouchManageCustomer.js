@@ -1,9 +1,9 @@
+import { persistDOMData } from './persistDOMData.js';
 import { _errorMessage } from './helperFunctions/_errorMessage.js';
 import { _oneTouchContracts } from './helperFunctions/mongoDB/oneTouchContracts/_oneTouchContracts.js';
 import { _oneTouchContractInfo } from './helperFunctions/mongoDB/oneTouchContracts/_oneTouchContractInfo.js';
 import { _deleteOneTouchCustomer } from './helperFunctions/mongoDB/oneTouchManageCustomer/_deleteOneTouchCustomer.js';
 import { _oneTouchCustomerSummary } from './helperFunctions/mongoDB/oneTouchManageCustomer/_oneTouchCustomerSummary.js';
-import { persistDOMData } from './persistDOMData.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   // Persist user data on reload
