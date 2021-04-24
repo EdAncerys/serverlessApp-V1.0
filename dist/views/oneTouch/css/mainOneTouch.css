@@ -8,10 +8,12 @@
 @import url('./add-customer.css');
 @import url('./manage-customer.css');
 @import url('./one-touch-login.css');
+@import url('./btn.css');
 @import url('../../../css/errorMsg.css');
 @import url('../../../css/fonts.css');
 @import url('../../../css/spinner.css');
 @import url('../../../css/fontSize.css');
+
 /* Load helper css files after this comment */
 @import url('./oneTouchColors.css');
 
