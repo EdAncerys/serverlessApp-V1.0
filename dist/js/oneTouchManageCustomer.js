@@ -31,7 +31,10 @@ document.querySelector('body').addEventListener('click', (event) => {
   const deleteContract = event.target.nodeName === 'DELETECONTRACT';
   const goPageBack = event.target.nodeName === 'GOPAGEBACK';
   const addCustomer = event.target.nodeName === 'ADDCUSTOMER';
-  const goBackBtn = event.target.nodeName === 'GOBACKBTN';
+  const goBackBtn =
+    event.target.nodeName === 'LABEL' || event.target.nodeName === 'INNER';
+
+  console.log(event.target.getAttribute('id'), event.target.nodeName);
 
   let id;
   if (event.target.getAttribute('id')) id = event.target.getAttribute('id');
