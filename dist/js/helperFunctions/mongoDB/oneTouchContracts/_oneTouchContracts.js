@@ -148,13 +148,13 @@ async function _oneTouchContracts() {
     if (removeData) removeData.remove();
 
     if (data.length === 0) {
-      _errorMessage('Have No Placed Orders!', 'warning');
+      _errorMessage('Have No Placed Contract!', 'warning');
 
       customerDataHTML = `<section class="features">
                             <div class="flex-container-30">
                               <div class="headerText alignHorizontally">
                                 <div class="fontH3">Your Have No Contracts Added!</div>
-                                <addCustomer class="btnOneTouch">Add New Customer</addCustomer>
+                                <addNewContract class="btnOneTouch">Add New Contract</addNewContract>
                               </div>
                             </div>
                           </section>`;

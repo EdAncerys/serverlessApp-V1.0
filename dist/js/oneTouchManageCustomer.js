@@ -2,7 +2,7 @@ import { persistDOMData } from './persistDOMData.js';
 import { _errorMessage } from './helperFunctions/_errorMessage.js';
 import { _oneTouchContracts } from './helperFunctions/mongoDB/oneTouchContracts/_oneTouchContracts.js';
 import { _oneTouchContractInfo } from './helperFunctions/mongoDB/oneTouchContracts/_oneTouchContractInfo.js';
-import { _deleteOneTouchCustomer } from './helperFunctions/mongoDB/oneTouchManageCustomer/_deleteOneTouchCustomer.js';
+import { _deleteOneTouchOrder } from './helperFunctions/mongoDB/oneTouchOrders/_deleteOneTouchOrder.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   // Persist user data on reload
@@ -24,12 +24,16 @@ document.addEventListener('DOMContentLoaded', () => {
 const oneTouchContracts = async () => {
   await _oneTouchContracts();
 };
+const asyncDeleteContract = async (id) => {
+  await _deleteOneTouchOrder(id);
+  await _oneTouchContracts();
+};
 
 document.querySelector('body').addEventListener('click', (event) => {
   const contractInfo = event.target.nodeName === 'CONTRACTINFO';
   const deleteContract = event.target.nodeName === 'DELETECONTRACT';
   const goPageBack = event.target.nodeName === 'GOPAGEBACK';
-  const addCustomer = event.target.nodeName === 'ADDCUSTOMER';
+  const addNewContract = event.target.nodeName === 'ADDNEWCONTRACT';
   const goBackBtn =
     event.target.nodeName === 'BTNLABEL' || event.target.nodeName === 'INNER';
 
@@ -54,7 +58,7 @@ document.querySelector('body').addEventListener('click', (event) => {
     _oneTouchContractInfo(id);
   }
   if (deleteContract) {
-    _deleteOneTouchCustomer(id);
+    asyncDeleteContract(id);
   }
   if (goPageBack) {
     const oneTouchCustomer = document.getElementById('oneTouchCustomer');
@@ -66,7 +70,7 @@ document.querySelector('body').addEventListener('click', (event) => {
     const endPoint = location.href.split('/').slice(-1)[0];
     persistDOMData(endPoint);
   }
-  if (addCustomer) {
-    window.location.replace('/views/oneTouch/add-customer');
+  if (addNewContract) {
+    window.location.replace('/views/oneTouch/connection-checker');
   }
 });

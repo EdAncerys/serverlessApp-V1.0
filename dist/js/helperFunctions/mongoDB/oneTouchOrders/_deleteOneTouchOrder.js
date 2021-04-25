@@ -1,4 +1,3 @@
-import { _oneTouchAllPlacedOrders } from './_oneTouchAllPlacedOrders.js';
 import { _errorMessage } from '../../_errorMessage.js';
 import { _spinner } from '../../_spinner.js';
 
@@ -21,7 +20,7 @@ async function _deleteOneTouchOrder(id) {
 
     const data = await response.json();
     console.log(data);
-    _oneTouchAllPlacedOrders();
+
     _errorMessage(data.msg, 'success');
     _spinner(false);
   } catch (err) {

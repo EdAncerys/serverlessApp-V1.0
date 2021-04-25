@@ -906,8 +906,6 @@ const gmail = async (body, callback) => {
 
   const transporter = nodemailer.createTransport({
     service: process.env.GMAIL_SERVICE, // replace with service provider
-    port: 465,
-    secure: true,
     proxy: proxyAgent,
     auth: {
       user: process.env.GMAIL_NAME, // replace with your email
@@ -932,7 +930,7 @@ const gmail = async (body, callback) => {
 
   let gmail = true;
   let msg;
-  transporter.sendMail(mailOptions, (error, iONOSInfo) => {
+  transporter.sendMail(mailOptions, (error, gmailInfo) => {
     if (error) {
       gmail = false;
       msg = error;
@@ -940,9 +938,9 @@ const gmail = async (body, callback) => {
 
       callback(error);
     } else {
-      msg = iONOSInfo;
-      console.log(info);
-      console.log('Message sent: %s', info.messageId);
+      msg = gmailInfo;
+      console.log(gmailInfo);
+      console.log('Message sent: %s', gmailInfo.messageId);
 
       callback(null, {
         statusCode: 200,

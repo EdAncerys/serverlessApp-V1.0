@@ -21,6 +21,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+const asyncDeletePlacedOrder = async (id) => {
+  await _deleteOneTouchOrder(id);
+  await _oneTouchAllPlacedOrders();
+};
+
 document.querySelector('body').addEventListener('click', (event) => {
   const orderInfo = event.target.nodeName === 'ORDERINFO';
   const deleteOrder = event.target.nodeName === 'DELETEORDER';
@@ -43,7 +48,7 @@ document.querySelector('body').addEventListener('click', (event) => {
     _oneTouchPendingContractInfo(id);
   }
   if (deleteOrder) {
-    _deleteOneTouchOrder(id);
+    asyncDeletePlacedOrder(id);
   }
   if (placeNewOrder) {
     window.location.replace('/views/oneTouch/connection-checker.html');

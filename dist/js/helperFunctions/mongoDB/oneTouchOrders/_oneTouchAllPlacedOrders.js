@@ -17,6 +17,10 @@ async function _oneTouchAllPlacedOrders() {
     body: JSON.stringify(body),
   };
 
+  // Removing user previous data
+  const removeData = document.querySelector('#allPlacedOrders');
+  if (removeData) removeData.remove();
+
   const allPlacedOrders = document.createElement('div');
   allPlacedOrders.id = `allPlacedOrders`;
   oneTouchOrders.appendChild(allPlacedOrders);
@@ -31,27 +35,16 @@ async function _oneTouchAllPlacedOrders() {
 
     let orderData = '';
     if (data.length === 0) {
-      _errorMessage('Have no Placed Orders!', 'warning');
+      _errorMessage('Have no Pending Orders!', 'warning');
 
       allPlacedOrders.innerHTML = `<section class="features">
                                     <div class="flex-container-60">
-                                      <div class="fontH5">Have No Orders Placed!</div>
+                                      <div class="fontH5">Have No Pending Orders!</div>
                                     </div>
                                   </section>
                                   <section class="features">
                                     <div class="flex-container-60">
                                       <placeNewOrder class="btnOneTouch">Place New Order</placeNewOrder>
-                                    </div>
-                                  </section>
-                                  <section class="features">
-                                    <div class="flex-container-30">
-                                      <div class="fontH2">
-                                        <div class="indexBanner">
-                                          <div class="ndgIcon"></div>
-                                          <div>Unit 4, Saddlers Court, Oakham LE15 7GH</div>
-                                          <div>Phone: 024 7509 2481</div>
-                                        </div>
-                                      </div>
                                     </div>
                                   </section>`;
     } else {
@@ -91,17 +84,6 @@ async function _oneTouchAllPlacedOrders() {
                                         <div class="tableCell">Delete Order</div>
                                       </div>
                                       ${orderData}
-                                    </div>
-                                  </section>
-                                  <section class="features">
-                                    <div class="flex-container-30">
-                                      <div class="fontH2">
-                                        <div class="indexBanner">
-                                          <div class="ndgIcon"></div>
-                                          <div>Unit 4, Saddlers Court, Oakham LE15 7GH</div>
-                                          <div>Phone: 024 7509 2481</div>
-                                        </div>
-                                      </div>
                                     </div>
                                   </section>`;
     }
