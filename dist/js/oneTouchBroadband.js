@@ -31,7 +31,8 @@ document.querySelector('body').addEventListener('click', (event) => {
   const searchBroadbandAvailability =
     event.target.nodeName === 'SEARCHBROADBANDAVAILABILITY';
   const oneTouchCustomers = event.target.nodeName === 'ONETOUCHCUSTOMERS';
-
+  const goBackBtn =
+    event.target.nodeName === 'LABEL' || event.target.nodeName === 'INNER';
   const getBroadbandAvailability =
     event.target.nodeName === 'GETBROADBANDAVAILABILITY';
   const selectOrder = event.target.nodeName === 'SELECTORDER';
@@ -47,6 +48,10 @@ document.querySelector('body').addEventListener('click', (event) => {
   const searchEthernetAvailability =
     event.target.nodeName === 'SEARCHETHERNETAVAILABILITY';
   const addCustomer = event.target.nodeName === 'ADDCUSTOMER';
+
+  let id;
+  if (event.target.getAttribute('id')) id = event.target.getAttribute('id');
+  const endPoint = location.href.split('/').slice(-1)[0];
 
   // console.log(event.target);
   if (searchEthernetAvailability) {
@@ -96,8 +101,6 @@ document.querySelector('body').addEventListener('click', (event) => {
   }
   if (selectCustomer) {
     async function asyncDataRequest() {
-      const id = event.target.id;
-      console.log(id);
       const oneTouch = await _findOneTouchCustomerById(id);
       console.log(oneTouch);
       await sessionStorage.setItem('oneTouch', JSON.stringify(oneTouch));
@@ -107,9 +110,15 @@ document.querySelector('body').addEventListener('click', (event) => {
     asyncDataRequest();
     return;
   }
+  if (goBackBtn) {
+    const unHideData = document.querySelector('#oneTouchCustomerList');
+    const removeData = document.querySelector('#oneTouchCustomerInfo');
+    unHideData.classList.remove('hidden');
+    removeData.remove();
+    const endPoint = location.href.split('/').slice(-1)[0];
+    persistDOMData(endPoint);
+  }
   if (goPageBack) {
-    const id = event.target.id;
-    console.log(event.target.id);
     if (id === 'pageOne') {
       document.querySelector('#oneTouchCustomerList').remove();
       document
@@ -135,17 +144,16 @@ document.querySelector('body').addEventListener('click', (event) => {
         .classList.remove('hidden');
     }
 
-    const endPoint = location.href.split('/').slice(-1)[0];
     persistDOMData(endPoint);
     return;
   }
   if (customerInfo) {
-    const id = event.target.id;
-    _errorMessage(`Customer ID: ${id}`, 'warning');
+    _findOneTouchCustomerById(id);
     return;
   }
   if (addCustomer) {
-    window.location.replace('/views/oneTouch/add-customer');
+    window.location.replace(`/views/oneTouch/${endPoint}`);
+    return;
   }
 });
 

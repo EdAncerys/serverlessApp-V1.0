@@ -35,12 +35,16 @@ document.querySelector('body').addEventListener('click', (event) => {
     event.target.nodeName === 'LABEL' || event.target.nodeName === 'INNER';
   const customerInfo = event.target.nodeName === 'CUSTOMERINFO';
   const deleteCustomer = event.target.nodeName === 'DELETECUSTOMER';
+  const addCustomer = event.target.nodeName === 'ADDCUSTOMER';
 
   // console.log(event.target.getAttribute('id'), event.target.nodeName);
 
   let id;
   if (event.target.getAttribute('id')) id = event.target.getAttribute('id');
 
+  if (addCustomer) {
+    window.location.replace('/views/oneTouch/add-customer');
+  }
   if (goBackBtn) {
     const unHideData = document.querySelector('#oneTouchCustomerList');
     const removeData = document.querySelector('#oneTouchCustomerInfo');

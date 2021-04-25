@@ -126,31 +126,6 @@ async function _findOneTouchCustomerById(id) {
     <div class="features">
       <div class="flex-container-50">
         <div class="oneTouchFormContainer">
-          <div class="fontH3">Contract Details</div>
-          <div class="dataSummaryContainer textSilver fontH2">
-            <div class="dataRowSummaryContainer justifyText">
-              <div class="rowDisplayStart">Installation Date</div>
-              <div class="rowDisplayEnd">${customerInfo.installationDate}</div>
-            </div>
-            <div class="dataRowSummaryContainer justifyText">
-              <div class="rowDisplayStart">Contact Expiration Date</div>
-              <div class="rowDisplayEnd">${customerInfo.expansionDate}</div>
-            </div>
-
-            <div class="dataRowSummaryContainer justifyText">
-              <div class="rowDisplayStart">Contact Length</div>
-              <div class="rowDisplayEnd">${customerInfo.contractLength}</div>
-            </div>
-            <div class="dataRowSummaryContainer justifyText">
-              <div class="rowDisplayStart">Contract Price</div>
-              <div class="rowDisplayEnd">${customerInfo.price}</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="flex-container-50">
-        <div class="oneTouchFormContainer">
           <div class="fontH3">Site Installation Details</div>
           <div class="dataSummaryContainer textSilver fontH2">
             <div class="dataRowSummaryContainer justifyText">
@@ -177,9 +152,7 @@ async function _findOneTouchCustomerById(id) {
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="features-align-left">
       <div class="flex-container-50">
         <div class="oneTouchFormContainer">
           <div class="fontH3">Extra Metrics</div>
@@ -204,6 +177,12 @@ async function _findOneTouchCustomerById(id) {
     if (endPoint.includes(addressBook))
       appendData = document.querySelector('#addressBookContainer');
     if (endPoint.includes(addressBook))
+      hideData = document.querySelector('#oneTouchCustomerList');
+
+    // connection-checker DOM
+    if (endPoint.includes(connectionChecker))
+      appendData = document.querySelector('#oneTouchBroadbandContainer');
+    if (endPoint.includes(connectionChecker))
       hideData = document.querySelector('#oneTouchCustomerList');
 
     hideData.classList.add('hidden');
