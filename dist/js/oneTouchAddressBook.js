@@ -32,7 +32,7 @@ const oneTouchDeleteCustomer = async (id) => {
 
 document.querySelector('body').addEventListener('click', (event) => {
   const goBackBtn =
-    event.target.nodeName === 'LABEL' || event.target.nodeName === 'INNER';
+    event.target.nodeName === 'BTNLABEL' || event.target.nodeName === 'INNER';
   const customerInfo = event.target.nodeName === 'CUSTOMERINFO';
   const deleteCustomer = event.target.nodeName === 'DELETECUSTOMER';
   const addCustomer = event.target.nodeName === 'ADDCUSTOMER';

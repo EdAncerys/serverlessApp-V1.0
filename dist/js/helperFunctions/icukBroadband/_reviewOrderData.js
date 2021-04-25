@@ -19,7 +19,7 @@ async function _reviewOrderData(oneTouchOrderData) {
     const oneTouchOrderReview = document.createElement('div');
     oneTouchOrderReview.id = 'oneTouchBroadbandOrderPageFour';
 
-    const oneTouch = JSON.parse(sessionStorage.getItem('oneTouch'));
+    const oneTouch = await JSON.parse(sessionStorage.getItem('oneTouch'));
     const mergedData = { ...oneTouch, ...oneTouchOrderData };
 
     // Save data to session storage
@@ -43,6 +43,14 @@ async function _reviewOrderData(oneTouchOrderData) {
     const county = mergedData.county === 'null' ? '' : mergedData.county;
     const postcode = mergedData.postcode === 'null' ? '' : mergedData.postcode;
 
+    let customerInfo = `<div class="fontH2">Customer details not available!</div>
+                        <div class="fontH2 textDanger">*To place the order please add customer details first.</div>`;
+    if (mergedData.customerFullName)
+      customerInfo = `<div class="fontH2 textDanger">Full Name: ${mergedData.customerFullName} | Email: ${mergedData.customerEmail}</div>`;
+
+    let placeOrderClassList = 'btnB01';
+    if (!mergedData.customerFullName) placeOrderClassList = 'btnB01 btnDisable';
+
     const orderData = `<div class="boxContainer bgGradientSilver broadbandDataContainerHover fontH2">
                         <div class="broadbandDataContainer">
                           <div class="tableCell">${mergedData.name}</div>
@@ -52,7 +60,7 @@ async function _reviewOrderData(oneTouchOrderData) {
                           <div class="tableCell">${mergedData.installation}</div>
                           <div class="tableCell">
                           <div class='center'>
-                            <termsAndConditions class="btnB01" role="button">
+                            <termsAndConditions class="${placeOrderClassList}" role="button">
                               Place Order
                             </termsAndConditions>
                           </div>
@@ -80,7 +88,7 @@ async function _reviewOrderData(oneTouchOrderData) {
                                             <div class="fontH3">Full Address Provided:</div>
                                             <div class="fontH2">${sub_premises} ${premises_name}  ${thoroughfare_number} ${thoroughfare_name} ${locality} ${post_town} ${county} ${postcode}</div>
                                             <div class="fontH3">Customer Details:</div>
-                                            <div class="fontH2 textDanger">Full Name: ${mergedData.customerFullName} | Email: ${mergedData.customerEmail}</div>
+                                            ${customerInfo}
                                           </div>
                                         </div>
                                         <div class='sliderNav'>

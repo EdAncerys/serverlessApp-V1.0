@@ -31,7 +31,7 @@ document.querySelector('body').addEventListener('click', (event) => {
   const goPageBack = event.target.nodeName === 'GOPAGEBACK';
   const addCustomer = event.target.nodeName === 'ADDCUSTOMER';
   const goBackBtn =
-    event.target.nodeName === 'LABEL' || event.target.nodeName === 'INNER';
+    event.target.nodeName === 'BTNLABEL' || event.target.nodeName === 'INNER';
 
   console.log(event.target.getAttribute('id'), event.target.nodeName);
 

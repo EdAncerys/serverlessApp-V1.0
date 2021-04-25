@@ -2242,14 +2242,6 @@ form > .actions {
   }
 }
 
-label {
-  display: block;
-  font-size: 0.9em;
-  text-transform: uppercase;
-  font-weight: 700;
-  margin: 0 0 1em 0;
-}
-
 input[type='text'],
 input[type='password'],
 input[type='email'],

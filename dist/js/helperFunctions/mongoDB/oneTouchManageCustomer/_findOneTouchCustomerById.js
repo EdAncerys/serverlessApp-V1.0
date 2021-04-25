@@ -30,27 +30,27 @@ async function _findOneTouchCustomerById(id) {
     if (!response.ok) throw new Error(data.msg);
     console.log(data);
 
-    const customerInfo = data;
+    if (endPoint.includes(addressBook)) {
+      const customerInfo = data;
+      let thoroughfare_number =
+        customerInfo.thoroughfare_number === 'null'
+          ? ''
+          : customerInfo.thoroughfare_number;
+      let premises_name =
+        customerInfo.premises_name === 'null' ? '' : customerInfo.premises_name;
+      let sub_premises =
+        customerInfo.sub_premises === 'null' ? '' : customerInfo.sub_premises;
+      let thoroughfare_name =
+        customerInfo.thoroughfare_name === 'null'
+          ? ''
+          : customerInfo.thoroughfare_name;
+      let county = customerInfo.county === 'null' ? '' : customerInfo.county;
+      let postcode = customerInfo.postcode;
 
-    let thoroughfare_number =
-      customerInfo.thoroughfare_number === 'null'
-        ? ''
-        : customerInfo.thoroughfare_number;
-    let premises_name =
-      customerInfo.premises_name === 'null' ? '' : customerInfo.premises_name;
-    let sub_premises =
-      customerInfo.sub_premises === 'null' ? '' : customerInfo.sub_premises;
-    let thoroughfare_name =
-      customerInfo.thoroughfare_name === 'null'
-        ? ''
-        : customerInfo.thoroughfare_name;
-    let county = customerInfo.county === 'null' ? '' : customerInfo.county;
-    let postcode = customerInfo.postcode;
-
-    customerInfoData = `
+      customerInfoData = `
     <div class="outer">
       <inner class="inner">
-        <label>Back</label>
+        <btnLabel>Back</btnLabel>
       </inner>
     </div>
 
@@ -166,29 +166,30 @@ async function _findOneTouchCustomerById(id) {
       </div>
     </div>`;
 
-    const oneTouchCustomerInfo = document.createElement('div');
-    oneTouchCustomerInfo.id = 'oneTouchCustomerInfo';
-    oneTouchCustomerInfo.innerHTML = customerInfoData;
+      const oneTouchCustomerInfo = document.createElement('div');
+      oneTouchCustomerInfo.id = 'oneTouchCustomerInfo';
+      oneTouchCustomerInfo.innerHTML = customerInfoData;
 
-    let appendData = '';
-    let hideData = '';
+      let appendData = '';
+      let hideData = '';
 
-    // address-book DOM
-    if (endPoint.includes(addressBook))
-      appendData = document.querySelector('#addressBookContainer');
-    if (endPoint.includes(addressBook))
-      hideData = document.querySelector('#oneTouchCustomerList');
+      // address-book DOM
+      if (endPoint.includes(addressBook))
+        appendData = document.querySelector('#addressBookContainer');
+      if (endPoint.includes(addressBook))
+        hideData = document.querySelector('#oneTouchCustomerList');
 
-    // connection-checker DOM
-    if (endPoint.includes(connectionChecker))
-      appendData = document.querySelector('#oneTouchBroadbandContainer');
-    if (endPoint.includes(connectionChecker))
-      hideData = document.querySelector('#oneTouchCustomerList');
+      // connection-checker DOM
+      if (endPoint.includes(connectionChecker))
+        appendData = document.querySelector('#oneTouchBroadbandContainer');
+      if (endPoint.includes(connectionChecker))
+        hideData = document.querySelector('#oneTouchCustomerList');
 
-    hideData.classList.add('hidden');
-    appendData.appendChild(oneTouchCustomerInfo);
+      hideData.classList.add('hidden');
+      appendData.appendChild(oneTouchCustomerInfo);
 
-    persistDOMData(endPoint);
+      persistDOMData(endPoint);
+    }
 
     _spinner(false);
     return data;

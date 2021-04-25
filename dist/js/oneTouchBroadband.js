@@ -32,13 +32,13 @@ document.querySelector('body').addEventListener('click', (event) => {
     event.target.nodeName === 'SEARCHBROADBANDAVAILABILITY';
   const oneTouchCustomers = event.target.nodeName === 'ONETOUCHCUSTOMERS';
   const goBackBtn =
-    event.target.nodeName === 'LABEL' || event.target.nodeName === 'INNER';
+    event.target.nodeName === 'BTNLABEL' || event.target.nodeName === 'INNER';
   const getBroadbandAvailability =
     event.target.nodeName === 'GETBROADBANDAVAILABILITY';
   const selectOrder = event.target.nodeName === 'SELECTORDER';
   const termsAndConditions = event.target.nodeName === 'TERMSANDCONDITIONS';
   const agreeWithTermsAndConditions =
-    event.target.nodeName === 'LABEL' || 'INPUT';
+    event.target.nodeName === 'BTNLABEL' || 'INPUT';
   const oneTouchPlaceOrder = event.target.nodeName === 'ONETOUCHPLACEORDER';
   const userInfo = event.target.nodeName === 'USERINFO';
   const selectCustomer = event.target.nodeName === 'SELECTCUSTOMER';
@@ -52,6 +52,14 @@ document.querySelector('body').addEventListener('click', (event) => {
   let id;
   if (event.target.getAttribute('id')) id = event.target.getAttribute('id');
   const endPoint = location.href.split('/').slice(-1)[0];
+
+  async function asyncSelectCustomer() {
+    const oneTouch = await _findOneTouchCustomerById(id);
+    console.log(oneTouch);
+    await sessionStorage.setItem('oneTouch', JSON.stringify(oneTouch));
+
+    _getBroadbandAvailability();
+  }
 
   // console.log(event.target);
   if (searchEthernetAvailability) {
@@ -90,6 +98,7 @@ document.querySelector('body').addEventListener('click', (event) => {
     } else {
       oneTouchPlaceOrder.classList.add('btnDisable');
     }
+    return;
   }
   if (oneTouchPlaceOrder) {
     _placeBroadbandOrder();
@@ -100,14 +109,7 @@ document.querySelector('body').addEventListener('click', (event) => {
     return;
   }
   if (selectCustomer) {
-    async function asyncDataRequest() {
-      const oneTouch = await _findOneTouchCustomerById(id);
-      console.log(oneTouch);
-      await sessionStorage.setItem('oneTouch', JSON.stringify(oneTouch));
-
-      _getBroadbandAvailability();
-    }
-    asyncDataRequest();
+    asyncSelectCustomer();
     return;
   }
   if (goBackBtn) {
@@ -117,6 +119,7 @@ document.querySelector('body').addEventListener('click', (event) => {
     removeData.remove();
     const endPoint = location.href.split('/').slice(-1)[0];
     persistDOMData(endPoint);
+    return;
   }
   if (goPageBack) {
     if (id === 'pageOne') {

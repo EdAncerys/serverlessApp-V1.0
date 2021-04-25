@@ -54,7 +54,7 @@
   width: inherit;
   text-align: center;
 }
-label {
+btnLabel {
   font-size: 0.8em;
   line-height: 2.2em;
   text-transform: uppercase;
@@ -81,7 +81,7 @@ label {
   bottom: 50%;
   transform: rotate(-45deg);
 }
-.outer:hover label {
+.outer:hover btnLabel {
   opacity: 1;
 }
 .outer:hover .inner:before,

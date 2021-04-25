@@ -45,7 +45,7 @@ async function _oneTouchPendingContractInfo(findOneById) {
     contractInfoData = `
       <div class="outer">
         <inner class="inner">
-          <label>Back</label>
+          <btnLabel>Back</btnLabel>
         </inner>
       </div>
 

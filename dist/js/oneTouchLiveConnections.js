@@ -26,7 +26,7 @@ document.querySelector('body').addEventListener('click', (event) => {
   const deleteOrder = event.target.nodeName === 'DELETEORDER';
   const placeNewOrder = event.target.nodeName === 'PLACENEWORDER';
   const goBackBtn =
-    event.target.nodeName === 'LABEL' || event.target.nodeName === 'INNER';
+    event.target.nodeName === 'BTNLABEL' || event.target.nodeName === 'INNER';
 
   let id = event.target.getAttribute('id');
 
