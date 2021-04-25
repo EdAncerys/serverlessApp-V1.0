@@ -138,7 +138,7 @@ async function _oneTouchCustomers() {
     let appendCustomersContainer;
     let hideDataContainer;
 
-    // connection-checker DOM end pont
+    // connection-checker DOM
     if (endPoint.includes(connectionChecker))
       appendCustomersContainer = document.querySelector(
         '#oneTouchBroadbandContainer'
@@ -147,7 +147,7 @@ async function _oneTouchCustomers() {
       hideDataContainer = document.getElementById(
         'oneTouchBroadbandOrderPageOne'
       );
-    // connection-checker DOM end pont
+    // connection-checker DOM
     if (endPoint.includes(addressBook))
       appendCustomersContainer = document.querySelector(
         '#addressBookContainer'

@@ -11,7 +11,7 @@ import { _termsAndConditions } from './helperFunctions/icukBroadband/_termsAndCo
 import { _getBroadbandAvailability } from './helperFunctions/icukBroadband/_getBroadbandAvailability.js';
 
 import { _oneTouchCustomers } from './helperFunctions/mongoDB/oneTouchManageCustomer/_oneTouchCustomers.js';
-import { _fetchOneTouchCustomerDataById } from './helperFunctions/mongoDB/oneTouchManageCustomer/_fetchOneTouchCustomerDataById.js';
+import { _findOneTouchCustomerById } from './helperFunctions/mongoDB/oneTouchManageCustomer/_findOneTouchCustomerById.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   // Persist user data on reload
@@ -98,7 +98,7 @@ document.querySelector('body').addEventListener('click', (event) => {
     async function asyncDataRequest() {
       const id = event.target.id;
       console.log(id);
-      const oneTouch = await _fetchOneTouchCustomerDataById(id);
+      const oneTouch = await _findOneTouchCustomerById(id);
       console.log(oneTouch);
       await sessionStorage.setItem('oneTouch', JSON.stringify(oneTouch));
 

@@ -7,7 +7,7 @@
   gap: 10px;
 }
 .contractWrapper {
-  max-height: 50vw;
+  max-height: 500px;
   overflow: auto;
 }
 .dataWrapper {

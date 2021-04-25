@@ -3,6 +3,7 @@ import { _errorMessage } from './helperFunctions/_errorMessage.js';
 
 import { _oneTouchCustomers } from './helperFunctions/mongoDB/oneTouchManageCustomer/_oneTouchCustomers.js';
 import { _deleteOneTouchCustomer } from './helperFunctions/mongoDB/oneTouchManageCustomer/_deleteOneTouchCustomer.js';
+import { _findOneTouchCustomerById } from './helperFunctions/mongoDB/oneTouchManageCustomer/_findOneTouchCustomerById.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   // Persist user data on reload
@@ -41,20 +42,15 @@ document.querySelector('body').addEventListener('click', (event) => {
   if (event.target.getAttribute('id')) id = event.target.getAttribute('id');
 
   if (goBackBtn) {
-    const oneTouchManageCustomerPageOne = document.querySelector(
-      '#oneTouchManageCustomerPageOne'
-    );
-    const oneTouchManageCustomerPageTwo = document.querySelector(
-      '#oneTouchManageCustomerPageTwo'
-    );
-    oneTouchManageCustomerPageOne.classList.remove('hidden');
-    oneTouchManageCustomerPageTwo.remove();
+    const unHideData = document.querySelector('#oneTouchCustomerList');
+    const removeData = document.querySelector('#oneTouchCustomerInfo');
+    unHideData.classList.remove('hidden');
+    removeData.remove();
     const endPoint = location.href.split('/').slice(-1)[0];
     persistDOMData(endPoint);
   }
   if (customerInfo) {
-    // _oneTouchContractInfo(id);
-    console.log(id);
+    _findOneTouchCustomerById(id);
   }
   if (deleteCustomer) {
     oneTouchDeleteCustomer(id);

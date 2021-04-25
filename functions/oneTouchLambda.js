@@ -99,7 +99,7 @@ const oneTouchLogin = async (db, data) => {
     // JWT configuration
     delete user[0]['password'];
     const userData = user[0];
-    const expTime = '1h';
+    const expTime = '4h';
     console.log('User data passed on to JWT: ', userData);
 
     const access_token = jwt.sign(userData, ACCESS_TOKEN_SECRET, {
@@ -456,7 +456,7 @@ const filterCustomers = async (db, data) => {
     };
   }
 };
-const findCustomersById = async (db, data) => {
+const findCustomerById = async (db, data) => {
   const findCustomer = {
     id: data.findOneById,
   };
@@ -1037,8 +1037,8 @@ module.exports.handler = async (event, context, callback) => {
       return deleteCustomer(db, body);
     case '/oneTouch/customer/filterCustomers':
       return filterCustomers(db, body);
-    case '/oneTouch/customer/findCustomersById':
-      return findCustomersById(db, body);
+    case '/oneTouch/customer/findCustomerById':
+      return findCustomerById(db, body);
     // oneTouch contract endPoints
     case '/oneTouch/contract/findContractById':
       return findContractById(db, body);
