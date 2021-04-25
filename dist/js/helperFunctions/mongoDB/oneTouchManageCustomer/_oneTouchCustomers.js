@@ -9,8 +9,8 @@ async function _oneTouchCustomers() {
   const access_token = sessionStorage.getItem('access_token');
 
   const endPoint = location.href.split('/').slice(-1)[0];
-  const connectionChecker = 'connection-checker.html';
-  const addressBook = 'address-book.html';
+  const connectionChecker = 'connection-checker';
+  const addressBook = 'address-book';
 
   const body = {
     access_token,
@@ -35,7 +35,7 @@ async function _oneTouchCustomers() {
     console.log(data);
 
     data.map((customer) => {
-      if (endPoint === connectionChecker)
+      if (endPoint.includes(connectionChecker))
         manageDataContainer = `<div class="manageDataContainer">
                                 <customerInfo id='${customer._id}' class="btnB01" role="button">
                                   Info
@@ -47,7 +47,7 @@ async function _oneTouchCustomers() {
                                 </selectCustomer>
                               </div>`;
 
-      if (endPoint === addressBook)
+      if (endPoint.includes(addressBook))
         manageDataContainer = `<div class="manageDataContainer">
                                   <customerInfo id='${customer._id}' class="btnB01" role="button">
                                     Info
@@ -59,7 +59,7 @@ async function _oneTouchCustomers() {
                                   </deleteCustomer>
                                 </div>`;
 
-      if (endPoint === connectionChecker)
+      if (endPoint.includes(connectionChecker))
         sliderNav = `<div class='navWrapper alignHorizontally'>
                       <goPageBack id='pageOne' class="btnOneTouch" role="button">
                         Go Back
@@ -139,16 +139,16 @@ async function _oneTouchCustomers() {
     let hideDataContainer;
 
     // connection-checker DOM end pont
-    if (endPoint === connectionChecker)
+    if (endPoint.includes(connectionChecker))
       appendCustomersContainer = document.querySelector(
         '#oneTouchBroadbandContainer'
       );
-    if (endPoint === connectionChecker)
+    if (endPoint.includes(connectionChecker))
       hideDataContainer = document.getElementById(
         'oneTouchBroadbandOrderPageOne'
       );
     // connection-checker DOM end pont
-    if (endPoint === addressBook)
+    if (endPoint.includes(addressBook))
       appendCustomersContainer = document.querySelector(
         '#addressBookContainer'
       );
