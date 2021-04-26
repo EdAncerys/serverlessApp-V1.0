@@ -64,13 +64,13 @@
   min-width: 400px;
   border-radius: 10px;
 }
-.broadbandDataContainer {
+.broadbandDataContainer-C6,
+.broadbandDataContainer-C7 {
   display: grid;
   grid-template-columns: 200px 100px 100px 100px 100px 100px;
 }
-.broadbandDataContainerHover:hover {
-  background-color: #fff;
-  cursor: pointer;
+.broadbandDataContainer-C7 {
+  grid-template-columns: 160px 160px 80px 80px 80px 100px 100px;
 }
 .headerMsgTitle {
   margin: 10px 0;
@@ -161,10 +161,18 @@ agreeWithTermsAndConditions label {
   .dataWrapper {
     padding: 0 5px;
   }
-  .broadbandDataContainer {
+  .broadbandDataContainer-C6,
+  .broadbandDataContainer-C7 {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     align-items: center;
     text-align: start;
+  }
+  .broadbandDataContainer-C7 {
+    grid-template-columns: 1fr 1fr 1fr 0px 0px 1fr 1fr;
+  }
+  .broadbandDataContainer-C7 > div:nth-child(4),
+  .broadbandDataContainer-C7 > div:nth-child(5) {
+    visibility: hidden;
   }
   .tableCell {
     font-size: 0.8em;

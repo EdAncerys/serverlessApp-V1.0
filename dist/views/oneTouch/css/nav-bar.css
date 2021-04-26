@@ -103,6 +103,7 @@ nav ul li ul li a {
   color: #fff;
   cursor: pointer;
 }
+
 /* Mobile navigation */
 .nav-mobile {
   display: none;
@@ -198,4 +199,10 @@ nav ul li ul li a {
 }
 #navbar-toggle.active span:after {
   transform: rotate(-45deg);
+}
+
+/* Admin css */
+nav ul li a.admin,
+nav ul li a.admin :visited {
+  color: #d9534f;
 }

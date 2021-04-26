@@ -49,8 +49,9 @@ async function _oneTouchAllPlacedOrders() {
                                   </section>`;
     } else {
       data.map((order) => {
-        orderData += `<div class="boxContainer bgGradientSilver broadbandDataContainerHover fontH2">
-                        <div class="broadbandDataContainer">
+        orderData += `<div class="boxContainer bgGradientSilver fontH2">
+                        <div class="broadbandDataContainer-C7">
+                          <div class="tableCell">${order.oneTouchSuperUser}</div>
                           <div class="tableCell">${order.oneTouch.name}</div>
                           <div class="tableCell">${order.oneTouch.provider}</div>
                           <div class="tableCell">${order.oneTouch.price}</div>
@@ -70,12 +71,13 @@ async function _oneTouchAllPlacedOrders() {
       });
 
       userPlacedOrders.innerHTML = `<section class="features">
-                                    <div class="flex-container-30">
+                                    <div class="flex-container-90">
                                       <div class="headerMsgTitle">
                                         <div class="fontH4">Manage All Placed Orders</div>
                                         <div class="fontH2">Manage all placed orders in one place with a touch of a finger!</div>
                                       </div>
-                                      <div class="boxContainer broadbandDataContainer bgWhite">
+                                      <div class="boxContainer broadbandDataContainer-C7 bgWhite">
+                                        <div class="tableCell">oneTouch User</div>
                                         <div class="tableCell">Supplier</div>
                                         <div class="tableCell">Download</div>
                                         <div class="tableCell">Upload</div>

@@ -51,8 +51,8 @@ async function _reviewOrderData(oneTouchOrderData) {
     let placeOrderClassList = 'btnB01';
     if (!mergedData.customerFullName) placeOrderClassList = 'btnB01 btnDisable';
 
-    const orderData = `<div class="boxContainer bgGradientSilver broadbandDataContainerHover fontH2">
-                        <div class="broadbandDataContainer">
+    const orderData = `<div class="boxContainer bgGradientSilver  fontH2">
+                        <div class="broadbandDataContainer-C6">
                           <div class="tableCell">${mergedData.name}</div>
                           <div class="tableCell">${mergedData.likely_down_speed}</div>
                           <div class="tableCell">${mergedData.likely_up_speed}</div>
@@ -74,7 +74,7 @@ async function _reviewOrderData(oneTouchOrderData) {
                                           <div class="fontH4">Review Your Order!</div>
                                           <div class="fontH2">Order details will be submitted as per bellow information</div>
                                         </div>
-                                        <div class="boxContainer broadbandDataContainer bgWhite">
+                                        <div class="boxContainer broadbandDataContainer-C6 bgWhite">
                                           <div class="tableCell">Supplier</div>
                                           <div class="tableCell">Download</div>
                                           <div class="tableCell">Upload</div>
@@ -83,7 +83,7 @@ async function _reviewOrderData(oneTouchOrderData) {
                                           <div class="tableCell">Order</div>
                                         </div>
                                         ${orderData}
-                                        <div class="boxContainer bgGradientSilver broadbandDataContainerHover">
+                                        <div class="boxContainer bgGradientSilver ">
                                           <div class="broadbandOrderReviewContainer">
                                             <div class="fontH3">Full Address Provided:</div>
                                             <div class="fontH2">${sub_premises} ${premises_name}  ${thoroughfare_number} ${thoroughfare_name} ${locality} ${post_town} ${county} ${postcode}</div>
