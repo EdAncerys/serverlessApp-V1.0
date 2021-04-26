@@ -91,7 +91,7 @@ async function _reviewOrderData(oneTouchOrderData) {
                                             ${customerInfo}
                                           </div>
                                         </div>
-                                        <div class='sliderNav'>
+                                        <div class='navComponent'>
                                           <goPageBack id='pageThree' class="btnOneTouch btnBack" role="button">
                                             Go Back
                                           </goPageBack>

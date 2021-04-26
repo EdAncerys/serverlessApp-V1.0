@@ -95,7 +95,7 @@ async function _getBroadbandAvailability() {
                                                       <div class="tableCell">Select</div>
                                                     </div>
                                                     ${orderData}
-                                                    <div class='sliderNav'>
+                                                    <div class='navComponent'>
                                                       <goPageBack id='pageTwo' class="btnOneTouch btnBack" role="button">
                                                         Go Back
                                                       </goPageBack>

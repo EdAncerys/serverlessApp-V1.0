@@ -81,7 +81,7 @@
   text-align: left;
   padding: 10px 20px;
 }
-.sliderNav {
+.navComponent {
   display: grid;
   align-self: flex-start;
   padding: 40px 0;
@@ -165,5 +165,8 @@ agreeWithTermsAndConditions label {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     align-items: center;
     text-align: start;
+  }
+  .tableCell {
+    font-size: 0.8em;
   }
 }

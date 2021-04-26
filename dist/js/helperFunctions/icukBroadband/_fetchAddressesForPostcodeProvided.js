@@ -99,7 +99,7 @@ async function _fetchAddressesForPostcodeProvided(postcode) {
                                           </getBroadbandAvailability>
                                         </div>
                                       <div>
-                                      <div class='sliderNav'>
+                                      <div class='navComponent'>
                                         <goPageBack id='pageOne' class="btnOneTouch btnBack" role="button">
                                           Go Back
                                         </goPageBack>

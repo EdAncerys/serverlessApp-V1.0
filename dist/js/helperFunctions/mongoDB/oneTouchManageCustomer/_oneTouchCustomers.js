@@ -28,7 +28,7 @@ async function _oneTouchCustomers() {
     dataWrapper.id = 'dataWrapper';
     let manageDataContainer = '';
     let customerData = '';
-    let sliderNav = '';
+    let navComponent = '';
     let customerDataHTML;
 
     const data = await response.json();
@@ -60,7 +60,7 @@ async function _oneTouchCustomers() {
                                 </div>`;
 
       if (endPoint.includes(connectionChecker))
-        sliderNav = `<div class='navWrapper alignHorizontally'>
+        navComponent = `<div class='navWrapper alignHorizontally'>
                       <goPageBack id='pageOne' class="btnOneTouch" role="button">
                         Go Back
                       </goPageBack>
@@ -109,7 +109,7 @@ async function _oneTouchCustomers() {
                                   <div class="rowDataWrapper">Option</div>
                                 </div>
                                   ${customerData}
-                                  ${sliderNav}
+                                  ${navComponent}
                               </div>
                             </div>
                           </div>`;
