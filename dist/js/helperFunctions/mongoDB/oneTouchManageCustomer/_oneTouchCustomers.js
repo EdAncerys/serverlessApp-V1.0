@@ -22,7 +22,7 @@ async function _oneTouchCustomers() {
 
   try {
     const response = await fetch(URL, config);
-    if (!response.ok) throw new Error(data);
+    if (!response.ok) throw new Error(response.statusText);
 
     const dataWrapper = document.createElement('div');
     dataWrapper.id = 'dataWrapper';

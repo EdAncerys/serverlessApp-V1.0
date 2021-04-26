@@ -31,9 +31,9 @@ async function _oneTouchSupperUserLogin() {
 
   try {
     const response = await fetch(URL, config);
-    console.log(response);
+    if (!response.ok) throw new Error(response.statusText);
     const data = await response.json();
-    if (!response.ok) throw new Error(data.msg);
+    console.log(data);
 
     await sessionStorage.setItem('access_token', data.access_token); // Storing access_token in sessions
     _spinner(false);
