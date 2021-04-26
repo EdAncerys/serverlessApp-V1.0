@@ -11,7 +11,6 @@
   background-size: contain;
 }
 .brand {
-  position: absolute;
   float: left;
   display: grid;
   align-items: center;
