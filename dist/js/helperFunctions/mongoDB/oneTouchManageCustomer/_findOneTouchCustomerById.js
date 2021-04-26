@@ -10,7 +10,7 @@ async function _findOneTouchCustomerById(id) {
 
   const endPoint = location.href.split('/').slice(-1)[0];
   const connectionChecker = 'connection-checker';
-  const addressBook = 'address-book';
+  const manageCustomer = 'manage-customer';
   let customerInfoData = '';
 
   const body = {
@@ -30,7 +30,10 @@ async function _findOneTouchCustomerById(id) {
     if (!response.ok) throw new Error(data.msg);
     console.log(data);
 
-    if (endPoint.includes(addressBook)) {
+    if (
+      endPoint.includes(connectionChecker) ||
+      endPoint.includes(manageCustomer)
+    ) {
       const customerInfo = data;
       let thoroughfare_number =
         customerInfo.thoroughfare_number === 'null'
@@ -173,10 +176,10 @@ async function _findOneTouchCustomerById(id) {
       let appendData = '';
       let hideData = '';
 
-      // address-book DOM
-      if (endPoint.includes(addressBook))
-        appendData = document.querySelector('#addressBookContainer');
-      if (endPoint.includes(addressBook))
+      // manage-customer DOM
+      if (endPoint.includes(manageCustomer))
+        appendData = document.querySelector('#manageCustomerContainer');
+      if (endPoint.includes(manageCustomer))
         hideData = document.querySelector('#oneTouchCustomerList');
 
       // connection-checker DOM

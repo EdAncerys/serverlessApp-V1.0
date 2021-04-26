@@ -10,7 +10,7 @@ async function _oneTouchCustomers() {
 
   const endPoint = location.href.split('/').slice(-1)[0];
   const connectionChecker = 'connection-checker';
-  const addressBook = 'address-book';
+  const manageCustomer = 'manage-customer';
 
   const body = {
     access_token,
@@ -47,7 +47,7 @@ async function _oneTouchCustomers() {
                                 </selectCustomer>
                               </div>`;
 
-      if (endPoint.includes(addressBook))
+      if (endPoint.includes(manageCustomer))
         manageDataContainer = `<div class="manageDataContainer">
                                   <customerInfo id='${customer._id}' class="btnB01" role="button">
                                     Info
@@ -95,7 +95,7 @@ async function _oneTouchCustomers() {
     customerDataHTML = ` <div class="features">
                             <div class="flex-container-80">
                               <div class="headerText">
-                                <div class="fontH4">Your Customer List</div>
+                                <div class="fontH4">Customer List</div>
                                 <div class="fontH2">
                                   Manage all customers in one place. View address, contact
                                   information, etc. & any personal notes.
@@ -148,9 +148,9 @@ async function _oneTouchCustomers() {
         'oneTouchBroadbandOrderPageOne'
       );
     // connection-checker DOM
-    if (endPoint.includes(addressBook))
+    if (endPoint.includes(manageCustomer))
       appendCustomersContainer = document.querySelector(
-        '#addressBookContainer'
+        '#manageCustomerContainer'
       );
 
     if (hideDataContainer) hideDataContainer.classList.add('hidden');
