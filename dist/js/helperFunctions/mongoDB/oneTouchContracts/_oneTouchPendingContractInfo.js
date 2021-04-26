@@ -49,6 +49,49 @@ async function _oneTouchPendingContractInfo(findOneById) {
         </inner>
       </div>
 
+      <div class="features-align-left">
+      <div class="flex-container-50">
+        <div class="oneTouchFormContainer">
+          <div class="fontH3">Contract Information</div>
+          <div class="dataSummaryContainer textSilver fontH2">
+            <div class="justifyText">
+              <label for="fullName">Contract Start Date</label>
+              <input
+                type="text"
+                id="contractStartDate"
+                name="fullName"
+                placeholder="Contract Start Date..."
+              />
+            </div>
+            <div class="justifyText">
+              <label for="fullName">Contract Expiration Date</label>
+              <input
+                type="text"
+                id="contractExpirationDate"
+                name="fullName"
+                placeholder="Contract Expiration Date..."
+              />
+            </div>
+
+            <div class="justifyText">
+              <label for="fullName">Contract Length</label>
+                <input
+                  type="text"
+                  id="contractLength"
+                  name="fullName"
+                  placeholder="Contract Length..."
+                />
+            </div>
+          </div>
+          <div class="fullWidth">
+            <submitForm id="addContract" class="btnOneTouch" type="submit">
+              Add Contract
+            </submitForm>
+          </div>
+        </div>
+      </div>
+    </div>
+
       <div class="features">
         <div class="flex-container-50">
           <div class="oneTouchFormContainer">
