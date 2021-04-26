@@ -6,7 +6,7 @@ async function _oneTouchAllPlacedOrders() {
   console.log('Fetching all orders...');
   _spinner(true, 'Loading Orders...');
   const oneTouchOrders = document.querySelector('oneTouchOrders');
-  const URL = '/oneTouch/orders/allPlacedOrders';
+  const URL = '/oneTouch/orders/oneTouchOrders';
   const access_token = await sessionStorage.getItem('access_token');
 
   const body = {
@@ -18,12 +18,12 @@ async function _oneTouchAllPlacedOrders() {
   };
 
   // Removing user previous data
-  const removeData = document.querySelector('#allPlacedOrders');
+  const removeData = document.querySelector('#userPlacedOrders');
   if (removeData) removeData.remove();
 
-  const allPlacedOrders = document.createElement('div');
-  allPlacedOrders.id = `allPlacedOrders`;
-  oneTouchOrders.appendChild(allPlacedOrders);
+  const userPlacedOrders = document.createElement('div');
+  userPlacedOrders.id = `userPlacedOrders`;
+  oneTouchOrders.appendChild(userPlacedOrders);
 
   try {
     const response = await fetch(URL, config);
@@ -37,7 +37,7 @@ async function _oneTouchAllPlacedOrders() {
     if (data.length === 0) {
       _errorMessage('Have no Pending Orders!', 'warning');
 
-      allPlacedOrders.innerHTML = `<section class="features">
+      userPlacedOrders.innerHTML = `<section class="features">
                                     <div class="flex-container-60">
                                       <div class="fontH5">Have No Pending Orders!</div>
                                     </div>
@@ -69,7 +69,7 @@ async function _oneTouchAllPlacedOrders() {
                       </div>`;
       });
 
-      allPlacedOrders.innerHTML = `<section class="features">
+      userPlacedOrders.innerHTML = `<section class="features">
                                     <div class="flex-container-30">
                                       <div class="headerMsgTitle">
                                         <div class="fontH4">Manage All Placed Orders</div>

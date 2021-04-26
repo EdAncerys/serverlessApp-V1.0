@@ -180,12 +180,12 @@ async function _oneTouchPendingContractInfo(findOneById) {
       </div>`;
 
     const oneTouchContractInfo = document.createElement('div');
-    oneTouchContractInfo.id = 'allPlacedOrdersInfo';
+    oneTouchContractInfo.id = 'userPlacedOrdersInfo';
     oneTouchContractInfo.innerHTML = contractInfoData;
 
-    const allPlacedOrders = document.querySelector('#allPlacedOrders');
+    const userPlacedOrders = document.querySelector('#userPlacedOrders');
     const oneTouchOrders = document.querySelector('oneTouchOrders');
-    allPlacedOrders.classList.add('hidden');
+    userPlacedOrders.classList.add('hidden');
     oneTouchOrders.appendChild(oneTouchContractInfo);
 
     const endPoint = location.href.split('/').slice(-1)[0];

@@ -5,7 +5,7 @@ import { _spinner } from '../../_spinner.js';
 async function _oneTouchContracts() {
   console.log('Fetching customers from db...');
   _spinner(true, 'Loading Active Users...');
-  const URL = '/oneTouch/orders/allPlacedOrders';
+  const URL = '/oneTouch/orders/userPlacedOrders';
   const access_token = sessionStorage.getItem('access_token');
 
   const body = {

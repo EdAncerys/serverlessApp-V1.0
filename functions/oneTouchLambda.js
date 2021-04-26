@@ -172,7 +172,7 @@ const oneTouchSignUp = async (db, data) => {
 };
 
 // oneTouch Orders
-const allPlacedOrders = async (db, data) => {
+const userPlacedOrders = async (db, data) => {
   const filterOrders = {
     access_token: data.access_token,
   };
@@ -207,6 +207,37 @@ const allPlacedOrders = async (db, data) => {
     };
   } else {
     const msg = `Error accrued. No orders found for: ` + authToken.email;
+    console.log(msg);
+
+    return {
+      statusCode: 404,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ msg: msg }),
+    };
+  }
+};
+const oneTouchOrders = async (db, data) => {
+  const dbData = await db
+    .collection(COLLECTION_ONE_TOUCH_ORDERS)
+    .find({})
+    .toArray();
+  console.log(dbData);
+
+  const ordersValid = dbData.length > 0;
+  console.log('ordersValid:', ordersValid === true);
+
+  if (ordersValid) {
+    return {
+      statusCode: 201,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ data: dbData }),
+    };
+  } else {
+    const msg = `Error accrued. No orders found!`;
     console.log(msg);
 
     return {
@@ -1022,8 +1053,10 @@ module.exports.handler = async (event, context, callback) => {
     case '/oneTouch/oneTouchUserAuthentication':
       return userAuthentication(body);
     // Placing orders endPoints
-    case '/oneTouch/orders/allPlacedOrders':
-      return allPlacedOrders(db, body);
+    case '/oneTouch/orders/userPlacedOrders':
+      return userPlacedOrders(db, body);
+    case '/oneTouch/orders/oneTouchOrders':
+      return oneTouchOrders(db, body);
     case '/oneTouch/orders/addOrder':
       return addOrder(db, body);
     case '/oneTouch/orders/deleteOrder':
