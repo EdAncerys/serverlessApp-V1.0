@@ -117,7 +117,7 @@ async function _oneTouchContracts() {
                           <div class="contractWrapper">
                             <div class="flex-container-70">
                               <div class="headerText">
-                                <div class="fontH4">Contract & Customer List</div>
+                                <div class="fontH4">Live Contracts & Customer List</div>
                                 <div class="fontH2">
                                   Manage all customers in one place. View address, contact
                                   information, etc. & any personal notes.
