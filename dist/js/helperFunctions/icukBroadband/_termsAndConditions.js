@@ -21,7 +21,7 @@ async function _termsAndConditions() {
 
     const data = `  <div class="features">
                       <section class="features">
-                      <div class="flex-container-40">
+                      <div class="flex-container-50">
                         <div class="oneTouchFormContainer">
                           <div class="fontH3">Terms And Conditions</div>
                           <div class="dataSummaryContainer textSilver fontH2">
@@ -58,7 +58,7 @@ async function _termsAndConditions() {
                               </agreeWithTermsAndConditions>
                               <oneTouchPlaceOrder
                                 id="oneTouchPlaceOrder"
-                                class="btnOneTouch btnDisable"
+                                class="btnOneTouch bgPrimary btnDisable"
                                 role="button"
                               >
                                 Place Broadband Order

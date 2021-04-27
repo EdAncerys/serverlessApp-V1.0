@@ -73,7 +73,7 @@ async function _getBroadbandAvailability() {
                             <div class='center'>
                               <selectOrder
                                 oneTouchOrderData='${oneTouchOrderData}'
-                                class="btnB01" 
+                                class="btnB01 bgPrimary" 
                                 role="button"
                                 >
                                 Select

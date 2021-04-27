@@ -156,7 +156,7 @@ document.querySelector('body').addEventListener('click', (event) => {
     return;
   }
   if (addCustomer) {
-    window.location.replace(`/views/oneTouch/${endPoint}`);
+    window.location.replace(`/views/oneTouch/add-customer`);
     return;
   }
 });

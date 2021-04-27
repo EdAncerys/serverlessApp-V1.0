@@ -194,7 +194,7 @@ const userPlacedOrders = async (db, data) => {
   if (filterOrders.access_token) {
     const dbData = await db
       .collection(COLLECTION_ONE_TOUCH_ORDERS)
-      .find({ oneTouchSuperUser: authToken.email })
+      .find({ 'oneTouchSuperUser.email': authToken.email })
       .toArray();
     console.log(dbData);
 

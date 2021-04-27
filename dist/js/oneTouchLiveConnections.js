@@ -37,7 +37,7 @@ document.querySelector('body').addEventListener('click', (event) => {
   const goBackBtn =
     event.target.nodeName === 'BTNLABEL' || event.target.nodeName === 'INNER';
 
-  console.log(event.target.getAttribute('id'), event.target.nodeName);
+  // console.log(event.target.getAttribute('id'), event.target.nodeName);
 
   let id;
   if (event.target.getAttribute('id')) id = event.target.getAttribute('id');

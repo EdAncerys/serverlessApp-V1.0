@@ -94,7 +94,7 @@ async function _fetchAddressesForPostcodeProvided(postcode) {
                                             <option selected disabled hidden value='selectAddress'>Please Choose Your Address</option>
                                             ${content}
                                           </select>
-                                          <getBroadbandAvailability class="btnOneTouch" role="button">
+                                          <getBroadbandAvailability class="btnOneTouch bgPrimary" role="button">
                                             Check Availability
                                           </getBroadbandAvailability>
                                         </div>
