@@ -34,7 +34,7 @@ async function _oneTouchAllPlacedOrders() {
     console.log(data);
 
     let orderData = '';
-    if (data.length === 0) {
+    if (data.ordersFound === false) {
       _errorMessage('Have no Pending Orders!', 'warning');
 
       userPlacedOrders.innerHTML = `<section class="features">
@@ -51,7 +51,7 @@ async function _oneTouchAllPlacedOrders() {
       data.map((order) => {
         orderData += `<div class="boxContainer bgGradientSilver fontH2">
                         <div class="broadbandDataContainer-C7">
-                          <div class="tableCell">${order.oneTouchSuperUser}</div>
+                          <div class="tableCell">${order.oneTouchSuperUser.email}</div>
                           <div class="tableCell">${order.oneTouch.name}</div>
                           <div class="tableCell">${order.oneTouch.provider}</div>
                           <div class="tableCell">${order.oneTouch.price}</div>

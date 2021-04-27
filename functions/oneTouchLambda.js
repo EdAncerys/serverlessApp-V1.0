@@ -225,10 +225,11 @@ const oneTouchOrders = async (db, data) => {
     .toArray();
   console.log(dbData);
 
-  const ordersValid = dbData.length > 0;
-  console.log('ordersValid:', ordersValid === true);
+  const pendingOrders = dbData.length > 0;
+  const noOrders = dbData.length === 0;
+  console.log('ordersValid:', pendingOrders === true);
 
-  if (ordersValid) {
+  if (pendingOrders) {
     return {
       statusCode: 201,
       headers: {
@@ -236,8 +237,20 @@ const oneTouchOrders = async (db, data) => {
       },
       body: JSON.stringify({ data: dbData }),
     };
+  }
+  if (noOrders) {
+    const msg = `Have No Orders Pending!`;
+    console.log(msg);
+
+    return {
+      statusCode: 201,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ data: { ordersFound: false, msg } }),
+    };
   } else {
-    const msg = `Error accrued. No orders found!`;
+    const msg = `Error accrued. Failed to Connect to DB`;
     console.log(msg);
 
     return {
@@ -245,7 +258,7 @@ const oneTouchOrders = async (db, data) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ msg: msg }),
+      body: JSON.stringify({ data: msg }),
     };
   }
 };
@@ -270,7 +283,7 @@ const addOrder = async (db, data) => {
     }
   );
   delete data['access_token']; // Removing access_token from data object
-  data['oneTouchSuperUser'] = authToken.email;
+  data['oneTouchSuperUser'] = { email: authToken.email, id: authToken._id };
 
   if (createOrder.broadband_name) {
     await db.collection(COLLECTION_ONE_TOUCH_ORDERS).insertMany([data]);

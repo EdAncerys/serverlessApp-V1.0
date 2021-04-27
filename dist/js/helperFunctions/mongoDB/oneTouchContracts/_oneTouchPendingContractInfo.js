@@ -64,22 +64,22 @@ async function _oneTouchPendingContractInfo(findOneById) {
               />
             </div>
             <div class="justifyText">
-              <label for="fullName">Contract Expiration Date</label>
+              <label for="fullName">Contract End Date</label>
               <input
                 type="text"
-                id="contractExpirationDate"
+                id="contractEndDate"
                 name="fullName"
                 placeholder="DD/MM/YYYY"
               />
             </div>
 
             <div class="justifyText">
-              <label for="fullName">Contract Length</label>
+              <label for="fullName">Contract Price Per Month</label>
                 <input
-                  type="text"
+                  type="number"
                   id="contractLength"
                   name="fullName"
-                  placeholder="Contract Length..."
+                  placeholder="Contract Price PCM..."
                 />
             </div>
           </div>

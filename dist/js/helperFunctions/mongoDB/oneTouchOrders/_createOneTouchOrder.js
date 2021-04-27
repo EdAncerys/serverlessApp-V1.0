@@ -4,7 +4,7 @@ async function _createOneTouchOrder(access_token, oneTouch) {
   const URL = '/oneTouch/orders/addOrder';
   const body = {
     access_token,
-    oneTouch,
+    oneTouchCustomer,
   };
   const config = {
     method: 'POST',
