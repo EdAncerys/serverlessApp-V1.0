@@ -60,7 +60,7 @@ async function _oneTouchPendingContractInfo(findOneById) {
                 type="text"
                 id="contractStartDate"
                 name="fullName"
-                placeholder="Contract Start Date..."
+                placeholder="DD/MM/YYYY"
               />
             </div>
             <div class="justifyText">
@@ -69,7 +69,7 @@ async function _oneTouchPendingContractInfo(findOneById) {
                 type="text"
                 id="contractExpirationDate"
                 name="fullName"
-                placeholder="Contract Expiration Date..."
+                placeholder="DD/MM/YYYY"
               />
             </div>
 
