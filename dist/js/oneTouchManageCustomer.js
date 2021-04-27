@@ -54,7 +54,8 @@ document.querySelector('body').addEventListener('click', (event) => {
     persistDOMData(endPoint);
   }
   if (customerInfo) {
-    _findOneTouchCustomerById(id);
+    const displayData = true;
+    _findOneTouchCustomerById(id, displayData);
   }
   if (deleteCustomer) {
     oneTouchDeleteCustomer(id);

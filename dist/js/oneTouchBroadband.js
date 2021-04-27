@@ -151,7 +151,8 @@ document.querySelector('body').addEventListener('click', (event) => {
     return;
   }
   if (customerInfo) {
-    _findOneTouchCustomerById(id);
+    const displayData = true;
+    _findOneTouchCustomerById(id, displayData);
     return;
   }
   if (addCustomer) {

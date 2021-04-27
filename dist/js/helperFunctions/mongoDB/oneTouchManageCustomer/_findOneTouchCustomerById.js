@@ -2,7 +2,7 @@ import { _errorMessage } from '../../_errorMessage.js';
 import { _spinner } from '../../_spinner.js';
 import { persistDOMData } from '../../../persistDOMData.js';
 
-async function _findOneTouchCustomerById(id) {
+async function _findOneTouchCustomerById(id, displayData) {
   console.log('Fetching Customer Data...');
   _spinner(true, 'Loading Customer Information...');
   const URL = '/oneTouch/customer/findCustomerById';
@@ -30,10 +30,7 @@ async function _findOneTouchCustomerById(id) {
     if (!response.ok) throw new Error(data.msg);
     console.log(data);
 
-    if (
-      endPoint.includes(connectionChecker) ||
-      endPoint.includes(manageCustomer)
-    ) {
+    if (displayData) {
       const customerInfo = data;
       let thoroughfare_number =
         customerInfo.thoroughfare_number === 'null'
