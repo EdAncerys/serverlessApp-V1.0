@@ -54,9 +54,12 @@ document.querySelector('body').addEventListener('click', (event) => {
   const endPoint = location.href.split('/').slice(-1)[0];
 
   async function asyncSelectCustomer() {
-    const oneTouch = await _findOneTouchCustomerById(id);
-    console.log(oneTouch);
-    await sessionStorage.setItem('oneTouch', JSON.stringify(oneTouch));
+    const oneTouchCustomer = await _findOneTouchCustomerById(id);
+    console.log(oneTouchCustomer);
+    await sessionStorage.setItem(
+      'oneTouchCustomer',
+      JSON.stringify(oneTouchCustomer)
+    );
 
     _getBroadbandAvailability();
   }

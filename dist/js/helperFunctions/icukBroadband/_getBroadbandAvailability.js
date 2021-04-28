@@ -29,19 +29,21 @@ async function _getBroadbandAvailability() {
     return;
   }
 
-  const oneTouch = await JSON.parse(sessionStorage.getItem('oneTouch'));
+  const oneTouchCustomer = await JSON.parse(
+    sessionStorage.getItem('oneTouchCustomer')
+  );
 
   const body = {
-    sub_premises: oneTouch.sub_premises,
-    premises_name: oneTouch.premises_name,
-    thoroughfare_number: oneTouch.thoroughfare_number,
-    thoroughfare_name: oneTouch.thoroughfare_name,
-    locality: oneTouch.locality,
-    post_town: oneTouch.post_town,
-    county: oneTouch.county,
-    postcode: oneTouch.postcode,
-    district_id: oneTouch.district_id,
-    nad_key: oneTouch.nad_key,
+    sub_premises: oneTouchCustomer.sub_premises,
+    premises_name: oneTouchCustomer.premises_name,
+    thoroughfare_number: oneTouchCustomer.thoroughfare_number,
+    thoroughfare_name: oneTouchCustomer.thoroughfare_name,
+    locality: oneTouchCustomer.locality,
+    post_town: oneTouchCustomer.post_town,
+    county: oneTouchCustomer.county,
+    postcode: oneTouchCustomer.postcode,
+    district_id: oneTouchCustomer.district_id,
+    nad_key: oneTouchCustomer.nad_key,
   };
   console.log(body);
 
@@ -57,11 +59,16 @@ async function _getBroadbandAvailability() {
     const data = await response.json();
     console.log(data);
 
+    const sortedBroadbandData = _sortBroadbandData(data, 'name', true);
+    sessionStorage.setItem(
+      'oneTouchBroadband',
+      JSON.stringify(sortedBroadbandData)
+    );
+
     let orderData = '';
+    let oneTouchOrderNo = 0;
 
-    _sortBroadbandData(data, 'name', true).map((order) => {
-      const oneTouchOrderData = JSON.stringify(order);
-
+    sortedBroadbandData.map((order) => {
       orderData += `<div class="boxContainer bgGradientSilver  fontH2">
                           <div class="broadbandDataContainer-C6">
                             <div class="tableCell">${order.name}</div>
@@ -72,7 +79,7 @@ async function _getBroadbandAvailability() {
                             <div class="tableCell">
                             <div class='center'>
                               <selectOrder
-                                oneTouchOrderData='${oneTouchOrderData}'
+                                oneTouchOrderNo='${oneTouchOrderNo}'
                                 class="btnB01 bgPrimary" 
                                 role="button"
                                 >
@@ -82,6 +89,7 @@ async function _getBroadbandAvailability() {
                           </div>
                           </div>
                         </div>`;
+      oneTouchOrderNo += 1; // increment product count
     });
 
     oneTouchBroadbandAvailability.innerHTML = `<section class="features">
@@ -107,6 +115,7 @@ async function _getBroadbandAvailability() {
 
     oneTouchCustomerList.classList.add('hidden');
     oneTouchBroadbandContainer.appendChild(oneTouchBroadbandAvailability);
+
     const endPoint = location.href.split('/').slice(-1)[0];
     persistDOMData(endPoint);
   } catch (err) {
