@@ -1,7 +1,15 @@
 import { persistDOMData } from '../../persistDOMData.js';
 
-async function _reviewOrderData(oneTouchOrderData) {
-  console.table(oneTouchOrderData);
+async function _reviewOrderData(oneTouchOrderNo) {
+  const availableBroadbandDeals = await JSON.parse(
+    sessionStorage.getItem('availableBroadbandDeals')
+  );
+  const oneTouchBroadband = availableBroadbandDeals[oneTouchOrderNo];
+  // Save data to session storage
+  sessionStorage.setItem(
+    'oneTouchBroadband',
+    JSON.stringify(oneTouchBroadband)
+  );
 
   try {
     // Removing user previous data
@@ -19,45 +27,47 @@ async function _reviewOrderData(oneTouchOrderData) {
     const oneTouchOrderReview = document.createElement('div');
     oneTouchOrderReview.id = 'oneTouchBroadbandOrderPageFour';
 
-    const oneTouch = await JSON.parse(sessionStorage.getItem('oneTouch'));
-    const mergedData = { ...oneTouch, ...oneTouchOrderData };
-
-    // Save data to session storage
-    sessionStorage.setItem('oneTouch', JSON.stringify(mergedData));
-
     const sub_premises =
-      mergedData.sub_premises === 'null' ? '' : mergedData.sub_premises;
+      oneTouchBroadband.sub_premises === 'null'
+        ? ''
+        : oneTouchBroadband.sub_premises;
     const premises_name =
-      mergedData.premises_name === 'null' ? '' : mergedData.premises_name;
+      oneTouchBroadband.premises_name === 'null'
+        ? ''
+        : oneTouchBroadband.premises_name;
     const thoroughfare_number =
-      mergedData.thoroughfare_number === 'null'
+      oneTouchBroadband.thoroughfare_number === 'null'
         ? ''
-        : mergedData.thoroughfare_number;
+        : oneTouchBroadband.thoroughfare_number;
     const thoroughfare_name =
-      mergedData.thoroughfare_name === 'null'
+      oneTouchBroadband.thoroughfare_name === 'null'
         ? ''
-        : mergedData.thoroughfare_name;
-    const locality = mergedData.locality === 'null' ? '' : mergedData.locality;
+        : oneTouchBroadband.thoroughfare_name;
+    const locality =
+      oneTouchBroadband.locality === 'null' ? '' : oneTouchBroadband.locality;
     const post_town =
-      mergedData.post_town === 'null' ? '' : mergedData.post_town;
-    const county = mergedData.county === 'null' ? '' : mergedData.county;
-    const postcode = mergedData.postcode === 'null' ? '' : mergedData.postcode;
+      oneTouchBroadband.post_town === 'null' ? '' : oneTouchBroadband.post_town;
+    const county =
+      oneTouchBroadband.county === 'null' ? '' : oneTouchBroadband.county;
+    const postcode =
+      oneTouchBroadband.postcode === 'null' ? '' : oneTouchBroadband.postcode;
 
     let customerInfo = `<div class="fontH2">Customer details not available!</div>
                         <div class="fontH2 textDanger">*To place the order please add customer details first.</div>`;
-    if (mergedData.customerFullName)
-      customerInfo = `<div class="fontH2 textDanger">Full Name: ${mergedData.customerFullName} | Email: ${mergedData.customerEmail}</div>`;
+    if (oneTouchBroadband.customerFullName)
+      customerInfo = `<div class="fontH2 textDanger">Full Name: ${oneTouchBroadband.customerFullName} | Email: ${oneTouchBroadband.customerEmail}</div>`;
 
     let placeOrderClassList = 'btnB01';
-    if (!mergedData.customerFullName) placeOrderClassList = 'btnB01 btnDisable';
+    if (!oneTouchBroadband.customerFullName)
+      placeOrderClassList = 'btnB01 btnDisable';
 
     const orderData = `<div class="boxContainer bgGradientSilver  fontH2">
                         <div class="broadbandDataContainer-C6">
-                          <div class="tableCell">${mergedData.name}</div>
-                          <div class="tableCell">${mergedData.likely_down_speed}</div>
-                          <div class="tableCell">${mergedData.likely_up_speed}</div>
-                          <div class="tableCell">${mergedData.price}</div>
-                          <div class="tableCell">${mergedData.installation}</div>
+                          <div class="tableCell">${oneTouchBroadband.name}</div>
+                          <div class="tableCell">${oneTouchBroadband.likely_down_speed}</div>
+                          <div class="tableCell">${oneTouchBroadband.likely_up_speed}</div>
+                          <div class="tableCell">${oneTouchBroadband.price}</div>
+                          <div class="tableCell">${oneTouchBroadband.installation}</div>
                           <div class="tableCell">
                           <div class='center'>
                             <termsAndConditions class="${placeOrderClassList}" role="button">

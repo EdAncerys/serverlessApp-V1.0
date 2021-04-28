@@ -61,7 +61,7 @@ async function _getBroadbandAvailability() {
 
     const sortedBroadbandData = _sortBroadbandData(data, 'name', true);
     sessionStorage.setItem(
-      'oneTouchBroadband',
+      'availableBroadbandDeals',
       JSON.stringify(sortedBroadbandData)
     );
 

@@ -82,10 +82,10 @@ document.querySelector('body').addEventListener('click', (event) => {
     return;
   }
   if (selectOrder) {
-    const oneTouchOrderData = JSON.parse(
-      event.target.getAttribute('oneTouchOrderData')
+    const oneTouchOrderNo = JSON.parse(
+      event.target.getAttribute('oneTouchOrderNo')
     );
-    _reviewOrderData(oneTouchOrderData);
+    _reviewOrderData(oneTouchOrderNo);
     return;
   }
   if (termsAndConditions) {
