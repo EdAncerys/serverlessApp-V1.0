@@ -1,10 +1,16 @@
 import { persistDOMData } from '../../persistDOMData.js';
 
 async function _reviewOrderData(oneTouchOrderNo) {
-  const availableBroadbandDeals = await JSON.parse(
-    sessionStorage.getItem('availableBroadbandDeals')
+  const broadbandAvailability = await JSON.parse(
+    sessionStorage.getItem('broadbandAvailability')
   );
-  const oneTouchBroadband = availableBroadbandDeals[oneTouchOrderNo];
+  const oneTouchCustomer = await JSON.parse(
+    sessionStorage.getItem('oneTouchCustomer')
+  );
+  const oneTouchBroadband = await broadbandAvailability[oneTouchOrderNo];
+  console.log(oneTouchOrderNo);
+  console.log(oneTouchCustomer);
+  console.log(oneTouchBroadband);
   // Save data to session storage
   sessionStorage.setItem(
     'oneTouchBroadband',
@@ -28,38 +34,37 @@ async function _reviewOrderData(oneTouchOrderNo) {
     oneTouchOrderReview.id = 'oneTouchBroadbandOrderPageFour';
 
     const sub_premises =
-      oneTouchBroadband.sub_premises === 'null'
+      oneTouchCustomer.sub_premises === 'null'
         ? ''
-        : oneTouchBroadband.sub_premises;
+        : oneTouchCustomer.sub_premises;
     const premises_name =
-      oneTouchBroadband.premises_name === 'null'
+      oneTouchCustomer.premises_name === 'null'
         ? ''
-        : oneTouchBroadband.premises_name;
+        : oneTouchCustomer.premises_name;
     const thoroughfare_number =
-      oneTouchBroadband.thoroughfare_number === 'null'
+      oneTouchCustomer.thoroughfare_number === 'null'
         ? ''
-        : oneTouchBroadband.thoroughfare_number;
+        : oneTouchCustomer.thoroughfare_number;
     const thoroughfare_name =
-      oneTouchBroadband.thoroughfare_name === 'null'
+      oneTouchCustomer.thoroughfare_name === 'null'
         ? ''
-        : oneTouchBroadband.thoroughfare_name;
+        : oneTouchCustomer.thoroughfare_name;
     const locality =
-      oneTouchBroadband.locality === 'null' ? '' : oneTouchBroadband.locality;
+      oneTouchCustomer.locality === 'null' ? '' : oneTouchCustomer.locality;
     const post_town =
-      oneTouchBroadband.post_town === 'null' ? '' : oneTouchBroadband.post_town;
+      oneTouchCustomer.post_town === 'null' ? '' : oneTouchCustomer.post_town;
     const county =
-      oneTouchBroadband.county === 'null' ? '' : oneTouchBroadband.county;
+      oneTouchCustomer.county === 'null' ? '' : oneTouchCustomer.county;
     const postcode =
-      oneTouchBroadband.postcode === 'null' ? '' : oneTouchBroadband.postcode;
+      oneTouchCustomer.postcode === 'null' ? '' : oneTouchCustomer.postcode;
 
     let customerInfo = `<div class="fontH2">Customer details not available!</div>
                         <div class="fontH2 textDanger">*To place the order please add customer details first.</div>`;
-    if (oneTouchBroadband.customerFullName)
-      customerInfo = `<div class="fontH2 textDanger">Full Name: ${oneTouchBroadband.customerFullName} | Email: ${oneTouchBroadband.customerEmail}</div>`;
+    if (oneTouchCustomer.customerFullName)
+      customerInfo = `<div class="fontH2 textDanger">Full Name: ${oneTouchCustomer.customerFullName} | Email: ${oneTouchCustomer.customerEmail}</div>`;
 
     let placeOrderClassList = 'btnB01';
-    if (!oneTouchBroadband.customerFullName)
-      placeOrderClassList = 'btnB01 btnDisable';
+    if (!oneTouchCustomer) placeOrderClassList = 'btnB01 btnDisable';
 
     const orderData = `<div class="boxContainer bgGradientSilver  fontH2">
                         <div class="broadbandDataContainer-C6">
@@ -70,7 +75,7 @@ async function _reviewOrderData(oneTouchOrderNo) {
                           <div class="tableCell">${oneTouchBroadband.installation}</div>
                           <div class="tableCell">
                           <div class='center'>
-                            <termsAndConditions class="${placeOrderClassList}" role="button">
+                            <termsAndConditions class="${placeOrderClassList} bgPrimary" role="button">
                               Place Order
                             </termsAndConditions>
                           </div>
@@ -96,7 +101,7 @@ async function _reviewOrderData(oneTouchOrderNo) {
                                         <div class="boxContainer bgGradientSilver ">
                                           <div class="broadbandOrderReviewContainer">
                                             <div class="fontH3">Full Address Provided:</div>
-                                            <div class="fontH2">${sub_premises} ${premises_name}  ${thoroughfare_number} ${thoroughfare_name} ${locality} ${post_town} ${county} ${postcode}</div>
+                                            <div class="fontH2 textDanger">${sub_premises} ${premises_name}  ${thoroughfare_number} ${thoroughfare_name} ${locality} ${post_town} ${county} ${postcode}</div>
                                             <div class="fontH3">Customer Details:</div>
                                             ${customerInfo}
                                           </div>
