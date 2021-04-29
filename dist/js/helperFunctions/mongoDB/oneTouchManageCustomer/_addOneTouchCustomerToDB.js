@@ -42,8 +42,7 @@ async function _addOneTouchCustomerToDB() {
 
   console.log('Adding user to DB. Full Name: ' + customerFullName);
 
-  const body = {
-    access_token,
+  const oneTouchCustomer = {
     customerCreated,
     customerFullName,
     customerPhoneNumber,
@@ -69,6 +68,13 @@ async function _addOneTouchCustomerToDB() {
     district_id,
     nad_key,
   };
+
+  const body = {
+    access_token,
+    oneTouchCustomer,
+  };
+  console.log(body);
+
   const config = {
     method: 'POST',
     body: JSON.stringify(body),
@@ -77,16 +83,16 @@ async function _addOneTouchCustomerToDB() {
   try {
     const response = await fetch(URL, config);
     const data = await response.json();
-    if (!response.ok) throw new Error(data.msg);
+    if (!response.ok) throw new Error(data);
 
     console.log(data);
     clearFormData();
 
     _errorMessage(data.msg, 'success');
     _spinner(false);
-  } catch (err) {
-    console.log(err);
-    _errorMessage(err);
+  } catch (error) {
+    console.log(error);
+    _errorMessage(error);
     _spinner(false);
   }
 }

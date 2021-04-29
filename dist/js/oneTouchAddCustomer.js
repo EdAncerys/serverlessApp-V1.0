@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
 const customerAddressSearch = async (ev) => {
   ev.preventDefault();
   await _customerAddressForPostcodeProvided();
+  return;
 };
 
 const addUser = async (ev) => {

@@ -6,7 +6,7 @@ async function _oneTouchAllPlacedOrders() {
   console.log('Fetching all orders...');
   _spinner(true, 'Loading Orders...');
   const oneTouchOrders = document.querySelector('oneTouchOrders');
-  const URL = '/oneTouch/orders/oneTouchOrders';
+  const URL = '/oneTouch/orders/oneTouchBroadband';
   const access_token = await sessionStorage.getItem('access_token');
 
   const body = {

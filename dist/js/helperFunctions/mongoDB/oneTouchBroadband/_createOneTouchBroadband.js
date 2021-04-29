@@ -1,9 +1,9 @@
-async function _createOneTouchOrder(
+async function _createOneTouchBroadband(
   access_token,
   oneTouchCustomer,
   oneTouchBroadband
 ) {
-  console.log('Creating Broadband Order. Name: ' + oneTouch.name);
+  console.log('Creating Broadband Order. Name: ' + oneTouchBroadband.name);
 
   const URL = '/oneTouch/orders/addOrder';
   const body = {
@@ -34,4 +34,4 @@ async function _createOneTouchOrder(
   }
 }
 
-export { _createOneTouchOrder };
+export { _createOneTouchBroadband };

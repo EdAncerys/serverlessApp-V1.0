@@ -1,7 +1,7 @@
 import { persistDOMData } from './persistDOMData.js';
-import { _deleteOneTouchOrder } from './helperFunctions/mongoDB/oneTouchOrders/_deleteOneTouchOrder.js';
+import { _deleteOneTouchBroadband } from './helperFunctions/mongoDB/oneTouchBroadband/_deleteOneTouchBroadband.js';
 import { _errorMessage } from './helperFunctions/_errorMessage.js';
-import { _oneTouchAllPlacedOrders } from './helperFunctions/mongoDB/oneTouchOrders/_oneTouchAllPlacedOrders.js';
+import { _oneTouchAllPlacedOrders } from './helperFunctions/mongoDB/oneTouchBroadband/_oneTouchAllPlacedOrders.js';
 import { _oneTouchPendingContractInfo } from './helperFunctions/mongoDB/oneTouchContracts/_oneTouchPendingContractInfo.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 const asyncDeletePlacedOrder = async (id) => {
-  await _deleteOneTouchOrder(id);
+  await _deleteOneTouchBroadband(id);
   await _oneTouchAllPlacedOrders();
 };
 

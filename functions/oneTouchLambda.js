@@ -14,7 +14,7 @@ const fetch = require('node-fetch');
 const MONGODB_URI = process.env.MONGODB_URI;
 const DB_NAME = 'oneTouchDB';
 const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
-const COLLECTION_ONE_TOUCH_ORDERS = 'oneTouchOrders';
+const COLLECTION_ONE_TOUCH_BROADBAND = 'oneTouchBroadband';
 const COLLECTION_ONE_TOUCH_SUPER_USER = 'oneTouchSuperUser';
 const COLLECTION_ONE_TOUCH_CUSTOMER = 'oneTouchCustomer';
 
@@ -193,8 +193,8 @@ const userPlacedOrders = async (db, data) => {
 
   if (filterOrders.access_token) {
     const dbData = await db
-      .collection(COLLECTION_ONE_TOUCH_ORDERS)
-      .find({ 'oneTouchSuperUser.email': authToken.email })
+      .collection(COLLECTION_ONE_TOUCH_BROADBAND)
+      .find({ 'oneTouchSuperUser._id': authToken._id })
       .toArray();
     console.log(dbData);
 
@@ -218,9 +218,9 @@ const userPlacedOrders = async (db, data) => {
     };
   }
 };
-const oneTouchOrders = async (db, data) => {
+const oneTouchBroadband = async (db, data) => {
   const dbData = await db
-    .collection(COLLECTION_ONE_TOUCH_ORDERS)
+    .collection(COLLECTION_ONE_TOUCH_BROADBAND)
     .find({})
     .toArray();
   console.log(dbData);
@@ -285,12 +285,10 @@ const addOrder = async (db, data) => {
   );
 
   const oneTouchBroadband = {
-    oneTouchSuperUser: authToken.id,
+    oneTouchSuperUser: authToken._id,
     oneTouchCustomer: createOrder.oneTouchCustomer._id,
     oneTouchBroadband: createOrder.oneTouchBroadband,
   };
-  delete data['access_token']; // Removing access_token from data object
-  data['oneTouchSuperUser'] = { email: authToken.email, id: authToken._id };
 
   if (
     authToken &&
@@ -298,7 +296,7 @@ const addOrder = async (db, data) => {
     createOrder.oneTouchBroadband
   ) {
     await db
-      .collection(COLLECTION_ONE_TOUCH_ORDERS)
+      .collection(COLLECTION_ONE_TOUCH_BROADBAND)
       .insertMany([oneTouchBroadband]);
     const msg =
       `Order successfully been created for: ` +
@@ -333,7 +331,7 @@ const deleteOrder = async (db, data) => {
   };
   const orderID = new ObjectId(deleteOrder._id);
   const order = await db
-    .collection(COLLECTION_ONE_TOUCH_ORDERS)
+    .collection(COLLECTION_ONE_TOUCH_BROADBAND)
     .find({ _id: orderID })
     .toArray();
   const orderValid = order.length > 0;
@@ -342,7 +340,7 @@ const deleteOrder = async (db, data) => {
     const msg =
       `Oder been successfully deleted from DB. Order ID: ` + deleteOrder._id;
     await db
-      .collection(COLLECTION_ONE_TOUCH_ORDERS)
+      .collection(COLLECTION_ONE_TOUCH_BROADBAND)
       .deleteOne({ _id: orderID });
     console.log(msg);
 
@@ -372,7 +370,7 @@ const deleteOrder = async (db, data) => {
 const addCustomer = async (db, data) => {
   const addCustomer = {
     access_token: data.access_token,
-    customerEmail: data.customerEmail,
+    oneTouchCustomer: data.oneTouchCustomer,
   };
   console.log(addCustomer);
   const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
@@ -393,20 +391,25 @@ const addCustomer = async (db, data) => {
   const user = await db
     .collection(COLLECTION_ONE_TOUCH_CUSTOMER)
     .find({
-      oneTouchSuperUser: authToken.email,
-      customerEmail: addCustomer.customerEmail,
+      oneTouchSuperUser: authToken._id,
+      oneTouchCustomer: addCustomer.oneTouchCustomer.customerEmail,
     })
     .toArray();
   console.log(user);
   const userExist = user.length > 0;
 
-  if (!userExist && addCustomer.customerEmail) {
-    delete data['access_token']; // Remove access_token from data
-    data['oneTouchSuperUser'] = authToken.email; // Add oneTouchSuperUser data
+  const oneTouchCustomer = {
+    oneTouchSuperUser: { id: authToken._id },
+    oneTouchCustomer: addCustomer.oneTouchCustomer,
+  };
 
-    await db.collection(COLLECTION_ONE_TOUCH_CUSTOMER).insertMany([data]);
+  if (authToken && !userExist && addCustomer.oneTouchCustomer) {
+    await db
+      .collection(COLLECTION_ONE_TOUCH_CUSTOMER)
+      .insertMany([oneTouchCustomer]);
     const msg =
-      `User successfully added to DB with email: ` + addCustomer.customerEmail;
+      `User successfully added to DB with email: ` +
+      addCustomer.oneTouchCustomer.customerEmail;
     console.log(msg);
     console.log(data);
 
@@ -418,7 +421,9 @@ const addCustomer = async (db, data) => {
       body: JSON.stringify({ user: data, msg: msg }),
     };
   } else {
-    const msg = `User Already Exists With email: ` + addCustomer.customerEmail;
+    const msg =
+      `User Already Exists With email: ` +
+      addCustomer.oneTouchCustomer.customerEmail;
     console.log(msg);
 
     return {
@@ -602,7 +607,7 @@ const findContractById = async (db, data) => {
 
   const contractID = new ObjectId(findContract.id);
   const contractData = await db
-    .collection(COLLECTION_ONE_TOUCH_ORDERS)
+    .collection(COLLECTION_ONE_TOUCH_BROADBAND)
     .find({ _id: contractID })
     .toArray();
 
@@ -1084,8 +1089,8 @@ module.exports.handler = async (event, context, callback) => {
     // Placing orders endPoints
     case '/oneTouch/orders/userPlacedOrders':
       return userPlacedOrders(db, body);
-    case '/oneTouch/orders/oneTouchOrders':
-      return oneTouchOrders(db, body);
+    case '/oneTouch/orders/oneTouchBroadband':
+      return oneTouchBroadband(db, body);
     case '/oneTouch/orders/addOrder':
       return addOrder(db, body);
     case '/oneTouch/orders/deleteOrder':

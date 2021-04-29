@@ -18,6 +18,10 @@ async function _oneTouchContracts() {
 
   try {
     const response = await fetch(URL, config);
+    const dbData = await response.json();
+    const data = dbData.data;
+    console.log(data);
+
     if (!response.ok) throw new Error(data);
 
     const dataWrapper = document.createElement('div');
@@ -26,9 +30,6 @@ async function _oneTouchContracts() {
     let customerData = '';
     let customerDataHTML;
 
-    const dbData = await response.json();
-    const data = dbData.data;
-    console.log(data);
     data.map((customer) => {
       let thoroughfare_number =
         customer.oneTouch.thoroughfare_number === 'null'
@@ -167,10 +168,10 @@ async function _oneTouchContracts() {
     const endPoint = location.href.split('/').slice(-1)[0];
     persistDOMData(endPoint);
     _spinner(false);
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    console.log(error);
     _spinner(false);
-    _errorMessage(err);
+    _errorMessage(error.msg);
   }
 }
 

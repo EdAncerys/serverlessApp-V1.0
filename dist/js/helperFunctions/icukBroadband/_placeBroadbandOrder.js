@@ -1,4 +1,4 @@
-import { _createOneTouchOrder } from '../mongoDB/oneTouchOrders/_createOneTouchOrder.js';
+import { _createOneTouchBroadband } from '../mongoDB/oneTouchBroadband/_createOneTouchBroadband.js';
 import { persistDOMData } from '../../persistDOMData.js';
 import { _errorMessage } from '../_errorMessage.js';
 import { _spinner } from '../_spinner.js';
@@ -103,7 +103,7 @@ async function _placeBroadbandOrder() {
     const response = await fetch(URL, config); //Send email
     console.log(response);
     if (!response.ok) throw new Error(response.statusText);
-    const saveToDb = await _createOneTouchOrder(
+    const saveToDb = await _createOneTouchBroadband(
       access_token,
       oneTouchCustomer,
       oneTouchBroadband

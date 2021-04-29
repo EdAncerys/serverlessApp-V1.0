@@ -1,7 +1,7 @@
 import { _errorMessage } from '../../_errorMessage.js';
 import { _spinner } from '../../_spinner.js';
 
-async function _deleteOneTouchOrder(id) {
+async function _deleteOneTouchBroadband(id) {
   console.log('Deleting Broadband Order. ID: ' + id);
   _spinner(true);
 
@@ -30,4 +30,4 @@ async function _deleteOneTouchOrder(id) {
   }
 }
 
-export { _deleteOneTouchOrder };
+export { _deleteOneTouchBroadband };

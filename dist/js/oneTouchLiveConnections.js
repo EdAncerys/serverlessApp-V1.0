@@ -2,7 +2,7 @@ import { persistDOMData } from './persistDOMData.js';
 import { _errorMessage } from './helperFunctions/_errorMessage.js';
 import { _oneTouchContracts } from './helperFunctions/mongoDB/oneTouchContracts/_oneTouchContracts.js';
 import { _oneTouchContractInfo } from './helperFunctions/mongoDB/oneTouchContracts/_oneTouchContractInfo.js';
-import { _deleteOneTouchOrder } from './helperFunctions/mongoDB/oneTouchOrders/_deleteOneTouchOrder.js';
+import { _deleteOneTouchBroadband } from './helperFunctions/mongoDB/oneTouchBroadband/_deleteOneTouchBroadband.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   // Persist user data on reload
@@ -25,7 +25,7 @@ const oneTouchContracts = async () => {
   await _oneTouchContracts();
 };
 const asyncDeleteContract = async (id) => {
-  await _deleteOneTouchOrder(id);
+  await _deleteOneTouchBroadband(id);
   await _oneTouchContracts();
 };
 
