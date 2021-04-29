@@ -15,9 +15,10 @@ async function _placeBroadbandOrder() {
   );
 
   const access_token = await sessionStorage.getItem('access_token');
-  const oneTouchCustomer = await JSON.parse(
+  const oneTouchCustomerData = await JSON.parse(
     sessionStorage.getItem('oneTouchCustomer')
   );
+  const oneTouchCustomer = oneTouchCustomerData.oneTouchCustomer;
   const oneTouchBroadband = await JSON.parse(
     sessionStorage.getItem('oneTouchBroadband')
   );
@@ -105,7 +106,7 @@ async function _placeBroadbandOrder() {
     if (!response.ok) throw new Error(response.statusText);
     const saveToDb = await _createOneTouchBroadband(
       access_token,
-      oneTouchCustomer,
+      oneTouchCustomerData,
       oneTouchBroadband
     ); // save order to db
     console.log(saveToDb);

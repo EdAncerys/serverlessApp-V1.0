@@ -266,7 +266,7 @@ const addOrder = async (db, data) => {
   console.log(data);
   const createOrder = {
     access_token: data.access_token,
-    oneTouchCustomer: data.oneTouchCustomer,
+    oneTouchCustomer: data.oneTouchCustomerData,
     oneTouchBroadband: data.oneTouchBroadband,
   };
 
@@ -285,8 +285,8 @@ const addOrder = async (db, data) => {
   );
 
   const oneTouchBroadband = {
-    oneTouchSuperUser: authToken._id,
-    oneTouchCustomer: createOrder.oneTouchCustomer._id,
+    oneTouchSuperUser: { id: authToken._id },
+    oneTouchCustomer: { id: createOrder.oneTouchCustomer._id },
     oneTouchBroadband: createOrder.oneTouchBroadband,
   };
 
@@ -391,8 +391,9 @@ const addCustomer = async (db, data) => {
   const user = await db
     .collection(COLLECTION_ONE_TOUCH_CUSTOMER)
     .find({
-      oneTouchSuperUser: authToken._id,
-      oneTouchCustomer: addCustomer.oneTouchCustomer.customerEmail,
+      'oneTouchSuperUser.id': authToken._id,
+      'oneTouchCustomer.customerEmail':
+        addCustomer.oneTouchCustomer.customerEmail,
     })
     .toArray();
   console.log(user);

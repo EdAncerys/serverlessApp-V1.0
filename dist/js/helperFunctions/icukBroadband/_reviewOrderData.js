@@ -4,9 +4,10 @@ async function _reviewOrderData(oneTouchOrderNo) {
   const broadbandAvailability = await JSON.parse(
     sessionStorage.getItem('broadbandAvailability')
   );
-  const oneTouchCustomer = await JSON.parse(
+  const oneTouchCustomerData = await JSON.parse(
     sessionStorage.getItem('oneTouchCustomer')
   );
+  const oneTouchCustomer = oneTouchCustomerData.oneTouchCustomer;
   const oneTouchBroadband = await broadbandAvailability[oneTouchOrderNo];
 
   // Save data to session storage

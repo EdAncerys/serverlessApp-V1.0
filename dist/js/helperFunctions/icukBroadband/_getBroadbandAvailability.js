@@ -29,9 +29,10 @@ async function _getBroadbandAvailability() {
     return;
   }
 
-  const oneTouchCustomer = await JSON.parse(
+  const oneTouchCustomerData = await JSON.parse(
     sessionStorage.getItem('oneTouchCustomer')
   );
+  const oneTouchCustomer = oneTouchCustomerData.oneTouchCustomer;
 
   const body = {
     sub_premises: oneTouchCustomer.sub_premises,

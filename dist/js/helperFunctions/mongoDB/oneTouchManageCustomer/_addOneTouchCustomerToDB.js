@@ -83,7 +83,7 @@ async function _addOneTouchCustomerToDB() {
   try {
     const response = await fetch(URL, config);
     const data = await response.json();
-    if (!response.ok) throw new Error(data);
+    if (!response.ok) throw new Error(data.msg);
 
     console.log(data);
     clearFormData();
