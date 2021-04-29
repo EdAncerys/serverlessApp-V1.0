@@ -31,7 +31,8 @@ async function _findOneTouchCustomerById(id, displayData) {
     console.log(data);
 
     if (displayData) {
-      const customerInfo = data;
+      const customerInfo = data.oneTouchCustomer;
+
       let thoroughfare_number =
         customerInfo.thoroughfare_number === 'null'
           ? ''
