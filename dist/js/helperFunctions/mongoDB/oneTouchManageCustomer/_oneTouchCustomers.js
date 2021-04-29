@@ -34,13 +34,15 @@ async function _oneTouchCustomers() {
     const data = await response.json();
     console.log(data);
 
-    data.map((customer) => {
+    data.map((oneTouchCustomerData) => {
+      let oneTouchCustomer = oneTouchCustomerData.oneTouchCustomer;
+
       if (endPoint.includes(connectionChecker))
         manageDataContainer = `<div class="manageDataContainer">
-                                <customerInfo id='${customer._id}' class="btnB01" role="button">
+                                <customerInfo id='${oneTouchCustomer._id}' class="btnB01" role="button">
                                   Info
                                 </customerInfo>
-                                <selectCustomer id='${customer._id}'
+                                <selectCustomer id='${oneTouchCustomer._id}'
                                             class="btnB01 bgPrimary" 
                                             role="button">
                                   Place Order
@@ -49,10 +51,10 @@ async function _oneTouchCustomers() {
 
       if (endPoint.includes(manageCustomer))
         manageDataContainer = `<div class="manageDataContainer">
-                                  <customerInfo id='${customer._id}' class="btnB01" role="button">
+                                  <customerInfo id='${oneTouchCustomer._id}' class="btnB01" role="button">
                                     Info
                                   </customerInfo>
-                                  <deleteCustomer id='${customer._id}'
+                                  <deleteCustomer id='${oneTouchCustomer._id}'
                                               class="btnB01 bgDanger" 
                                               role="button">
                                     Delete
@@ -66,7 +68,7 @@ async function _oneTouchCustomers() {
                       </goPageBack>
                       <addUser class="btnOneTouch" 
                                 role="button"
-                                onclick = "location.href='../../../../views/oneTouch/add-customer.html'";>
+                                onclick = "location.href='../../../../views/oneTouch/add-oneTouchCustomer.html'";>
                         Add New Customer
                       </addUser>
                     </div>`;
@@ -74,16 +76,16 @@ async function _oneTouchCustomers() {
       customerData += `<div class="rowContainer bgGradientSilver">
                         <div class="rowDataContainer-4">
                           <div class="rowDataWrapper">
-                            <div>${customer.companyName}</div>
-                            <div class="bottomDataRow">${customer.customerFullName}</div>
+                            <div>${oneTouchCustomer.companyName}</div>
+                            <div class="bottomDataRow">${oneTouchCustomer.customerFullName}</div>
                           </div>
                           <div class="rowDataWrapper">
-                            <div>${customer.customerPhoneNumber}</div>
-                            <div class="bottomDataRow">${customer.customerEmail}</div>
+                            <div>${oneTouchCustomer.customerPhoneNumber}</div>
+                            <div class="bottomDataRow">${oneTouchCustomer.customerEmail}</div>
                           </div>
                           <div class="rowDataWrapper">
-                            <div>${customer.thoroughfare_number} ${customer.thoroughfare_name}</div>
-                            <div class="bottomDataRow">${customer.postcode}</div>
+                            <div>${oneTouchCustomer.thoroughfare_number} ${oneTouchCustomer.thoroughfare_name}</div>
+                            <div class="bottomDataRow">${oneTouchCustomer.postcode}</div>
                           </div>
                           <div class="rowDataWrapper">
                             ${manageDataContainer}

@@ -498,7 +498,7 @@ const filterCustomers = async (db, data) => {
 
   const dbData = await db
     .collection(COLLECTION_ONE_TOUCH_CUSTOMER)
-    .find({ oneTouchSuperUser: authToken.email })
+    .find({ 'oneTouchSuperUser.id': authToken._id })
     .toArray();
   console.table(dbData);
 
