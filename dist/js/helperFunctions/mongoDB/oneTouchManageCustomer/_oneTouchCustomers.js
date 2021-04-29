@@ -35,14 +35,15 @@ async function _oneTouchCustomers() {
     console.log(data);
 
     data.map((oneTouchCustomerData) => {
-      let oneTouchCustomer = oneTouchCustomerData.oneTouchCustomer;
+      const oneTouchCustomer = oneTouchCustomerData.oneTouchCustomer;
+      const id = oneTouchCustomerData._id;
 
       if (endPoint.includes(connectionChecker))
         manageDataContainer = `<div class="manageDataContainer">
-                                <customerInfo id='${oneTouchCustomer._id}' class="btnB01" role="button">
+                                <customerInfo id='${id}' class="btnB01" role="button">
                                   Info
                                 </customerInfo>
-                                <selectCustomer id='${oneTouchCustomer._id}'
+                                <selectCustomer id='${id}'
                                             class="btnB01 bgPrimary" 
                                             role="button">
                                   Place Order
@@ -51,10 +52,10 @@ async function _oneTouchCustomers() {
 
       if (endPoint.includes(manageCustomer))
         manageDataContainer = `<div class="manageDataContainer">
-                                  <customerInfo id='${oneTouchCustomer._id}' class="btnB01" role="button">
+                                  <customerInfo id='${id}' class="btnB01" role="button">
                                     Info
                                   </customerInfo>
-                                  <deleteCustomer id='${oneTouchCustomer._id}'
+                                  <deleteCustomer id='${id}'
                                               class="btnB01 bgDanger" 
                                               role="button">
                                     Delete
