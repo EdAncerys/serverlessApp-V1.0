@@ -15,7 +15,7 @@ const MONGODB_URI = process.env.MONGODB_URI;
 const DB_NAME = 'oneTouchDB';
 const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
 const COLLECTION_ONE_TOUCH_ORDERS = 'oneTouchOrders';
-const COLLECTION_ONE_TOUCH_SUPER_USER = 'oneTouchSupperUsers';
+const COLLECTION_ONE_TOUCH_SUPER_USER = 'oneTouchSuperUser';
 const COLLECTION_ONE_TOUCH_CUSTOMER = 'oneTouchCustomer';
 
 // lambda middleware
@@ -266,7 +266,8 @@ const addOrder = async (db, data) => {
   console.log(data);
   const createOrder = {
     access_token: data.access_token,
-    broadband_name: data.oneTouch.name,
+    oneTouchCustomer: data.oneTouchCustomer,
+    oneTouchBroadband: data.oneTouchBroadband,
   };
 
   const authToken = await jwt.verify(
@@ -282,13 +283,26 @@ const addOrder = async (db, data) => {
       }
     }
   );
+
+  const oneTouchBroadband = {
+    oneTouchSuperUser: authToken.id,
+    oneTouchCustomer: createOrder.oneTouchCustomer._id,
+    oneTouchBroadband: createOrder.oneTouchBroadband,
+  };
   delete data['access_token']; // Removing access_token from data object
   data['oneTouchSuperUser'] = { email: authToken.email, id: authToken._id };
 
-  if (createOrder.broadband_name) {
-    await db.collection(COLLECTION_ONE_TOUCH_ORDERS).insertMany([data]);
+  if (
+    authToken &&
+    createOrder.oneTouchCustomer &&
+    createOrder.oneTouchBroadband
+  ) {
+    await db
+      .collection(COLLECTION_ONE_TOUCH_ORDERS)
+      .insertMany([oneTouchBroadband]);
     const msg =
-      `Order successfully been created for: ` + createOrder.broadband_name;
+      `Order successfully been created for: ` +
+      createOrder.oneTouchBroadband.broadband_name;
     console.log(msg);
 
     return {
@@ -299,7 +313,9 @@ const addOrder = async (db, data) => {
       body: JSON.stringify({ order: data, msg: msg }),
     };
   } else {
-    const msg = `Error creating order for: ` + createOrder.broadband_name;
+    const msg =
+      `Error creating order for: ` +
+      createOrder.oneTouchBroadband.broadband_name;
     console.log(msg);
 
     return {

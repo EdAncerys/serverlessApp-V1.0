@@ -1,7 +1,7 @@
 import { _errorMessage } from '../../_errorMessage.js';
 import { _spinner } from '../../_spinner.js';
 
-async function _oneTouchSupperUserLogin() {
+async function _oneTouchSuperUserLogin() {
   console.log('Supper User Login');
   _spinner(true, 'Signing in to One Touch portal account');
 
@@ -31,18 +31,18 @@ async function _oneTouchSupperUserLogin() {
 
   try {
     const response = await fetch(URL, config);
-    if (!response.ok) throw new Error(response.statusText);
     const data = await response.json();
     console.log(data);
+    if (!response.ok) throw new Error(data.msg);
 
     await sessionStorage.setItem('access_token', data.access_token); // Storing access_token in sessions
     _spinner(false);
     window.location.replace('/views/oneTouch/index.html');
-  } catch (err) {
-    console.log(err);
-    _errorMessage(err);
+  } catch (error) {
+    console.log(error);
+    _errorMessage(error);
     _spinner(false);
   }
 }
 
-export { _oneTouchSupperUserLogin };
+export { _oneTouchSuperUserLogin };

@@ -2,7 +2,7 @@ import { _validateEmail } from '../../_validateEmail.js';
 import { _errorMessage } from '../../_errorMessage.js';
 import { _spinner } from '../../_spinner.js';
 
-async function _oneTouchSupperUserSignup() {
+async function _oneTouchSuperUserSignup() {
   console.log('Supper User Signup');
   _spinner(true, 'Creating One Touch portal account');
 
@@ -68,4 +68,4 @@ async function _oneTouchSupperUserSignup() {
   }
 }
 
-export { _oneTouchSupperUserSignup };
+export { _oneTouchSuperUserSignup };

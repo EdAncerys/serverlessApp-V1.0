@@ -1,4 +1,4 @@
-import { _oneTouchSupperUserSignup } from './helperFunctions/mongoDB/oneTouchLogin/_oneTouchSupperUserSignUp.js';
+import { _oneTouchSuperUserSignup } from './helperFunctions/mongoDB/oneTouchLogin/_oneTouchSuperUserSignUp.js';
 import { _errorMessage } from './helperFunctions/_errorMessage.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const oneTouchSignUp = (e) => {
   e.preventDefault();
-  _oneTouchSupperUserSignup();
+  _oneTouchSuperUserSignup();
 };
 
 document.querySelector('body').addEventListener('click', (event) => {

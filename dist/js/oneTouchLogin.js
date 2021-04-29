@@ -1,4 +1,4 @@
-import { _oneTouchSupperUserLogin } from './helperFunctions/mongoDB/oneTouchLogin/_oneTouchSupperUserLogin.js';
+import { _oneTouchSuperUserLogin } from './helperFunctions/mongoDB/oneTouchLogin/_oneTouchSuperUserLogin.js';
 import { _errorMessage } from './helperFunctions/_errorMessage.js';
 
 document.querySelector('body').addEventListener('click', (event) => {
@@ -7,7 +7,7 @@ document.querySelector('body').addEventListener('click', (event) => {
 
   // console.log(event.target);
   if (oneTouchLogin) {
-    _oneTouchSupperUserLogin();
+    _oneTouchSuperUserLogin();
     return;
   }
   if (oneTouchSignUp) {
@@ -18,6 +18,6 @@ document.querySelector('body').addEventListener('click', (event) => {
 
 document.querySelector('body').addEventListener('keyup', (event) => {
   if (event.key === 'Enter') {
-    _oneTouchSupperUserLogin();
+    _oneTouchSuperUserLogin();
   }
 });

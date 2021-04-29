@@ -8,9 +8,7 @@ async function _reviewOrderData(oneTouchOrderNo) {
     sessionStorage.getItem('oneTouchCustomer')
   );
   const oneTouchBroadband = await broadbandAvailability[oneTouchOrderNo];
-  console.log(oneTouchOrderNo);
-  console.log(oneTouchCustomer);
-  console.log(oneTouchBroadband);
+
   // Save data to session storage
   sessionStorage.setItem(
     'oneTouchBroadband',

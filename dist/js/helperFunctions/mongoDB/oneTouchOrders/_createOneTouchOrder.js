@@ -1,10 +1,15 @@
-async function _createOneTouchOrder(access_token, oneTouch) {
+async function _createOneTouchOrder(
+  access_token,
+  oneTouchCustomer,
+  oneTouchBroadband
+) {
   console.log('Creating Broadband Order. Name: ' + oneTouch.name);
 
   const URL = '/oneTouch/orders/addOrder';
   const body = {
     access_token,
-    oneTouch,
+    oneTouchCustomer,
+    oneTouchBroadband,
   };
   const config = {
     method: 'POST',
@@ -16,10 +21,16 @@ async function _createOneTouchOrder(access_token, oneTouch) {
     if (!response.ok) throw new Error(response.statusText);
     const data = await response.json();
     console.log(data);
-    return { ok: true };
+    return {
+      statusCode: 201,
+      ok: true,
+    };
   } catch (err) {
     console.log(err);
-    return { ok: false };
+    return {
+      statusCode: 201,
+      ok: false,
+    };
   }
 }
 

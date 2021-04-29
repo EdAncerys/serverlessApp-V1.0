@@ -15,25 +15,44 @@ async function _placeBroadbandOrder() {
   );
 
   const access_token = await sessionStorage.getItem('access_token');
-  const oneTouch = await JSON.parse(sessionStorage.getItem('oneTouch'));
-  console.log(oneTouch);
+  const oneTouchCustomer = await JSON.parse(
+    sessionStorage.getItem('oneTouchCustomer')
+  );
+  const oneTouchBroadband = await JSON.parse(
+    sessionStorage.getItem('oneTouchBroadband')
+  );
+  console.log(oneTouchCustomer);
+  console.log(oneTouchBroadband);
+
   const oderSubject =
     'oneTouch Broadband Order' +
     ' | Created at: ' +
     new Date().toLocaleString();
 
   const sub_premises =
-    oneTouch.sub_premises === 'null' ? '' : oneTouch.sub_premises;
+    oneTouchCustomer.sub_premises === 'null'
+      ? ''
+      : oneTouchCustomer.sub_premises;
   const premises_name =
-    oneTouch.premises_name === 'null' ? '' : oneTouch.premises_name;
+    oneTouchCustomer.premises_name === 'null'
+      ? ''
+      : oneTouchCustomer.premises_name;
   const thoroughfare_number =
-    oneTouch.thoroughfare_number === 'null' ? '' : oneTouch.thoroughfare_number;
+    oneTouchCustomer.thoroughfare_number === 'null'
+      ? ''
+      : oneTouchCustomer.thoroughfare_number;
   const thoroughfare_name =
-    oneTouch.thoroughfare_name === 'null' ? '' : oneTouch.thoroughfare_name;
-  const locality = oneTouch.locality === 'null' ? '' : oneTouch.locality;
-  const post_town = oneTouch.post_town === 'null' ? '' : oneTouch.post_town;
-  const county = oneTouch.county === 'null' ? '' : oneTouch.county;
-  const postcode = oneTouch.postcode === 'null' ? '' : oneTouch.postcode;
+    oneTouchCustomer.thoroughfare_name === 'null'
+      ? ''
+      : oneTouchCustomer.thoroughfare_name;
+  const locality =
+    oneTouchCustomer.locality === 'null' ? '' : oneTouchCustomer.locality;
+  const post_town =
+    oneTouchCustomer.post_town === 'null' ? '' : oneTouchCustomer.post_town;
+  const county =
+    oneTouchCustomer.county === 'null' ? '' : oneTouchCustomer.county;
+  const postcode =
+    oneTouchCustomer.postcode === 'null' ? '' : oneTouchCustomer.postcode;
 
   const cssStyle = `
                     margin: 1px 0;
@@ -47,12 +66,12 @@ async function _placeBroadbandOrder() {
                               </div>`;
 
   const orderBroadbandSummary = `<div style=${cssStyle}>
-                                    <div>Name: ${oneTouch.name}</div>
-                                    <div>Provider: ${oneTouch.provider}</div>
-                                    <div>Down Speed: ${oneTouch.likely_down_speed}</div>
-                                    <div>Up Speed: ${oneTouch.likely_up_speed}</div>
-                                    <div>Price: ${oneTouch.price}</div>
-                                    <div>Installation: ${oneTouch.installation}</div>
+                                    <div>Name: ${oneTouchBroadband.name}</div>
+                                    <div>Provider: ${oneTouchBroadband.provider}</div>
+                                    <div>Down Speed: ${oneTouchBroadband.likely_down_speed}</div>
+                                    <div>Up Speed: ${oneTouchBroadband.likely_up_speed}</div>
+                                    <div>Price: ${oneTouchBroadband.price}</div>
+                                    <div>Installation: ${oneTouchBroadband.installation}</div>
                                   </div>`;
 
   const orderSummary = `<div style=${cssStyle}>
@@ -69,8 +88,8 @@ async function _placeBroadbandOrder() {
   const URL = '/oneTouch/gmail';
   const body = {
     access_token,
-    name: oneTouch.customerFullName,
-    email: oneTouch.customerEmail,
+    name: oneTouchCustomer.customerFullName,
+    email: oneTouchCustomer.customerEmail,
     subject: oderSubject,
     description: orderSummary,
   };
@@ -84,7 +103,11 @@ async function _placeBroadbandOrder() {
     const response = await fetch(URL, config); //Send email
     console.log(response);
     if (!response.ok) throw new Error(response.statusText);
-    const saveToDb = await _createOneTouchOrder(access_token, oneTouch); // save order to db
+    const saveToDb = await _createOneTouchOrder(
+      access_token,
+      oneTouchCustomer,
+      oneTouchBroadband
+    ); // save order to db
     console.log(saveToDb);
     if (!saveToDb.ok) throw new Error(response.statusText);
 
