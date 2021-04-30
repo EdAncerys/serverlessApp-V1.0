@@ -30,32 +30,36 @@ async function _oneTouchContracts() {
     let customerData = '';
     let customerDataHTML;
 
-    data.map((customer) => {
+    data.map((oneTouchBroadbandData) => {
+      const oneTouchBroadband = oneTouchBroadbandData.oneTouchBroadband;
+      const oneTouchCustomer = oneTouchBroadbandData.oneTouchCustomer;
+      const id = oneTouchBroadbandData._id;
+
       let thoroughfare_number =
-        customer.oneTouch.thoroughfare_number === 'null'
+        oneTouchBroadband.thoroughfare_number === 'null'
           ? ''
-          : customer.oneTouch.thoroughfare_number;
+          : oneTouchBroadband.thoroughfare_number;
       let premises_name =
-        customer.oneTouch.premises_name === 'null'
+        oneTouchBroadband.premises_name === 'null'
           ? ''
-          : customer.oneTouch.premises_name;
+          : oneTouchBroadband.premises_name;
       let sub_premises =
-        customer.oneTouch.sub_premises === 'null'
+        oneTouchBroadband.sub_premises === 'null'
           ? ''
-          : customer.oneTouch.sub_premises;
+          : oneTouchBroadband.sub_premises;
       let thoroughfare_name =
-        customer.oneTouch.thoroughfare_name === 'null'
+        oneTouchBroadband.thoroughfare_name === 'null'
           ? ''
-          : customer.oneTouch.thoroughfare_name;
+          : oneTouchBroadband.thoroughfare_name;
       let county =
-        customer.oneTouch.county === 'null' ? '' : customer.oneTouch.county;
-      let postcode = customer.oneTouch.postcode;
+        oneTouchBroadband.county === 'null' ? '' : oneTouchBroadband.county;
+      let postcode = oneTouchBroadband.postcode;
 
       manageDataContainer = `<div class="manageDataContainer">
-                            <contractInfo id='${customer._id}' class="btnB01" role="button">
+                            <contractInfo id='${id}' class="btnB01" role="button">
                               Info
                             </contractInfo>
-                            <deleteContract id='${customer._id}' class="btnB01 bgDanger" role="button">
+                            <deleteContract id='${id}' class="btnB01 bgDanger" role="button">
                               Delete
                             </deleteContract>
                           </div>`;
@@ -63,12 +67,12 @@ async function _oneTouchContracts() {
       customerData += `<div class="rowContainer bgGradientSilver">
                         <div class="rowDataContainer-4">
                           <div class="rowDataWrapper">
-                            <div>${customer.oneTouch.companyName}</div>
-                            <div class="bottomDataRow">${customer.oneTouch.customerFullName}</div>
+                            <div>${oneTouchCustomer.companyName}</div>
+                            <div class="bottomDataRow">${oneTouchCustomer.customerFullName}</div>
                           </div>
                           <div class="rowDataWrapper">
-                            <div>${customer.oneTouch.customerPhoneNumber}</div>
-                            <div class="bottomDataRow">${customer.oneTouch.customerEmail}</div>
+                            <div>${oneTouchCustomer.customerPhoneNumber}</div>
+                            <div class="bottomDataRow">${oneTouchCustomer.customerEmail}</div>
                           </div>
                           <div class="rowDataWrapper">
                             <div>${thoroughfare_number} ${premises_name} ${sub_premises} ${thoroughfare_name} ${county}</div>
@@ -84,7 +88,7 @@ async function _oneTouchContracts() {
     const totalContracts = data.length;
 
     customerDataHTML = `<div class="features">
-                          <div class="flex-container-30">
+                          <div class="flex-container-40">
                             <div class="oneTouchFormContainer bgGradientSilver">
                               <div class="alignHorizontally fontH3">Contract Overview</div>
                               <div class="fontH2">
@@ -116,7 +120,7 @@ async function _oneTouchContracts() {
                           </div>
 
                           <div class="contractWrapper">
-                            <div class="flex-container-70">
+                            <div class="flex-container-60">
                               <div class="headerText">
                                 <div class="fontH4">Live Contracts & Customer List</div>
                                 <div class="fontH2">

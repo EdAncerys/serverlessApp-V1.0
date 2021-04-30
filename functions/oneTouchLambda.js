@@ -191,19 +191,35 @@ const userPlacedOrders = async (db, data) => {
     }
   );
 
-  if (filterOrders.access_token) {
-    const dbData = await db
+  if (authToken) {
+    const oneTouchBroadbandData = await db
       .collection(COLLECTION_ONE_TOUCH_BROADBAND)
-      .find({ 'oneTouchSuperUser._id': authToken._id })
+      .find({ 'oneTouchSuperUser.id': authToken._id })
       .toArray();
-    console.log(dbData);
+    const oneTouchBroadband = oneTouchBroadbandData[0];
+    console.log(oneTouchBroadband);
+
+    const oneTouchCustomerID = new ObjectId(
+      oneTouchBroadband.oneTouchCustomer.id
+    );
+    const oneTouchCustomerData = await db
+      .collection(COLLECTION_ONE_TOUCH_CUSTOMER)
+      .find({ _id: oneTouchCustomerID })
+      .toArray();
+    const oneTouchCustomer = oneTouchCustomerData[0];
+    console.log(oneTouchCustomer);
+
+    const userPlacedOrders = {
+      oneTouchBroadband,
+      oneTouchCustomer,
+    };
 
     return {
       statusCode: 201,
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ data: dbData }),
+      body: JSON.stringify({ data: userPlacedOrders }),
     };
   } else {
     const msg = `Error accrued. No orders found for: ` + authToken.email;
