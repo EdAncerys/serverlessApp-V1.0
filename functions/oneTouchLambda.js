@@ -217,16 +217,17 @@ const userPlacedOrders = async (db, data) => {
           .find({ _id: superUserObjectId })
           .toArray();
         customer['oneTouchSuperUser'] = superUserPromise;
-        delete customer['oneTouchSuperUser.password'];
 
         return customer;
       }
     );
     const data = await Promise.all(oneTouchCustomerPromises);
     console.log(data);
-    // removing superUser password from returned data hash
+    // removing superUser password from returned data hash & refactor data
     const oneTouchBroadband = await data.map((broadband) => {
       delete broadband['oneTouchSuperUser'][0]['password'];
+      broadband['oneTouchCustomer'] = broadband['oneTouchCustomer'][0];
+      broadband['oneTouchSuperUser'] = broadband['oneTouchSuperUser'][0];
       return broadband;
     });
     console.log(oneTouchBroadband);
@@ -644,8 +645,29 @@ const findContractById = async (db, data) => {
     .collection(COLLECTION_ONE_TOUCH_BROADBAND)
     .find({ _id: contractID })
     .toArray();
-
   console.log(contractData);
+
+  const customerId = contractData[0].oneTouchCustomer.id;
+  const superUserId = contractData[0].oneTouchSuperUser.id;
+  const customerObjectId = new ObjectId(customerId);
+  const superUserObjectId = new ObjectId(superUserId);
+  console.log(customerObjectId, superUserObjectId);
+
+  // fetching customer object from db
+  const oneTouchCustomer = await db
+    .collection(COLLECTION_ONE_TOUCH_CUSTOMER)
+    .find({ _id: customerObjectId })
+    .toArray();
+  contractData[0]['oneTouchCustomer'] = oneTouchCustomer[0];
+
+  // fetching superUser object from db
+  const oneTouchSuperUser = await db
+    .collection(COLLECTION_ONE_TOUCH_SUPER_USER)
+    .find({ _id: superUserObjectId })
+    .toArray();
+  contractData[0]['oneTouchSuperUser'] = oneTouchSuperUser[0];
+  delete contractData[0]['oneTouchSuperUser']['password'];
+
   const contractValid = contractData.length > 0;
   console.table(contractValid);
 

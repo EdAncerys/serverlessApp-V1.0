@@ -19,10 +19,11 @@ async function _oneTouchContracts() {
   try {
     const response = await fetch(URL, config);
     const data = await response.json();
-    const oneTouchBroadband = data.oneTouchBroadband;
-    console.log(oneTouchBroadband);
 
     if (!response.ok) throw new Error(data);
+
+    const oneTouchBroadband = data.oneTouchBroadband;
+    console.log(oneTouchBroadband);
 
     const dataWrapper = document.createElement('div');
     dataWrapper.id = 'dataWrapper';
@@ -33,7 +34,7 @@ async function _oneTouchContracts() {
     oneTouchBroadband.map((userPlacedOrders) => {
       console.log(userPlacedOrders);
       const oneTouchCustomer =
-        userPlacedOrders.oneTouchCustomer[0].oneTouchCustomer;
+        userPlacedOrders.oneTouchCustomer.oneTouchCustomer;
       const id = userPlacedOrders._id;
 
       let thoroughfare_number =

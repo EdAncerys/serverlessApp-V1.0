@@ -21,26 +21,34 @@ async function _oneTouchContractInfo(findOneById) {
 
   try {
     const response = await fetch(URL, config);
-    if (!response.ok) throw new Error(data);
-
     const data = await response.json();
     console.log(data);
-    const contractInfo = data.oneTouch;
+
+    if (!response.ok) throw new Error(data);
+
+    const oneTouchBroadband = data.oneTouchBroadband;
+    const oneTouchCustomer = data.oneTouchCustomer.oneTouchCustomer;
+    const oneTouchSuperUser = data.oneTouchSuperUser;
 
     let thoroughfare_number =
-      contractInfo.thoroughfare_number === 'null'
+      oneTouchCustomer.thoroughfare_number === 'null'
         ? ''
-        : contractInfo.thoroughfare_number;
+        : oneTouchCustomer.thoroughfare_number;
     let premises_name =
-      contractInfo.premises_name === 'null' ? '' : contractInfo.premises_name;
-    let sub_premises =
-      contractInfo.sub_premises === 'null' ? '' : contractInfo.sub_premises;
-    let thoroughfare_name =
-      contractInfo.thoroughfare_name === 'null'
+      oneTouchCustomer.premises_name === 'null'
         ? ''
-        : contractInfo.thoroughfare_name;
-    let county = contractInfo.county === 'null' ? '' : contractInfo.county;
-    let postcode = contractInfo.postcode;
+        : oneTouchCustomer.premises_name;
+    let sub_premises =
+      oneTouchCustomer.sub_premises === 'null'
+        ? ''
+        : oneTouchCustomer.sub_premises;
+    let thoroughfare_name =
+      oneTouchCustomer.thoroughfare_name === 'null'
+        ? ''
+        : oneTouchCustomer.thoroughfare_name;
+    let county =
+      oneTouchCustomer.county === 'null' ? '' : oneTouchCustomer.county;
+    let postcode = oneTouchCustomer.postcode;
 
     contractInfoData = `
       <div class="outer">
@@ -56,32 +64,36 @@ async function _oneTouchContractInfo(findOneById) {
             <div class="dataSummaryContainer textSilver fontH2">
               <div class="dataRowSummaryContainer justifyText">
                 <div class="rowDisplayStart">Company Name</div>
-                <div class="rowDisplayEnd">${contractInfo.companyName}</div>
+                <div class="rowDisplayEnd">${oneTouchCustomer.companyName}</div>
               </div>
               <div class="dataRowSummaryContainer justifyText">
                 <div class="rowDisplayStart">Product Type</div>
-                <div class="rowDisplayEnd">${contractInfo.productType}</div>
+                <div class="rowDisplayEnd">${oneTouchCustomer.productType}</div>
               </div>
 
               <div class="dataRowSummaryContainer justifyText">
                 <div class="rowDisplayStart">Company Email</div>
-                <div class="rowDisplayEnd">${contractInfo.companyEmail}</div>
+                <div class="rowDisplayEnd">${
+                  oneTouchCustomer.companyEmail
+                }</div>
               </div>
               <div class="dataRowSummaryContainer justifyText">
                 <div class="rowDisplayStart">Company Phone Number</div>
                 <div class="rowDisplayEnd">${
-                  contractInfo.companyPhoneNumber
+                  oneTouchCustomer.companyPhoneNumber
                 }</div>
               </div>
 
               <div class="dataRowSummaryContainer justifyText">
                 <div class="rowDisplayStart">Account Manager</div>
-                <div class="rowDisplayEnd">${contractInfo.accountManager}</div>
+                <div class="rowDisplayEnd">${
+                  oneTouchCustomer.accountManager
+                }</div>
               </div>
               <div class="dataRowSummaryContainer justifyText">
                 <div class="rowDisplayStart">Company Registration</div>
                 <div class="rowDisplayEnd">${
-                  contractInfo.companyRegistration
+                  oneTouchCustomer.companyRegistration
                 }</div>
               </div>
             </div>
@@ -94,23 +106,25 @@ async function _oneTouchContractInfo(findOneById) {
             <div class="dataSummaryContainer textSilver fontH2">
               <div class="dataRowSummaryContainer justifyText">
                 <div class="rowDisplayStart">Full Name</div>
-                <div class="rowDisplayEnd">${contractInfo.fullName}</div>
+                <div class="rowDisplayEnd">${oneTouchCustomer.fullName}</div>
               </div>
               <div class="dataRowSummaryContainer justifyText">
                 <div class="rowDisplayStart">Phone Number</div>
                 <div class="rowDisplayEnd">${
-                  contractInfo.customerPhoneNumber
+                  oneTouchCustomer.customerPhoneNumber
                 }</div>
               </div>
 
               <div class="dataRowSummaryContainer justifyText">
                 <div class="rowDisplayStart">Customer Email</div>
-                <div class="rowDisplayEnd">${contractInfo.customerEmail}</div>
+                <div class="rowDisplayEnd">${
+                  oneTouchCustomer.customerEmail
+                }</div>
               </div>
               <div class="dataRowSummaryContainer justifyText">
                 <div class="rowDisplayStart">
                   Personal Notes: <br />
-                  ${contractInfo.customerNotes}
+                  ${oneTouchCustomer.customerNotes}
                 </div>
               </div>
             </div>
@@ -125,35 +139,39 @@ async function _oneTouchContractInfo(findOneById) {
             <div class="dataSummaryContainer textSilver fontH2">
               <div class="dataRowSummaryContainer justifyText">
                 <div class="rowDisplayStart">Broadband Name</div>
-                <div class="rowDisplayEnd">${contractInfo.name}</div>
+                <div class="rowDisplayEnd">${oneTouchBroadband.name}</div>
               </div>
               <div class="dataRowSummaryContainer justifyText">
                 <div class="rowDisplayStart">Broadband Provider</div>
-                <div class="rowDisplayEnd">${contractInfo.provider}</div>
+                <div class="rowDisplayEnd">${oneTouchBroadband.provider}</div>
               </div>
               <div class="dataRowSummaryContainer justifyText">
                 <div class="rowDisplayStart">Broadband Technology</div>
-                <div class="rowDisplayEnd">${contractInfo.technology}</div>
+                <div class="rowDisplayEnd">${oneTouchBroadband.technology}</div>
               </div>
               <div class="dataRowSummaryContainer justifyText">
                 <div class="rowDisplayStart">Up Speed</div>
-                <div class="rowDisplayEnd">${contractInfo.likely_up_speed}</div>
+                <div class="rowDisplayEnd">${
+                  oneTouchBroadband.likely_up_speed
+                }</div>
               </div>
               <div class="dataRowSummaryContainer justifyText">
                 <div class="rowDisplayStart">Down Speed</div>
                 <div class="rowDisplayEnd">${
-                  contractInfo.likely_down_speed
+                  oneTouchBroadband.likely_down_speed
                 }</div>
               </div>
               <div class="dataRowSummaryContainer justifyText">
                 <div class="rowDisplayStart">Broadband Price</div>
-                <div class="rowDisplayEnd">${contractInfo.price}</div>
+                <div class="rowDisplayEnd">${oneTouchBroadband.price}</div>
               </div>
               <div class="dataRowSummaryContainer justifyText">
                 <div class="rowDisplayStart">
                   Broadband Installation Price
                 </div>
-                <div class="rowDisplayEnd">${contractInfo.installation}</div>
+                <div class="rowDisplayEnd">${
+                  oneTouchBroadband.installation
+                }</div>
               </div>
             </div>
           </div>
@@ -166,21 +184,25 @@ async function _oneTouchContractInfo(findOneById) {
               <div class="dataRowSummaryContainer justifyText">
                 <div class="rowDisplayStart">Installation Date</div>
                 <div class="rowDisplayEnd">${
-                  contractInfo.installationDate
+                  oneTouchBroadband.installationDate
                 }</div>
               </div>
               <div class="dataRowSummaryContainer justifyText">
                 <div class="rowDisplayStart">Contact Expiration Date</div>
-                <div class="rowDisplayEnd">${contractInfo.expansionDate}</div>
+                <div class="rowDisplayEnd">${
+                  oneTouchBroadband.expansionDate
+                }</div>
               </div>
 
               <div class="dataRowSummaryContainer justifyText">
                 <div class="rowDisplayStart">Contact Length</div>
-                <div class="rowDisplayEnd">${contractInfo.contractLength}</div>
+                <div class="rowDisplayEnd">${
+                  oneTouchBroadband.contractLength
+                }</div>
               </div>
               <div class="dataRowSummaryContainer justifyText">
                 <div class="rowDisplayStart">Contract Price</div>
-                <div class="rowDisplayEnd">${contractInfo.price}</div>
+                <div class="rowDisplayEnd">${oneTouchBroadband.price}</div>
               </div>
             </div>
           </div>
@@ -192,18 +214,20 @@ async function _oneTouchContractInfo(findOneById) {
             <div class="dataSummaryContainer textSilver fontH2">
               <div class="dataRowSummaryContainer justifyText">
                 <div class="rowDisplayStart">Contact Name</div>
-                <div class="rowDisplayEnd">${contractInfo.contactName}</div>
+                <div class="rowDisplayEnd">${oneTouchCustomer.contactName}</div>
               </div>
               <div class="dataRowSummaryContainer justifyText">
                 <div class="rowDisplayStart">Contact Phone Number</div>
                 <div class="rowDisplayEnd">${
-                  contractInfo.contactPhoneNumber
+                  oneTouchCustomer.contactPhoneNumber
                 }</div>
               </div>
 
               <div class="dataRowSummaryContainer justifyText">
                 <div class="rowDisplayStart">Contact Email</div>
-                <div class="rowDisplayEnd">${contractInfo.contactEmail}</div>
+                <div class="rowDisplayEnd">${
+                  oneTouchCustomer.contactEmail
+                }</div>
               </div>
               <div class="dataRowSummaryContainer justifyText">
                 <div class="rowDisplayStart">
