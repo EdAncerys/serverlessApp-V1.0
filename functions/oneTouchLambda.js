@@ -217,11 +217,18 @@ const userPlacedOrders = async (db, data) => {
           .find({ _id: superUserObjectId })
           .toArray();
         customer['oneTouchSuperUser'] = superUserPromise;
+        delete customer['oneTouchSuperUser.password'];
 
         return customer;
       }
     );
-    const oneTouchBroadband = await Promise.all(oneTouchCustomerPromises);
+    const data = await Promise.all(oneTouchCustomerPromises);
+    console.log(data);
+    // removing superUser password from returned data hash
+    const oneTouchBroadband = await data.map((broadband) => {
+      delete broadband['oneTouchSuperUser'][0]['password'];
+      return broadband;
+    });
     console.log(oneTouchBroadband);
 
     const userPlacedOrders = {
