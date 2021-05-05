@@ -19,7 +19,7 @@ async function _oneTouchContracts() {
   try {
     const response = await fetch(URL, config);
     const data = await response.json();
-    const oneTouchBroadband = data.userPlacedOrders;
+    const oneTouchBroadband = data.oneTouchBroadband;
     console.log(oneTouchBroadband);
 
     if (!response.ok) throw new Error(data);
@@ -32,29 +32,29 @@ async function _oneTouchContracts() {
 
     oneTouchBroadband.map((userPlacedOrders) => {
       console.log(userPlacedOrders);
-      const oneTouchBroadband = userPlacedOrders.oneTouchBroadband;
-      const oneTouchCustomer = userPlacedOrders.oneTouchCustomer;
-      const id = oneTouchBroadbandData._id;
+      const oneTouchCustomer =
+        userPlacedOrders.oneTouchCustomer[0].oneTouchCustomer;
+      const id = userPlacedOrders._id;
 
       let thoroughfare_number =
-        oneTouchBroadband.thoroughfare_number === 'null'
+        oneTouchCustomer.thoroughfare_number === 'null'
           ? ''
-          : oneTouchBroadband.thoroughfare_number;
+          : oneTouchCustomer.thoroughfare_number;
       let premises_name =
-        oneTouchBroadband.premises_name === 'null'
+        oneTouchCustomer.premises_name === 'null'
           ? ''
-          : oneTouchBroadband.premises_name;
+          : oneTouchCustomer.premises_name;
       let sub_premises =
-        oneTouchBroadband.sub_premises === 'null'
+        oneTouchCustomer.sub_premises === 'null'
           ? ''
-          : oneTouchBroadband.sub_premises;
+          : oneTouchCustomer.sub_premises;
       let thoroughfare_name =
-        oneTouchBroadband.thoroughfare_name === 'null'
+        oneTouchCustomer.thoroughfare_name === 'null'
           ? ''
-          : oneTouchBroadband.thoroughfare_name;
+          : oneTouchCustomer.thoroughfare_name;
       let county =
-        oneTouchBroadband.county === 'null' ? '' : oneTouchBroadband.county;
-      let postcode = oneTouchBroadband.postcode;
+        oneTouchCustomer.county === 'null' ? '' : oneTouchCustomer.county;
+      let postcode = oneTouchCustomer.postcode;
 
       manageDataContainer = `<div class="manageDataContainer">
                             <contractInfo id='${id}' class="btnB01" role="button">
@@ -86,10 +86,10 @@ async function _oneTouchContracts() {
                       </div>`;
     });
 
-    const totalContracts = data.length;
+    const totalContracts = oneTouchBroadband.length;
 
     customerDataHTML = `<div class="features">
-                          <div class="flex-container-40">
+                          <div class="flex-container-30">
                             <div class="oneTouchFormContainer bgGradientSilver">
                               <div class="alignHorizontally fontH3">Contract Overview</div>
                               <div class="fontH2">
@@ -121,7 +121,7 @@ async function _oneTouchContracts() {
                           </div>
 
                           <div class="contractWrapper">
-                            <div class="flex-container-60">
+                            <div class="flex-container-70">
                               <div class="headerText">
                                 <div class="fontH4">Live Contracts & Customer List</div>
                                 <div class="fontH2">
@@ -142,6 +142,9 @@ async function _oneTouchContracts() {
                           </div>
                         </div>`;
 
+    const removeData = document.querySelector('#oneTouchManageCustomerPageOne');
+    if (removeData) removeData.remove();
+
     const oneTouchCustomer = document.createElement('div');
     oneTouchCustomer.id = 'oneTouchManageCustomerPageOne';
     oneTouchCustomer.innerHTML = customerDataHTML;
@@ -150,10 +153,7 @@ async function _oneTouchContracts() {
       '#manageCustomerWrapper'
     );
 
-    const removeData = document.querySelector('#oneTouchManageCustomerPageTwo');
-    if (removeData) removeData.remove();
-
-    if (data.length === 0) {
+    if (oneTouchBroadband.length === 0) {
       _errorMessage('Have No Placed Contract!', 'warning');
 
       customerDataHTML = `<section class="features">

@@ -56,7 +56,7 @@ document.querySelector('body').addEventListener('click', (event) => {
   async function asyncSelectCustomer() {
     const oneTouchCustomer = await _findOneTouchCustomerById(id);
     console.log(oneTouchCustomer);
-    await sessionStorage.setItem(
+    sessionStorage.setItem(
       'oneTouchCustomer',
       JSON.stringify(oneTouchCustomer)
     );

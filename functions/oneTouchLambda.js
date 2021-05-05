@@ -231,16 +231,12 @@ const userPlacedOrders = async (db, data) => {
     });
     console.log(oneTouchBroadband);
 
-    const userPlacedOrders = {
-      oneTouchBroadband,
-    };
-
     return {
       statusCode: 201,
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ userPlacedOrders }),
+      body: JSON.stringify({ oneTouchBroadband }),
     };
   } else {
     const msg = `Error accrued. No orders found for: ` + authToken.email;
