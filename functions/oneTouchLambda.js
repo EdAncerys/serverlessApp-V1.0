@@ -192,46 +192,30 @@ const userPlacedOrders = async (db, data) => {
   );
 
   if (authToken) {
-    const oneTouchBroadband = [];
     const oneTouchBroadbandData = await db
       .collection(COLLECTION_ONE_TOUCH_BROADBAND)
       .find({ 'oneTouchSuperUser.id': authToken._id })
       .toArray();
     console.log(oneTouchBroadbandData);
 
-    // const results = oneTouchBroadbandData.map((customer) => {
-    //   const id = customer.oneTouchCustomer.id;
-    //   const oneTouchCustomerID = new ObjectId(id);
-    //   console.log(oneTouchCustomerID);
-
-    //   const oneTouchCustomerData = db
-    //     .collection(COLLECTION_ONE_TOUCH_CUSTOMER)
-    //     .find({ 'oneTouchCustomer._id': oneTouchCustomerID })
-    //     .toArray();
-
-    //   console.log(oneTouchCustomerData);
-    //   oneTouchBroadband.push(oneTouchCustomerData);
-    // });
-    // Promise.all(oneTouchBroadband).then((completed) => console.log(completed));
-
     const oneTouchCustomerPromises = oneTouchBroadbandData.map(
       async (customer) => {
         const id = customer.oneTouchCustomer.id;
         const customerID = new ObjectId(id);
+        console.log(customerID);
         const customerData = await db
           .collection(COLLECTION_ONE_TOUCH_CUSTOMER)
           .find({ _id: customerID })
           .toArray();
-        console.log(customerData);
-        return customerData;
+        customer['oneTouchCustomer'] = customerData;
+        return customer;
       }
     );
-    const oneTouchCustomer = await Promise.all(oneTouchCustomerPromises);
-    console.log(oneTouchCustomer);
+    const oneTouchBroadband = await Promise.all(oneTouchCustomerPromises);
+    console.log(oneTouchBroadband);
 
     const userPlacedOrders = {
       oneTouchBroadband,
-      // oneTouchCustomer,
     };
 
     return {
