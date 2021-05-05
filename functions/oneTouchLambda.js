@@ -75,7 +75,6 @@ const oneTouchLogin = async (db, data) => {
     email: data.email,
     password: data.password,
   };
-  console.log(loginUser);
   const user = await db
     .collection(COLLECTION_ONE_TOUCH_SUPER_USER)
     .find({ email: loginUser.email })
@@ -200,14 +199,25 @@ const userPlacedOrders = async (db, data) => {
 
     const oneTouchCustomerPromises = oneTouchBroadbandData.map(
       async (customer) => {
-        const id = customer.oneTouchCustomer.id;
-        const customerID = new ObjectId(id);
-        console.log(customerID);
-        const customerData = await db
+        const customerId = customer.oneTouchCustomer.id;
+        const superUserId = customer.oneTouchSuperUser.id;
+        const customerObjectId = new ObjectId(customerId);
+        const superUserObjectId = new ObjectId(superUserId);
+
+        // fetching customer object from db
+        const customerPromise = await db
           .collection(COLLECTION_ONE_TOUCH_CUSTOMER)
-          .find({ _id: customerID })
+          .find({ _id: customerObjectId })
           .toArray();
-        customer['oneTouchCustomer'] = customerData;
+        customer['oneTouchCustomer'] = customerPromise;
+
+        // fetching superUser object from db
+        const superUserPromise = await db
+          .collection(COLLECTION_ONE_TOUCH_SUPER_USER)
+          .find({ _id: superUserObjectId })
+          .toArray();
+        customer['oneTouchSuperUser'] = superUserPromise;
+
         return customer;
       }
     );
