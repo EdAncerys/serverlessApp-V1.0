@@ -101,19 +101,19 @@ async function _oneTouchContracts() {
                                   <div class="rowDisplayStart">Total Contracts</div>
                                   <div class="rowDisplayEnd">${totalContracts}</div>
                                 </div>
-                                <div class="dataRowSummaryContainer justifyText">
+                                <div class="dataRowSummaryContainer justifyText textWhite bgGreen">
                                   <div class="rowDisplayStart">
                                     Contracts with exp date > 6 month
                                   </div>
                                   <div class="rowDisplayEnd">0</div>
                                 </div>
-                                <div class="dataRowSummaryContainer justifyText">
+                                <div class="dataRowSummaryContainer justifyText textWhite bgWarning">
                                   <div class="rowDisplayStart">
                                     Contracts with exp date < 6 month
                                   </div>
                                   <div class="rowDisplayEnd">0</div>
                                 </div>
-                                <div class="dataRowSummaryContainer justifyText">
+                                <div class="dataRowSummaryContainer justifyText textWhite bgDanger">
                                   <div class="rowDisplayStart">Expired Contracts</div>
                                   <div class="rowDisplayEnd">0</div>
                                 </div>

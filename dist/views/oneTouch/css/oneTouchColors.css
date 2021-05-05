@@ -36,6 +36,12 @@
 .textDanger {
   color: #d9534f;
 }
+.bgWarning {
+  background-color: #ebad4e;
+}
+.bgGreen {
+  background-color: #679058;
+}
 
 .bgGradientRP {
   background: linear-gradient(#e66465, #9198e5);
