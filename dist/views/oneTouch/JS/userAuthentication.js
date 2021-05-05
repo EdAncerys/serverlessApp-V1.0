@@ -16,6 +16,10 @@ async function userAuthentication(href) {
   };
 
   try {
+    if (!access_token) {
+      window.location.replace('/index.html');
+      return;
+    }
     window.location.replace(`/views/oneTouch/${href}`);
     // window.location.href = `/views/oneTouch/${href}`;
     // User authentication middleware
