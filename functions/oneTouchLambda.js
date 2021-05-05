@@ -192,26 +192,46 @@ const userPlacedOrders = async (db, data) => {
   );
 
   if (authToken) {
+    const oneTouchBroadband = [];
     const oneTouchBroadbandData = await db
       .collection(COLLECTION_ONE_TOUCH_BROADBAND)
       .find({ 'oneTouchSuperUser.id': authToken._id })
       .toArray();
-    const oneTouchBroadband = oneTouchBroadbandData[0];
-    console.log(oneTouchBroadband);
+    console.log(oneTouchBroadbandData);
 
-    const oneTouchCustomerID = new ObjectId(
-      oneTouchBroadband.oneTouchCustomer.id
+    // const results = oneTouchBroadbandData.map((customer) => {
+    //   const id = customer.oneTouchCustomer.id;
+    //   const oneTouchCustomerID = new ObjectId(id);
+    //   console.log(oneTouchCustomerID);
+
+    //   const oneTouchCustomerData = db
+    //     .collection(COLLECTION_ONE_TOUCH_CUSTOMER)
+    //     .find({ 'oneTouchCustomer._id': oneTouchCustomerID })
+    //     .toArray();
+
+    //   console.log(oneTouchCustomerData);
+    //   oneTouchBroadband.push(oneTouchCustomerData);
+    // });
+    // Promise.all(oneTouchBroadband).then((completed) => console.log(completed));
+
+    const oneTouchCustomerPromises = oneTouchBroadbandData.map(
+      async (customer) => {
+        const id = customer.oneTouchCustomer.id;
+        const customerID = new ObjectId(id);
+        const customerData = await db
+          .collection(COLLECTION_ONE_TOUCH_CUSTOMER)
+          .find({ _id: customerID })
+          .toArray();
+        console.log(customerData);
+        return customerData;
+      }
     );
-    const oneTouchCustomerData = await db
-      .collection(COLLECTION_ONE_TOUCH_CUSTOMER)
-      .find({ _id: oneTouchCustomerID })
-      .toArray();
-    const oneTouchCustomer = oneTouchCustomerData[0];
+    const oneTouchCustomer = await Promise.all(oneTouchCustomerPromises);
     console.log(oneTouchCustomer);
 
     const userPlacedOrders = {
       oneTouchBroadband,
-      oneTouchCustomer,
+      // oneTouchCustomer,
     };
 
     return {
@@ -219,7 +239,7 @@ const userPlacedOrders = async (db, data) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ data: userPlacedOrders }),
+      body: JSON.stringify({ userPlacedOrders }),
     };
   } else {
     const msg = `Error accrued. No orders found for: ` + authToken.email;
