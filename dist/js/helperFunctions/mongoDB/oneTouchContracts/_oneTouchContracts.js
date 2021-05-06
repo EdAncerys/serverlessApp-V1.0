@@ -33,8 +33,10 @@ async function _oneTouchContracts() {
 
     oneTouchBroadband.map((userPlacedOrders) => {
       console.log(userPlacedOrders);
-      const oneTouchCustomer =
-        userPlacedOrders.oneTouchCustomer.oneTouchCustomer;
+      const oneTouchCustomerData = userPlacedOrders.oneTouchCustomer;
+      let oneTouchCustomer = [];
+      if (oneTouchCustomerData)
+        oneTouchCustomer = userPlacedOrders.oneTouchCustomer.oneTouchCustomer;
       const id = userPlacedOrders._id;
 
       let thoroughfare_number =
