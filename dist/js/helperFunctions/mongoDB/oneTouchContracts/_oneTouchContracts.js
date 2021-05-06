@@ -28,7 +28,7 @@ async function _oneTouchContracts() {
     const dataWrapper = document.createElement('div');
     dataWrapper.id = 'dataWrapper';
     let manageDataContainer;
-    let customerData = '';
+    let orderData = '';
     let customerDataHTML;
 
     oneTouchBroadband.map((userPlacedOrders) => {
@@ -68,7 +68,7 @@ async function _oneTouchContracts() {
                             </deleteContract>
                           </div>`;
 
-      customerData += `<div class="rowContainer bgGradientSilver">
+      orderData += `<div class="rowContainer bgGradientSilver">
                         <div class="rowDataContainer-4">
                           <div class="rowDataWrapper">
                             <div>${oneTouchCustomer.companyName}</div>
@@ -92,7 +92,7 @@ async function _oneTouchContracts() {
     const totalContracts = oneTouchBroadband.length;
 
     customerDataHTML = `<div class="features">
-                          <div class="flex-container-30">
+                          <div class="flex-container-40">
                             <div class="oneTouchFormContainer bgGradientSilver">
                               <div class="alignHorizontally fontH3">Contract Overview</div>
                               <div class="fontH2">
@@ -124,7 +124,7 @@ async function _oneTouchContracts() {
                           </div>
 
                           <div class="contractWrapper">
-                            <div class="flex-container-70">
+                            <div class="flex-container-60">
                               <div class="headerText">
                                 <div class="fontH4">Live Contracts & Customer List</div>
                                 <div class="fontH2">
@@ -139,7 +139,7 @@ async function _oneTouchContracts() {
                                   <div class="rowDataWrapper">Address</div>
                                   <div class="rowDataWrapper">Option</div>
                                 </div>
-                                  ${customerData}
+                                  ${orderData}
                               </div>
                             </div>
                           </div>

@@ -5,7 +5,7 @@ import { _spinner } from '../../_spinner.js';
 async function _oneTouchAllPlacedOrders() {
   console.log('Fetching all orders...');
   _spinner(true, 'Loading Orders...');
-  const oneTouchOrders = document.querySelector('oneTouchOrders');
+  const oneTouchOrders = document.querySelector('#broadbandOrdersWrapper');
   const URL = '/oneTouch/orders/oneTouchBroadband';
   const access_token = await sessionStorage.getItem('access_token');
 
@@ -17,24 +17,26 @@ async function _oneTouchAllPlacedOrders() {
     body: JSON.stringify(body),
   };
 
-  // Removing user previous data
-  const removeData = document.querySelector('#userPlacedOrders');
-  if (removeData) removeData.remove();
-
-  const userPlacedOrders = document.createElement('div');
-  userPlacedOrders.id = `userPlacedOrders`;
-  oneTouchOrders.appendChild(userPlacedOrders);
-
   try {
     const response = await fetch(URL, config);
-    if (!response.ok) throw new Error(response.statusText);
-
-    const dbData = await response.json();
-    const data = dbData.data;
+    const data = await response.json();
     console.log(data);
+    if (!response.ok) throw new Error(data);
 
+    const oneTouchBroadband = data.oneTouchBroadband;
+    console.log(oneTouchBroadband);
+
+    // Removing user previous data
+    const removeData = document.querySelector('#oneTouchBroadband');
+    if (removeData) removeData.remove();
+
+    const oneTouchBroadbandData = document.createElement('div');
+    oneTouchBroadbandData.id = `oneTouchBroadbandData`;
+    oneTouchOrders.appendChild(oneTouchBroadbandData);
+    let manageDataContainer;
     let orderData = '';
-    if (data.ordersFound === false) {
+
+    if (oneTouchBroadband.length === 0) {
       _errorMessage('Have no Pending Orders!', 'warning');
 
       userPlacedOrders.innerHTML = `<section class="features">
@@ -48,29 +50,65 @@ async function _oneTouchAllPlacedOrders() {
                                     </div>
                                   </section>`;
     } else {
-      data.map((order) => {
-        orderData += `<div class="boxContainer bgGradientSilver fontH2">
-                        <div class="broadbandDataContainer-C7">
-                          <div class="tableCell">${order.oneTouchSuperUser.email}</div>
-                          <div class="tableCell">${order.oneTouch.name}</div>
-                          <div class="tableCell">${order.oneTouch.provider}</div>
-                          <div class="tableCell">${order.oneTouch.price}</div>
-                          <div class="tableCell">${order.oneTouch.installation}</div>
-                          <div>
-                            <orderInfo id='${order._id}' oneTouch='${order.oneTouch}' class="btnB01" role="button">
-                              Info
-                            </orderInfo>
+      oneTouchBroadband.map((userPlacedOrders) => {
+        console.log(userPlacedOrders);
+        const oneTouchCustomerData = userPlacedOrders.oneTouchCustomer;
+        let oneTouchCustomer = [];
+        if (oneTouchCustomerData)
+          oneTouchCustomer = userPlacedOrders.oneTouchCustomer.oneTouchCustomer;
+        const id = userPlacedOrders._id;
+
+        let thoroughfare_number =
+          oneTouchCustomer.thoroughfare_number === 'null'
+            ? ''
+            : oneTouchCustomer.thoroughfare_number;
+        let premises_name =
+          oneTouchCustomer.premises_name === 'null'
+            ? ''
+            : oneTouchCustomer.premises_name;
+        let sub_premises =
+          oneTouchCustomer.sub_premises === 'null'
+            ? ''
+            : oneTouchCustomer.sub_premises;
+        let thoroughfare_name =
+          oneTouchCustomer.thoroughfare_name === 'null'
+            ? ''
+            : oneTouchCustomer.thoroughfare_name;
+        let county =
+          oneTouchCustomer.county === 'null' ? '' : oneTouchCustomer.county;
+        let postcode = oneTouchCustomer.postcode;
+
+        manageDataContainer = `<div class="manageDataContainer">
+                              <contractInfo id='${id}' class="btnB01" role="button">
+                                Info
+                              </contractInfo>
+                              <deleteContract id='${id}' class="btnB01 bgDanger" role="button">
+                                Delete
+                              </deleteContract>
+                            </div>`;
+
+        orderData += `<div class="rowContainer bgGradientSilver">
+                          <div class="rowDataContainer-4">
+                            <div class="rowDataWrapper">
+                              <div>${oneTouchCustomer.companyName}</div>
+                              <div class="bottomDataRow">${oneTouchCustomer.customerFullName}</div>
+                            </div>
+                            <div class="rowDataWrapper">
+                              <div>${oneTouchCustomer.customerPhoneNumber}</div>
+                              <div class="bottomDataRow">${oneTouchCustomer.customerEmail}</div>
+                            </div>
+                            <div class="rowDataWrapper">
+                              <div>${thoroughfare_number} ${premises_name} ${sub_premises} ${thoroughfare_name} ${county}</div>
+                              <div class="bottomDataRow">${postcode}</div>
+                            </div>
+                            <div class="rowDataWrapper">
+                              ${manageDataContainer}
+                            </div>
                           </div>
-                          <div>
-                          <deleteOrder id='${order._id}' oneTouch='${order.oneTouch}' class="btnB01 bgDanger" role="button">
-                            Delete
-                          </deleteOrder>
-                        </div>
-                        </div>
-                      </div>`;
+                        </div>`;
       });
 
-      userPlacedOrders.innerHTML = `<section class="features">
+      oneTouchBroadbandData.innerHTML = `<section class="features">
                                     <div class="flex-container-90">
                                       <div class="headerMsgTitle">
                                         <div class="fontH4">Manage All Placed Orders</div>
