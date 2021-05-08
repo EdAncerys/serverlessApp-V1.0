@@ -259,45 +259,42 @@ const oneTouchBroadband = async (db, body) => {
     .toArray();
   console.log(oneTouchBroadbandData);
 
-  const pendingOrders = oneTouchBroadbandData.length > 0;
-  console.log('ordersValid:', pendingOrders === true);
+  if (oneTouchBroadbandData) {
+    const userPlacedOrdersPromises = oneTouchBroadbandData.map(
+      async (customer) => {
+        const customerId = customer.oneTouchCustomer.id;
+        const superUserId = customer.oneTouchSuperUser.id;
+        const customerObjectId = new ObjectId(customerId);
+        const superUserObjectId = new ObjectId(superUserId);
 
-  const oneTouchBroadbandPromises = oneTouchBroadbandData.map(
-    async (customer) => {
-      const customerId = customer.oneTouchCustomer.id;
-      const superUserId = customer.oneTouchSuperUser.id;
-      const customerObjectId = new ObjectId(customerId);
-      const superUserObjectId = new ObjectId(superUserId);
+        // fetching customer object from db
+        const customerPromise = await db
+          .collection(COLLECTION_ONE_TOUCH_CUSTOMER)
+          .find({ _id: customerObjectId })
+          .toArray();
+        customer['oneTouchCustomer'] = customerPromise;
 
-      // fetching customer object from db
-      const customerPromise = await db
-        .collection(COLLECTION_ONE_TOUCH_CUSTOMER)
-        .find({ _id: customerObjectId })
-        .toArray();
-      customer['oneTouchCustomer'] = customerPromise;
+        // fetching superUser object from db
+        const superUserPromise = await db
+          .collection(COLLECTION_ONE_TOUCH_SUPER_USER)
+          .find({ _id: superUserObjectId })
+          .toArray();
+        customer['oneTouchSuperUser'] = superUserPromise;
 
-      // fetching superUser object from db
-      const superUserPromise = await db
-        .collection(COLLECTION_ONE_TOUCH_SUPER_USER)
-        .find({ _id: superUserObjectId })
-        .toArray();
-      customer['oneTouchSuperUser'] = superUserPromise;
+        return customer;
+      }
+    );
+    const data = await Promise.all(userPlacedOrdersPromises);
+    console.log(data);
+    // removing superUser password from returned data hash & refactor data
+    const oneTouchBroadband = await data.map((broadband) => {
+      delete broadband['oneTouchSuperUser'][0]['password'];
+      broadband['oneTouchCustomer'] = broadband['oneTouchCustomer'][0];
+      broadband['oneTouchSuperUser'] = broadband['oneTouchSuperUser'][0];
+      return broadband;
+    });
+    console.log(oneTouchBroadband);
 
-      return customer;
-    }
-  );
-  const data = await Promise.all(oneTouchBroadbandPromises);
-  console.log(data);
-  // removing superUser password from returned data hash & refactor data
-  const oneTouchBroadband = await data.map((broadband) => {
-    delete broadband['oneTouchSuperUser'][0]['password'];
-    broadband['oneTouchCustomer'] = broadband['oneTouchCustomer'][0];
-    broadband['oneTouchSuperUser'] = broadband['oneTouchSuperUser'][0];
-    return broadband;
-  });
-  console.log(oneTouchBroadband);
-
-  if (pendingOrders) {
     return {
       statusCode: 201,
       headers: {
@@ -305,20 +302,8 @@ const oneTouchBroadband = async (db, body) => {
       },
       body: JSON.stringify({ oneTouchBroadband }),
     };
-  }
-  if (!pendingOrders) {
-    const msg = `Have No Orders Pending!`;
-    console.log(msg);
-
-    return {
-      statusCode: 201,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ msg }),
-    };
   } else {
-    const msg = `Error accrued. Failed to Connect to DB`;
+    const msg = `Error accrued. No orders found for: ` + authToken.email;
     console.log(msg);
 
     return {
@@ -326,7 +311,7 @@ const oneTouchBroadband = async (db, body) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ msg }),
+      body: JSON.stringify({ msg: msg }),
     };
   }
 };

@@ -21,14 +21,14 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-const asyncDeletePlacedOrder = async (id) => {
+const asyncDeleteContract = async (id) => {
   await _deleteOneTouchBroadband(id);
   await _oneTouchAllPlacedOrders();
 };
 
 document.querySelector('body').addEventListener('click', (event) => {
   const contractInfo = event.target.nodeName === 'CONTRACTINFO';
-  const deleteOrder = event.target.nodeName === 'DELETEORDER';
+  const deleteContract = event.target.nodeName === 'DELETECONTRACT';
   const placeNewOrder = event.target.nodeName === 'PLACENEWORDER';
   const goBackBtn =
     event.target.nodeName === 'BTNLABEL' || event.target.nodeName === 'INNER';
@@ -46,8 +46,8 @@ document.querySelector('body').addEventListener('click', (event) => {
   if (contractInfo) {
     _oneTouchContractInfo(id);
   }
-  if (deleteOrder) {
-    asyncDeletePlacedOrder(id);
+  if (deleteContract) {
+    asyncDeleteContract(id);
   }
   if (placeNewOrder) {
     window.location.replace('/views/oneTouch/connection-checker.html');
