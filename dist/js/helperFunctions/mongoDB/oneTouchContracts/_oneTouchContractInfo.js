@@ -8,7 +8,7 @@ async function _oneTouchContractInfo(findOneById) {
   const URL = '/oneTouch/contract/findContractById';
   const access_token = sessionStorage.getItem('access_token');
 
-  let contractInfoData = '';
+  let oneTouchContractData = '';
 
   const body = {
     access_token,
@@ -49,7 +49,7 @@ async function _oneTouchContractInfo(findOneById) {
       oneTouchCustomer.county === 'null' ? '' : oneTouchCustomer.county;
     let postcode = oneTouchCustomer.postcode;
 
-    contractInfoData = `
+    oneTouchContractData = `
       <div class="outer">
         <inner class="inner">
           <btnLabel>Back</btnLabel>
@@ -254,23 +254,15 @@ async function _oneTouchContractInfo(findOneById) {
       </div>`;
 
     const oneTouchContractInfo = document.createElement('div');
-    oneTouchContractInfo.id = 'oneTouchManageCustomerPageTwo';
-    oneTouchContractInfo.innerHTML = contractInfoData;
+    oneTouchContractInfo.id = 'oneTouchContractInfo';
+    oneTouchContractInfo.innerHTML = oneTouchContractData;
 
-    const manageCustomerWrapper = document.querySelector(
-      '#manageCustomerWrapper'
-    );
+    const liveConnections = document.querySelector('#liveConnections');
 
-    const removeData = document.querySelector(
-      '#oneTouchManageCustomerPageThree'
-    );
-    if (removeData) removeData.remove();
+    const hideData = document.querySelector('#oneTouchContracts');
+    hideData.classList.add('hidden');
 
-    const oneTouchManageCustomerPageOne = document.querySelector(
-      '#oneTouchManageCustomerPageOne'
-    );
-    oneTouchManageCustomerPageOne.classList.add('hidden');
-    manageCustomerWrapper.appendChild(oneTouchContractInfo);
+    liveConnections.appendChild(oneTouchContractInfo);
 
     const endPoint = location.href.split('/').slice(-1)[0];
     persistDOMData(endPoint);

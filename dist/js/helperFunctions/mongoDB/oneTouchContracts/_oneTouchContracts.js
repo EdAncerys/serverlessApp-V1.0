@@ -28,8 +28,8 @@ async function _oneTouchContracts() {
     const dataWrapper = document.createElement('div');
     dataWrapper.id = 'dataWrapper';
     let manageDataContainer;
-    let orderData = '';
-    let customerDataHTML;
+    let dataContainer = '';
+    let oneTouchContractData = '';
 
     oneTouchBroadband.map((userPlacedOrders) => {
       console.log(userPlacedOrders);
@@ -68,7 +68,7 @@ async function _oneTouchContracts() {
                             </deleteContract>
                           </div>`;
 
-      orderData += `<div class="rowContainer bgGradientSilver">
+      dataContainer += `<div class="rowContainer bgGradientSilver">
                         <div class="rowDataContainer-4">
                           <div class="rowDataWrapper">
                             <div>${oneTouchCustomer.companyName}</div>
@@ -91,7 +91,7 @@ async function _oneTouchContracts() {
 
     const totalContracts = oneTouchBroadband.length;
 
-    customerDataHTML = `<div class="features">
+    oneTouchContractData = `<div class="features">
                           <div class="flex-container-40">
                             <div class="oneTouchFormContainer bgGradientSilver">
                               <div class="alignHorizontally fontH3">Contract Overview</div>
@@ -139,39 +139,34 @@ async function _oneTouchContracts() {
                                   <div class="rowDataWrapper">Address</div>
                                   <div class="rowDataWrapper">Option</div>
                                 </div>
-                                  ${orderData}
+                                  ${dataContainer}
                               </div>
                             </div>
                           </div>
                         </div>`;
 
-    const removeData = document.querySelector('#oneTouchManageCustomerPageOne');
-    if (removeData) removeData.remove();
-
-    const oneTouchCustomer = document.createElement('div');
-    oneTouchCustomer.id = 'oneTouchManageCustomerPageOne';
-    oneTouchCustomer.innerHTML = customerDataHTML;
-
-    const manageCustomerWrapper = document.querySelector(
-      '#manageCustomerWrapper'
-    );
-
     if (oneTouchBroadband.length === 0) {
       _errorMessage('Have No Placed Contract!', 'warning');
 
-      customerDataHTML = `<section class="features">
-                            <div class="flex-container-30">
-                              <div class="headerText alignHorizontally">
-                                <div class="fontH3">Your Have No Contracts Added!</div>
-                                <addNewContract class="btnOneTouch">Add New Contract</addNewContract>
-                              </div>
-                            </div>
-                          </section>`;
-
-      manageCustomerWrapper.innerHTML = customerDataHTML;
-    } else {
-      manageCustomerWrapper.appendChild(oneTouchCustomer);
+      oneTouchContractData = `<section class="features">
+                                <div class="flex-container-30">
+                                  <div class="headerText alignHorizontally">
+                                    <div class="fontH3">Your Have No Contracts Added!</div>
+                                    <addNewContract class="btnOneTouch">Add New Contract</addNewContract>
+                                  </div>
+                                </div>
+                              </section>`;
     }
+
+    const liveConnections = document.querySelector('#liveConnections');
+    const removeData = document.querySelector('#oneTouchContracts');
+    if (removeData) removeData.remove();
+
+    const oneTouchContracts = document.createElement('div');
+    oneTouchContracts.id = 'oneTouchContracts';
+    oneTouchContracts.innerHTML = oneTouchContractData;
+
+    liveConnections.appendChild(oneTouchContracts);
 
     const endPoint = location.href.split('/').slice(-1)[0];
     persistDOMData(endPoint);

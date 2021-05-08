@@ -43,14 +43,10 @@ document.querySelector('body').addEventListener('click', (event) => {
   if (event.target.getAttribute('id')) id = event.target.getAttribute('id');
 
   if (goBackBtn) {
-    const oneTouchManageCustomerPageOne = document.querySelector(
-      '#oneTouchManageCustomerPageOne'
-    );
-    const oneTouchManageCustomerPageTwo = document.querySelector(
-      '#oneTouchManageCustomerPageTwo'
-    );
-    oneTouchManageCustomerPageOne.classList.remove('hidden');
-    oneTouchManageCustomerPageTwo.remove();
+    const oneTouchContracts = document.querySelector('#oneTouchContracts');
+    const removeData = document.querySelector('#oneTouchContractInfo');
+    oneTouchContracts.classList.remove('hidden');
+    removeData.remove();
     const endPoint = location.href.split('/').slice(-1)[0];
     persistDOMData(endPoint);
   }

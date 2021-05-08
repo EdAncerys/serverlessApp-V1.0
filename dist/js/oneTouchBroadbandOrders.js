@@ -36,13 +36,11 @@ document.querySelector('body').addEventListener('click', (event) => {
   let id = event.target.getAttribute('id');
 
   if (goBackBtn) {
-    const userPlacedOrders = document.querySelector('#userPlacedOrders');
-    const userPlacedOrdersInfo = document.querySelector(
-      '#userPlacedOrdersInfo'
-    );
+    const oneTouchContracts = document.querySelector('#oneTouchContracts');
+    const removeData = document.querySelector('#oneTouchContracts');
 
-    userPlacedOrders.classList.remove('hidden');
-    userPlacedOrdersInfo.remove();
+    oneTouchContracts.classList.remove('hidden');
+    removeData.remove();
     const endPoint = location.href.split('/').slice(-1)[0];
     persistDOMData(endPoint);
   }
