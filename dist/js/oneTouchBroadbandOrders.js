@@ -2,7 +2,7 @@ import { persistDOMData } from './persistDOMData.js';
 import { _deleteOneTouchBroadband } from './helperFunctions/mongoDB/oneTouchBroadband/_deleteOneTouchBroadband.js';
 import { _errorMessage } from './helperFunctions/_errorMessage.js';
 import { _oneTouchAllPlacedOrders } from './helperFunctions/mongoDB/oneTouchBroadband/_oneTouchAllPlacedOrders.js';
-import { _oneTouchPendingContractInfo } from './helperFunctions/mongoDB/oneTouchContracts/_oneTouchPendingContractInfo.js';
+import { _oneTouchContractInfo } from './helperFunctions/mongoDB/oneTouchContracts/_oneTouchContractInfo.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   // Persist user data on reload
@@ -27,7 +27,7 @@ const asyncDeletePlacedOrder = async (id) => {
 };
 
 document.querySelector('body').addEventListener('click', (event) => {
-  const orderInfo = event.target.nodeName === 'ORDERINFO';
+  const contractInfo = event.target.nodeName === 'CONTRACTINFO';
   const deleteOrder = event.target.nodeName === 'DELETEORDER';
   const placeNewOrder = event.target.nodeName === 'PLACENEWORDER';
   const goBackBtn =
@@ -37,15 +37,14 @@ document.querySelector('body').addEventListener('click', (event) => {
 
   if (goBackBtn) {
     const oneTouchContracts = document.querySelector('#oneTouchContracts');
-    const removeData = document.querySelector('#oneTouchContracts');
-
+    const removeData = document.querySelector('#oneTouchContractInfo');
     oneTouchContracts.classList.remove('hidden');
     removeData.remove();
     const endPoint = location.href.split('/').slice(-1)[0];
     persistDOMData(endPoint);
   }
-  if (orderInfo) {
-    _oneTouchPendingContractInfo(id);
+  if (contractInfo) {
+    _oneTouchContractInfo(id);
   }
   if (deleteOrder) {
     asyncDeletePlacedOrder(id);

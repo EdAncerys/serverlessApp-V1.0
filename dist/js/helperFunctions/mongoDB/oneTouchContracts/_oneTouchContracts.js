@@ -25,9 +25,7 @@ async function _oneTouchContracts() {
     const oneTouchBroadband = data.oneTouchBroadband;
     console.log(oneTouchBroadband);
 
-    const dataWrapper = document.createElement('div');
-    dataWrapper.id = 'dataWrapper';
-    let manageDataContainer;
+    let manageDataContainer = '';
     let dataContainer = '';
     let oneTouchContractData = '';
 
@@ -159,6 +157,7 @@ async function _oneTouchContracts() {
     }
 
     const liveConnections = document.querySelector('#liveConnections');
+    // Removing user previous data
     const removeData = document.querySelector('#oneTouchContracts');
     if (removeData) removeData.remove();
 

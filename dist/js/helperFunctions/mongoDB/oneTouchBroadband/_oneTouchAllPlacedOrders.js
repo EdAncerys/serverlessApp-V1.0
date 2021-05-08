@@ -5,7 +5,6 @@ import { _spinner } from '../../_spinner.js';
 async function _oneTouchAllPlacedOrders() {
   console.log('Fetching all orders...');
   _spinner(true, 'Loading Orders...');
-  const oneTouchOrders = document.querySelector('#broadbandOrdersWrapper');
   const URL = '/oneTouch/orders/oneTouchBroadband';
   const access_token = await sessionStorage.getItem('access_token');
 
@@ -26,59 +25,39 @@ async function _oneTouchAllPlacedOrders() {
     const oneTouchBroadband = data.oneTouchBroadband;
     console.log(oneTouchBroadband);
 
-    // Removing user previous data
-    const removeData = document.querySelector('#oneTouchBroadband');
-    if (removeData) removeData.remove();
+    let manageDataContainer = '';
+    let dataContainer = '';
+    let oneTouchContractData = '';
 
-    const oneTouchBroadbandData = document.createElement('div');
-    oneTouchBroadbandData.id = `oneTouchBroadbandData`;
-    oneTouchOrders.appendChild(oneTouchBroadbandData);
-    let manageDataContainer;
-    let orderData = '';
+    oneTouchBroadband.map((userPlacedOrders) => {
+      console.log(userPlacedOrders);
+      const oneTouchCustomerData = userPlacedOrders.oneTouchCustomer;
+      let oneTouchCustomer = [];
+      if (oneTouchCustomerData)
+        oneTouchCustomer = userPlacedOrders.oneTouchCustomer.oneTouchCustomer;
+      const id = userPlacedOrders._id;
 
-    if (oneTouchBroadband.length === 0) {
-      _errorMessage('Have no Pending Orders!', 'warning');
+      let thoroughfare_number =
+        oneTouchCustomer.thoroughfare_number === 'null'
+          ? ''
+          : oneTouchCustomer.thoroughfare_number;
+      let premises_name =
+        oneTouchCustomer.premises_name === 'null'
+          ? ''
+          : oneTouchCustomer.premises_name;
+      let sub_premises =
+        oneTouchCustomer.sub_premises === 'null'
+          ? ''
+          : oneTouchCustomer.sub_premises;
+      let thoroughfare_name =
+        oneTouchCustomer.thoroughfare_name === 'null'
+          ? ''
+          : oneTouchCustomer.thoroughfare_name;
+      let county =
+        oneTouchCustomer.county === 'null' ? '' : oneTouchCustomer.county;
+      let postcode = oneTouchCustomer.postcode;
 
-      userPlacedOrders.innerHTML = `<section class="features">
-                                    <div class="flex-container-60">
-                                      <div class="fontH5">Have No Pending Orders!</div>
-                                    </div>
-                                  </section>
-                                  <section class="features">
-                                    <div class="flex-container-60">
-                                      <placeNewOrder class="btnOneTouch">Place New Order</placeNewOrder>
-                                    </div>
-                                  </section>`;
-    } else {
-      oneTouchBroadband.map((userPlacedOrders) => {
-        console.log(userPlacedOrders);
-        const oneTouchCustomerData = userPlacedOrders.oneTouchCustomer;
-        let oneTouchCustomer = [];
-        if (oneTouchCustomerData)
-          oneTouchCustomer = userPlacedOrders.oneTouchCustomer.oneTouchCustomer;
-        const id = userPlacedOrders._id;
-
-        let thoroughfare_number =
-          oneTouchCustomer.thoroughfare_number === 'null'
-            ? ''
-            : oneTouchCustomer.thoroughfare_number;
-        let premises_name =
-          oneTouchCustomer.premises_name === 'null'
-            ? ''
-            : oneTouchCustomer.premises_name;
-        let sub_premises =
-          oneTouchCustomer.sub_premises === 'null'
-            ? ''
-            : oneTouchCustomer.sub_premises;
-        let thoroughfare_name =
-          oneTouchCustomer.thoroughfare_name === 'null'
-            ? ''
-            : oneTouchCustomer.thoroughfare_name;
-        let county =
-          oneTouchCustomer.county === 'null' ? '' : oneTouchCustomer.county;
-        let postcode = oneTouchCustomer.postcode;
-
-        manageDataContainer = `<div class="manageDataContainer">
+      manageDataContainer = `<div class="manageDataContainer">
                               <contractInfo id='${id}' class="btnB01" role="button">
                                 Info
                               </contractInfo>
@@ -87,7 +66,7 @@ async function _oneTouchAllPlacedOrders() {
                               </deleteContract>
                             </div>`;
 
-        orderData += `<div class="rowContainer bgGradientSilver">
+      dataContainer += `<div class="rowContainer bgGradientSilver">
                           <div class="rowDataContainer-4">
                             <div class="rowDataWrapper">
                               <div>${oneTouchCustomer.companyName}</div>
@@ -106,9 +85,9 @@ async function _oneTouchAllPlacedOrders() {
                             </div>
                           </div>
                         </div>`;
-      });
+    });
 
-      oneTouchBroadbandData.innerHTML = `<section class="features">
+    oneTouchContractData = `<section class="features">
                                     <div class="flex-container-90">
                                       <div class="headerMsgTitle">
                                         <div class="fontH4">Manage All Placed Orders</div>
@@ -123,10 +102,35 @@ async function _oneTouchAllPlacedOrders() {
                                         <div class="tableCell">Information</div>
                                         <div class="tableCell">Delete Order</div>
                                       </div>
-                                      ${orderData}
+                                      ${dataContainer}
                                     </div>
                                   </section>`;
+
+    if (oneTouchBroadband.length === 0) {
+      _errorMessage('Have no Pending Orders!', 'warning');
+
+      oneTouchContractData = `<section class="features">
+                                  <div class="flex-container-60">
+                                    <div class="fontH5">Have No Pending Orders!</div>
+                                  </div>
+                                </section>
+                                <section class="features">
+                                  <div class="flex-container-60">
+                                    <placeNewOrder class="btnOneTouch">Place New Order</placeNewOrder>
+                                  </div>
+                              </section>`;
     }
+
+    const liveConnections = document.querySelector('#liveConnections');
+    // Removing user previous data
+    const removeData = document.querySelector('#oneTouchContracts');
+    if (removeData) removeData.remove();
+
+    const oneTouchContracts = document.createElement('div');
+    oneTouchContracts.id = 'oneTouchContracts';
+    oneTouchContracts.innerHTML = oneTouchContractData;
+
+    liveConnections.appendChild(oneTouchContracts);
 
     const endPoint = location.href.split('/').slice(-1)[0];
     persistDOMData(endPoint);
