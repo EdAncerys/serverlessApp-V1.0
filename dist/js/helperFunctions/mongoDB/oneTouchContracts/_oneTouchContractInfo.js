@@ -27,7 +27,10 @@ async function _oneTouchContractInfo(findOneById) {
     if (!response.ok) throw new Error(data);
 
     const oneTouchBroadband = data.oneTouchBroadband;
-    const oneTouchCustomer = data.oneTouchCustomer.oneTouchCustomer;
+    const oneTouchCustomerData = data.oneTouchCustomer;
+    let oneTouchCustomer = [];
+    if (oneTouchCustomerData)
+      oneTouchCustomer = data.oneTouchCustomer.oneTouchCustomer;
 
     let thoroughfare_number =
       oneTouchCustomer.thoroughfare_number === 'null'
