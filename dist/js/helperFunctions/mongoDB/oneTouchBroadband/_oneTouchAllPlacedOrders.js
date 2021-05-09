@@ -59,7 +59,7 @@ async function _oneTouchAllPlacedOrders() {
 
       manageDataContainer = `<div class="manageDataContainer">
                               <contractInfo id='${id}' class="btnB01" role="button">
-                                Info
+                                Update
                               </contractInfo>
                               <deleteContract id='${id}' class="btnB01 bgDanger" role="button">
                                 Delete

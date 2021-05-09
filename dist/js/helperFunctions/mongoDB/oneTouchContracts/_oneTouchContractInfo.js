@@ -5,6 +5,7 @@ import { _spinner } from '../../_spinner.js';
 async function _oneTouchContractInfo(findOneById) {
   console.log('Fetching contract information...');
   _spinner(true, 'Loading Active Contract...');
+  const endPoint = location.href.split('/').slice(-1)[0];
   const URL = '/oneTouch/contract/findContractById';
   const access_token = sessionStorage.getItem('access_token');
 
@@ -52,12 +53,74 @@ async function _oneTouchContractInfo(findOneById) {
       oneTouchCustomer.county === 'null' ? '' : oneTouchCustomer.county;
     let postcode = oneTouchCustomer.postcode;
 
+    // Activate contract section
+    let activateContract = '';
+    if (endPoint === 'broadband-orders.html')
+      activateContract = `<div class="features">
+                              <div class="flex-container-50">
+                                <div class="oneTouchFormContainer">
+                                  <div id="oneTouchIconContainer">
+                                    <div class="oneTouchIcon"></div>
+                                  </div>
+
+                                  <form action="/">
+                                    <label for="fname">Contract Start Day</label>
+                                    <input
+                                      type="text"
+                                      id="name"
+                                      name="name"
+                                      placeholder="DD/MM/YYYY"
+                                    />
+
+                                    <label for="lname">Contract End Day</label>
+                                    <input
+                                      type="text"
+                                      id="phoneNumber"
+                                      name="phoneNumber"
+                                      placeholder="DD/MM/YYYY"
+                                    />
+
+                                    <label for="subject">Description</label>
+                                    <textarea
+                                      id="description"
+                                      name="description"
+                                      placeholder="Relative Information..."
+                                      style="height: 200px"
+                                    ></textarea>
+
+                                    <submitForm>
+                                      <input
+                                        id="raiseTicket"
+                                        class="btnOneTouch"
+                                        type="submit"
+                                        value="Activate Contract"
+                                      />
+                                    </submitForm>
+                                  </form>
+                                </div>
+                              </div>
+
+                              <div class="flex-container-50">
+                                <div class="oneTouchFormContainer">
+                                  <div class="fontH3">Extra Metrics</div>
+                                  <div class="dataSummaryContainer textSilver fontH2">
+                                    <div class="dataRowSummaryContainer justifyText">
+                                      <div class="rowDisplayStart">Extra Metrics</div>
+                                      <div class="rowDisplayEnd">extra metrics</div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>`;
+
     oneTouchContractData = `
-      <div class="outer">
-        <inner class="inner">
-          <btnLabel>Back</btnLabel>
-        </inner>
-      </div>
+                            <div class="outer">
+                              <inner class="inner">
+                                <btnLabel>Back</btnLabel>
+                              </inner>
+                            </div>
+
+      ${activateContract}
 
       <div class="features">
         <div class="flex-container-50">
@@ -267,7 +330,6 @@ async function _oneTouchContractInfo(findOneById) {
 
     liveConnections.appendChild(oneTouchContractInfo);
 
-    const endPoint = location.href.split('/').slice(-1)[0];
     persistDOMData(endPoint);
     _spinner(false);
   } catch (err) {
