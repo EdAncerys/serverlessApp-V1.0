@@ -18,9 +18,7 @@
 .btnDisable {
   cursor: not-allowed;
   pointer-events: none;
-  color: #c0c0c0;
-  background-color: #ffffff;
-  opacity: 0.2;
+  opacity: 0.5;
 }
 *::-webkit-scrollbar {
   display: none; /* Chrome Safari */

@@ -17,7 +17,17 @@ lcComponent {
   margin: 2px 0;
   color: #393b3c;
 }
-
+.rowInactive {
+  opacity: 0.2;
+}
+.txtOverwrite:before {
+  position: absolute;
+  display: grid;
+  margin-left: 100px;
+  content: 'Pending Order...';
+  font-size: 36px;
+  color: #61d2b3;
+}
 .flex-container-30 placeNewOrder {
   margin: 20px 0;
 }

@@ -59,7 +59,12 @@ async function _oneTouchContracts() {
       let postcode = oneTouchCustomer.postcode;
 
       let btnClass = 'btnB01';
-      if (!liveContract) btnClass = 'btnB01';
+      let rowDataContainer = 'rowDataContainer-4';
+      let rowContainer = 'rowContainer bgGradientSilver';
+      if (!liveContract) btnClass = 'btnB01 btnDisable';
+      if (!liveContract)
+        rowContainer = 'rowContainer bgGradientSilver txtOverwrite';
+      if (!liveContract) rowDataContainer = 'rowDataContainer-4 rowInactive';
 
       manageDataContainer = `<div class="manageDataContainer">
                             <contractInfo id='${id}' class=${btnClass} role="button">
@@ -70,8 +75,8 @@ async function _oneTouchContracts() {
                             </deleteContract>
                           </div>`;
 
-      dataContainer += `<div class="rowContainer bgGradientSilver">
-                        <div class="rowDataContainer-4">
+      dataContainer += `<div class="${rowContainer}">
+                        <div class="${rowDataContainer}">
                           <div class="rowDataWrapper">
                             <div>${oneTouchCustomer.companyName}</div>
                             <div class="bottomDataRow">${oneTouchCustomer.customerFullName}</div>
