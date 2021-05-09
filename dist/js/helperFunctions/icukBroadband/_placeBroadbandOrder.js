@@ -55,35 +55,28 @@ async function _placeBroadbandOrder() {
   const postcode =
     oneTouchCustomer.postcode === 'null' ? '' : oneTouchCustomer.postcode;
 
-  const cssStyle = `
-                    margin: 1px 0;
-                    padding: 5px 5px;
-                    border: 1px solid #e8e9e9;
-                    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 30%);
-                    `;
-
   const orderAddressSummary = `<div style=${cssStyle}>
                                 ${sub_premises} ${premises_name}  ${thoroughfare_number} ${thoroughfare_name} ${locality} ${post_town} ${county} ${postcode}
                               </div>`;
 
-  const orderBroadbandSummary = `<div style=${cssStyle}>
-                                    <div>Name: ${oneTouchBroadband.name}</div>
-                                    <div>Provider: ${oneTouchBroadband.provider}</div>
-                                    <div>Down Speed: ${oneTouchBroadband.likely_down_speed}</div>
-                                    <div>Up Speed: ${oneTouchBroadband.likely_up_speed}</div>
-                                    <div>Price: ${oneTouchBroadband.price}</div>
-                                    <div>Installation: ${oneTouchBroadband.installation}</div>
+  const orderBroadbandSummary = `<div class='boxContainer broadbandDataContainer-C6 bgWhite fontH3'>
+                                    <div class='tableCell'>Name: ${oneTouchBroadband.name}</div>
+                                    <div class='tableCell'>Provider: ${oneTouchBroadband.provider}</div>
+                                    <div class='tableCell'>Down Speed: ${oneTouchBroadband.likely_down_speed}</div>
+                                    <div class='tableCell'>Up Speed: ${oneTouchBroadband.likely_up_speed}</div>
+                                    <div class='tableCell'>Price: ${oneTouchBroadband.price}</div>
+                                    <div class='tableCell'>Installation: ${oneTouchBroadband.installation}</div>
                                   </div>`;
 
-  const orderSummary = `<div style=${cssStyle}>
+  const orderSummary = `<div class='boxContainer broadbandDataContainer-C6 bgWhite fontH3'>
                           <div>
                             <h4>Order Address</h4>
                           </div>
-                          <div>${orderAddressSummary}</div>
-                          <div>
+                          <div class='tableCell'>${orderAddressSummary}</div>
+                          <div class='tableCell'>
                             <h4>Selected Broadband Details</h4>
                           </div>
-                          <div>${orderBroadbandSummary}</div>
+                          <div class='tableCell'>${orderBroadbandSummary}</div>
                         </div>`;
 
   const URL = '/oneTouch/gmail';
@@ -118,6 +111,10 @@ async function _placeBroadbandOrder() {
     oneTouchBroadbandOrderPageFive.classList.add('hidden');
     oneTouchBroadbandOrderPageOne.classList.remove('hidden');
     document.getElementById('postcodeBroadband').value = '';
+
+    //removing Data from sessions
+    sessionStorage.removeItem('oneTouchCustomer');
+    sessionStorage.removeItem('oneTouchBroadband');
 
     const endPoint = location.href.split('/').slice(-1)[0];
     persistDOMData(endPoint);

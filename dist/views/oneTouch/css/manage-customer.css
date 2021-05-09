@@ -1,6 +1,3 @@
-.liveConnectionsContainer {
-  width: min(95vw, 1000px);
-}
 .headerText {
   display: grid;
   grid-template-rows: 1fr 1fr;

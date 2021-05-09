@@ -61,8 +61,4 @@
 }
 /* Media Queries */
 @media only screen and (max-width: 800px) {
-  .raiseTicketContent {
-    display: grid;
-    justify-content: center;
-  }
 }

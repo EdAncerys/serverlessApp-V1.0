@@ -29,13 +29,14 @@ async function _oneTouchContracts() {
     let dataContainer = '';
     let oneTouchContractData = '';
 
-    oneTouchBroadband.map((userPlacedOrders) => {
-      console.log(userPlacedOrders);
-      const oneTouchCustomerData = userPlacedOrders.oneTouchCustomer;
+    oneTouchBroadband.map((contract) => {
+      console.log(contract);
+      const liveContract = contract.contractStartDay;
+      const oneTouchCustomerData = contract.oneTouchCustomer;
       let oneTouchCustomer = [];
       if (oneTouchCustomerData)
-        oneTouchCustomer = userPlacedOrders.oneTouchCustomer.oneTouchCustomer;
-      const id = userPlacedOrders._id;
+        oneTouchCustomer = contract.oneTouchCustomer.oneTouchCustomer;
+      const id = contract._id;
 
       let thoroughfare_number =
         oneTouchCustomer.thoroughfare_number === 'null'
@@ -57,11 +58,14 @@ async function _oneTouchContracts() {
         oneTouchCustomer.county === 'null' ? '' : oneTouchCustomer.county;
       let postcode = oneTouchCustomer.postcode;
 
+      let btnClass = 'btnB01';
+      if (!liveContract) btnClass = 'btnB01';
+
       manageDataContainer = `<div class="manageDataContainer">
-                            <contractInfo id='${id}' class="btnB01" role="button">
+                            <contractInfo id='${id}' class=${btnClass} role="button">
                               Info
                             </contractInfo>
-                            <deleteContract id='${id}' class="btnB01 bgDanger" role="button">
+                            <deleteContract id='${id}' class="${btnClass} bgDanger" role="button">
                               Delete
                             </deleteContract>
                           </div>`;

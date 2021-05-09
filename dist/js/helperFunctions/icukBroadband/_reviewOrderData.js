@@ -63,7 +63,8 @@ async function _reviewOrderData(oneTouchOrderNo) {
       customerInfo = `<div class="fontH2 textDanger">Full Name: ${oneTouchCustomer.customerFullName} | Email: ${oneTouchCustomer.customerEmail}</div>`;
 
     let placeOrderClassList = 'btnB01';
-    if (!oneTouchCustomer) placeOrderClassList = 'btnB01 btnDisable';
+    if (!oneTouchCustomer.customerFullName)
+      placeOrderClassList = 'btnB01 btnDisable';
 
     const orderData = `<div class="boxContainer bgGradientSilver  fontH2">
                         <div class="broadbandDataContainer-C6">
