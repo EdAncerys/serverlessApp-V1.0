@@ -49,17 +49,17 @@
                         <form action="/">
                           <label for="fname">Contract Start Day</label>
                           <input
-                            type="text"
-                            id="name"
+                            type="date"
+                            id="contractStartDay"
                             name="name"
                             placeholder="DD/MM/YYYY"
                           />
 
                           <label for="lname">Contract End Day</label>
                           <input
-                            type="text"
-                            id="phoneNumber"
-                            name="phoneNumber"
+                            type="date"
+                            id="contractEndDay"
+                            name="name"
                             placeholder="DD/MM/YYYY"
                           />
 
@@ -300,3 +300,24 @@
     </div>
   </body>
 </html>
+
+<script>
+  const customFunction = (event) => {
+    event.preventDefault();
+    console.log('form');
+    return;
+  };
+
+  document.querySelector('body').addEventListener('click', (event) => {
+    const addContract = event.target.nodeName === 'SUBMITFORM';
+
+    // console.log(event.target.getAttribute('id'), event.target.nodeName);
+
+    let id;
+    if (event.target.getAttribute('id')) id = event.target.getAttribute('id');
+
+    if (addContract) {
+      customFunction(event);
+    }
+  });
+</script>

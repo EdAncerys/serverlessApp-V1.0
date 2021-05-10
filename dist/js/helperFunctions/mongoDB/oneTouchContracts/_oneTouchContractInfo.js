@@ -55,63 +55,64 @@ async function _oneTouchContractInfo(findOneById) {
 
     // Activate contract section
     let activateContract = '';
-    if (endPoint === 'broadband-orders.html')
-      activateContract = `<div class="features">
-                              <div class="flex-container-50">
-                                <div class="oneTouchFormContainer">
-                                  <div id="oneTouchIconContainer">
-                                    <div class="oneTouchIcon"></div>
+    const broadbandOrders = 'broadband-orders.html';
+    if (endPoint.includes(broadbandOrders))
+      activateContract = ` <div class="features">
+                            <div class="flex-container-50">
+                              <div class="oneTouchFormContainer">
+                                <div id="oneTouchIconContainer">
+                                  <div class="oneTouchIcon"></div>
+                                </div>
+
+                                <form action="/">
+                                  <label for="fname">Contract Start Day</label>
+                                  <input
+                                    type="date"
+                                    id="contractStartDay"
+                                    name="name"
+                                    placeholder="DD/MM/YYYY"
+                                  />
+
+                                  <label for="lname">Contract End Day</label>
+                                  <input
+                                    type="date"
+                                    id="contractEndDay"
+                                    name="name"
+                                    placeholder="DD/MM/YYYY"
+                                  />
+
+                                  <label for="subject">Description</label>
+                                  <textarea
+                                    id="description"
+                                    name="description"
+                                    placeholder="Relative Information..."
+                                    style="height: 200px"
+                                  ></textarea>
+
+                                  <submitForm>
+                                    <input
+                                      id="raiseTicket"
+                                      class="btnOneTouch"
+                                      type="submit"
+                                      value="Activate Contract"
+                                    />
+                                  </submitForm>
+                                </form>
+                              </div>
+                            </div>
+
+                            <div class="flex-container-50">
+                              <div class="oneTouchFormContainer">
+                                <div class="fontH3">Extra Metrics</div>
+                                <div class="dataSummaryContainer textSilver fontH2">
+                                  <div class="dataRowSummaryContainer justifyText">
+                                    <div class="rowDisplayStart">Extra Metrics</div>
+                                    <div class="rowDisplayEnd">extra metrics</div>
                                   </div>
-
-                                  <form action="/">
-                                    <label for="fname">Contract Start Day</label>
-                                    <input
-                                      type="text"
-                                      id="name"
-                                      name="name"
-                                      placeholder="DD/MM/YYYY"
-                                    />
-
-                                    <label for="lname">Contract End Day</label>
-                                    <input
-                                      type="text"
-                                      id="phoneNumber"
-                                      name="phoneNumber"
-                                      placeholder="DD/MM/YYYY"
-                                    />
-
-                                    <label for="subject">Description</label>
-                                    <textarea
-                                      id="description"
-                                      name="description"
-                                      placeholder="Relative Information..."
-                                      style="height: 200px"
-                                    ></textarea>
-
-                                    <submitForm>
-                                      <input
-                                        id="raiseTicket"
-                                        class="btnOneTouch"
-                                        type="submit"
-                                        value="Activate Contract"
-                                      />
-                                    </submitForm>
-                                  </form>
                                 </div>
                               </div>
-
-                              <div class="flex-container-50">
-                                <div class="oneTouchFormContainer">
-                                  <div class="fontH3">Extra Metrics</div>
-                                  <div class="dataSummaryContainer textSilver fontH2">
-                                    <div class="dataRowSummaryContainer justifyText">
-                                      <div class="rowDisplayStart">Extra Metrics</div>
-                                      <div class="rowDisplayEnd">extra metrics</div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>`;
+                            </div>
+                          </div>`;
 
     oneTouchContractData = `
                             <div class="outer">
