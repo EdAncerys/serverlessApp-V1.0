@@ -11,3 +11,9 @@
 termsAndConditions {
   cursor: pointer;
 }
+/* Media Queries */
+@media only screen and (max-width: 800px) {
+  .formControl {
+    width: auto;
+  }
+}
