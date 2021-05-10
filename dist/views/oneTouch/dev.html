@@ -29,250 +29,142 @@
         <div style="width: min(95vw, 1000px); background: #f4f4f4">
           <!-- page content -->
 
-          <div class="oneTouchWrapper">
-            <div id="broadbandOrdersContainer" class="broadbandOrdersContainer">
+          <div id="oneTouchWrapper" class="oneTouchWrapper">
+            <div id="liveConnectionsContainer" class="liveConnectionsContainer">
               <div id="liveConnections">
-                <div id="oneTouchContractInfo">
-                  <div class="outer">
-                    <inner class="inner">
-                      <btnlabel>Back</btnlabel>
-                    </inner>
-                  </div>
-
-                  <div class="features">
-                    <div class="flex-container-50">
-                      <div class="oneTouchFormContainer">
-                        <div id="oneTouchIconContainer">
-                          <div class="oneTouchIcon"></div>
-                        </div>
-
-                        <form action="/">
-                          <label for="fname">Contract Start Day</label>
-                          <input
-                            type="date"
-                            id="contractStartDay"
-                            name="name"
-                            placeholder="DD/MM/YYYY"
-                          />
-
-                          <label for="lname">Contract End Day</label>
-                          <input
-                            type="date"
-                            id="contractEndDay"
-                            name="name"
-                            placeholder="DD/MM/YYYY"
-                          />
-
-                          <label for="subject">Description</label>
-                          <textarea
-                            id="description"
-                            name="description"
-                            placeholder="Relative Information..."
-                            style="height: 200px"
-                          ></textarea>
-
-                          <submitForm>
-                            <input
-                              id="raiseTicket"
-                              class="btnOneTouch"
-                              type="submit"
-                              value="Activate Contract"
-                            />
-                          </submitForm>
-                        </form>
-                      </div>
-                    </div>
-
-                    <div class="flex-container-50">
-                      <div class="oneTouchFormContainer">
-                        <div class="fontH3">Extra Metrics</div>
-                        <div class="dataSummaryContainer textSilver fontH2">
-                          <div class="dataRowSummaryContainer justifyText">
-                            <div class="rowDisplayStart">Extra Metrics</div>
-                            <div class="rowDisplayEnd">extra metrics</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="features">
-                    <div class="flex-container-50">
-                      <div class="oneTouchFormContainer">
-                        <div class="fontH3">Company Information</div>
-                        <div class="dataSummaryContainer textSilver fontH2">
-                          <div class="dataRowSummaryContainer justifyText">
-                            <div class="rowDisplayStart">Company Name</div>
-                            <div class="rowDisplayEnd">Company Name</div>
-                          </div>
-                          <div class="dataRowSummaryContainer justifyText">
-                            <div class="rowDisplayStart">Product Type</div>
-                            <div class="rowDisplayEnd">Product Type</div>
-                          </div>
-
-                          <div class="dataRowSummaryContainer justifyText">
-                            <div class="rowDisplayStart">Company Email</div>
-                            <div class="rowDisplayEnd">company@email.com</div>
-                          </div>
-                          <div class="dataRowSummaryContainer justifyText">
-                            <div class="rowDisplayStart">
-                              Company Phone Number
-                            </div>
-                            <div class="rowDisplayEnd">0799988877</div>
-                          </div>
-
-                          <div class="dataRowSummaryContainer justifyText">
-                            <div class="rowDisplayStart">Account Manager</div>
-                            <div class="rowDisplayEnd">Account Manager</div>
-                          </div>
-                          <div class="dataRowSummaryContainer justifyText">
-                            <div class="rowDisplayStart">
-                              Company Registration
-                            </div>
-                            <div class="rowDisplayEnd">
-                              Company Registration
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="flex-container-50">
-                      <div class="oneTouchFormContainer">
-                        <div class="fontH3">Customer Information</div>
-                        <div class="dataSummaryContainer textSilver fontH2">
-                          <div class="dataRowSummaryContainer justifyText">
-                            <div class="rowDisplayStart">Full Name</div>
-                            <div class="rowDisplayEnd">undefined</div>
-                          </div>
-                          <div class="dataRowSummaryContainer justifyText">
-                            <div class="rowDisplayStart">Phone Number</div>
-                            <div class="rowDisplayEnd">0799988877</div>
-                          </div>
-
-                          <div class="dataRowSummaryContainer justifyText">
-                            <div class="rowDisplayStart">Customer Email</div>
-                            <div class="rowDisplayEnd">john@email.com</div>
-                          </div>
-                          <div class="dataRowSummaryContainer justifyText">
-                            <div class="rowDisplayStart">
-                              Personal Notes: <br />
-                              Customer Notes
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
+                <div id="oneTouchContracts">
                   <div class="features">
                     <div class="flex-container-40">
-                      <div class="oneTouchFormContainer">
-                        <div class="fontH3">Broadband Information</div>
+                      <div class="oneTouchFormContainer bgGradientSilver">
+                        <div class="alignHorizontally fontH3">
+                          Contract Overview
+                        </div>
+                        <div class="fontH2">
+                          Manage and overview contracts - anytime, anywhere
+                        </div>
                         <div class="dataSummaryContainer textSilver fontH2">
                           <div class="dataRowSummaryContainer justifyText">
-                            <div class="rowDisplayStart">Broadband Name</div>
-                            <div class="rowDisplayEnd">21CN ADSL 2+</div>
+                            <div class="rowDisplayStart">Total Contracts</div>
+                            <div class="rowDisplayEnd">2</div>
                           </div>
-                          <div class="dataRowSummaryContainer justifyText">
+                          <div
+                            class="dataRowSummaryContainer justifyText textWhite bgGreen"
+                          >
                             <div class="rowDisplayStart">
-                              Broadband Provider
+                              Contracts with exp date &gt; 6 month
                             </div>
-                            <div class="rowDisplayEnd">WBC_21CN</div>
+                            <div class="rowDisplayEnd">0</div>
                           </div>
-                          <div class="dataRowSummaryContainer justifyText">
+                          <div
+                            class="dataRowSummaryContainer justifyText textWhite bgWarning"
+                          >
                             <div class="rowDisplayStart">
-                              Broadband Technology
+                              Contracts with exp date &lt; 6 month
                             </div>
-                            <div class="rowDisplayEnd">ADSL2+</div>
+                            <div class="rowDisplayEnd">0</div>
                           </div>
-                          <div class="dataRowSummaryContainer justifyText">
-                            <div class="rowDisplayStart">Up Speed</div>
-                            <div class="rowDisplayEnd">0.92</div>
-                          </div>
-                          <div class="dataRowSummaryContainer justifyText">
-                            <div class="rowDisplayStart">Down Speed</div>
-                            <div class="rowDisplayEnd">17</div>
-                          </div>
-                          <div class="dataRowSummaryContainer justifyText">
-                            <div class="rowDisplayStart">Broadband Price</div>
-                            <div class="rowDisplayEnd">£28.00</div>
-                          </div>
-                          <div class="dataRowSummaryContainer justifyText">
-                            <div class="rowDisplayStart">
-                              Broadband Installation Price
-                            </div>
-                            <div class="rowDisplayEnd">£115.00</div>
+                          <div
+                            class="dataRowSummaryContainer justifyText textWhite bgDanger"
+                          >
+                            <div class="rowDisplayStart">Expired Contracts</div>
+                            <div class="rowDisplayEnd">0</div>
                           </div>
                         </div>
                       </div>
                     </div>
 
-                    <div class="flex-container-30">
-                      <div class="oneTouchFormContainer">
-                        <div class="fontH3">Contract Details</div>
-                        <div class="dataSummaryContainer textSilver fontH2">
-                          <div class="dataRowSummaryContainer justifyText">
-                            <div class="rowDisplayStart">Installation Date</div>
-                            <div class="rowDisplayEnd">undefined</div>
+                    <div class="contractWrapper">
+                      <div class="flex-container-60">
+                        <div class="headerText">
+                          <div class="fontH4">
+                            Live Contracts &amp; Customer List
                           </div>
-                          <div class="dataRowSummaryContainer justifyText">
-                            <div class="rowDisplayStart">
-                              Contact Expiration Date
-                            </div>
-                            <div class="rowDisplayEnd">undefined</div>
-                          </div>
-
-                          <div class="dataRowSummaryContainer justifyText">
-                            <div class="rowDisplayStart">Contact Length</div>
-                            <div class="rowDisplayEnd">undefined</div>
-                          </div>
-                          <div class="dataRowSummaryContainer justifyText">
-                            <div class="rowDisplayStart">Contract Price</div>
-                            <div class="rowDisplayEnd">£28.00</div>
+                          <div class="fontH2">
+                            Manage all customers in one place. View address,
+                            contact information, etc. &amp; any personal notes.
                           </div>
                         </div>
-                      </div>
-                    </div>
-
-                    <div class="flex-container-30">
-                      <div class="oneTouchFormContainer">
-                        <div class="fontH3">Site Installation Details</div>
-                        <div class="dataSummaryContainer textSilver fontH2">
-                          <div class="dataRowSummaryContainer justifyText">
-                            <div class="rowDisplayStart">Contact Name</div>
-                            <div class="rowDisplayEnd">John Doe</div>
+                        <div id="dataWrapper" class="dataWrapper">
+                          <div class="rowDataContainer-4 boxContainer bgGray">
+                            <div class="rowDataWrapper">Business Contact</div>
+                            <div class="rowDataWrapper">Contact Details</div>
+                            <div class="rowDataWrapper">Address</div>
+                            <div class="rowDataWrapper">Option</div>
                           </div>
-                          <div class="dataRowSummaryContainer justifyText">
-                            <div class="rowDisplayStart">
-                              Contact Phone Number
+                          <div class="rowContainer bgGradientSilver">
+                            <div class="pendingOrder">Pending Order</div>
+                            <div class="rowDataContainer-4 rowInactive">
+                              <div class="rowDataWrapper">
+                                <div>Company Name</div>
+                                <div class="bottomDataRow">John Doe</div>
+                              </div>
+                              <div class="rowDataWrapper">
+                                <div>0799988877</div>
+                                <div class="bottomDataRow">john@email.com</div>
+                              </div>
+                              <div class="rowDataWrapper">
+                                <div>124 Hamlet Gardens London</div>
+                                <div class="bottomDataRow">W6 0TR</div>
+                              </div>
+                              <div class="rowDataWrapper">
+                                <div class="manageDataContainer">
+                                  <contractinfo
+                                    id="6096910cf9344e19027ad820"
+                                    class="btnB01 btnDisable"
+                                    role="button"
+                                  >
+                                    Info
+                                  </contractinfo>
+                                  <deletecontract
+                                    id="6096910cf9344e19027ad820"
+                                    class="btnB01 btnDisable bgDanger"
+                                    role="button"
+                                  >
+                                    Delete
+                                  </deletecontract>
+                                </div>
+                              </div>
                             </div>
-                            <div class="rowDisplayEnd">0799988877</div>
                           </div>
 
-                          <div class="dataRowSummaryContainer justifyText">
-                            <div class="rowDisplayStart">Contact Email</div>
-                            <div class="rowDisplayEnd">contact@email.com</div>
-                          </div>
-                          <div class="dataRowSummaryContainer justifyText">
-                            <div class="rowDisplayStart">
-                              Installation Address: <br />
-                              124 Hamlet Gardens London W6 0TR
+                          <div
+                            class="rowContainer bgGradientSilver txtOverwrite"
+                          >
+                            <div
+                              class="rowDataContainer-4 rowInactive txtOverwrite"
+                            >
+                              <div class="rowDataWrapper">
+                                <div>Company Name</div>
+                                <div class="bottomDataRow">Ben Dover</div>
+                              </div>
+                              <div class="rowDataWrapper">
+                                <div>0799988877</div>
+                                <div class="bottomDataRow">ben@email.com</div>
+                              </div>
+                              <div class="rowDataWrapper">
+                                <div>17 Churchill Road London</div>
+                                <div class="bottomDataRow">E16 3DY</div>
+                              </div>
+                              <div class="rowDataWrapper">
+                                <div class="manageDataContainer">
+                                  <contractinfo
+                                    id="609691a1f9344e19027ad822"
+                                    class="btnB01"
+                                    btndisable=""
+                                    role="button"
+                                  >
+                                    Info
+                                  </contractinfo>
+                                  <deletecontract
+                                    id="609691a1f9344e19027ad822"
+                                    class="btnB01 btnDisable bgDanger"
+                                    role="button"
+                                  >
+                                    Delete
+                                  </deletecontract>
+                                </div>
+                              </div>
                             </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="features-align-left">
-                    <div class="flex-container-50">
-                      <div class="oneTouchFormContainer">
-                        <div class="fontH3">Extra Metrics</div>
-                        <div class="dataSummaryContainer textSilver fontH2">
-                          <div class="dataRowSummaryContainer justifyText">
-                            <div class="rowDisplayStart">Extra Metrics</div>
-                            <div class="rowDisplayEnd">extra metrics</div>
                           </div>
                         </div>
                       </div>

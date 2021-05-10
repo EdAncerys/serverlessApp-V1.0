@@ -60,14 +60,13 @@ async function _oneTouchContracts() {
 
       let btnClass = 'btnB01';
       let rowDataContainer = 'rowDataContainer-4';
-      let rowContainer = 'rowContainer bgGradientSilver';
+      let pendingOrder = '';
       if (!liveContract) btnClass = 'btnB01 btnDisable';
-      if (!liveContract)
-        rowContainer = 'rowContainer bgGradientSilver txtOverwrite';
       if (!liveContract) rowDataContainer = 'rowDataContainer-4 rowInactive';
+      if (!liveContract) pendingOrder = 'Pending Order...';
 
       manageDataContainer = `<div class="manageDataContainer">
-                            <contractInfo id='${id}' class=${btnClass} role="button">
+                            <contractInfo id='${id}' class="${btnClass}" role="button">
                               Info
                             </contractInfo>
                             <deleteContract id='${id}' class="${btnClass} bgDanger" role="button">
@@ -75,7 +74,8 @@ async function _oneTouchContracts() {
                             </deleteContract>
                           </div>`;
 
-      dataContainer += `<div class="${rowContainer}">
+      dataContainer += `<div class="rowContainer bgGradientSilver">
+                        <div class="pendingOrder">${pendingOrder}</div>
                         <div class="${rowDataContainer}">
                           <div class="rowDataWrapper">
                             <div>${oneTouchCustomer.companyName}</div>
