@@ -4,12 +4,12 @@ import { _submitContactForm } from './_contactForm/_submitContactForm.js';
 import { _submitTicket } from './_freshDesk/_submitTicket.js';
 
 const _handleFormValidation = (formType) => {
-  let name = document.getElementById('name').value;
-  let email = document.getElementById('email').value;
-  let subject = 'Created at: ' + new Date().toLocaleString();
-  let description = document.getElementById('description').value;
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  const subject = 'Created at: ' + new Date().toLocaleString();
+  const description = document.getElementById('description').value;
 
-  let errors = [];
+  const errors = [];
 
   console.log('Validating From...');
   console.log(name, email, subject, description);

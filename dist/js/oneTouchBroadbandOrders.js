@@ -26,10 +26,27 @@ const asyncDeleteContract = async (id) => {
   await _oneTouchAllPlacedOrders();
 };
 
+const _activateContract = async (event) => {
+  event.preventDefault();
+  const today = new Date();
+  var dd = today.getDate();
+  const contractStartDay = document.getElementById('contractStartDay').value;
+  const contractEndDay = document.getElementById('contractEndDay').value;
+  const contractDescription = document.getElementById('contractDescription')
+    .value;
+
+  if (contractStartDay && contractEndDay !== '') {
+    console.log(dd);
+    console.table(contractStartDay, contractEndDay);
+  }
+};
+
 document.querySelector('body').addEventListener('click', (event) => {
   const contractInfo = event.target.nodeName === 'CONTRACTINFO';
   const deleteContract = event.target.nodeName === 'DELETECONTRACT';
   const placeNewOrder = event.target.nodeName === 'PLACENEWORDER';
+  const activateContract =
+    event.target.getAttribute('id') === 'activateContract';
   const goBackBtn =
     event.target.nodeName === 'BTNLABEL' || event.target.nodeName === 'INNER';
 
@@ -51,5 +68,8 @@ document.querySelector('body').addEventListener('click', (event) => {
   }
   if (placeNewOrder) {
     window.location.replace('/views/oneTouch/connection-checker.html');
+  }
+  if (activateContract) {
+    _activateContract(event);
   }
 });

@@ -83,7 +83,7 @@ async function _oneTouchContractInfo(findOneById) {
 
                                   <label for="subject">Description</label>
                                   <textarea
-                                    id="description"
+                                    id="contractDescription"
                                     name="description"
                                     placeholder="Relative Information..."
                                     style="height: 200px"
@@ -91,7 +91,7 @@ async function _oneTouchContractInfo(findOneById) {
 
                                   <submitForm>
                                     <input
-                                      id="raiseTicket"
+                                      id="activateContract"
                                       class="btnOneTouch"
                                       type="submit"
                                       value="Activate Contract"
