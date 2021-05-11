@@ -29,11 +29,13 @@ async function _oneTouchAllPlacedOrders() {
     let dataContainer = '';
     let oneTouchContractData = '';
     let totalPendingContracts = 0;
+    let totalApprovedContracts = 0;
 
     oneTouchBroadband.map((contract) => {
       console.log(contract);
       const liveContract = contract.contractStartDay;
       if (!liveContract) totalPendingContracts += 1;
+      if (liveContract) totalApprovedContracts += 1;
 
       const oneTouchSuperUser = contract.oneTouchSuperUser;
       const oneTouchCustomerData = contract.oneTouchCustomer;
@@ -103,8 +105,12 @@ async function _oneTouchAllPlacedOrders() {
                                       <div class="rowDisplayEnd">${totalContracts}</div>
                                     </div>
                                     <div class="dataRowSummaryContainer justifyText">
-                                      <div class="rowDisplayStart">Total Pending Contracts</div>
+                                      <div class="rowDisplayStart">Pending Contracts</div>
                                       <div class="rowDisplayEnd">${totalPendingContracts}</div>
+                                    </div>
+                                    <div class="dataRowSummaryContainer justifyText">
+                                      <div class="rowDisplayStart">Approved Contracts</div>
+                                      <div class="rowDisplayEnd">${totalApprovedContracts}</div>
                                     </div>
                                   </div>
                                 </div>

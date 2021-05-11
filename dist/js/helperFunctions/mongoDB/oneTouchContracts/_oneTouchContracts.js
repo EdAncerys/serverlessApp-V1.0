@@ -61,10 +61,10 @@ async function _oneTouchContracts() {
       let postcode = oneTouchCustomer.postcode;
 
       let btnClass = 'btnB01';
-      let rowComponent = 'rowComponent-4';
+      let rowComponent = 'rowComponent-3';
       let pendingOrder = '';
       if (!liveContract) btnClass = 'btnB01 btnDisable';
-      if (!liveContract) rowComponent = 'rowComponent-4 rowInactive';
+      if (!liveContract) rowComponent = 'rowComponent-3 rowInactive';
       if (!liveContract) pendingOrder = 'Pending Order...';
 
       manageDataContainer = `<div class="manageDataContainer">
@@ -77,25 +77,21 @@ async function _oneTouchContracts() {
                           </div>`;
 
       dataContainer += `<div class="rowContainer bgGradientSilver">
-                        <div class="pendingOrder">${pendingOrder}</div>
-                        <div class="${rowComponent}">
-                          <div class="rowComponentWrapper">
-                            <div>${oneTouchCustomer.companyName}</div>
-                            <div class="bottomDataRow">${oneTouchCustomer.customerFullName}</div>
+                          <div class="pendingOrder">${pendingOrder}</div>
+                          <div class="${rowComponent}">
+                            <div class="rowComponentWrapper">
+                              <div>${oneTouchCustomer.companyName}</div>
+                              <div class="bottomDataRow">${oneTouchCustomer.customerFullName}</div>
+                            </div>
+                            <div class="rowComponentWrapper">
+                              <div>${thoroughfare_number} ${premises_name} ${sub_premises} ${thoroughfare_name} ${county}</div>
+                              <div class="bottomDataRow">${postcode}</div>
+                            </div>
+                            <div class="rowComponentWrapper">
+                              ${manageDataContainer}
+                            </div>
                           </div>
-                          <div class="rowComponentWrapper">
-                            <div>${oneTouchCustomer.customerPhoneNumber}</div>
-                            <div class="bottomDataRow">${oneTouchCustomer.customerEmail}</div>
-                          </div>
-                          <div class="rowComponentWrapper">
-                            <div>${thoroughfare_number} ${premises_name} ${sub_premises} ${thoroughfare_name} ${county}</div>
-                            <div class="bottomDataRow">${postcode}</div>
-                          </div>
-                          <div class="rowComponentWrapper">
-                            ${manageDataContainer}
-                          </div>
-                        </div>
-                      </div>`;
+                        </div>`;
     });
 
     const totalContracts = oneTouchBroadband.length;
@@ -113,7 +109,7 @@ async function _oneTouchContracts() {
                                   <div class="rowDisplayEnd">${totalContracts}</div>
                                 </div>
                                 <div class="dataRowSummaryContainer justifyText">
-                                  <div class="rowDisplayStart">Total Pending Contracts</div>
+                                  <div class="rowDisplayStart">Pending Contracts</div>
                                   <div class="rowDisplayEnd">${totalPendingContracts}</div>
                                 </div>
                                 <div class="dataRowSummaryContainer justifyText textWhite bgGreen">
@@ -146,9 +142,8 @@ async function _oneTouchContracts() {
                                 </div>
                               </div>
                               <div id='dataWrapper' class='dataWrapper'>
-                                <div class="rowComponent-4 boxContainer bgGray">
+                                <div class="rowComponent-3 boxContainer bgGray">
                                   <div class="rowComponentWrapper">Business Contact</div>
-                                  <div class="rowComponentWrapper">Contact Details</div>
                                   <div class="rowComponentWrapper">Address</div>
                                   <div class="rowComponentWrapper">Manage</div>
                                 </div>

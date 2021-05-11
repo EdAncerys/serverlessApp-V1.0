@@ -24,7 +24,6 @@ lcComponent {
   z-index: 9;
   height: 0;
   overflow: visible;
-  top: min(5px, 25%);
   font-size: 36px;
   color: #61d2b3;
 }

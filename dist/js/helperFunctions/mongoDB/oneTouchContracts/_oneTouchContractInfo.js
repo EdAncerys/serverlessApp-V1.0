@@ -56,7 +56,7 @@ async function _oneTouchContractInfo(findOneById) {
 
     // Activate contract section
     let activateContract = '';
-    const broadbandOrders = 'broadband-orders.html';
+    const broadbandOrders = 'broadband-orders';
     if (endPoint.includes(broadbandOrders))
       activateContract = ` <div class="features">
                             <div class="flex-container-50">
