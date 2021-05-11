@@ -97,7 +97,7 @@ async function _oneTouchContracts() {
     const totalContracts = oneTouchBroadband.length;
 
     oneTouchContractData = `<div class="features">
-                          <div class="flex-container-40">
+                          <div class="flex-container-30">
                             <div class="oneTouchFormContainer bgGradientSilver">
                               <div class="alignHorizontally fontH3">Contract Overview</div>
                               <div class="fontH2">
@@ -133,7 +133,7 @@ async function _oneTouchContracts() {
                           </div>
 
                           <div class="contractWrapper">
-                            <div class="flex-container-60">
+                            <div class="flex-container-70">
                               <div class="headerText">
                                 <div class="fontH4">Live Contracts & Customer List</div>
                                 <div class="fontH2">

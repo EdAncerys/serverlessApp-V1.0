@@ -93,7 +93,7 @@ async function _oneTouchAllPlacedOrders() {
     const totalContracts = oneTouchBroadband.length;
 
     oneTouchContractData = `<section class="features">
-                              <div class="flex-container-40">
+                              <div class="flex-container-30">
                                 <div class="oneTouchFormContainer bgGradientSilver">
                                   <div class="alignHorizontally fontH3">Contract Overview</div>
                                   <div class="fontH2">
@@ -115,7 +115,7 @@ async function _oneTouchAllPlacedOrders() {
                                   </div>
                                 </div>
                               </div>
-                              <div class="flex-container-60">
+                              <div class="flex-container-70">
                                 <div class="titleComponent">
                                   <div class="fontH4">Manage All Placed Orders</div>
                                   <div class="fontH2">Manage all placed orders in one place with a touch of a finger!</div>

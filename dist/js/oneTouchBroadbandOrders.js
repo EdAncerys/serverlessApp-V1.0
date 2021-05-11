@@ -24,21 +24,24 @@ document.addEventListener('DOMContentLoaded', () => {
 const asyncDeleteContract = async (id) => {
   await _deleteOneTouchBroadband(id);
   await _oneTouchAllPlacedOrders();
+  return;
 };
 
-const _activateContract = async (event) => {
+const asyncActivateContract = async (event) => {
   event.preventDefault();
   const today = new Date();
   var dd = today.getDate();
-  const oneTouchBroadband = sessionStorage.getItem('oneTouchBroadband');
+  const oneTouchBroadband = JSON.parse(
+    sessionStorage.getItem('oneTouchBroadband')
+  );
   const contractStartDay = document.getElementById('contractStartDay').value;
   const contractEndDay = document.getElementById('contractEndDay').value;
   const contractNotes = document.getElementById('contractNotes').value;
 
   if (contractStartDay && contractEndDay !== '' && oneTouchBroadband) {
     console.table(contractStartDay, contractEndDay);
-    oneTouchBroadband['oneTouchBroadband.contractStartDay'] = contractStartDay;
-    oneTouchBroadband['oneTouchBroadband.contractEndDay'] = contractEndDay;
+    oneTouchBroadband.oneTouchBroadband.contractStartDay = contractStartDay;
+    oneTouchBroadband.oneTouchBroadband.contractEndDay = contractEndDay;
     console.table(oneTouchBroadband);
 
     sessionStorage.setItem(
@@ -78,6 +81,6 @@ document.querySelector('body').addEventListener('click', (event) => {
     window.location.replace('/views/oneTouch/connection-checker.html');
   }
   if (activateContract) {
-    _activateContract(event);
+    asyncActivateContract(event);
   }
 });
