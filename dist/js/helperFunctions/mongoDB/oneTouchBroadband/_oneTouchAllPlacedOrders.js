@@ -33,7 +33,7 @@ async function _oneTouchAllPlacedOrders() {
 
     oneTouchBroadband.map((contract) => {
       console.log(contract);
-      const liveContract = contract.contractStartDay;
+      const liveContract = contract.oneTouchBroadband.contractStartDay;
       if (!liveContract) totalPendingContracts += 1;
       if (liveContract) totalApprovedContracts += 1;
 
