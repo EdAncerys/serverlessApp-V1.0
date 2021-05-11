@@ -53,6 +53,7 @@ document.querySelector('body').addEventListener('click', (event) => {
   let id = event.target.getAttribute('id');
 
   if (goBackBtn) {
+    sessionStorage.removeItem('oneTouchBroadband');
     const oneTouchContracts = document.querySelector('#oneTouchContracts');
     const removeData = document.querySelector('#oneTouchContractInfo');
     oneTouchContracts.classList.remove('hidden');

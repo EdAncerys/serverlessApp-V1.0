@@ -27,6 +27,7 @@ async function _oneTouchContractInfo(findOneById) {
 
     if (!response.ok) throw new Error(data);
 
+    sessionStorage.setItem('oneTouchBroadband', JSON.stringify(data));
     const oneTouchBroadband = data.oneTouchBroadband;
     const oneTouchCustomerData = data.oneTouchCustomer;
     let oneTouchCustomer = [];
@@ -172,7 +173,9 @@ async function _oneTouchContractInfo(findOneById) {
             <div class="dataSummaryContainer textSilver fontH2">
               <div class="dataRowSummaryContainer justifyText">
                 <div class="rowDisplayStart">Full Name</div>
-                <div class="rowDisplayEnd">${oneTouchCustomer.fullName}</div>
+                <div class="rowDisplayEnd">${
+                  oneTouchCustomer.customerFullName
+                }</div>
               </div>
               <div class="dataRowSummaryContainer justifyText">
                 <div class="rowDisplayStart">Phone Number</div>
