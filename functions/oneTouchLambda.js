@@ -611,23 +611,31 @@ const findCustomerById = async (db, data) => {
     };
   }
 };
-const oneTouchUpdateUser = async (db, data) => {
-  const updateUser = {
-    email: data.email,
+const activateContract = async (db, data) => {
+  console.log(data);
+  const oneTouchContract = {
+    id: data._id,
+    oneTouchBroadband: data.oneTouchBroadband,
+    contractStartDay: data.oneTouchBroadband.contractStartDay,
   };
-  const user = await db
-    .collection(COLLECTION)
-    .find({ email: updateUser.email })
+  const contractID = new ObjectId(oneTouchContract.id);
+  const contract = await db
+    .collection(COLLECTION_ONE_TOUCH_BROADBAND)
+    .find({ _id: contractID })
     .toArray();
-  const userExist = user[0];
 
-  if (userExist && updateUser.email) {
+  const contractValid = contract.length > 0;
+
+  if (contractValid) {
+    const liveContract = await db
+      .collection(COLLECTION_ONE_TOUCH_BROADBAND)
+      .replaceOne(
+        { _id: contractID },
+        { oneTouchBroadband: oneTouchContract.oneTouchBroadband }
+      );
     const msg =
-      `User been successfully updated in DB with email: ` + updateUser.email;
-    const oneTouchUser = { email: updateUser.email };
-    const updatedValues = { $set: data };
-
-    await db.collection(COLLECTION).updateOne(oneTouchUser, updatedValues);
+      `Contract successfully been activated. Start Day: ` +
+      oneTouchContract.contractStartDay;
     console.log(msg);
 
     return {
@@ -635,12 +643,12 @@ const oneTouchUpdateUser = async (db, data) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ updatedUser: data, msg: msg, user: user }),
+      body: JSON.stringify({ oneTouchContract: liveContract, msg: msg }),
     };
   } else {
     const msg =
-      `User not found! Error updating user in DB where email: ` +
-      updateUser.email;
+      `Error activating contract for: ` +
+      oneTouchContract.oneTouchBroadband.name;
     console.log(msg);
 
     return {
@@ -648,7 +656,7 @@ const oneTouchUpdateUser = async (db, data) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ updatedUser: data, msg: msg, user: user }),
+      body: JSON.stringify({ msg }),
     };
   }
 };

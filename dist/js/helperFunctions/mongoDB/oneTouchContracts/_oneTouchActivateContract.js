@@ -1,9 +1,31 @@
 import { _errorMessage } from '../../_errorMessage.js';
 import { _spinner } from '../../_spinner.js';
 
-async function _oneTouchActivateContract(oneTouchBroadband) {
-  console.log('Activating Broadband Order. ID: ' + oneTouchBroadband._id);
+async function _oneTouchActivateContract() {
+  const contractStartDay = document.getElementById('contractStartDay').value;
+  const contractEndDay = document.getElementById('contractEndDay').value;
+  const contractNotes = document.getElementById('contractNotes').value;
+
+  const oneTouchBroadband = await JSON.parse(
+    sessionStorage.getItem('oneTouchBroadband')
+  );
+  let id;
+  if (oneTouchBroadband) id = oneTouchBroadband._id;
+  console.log('Activating Broadband Order. ID: ' + id);
+
+  if (!contractStartDay || !contractEndDay) {
+    _errorMessage('Please Select Contract Start & End Days', 'warning');
+    return;
+  }
   _spinner(true);
+
+  oneTouchBroadband.oneTouchBroadband.contractStartDay = contractStartDay;
+  oneTouchBroadband.oneTouchBroadband.contractEndDay = contractEndDay;
+
+  await sessionStorage.setItem(
+    'oneTouchBroadband',
+    JSON.stringify(oneTouchBroadband)
+  );
 
   const URL = '/oneTouch/orders/activateContract';
   const body = {

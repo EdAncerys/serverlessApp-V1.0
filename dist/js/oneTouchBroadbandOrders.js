@@ -1,8 +1,9 @@
 import { persistDOMData } from './persistDOMData.js';
-import { _deleteOneTouchBroadband } from './helperFunctions/mongoDB/oneTouchBroadband/_deleteOneTouchBroadband.js';
 import { _errorMessage } from './helperFunctions/_errorMessage.js';
+import { _deleteOneTouchBroadband } from './helperFunctions/mongoDB/oneTouchBroadband/_deleteOneTouchBroadband.js';
 import { _oneTouchAllPlacedOrders } from './helperFunctions/mongoDB/oneTouchBroadband/_oneTouchAllPlacedOrders.js';
 import { _oneTouchContractInfo } from './helperFunctions/mongoDB/oneTouchContracts/_oneTouchContractInfo.js';
+import { _oneTouchActivateContract } from './helperFunctions/mongoDB/oneTouchContracts/_oneTouchActivateContract.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   // Persist user data on reload
@@ -29,26 +30,7 @@ const asyncDeleteContract = async (id) => {
 
 const asyncActivateContract = async (event) => {
   event.preventDefault();
-  const today = new Date();
-  var dd = today.getDate();
-  const oneTouchBroadband = JSON.parse(
-    sessionStorage.getItem('oneTouchBroadband')
-  );
-  const contractStartDay = document.getElementById('contractStartDay').value;
-  const contractEndDay = document.getElementById('contractEndDay').value;
-  const contractNotes = document.getElementById('contractNotes').value;
-
-  if (contractStartDay && contractEndDay !== '' && oneTouchBroadband) {
-    console.table(contractStartDay, contractEndDay);
-    oneTouchBroadband.oneTouchBroadband.contractStartDay = contractStartDay;
-    oneTouchBroadband.oneTouchBroadband.contractEndDay = contractEndDay;
-    console.table(oneTouchBroadband);
-
-    sessionStorage.setItem(
-      'oneTouchBroadband',
-      JSON.stringify(oneTouchBroadband)
-    );
-  }
+  _oneTouchActivateContract();
 };
 
 document.querySelector('body').addEventListener('click', (event) => {
