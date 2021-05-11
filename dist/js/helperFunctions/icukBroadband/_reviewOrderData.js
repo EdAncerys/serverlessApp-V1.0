@@ -85,7 +85,7 @@ async function _reviewOrderData(oneTouchOrderNo) {
 
     oneTouchOrderReview.innerHTML = `<section class="features">
                                       <div class="flex-container-60">
-                                        <div class="headerMsgTitle">
+                                        <div class="titleComponent">
                                           <div class="fontH4">Review Your Order!</div>
                                           <div class="fontH2">Order details will be submitted as per bellow information</div>
                                         </div>

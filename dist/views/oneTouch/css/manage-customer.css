@@ -10,15 +10,20 @@
 .dataWrapper {
   display: grid;
 }
-.rowDataContainer-4 {
+.rowComponent-3,
+.rowComponent-4 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   margin: 5px 0;
 }
-.rowDataWrapper {
+.rowComponent-3 {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.rowComponentWrapper {
   display: grid;
   padding: 0 10px;
   text-align: left;
+  font-size: 16px;
 }
 .manageDataContainer {
   display: grid;
@@ -53,7 +58,7 @@
 }
 /* Media Queries */
 @media only screen and (max-width: 800px) {
-  .rowDataContainer-4,
+  .rowComponent-4,
   .headerText {
     min-width: auto;
   }

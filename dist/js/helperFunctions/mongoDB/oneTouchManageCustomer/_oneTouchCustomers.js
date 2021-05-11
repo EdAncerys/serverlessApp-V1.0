@@ -75,20 +75,20 @@ async function _oneTouchCustomers() {
                     </div>`;
 
       customerData += `<div class="rowContainer bgGradientSilver">
-                        <div class="rowDataContainer-4">
-                          <div class="rowDataWrapper">
+                        <div class="rowComponent-4">
+                          <div class="rowComponentWrapper">
                             <div>${oneTouchCustomer.companyName}</div>
                             <div class="bottomDataRow">${oneTouchCustomer.customerFullName}</div>
                           </div>
-                          <div class="rowDataWrapper">
+                          <div class="rowComponentWrapper">
                             <div>${oneTouchCustomer.customerPhoneNumber}</div>
                             <div class="bottomDataRow">${oneTouchCustomer.customerEmail}</div>
                           </div>
-                          <div class="rowDataWrapper">
+                          <div class="rowComponentWrapper">
                             <div>${oneTouchCustomer.thoroughfare_number} ${oneTouchCustomer.thoroughfare_name}</div>
                             <div class="bottomDataRow">${oneTouchCustomer.postcode}</div>
                           </div>
-                          <div class="rowDataWrapper">
+                          <div class="rowComponentWrapper">
                             ${manageDataContainer}
                           </div>
                         </div>
@@ -105,11 +105,11 @@ async function _oneTouchCustomers() {
                                 </div>
                               </div>
                               <div id='dataWrapper' class='dataWrapper'>
-                                <div class="rowDataContainer-4 boxContainer bgGray">
-                                  <div class="rowDataWrapper">Business Contact</div>
-                                  <div class="rowDataWrapper">Contact Details</div>
-                                  <div class="rowDataWrapper">Address</div>
-                                  <div class="rowDataWrapper">Option</div>
+                                <div class="rowComponent-4 boxContainer bgGray">
+                                  <div class="rowComponentWrapper">Business Contact</div>
+                                  <div class="rowComponentWrapper">Contact Details</div>
+                                  <div class="rowComponentWrapper">Address</div>
+                                  <div class="rowComponentWrapper">Option</div>
                                 </div>
                                   ${customerData}
                                   ${navComponent}

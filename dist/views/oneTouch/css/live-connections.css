@@ -1,7 +1,6 @@
 .liveConnectionsContainer,
 .broadbandOrdersContainer {
   display: grid;
-  grid-template-rows: 100% auto;
   width: min(95vw, 1000px);
 }
 lcComponent {
@@ -25,7 +24,7 @@ lcComponent {
   z-index: 9;
   height: 0;
   overflow: visible;
-  top: min(15px, 25%);
+  top: min(5px, 25%);
   font-size: 36px;
   color: #61d2b3;
 }

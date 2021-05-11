@@ -33,6 +33,7 @@ async function _oneTouchContracts() {
     oneTouchBroadband.map((contract) => {
       console.log(contract);
       const liveContract = contract.contractStartDay;
+      if (!liveContract) totalPendingContracts += 1;
       const oneTouchCustomerData = contract.oneTouchCustomer;
       let oneTouchCustomer = [];
       if (oneTouchCustomerData)
@@ -60,10 +61,10 @@ async function _oneTouchContracts() {
       let postcode = oneTouchCustomer.postcode;
 
       let btnClass = 'btnB01';
-      let rowDataContainer = 'rowDataContainer-4';
+      let rowComponent = 'rowComponent-4';
       let pendingOrder = '';
       if (!liveContract) btnClass = 'btnB01 btnDisable';
-      if (!liveContract) rowDataContainer = 'rowDataContainer-4 rowInactive';
+      if (!liveContract) rowComponent = 'rowComponent-4 rowInactive';
       if (!liveContract) pendingOrder = 'Pending Order...';
 
       manageDataContainer = `<div class="manageDataContainer">
@@ -77,26 +78,24 @@ async function _oneTouchContracts() {
 
       dataContainer += `<div class="rowContainer bgGradientSilver">
                         <div class="pendingOrder">${pendingOrder}</div>
-                        <div class="${rowDataContainer}">
-                          <div class="rowDataWrapper">
+                        <div class="${rowComponent}">
+                          <div class="rowComponentWrapper">
                             <div>${oneTouchCustomer.companyName}</div>
                             <div class="bottomDataRow">${oneTouchCustomer.customerFullName}</div>
                           </div>
-                          <div class="rowDataWrapper">
+                          <div class="rowComponentWrapper">
                             <div>${oneTouchCustomer.customerPhoneNumber}</div>
                             <div class="bottomDataRow">${oneTouchCustomer.customerEmail}</div>
                           </div>
-                          <div class="rowDataWrapper">
+                          <div class="rowComponentWrapper">
                             <div>${thoroughfare_number} ${premises_name} ${sub_premises} ${thoroughfare_name} ${county}</div>
                             <div class="bottomDataRow">${postcode}</div>
                           </div>
-                          <div class="rowDataWrapper">
+                          <div class="rowComponentWrapper">
                             ${manageDataContainer}
                           </div>
                         </div>
                       </div>`;
-
-      if (!liveContract) totalPendingContracts += 1;
     });
 
     const totalContracts = oneTouchBroadband.length;
@@ -147,11 +146,11 @@ async function _oneTouchContracts() {
                                 </div>
                               </div>
                               <div id='dataWrapper' class='dataWrapper'>
-                                <div class="rowDataContainer-4 boxContainer bgGray">
-                                  <div class="rowDataWrapper">Business Contact</div>
-                                  <div class="rowDataWrapper">Contact Details</div>
-                                  <div class="rowDataWrapper">Address</div>
-                                  <div class="rowDataWrapper">Option</div>
+                                <div class="rowComponent-4 boxContainer bgGray">
+                                  <div class="rowComponentWrapper">Business Contact</div>
+                                  <div class="rowComponentWrapper">Contact Details</div>
+                                  <div class="rowComponentWrapper">Address</div>
+                                  <div class="rowComponentWrapper">Manage</div>
                                 </div>
                                   ${dataContainer}
                               </div>

@@ -28,14 +28,19 @@ async function _oneTouchAllPlacedOrders() {
     let manageDataContainer = '';
     let dataContainer = '';
     let oneTouchContractData = '';
+    let totalPendingContracts = 0;
 
-    oneTouchBroadband.map((userPlacedOrders) => {
-      console.log(userPlacedOrders);
-      const oneTouchCustomerData = userPlacedOrders.oneTouchCustomer;
+    oneTouchBroadband.map((contract) => {
+      console.log(contract);
+      const liveContract = contract.contractStartDay;
+      if (!liveContract) totalPendingContracts += 1;
+
+      const oneTouchSuperUser = contract.oneTouchSuperUser;
+      const oneTouchCustomerData = contract.oneTouchCustomer;
       let oneTouchCustomer = [];
       if (oneTouchCustomerData)
-        oneTouchCustomer = userPlacedOrders.oneTouchCustomer.oneTouchCustomer;
-      const id = userPlacedOrders._id;
+        oneTouchCustomer = contract.oneTouchCustomer.oneTouchCustomer;
+      const id = contract._id;
 
       let thoroughfare_number =
         oneTouchCustomer.thoroughfare_number === 'null'
@@ -67,44 +72,56 @@ async function _oneTouchAllPlacedOrders() {
                             </div>`;
 
       dataContainer += `<div class="rowContainer bgGradientSilver">
-                          <div class="rowDataContainer-4">
-                            <div class="rowDataWrapper">
-                              <div>${oneTouchCustomer.companyName}</div>
+                          <div class="rowComponent-3">
+                            <div class="rowComponentWrapper">
+                              <div>${oneTouchSuperUser.email}</div>
                               <div class="bottomDataRow">${oneTouchCustomer.customerFullName}</div>
                             </div>
-                            <div class="rowDataWrapper">
-                              <div>${oneTouchCustomer.customerPhoneNumber}</div>
-                              <div class="bottomDataRow">${oneTouchCustomer.customerEmail}</div>
-                            </div>
-                            <div class="rowDataWrapper">
+                            <div class="rowComponentWrapper">
                               <div>${thoroughfare_number} ${premises_name} ${sub_premises} ${thoroughfare_name} ${county}</div>
                               <div class="bottomDataRow">${postcode}</div>
                             </div>
-                            <div class="rowDataWrapper">
+                            <div class="rowComponentWrapper">
                               ${manageDataContainer}
                             </div>
                           </div>
                         </div>`;
     });
 
+    const totalContracts = oneTouchBroadband.length;
+
     oneTouchContractData = `<section class="features">
-                                    <div class="flex-container-90">
-                                      <div class="headerMsgTitle">
-                                        <div class="fontH4">Manage All Placed Orders</div>
-                                        <div class="fontH2">Manage all placed orders in one place with a touch of a finger!</div>
-                                      </div>
-                                      <div class="boxContainer broadbandDataContainer-C7 bgWhite">
-                                        <div class="tableCell">oneTouch User</div>
-                                        <div class="tableCell">Supplier</div>
-                                        <div class="tableCell">Download</div>
-                                        <div class="tableCell">Upload</div>
-                                        <div class="tableCell">Price</div>
-                                        <div class="tableCell">Information</div>
-                                        <div class="tableCell">Delete Order</div>
-                                      </div>
-                                      ${dataContainer}
+                              <div class="flex-container-40">
+                                <div class="oneTouchFormContainer bgGradientSilver">
+                                  <div class="alignHorizontally fontH3">Contract Overview</div>
+                                  <div class="fontH2">
+                                    Manage and overview contracts - anytime, anywhere
+                                  </div>
+                                  <div class="dataSummaryContainer textSilver fontH2">
+                                    <div class="dataRowSummaryContainer justifyText">
+                                      <div class="rowDisplayStart">Total Contracts</div>
+                                      <div class="rowDisplayEnd">${totalContracts}</div>
                                     </div>
-                                  </section>`;
+                                    <div class="dataRowSummaryContainer justifyText">
+                                      <div class="rowDisplayStart">Total Pending Contracts</div>
+                                      <div class="rowDisplayEnd">${totalPendingContracts}</div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="flex-container-60">
+                                <div class="titleComponent">
+                                  <div class="fontH4">Manage All Placed Orders</div>
+                                  <div class="fontH2">Manage all placed orders in one place with a touch of a finger!</div>
+                                </div>
+                                <div class="boxContainer rowComponent-3 bgWhite">
+                                  <div class="tableCell">oneTouch User</div>
+                                  <div class="tableCell">Address</div>
+                                  <div class="tableCell">Manage</div>
+                                </div>
+                                ${dataContainer}
+                              </div>
+                            </section>`;
 
     if (oneTouchBroadband.length === 0) {
       _errorMessage('Have no Pending Orders!', 'warning');

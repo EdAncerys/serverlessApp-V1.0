@@ -72,8 +72,8 @@
 .broadbandDataContainer-C7 {
   grid-template-columns: 160px 160px 80px 80px 80px 100px 100px;
 }
-.headerMsgTitle {
-  margin: 10px 0;
+.titleComponent {
+  margin: 5px 0;
 }
 .broadbandOrderReviewContainer {
   display: grid;
