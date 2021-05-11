@@ -55,7 +55,7 @@ async function _placeBroadbandOrder() {
   const postcode =
     oneTouchCustomer.postcode === 'null' ? '' : oneTouchCustomer.postcode;
 
-  const orderAddressSummary = `<div style=${cssStyle}>
+  const orderAddressSummary = `<div class='boxContainer broadbandDataContainer-C6 bgWhite fontH3'>
                                 ${sub_premises} ${premises_name}  ${thoroughfare_number} ${thoroughfare_name} ${locality} ${post_town} ${county} ${postcode}
                               </div>`;
 

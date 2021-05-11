@@ -27,17 +27,19 @@ async function _oneTouchActivateContract() {
     JSON.stringify(oneTouchBroadband)
   );
 
-  const URL = '/oneTouch/orders/activateContract';
+  const URL = '/oneTouch/contract/activateContract';
   const body = {
     oneTouchBroadband,
   };
+
   const config = {
-    method: 'UPDATE',
+    method: 'POST',
     body: JSON.stringify(body),
   };
 
   try {
     const response = await fetch(URL, config);
+    console.log(response);
     const data = await response.json();
     if (!response.ok) throw new Error(data.msg);
 

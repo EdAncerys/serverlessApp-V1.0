@@ -612,11 +612,13 @@ const findCustomerById = async (db, data) => {
   }
 };
 const activateContract = async (db, data) => {
-  console.log(data);
+  const body = data.oneTouchBroadband;
+
+  console.log('Body Data: ', body);
   const oneTouchContract = {
-    id: data._id,
-    oneTouchBroadband: data.oneTouchBroadband,
-    contractStartDay: data.oneTouchBroadband.contractStartDay,
+    id: body._id,
+    oneTouchBroadband: body.oneTouchBroadband,
+    contractStartDay: body.oneTouchBroadband.contractStartDay,
   };
   const contractID = new ObjectId(oneTouchContract.id);
   const contract = await db
@@ -627,12 +629,15 @@ const activateContract = async (db, data) => {
   const contractValid = contract.length > 0;
 
   if (contractValid) {
-    const liveContract = await db
+    const query = { _id: contractID };
+    const update = {
+      $set: { oneTouchBroadband: oneTouchContract.oneTouchBroadband },
+    };
+    const options = { upsert: true };
+
+    await db
       .collection(COLLECTION_ONE_TOUCH_BROADBAND)
-      .replaceOne(
-        { _id: contractID },
-        { oneTouchBroadband: oneTouchContract.oneTouchBroadband }
-      );
+      .updateOne(query, update, options);
     const msg =
       `Contract successfully been activated. Start Day: ` +
       oneTouchContract.contractStartDay;
@@ -643,7 +648,7 @@ const activateContract = async (db, data) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ oneTouchContract: liveContract, msg: msg }),
+      body: JSON.stringify({ oneTouchContract: body, msg: msg }),
     };
   } else {
     const msg =
@@ -1190,6 +1195,8 @@ module.exports.handler = async (event, context, callback) => {
     // oneTouch contract endPoints
     case '/oneTouch/contract/findContractById':
       return findContractById(db, body);
+    case '/oneTouch/contract/activateContract':
+      return activateContract(db, body);
     // icUK endPoints
     case '/oneTouch/icUK/addressesForPostcodeProvided':
       return addressesForPostcodeProvided(body);
