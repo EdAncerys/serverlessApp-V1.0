@@ -30,14 +30,21 @@ const _activateContract = async (event) => {
   event.preventDefault();
   const today = new Date();
   var dd = today.getDate();
+  const oneTouchBroadband = sessionStorage.getItem('oneTouchBroadband');
   const contractStartDay = document.getElementById('contractStartDay').value;
   const contractEndDay = document.getElementById('contractEndDay').value;
-  const contractDescription = document.getElementById('contractDescription')
-    .value;
+  const contractNotes = document.getElementById('contractNotes').value;
 
-  if (contractStartDay && contractEndDay !== '') {
-    console.log(dd);
+  if (contractStartDay && contractEndDay !== '' && oneTouchBroadband) {
     console.table(contractStartDay, contractEndDay);
+    oneTouchBroadband['oneTouchBroadband.contractStartDay'] = contractStartDay;
+    oneTouchBroadband['oneTouchBroadband.contractEndDay'] = contractEndDay;
+    console.table(oneTouchBroadband);
+
+    sessionStorage.setItem(
+      'oneTouchBroadband',
+      JSON.stringify(oneTouchBroadband)
+    );
   }
 };
 

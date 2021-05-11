@@ -82,11 +82,11 @@ async function _oneTouchContractInfo(findOneById) {
                                     placeholder="DD/MM/YYYY"
                                   />
 
-                                  <label for="subject">Description</label>
+                                  <label for="subject">Contract Notes</label>
                                   <textarea
-                                    id="contractDescription"
-                                    name="description"
-                                    placeholder="Relative Information..."
+                                    id="contractNotes"
+                                    name="contractDescription"
+                                    placeholder="Relative Notes..."
                                     style="height: 200px"
                                   ></textarea>
 

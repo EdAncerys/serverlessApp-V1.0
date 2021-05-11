@@ -28,6 +28,7 @@ async function _oneTouchContracts() {
     let manageDataContainer = '';
     let dataContainer = '';
     let oneTouchContractData = '';
+    let totalPendingContracts = 0;
 
     oneTouchBroadband.map((contract) => {
       console.log(contract);
@@ -94,6 +95,8 @@ async function _oneTouchContracts() {
                           </div>
                         </div>
                       </div>`;
+
+      if (!liveContract) totalPendingContracts += 1;
     });
 
     const totalContracts = oneTouchBroadband.length;
@@ -109,6 +112,10 @@ async function _oneTouchContracts() {
                                 <div class="dataRowSummaryContainer justifyText">
                                   <div class="rowDisplayStart">Total Contracts</div>
                                   <div class="rowDisplayEnd">${totalContracts}</div>
+                                </div>
+                                <div class="dataRowSummaryContainer justifyText">
+                                  <div class="rowDisplayStart">Total Pending Contracts</div>
+                                  <div class="rowDisplayEnd">${totalPendingContracts}</div>
                                 </div>
                                 <div class="dataRowSummaryContainer justifyText textWhite bgGreen">
                                   <div class="rowDisplayStart">
