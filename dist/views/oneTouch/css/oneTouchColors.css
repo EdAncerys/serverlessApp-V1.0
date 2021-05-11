@@ -33,11 +33,20 @@
 .bgDanger {
   background-color: #d9534f;
 }
-.textDanger {
-  color: #d9534f;
+.bgPending {
+  background-color: rgb(217, 83, 79, 0.4);
+}
+.bgApproved {
+  background-color: rgb(103, 144, 88, 0.4);
+}
+.bgAttention {
+  background-color: rgb(235, 173, 78, 0.4);
 }
 .bgWarning {
   background-color: #ebad4e;
+}
+.textDanger {
+  color: #d9534f;
 }
 .bgGreen {
   background-color: #679058;

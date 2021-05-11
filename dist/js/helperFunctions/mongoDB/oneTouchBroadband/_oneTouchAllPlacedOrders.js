@@ -73,7 +73,10 @@ async function _oneTouchAllPlacedOrders() {
                               </deleteContract>
                             </div>`;
 
-      dataContainer += `<div class="rowContainer bgGradientSilver">
+      let rowComponent = 'bgApproved';
+      if (!liveContract) rowComponent = 'bgPending';
+
+      dataContainer += `<div class="rowContainer ${rowComponent}">
                           <div class="rowComponent-3">
                             <div class="rowComponentWrapper">
                               <div>${oneTouchSuperUser.email}</div>
@@ -104,11 +107,11 @@ async function _oneTouchAllPlacedOrders() {
                                       <div class="rowDisplayStart">Total Contracts</div>
                                       <div class="rowDisplayEnd">${totalContracts}</div>
                                     </div>
-                                    <div class="dataRowSummaryContainer justifyText">
+                                    <div class="dataRowSummaryContainer justifyText bgPending">
                                       <div class="rowDisplayStart">Pending Contracts</div>
                                       <div class="rowDisplayEnd">${totalPendingContracts}</div>
                                     </div>
-                                    <div class="dataRowSummaryContainer justifyText">
+                                    <div class="dataRowSummaryContainer justifyText bgApproved">
                                       <div class="rowDisplayStart">Approved Contracts</div>
                                       <div class="rowDisplayEnd">${totalApprovedContracts}</div>
                                     </div>
