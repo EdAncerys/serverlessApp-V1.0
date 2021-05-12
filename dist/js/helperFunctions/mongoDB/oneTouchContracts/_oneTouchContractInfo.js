@@ -29,7 +29,10 @@ async function _oneTouchContractInfo(findOneById) {
 
     sessionStorage.setItem('oneTouchBroadband', JSON.stringify(data));
     const oneTouchBroadband = data.oneTouchBroadband;
+    const contractStartDay = oneTouchBroadband.contractStartDay;
+    const contractEndDay = oneTouchBroadband.contractEndDay;
     const oneTouchCustomerData = data.oneTouchCustomer;
+
     let oneTouchCustomer = [];
     if (oneTouchCustomerData)
       oneTouchCustomer = data.oneTouchCustomer.oneTouchCustomer;
@@ -54,11 +57,33 @@ async function _oneTouchContractInfo(findOneById) {
       oneTouchCustomer.county === 'null' ? '' : oneTouchCustomer.county;
     let postcode = oneTouchCustomer.postcode;
 
+    const broadbandOrders = 'broadband-orders';
+    const admin = endPoint.includes(broadbandOrders);
+
+    let contractActivationStats = '';
+    if (contractStartDay)
+      contractActivationStats = `   
+                              <div class="flex-container-50">
+                                <div class="oneTouchFormContainer">
+                                  <div class="fontH3">Contract Information</div>
+                                  <div class="dataSummaryContainer textSilver fontH2">
+                                    <div class="dataRowSummaryContainer justifyText bgGO">
+                                      <div class="rowDisplayStart">Contract Start Day</div>
+                                      <div class="rowDisplayEnd">${contractStartDay}</div>
+                                    </div>
+
+                                    <div class="dataRowSummaryContainer justifyText bgSTOP">
+                                      <div class="rowDisplayStart">Contract End Day</div>
+                                      <div class="rowDisplayEnd">${contractEndDay}</div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>`;
+
     // Activate contract section
     let activateContract = '';
-    const broadbandOrders = 'broadband-orders';
-    if (endPoint.includes(broadbandOrders))
-      activateContract = ` <div class="features">
+    if (admin)
+      activateContract = ` <div class="features-align-left">
                             <div class="flex-container-50">
                               <div class="oneTouchFormContainer">
                                 <div id="oneTouchIconContainer">
@@ -102,17 +127,7 @@ async function _oneTouchContractInfo(findOneById) {
                               </div>
                             </div>
 
-                            <div class="flex-container-50">
-                              <div class="oneTouchFormContainer">
-                                <div class="fontH3">Extra Metrics</div>
-                                <div class="dataSummaryContainer textSilver fontH2">
-                                  <div class="dataRowSummaryContainer justifyText">
-                                    <div class="rowDisplayStart">Extra Metrics</div>
-                                    <div class="rowDisplayEnd">extra metrics</div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
+                            ${contractActivationStats}
                           </div>`;
 
     oneTouchContractData = `
@@ -310,6 +325,8 @@ async function _oneTouchContractInfo(findOneById) {
       </div>
 
       <div class="features-align-left">
+        ${contractActivationStats}
+
         <div class="flex-container-50">
           <div class="oneTouchFormContainer">
             <div class="fontH3">Extra Metrics</div>

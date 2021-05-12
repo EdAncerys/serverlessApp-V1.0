@@ -112,7 +112,7 @@ async function _oneTouchAllPlacedOrders() {
                                       <div class="rowDisplayEnd">${totalPendingContracts}</div>
                                     </div>
                                     <div class="dataRowSummaryContainer justifyText bgGO">
-                                      <div class="rowDisplayStart">Approved Contracts</div>
+                                      <div class="rowDisplayStart">Live Contracts</div>
                                       <div class="rowDisplayEnd">${totalApprovedContracts}</div>
                                     </div>
                                   </div>
