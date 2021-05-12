@@ -33,13 +33,13 @@
 .bgDanger {
   background-color: #d9534f;
 }
-.bgPending {
+.bgSTOP {
   background-color: rgb(217, 83, 79, 0.4);
 }
-.bgApproved {
+.bgGO {
   background-color: rgb(103, 144, 88, 0.4);
 }
-.bgAttention {
+.bgSET {
   background-color: rgb(235, 173, 78, 0.4);
 }
 .bgWarning {

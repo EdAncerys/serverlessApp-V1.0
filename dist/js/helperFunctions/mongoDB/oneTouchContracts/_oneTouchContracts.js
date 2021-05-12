@@ -32,8 +32,9 @@ async function _oneTouchContracts() {
 
     oneTouchBroadband.map((contract) => {
       console.log(contract);
-      const liveContract = contract.oneTouchBroadband.contractStartDay;
-      if (!liveContract) totalPendingContracts += 1;
+      const contractStartDay = contract.oneTouchBroadband.contractStartDay;
+
+      if (!contractStartDay) totalPendingContracts += 1;
       const oneTouchCustomerData = contract.oneTouchCustomer;
       let oneTouchCustomer = [];
       if (oneTouchCustomerData)
@@ -61,11 +62,26 @@ async function _oneTouchContracts() {
       let postcode = oneTouchCustomer.postcode;
 
       let btnClass = 'btnB01';
-      let rowComponent = 'rowComponent-3';
+      let rowComponent = '';
       let pendingOrder = '';
-      if (!liveContract) btnClass = 'btnB01 btnDisable';
-      if (!liveContract) rowComponent = 'rowComponent-3 rowInactive';
-      if (!liveContract) pendingOrder = 'Pending Order...';
+      let bgContract = 'bgGray';
+      let contractEndDay = '';
+
+      // contract expiration day
+      const today = new Date();
+      if (contractStartDay)
+        contractEndDay = new Date(contract.oneTouchBroadband.contractEndDay);
+      const sixMonthsFromNow = new Date();
+      sixMonthsFromNow.setMonth(today.getMonth() + 7);
+
+      if (contractEndDay < today && contractStartDay) bgContract = 'bgSTOP';
+      if (contractEndDay < sixMonthsFromNow && contractEndDay > today)
+        bgContract = 'bgSET';
+      if (contractEndDay > sixMonthsFromNow) bgContract = 'bgGO';
+
+      if (!contractStartDay) btnClass = 'btnB01 btnDisable';
+      if (!contractStartDay) rowComponent = 'rowInactive';
+      if (!contractStartDay) pendingOrder = 'Pending Order...';
 
       manageDataContainer = `<div class="manageDataContainer">
                             <contractInfo id='${id}' class="${btnClass}" role="button">
@@ -76,9 +92,9 @@ async function _oneTouchContracts() {
                             </deleteContract>
                           </div>`;
 
-      dataContainer += `<div class="rowContainer bgGradientSilver">
+      dataContainer += `<div class="rowContainer ${bgContract}">
                           <div class="pendingOrder">${pendingOrder}</div>
-                          <div class="${rowComponent}">
+                          <div class="rowComponent-3 ${rowComponent}">
                             <div class="rowComponentWrapper">
                               <div>${oneTouchCustomer.companyName}</div>
                               <div class="bottomDataRow">${oneTouchCustomer.customerFullName}</div>
@@ -112,19 +128,19 @@ async function _oneTouchContracts() {
                                   <div class="rowDisplayStart">Pending Contracts</div>
                                   <div class="rowDisplayEnd">${totalPendingContracts}</div>
                                 </div>
-                                <div class="dataRowSummaryContainer justifyText bgApproved">
+                                <div class="dataRowSummaryContainer justifyText bgGO">
                                   <div class="rowDisplayStart">
-                                    Contracts with exp date > 6 month
+                                    Contracts EXD > 6 month
                                   </div>
                                   <div class="rowDisplayEnd">0</div>
                                 </div>
-                                <div class="dataRowSummaryContainer justifyText bgAttention">
+                                <div class="dataRowSummaryContainer justifyText bgSET">
                                   <div class="rowDisplayStart">
-                                    Contracts with exp date < 6 month
+                                    Contracts EXD < 6 month
                                   </div>
                                   <div class="rowDisplayEnd">0</div>
                                 </div>
-                                <div class="dataRowSummaryContainer justifyText bgPending">
+                                <div class="dataRowSummaryContainer justifyText bgSTOP">
                                   <div class="rowDisplayStart">Expired Contracts</div>
                                   <div class="rowDisplayEnd">0</div>
                                 </div>
