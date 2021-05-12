@@ -28,13 +28,17 @@ async function _oneTouchContracts() {
     let manageDataContainer = '';
     let dataContainer = '';
     let oneTouchContractData = '';
+
+    const totalContracts = oneTouchBroadband.length;
     let totalPendingContracts = 0;
+    let sixMonthPlusContracts = 0;
+    let sixMonthContracts = 0;
+    let expiredContracts = 0;
 
     oneTouchBroadband.map((contract) => {
       console.log(contract);
       const contractStartDay = contract.oneTouchBroadband.contractStartDay;
 
-      if (!contractStartDay) totalPendingContracts += 1;
       const oneTouchCustomerData = contract.oneTouchCustomer;
       let oneTouchCustomer = [];
       if (oneTouchCustomerData)
@@ -74,14 +78,25 @@ async function _oneTouchContracts() {
       const sixMonthsFromNow = new Date();
       sixMonthsFromNow.setMonth(today.getMonth() + 7);
 
-      if (contractEndDay < today && contractStartDay) bgContract = 'bgSTOP';
-      if (contractEndDay < sixMonthsFromNow && contractEndDay > today)
+      if (contractEndDay < today && contractStartDay) {
+        expiredContracts += 1;
+        bgContract = 'bgSTOP';
+      }
+      if (contractEndDay < sixMonthsFromNow && contractEndDay > today) {
+        sixMonthContracts += 1;
         bgContract = 'bgSET';
-      if (contractEndDay > sixMonthsFromNow) bgContract = 'bgGO';
+      }
+      if (contractEndDay > sixMonthsFromNow) {
+        sixMonthPlusContracts += 1;
+        bgContract = 'bgGO';
+      }
 
-      if (!contractStartDay) btnClass = 'btnB01 btnDisable';
-      if (!contractStartDay) rowComponent = 'rowInactive';
-      if (!contractStartDay) pendingOrder = 'Pending Order...';
+      if (!contractStartDay) {
+        totalPendingContracts += 1;
+        btnClass = 'btnB01 btnDisable';
+        rowComponent = 'rowInactive';
+        pendingOrder = 'Pending Order...';
+      }
 
       manageDataContainer = `<div class="manageDataContainer">
                             <contractInfo id='${id}' class="${btnClass}" role="button">
@@ -110,8 +125,6 @@ async function _oneTouchContracts() {
                         </div>`;
     });
 
-    const totalContracts = oneTouchBroadband.length;
-
     oneTouchContractData = `<div class="features">
                           <div class="flex-container-30">
                             <div class="oneTouchFormContainer bgGradientSilver">
@@ -132,17 +145,17 @@ async function _oneTouchContracts() {
                                   <div class="rowDisplayStart">
                                     Contracts EXD > 6 month
                                   </div>
-                                  <div class="rowDisplayEnd">0</div>
+                                  <div class="rowDisplayEnd">${sixMonthPlusContracts}</div>
                                 </div>
                                 <div class="dataRowSummaryContainer justifyText bgSET">
                                   <div class="rowDisplayStart">
                                     Contracts EXD < 6 month
                                   </div>
-                                  <div class="rowDisplayEnd">0</div>
+                                  <div class="rowDisplayEnd">${sixMonthContracts}</div>
                                 </div>
                                 <div class="dataRowSummaryContainer justifyText bgSTOP">
                                   <div class="rowDisplayStart">Expired Contracts</div>
-                                  <div class="rowDisplayEnd">0</div>
+                                  <div class="rowDisplayEnd">${expiredContracts}</div>
                                 </div>
                               </div>
                             </div>
