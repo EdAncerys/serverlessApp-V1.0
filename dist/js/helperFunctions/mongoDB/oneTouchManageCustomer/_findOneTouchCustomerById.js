@@ -100,7 +100,7 @@ async function _findOneTouchCustomerById(id, displayData) {
           <div class="dataSummaryContainer textSilver fontH2">
             <div class="dataRowSummaryContainer justifyText">
               <div class="rowDisplayStart">Full Name</div>
-              <div class="rowDisplayEnd">${customerInfo.fullName}</div>
+              <div class="rowDisplayEnd">${customerInfo.customerFullName}</div>
             </div>
             <div class="dataRowSummaryContainer justifyText">
               <div class="rowDisplayStart">Phone Number</div>
