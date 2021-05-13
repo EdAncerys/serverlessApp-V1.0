@@ -30,19 +30,19 @@ async function _addOneTouchCustomerToDB() {
     document.getElementById('contactPhoneNumber').value;
   const contactEmail = document.getElementById('contactEmail').value;
 
-  const data = JSON.parse(sessionStorage.getItem('oneTouchCustomer'));
-  const oneTouch = data.oneTouchCustomer;
-  
-  const sub_premises = oneTouch.sub_premises;
-  const premises_name = oneTouch.premises_name;
-  const thoroughfare_number = oneTouch.thoroughfare_number;
-  const thoroughfare_name = oneTouch.thoroughfare_name;
-  const locality = oneTouch.locality;
-  const post_town = oneTouch.post_town;
-  const county = oneTouch.county;
-  const postcode = oneTouch.postcode;
-  const district_id = oneTouch.district_id;
-  const nad_key = oneTouch.nad_key;
+  const data = JSON.parse(sessionStorage.getItem('selectedAddress'));
+  const selectedAddress = data.selectedAddress;
+
+  const sub_premises = selectedAddress.sub_premises;
+  const premises_name = selectedAddress.premises_name;
+  const thoroughfare_number = selectedAddress.thoroughfare_number;
+  const thoroughfare_name = selectedAddress.thoroughfare_name;
+  const locality = selectedAddress.locality;
+  const post_town = selectedAddress.post_town;
+  const county = selectedAddress.county;
+  const postcode = selectedAddress.postcode;
+  const district_id = selectedAddress.district_id;
+  const nad_key = selectedAddress.nad_key;
 
   console.log('Adding user to DB. Full Name: ' + customerFullName);
 
@@ -102,7 +102,7 @@ async function _addOneTouchCustomerToDB() {
 }
 
 const clearFormData = () => {
-  sessionStorage.removeItem('oneTouch');
+  sessionStorage.removeItem('selectedAddress');
   document.querySelector('#selectionContainer').remove();
   document.querySelector('#userPostcodeContainer').classList.remove('hidden');
 

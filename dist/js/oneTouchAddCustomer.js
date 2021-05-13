@@ -76,7 +76,6 @@ const addUser = async (ev) => {
     return;
   }
   if (userFromValidation && !selectedAddress) {
-    sessionStorage.removeItem('oneTouchCustomer');
     _addOneTouchCustomerToDB();
   }
 
