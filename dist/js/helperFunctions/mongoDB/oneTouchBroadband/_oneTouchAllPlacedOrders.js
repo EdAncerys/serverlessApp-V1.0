@@ -118,6 +118,7 @@ async function _oneTouchAllPlacedOrders() {
                                   </div>
                                 </div>
                               </div>
+                              
                               <div class="flex-container-70">
                                 <div class="titleComponent">
                                   <div class="fontH4">Manage All Placed Orders</div>

@@ -9,7 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script defer src="./JS/oneTouchNav.js"></script>
 
-    <script defer type="module" src="../../JS/raiseTicket.js"></script>
+    <script defer type="module" src="../../JS/oneTouchRaiseTicket.js"></script>
 
     <!-- Spinner script -->
     <link
@@ -32,27 +32,28 @@
             <div class="flex-container-30">
               <div class="oneTouchFormContainer bgGradientSilver">
                 <div class="alignHorizontally fontH3">
-                  Opened Tickets Overview
+                  Open Tickets Overview
                 </div>
                 <div class="fontH2">
-                  Raise support tickets - anytime, anywhere
+                  Manage and overview tickets - anytime, anywhere
                 </div>
                 <div class="dataSummaryContainer textSilver fontH2">
                   <div class="dataRowSummaryContainer justifyText">
-                    Total Tickets 0
+                    <div class="rowDisplayStart">Total Tickets</div>
+                    <div class="rowDisplayEnd">0</div>
                   </div>
-                  <div class="dataRowSummaryContainer justifyText">
-                    Tickets 0
+                  <div class="dataRowSummaryContainer justifyText bgSTOP">
+                    <div class="rowDisplayStart">Waiting on Response</div>
+                    <div class="rowDisplayEnd">0</div>
                   </div>
-                  <div class="dataRowSummaryContainer justifyText">
-                    Tickets 0
-                  </div>
-                  <div class="dataRowSummaryContainer justifyText">
-                    Tickets 0
+                  <div class="dataRowSummaryContainer justifyText bgGO">
+                    <div class="rowDisplayStart">Resolved Tickets</div>
+                    <div class="rowDisplayEnd">0</div>
                   </div>
                 </div>
               </div>
             </div>
+
             <div class="flex-container-60">
               <div class="oneTouchFormContainer">
                 <div id="oneTouchIconContainer">

@@ -31,10 +31,14 @@ lcComponent {
   margin: 20px 0;
 }
 [type='date'] {
-  width: calc(100% - 20px);
+  width: 100%;
   padding: 10px;
   border: solid 1px #61d2b3;
   border-radius: 5px;
+
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
 }
 /* Media Queries */
 @media only screen and (max-width: 800px) {
