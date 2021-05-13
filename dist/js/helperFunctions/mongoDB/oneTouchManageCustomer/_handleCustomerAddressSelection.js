@@ -14,17 +14,29 @@ async function _handleCustomerAddressSelection() {
   const selectionContainer = document.createElement('div');
   selectionContainer.id = 'selectionContainer';
 
-  const oneTouch = JSON.parse(sessionStorage.getItem('oneTouch'));
+  const selectedAddress = JSON.parse(sessionStorage.getItem('selectedAddress'));
+  const oneTouchCustomer = selectedAddress.oneTouchCustomer;
+
   const sub_premises =
-    oneTouch.sub_premises === 'null' ? '' : oneTouch.sub_premises;
+    oneTouchCustomer.sub_premises === 'null'
+      ? ''
+      : oneTouchCustomer.sub_premises;
   const premises_name =
-    oneTouch.premises_name === 'null' ? '' : oneTouch.premises_name;
+    oneTouchCustomer.premises_name === 'null'
+      ? ''
+      : oneTouchCustomer.premises_name;
   const thoroughfare_number =
-    oneTouch.thoroughfare_number === 'null' ? '' : oneTouch.thoroughfare_number;
+    oneTouchCustomer.thoroughfare_number === 'null'
+      ? ''
+      : oneTouchCustomer.thoroughfare_number;
   const thoroughfare_name =
-    oneTouch.thoroughfare_name === 'null' ? '' : oneTouch.thoroughfare_name;
-  const county = oneTouch.county === 'null' ? '' : oneTouch.county;
-  const postcode = oneTouch.postcode === 'null' ? '' : oneTouch.postcode;
+    oneTouchCustomer.thoroughfare_name === 'null'
+      ? ''
+      : oneTouchCustomer.thoroughfare_name;
+  const county =
+    oneTouchCustomer.county === 'null' ? '' : oneTouchCustomer.county;
+  const postcode =
+    oneTouchCustomer.postcode === 'null' ? '' : oneTouchCustomer.postcode;
 
   selectionContainer.innerHTML = `<div class='selectAddressContainer'>
                                     <div class='addCustomerSelectAddressContainer'>

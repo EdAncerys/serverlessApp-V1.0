@@ -48,7 +48,7 @@ const addUser = async (ev) => {
   const contactEmail = document
     .getElementById('contactEmail')
     .value.replace(/\s/g, '');
-  const oneTouch = sessionStorage.getItem('oneTouch') === null;
+  const selectedAddress = sessionStorage.getItem('selectedAddress') === null;
   const userFromValidation =
     !customerFullName &&
     _validateEmail(customerEmail) &&
@@ -71,11 +71,14 @@ const addUser = async (ev) => {
     _errorMessage('Site Contact Email Not Provided or Incorrect!', 'warning');
     return;
   }
-  if (oneTouch) {
+  if (selectedAddress) {
     _errorMessage('Please Add Customer Address!', 'warning');
     return;
   }
-  if (userFromValidation && !oneTouch) _addOneTouchCustomerToDB();
+  if (userFromValidation && !selectedAddress) {
+    sessionStorage.removeItem('oneTouchCustomer');
+    _addOneTouchCustomerToDB();
+  }
 
   return;
 };

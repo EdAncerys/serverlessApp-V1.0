@@ -9,26 +9,30 @@ async function _addOneTouchCustomerToDB() {
   const customerCreated = new Date().toLocaleString();
 
   const customerFullName = document.getElementById('customerFullName').value;
-  const customerPhoneNumber = document.getElementById('customerPhoneNumber')
-    .value;
+  const customerPhoneNumber = document.getElementById(
+    'customerPhoneNumber'
+  ).value;
   const customerEmail = document.getElementById('customerEmail').value;
   const customerNotes = document.getElementById('customerNotes').value;
 
   const companyName = document.getElementById('companyName').value;
   const productType = document.getElementById('productType').value;
   const companyEmail = document.getElementById('companyEmail').value;
-  const companyPhoneNumber = document.getElementById('companyPhoneNumber')
-    .value;
+  const companyPhoneNumber =
+    document.getElementById('companyPhoneNumber').value;
   const accountManager = document.getElementById('accountManager').value;
-  const companyRegistration = document.getElementById('companyRegistration')
-    .value;
+  const companyRegistration = document.getElementById(
+    'companyRegistration'
+  ).value;
 
   const contactName = document.getElementById('contactName').value;
-  const contactPhoneNumber = document.getElementById('contactPhoneNumber')
-    .value;
+  const contactPhoneNumber =
+    document.getElementById('contactPhoneNumber').value;
   const contactEmail = document.getElementById('contactEmail').value;
 
-  const oneTouch = JSON.parse(sessionStorage.getItem('oneTouch'));
+  const data = JSON.parse(sessionStorage.getItem('oneTouchCustomer'));
+  const oneTouch = data.oneTouchCustomer;
+  
   const sub_premises = oneTouch.sub_premises;
   const premises_name = oneTouch.premises_name;
   const thoroughfare_number = oneTouch.thoroughfare_number;

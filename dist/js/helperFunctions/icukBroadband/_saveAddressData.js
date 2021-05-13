@@ -45,7 +45,10 @@ const _saveAddressData = () => {
     thoroughfare_number,
   };
 
-  sessionStorage.setItem('oneTouchCustomer', JSON.stringify({oneTouchCustomer: data}));
+  sessionStorage.setItem(
+    'selectedAddress',
+    JSON.stringify({ oneTouchCustomer: data })
+  );
 };
 
 export { _saveAddressData };
