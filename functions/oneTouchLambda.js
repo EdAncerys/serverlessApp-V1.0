@@ -11,7 +11,12 @@ const sha512 = require('js-sha512'); // component to compute the SHA512
 const HttpsProxyAgent = require('https-proxy-agent'); // Proxy server
 const fetch = require('node-fetch');
 
-const MONGODB_URI = process.env.MONGODB_URI;
+const MONGO_DB_ENVIRONMENT = process.env.MONGO_DB_ENVIRONMENT;
+const MONGODB_URI_DEV = process.env.MONGODB_URI_DEV;
+let MONGODB_URI = process.env.MONGODB_URI;
+if (MONGO_DB_ENVIRONMENT === 'development') MONGODB_URI = MONGODB_URI_DEV;
+console.table(`DB connection URI: ` + MONGODB_URI);
+
 const DB_NAME = 'oneTouchDB';
 const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
 const COLLECTION_ONE_TOUCH_BROADBAND = 'oneTouchBroadband';
