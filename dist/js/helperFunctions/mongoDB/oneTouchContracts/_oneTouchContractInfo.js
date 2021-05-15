@@ -131,11 +131,15 @@ async function _oneTouchContractInfo(findOneById) {
                           </div>`;
 
     oneTouchContractData = `
-                            <div class="outer">
-                              <inner class="inner">
-                                <btnLabel>Back</btnLabel>
-                              </inner>
+                          <div class="features">
+                            <div class="flex-container-100">
+                              <div class="outer">
+                                <inner class="inner">
+                                  <btnLabel>Back</btnLabel>
+                                </inner>
+                              </div>
                             </div>
+                          </div>
 
       ${activateContract}
 

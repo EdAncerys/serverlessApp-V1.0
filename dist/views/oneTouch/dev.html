@@ -29,121 +29,144 @@
         <div style="width: min(95vw, 1000px); background: #f4f4f4">
           <!-- page content -->
 
-          <div id="oneTouchWrapper" class="oneTouchWrapper">
-            <div id="liveConnectionsContainer" class="liveConnectionsContainer">
-              <div class="margin-10 features">
-                <div class="flex-container-60">
-                  <div class="oneTouchFormContainer bgGradientSilver">
-                    <div class="alignHorizontally fontH3">
-                      Your Have No Customers Added!
+          <!-- <div class="outer">
+            <inner class="inner">
+              <btnLabel>Back</btnLabel>
+            </inner>
+          </div> -->
+
+          <div class="features">
+            <div class="flex-container-100">
+              <div class="outer">
+                <inner class="inner">
+                  <btnLabel>Back</btnLabel>
+                </inner>
+              </div>
+            </div>
+          </div>
+          <div class="features">
+            <div class="flex-container-50">
+              <div class="oneTouchFormContainer">
+                <div class="fontH3">Company Information</div>
+                <div class="dataSummaryContainer textSilver fontH2">
+                  <div class="dataRowSummaryContainer justifyText">
+                    <div class="rowDisplayStart">Company Name</div>
+                    <div class="rowDisplayEnd">
+                      ${ customerInfo.companyName }
                     </div>
-                    <div class="alignHorizontally fontH2">
-                      Manage your customer list - anytime, anywhere
+                  </div>
+                  <div class="dataRowSummaryContainer justifyText">
+                    <div class="rowDisplayStart">Product Type</div>
+                    <div class="rowDisplayEnd">
+                      ${ customerInfo.productType }
                     </div>
-                    <div class="dataSummaryContainer textSilver fontH2">
-                      <addcustomer class="btnOneTouch"
-                        >Add New Customer</addcustomer
-                      >
+                  </div>
+
+                  <div class="dataRowSummaryContainer justifyText">
+                    <div class="rowDisplayStart">Company Email</div>
+                    <div class="rowDisplayEnd">
+                      ${ customerInfo.companyEmail }
+                    </div>
+                  </div>
+                  <div class="dataRowSummaryContainer justifyText">
+                    <div class="rowDisplayStart">Company Phone Number</div>
+                    <div class="rowDisplayEnd">
+                      ${ customerInfo.companyPhoneNumber }
+                    </div>
+                  </div>
+
+                  <div class="dataRowSummaryContainer justifyText">
+                    <div class="rowDisplayStart">Account Manager</div>
+                    <div class="rowDisplayEnd">
+                      ${ customerInfo.accountManager }
+                    </div>
+                  </div>
+                  <div class="dataRowSummaryContainer justifyText">
+                    <div class="rowDisplayStart">Company Registration</div>
+                    <div class="rowDisplayEnd">
+                      ${ customerInfo.companyRegistration }
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <section class="features">
-              <div class="flex-container-60">
-                <div class="fontH2">
-                  <div class="indexBanner">
-                    <div class="ndgIcon"></div>
-                    <div>Unit 4, Saddlers Court, Oakham LE15 7GH</div>
-                    <div>Phone: 024 7509 2481</div>
+
+            <div class="flex-container-50">
+              <div class="oneTouchFormContainer">
+                <div class="fontH3">Customer Information</div>
+                <div class="dataSummaryContainer textSilver fontH2">
+                  <div class="dataRowSummaryContainer justifyText">
+                    <div class="rowDisplayStart">Full Name</div>
+                    <div class="rowDisplayEnd">
+                      ${ customerInfo.customerFullName }
+                    </div>
+                  </div>
+                  <div class="dataRowSummaryContainer justifyText">
+                    <div class="rowDisplayStart">Phone Number</div>
+                    <div class="rowDisplayEnd">
+                      ${ customerInfo.customerPhoneNumber }
+                    </div>
+                  </div>
+
+                  <div class="dataRowSummaryContainer justifyText">
+                    <div class="rowDisplayStart">Customer Email</div>
+                    <div class="rowDisplayEnd">
+                      ${ customerInfo.customerEmail }
+                    </div>
+                  </div>
+                  <div class="dataRowSummaryContainer justifyText">
+                    <div class="rowDisplayStart">
+                      Personal Notes: <br />
+                      ${customerInfo.customerNotes}
+                    </div>
                   </div>
                 </div>
               </div>
-            </section>
+            </div>
           </div>
 
-          <div class="oneTouchWrapper">
-            <div class="formContentContainer">
-              <div class="features">
-                <div class="flex-container-30">
-                  <div class="oneTouchFormContainer bgGradientSilver">
-                    <div class="alignHorizontally fontH3">
-                      Open Tickets Overview
+          <div class="features">
+            <div class="flex-container-50">
+              <div class="oneTouchFormContainer">
+                <div class="fontH3">Site Installation Details</div>
+                <div class="dataSummaryContainer textSilver fontH2">
+                  <div class="dataRowSummaryContainer justifyText">
+                    <div class="rowDisplayStart">Contact Name</div>
+                    <div class="rowDisplayEnd">
+                      ${ customerInfo.contactName }
                     </div>
-                    <div class="fontH2">
-                      Manage and overview tickets - anytime, anywhere
+                  </div>
+                  <div class="dataRowSummaryContainer justifyText">
+                    <div class="rowDisplayStart">Contact Phone Number</div>
+                    <div class="rowDisplayEnd">
+                      ${ customerInfo.contactPhoneNumber }
                     </div>
-                    <div class="dataSummaryContainer textSilver fontH2">
-                      <div class="dataRowSummaryContainer justifyText">
-                        <div class="rowDisplayStart">Total Tickets</div>
-                        <div class="rowDisplayEnd">0</div>
-                      </div>
-                      <div class="dataRowSummaryContainer justifyText bgSTOP">
-                        <div class="rowDisplayStart">Waiting on Response</div>
-                        <div class="rowDisplayEnd">0</div>
-                      </div>
-                      <div class="dataRowSummaryContainer justifyText bgGO">
-                        <div class="rowDisplayStart">Resolved Tickets</div>
-                        <div class="rowDisplayEnd">0</div>
-                      </div>
+                  </div>
+
+                  <div class="dataRowSummaryContainer justifyText">
+                    <div class="rowDisplayStart">Contact Email</div>
+                    <div class="rowDisplayEnd">
+                      ${ customerInfo.contactEmail }
+                    </div>
+                  </div>
+                  <div class="dataRowSummaryContainer justifyText">
+                    <div class="rowDisplayStart">
+                      Installation Address: <br />
+                      ${thoroughfare_number} ${premises_name} ${sub_premises}
+                      ${thoroughfare_name} ${county} ${postcode}
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
 
-                <div class="flex-container-60">
-                  <div class="oneTouchFormContainer">
-                    <div id="oneTouchIconContainer">
-                      <div class="oneTouchIcon"></div>
-                    </div>
-
-                    <form action="/">
-                      <label for="contactReason">Reason For Contacting</label>
-                      <select id="contactReason" name="contactReason">
-                        <option
-                          selected=""
-                          disabled=""
-                          hidden=""
-                          value="selectAddress"
-                        >
-                          Please Choose Your Reason
-                        </option>
-                        <option value="Query">Query</option>
-                        <option value="Faulty">Faulty</option>
-                      </select>
-
-                      <label for="fname">Name</label>
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        placeholder="Your name..."
-                      />
-
-                      <label for="lname">Phone Number</label>
-                      <input
-                        type="text"
-                        id="phoneNumber"
-                        name="phoneNumber"
-                        placeholder="Your phone number..."
-                      />
-
-                      <label for="subject">Description</label>
-                      <textarea
-                        id="description"
-                        name="description"
-                        placeholder="Describe the issue..."
-                        style="height: 200px"
-                      ></textarea>
-
-                      <submitform>
-                        <input
-                          id="raiseTicket"
-                          class="btnOneTouch"
-                          type="submit"
-                          value="Submit"
-                        />
-                      </submitform>
-                    </form>
+            <div class="flex-container-50">
+              <div class="oneTouchFormContainer">
+                <div class="fontH3">Extra Metrics</div>
+                <div class="dataSummaryContainer textSilver fontH2">
+                  <div class="dataRowSummaryContainer justifyText">
+                    <div class="rowDisplayStart">Extra Metrics</div>
+                    <div class="rowDisplayEnd">${'extra metrics'}</div>
                   </div>
                 </div>
               </div>

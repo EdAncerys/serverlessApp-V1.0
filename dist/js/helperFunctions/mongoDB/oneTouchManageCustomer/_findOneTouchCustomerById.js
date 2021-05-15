@@ -49,123 +49,143 @@ async function _findOneTouchCustomerById(id, displayData) {
       let postcode = customerInfo.postcode;
 
       customerInfoData = `
-    <div class="outer">
-      <inner class="inner">
-        <btnLabel>Back</btnLabel>
-      </inner>
-    </div>
+                          <div class="features">
+                            <div class="flex-container-100">
+                              <div class="outer">
+                                <inner class="inner">
+                                  <btnLabel>Back</btnLabel>
+                                </inner>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          <div class="features">
+                            <div class="flex-container-50">
+                              <div class="oneTouchFormContainer">
+                                <div class="fontH3">Company Information</div>
+                                <div class="dataSummaryContainer textSilver fontH2">
+                                  <div class="dataRowSummaryContainer justifyText">
+                                    <div class="rowDisplayStart">Company Name</div>
+                                    <div class="rowDisplayEnd">${
+                                      customerInfo.companyName
+                                    }</div>
+                                  </div>
+                                  <div class="dataRowSummaryContainer justifyText">
+                                    <div class="rowDisplayStart">Product Type</div>
+                                    <div class="rowDisplayEnd">${
+                                      customerInfo.productType
+                                    }</div>
+                                  </div>
 
-    <div class="features">
-      <div class="flex-container-50">
-        <div class="oneTouchFormContainer">
-          <div class="fontH3">Company Information</div>
-          <div class="dataSummaryContainer textSilver fontH2">
-            <div class="dataRowSummaryContainer justifyText">
-              <div class="rowDisplayStart">Company Name</div>
-              <div class="rowDisplayEnd">${customerInfo.companyName}</div>
-            </div>
-            <div class="dataRowSummaryContainer justifyText">
-              <div class="rowDisplayStart">Product Type</div>
-              <div class="rowDisplayEnd">${customerInfo.productType}</div>
-            </div>
+                                  <div class="dataRowSummaryContainer justifyText">
+                                    <div class="rowDisplayStart">Company Email</div>
+                                    <div class="rowDisplayEnd">${
+                                      customerInfo.companyEmail
+                                    }</div>
+                                  </div>
+                                  <div class="dataRowSummaryContainer justifyText">
+                                    <div class="rowDisplayStart">Company Phone Number</div>
+                                    <div class="rowDisplayEnd">${
+                                      customerInfo.companyPhoneNumber
+                                    }</div>
+                                  </div>
 
-            <div class="dataRowSummaryContainer justifyText">
-              <div class="rowDisplayStart">Company Email</div>
-              <div class="rowDisplayEnd">${customerInfo.companyEmail}</div>
-            </div>
-            <div class="dataRowSummaryContainer justifyText">
-              <div class="rowDisplayStart">Company Phone Number</div>
-              <div class="rowDisplayEnd">${
-                customerInfo.companyPhoneNumber
-              }</div>
-            </div>
+                                  <div class="dataRowSummaryContainer justifyText">
+                                    <div class="rowDisplayStart">Account Manager</div>
+                                    <div class="rowDisplayEnd">${
+                                      customerInfo.accountManager
+                                    }</div>
+                                  </div>
+                                  <div class="dataRowSummaryContainer justifyText">
+                                    <div class="rowDisplayStart">Company Registration</div>
+                                    <div class="rowDisplayEnd">${
+                                      customerInfo.companyRegistration
+                                    }</div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
 
-            <div class="dataRowSummaryContainer justifyText">
-              <div class="rowDisplayStart">Account Manager</div>
-              <div class="rowDisplayEnd">${customerInfo.accountManager}</div>
-            </div>
-            <div class="dataRowSummaryContainer justifyText">
-              <div class="rowDisplayStart">Company Registration</div>
-              <div class="rowDisplayEnd">${
-                customerInfo.companyRegistration
-              }</div>
-            </div>
-          </div>
-        </div>
-      </div>
+                            <div class="flex-container-50">
+                              <div class="oneTouchFormContainer">
+                                <div class="fontH3">Customer Information</div>
+                                <div class="dataSummaryContainer textSilver fontH2">
+                                  <div class="dataRowSummaryContainer justifyText">
+                                    <div class="rowDisplayStart">Full Name</div>
+                                    <div class="rowDisplayEnd">${
+                                      customerInfo.customerFullName
+                                    }</div>
+                                  </div>
+                                  <div class="dataRowSummaryContainer justifyText">
+                                    <div class="rowDisplayStart">Phone Number</div>
+                                    <div class="rowDisplayEnd">${
+                                      customerInfo.customerPhoneNumber
+                                    }</div>
+                                  </div>
 
-      <div class="flex-container-50">
-        <div class="oneTouchFormContainer">
-          <div class="fontH3">Customer Information</div>
-          <div class="dataSummaryContainer textSilver fontH2">
-            <div class="dataRowSummaryContainer justifyText">
-              <div class="rowDisplayStart">Full Name</div>
-              <div class="rowDisplayEnd">${customerInfo.customerFullName}</div>
-            </div>
-            <div class="dataRowSummaryContainer justifyText">
-              <div class="rowDisplayStart">Phone Number</div>
-              <div class="rowDisplayEnd">${
-                customerInfo.customerPhoneNumber
-              }</div>
-            </div>
+                                  <div class="dataRowSummaryContainer justifyText">
+                                    <div class="rowDisplayStart">Customer Email</div>
+                                    <div class="rowDisplayEnd">${
+                                      customerInfo.customerEmail
+                                    }</div>
+                                  </div>
+                                  <div class="dataRowSummaryContainer justifyText">
+                                    <div class="rowDisplayStart">
+                                      Personal Notes: <br />
+                                      ${customerInfo.customerNotes}
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
 
-            <div class="dataRowSummaryContainer justifyText">
-              <div class="rowDisplayStart">Customer Email</div>
-              <div class="rowDisplayEnd">${customerInfo.customerEmail}</div>
-            </div>
-            <div class="dataRowSummaryContainer justifyText">
-              <div class="rowDisplayStart">
-                Personal Notes: <br />
-                ${customerInfo.customerNotes}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+                          <div class="features">
+                            <div class="flex-container-50">
+                              <div class="oneTouchFormContainer">
+                                <div class="fontH3">Site Installation Details</div>
+                                <div class="dataSummaryContainer textSilver fontH2">
+                                  <div class="dataRowSummaryContainer justifyText">
+                                    <div class="rowDisplayStart">Contact Name</div>
+                                    <div class="rowDisplayEnd">${
+                                      customerInfo.contactName
+                                    }</div>
+                                  </div>
+                                  <div class="dataRowSummaryContainer justifyText">
+                                    <div class="rowDisplayStart">Contact Phone Number</div>
+                                    <div class="rowDisplayEnd">${
+                                      customerInfo.contactPhoneNumber
+                                    }</div>
+                                  </div>
 
-    <div class="features">
-      <div class="flex-container-50">
-        <div class="oneTouchFormContainer">
-          <div class="fontH3">Site Installation Details</div>
-          <div class="dataSummaryContainer textSilver fontH2">
-            <div class="dataRowSummaryContainer justifyText">
-              <div class="rowDisplayStart">Contact Name</div>
-              <div class="rowDisplayEnd">${customerInfo.contactName}</div>
-            </div>
-            <div class="dataRowSummaryContainer justifyText">
-              <div class="rowDisplayStart">Contact Phone Number</div>
-              <div class="rowDisplayEnd">${
-                customerInfo.contactPhoneNumber
-              }</div>
-            </div>
+                                  <div class="dataRowSummaryContainer justifyText">
+                                    <div class="rowDisplayStart">Contact Email</div>
+                                    <div class="rowDisplayEnd">${
+                                      customerInfo.contactEmail
+                                    }</div>
+                                  </div>
+                                  <div class="dataRowSummaryContainer justifyText">
+                                    <div class="rowDisplayStart">
+                                      Installation Address: <br />
+                                      ${thoroughfare_number} ${premises_name} ${sub_premises} ${thoroughfare_name} ${county} ${postcode}
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
 
-            <div class="dataRowSummaryContainer justifyText">
-              <div class="rowDisplayStart">Contact Email</div>
-              <div class="rowDisplayEnd">${customerInfo.contactEmail}</div>
-            </div>
-            <div class="dataRowSummaryContainer justifyText">
-              <div class="rowDisplayStart">
-                Installation Address: <br />
-                ${thoroughfare_number} ${premises_name} ${sub_premises} ${thoroughfare_name} ${county} ${postcode}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="flex-container-50">
-        <div class="oneTouchFormContainer">
-          <div class="fontH3">Extra Metrics</div>
-          <div class="dataSummaryContainer textSilver fontH2">
-            <div class="dataRowSummaryContainer justifyText">
-              <div class="rowDisplayStart">Extra Metrics</div>
-              <div class="rowDisplayEnd">${'extra metrics'}</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>`;
+                            <div class="flex-container-50">
+                              <div class="oneTouchFormContainer">
+                                <div class="fontH3">Extra Metrics</div>
+                                <div class="dataSummaryContainer textSilver fontH2">
+                                  <div class="dataRowSummaryContainer justifyText">
+                                    <div class="rowDisplayStart">Extra Metrics</div>
+                                    <div class="rowDisplayEnd">${'extra metrics'}</div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>`;
 
       const oneTouchCustomerInfo = document.createElement('div');
       oneTouchCustomerInfo.id = 'oneTouchCustomerInfo';
