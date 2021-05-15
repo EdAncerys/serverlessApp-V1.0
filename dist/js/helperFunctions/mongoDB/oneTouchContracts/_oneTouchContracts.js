@@ -27,7 +27,7 @@ async function _oneTouchContracts() {
 
     let manageDataContainer = '';
     let dataContainer = '';
-    let oneTouchContractData = '';
+    let contractDataContainer = '';
 
     const totalContracts = oneTouchBroadband.length;
     let totalPendingContracts = 0;
@@ -125,7 +125,7 @@ async function _oneTouchContracts() {
                         </div>`;
     });
 
-    oneTouchContractData = `<div class="features">
+    contractDataContainer = `<div class="features">
                           <div class="flex-container-30">
                             <div class="oneTouchFormContainer bgGradientSilver">
                               <div class="alignHorizontally fontH3">Contract Overview</div>
@@ -185,14 +185,22 @@ async function _oneTouchContracts() {
     if (oneTouchBroadband.length === 0) {
       _errorMessage('Have No Placed Contract!', 'warning');
 
-      oneTouchContractData = `<section class="features">
-                                <div class="flex-container-30">
-                                  <div class="headerText alignHorizontally">
-                                    <div class="fontH3">Your Have No Contracts Added!</div>
-                                    <addNewContract class="btnOneTouch">Add New Contract</addNewContract>
+      contractDataContainer = `
+                              <div class="margin-10 features">
+                                <div class="flex-container-60">
+                                  <div class="oneTouchFormContainer bgGradientSilver">
+                                    <div class="alignHorizontally fontH3">
+                                      Your Have No Customers Added!
+                                    </div>
+                                    <div class="alignHorizontally fontH2">
+                                      Manage your customer list - anytime, anywhere
+                                    </div>
+                                    <div class="dataSummaryContainer textSilver fontH2">
+                                      <addNewContract class="btnOneTouch">Add New Contract</addNewContract>
+                                    </div>
                                   </div>
                                 </div>
-                              </section>`;
+                              </div>`;
     }
 
     const liveConnections = document.querySelector('#liveConnections');
@@ -202,7 +210,7 @@ async function _oneTouchContracts() {
 
     const oneTouchContracts = document.createElement('div');
     oneTouchContracts.id = 'oneTouchContracts';
-    oneTouchContracts.innerHTML = oneTouchContractData;
+    oneTouchContracts.innerHTML = contractDataContainer;
 
     liveConnections.appendChild(oneTouchContracts);
 
