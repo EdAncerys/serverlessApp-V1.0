@@ -26,6 +26,7 @@ lcComponent {
   overflow: visible;
   font-size: 36px;
   color: #d9534f;
+  text-align: center;
 }
 .flex-container-30 placeNewOrder {
   margin: 20px 0;

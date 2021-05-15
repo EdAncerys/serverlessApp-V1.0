@@ -3,8 +3,8 @@
   grid-template-rows: 1fr 1fr;
   gap: 10px;
 }
-.contractWrapper {
-  max-height: 500px;
+.dataContainerWrapper {
+  max-height: 80vh;
   overflow: auto;
 }
 .dataWrapper {
@@ -41,7 +41,7 @@
 }
 .navWrapper {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 5px;
   margin: 50px 0;
 }
