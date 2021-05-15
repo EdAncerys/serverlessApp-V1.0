@@ -29,7 +29,7 @@ async function _oneTouchCustomers() {
     let manageDataContainer = '';
     let customerData = '';
     let navComponent = '';
-    let customerDataHTML;
+    let customerDataContainer;
 
     const data = await response.json();
     console.log(data);
@@ -95,7 +95,7 @@ async function _oneTouchCustomers() {
                       </div>`;
     });
 
-    customerDataHTML = ` <div class="features">
+    customerDataContainer = ` <div class="features">
                             <div class="flex-container-80">
                               <div class="headerText">
                                 <div class="fontH4">Customer List</div>
@@ -120,19 +120,29 @@ async function _oneTouchCustomers() {
     if (data.length === 0) {
       _spinner(false);
       _errorMessage('You Have No Customers added', 'warning');
-      customerDataHTML = `<section class="features">
-                            <div class="flex-container-30">
-                              <div class="headerText">
-                                <div class="fontH3">Your Have No Customers Added!</div>
-                                <addCustomer class="btnOneTouch">Add New Customer</addCustomer>
-                              </div>
-                            </div>
-                          </section>`;
+      customerDataContainer = `   
+                              <div class="margin-10 features">
+                                <div class="flex-container-60">
+                                  <div class="oneTouchFormContainer bgGradientSilver">
+                                    <div class="alignHorizontally fontH3">
+                                      Your Have No Customers Added!
+                                    </div>
+                                    <div class="alignHorizontally fontH2">
+                                      Manage your customer list - anytime, anywhere
+                                    </div>
+                                    <div class="dataSummaryContainer textSilver fontH2">
+                                      <addcustomer class="btnOneTouch"
+                                        >Add New Customer</addcustomer
+                                      >
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>`;
     }
 
     const oneTouchCustomers = document.createElement('div');
     oneTouchCustomers.id = 'oneTouchCustomerList';
-    oneTouchCustomers.innerHTML = customerDataHTML;
+    oneTouchCustomers.innerHTML = customerDataContainer;
 
     // Removing customer previous data
     const removeData = document.querySelector('#oneTouchCustomerList');
@@ -153,7 +163,7 @@ async function _oneTouchCustomers() {
     // connection-checker DOM
     if (endPoint.includes(manageCustomer))
       appendCustomersContainer = document.querySelector(
-        '#manageCustomerContainer'
+        '#liveConnectionsContainer'
       );
 
     if (hideDataContainer) hideDataContainer.classList.add('hidden');

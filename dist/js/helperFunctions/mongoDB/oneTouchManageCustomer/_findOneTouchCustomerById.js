@@ -176,7 +176,7 @@ async function _findOneTouchCustomerById(id, displayData) {
 
       // manage-customer DOM
       if (endPoint.includes(manageCustomer))
-        appendData = document.querySelector('#manageCustomerContainer');
+        appendData = document.querySelector('#liveConnectionsContainer');
       if (endPoint.includes(manageCustomer))
         hideData = document.querySelector('#oneTouchCustomerList');
 

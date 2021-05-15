@@ -31,67 +31,119 @@
 
           <div id="oneTouchWrapper" class="oneTouchWrapper">
             <div id="liveConnectionsContainer" class="liveConnectionsContainer">
-              <div id="oneTouchTermsAndConditions">
-                <div class="features">
-                  <div class="flex-container-60">
-                    <div class="outer">
-                      <inner class="inner">
-                        <btnLabel>Back</btnLabel>
-                      </inner>
+              <div class="margin-10 features">
+                <div class="flex-container-60">
+                  <div class="oneTouchFormContainer bgGradientSilver">
+                    <div class="alignHorizontally fontH3">
+                      Your Have No Customers Added!
+                    </div>
+                    <div class="alignHorizontally fontH2">
+                      Manage your customer list - anytime, anywhere
+                    </div>
+                    <div class="dataSummaryContainer textSilver fontH2">
+                      <addcustomer class="btnOneTouch"
+                        >Add New Customer</addcustomer
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <section class="features">
+              <div class="flex-container-60">
+                <div class="fontH2">
+                  <div class="indexBanner">
+                    <div class="ndgIcon"></div>
+                    <div>Unit 4, Saddlers Court, Oakham LE15 7GH</div>
+                    <div>Phone: 024 7509 2481</div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <div class="oneTouchWrapper">
+            <div class="formContentContainer">
+              <div class="features">
+                <div class="flex-container-30">
+                  <div class="oneTouchFormContainer bgGradientSilver">
+                    <div class="alignHorizontally fontH3">
+                      Open Tickets Overview
+                    </div>
+                    <div class="fontH2">
+                      Manage and overview tickets - anytime, anywhere
+                    </div>
+                    <div class="dataSummaryContainer textSilver fontH2">
+                      <div class="dataRowSummaryContainer justifyText">
+                        <div class="rowDisplayStart">Total Tickets</div>
+                        <div class="rowDisplayEnd">0</div>
+                      </div>
+                      <div class="dataRowSummaryContainer justifyText bgSTOP">
+                        <div class="rowDisplayStart">Waiting on Response</div>
+                        <div class="rowDisplayEnd">0</div>
+                      </div>
+                      <div class="dataRowSummaryContainer justifyText bgGO">
+                        <div class="rowDisplayStart">Resolved Tickets</div>
+                        <div class="rowDisplayEnd">0</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="flex-container-60">
+                  <div class="oneTouchFormContainer">
+                    <div id="oneTouchIconContainer">
+                      <div class="oneTouchIcon"></div>
                     </div>
 
-                    <div class="oneTouchFormContainer bgGradientSilver">
-                      <div class="alignHorizontally fontH3">
-                        Terms & Conditions
-                      </div>
-                      <div class="alignHorizontally fontH2">
-                        One Touch Portal Terms and Conditions
-                      </div>
-                      <div class="dataSummaryContainer textSilver fontH2">
-                        <div class="termsAndConditions justifyText">
-                          <div class="textBlack">1. Your Acceptance</div>
-                          <div>
-                            At vero eos et accusamus et iusto odio dignissimos
-                            ducimus qui blanditiis praesentium voluptatum
-                            deleniti atque corrupti quos dolores et quas
-                            molestias excepturi sint occaecati cupiditate non
-                            provident, similique sunt in culpa qui officia
-                            deserunt mollitia animi, id est laborum et dolorum
-                            fuga. Et harum quidem rerum facilis est et expedita
-                            distinctio. Nam libero tempore, cum soluta nobis est
-                            eligendi optio cumque nihil impedit quo minus id
-                            quod maxime placeat facere possimus, omnis voluptas
-                            assumenda est, omnis dolor repellendus. Temporibus
-                            autem quibusdam et aut officiis debitis aut rerum
-                            necessitatibus saepe eveniet ut et voluptates
-                            repudiandae sint et molestiae non recusandae. Itaque
-                            earum rerum hic tenetur a sapiente delectus, ut aut
-                            reiciendis voluptatibus maiores alias consequatur
-                            aut perferendis doloribus asperiores repellat.
-                          </div>
-                          <div class="textBlack">2. Services</div>
-                          <div>
-                            At vero eos et accusamus et iusto odio dignissimos
-                            ducimus qui blanditiis praesentium voluptatum
-                            deleniti atque corrupti quos dolores et quas
-                            molestias excepturi sint occaecati cupiditate non
-                            provident, similique sunt in culpa qui officia
-                            deserunt mollitia animi, id est laborum et dolorum
-                            fuga. Et harum quidem rerum facilis est et expedita
-                            distinctio. Nam libero tempore, cum soluta nobis est
-                            eligendi optio cumque nihil impedit quo minus id
-                            quod maxime placeat facere possimus, omnis voluptas
-                            assumenda est, omnis dolor repellendus. Temporibus
-                            autem quibusdam et aut officiis debitis aut rerum
-                            necessitatibus saepe eveniet ut et voluptates
-                            repudiandae sint et molestiae non recusandae. Itaque
-                            earum rerum hic tenetur a sapiente delectus, ut aut
-                            reiciendis voluptatibus maiores alias consequatur
-                            aut perferendis doloribus asperiores repellat.
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    <form action="/">
+                      <label for="contactReason">Reason For Contacting</label>
+                      <select id="contactReason" name="contactReason">
+                        <option
+                          selected=""
+                          disabled=""
+                          hidden=""
+                          value="selectAddress"
+                        >
+                          Please Choose Your Reason
+                        </option>
+                        <option value="Query">Query</option>
+                        <option value="Faulty">Faulty</option>
+                      </select>
+
+                      <label for="fname">Name</label>
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Your name..."
+                      />
+
+                      <label for="lname">Phone Number</label>
+                      <input
+                        type="text"
+                        id="phoneNumber"
+                        name="phoneNumber"
+                        placeholder="Your phone number..."
+                      />
+
+                      <label for="subject">Description</label>
+                      <textarea
+                        id="description"
+                        name="description"
+                        placeholder="Describe the issue..."
+                        style="height: 200px"
+                      ></textarea>
+
+                      <submitform>
+                        <input
+                          id="raiseTicket"
+                          class="btnOneTouch"
+                          type="submit"
+                          value="Submit"
+                        />
+                      </submitform>
+                    </form>
                   </div>
                 </div>
               </div>

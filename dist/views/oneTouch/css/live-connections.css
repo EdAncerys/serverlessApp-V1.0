@@ -30,6 +30,9 @@ lcComponent {
 .flex-container-30 placeNewOrder {
   margin: 20px 0;
 }
+.margin-10 {
+  margin: 10% 0;
+}
 [type='date'] {
   width: 100%;
   padding: 10px;
