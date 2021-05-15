@@ -27,7 +27,7 @@ async function _oneTouchAllPlacedOrders() {
 
     let manageDataContainer = '';
     let dataContainer = '';
-    let oneTouchContractData = '';
+    let contractDataContainer = '';
     let totalPendingContracts = 0;
     let totalApprovedContracts = 0;
 
@@ -95,7 +95,7 @@ async function _oneTouchAllPlacedOrders() {
 
     const totalContracts = oneTouchBroadband.length;
 
-    oneTouchContractData = `<section class="features">
+    contractDataContainer = `<section class="features">
                               <div class="flex-container-30">
                                 <div class="oneTouchFormContainer bgGradientSilver">
                                   <div class="alignHorizontally fontH3">Contract Overview</div>
@@ -136,16 +136,19 @@ async function _oneTouchAllPlacedOrders() {
     if (oneTouchBroadband.length === 0) {
       _errorMessage('Have no Pending Orders!', 'warning');
 
-      oneTouchContractData = `<section class="features">
-                                  <div class="flex-container-60">
-                                    <div class="fontH5">Have No Pending Orders!</div>
+      contractDataContainer = `
+                              <div class="margin-10 features">
+                                <div class="flex-container-60">
+                                  <div class="oneTouchFormContainer bgGradientSilver">
+                                    <div class="alignHorizontally fontH3">
+                                      Your Have No Pending Orders!
+                                    </div>
+                                    <div class="alignHorizontally fontH2">
+                                      Manage your orders - anytime, anywhere
+                                    </div>
                                   </div>
-                                </section>
-                                <section class="features">
-                                  <div class="flex-container-60">
-                                    <placeNewOrder class="btnOneTouch">Place New Order</placeNewOrder>
-                                  </div>
-                              </section>`;
+                                </div>
+                              </div>`;
     }
 
     const liveConnections = document.querySelector('#liveConnections');
@@ -155,7 +158,7 @@ async function _oneTouchAllPlacedOrders() {
 
     const oneTouchContracts = document.createElement('div');
     oneTouchContracts.id = 'oneTouchContracts';
-    oneTouchContracts.innerHTML = oneTouchContractData;
+    oneTouchContracts.innerHTML = contractDataContainer;
 
     liveConnections.appendChild(oneTouchContracts);
 

@@ -5,7 +5,7 @@ const _errorMessage = (message, type) => {
   setTimeout(() => {
     let errMsg = document.getElementById(`errorMessage_${msgID}`);
     if (errMsg) errMsg.remove();
-  }, 4000);
+  }, 2000);
 
   let msgType;
   let msgColor;
