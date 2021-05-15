@@ -166,7 +166,7 @@ async function _oneTouchContracts() {
                               <div class="headerText">
                                 <div class="alignHorizontally fontH4">Live Contracts & Customer List</div>
                                 <div class="alignHorizontally fontH2">
-                                  Manage all customers in one place. View address, contact
+                                  Manage all contracts in one place. View address, contact
                                   information, etc. & any personal notes.
                                 </div>
                               </div>

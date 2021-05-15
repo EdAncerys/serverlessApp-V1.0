@@ -95,7 +95,7 @@ async function _oneTouchAllPlacedOrders() {
 
     const totalContracts = oneTouchBroadband.length;
 
-    contractDataContainer = `<section class="features">
+    contractDataContainer = `<div class="features">
                               <div class="flex-container-30">
                                 <div class="oneTouchFormContainer bgGradientSilver">
                                   <div class="alignHorizontally fontH3">Contract Overview</div>
@@ -118,20 +118,26 @@ async function _oneTouchAllPlacedOrders() {
                                   </div>
                                 </div>
                               </div>
-                              
+
                               <div class="flex-container-70">
-                                <div class="titleComponent">
-                                  <div class="fontH4">Manage All Placed Orders</div>
-                                  <div class="fontH2">Manage all placed orders in one place with a touch of a finger!</div>
+                                <div class="oneTouchFormContainer dataContainerWrapper">
+                                  <div class="headerText">
+                                    <div class="alignHorizontally fontH4">Manage All Placed Orders</div>
+                                    <div class="alignHorizontally fontH2">
+                                      Manage all placed orders in one place with a touch of a finger!
+                                    </div>
+                                  </div>
+                                  <div id='dataWrapper' class='dataWrapper'>
+                                    <div class="rowComponent-3 boxContainer bgGray">
+                                      <div class="rowComponentWrapper">Business Contact</div>
+                                      <div class="rowComponentWrapper">Address</div>
+                                      <div class="rowComponentWrapper">Manage</div>
+                                    </div>
+                                      ${dataContainer}
+                                  </div>
                                 </div>
-                                <div class="boxContainer rowComponent-3 bgWhite">
-                                  <div class="tableCell">oneTouch User</div>
-                                  <div class="tableCell">Address</div>
-                                  <div class="tableCell">Manage</div>
-                                </div>
-                                ${dataContainer}
                               </div>
-                            </section>`;
+                            </div>`;
 
     if (oneTouchBroadband.length === 0) {
       _errorMessage('Have no Pending Orders!', 'warning');

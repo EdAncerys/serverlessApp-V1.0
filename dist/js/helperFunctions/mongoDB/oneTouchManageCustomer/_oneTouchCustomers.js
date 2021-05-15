@@ -32,6 +32,7 @@ async function _oneTouchCustomers() {
     let customerDataContainer;
 
     const data = await response.json();
+    const totalCustomers = data.length;
     console.log(data);
 
     data.map((oneTouchCustomerData) => {
@@ -75,14 +76,10 @@ async function _oneTouchCustomers() {
                     </div>`;
 
       customerData += `<div class="rowContainer bgGradientSilver">
-                        <div class="rowComponent-4">
+                        <div class="rowComponent-3">
                           <div class="rowComponentWrapper">
                             <div>${oneTouchCustomer.companyName}</div>
                             <div class="bottomDataRow">${oneTouchCustomer.customerFullName}</div>
-                          </div>
-                          <div class="rowComponentWrapper">
-                            <div>${oneTouchCustomer.customerPhoneNumber}</div>
-                            <div class="bottomDataRow">${oneTouchCustomer.customerEmail}</div>
                           </div>
                           <div class="rowComponentWrapper">
                             <div>${oneTouchCustomer.thoroughfare_number} ${oneTouchCustomer.thoroughfare_name}</div>
@@ -95,19 +92,35 @@ async function _oneTouchCustomers() {
                       </div>`;
     });
 
-    customerDataContainer = ` <div class="features">
-                            <div class="flex-container-80">
+    customerDataContainer = ` 
+                        <div class="features">
+                          <div class="flex-container-30">
+                            <div class="oneTouchFormContainer bgGradientSilver">
+                              <div class="alignHorizontally fontH3">Customer Overview</div>
+                              <div class="fontH2">
+                                Manage and overview customers - anytime, anywhere
+                              </div>
+                              <div class="dataSummaryContainer textSilver fontH2">
+                                <div class="dataRowSummaryContainer justifyText">
+                                  <div class="rowDisplayStart">Total Customers</div>
+                                  <div class="rowDisplayEnd">${totalCustomers}</div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="flex-container-70">
+                            <div class="oneTouchFormContainer dataContainerWrapper">
                               <div class="headerText">
-                                <div class="fontH4">Customer List</div>
-                                <div class="fontH2">
+                                <div class="alignHorizontally fontH4">Live Contracts & Customer List</div>
+                                <div class="alignHorizontally fontH2">
                                   Manage all customers in one place. View address, contact
                                   information, etc. & any personal notes.
                                 </div>
                               </div>
                               <div id='dataWrapper' class='dataWrapper'>
-                                <div class="rowComponent-4 boxContainer bgGray">
+                                <div class="rowComponent-3 boxContainer bgGray">
                                   <div class="rowComponentWrapper">Business Contact</div>
-                                  <div class="rowComponentWrapper">Contact Details</div>
                                   <div class="rowComponentWrapper">Address</div>
                                   <div class="rowComponentWrapper">Option</div>
                                 </div>
@@ -115,7 +128,8 @@ async function _oneTouchCustomers() {
                                   ${navComponent}
                               </div>
                             </div>
-                          </div>`;
+                          </div>
+                        </div>`;
 
     if (data.length === 0) {
       _spinner(false);
