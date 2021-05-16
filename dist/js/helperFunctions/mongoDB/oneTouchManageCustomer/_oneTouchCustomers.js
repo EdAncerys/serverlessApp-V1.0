@@ -5,13 +5,15 @@ import { _spinner } from '../../_spinner.js';
 async function _oneTouchCustomers() {
   console.log('Fetching customers from db...');
   _spinner(true, 'Loading Active Users...');
-  const URL = '/oneTouch/customer/filterCustomers';
-  const access_token = sessionStorage.getItem('access_token');
-
   const endPoint = location.href.split('/').slice(-1)[0];
+  const access_token = sessionStorage.getItem('access_token');
   const connectionChecker = 'connection-checker';
   const userManagement = 'user-management';
   const userAddressBook = 'user-address-book';
+
+  let URL = '/oneTouch/customer/filterCustomers';
+  if (endPoint.includes(userAddressBook))
+    URL = '/oneTouch/customer/allCustomers';
 
   const body = {
     access_token,
@@ -52,7 +54,10 @@ async function _oneTouchCustomers() {
                                 </selectCustomer>
                               </div>`;
 
-      if (endPoint.includes(userManagement))
+      if (
+        endPoint.includes(userManagement) ||
+        endPoint.includes(userAddressBook)
+      )
         manageDataContainer = `<div class="manageDataContainer">
                                   <customerInfo id='${id}' class="btnB01" role="button">
                                     Info

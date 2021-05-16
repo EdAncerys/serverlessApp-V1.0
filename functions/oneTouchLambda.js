@@ -535,6 +535,32 @@ const deleteCustomer = async (db, data) => {
     };
   }
 };
+const allCustomers = async (db, data) => {
+  const dbData = await db
+    .collection(COLLECTION_ONE_TOUCH_CUSTOMER)
+    .find()
+    .toArray();
+  console.table(dbData);
+
+  try {
+    return {
+      statusCode: 200,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(dbData),
+    };
+  } catch (err) {
+    console.log(err);
+    return {
+      statusCode: 401,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(err),
+    };
+  }
+};
 const filterCustomers = async (db, data) => {
   const filterCustomers = {
     access_token: data.access_token,
@@ -1195,6 +1221,8 @@ module.exports.handler = async (event, context, callback) => {
       return deleteCustomer(db, body);
     case '/oneTouch/customer/filterCustomers':
       return filterCustomers(db, body);
+    case '/oneTouch/customer/allCustomers':
+      return allCustomers(db, body);
     case '/oneTouch/customer/findCustomerById':
       return findCustomerById(db, body);
     // oneTouch contract endPoints
