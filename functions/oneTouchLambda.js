@@ -1139,7 +1139,7 @@ const oneTouchPortalHTML = [
   '/views/oneTouch/dev',
   '/views/oneTouch/index',
   '/views/oneTouch/live-connections',
-  '/views/oneTouch/manage-customer',
+  '/views/oneTouch/user-management',
   '/views/oneTouch/one-touch-signup',
   '/views/oneTouch/connection-checker',
   '/views/oneTouch/raise-ticket',

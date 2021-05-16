@@ -10,7 +10,7 @@ async function _oneTouchCustomers() {
 
   const endPoint = location.href.split('/').slice(-1)[0];
   const connectionChecker = 'connection-checker';
-  const manageCustomer = 'manage-customer';
+  const manageCustomer = 'user-management';
 
   const body = {
     access_token,

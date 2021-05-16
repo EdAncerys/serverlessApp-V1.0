@@ -10,7 +10,7 @@ async function _findOneTouchCustomerById(id, displayData) {
 
   const endPoint = location.href.split('/').slice(-1)[0];
   const connectionChecker = 'connection-checker';
-  const manageCustomer = 'manage-customer';
+  const manageCustomer = 'user-management';
   let customerInfoData = '';
 
   const body = {
@@ -194,7 +194,7 @@ async function _findOneTouchCustomerById(id, displayData) {
       let appendData = '';
       let hideData = '';
 
-      // manage-customer DOM
+      // user-management DOM
       if (endPoint.includes(manageCustomer))
         appendData = document.querySelector('#liveConnectionsContainer');
       if (endPoint.includes(manageCustomer))
