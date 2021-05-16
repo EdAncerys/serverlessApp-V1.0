@@ -123,7 +123,7 @@ async function _oneTouchAllPlacedOrders() {
                                 <div class="oneTouchFormContainer dataContainerWrapper">
                                   <div class="headerText">
                                     <div class="alignHorizontally fontH4">Manage All Placed Orders</div>
-                                    <div class="alignHorizontally fontH2">
+                                    <div class="alignHorizontally textSilver fontH2">
                                       Manage all placed orders in one place with a touch of a finger!
                                     </div>
                                   </div>

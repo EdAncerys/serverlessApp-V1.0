@@ -10,7 +10,8 @@ async function _oneTouchCustomers() {
 
   const endPoint = location.href.split('/').slice(-1)[0];
   const connectionChecker = 'connection-checker';
-  const manageCustomer = 'user-management';
+  const userManagement = 'user-management';
+  const userAddressBook = 'user-address-book';
 
   const body = {
     access_token,
@@ -51,7 +52,7 @@ async function _oneTouchCustomers() {
                                 </selectCustomer>
                               </div>`;
 
-      if (endPoint.includes(manageCustomer))
+      if (endPoint.includes(userManagement))
         manageDataContainer = `<div class="manageDataContainer">
                                   <customerInfo id='${id}' class="btnB01" role="button">
                                     Info
@@ -112,10 +113,10 @@ async function _oneTouchCustomers() {
                           <div class="flex-container-70">
                             <div class="oneTouchFormContainer dataContainerWrapper">
                               <div class="headerText">
-                                <div class="alignHorizontally fontH4">Live Contracts & Customer List</div>
-                                <div class="alignHorizontally fontH2">
+                                <div class="alignHorizontally fontH4">Active Customer List</div>
+                                <div class="alignHorizontally textSilver fontH2">
                                   Manage all customers in one place. View address, contact
-                                  information, etc. & any personal notes.
+                                  information & any personal notes.
                                 </div>
                               </div>
                               <div id='dataWrapper' class='dataWrapper'>
@@ -145,8 +146,8 @@ async function _oneTouchCustomers() {
                                       Manage your customer list - anytime, anywhere
                                     </div>
                                     <div class="dataSummaryContainer textSilver fontH2">
-                                      <addcustomer class="btnOneTouch"
-                                        >Add New Customer</addcustomer
+                                      <addCustomer class="btnOneTouch"
+                                        >Add New Customer</addCustomer
                                       >
                                     </div>
                                   </div>
@@ -175,7 +176,7 @@ async function _oneTouchCustomers() {
         'oneTouchBroadbandOrderPageOne'
       );
     // connection-checker DOM
-    if (endPoint.includes(manageCustomer))
+    if (endPoint.includes(userManagement) || endPoint.includes(userAddressBook))
       appendCustomersContainer = document.querySelector(
         '#liveConnectionsContainer'
       );
