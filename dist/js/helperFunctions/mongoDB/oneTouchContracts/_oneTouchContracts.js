@@ -123,6 +123,10 @@ async function _oneTouchContracts() {
                             </div>
                           </div>
                         </div>`;
+
+      if (oneTouchCustomer.length === 0)
+        dataContainer = `
+                          <div class="alignHorizontally textDanger">Customer Information Not Available. Please Contact Your Account Manager</div>`;
     });
 
     contractDataContainer = `<div class="features">
