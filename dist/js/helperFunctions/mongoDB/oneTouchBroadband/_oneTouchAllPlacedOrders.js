@@ -159,8 +159,10 @@ async function _oneTouchAllPlacedOrders() {
 
     const liveConnections = document.querySelector('#liveConnections');
     // Removing user previous data
-    const removeData = document.querySelector('#oneTouchContracts');
-    if (removeData) removeData.remove();
+    const removeDataOne = document.querySelector('#oneTouchContracts');
+    if (removeDataOne) removeDataOne.remove();
+    const removeDataTwo = document.querySelector('#oneTouchContractInfo');
+    if (removeDataTwo) removeDataTwo.remove();
 
     const oneTouchContracts = document.createElement('div');
     oneTouchContracts.id = 'oneTouchContracts';

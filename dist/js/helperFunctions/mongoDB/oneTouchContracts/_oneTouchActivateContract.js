@@ -1,5 +1,6 @@
 import { _errorMessage } from '../../_errorMessage.js';
 import { _spinner } from '../../_spinner.js';
+import { _oneTouchAllPlacedOrders } from '../oneTouchBroadband/_oneTouchAllPlacedOrders.js';
 
 async function _oneTouchActivateContract() {
   const contractStartDay = document.getElementById('contractStartDay').value;
@@ -43,6 +44,7 @@ async function _oneTouchActivateContract() {
     const data = await response.json();
     if (!response.ok) throw new Error(data.msg);
 
+    _oneTouchAllPlacedOrders();
     console.log(data);
     _spinner(false);
     _errorMessage(data.msg, 'success');

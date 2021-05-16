@@ -60,75 +60,116 @@ async function _oneTouchContractInfo(findOneById) {
     const broadbandOrders = 'broadband-orders';
     const admin = endPoint.includes(broadbandOrders);
 
-    let contractActivationStats = '';
+    // contract expiration day
+    let startDay;
+    let endDay;
+    const today = new Date();
+    if (contractStartDay) startDay = new Date(contractStartDay);
+    if (contractEndDay) endDay = new Date(contractEndDay);
+    const sixMonthsFromNow = new Date();
+    sixMonthsFromNow.setMonth(today.getMonth() + 7);
+    let bgContractEndDay = 'bgGray';
+    let bgContractStartDay = 'bgGray';
+
+    if (startDay > today && contractStartDay) bgContractStartDay = 'bgSTOP';
+    if (startDay <= today && contractStartDay) bgContractStartDay = 'bgGO';
+
+    if (endDay < today && contractStartDay) bgContractEndDay = 'bgSTOP';
+    if (endDay < sixMonthsFromNow && endDay > today) bgContractEndDay = 'bgSET';
+    if (endDay > sixMonthsFromNow) bgContractEndDay = 'bgGO';
+
+    let contractActivationStats = `
+                                  <div class="flex-container-50">
+                                    <div class="oneTouchFormContainer">
+                                      <div class="fontH3">Contract Information</div>
+                                      <div class="dataSummaryContainer textSilver fontH2">
+                                        <div class="dataRowSummaryContainer justifyText">
+                                          <div class="rowDisplayStart">Contract Price</div>
+                                          <div class="rowDisplayEnd">${oneTouchBroadband.price}</div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>`;
     if (contractStartDay)
       contractActivationStats = `   
                               <div class="flex-container-50">
                                 <div class="oneTouchFormContainer">
                                   <div class="fontH3">Contract Information</div>
                                   <div class="dataSummaryContainer textSilver fontH2">
-                                    <div class="dataRowSummaryContainer justifyText bgGO">
+                                    <div class="dataRowSummaryContainer justifyText ${bgContractStartDay}">
                                       <div class="rowDisplayStart">Contract Start Day</div>
                                       <div class="rowDisplayEnd">${contractStartDay}</div>
                                     </div>
-
-                                    <div class="dataRowSummaryContainer justifyText bgSTOP">
+                                    <div class="dataRowSummaryContainer justifyText ${bgContractEndDay}">
                                       <div class="rowDisplayStart">Contract End Day</div>
                                       <div class="rowDisplayEnd">${contractEndDay}</div>
+                                    </div>
+                                    <div class="dataRowSummaryContainer justifyText">
+                                      <div class="rowDisplayStart">Contract Price</div>
+                                      <div class="rowDisplayEnd">${oneTouchBroadband.price}</div>
                                     </div>
                                   </div>
                                 </div>
                               </div>`;
 
     // Activate contract section
-    let activateContract = '';
+    let adminPanel = '';
     if (admin)
-      activateContract = ` <div class="features-align-left">
-                            <div class="flex-container-50">
-                              <div class="oneTouchFormContainer">
-                                <div id="oneTouchIconContainer">
-                                  <div class="oneTouchIcon"></div>
-                                </div>
+      adminPanel = ` 
+                    <div class="oneTouchFormContainer bgGradientSilver">
+                      <div class="features">
+                        <div class="flex-container-80">
+                          <div class="alignHorizontally fontH4">Admin Contract Activation Panel</div>
+                        </div>
+                      </div>
 
-                                <form action="/">
-                                  <label for="fname">Contract Start Day</label>
-                                  <input
-                                    type="date"
-                                    id="contractStartDay"
-                                    name="name"
-                                    placeholder="DD/MM/YYYY"
-                                  />
-
-                                  <label for="lname">Contract End Day</label>
-                                  <input
-                                    type="date"
-                                    id="contractEndDay"
-                                    name="name"
-                                    placeholder="DD/MM/YYYY"
-                                  />
-
-                                  <label for="subject">Contract Notes</label>
-                                  <textarea
-                                    id="contractNotes"
-                                    name="contractDescription"
-                                    placeholder="Relative Notes..."
-                                    style="height: 200px"
-                                  ></textarea>
-
-                                  <submitForm>
-                                    <input
-                                      id="activateContract"
-                                      class="btnOneTouch"
-                                      type="submit"
-                                      value="Activate Contract"
-                                    />
-                                  </submitForm>
-                                </form>
-                              </div>
+                      <div id="adminPanel" class="features-align-left">
+                        <div class="flex-container-50">
+                          <div class="oneTouchFormContainer">
+                            <div id="oneTouchIconContainer">
+                              <div class="oneTouchIcon"></div>
                             </div>
 
-                            ${contractActivationStats}
-                          </div>`;
+                            <form action="/">
+                              <label for="fname">Contract Start Day</label>
+                              <input
+                                type="date"
+                                id="contractStartDay"
+                                name="name"
+                                placeholder="DD/MM/YYYY"
+                              />
+
+                              <label for="lname">Contract End Day</label>
+                              <input
+                                type="date"
+                                id="contractEndDay"
+                                name="name"
+                                placeholder="DD/MM/YYYY"
+                              />
+
+                              <label for="subject">Contract Notes</label>
+                              <textarea
+                                id="contractNotes"
+                                name="contractDescription"
+                                placeholder="Relative Notes..."
+                                style="height: 200px"
+                              ></textarea>
+
+                              <submitForm>
+                                <input
+                                  id="activateContract"
+                                  class="btnOneTouch"
+                                  type="submit"
+                                  value="Activate Contract"
+                                />
+                              </submitForm>
+                            </form>
+                          </div>
+                        </div>
+
+                        ${contractActivationStats}
+                      </div>
+                    </div>`;
 
     oneTouchContractData = `
                           <div class="features">
@@ -141,7 +182,7 @@ async function _oneTouchContractInfo(findOneById) {
                             </div>
                           </div>
 
-      ${activateContract}
+      ${adminPanel}
 
       <div class="features">
         <div class="flex-container-50">
@@ -245,30 +286,7 @@ async function _oneTouchContractInfo(findOneById) {
           </div>
         </div>
 
-        <div class="flex-container-50">
-          <div class="oneTouchFormContainer">
-            <div class="fontH3">Contract Details</div>
-            <div class="dataSummaryContainer textSilver fontH2">
-              <div class="dataRowSummaryContainer justifyText">
-                <div class="rowDisplayStart">Installation Date</div>
-                <div class="rowDisplayEnd">${oneTouchBroadband.installationDate}</div>
-              </div>
-              <div class="dataRowSummaryContainer justifyText">
-                <div class="rowDisplayStart">Contact Expiration Date</div>
-                <div class="rowDisplayEnd">${oneTouchBroadband.expansionDate}</div>
-              </div>
-
-              <div class="dataRowSummaryContainer justifyText">
-                <div class="rowDisplayStart">Contact Length</div>
-                <div class="rowDisplayEnd">${oneTouchBroadband.contractLength}</div>
-              </div>
-              <div class="dataRowSummaryContainer justifyText">
-                <div class="rowDisplayStart">Contract Price</div>
-                <div class="rowDisplayEnd">${oneTouchBroadband.price}</div>
-              </div>
-            </div>
-          </div>
-        </div>
+        ${contractActivationStats}
       </div>
 
       <div class="features-align-left">
@@ -298,8 +316,6 @@ async function _oneTouchContractInfo(findOneById) {
             </div>
           </div>
         </div>
-
-        ${contractActivationStats}
       </div>`;
 
     const oneTouchContractInfo = document.createElement('div');
