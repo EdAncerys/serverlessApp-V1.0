@@ -1170,7 +1170,7 @@ const oneTouchPortalHTML = [
   '/views/oneTouch/connection-checker',
   '/views/oneTouch/raise-ticket',
   '/views/oneTouch/support-docs',
-  '/views/oneTouch/version-two',
+  '/views/oneTouch/coming-soon',
 ];
 
 module.exports.handler = async (event, context, callback) => {
