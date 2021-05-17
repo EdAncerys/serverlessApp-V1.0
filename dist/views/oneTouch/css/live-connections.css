@@ -3,12 +3,6 @@
   display: grid;
   width: min(95vw, 1000px);
 }
-lcComponent {
-  display: grid;
-  color: #f4f4f4;
-  min-height: 150px;
-  margin: 20px 0;
-}
 .orderDataContainer {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;

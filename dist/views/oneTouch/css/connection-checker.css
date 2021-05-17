@@ -4,7 +4,6 @@
 /* Page content */
 .oneTouchBroadbandContainer {
   width: auto;
-  padding: 10px 5px;
   display: flex;
   flex-direction: column;
 }

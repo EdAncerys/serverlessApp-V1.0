@@ -35,8 +35,11 @@ body {
 .oneTouchWrapper {
   display: grid;
   justify-content: center;
-  padding-top: 66px;
+  align-items: center;
   text-align: center;
+  width: 100vw;
+  height: calc(100vh - 66px);
+  padding-top: 66px;
 }
 .center {
   display: grid;

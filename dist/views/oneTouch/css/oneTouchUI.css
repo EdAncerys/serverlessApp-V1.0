@@ -74,13 +74,6 @@
 .flex-container-100 {
   flex-basis: 100%;
 }
-.oneTouchCS {
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  width: 100vw;
-  height: calc(100vh - 66px);
-}
 
 dividerComponent {
   align-items: center;
