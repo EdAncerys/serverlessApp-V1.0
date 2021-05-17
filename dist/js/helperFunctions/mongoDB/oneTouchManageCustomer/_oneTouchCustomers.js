@@ -151,7 +151,7 @@ async function _oneTouchCustomers() {
       _spinner(false);
       _errorMessage('You Have No Customers added', 'warning');
       customerDataContainer = `   
-                              <div class="margin-10 features">
+                              <div class="margin-15 features">
                                 <div class="flex-container-60">
                                   <div class="oneTouchFormContainer bgGradientSilver">
                                     <div class="alignHorizontally fontH3">

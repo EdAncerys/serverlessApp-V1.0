@@ -107,7 +107,8 @@ async function _oneTouchContracts() {
                             </deleteContract>
                           </div>`;
 
-      dataContainer += `<div class="rowContainer ${bgContract}">
+      if (oneTouchCustomer.length !== 0)
+        dataContainer += `<div class="rowContainer ${bgContract}">
                           <div class="pendingOrder">${pendingOrder}</div>
                           <div class="rowComponent-3 ${rowComponent}">
                             <div class="rowComponentWrapper">
@@ -125,8 +126,12 @@ async function _oneTouchContracts() {
                         </div>`;
 
       if (oneTouchCustomer.length === 0)
-        dataContainer = `
-                          <div class="alignHorizontally textDanger">Customer Information Not Available. Please Contact Your Account Manager</div>`;
+        dataContainer += `
+                          <div class="rowContainer ${bgContract}">
+                            <div class="rowComponent-1 ${rowComponent}">
+                              <div class="alignHorizontally textDanger">Customer Information Not Available. Please Contact Your Account Manager</div>
+                            </div>
+                          </div>`;
     });
 
     contractDataContainer = `<div class="features">
@@ -200,7 +205,7 @@ async function _oneTouchContracts() {
       _errorMessage('Have No Placed Contract!', 'warning');
 
       contractDataContainer = `
-                              <div class="margin-10 features">
+                              <div class="margin-15 features">
                                 <div class="flex-container-60">
                                   <div class="oneTouchFormContainer bgGradientSilver">
                                     <div class="alignHorizontally fontH3">

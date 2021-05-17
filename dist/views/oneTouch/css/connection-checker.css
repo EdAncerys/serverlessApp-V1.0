@@ -3,6 +3,8 @@
 }
 /* Page content */
 .oneTouchBroadbandContainer {
+  position: relative;
+  z-index: 0;
   width: auto;
   display: flex;
   flex-direction: column;
@@ -106,6 +108,7 @@
   display: grid;
   grid-template-rows: 1fr 1fr;
 }
+
 /* CheckBox css */
 agreeWithTermsAndConditions input,
 agreeWithTermsAndConditions label {

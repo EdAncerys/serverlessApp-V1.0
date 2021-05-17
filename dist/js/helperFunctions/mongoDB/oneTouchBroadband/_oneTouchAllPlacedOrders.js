@@ -153,7 +153,7 @@ async function _oneTouchAllPlacedOrders() {
       _errorMessage('Have no Pending Orders!', 'warning');
 
       contractDataContainer = `
-                              <div class="margin-10 features">
+                              <div class="margin-15 features">
                                 <div class="flex-container-60">
                                   <div class="oneTouchFormContainer bgGradientSilver">
                                     <div class="alignHorizontally fontH3">

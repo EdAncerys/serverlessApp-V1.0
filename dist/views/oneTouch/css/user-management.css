@@ -10,11 +10,15 @@
 .dataWrapper {
   display: grid;
 }
+.rowComponent-1,
 .rowComponent-3,
 .rowComponent-4 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   margin: 5px 0;
+}
+.rowComponent-1 {
+  grid-template-columns: 1fr;
 }
 .rowComponent-3 {
   grid-template-columns: 1fr 1fr 1fr;
