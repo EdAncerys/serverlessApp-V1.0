@@ -2,6 +2,36 @@ import { persistDOMData } from '../../../persistDOMData.js';
 import { _errorMessage } from '../../_errorMessage.js';
 import { _spinner } from '../../_spinner.js';
 
+async function keywordSearch(e) {
+  const keyword = e.value.toLowerCase();
+  console.log(`Searching for keyword: ` + keyword);
+
+  const search = document.querySelectorAll('search');
+
+  search.forEach((row) => {
+    console.log(row);
+    if (row.textContent.toLowerCase().indexOf(keyword) != -1) {
+      row.closest('searchRowComponent').style.display = 'none';
+    }
+  });
+}
+
+// var search_input = document.querySelector('#search_input');
+
+// search_input.addEventListener('keyup', function (e) {
+//   var span_items = document.querySelectorAll('.table_body .name span');
+//   var table_body = document.querySelector('.table_body ul');
+//   var search_item = e.target.value.toLowerCase();
+
+//   span_items.forEach(function (item) {
+//     if (item.textContent.toLowerCase().indexOf(search_item) != -1) {
+//       item.closest('li').style.display = 'block';
+//     } else {
+//       item.closest('li').style.display = 'none';
+//     }
+//   });
+// });
+
 async function _oneTouchCustomers() {
   console.log('Fetching customers from db...');
   _spinner(true, 'Loading Active Users...');
@@ -71,31 +101,36 @@ async function _oneTouchCustomers() {
 
       if (endPoint.includes(connectionChecker))
         navComponent = `<div class='navWrapper alignHorizontally'>
-                      <goPageBack id='pageOne' class="btnOneTouch" role="button">
-                        Go Back
-                      </goPageBack>
-                      <addUser class="btnOneTouch" 
-                                role="button"
-                                onclick = "location.href='../../../../views/oneTouch/add-oneTouchCustomer.html'";>
-                        Add New Customer
-                      </addUser>
-                    </div>`;
+                          <goPageBack id='pageOne' class="btnOneTouch" role="button">
+                            Go Back
+                          </goPageBack>
+                          <addUser class="btnOneTouch" 
+                                    role="button"
+                                    onclick = "location.href='../../../../views/oneTouch/add-oneTouchCustomer.html'";>
+                            Add New Customer
+                          </addUser>
+                        </div>`;
 
-      customerData += `<div class="rowContainer bgGradientSilver">
-                        <div class="rowComponent-3">
-                          <div class="rowComponentWrapper">
-                            <div>${oneTouchCustomer.companyName}</div>
-                            <div class="bottomDataRow">${oneTouchCustomer.customerFullName}</div>
+      customerData += `
+                      <rowComponent>
+                        <searchRowComponent>
+                          <div class="rowContainer bgGradientSilver">
+                            <div class="rowComponent-3">
+                              <div class="cellComponent">
+                                <search>${oneTouchCustomer.companyName}</search>
+                                <search class="bottomDataRow">${oneTouchCustomer.customerFullName}</search>
+                              </div>
+                              <div class="cellComponent">
+                                <search>${oneTouchCustomer.thoroughfare_number} ${oneTouchCustomer.thoroughfare_name}</search>
+                                <search class="bottomDataRow">${oneTouchCustomer.postcode}</search>
+                              </div>
+                              <div class="cellComponent">
+                                ${manageDataContainer}
+                              </div>
+                            </div>
                           </div>
-                          <div class="rowComponentWrapper">
-                            <div>${oneTouchCustomer.thoroughfare_number} ${oneTouchCustomer.thoroughfare_name}</div>
-                            <div class="bottomDataRow">${oneTouchCustomer.postcode}</div>
-                          </div>
-                          <div class="rowComponentWrapper">
-                            ${manageDataContainer}
-                          </div>
-                        </div>
-                      </div>`;
+                        </searchRowComponent>
+                      <rowComponent>`;
     });
 
     customerDataContainer = ` 
@@ -141,18 +176,16 @@ async function _oneTouchCustomers() {
                                   <div class="rowComponentWrapper">Option</div>
                                 </div>
 
-                                <div id='searchBox' class='searchBox'>
+                                <div class='searchBox'>
                                   <label class="textSilver fontH2" for="fname">Search Box</label>
                                   <input
                                     type="text"
-                                    id="name"
-                                    name="name"
+                                    id="searchBox"
                                     placeholder="Search criteria..."
                                   />
                                 </div>
-
-                                  ${customerData}
-                                  ${navComponent}
+                                ${customerData}
+                                ${navComponent}
                               </div>
                             </div>
                           </div>

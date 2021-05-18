@@ -61,3 +61,30 @@ document.querySelector('body').addEventListener('click', (event) => {
     oneTouchDeleteCustomer(id);
   }
 });
+
+document.querySelector('body').addEventListener('keyup', (event) => {
+  const searchBox = document.querySelector('#searchBox');
+  const keyword = searchBox.value.toLowerCase();
+  console.log(`Search keyword: ` + keyword);
+  const searchRowComponent = document.querySelectorAll('searchRowComponent');
+
+  searchRowComponent.forEach((row) => {
+    let matchFound;
+    console.log(row);
+
+    const search = row.getElementsByTagName('search');
+    Array.prototype.map.call(search, (list) => {
+      const nodeText = list.innerHTML.toLowerCase();
+      console.log(nodeText);
+      if (nodeText.includes(keyword)) matchFound = true;
+
+      console.log(matchFound);
+    });
+
+    if (matchFound) {
+      row.style.display = 'block';
+    } else {
+      row.style.display = 'none';
+    }
+  });
+});

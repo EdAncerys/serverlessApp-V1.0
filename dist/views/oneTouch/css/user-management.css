@@ -23,7 +23,7 @@
 .rowComponent-3 {
   grid-template-columns: 1fr 1fr 1fr;
 }
-.rowComponentWrapper {
+.cellComponent {
   display: grid;
   padding: 0 10px;
   text-align: left;
