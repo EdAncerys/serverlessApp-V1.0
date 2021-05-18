@@ -3,12 +3,6 @@
   display: grid;
   width: min(95vw, 1000px);
 }
-lcComponent {
-  display: grid;
-  color: #f4f4f4;
-  min-height: 150px;
-  margin: 20px 0;
-}
 .orderDataContainer {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -17,7 +11,7 @@ lcComponent {
   color: #393b3c;
 }
 .rowInactive {
-  opacity: 0.2;
+  opacity: 0.4;
 }
 .pendingOrder {
   position: relative;
@@ -31,7 +25,10 @@ lcComponent {
 .flex-container-30 placeNewOrder {
   margin: 20px 0;
 }
-.margin-10 {
+.textOffset-150 {
+  top: 150px;
+}
+.margin-15 {
   margin: 15% 0;
 }
 [type='date'] {

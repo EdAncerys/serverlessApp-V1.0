@@ -117,6 +117,16 @@ async function _oneTouchAllPlacedOrders() {
                                     </div>
                                   </div>
                                 </div>
+
+                                <div class="ndgLogoBanner flex-container-30">
+                                  <div class="fontH2">
+                                    <div class="indexBanner">
+                                      <div class="ndgIcon"></div>
+                                      <div>Unit 4, Saddlers Court, Oakham LE15 7GH</div>
+                                      <div>Phone: 024 7509 2481</div>
+                                    </div>
+                                  </div>
+                                </div>
                               </div>
 
                               <div class="flex-container-70">
@@ -143,7 +153,7 @@ async function _oneTouchAllPlacedOrders() {
       _errorMessage('Have no Pending Orders!', 'warning');
 
       contractDataContainer = `
-                              <div class="margin-10 features">
+                              <div class="margin-15 features">
                                 <div class="flex-container-60">
                                   <div class="oneTouchFormContainer bgGradientSilver">
                                     <div class="alignHorizontally fontH3">
