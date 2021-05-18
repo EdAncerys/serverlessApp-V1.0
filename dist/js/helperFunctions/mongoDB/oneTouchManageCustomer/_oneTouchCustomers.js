@@ -140,6 +140,17 @@ async function _oneTouchCustomers() {
                                   <div class="rowComponentWrapper">Address</div>
                                   <div class="rowComponentWrapper">Option</div>
                                 </div>
+
+                                <div id='searchBox' class='searchBox'>
+                                  <label class="textSilver fontH2" for="fname">Search Box</label>
+                                  <input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    placeholder="Search criteria..."
+                                  />
+                                </div>
+
                                   ${customerData}
                                   ${navComponent}
                               </div>
