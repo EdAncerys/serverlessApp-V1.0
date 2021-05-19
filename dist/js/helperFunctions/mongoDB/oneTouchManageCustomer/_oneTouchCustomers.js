@@ -82,7 +82,6 @@ async function _oneTouchCustomers() {
                         </div>`;
 
       customerData += `
-                      <rowComponent>
                         <searchRowComponent>
                           <div class="rowContainer bgGradientSilver">
                             <div class="rowComponent-3">
@@ -99,8 +98,7 @@ async function _oneTouchCustomers() {
                               </div>
                             </div>
                           </div>
-                        </searchRowComponent>
-                      <rowComponent>`;
+                        </searchRowComponent>`;
     });
 
     customerDataContainer = ` 
@@ -145,7 +143,6 @@ async function _oneTouchCustomers() {
                                   <div class="rowComponentWrapper">Address</div>
                                   <div class="rowComponentWrapper">Option</div>
                                 </div>
-
                                 <div class='searchBox'>
                                   <input
                                     type="text"
