@@ -80,7 +80,18 @@
                     <option value="Faulty">Faulty</option>
                   </select>
 
-                  <label for="fname">Name</label>
+                  <label for="contactReason">Priority Level</label>
+                  <select id="contactReason" name="contactReason">
+                    <option selected disabled hidden value="selectAddress">
+                      Please Choose Your Priority
+                    </option>
+                    <option value="1">Low</option>
+                    <option value="2">Medium</option>
+                    <option value="3">High</option>
+                    <option value="4">Urgent</option>
+                  </select>
+
+                  <label for="fname">Full Name</label>
                   <input
                     type="text"
                     id="name"
@@ -90,10 +101,18 @@
 
                   <label for="lname">Phone Number</label>
                   <input
-                    type="text"
+                    type="number"
                     id="phoneNumber"
                     name="phoneNumber"
                     placeholder="Your phone number..."
+                  />
+
+                  <label for="fname">Subject</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="List Subject..."
                   />
 
                   <label for="subject">Description</label>
