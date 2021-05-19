@@ -129,7 +129,7 @@ async function _oneTouchCustomers() {
                           </div>
 
                           <div class="flex-container-70">
-                            <div class="oneTouchFormContainer dataContainerWrapper">
+                            <div class="oneTouchFormContainer">
                               <div class="headerText">
                                 <div class="alignHorizontally fontH4">Active Customer List</div>
                                 <div class="alignHorizontally textSilver fontH2">
@@ -150,8 +150,10 @@ async function _oneTouchCustomers() {
                                     placeholder="Search for Customer..."
                                   />
                                 </div>
-                                ${customerData}
-                                ${navComponent}
+                                <div class="dataContainerWrapper">
+                                  ${customerData}
+                                  ${navComponent}
+                                </div>
                               </div>
                             </div>
                           </div>
