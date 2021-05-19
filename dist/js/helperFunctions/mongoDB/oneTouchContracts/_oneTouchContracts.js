@@ -113,15 +113,15 @@ async function _oneTouchContracts() {
                             <div class="rowContainer ${bgContract}">
                               <div class="pendingOrder">${pendingOrder}</div>
                               <div class="rowComponent-3 ${rowComponent}">
-                                <div class="rowComponentWrapper">
+                                <div class="cellComponent">
                                   <search>${oneTouchCustomer.companyName}</search>
                                   <search class="bottomDataRow">${oneTouchCustomer.customerFullName}</search>
                                 </div>
-                                <div class="rowComponentWrapper">
+                                <div class="cellComponent">
                                   <search>${thoroughfare_number} ${premises_name} ${sub_premises} ${thoroughfare_name} ${county}</search>
                                   <search class="bottomDataRow">${postcode}</search>
                                 </div>
-                                <div class="rowComponentWrapper">
+                                <div class="cellComponent">
                                   ${manageDataContainer}
                                 </div>
                               </div>
@@ -196,15 +196,15 @@ async function _oneTouchContracts() {
                               </div>
                               <div id='dataWrapper' class='dataWrapper'>
                                 <div class="rowComponent-3 boxContainer bgGray">
-                                  <div class="rowComponentWrapper">Business Contact</div>
-                                  <div class="rowComponentWrapper">Address</div>
-                                  <div class="rowComponentWrapper">Manage</div>
+                                  <div class="cellComponent">Business Contact</div>
+                                  <div class="cellComponent">Address</div>
+                                  <div class="cellComponent">Manage</div>
                                 </div>
                                 <div class='searchBox'>
                                   <input
                                     type="text"
                                     id="searchBox"
-                                    placeholder="Search for Customer..."
+                                    placeholder="Search for Contract..."
                                   />
                                 </div>
                                   ${contractData}

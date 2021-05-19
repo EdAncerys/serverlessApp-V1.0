@@ -139,9 +139,9 @@ async function _oneTouchCustomers() {
                               </div>
                               <div id='dataWrapper' class='dataWrapper'>
                                 <div class="rowComponent-3 boxContainer bgGray">
-                                  <div class="rowComponentWrapper">Business Contact</div>
-                                  <div class="rowComponentWrapper">Address</div>
-                                  <div class="rowComponentWrapper">Option</div>
+                                  <div class="cellComponent">Business Contact</div>
+                                  <div class="cellComponent">Address</div>
+                                  <div class="cellComponent">Option</div>
                                 </div>
                                 <div class='searchBox'>
                                   <input

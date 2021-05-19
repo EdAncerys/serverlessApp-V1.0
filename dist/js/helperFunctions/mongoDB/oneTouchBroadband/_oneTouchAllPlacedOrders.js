@@ -26,7 +26,7 @@ async function _oneTouchAllPlacedOrders() {
     console.log(oneTouchBroadband);
 
     let manageDataContainer = '';
-    let dataContainer = '';
+    let contractData = '';
     let contractDataContainer = '';
     let totalPendingContracts = 0;
     let totalApprovedContracts = 0;
@@ -64,7 +64,18 @@ async function _oneTouchAllPlacedOrders() {
         oneTouchCustomer.county === 'null' ? '' : oneTouchCustomer.county;
       let postcode = oneTouchCustomer.postcode;
 
-      manageDataContainer = `<div class="manageDataContainer">
+      let customerAddress = `${thoroughfare_number} ${premises_name} ${sub_premises} ${thoroughfare_name} ${county}`;
+      if (!oneTouchCustomerData)
+        customerAddress = 'Customer Address not Available';
+
+      let customerPostcode = `${postcode}`;
+      if (!oneTouchCustomerData) customerPostcode = 'Not Available';
+
+      let oneTouchCustomerFullName = `${oneTouchCustomer.customerFullName}`;
+      if (!oneTouchCustomerData) oneTouchCustomerFullName = 'Not Available';
+
+      manageDataContainer = `
+                            <div class="manageDataContainer">
                               <contractInfo id='${id}' class="btnB01" role="button">
                                 Update
                               </contractInfo>
@@ -76,21 +87,24 @@ async function _oneTouchAllPlacedOrders() {
       let rowComponent = 'bgGO';
       if (!liveContract) rowComponent = 'bgSTOP';
 
-      dataContainer += `<div class="rowContainer ${rowComponent}">
-                          <div class="rowComponent-3">
-                            <div class="rowComponentWrapper">
-                              <div>${oneTouchSuperUser.email}</div>
-                              <div class="bottomDataRow">${oneTouchCustomer.customerFullName}</div>
-                            </div>
-                            <div class="rowComponentWrapper">
-                              <div>${thoroughfare_number} ${premises_name} ${sub_premises} ${thoroughfare_name} ${county}</div>
-                              <div class="bottomDataRow">${postcode}</div>
-                            </div>
-                            <div class="rowComponentWrapper">
-                              ${manageDataContainer}
+      contractData += `
+                        <searchRowComponent>
+                          <div class="rowContainer ${rowComponent}">
+                            <div class="rowComponent-3">
+                              <div class="cellComponent">
+                                <search>${oneTouchSuperUser.email}</search>
+                                <search class="bottomDataRow">${oneTouchCustomerFullName}</search>
+                              </div>
+                              <div class="cellComponent">
+                                <search>${customerAddress}</search>
+                                <search class="bottomDataRow">${customerPostcode}</search>
+                              </div>
+                              <div class="cellComponent">
+                                ${manageDataContainer}
+                              </div>
                             </div>
                           </div>
-                        </div>`;
+                        </searchRowComponent>`;
     });
 
     const totalContracts = oneTouchBroadband.length;
@@ -130,7 +144,7 @@ async function _oneTouchAllPlacedOrders() {
                               </div>
 
                               <div class="flex-container-70">
-                                <div class="oneTouchFormContainer dataContainerWrapper">
+                                <div class="oneTouchFormContainer contractDataWrapper">
                                   <div class="headerText">
                                     <div class="alignHorizontally fontH4">Manage All Placed Orders</div>
                                     <div class="alignHorizontally textSilver fontH2">
@@ -139,11 +153,18 @@ async function _oneTouchAllPlacedOrders() {
                                   </div>
                                   <div id='dataWrapper' class='dataWrapper'>
                                     <div class="rowComponent-3 boxContainer bgGray">
-                                      <div class="rowComponentWrapper">Business Contact</div>
-                                      <div class="rowComponentWrapper">Address</div>
-                                      <div class="rowComponentWrapper">Manage</div>
+                                      <div class="cellComponent">Business Contact</div>
+                                      <div class="cellComponent">Address</div>
+                                      <div class="cellComponent">Manage</div>
                                     </div>
-                                      ${dataContainer}
+                                    <div class='searchBox'>
+                                      <input
+                                        type="text"
+                                        id="searchBox"
+                                        placeholder="Search for Contract..."
+                                      />
+                                    </div>
+                                      ${contractData}
                                   </div>
                                 </div>
                               </div>
@@ -153,18 +174,18 @@ async function _oneTouchAllPlacedOrders() {
       _errorMessage('Have no Pending Orders!', 'warning');
 
       contractDataContainer = `
-                              <div class="margin-15 features">
-                                <div class="flex-container-60">
-                                  <div class="oneTouchFormContainer bgGradientSilver">
-                                    <div class="alignHorizontally fontH3">
-                                      Your Have No Pending Orders!
-                                    </div>
-                                    <div class="alignHorizontally fontH2">
-                                      Manage your orders - anytime, anywhere
+                                <div class="margin-15 features">
+                                  <div class="flex-container-60">
+                                    <div class="oneTouchFormContainer bgGradientSilver">
+                                      <div class="alignHorizontally fontH3">
+                                        Your Have No Pending Orders!
+                                      </div>
+                                      <div class="alignHorizontally fontH2">
+                                        Manage your orders - anytime, anywhere
+                                      </div>
                                     </div>
                                   </div>
-                                </div>
-                              </div>`;
+                                </div>`;
     }
 
     const liveConnections = document.querySelector('#liveConnections');
