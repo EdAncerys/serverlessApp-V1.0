@@ -2,36 +2,6 @@ import { persistDOMData } from '../../../persistDOMData.js';
 import { _errorMessage } from '../../_errorMessage.js';
 import { _spinner } from '../../_spinner.js';
 
-async function keywordSearch(e) {
-  const keyword = e.value.toLowerCase();
-  console.log(`Searching for keyword: ` + keyword);
-
-  const search = document.querySelectorAll('search');
-
-  search.forEach((row) => {
-    console.log(row);
-    if (row.textContent.toLowerCase().indexOf(keyword) != -1) {
-      row.closest('searchRowComponent').style.display = 'none';
-    }
-  });
-}
-
-// var search_input = document.querySelector('#search_input');
-
-// search_input.addEventListener('keyup', function (e) {
-//   var span_items = document.querySelectorAll('.table_body .name span');
-//   var table_body = document.querySelector('.table_body ul');
-//   var search_item = e.target.value.toLowerCase();
-
-//   span_items.forEach(function (item) {
-//     if (item.textContent.toLowerCase().indexOf(search_item) != -1) {
-//       item.closest('li').style.display = 'block';
-//     } else {
-//       item.closest('li').style.display = 'none';
-//     }
-//   });
-// });
-
 async function _oneTouchCustomers() {
   console.log('Fetching customers from db...');
   _spinner(true, 'Loading Active Users...');
@@ -177,11 +147,10 @@ async function _oneTouchCustomers() {
                                 </div>
 
                                 <div class='searchBox'>
-                                  <label class="textSilver fontH2" for="fname">Search Box</label>
                                   <input
                                     type="text"
                                     id="searchBox"
-                                    placeholder="Search criteria..."
+                                    placeholder="Search for Customer..."
                                   />
                                 </div>
                                 ${customerData}

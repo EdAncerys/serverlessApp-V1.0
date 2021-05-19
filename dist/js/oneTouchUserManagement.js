@@ -70,15 +70,11 @@ document.querySelector('body').addEventListener('keyup', (event) => {
 
   searchRowComponent.forEach((row) => {
     let matchFound;
-    console.log(row);
 
     const search = row.getElementsByTagName('search');
     Array.prototype.map.call(search, (list) => {
       const nodeText = list.innerHTML.toLowerCase();
-      console.log(nodeText);
       if (nodeText.includes(keyword)) matchFound = true;
-
-      console.log(matchFound);
     });
 
     if (matchFound) {
