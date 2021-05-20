@@ -477,7 +477,7 @@ const allFreshDeskTickets = async (db, data) => {
     };
   }
 };
-const freshDeskOneTouchUserTickets = async (db, data) => {
+const oneTouchCreateTicket = async (db, data) => {
   let PATH = 'api/v2/tickets';
   const FD_API_KEY = process.env.FD_API_KEY;
   const FD_ENDPOINT = process.env.FD_ENDPOINT;
@@ -487,30 +487,13 @@ const freshDeskOneTouchUserTickets = async (db, data) => {
     'Basic ' +
     new Buffer.from(FD_API_KEY + ':' + 'X').toString(ENCODING_METHOD);
 
-  console.log(FD_API_KEY, FD_ENDPOINT);
-  const headers = {
-    Authorization: AUTHORIZATION_KEY,
-    'Content-Type': 'application/json',
-  };
-  console.log(headers);
-
-  const config = {
-    headers,
-  };
-
-  // const config = {
-  //   headers,
-  //   body: JSON.stringify(body),
-  //   method: 'POST',
-  // };
-
-  const allFreshDeskTickets = {
+  const createTicket = {
     access_token: data.access_token,
   };
-  console.log(allFreshDeskTickets);
+  console.log(createTicket);
   const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
   const authToken = await jwt.verify(
-    allFreshDeskTickets.access_token,
+    createTicket.access_token,
     ACCESS_TOKEN_SECRET,
     (error, authData) => {
       if (error) {
@@ -523,6 +506,25 @@ const freshDeskOneTouchUserTickets = async (db, data) => {
     }
   );
 
+  const body = {
+    description: 'Details about the issue...',
+    subject: 'Support Needed...',
+    email: 'tom@outerspace.com',
+    priority: 1,
+    status: 2,
+    cc_emails: `${authToken.email}`,
+  };
+  const headers = {
+    Authorization: AUTHORIZATION_KEY,
+    'Content-Type': 'application/json',
+  };
+
+  const config = {
+    method: 'POST',
+    headers,
+    body: JSON.stringify(body),
+  };
+
   try {
     const response = await fetch(URL, config);
     if (!response.ok) throw new Error(response.statusText);
@@ -530,7 +532,7 @@ const freshDeskOneTouchUserTickets = async (db, data) => {
     const data = await response.json();
     console.log(data);
 
-    const msg = `All Customer Tickets for User: ` + authToken.email;
+    const msg = `Ticket Been Successfully Created for User: ` + authToken.email;
     console.log(msg);
 
     return {
@@ -541,7 +543,7 @@ const freshDeskOneTouchUserTickets = async (db, data) => {
       body: JSON.stringify({ data, msg }),
     };
   } catch (error) {
-    const msg = `Failed to Fetch Customer Tickets for User: ` + authToken.email;
+    const msg = `Failed to Create Ticket for User: ` + authToken.email;
     console.log(msg);
     console.log(error);
 
@@ -1348,7 +1350,7 @@ module.exports.handler = async (event, context, callback) => {
     case '/oneTouch/tickets/allFreshDeskTickets':
       return allFreshDeskTickets(db, body);
     case '/oneTouch/tickets/oneTouchCreateTicket':
-      return allFreshDeskTickets(db, body);
+      return oneTouchCreateTicket(db, body);
     // oneTouch customer endPoints
     case '/oneTouch/customer/addCustomer':
       return addCustomer(db, body);

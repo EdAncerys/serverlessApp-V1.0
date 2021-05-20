@@ -32,8 +32,8 @@ async function _allFreshDeskTickets() {
 
   try {
     const response = await fetch(URL, config);
-    if (!response.ok) throw new Error(response.statusText);
     const data = await response.json();
+    if (!response.ok) throw new Error(data.msg);
     console.log(data);
 
     _spinner(false);

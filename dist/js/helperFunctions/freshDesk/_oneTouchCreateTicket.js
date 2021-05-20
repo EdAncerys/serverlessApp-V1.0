@@ -4,8 +4,12 @@ async function _oneTouchCreateTicket() {
   const URL = '/oneTouch/tickets/oneTouchCreateTicket';
   const body = {
     access_token,
-    oneTouchCustomerData,
-    oneTouchBroadband,
+    name,
+    email,
+    subject,
+    description,
+    status: 2,
+    priority: 1,
   };
   const config = {
     method: 'POST',
@@ -14,19 +18,15 @@ async function _oneTouchCreateTicket() {
 
   try {
     const response = await fetch(URL, config);
-    if (!response.ok) throw new Error(response.statusText);
     const data = await response.json();
+    if (!response.ok) throw new Error(data.msg);
     console.log(data);
-    return {
-      statusCode: 201,
-      ok: true,
-    };
+
+    _spinner(false);
   } catch (err) {
     console.log(err);
-    return {
-      statusCode: 201,
-      ok: false,
-    };
+    _spinner(false);
+    _errorMessage(err);
   }
 }
 
