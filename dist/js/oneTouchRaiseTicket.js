@@ -1,4 +1,4 @@
-import { _freshDeskTickets } from './helperFunctions/freshDesk/_freshDeskTickets.js';
+import { _allFreshDeskTickets } from './helperFunctions/freshDesk/_allFreshDeskTickets.js';
 import { _errorMessage } from './helperFunctions/_errorMessage.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -23,5 +23,5 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 const raiseTicket = async (event) => {
   event.preventDefault();
-  await _freshDeskTickets();
+  await _allFreshDeskTickets();
 };

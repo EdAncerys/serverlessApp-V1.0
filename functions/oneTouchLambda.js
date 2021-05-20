@@ -425,7 +425,7 @@ const deleteOrder = async (db, data) => {
   }
 };
 // oneTouch freshDesk
-const freshDeskTickets = async (db, data) => {
+const allFreshDeskTickets = async (db, data) => {
   let PATH = 'api/v2/tickets';
   const FD_API_KEY = process.env.FD_API_KEY;
   const FD_ENDPOINT = process.env.FD_ENDPOINT;
@@ -504,13 +504,13 @@ const freshDeskOneTouchUserTickets = async (db, data) => {
   //   method: 'POST',
   // };
 
-  const freshDeskTickets = {
+  const allFreshDeskTickets = {
     access_token: data.access_token,
   };
-  console.log(freshDeskTickets);
+  console.log(allFreshDeskTickets);
   const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
   const authToken = await jwt.verify(
-    freshDeskTickets.access_token,
+    allFreshDeskTickets.access_token,
     ACCESS_TOKEN_SECRET,
     (error, authData) => {
       if (error) {
@@ -1345,8 +1345,10 @@ module.exports.handler = async (event, context, callback) => {
     case '/oneTouch/orders/deleteOrder':
       return deleteOrder(db, body);
     // oneTouch freshDesk endPoints
-    case '/oneTouch/tickets/freshDeskTickets':
-      return freshDeskTickets(db, body);
+    case '/oneTouch/tickets/allFreshDeskTickets':
+      return allFreshDeskTickets(db, body);
+    case '/oneTouch/tickets/oneTouchCreateTicket':
+      return allFreshDeskTickets(db, body);
     // oneTouch customer endPoints
     case '/oneTouch/customer/addCustomer':
       return addCustomer(db, body);
