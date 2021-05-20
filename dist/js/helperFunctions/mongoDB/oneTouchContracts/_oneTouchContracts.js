@@ -26,7 +26,7 @@ async function _oneTouchContracts() {
     console.log(oneTouchBroadband);
 
     let manageDataContainer = '';
-    let dataContainer = '';
+    let contractData = '';
     let contractDataContainer = '';
 
     const totalContracts = oneTouchBroadband.length;
@@ -108,30 +108,35 @@ async function _oneTouchContracts() {
                           </div>`;
 
       if (oneTouchCustomer.length !== 0)
-        dataContainer += `<div class="rowContainer ${bgContract}">
-                          <div class="pendingOrder">${pendingOrder}</div>
-                          <div class="rowComponent-3 ${rowComponent}">
-                            <div class="rowComponentWrapper">
-                              <div>${oneTouchCustomer.companyName}</div>
-                              <div class="bottomDataRow">${oneTouchCustomer.customerFullName}</div>
+        contractData += `
+                          <searchRowComponent>
+                            <div class="rowContainer ${bgContract}">
+                              <div class="pendingOrder">${pendingOrder}</div>
+                              <div class="rowComponent-3 ${rowComponent}">
+                                <div class="cellComponent">
+                                  <search>${oneTouchCustomer.companyName}</search>
+                                  <search class="bottomDataRow">${oneTouchCustomer.customerFullName}</search>
+                                </div>
+                                <div class="cellComponent">
+                                  <search>${thoroughfare_number} ${premises_name} ${sub_premises} ${thoroughfare_name} ${county}</search>
+                                  <search class="bottomDataRow">${postcode}</search>
+                                </div>
+                                <div class="cellComponent">
+                                  ${manageDataContainer}
+                                </div>
+                              </div>
                             </div>
-                            <div class="rowComponentWrapper">
-                              <div>${thoroughfare_number} ${premises_name} ${sub_premises} ${thoroughfare_name} ${county}</div>
-                              <div class="bottomDataRow">${postcode}</div>
-                            </div>
-                            <div class="rowComponentWrapper">
-                              ${manageDataContainer}
-                            </div>
-                          </div>
-                        </div>`;
+                          </searchRowComponent>`;
 
       if (oneTouchCustomer.length === 0)
-        dataContainer += `
-                          <div class="rowContainer ${bgContract}">
-                            <div class="rowComponent-1 ${rowComponent}">
-                              <div class="alignHorizontally textDanger">Customer Information Not Available. Please Contact Your Account Manager</div>
+        contractData += `
+                          <searchRowComponent>
+                            <div class="rowContainer ${bgContract}">
+                              <div class="rowComponent-1 ${rowComponent}">
+                                <search class="alignHorizontally textDanger">Customer Information Not Available. Please Contact Your Account Manager</search>
+                              </div>
                             </div>
-                          </div>`;
+                          <searchRowComponent>`;
     });
 
     contractDataContainer = `<div class="features">
@@ -181,7 +186,7 @@ async function _oneTouchContracts() {
                           </div>
 
                           <div class="flex-container-70">
-                            <div class="oneTouchFormContainer dataContainerWrapper">
+                            <div class="oneTouchFormContainer">
                               <div class="headerText">
                                 <div class="alignHorizontally fontH4">Live Contracts & Customer List</div>
                                 <div class="alignHorizontally textSilver fontH2">
@@ -191,11 +196,20 @@ async function _oneTouchContracts() {
                               </div>
                               <div id='dataWrapper' class='dataWrapper'>
                                 <div class="rowComponent-3 boxContainer bgGray">
-                                  <div class="rowComponentWrapper">Business Contact</div>
-                                  <div class="rowComponentWrapper">Address</div>
-                                  <div class="rowComponentWrapper">Manage</div>
+                                  <div class="cellComponent">Business Contact</div>
+                                  <div class="cellComponent">Address</div>
+                                  <div class="cellComponent">Manage</div>
                                 </div>
-                                  ${dataContainer}
+                                <div class='searchBox'>
+                                  <input
+                                    type="text"
+                                    id="searchBox"
+                                    placeholder="Search for Contract..."
+                                  />
+                                </div>
+                                <div class="dataContainerWrapper">
+                                  ${contractData}
+                                </div>
                               </div>
                             </div>
                           </div>

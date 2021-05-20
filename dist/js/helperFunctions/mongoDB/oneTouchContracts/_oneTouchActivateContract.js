@@ -44,7 +44,7 @@ async function _oneTouchActivateContract() {
     const data = await response.json();
     if (!response.ok) throw new Error(data.msg);
 
-    _oneTouchAllPlacedOrders();
+    await _oneTouchAllPlacedOrders();
     console.log(data);
     _spinner(false);
     _errorMessage(data.msg, 'success');

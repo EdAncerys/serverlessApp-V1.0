@@ -71,31 +71,34 @@ async function _oneTouchCustomers() {
 
       if (endPoint.includes(connectionChecker))
         navComponent = `<div class='navWrapper alignHorizontally'>
-                      <goPageBack id='pageOne' class="btnOneTouch" role="button">
-                        Go Back
-                      </goPageBack>
-                      <addUser class="btnOneTouch" 
-                                role="button"
-                                onclick = "location.href='../../../../views/oneTouch/add-oneTouchCustomer.html'";>
-                        Add New Customer
-                      </addUser>
-                    </div>`;
+                          <goPageBack id='pageOne' class="btnOneTouch" role="button">
+                            Go Back
+                          </goPageBack>
+                          <addUser class="btnOneTouch" 
+                                    role="button"
+                                    onclick = "location.href='../../../../views/oneTouch/add-oneTouchCustomer.html'";>
+                            Add New Customer
+                          </addUser>
+                        </div>`;
 
-      customerData += `<div class="rowContainer bgGradientSilver">
-                        <div class="rowComponent-3">
-                          <div class="rowComponentWrapper">
-                            <div>${oneTouchCustomer.companyName}</div>
-                            <div class="bottomDataRow">${oneTouchCustomer.customerFullName}</div>
+      customerData += `
+                        <searchRowComponent>
+                          <div class="rowContainer bgGradientSilver">
+                            <div class="rowComponent-3">
+                              <div class="cellComponent">
+                                <search>${oneTouchCustomer.companyName}</search>
+                                <search class="bottomDataRow">${oneTouchCustomer.customerFullName}</search>
+                              </div>
+                              <div class="cellComponent">
+                                <search>${oneTouchCustomer.thoroughfare_number} ${oneTouchCustomer.thoroughfare_name}</search>
+                                <search class="bottomDataRow">${oneTouchCustomer.postcode}</search>
+                              </div>
+                              <div class="cellComponent">
+                                ${manageDataContainer}
+                              </div>
+                            </div>
                           </div>
-                          <div class="rowComponentWrapper">
-                            <div>${oneTouchCustomer.thoroughfare_number} ${oneTouchCustomer.thoroughfare_name}</div>
-                            <div class="bottomDataRow">${oneTouchCustomer.postcode}</div>
-                          </div>
-                          <div class="rowComponentWrapper">
-                            ${manageDataContainer}
-                          </div>
-                        </div>
-                      </div>`;
+                        </searchRowComponent>`;
     });
 
     customerDataContainer = ` 
@@ -126,7 +129,7 @@ async function _oneTouchCustomers() {
                           </div>
 
                           <div class="flex-container-70">
-                            <div class="oneTouchFormContainer dataContainerWrapper">
+                            <div class="oneTouchFormContainer">
                               <div class="headerText">
                                 <div class="alignHorizontally fontH4">Active Customer List</div>
                                 <div class="alignHorizontally textSilver fontH2">
@@ -136,12 +139,21 @@ async function _oneTouchCustomers() {
                               </div>
                               <div id='dataWrapper' class='dataWrapper'>
                                 <div class="rowComponent-3 boxContainer bgGray">
-                                  <div class="rowComponentWrapper">Business Contact</div>
-                                  <div class="rowComponentWrapper">Address</div>
-                                  <div class="rowComponentWrapper">Option</div>
+                                  <div class="cellComponent">Business Contact</div>
+                                  <div class="cellComponent">Address</div>
+                                  <div class="cellComponent">Option</div>
                                 </div>
+                                <div class='searchBox'>
+                                  <input
+                                    type="text"
+                                    id="searchBox"
+                                    placeholder="Search for Customer..."
+                                  />
+                                </div>
+                                <div class="dataContainerWrapper">
                                   ${customerData}
                                   ${navComponent}
+                                </div>
                               </div>
                             </div>
                           </div>
