@@ -186,7 +186,7 @@ async function _oneTouchContracts() {
                           </div>
 
                           <div class="flex-container-70">
-                            <div class="oneTouchFormContainer contractDataWrapper">
+                            <div class="oneTouchFormContainer">
                               <div class="headerText">
                                 <div class="alignHorizontally fontH4">Live Contracts & Customer List</div>
                                 <div class="alignHorizontally textSilver fontH2">
@@ -207,7 +207,9 @@ async function _oneTouchContracts() {
                                     placeholder="Search for Contract..."
                                   />
                                 </div>
+                                <div class="dataContainerWrapper">
                                   ${contractData}
+                                </div>
                               </div>
                             </div>
                           </div>
