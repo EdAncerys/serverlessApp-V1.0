@@ -5,23 +5,23 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('raiseTicket').addEventListener('click', raiseTicket);
 });
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', (event) => {
   // Persist user data on reload
   const endPoint = location.href.split('/').slice(-1)[0];
   const oneTouchDOMBody = sessionStorage.getItem('oneTouchDOMBody') === null;
   const oneTouchPageName =
     sessionStorage.getItem('oneTouchPageName') === endPoint;
 
-  if (oneTouchDOMBody || !oneTouchPageName) {
-    freshDeskTickets();
-  }
   if (!oneTouchDOMBody && oneTouchPageName) {
     console.log('Page Reloaded');
     const oneTouchDOMBody = document.querySelector('#oneTouchBodyContainer');
     oneTouchDOMBody.innerHTML = sessionStorage.getItem('oneTouchDOMBody');
   }
+  // Btn event listeners
+  document.getElementById('raiseTicket').addEventListener('click', raiseTicket);
 });
 
-const freshDeskTickets = async () => {
+const raiseTicket = async (event) => {
+  event.preventDefault();
   await _freshDeskTickets();
 };

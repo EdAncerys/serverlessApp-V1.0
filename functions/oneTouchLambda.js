@@ -33,9 +33,9 @@ const userAuthentication = async (body) => {
     cachedAuthToken = await jwt.verify(
       body.access_token,
       ACCESS_TOKEN_SECRET,
-      (err, authData) => {
-        if (err) {
-          console.log(err);
+      (error, authData) => {
+        if (error) {
+          console.log(error);
           return false;
         } else {
           console.log(authData);
@@ -184,9 +184,9 @@ const userPlacedOrders = async (db, data) => {
   const authToken = await jwt.verify(
     filterOrders.access_token,
     ACCESS_TOKEN_SECRET,
-    (err, authData) => {
-      if (err) {
-        console.log(err);
+    (error, authData) => {
+      if (error) {
+        console.log(error);
         return false;
       } else {
         console.log(authData);
@@ -331,9 +331,9 @@ const addOrder = async (db, data) => {
   const authToken = await jwt.verify(
     createOrder.access_token,
     ACCESS_TOKEN_SECRET,
-    (err, authData) => {
-      if (err) {
-        console.log(err);
+    (error, authData) => {
+      if (error) {
+        console.log(error);
         return false;
       } else {
         console.log(authData);
@@ -424,6 +424,136 @@ const deleteOrder = async (db, data) => {
     };
   }
 };
+// oneTouch freshDesk
+const freshDeskTickets = async (db, data) => {
+  let PATH = 'api/v2/tickets';
+  const FD_API_KEY = process.env.FD_API_KEY;
+  const FD_ENDPOINT = process.env.FD_ENDPOINT;
+  const URL = `https://${FD_ENDPOINT}.freshdesk.com/${PATH}`;
+  const ENCODING_METHOD = 'base64';
+  const AUTHORIZATION_KEY =
+    'Basic ' +
+    new Buffer.from(FD_API_KEY + ':' + 'X').toString(ENCODING_METHOD);
+
+  console.log(FD_API_KEY, FD_ENDPOINT);
+  const headers = {
+    Authorization: AUTHORIZATION_KEY,
+    'Content-Type': 'application/json',
+  };
+  console.log(headers);
+
+  const config = {
+    headers,
+  };
+
+  try {
+    const response = await fetch(URL, config);
+    if (!response.ok) throw new Error(response.statusText);
+
+    const data = await response.json();
+    console.log(data);
+
+    const msg = `Successfully Fetched All Fresh Desk Tickets`;
+    console.log(msg);
+
+    return {
+      statusCode: 201,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ data, msg }),
+    };
+  } catch (error) {
+    const msg = `Failed to Fetch Fresh Desk Tickets`;
+    console.log(msg);
+    console.log(error);
+
+    return {
+      statusCode: 422,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ msg, error }),
+    };
+  }
+};
+const freshDeskOneTouchUserTickets = async (db, data) => {
+  let PATH = 'api/v2/tickets';
+  const FD_API_KEY = process.env.FD_API_KEY;
+  const FD_ENDPOINT = process.env.FD_ENDPOINT;
+  const URL = `https://${FD_ENDPOINT}.freshdesk.com/${PATH}`;
+  const ENCODING_METHOD = 'base64';
+  const AUTHORIZATION_KEY =
+    'Basic ' +
+    new Buffer.from(FD_API_KEY + ':' + 'X').toString(ENCODING_METHOD);
+
+  console.log(FD_API_KEY, FD_ENDPOINT);
+  const headers = {
+    Authorization: AUTHORIZATION_KEY,
+    'Content-Type': 'application/json',
+  };
+  console.log(headers);
+
+  const config = {
+    headers,
+  };
+
+  // const config = {
+  //   headers,
+  //   body: JSON.stringify(body),
+  //   method: 'POST',
+  // };
+
+  const freshDeskTickets = {
+    access_token: data.access_token,
+  };
+  console.log(freshDeskTickets);
+  const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
+  const authToken = await jwt.verify(
+    freshDeskTickets.access_token,
+    ACCESS_TOKEN_SECRET,
+    (error, authData) => {
+      if (error) {
+        console.log(error);
+        return false;
+      } else {
+        console.log(authData);
+        return authData;
+      }
+    }
+  );
+
+  try {
+    const response = await fetch(URL, config);
+    if (!response.ok) throw new Error(response.statusText);
+
+    const data = await response.json();
+    console.log(data);
+
+    const msg = `All Customer Tickets for User: ` + authToken.email;
+    console.log(msg);
+
+    return {
+      statusCode: 201,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ data, msg }),
+    };
+  } catch (error) {
+    const msg = `Failed to Fetch Customer Tickets for User: ` + authToken.email;
+    console.log(msg);
+    console.log(error);
+
+    return {
+      statusCode: 422,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ msg, error }),
+    };
+  }
+};
 // oneTouch Customers
 const addCustomer = async (db, data) => {
   const addCustomer = {
@@ -435,9 +565,9 @@ const addCustomer = async (db, data) => {
   const authToken = await jwt.verify(
     addCustomer.access_token,
     ACCESS_TOKEN_SECRET,
-    (err, authData) => {
-      if (err) {
-        console.log(err);
+    (error, authData) => {
+      if (error) {
+        console.log(error);
         return false;
       } else {
         console.log(authData);
@@ -550,14 +680,14 @@ const allCustomers = async (db, data) => {
       },
       body: JSON.stringify(dbData),
     };
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    console.log(error);
     return {
       statusCode: 401,
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(err),
+      body: JSON.stringify(error),
     };
   }
 };
@@ -569,9 +699,9 @@ const filterCustomers = async (db, data) => {
   const authToken = await jwt.verify(
     filterCustomers.access_token,
     ACCESS_TOKEN_SECRET,
-    (err, authData) => {
-      if (err) {
-        console.log(err);
+    (error, authData) => {
+      if (error) {
+        console.log(error);
         return false;
       } else {
         console.log(authData);
@@ -595,14 +725,14 @@ const filterCustomers = async (db, data) => {
       },
       body: JSON.stringify(dbData),
     };
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    console.log(error);
     return {
       statusCode: 401,
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(err),
+      body: JSON.stringify(error),
     };
   }
 };
@@ -804,14 +934,14 @@ const addressesForPostcodeProvided = async (body) => {
       },
       body: JSON.stringify({ addresses: data.addresses }),
     };
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    console.log(error);
     return {
       statusCode: 404,
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(err),
+      body: JSON.stringify(error),
     };
   }
 };
@@ -862,14 +992,14 @@ const broadbandAvailability = async (body) => {
       },
       body: JSON.stringify({ products: data.products }),
     };
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    console.log(error);
     return {
       statusCode: 404,
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(err),
+      body: JSON.stringify(error),
     };
   }
 };
@@ -971,9 +1101,9 @@ const iONOS = async (body, callback) => {
   const authToken = await jwt.verify(
     body.access_token,
     ACCESS_TOKEN_SECRET,
-    (err, authData) => {
-      if (err) {
-        console.log(err);
+    (error, authData) => {
+      if (error) {
+        console.log(error);
         return false;
       } else {
         console.log(authData);
@@ -1013,13 +1143,13 @@ const iONOS = async (body, callback) => {
 
   let iONOSEmail = true;
   let msg;
-  transporter.sendMail(mailOptions, (error, iONOSInfo) => {
-    if (error) {
+  transporter.sendMail(mailOptions, (erroror, iONOSInfo) => {
+    if (erroror) {
       iONOSEmail = false;
-      msg = error;
-      console.log(error);
+      msg = erroror;
+      console.log(erroror);
 
-      callback(error);
+      callback(erroror);
     } else {
       msg = iONOSInfo;
       console.log(info);
@@ -1073,9 +1203,9 @@ const gmail = async (body, callback) => {
   const authToken = await jwt.verify(
     body.access_token,
     ACCESS_TOKEN_SECRET,
-    (err, authData) => {
-      if (err) {
-        console.log(err);
+    (error, authData) => {
+      if (error) {
+        console.log(error);
         return false;
       } else {
         console.log(authData);
@@ -1114,13 +1244,13 @@ const gmail = async (body, callback) => {
 
   let gmail = true;
   let msg;
-  transporter.sendMail(mailOptions, (error, gmailInfo) => {
-    if (error) {
+  transporter.sendMail(mailOptions, (erroror, gmailInfo) => {
+    if (erroror) {
       gmail = false;
-      msg = error;
-      console.log(error);
+      msg = erroror;
+      console.log(erroror);
 
-      callback(error);
+      callback(erroror);
     } else {
       msg = gmailInfo;
       console.log(gmailInfo);
@@ -1184,14 +1314,14 @@ module.exports.handler = async (event, context, callback) => {
   let body = null;
   if (event.body) body = JSON.parse(event.body);
 
-  // Redirects to error html
+  // Redirects to erroror html
   if (event.httpMethod === 'GET' && !oneTouchPortalHTML.includes(path)) {
     console.log('Path end point not found');
     console.log(path);
     return {
       statusCode: 301,
       headers: {
-        Location: '/views/oneTouch/error.html',
+        Location: '/views/oneTouch/erroror.html',
       },
     };
   }
@@ -1214,6 +1344,9 @@ module.exports.handler = async (event, context, callback) => {
       return addOrder(db, body);
     case '/oneTouch/orders/deleteOrder':
       return deleteOrder(db, body);
+    // oneTouch freshDesk endPoints
+    case '/oneTouch/tickets/freshDeskTickets':
+      return freshDeskTickets(db, body);
     // oneTouch customer endPoints
     case '/oneTouch/customer/addCustomer':
       return addCustomer(db, body);
