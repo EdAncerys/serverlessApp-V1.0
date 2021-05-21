@@ -8,6 +8,7 @@
   border-radius: 4px;
   padding: 5px;
   max-height: 55vh;
+  min-height: 30px;
   overflow: auto;
 }
 .dataWrapper {
@@ -35,6 +36,7 @@
 .manageDataContainer {
   display: grid;
   grid-template-rows: 1fr 1fr;
+  gap: 5px;
 }
 .bottomDataRow {
   font-size: 10px;
@@ -74,6 +76,15 @@
   }
   .manageDataContainer {
     display: grid;
-    row-gap: 10px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    row-gap: 5px;
+  }
+  .headerComponent {
+    height: 0px;
+    overflow: hidden;
+  }
+  .rowComponent-3 {
+    grid-template-columns: 1fr;
   }
 }
