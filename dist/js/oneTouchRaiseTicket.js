@@ -1,4 +1,5 @@
 import { _allFreshDeskTickets } from './helperFunctions/freshDesk/_allFreshDeskTickets.js';
+import { _oneTouchCreateTicket } from './helperFunctions/freshDesk/_oneTouchCreateTicket.js';
 import { _errorMessage } from './helperFunctions/_errorMessage.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -23,5 +24,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 const raiseTicket = async (event) => {
   event.preventDefault();
-  await _allFreshDeskTickets();
+  _oneTouchCreateTicket();
+  return;
 };

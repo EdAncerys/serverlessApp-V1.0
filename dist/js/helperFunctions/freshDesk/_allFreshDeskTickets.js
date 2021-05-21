@@ -8,21 +8,8 @@ async function _allFreshDeskTickets() {
   const URL = '/oneTouch/tickets/allFreshDeskTickets';
   const access_token = await sessionStorage.getItem('access_token');
 
-  const contactReason = document.getElementById('contactReason').value;
-  const priorityLevel = document.getElementById('priorityLevel').value;
-  const fullName = document.getElementById('fullName').value;
-  const phoneNumber = document.getElementById('phoneNumber').value;
-  const subject = document.getElementById('subject').value;
-  const description = document.getElementById('description').value;
-
   const body = {
     access_token,
-    contactReason,
-    priorityLevel,
-    fullName,
-    phoneNumber,
-    subject,
-    description,
   };
   console.log(body);
   const config = {

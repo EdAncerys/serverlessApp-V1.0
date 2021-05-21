@@ -507,9 +507,9 @@ const oneTouchCreateTicket = async (db, data) => {
   );
 
   const body = {
-    description: 'Details about the issue...',
-    subject: 'Support Needed...',
-    email: 'tom@outerspace.com',
+    description: 'oneTouch Test Support Ticket...',
+    subject: 'oneTouch Support Needed...',
+    email: `${authToken.email}`,
     priority: 1,
     status: 2,
     cc_emails: `${authToken.email}`,
@@ -526,7 +526,15 @@ const oneTouchCreateTicket = async (db, data) => {
   };
 
   try {
-    const response = await fetch(URL, config);
+    // const response = await fetch(URL, config);
+    const response = await fetch(URL, {
+      body,
+      headers: {
+        Authorization: AUTHORIZATION_KEY,
+        'Content-Type': 'application/json',
+      },
+      method: 'POST',
+    });
     if (!response.ok) throw new Error(response.statusText);
 
     const data = await response.json();
@@ -548,7 +556,7 @@ const oneTouchCreateTicket = async (db, data) => {
     console.log(error);
 
     return {
-      statusCode: 422,
+      statusCode: 402,
       headers: {
         'Content-Type': 'application/json',
       },
