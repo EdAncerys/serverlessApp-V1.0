@@ -195,10 +195,12 @@ async function _oneTouchContracts() {
                                 </div>
                               </div>
                               <div id='dataWrapper' class='dataWrapper'>
-                                <div class="rowComponent-3 boxContainer bgGray">
-                                  <div class="cellComponent">Business Contact</div>
-                                  <div class="cellComponent">Address</div>
-                                  <div class="cellComponent">Manage</div>
+                                <div class="headerComponent">
+                                  <div class="rowComponent-3 boxContainer bgGray">
+                                    <div class="cellComponent">Business Contact</div>
+                                    <div class="cellComponent">Address</div>
+                                    <div class="cellComponent">Manage</div>
+                                  </div>
                                 </div>
                                 <div class='searchBox'>
                                   <input

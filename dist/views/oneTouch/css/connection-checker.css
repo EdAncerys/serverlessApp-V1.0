@@ -160,9 +160,6 @@ agreeWithTermsAndConditions label {
 
 /* Media Queries */
 @media only screen and (max-width: 800px) {
-  .dataWrapper {
-    padding: 0 5px;
-  }
   .broadbandDataContainer-C6,
   .broadbandDataContainer-C7 {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
