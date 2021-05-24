@@ -16,10 +16,11 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('Page Reloaded');
     const oneTouchDOMBody = document.querySelector('#oneTouchBodyContainer');
     oneTouchDOMBody.innerHTML = sessionStorage.getItem('oneTouchDOMBody');
-  } else {
-    console.log('Fetching Orders');
-    _oneTouchAllPlacedOrders();
+    return;
   }
+
+  console.log('Fetching Orders');
+  _oneTouchAllPlacedOrders();
 });
 
 const asyncDeleteContract = async (id) => {

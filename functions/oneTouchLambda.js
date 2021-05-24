@@ -425,7 +425,7 @@ const deleteOrder = async (db, data) => {
   }
 };
 // oneTouch freshDesk
-const allFreshDeskTickets = async (db, data) => {
+const freshDeskTicket = async (db, data) => {
   const PATH = 'api/v2/tickets';
   const FD_API_KEY = process.env.FD_API_KEY;
   const FD_ENDPOINT = process.env.FD_ENDPOINT;
@@ -451,7 +451,7 @@ const allFreshDeskTickets = async (db, data) => {
     if (!response.ok) throw new Error(response.statusText);
 
     const data = await response.json();
-    // console.log(data);
+    console.log(data);
 
     const msg = `Successfully Fetched All Fresh Desk Tickets`;
     console.log(msg);
@@ -477,9 +477,10 @@ const allFreshDeskTickets = async (db, data) => {
     };
   }
 };
-const oneTouchCreateTicket = async (db, data) => {
+const freshDeskCreateTicket = async (db, data) => {
   const PATH = 'api/v2/tickets';
-  const FD_API_KEY = process.env.FD_API_KEY;
+  // const FD_API_KEY = process.env.FD_API_KEY;
+  const FD_API_KEY = 'X40RG5GvUWvgFbuu2k';
   const FD_ENDPOINT = process.env.FD_ENDPOINT;
   const URL = `https://${FD_ENDPOINT}.freshdesk.com/${PATH}`;
   const ENCODING_METHOD = 'base64';
@@ -515,7 +516,8 @@ const oneTouchCreateTicket = async (db, data) => {
     email: `${authToken.email}`,
     priority: 1,
     status: 2,
-    cc_emails: `${authToken.email}`,
+    cc_emails: [`${authToken.email}`, 'user@cc.com'],
+    tags: [`oneTouch Portal`],
   };
   const headers = {
     Authorization: AUTHORIZATION_KEY,
@@ -529,15 +531,7 @@ const oneTouchCreateTicket = async (db, data) => {
   };
 
   try {
-    // const response = await fetch(URL, config);
-    const response = await fetch(URL, {
-      body,
-      headers: {
-        Authorization: AUTHORIZATION_KEY,
-        'Content-Type': 'application/json',
-      },
-      method: 'POST',
-    });
+    const response = await fetch(URL, config);
     if (!response.ok) throw new Error(response.statusText);
 
     const data = await response.json();
@@ -1369,10 +1363,10 @@ module.exports.handler = async (event, context, callback) => {
     case '/oneTouch/orders/deleteOrder':
       return deleteOrder(db, body);
     // oneTouch freshDesk endPoints
-    case '/oneTouch/tickets/allFreshDeskTickets':
-      return allFreshDeskTickets(db, body);
-    case '/oneTouch/tickets/oneTouchCreateTicket':
-      return oneTouchCreateTicket(db, body);
+    case '/oneTouch/tickets/freshDeskTicket':
+      return freshDeskTicket(db, body);
+    case '/oneTouch/tickets/freshDeskCreateTicket':
+      return freshDeskCreateTicket(db, body);
     // oneTouch customer endPoints
     case '/oneTouch/customer/addCustomer':
       return addCustomer(db, body);

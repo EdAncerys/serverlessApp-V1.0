@@ -1,4 +1,4 @@
-import { _allFreshDeskTickets } from './helperFunctions/freshDesk/_allFreshDeskTickets.js';
+import { _freshDeskTicket } from './helperFunctions/freshDesk/_freshDeskTicket.js';
 import { _oneTouchCreateTicket } from './helperFunctions/freshDesk/_oneTouchCreateTicket.js';
 import { _errorMessage } from './helperFunctions/_errorMessage.js';
 
@@ -17,9 +17,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
     console.log('Page Reloaded');
     const oneTouchDOMBody = document.querySelector('#oneTouchBodyContainer');
     oneTouchDOMBody.innerHTML = sessionStorage.getItem('oneTouchDOMBody');
+    return;
   }
-  // Btn event listeners
-  document.getElementById('raiseTicket').addEventListener('click', raiseTicket);
+
+  console.log(`Fetching User Tickets`);
+  _freshDeskTicket();
 });
 
 const raiseTicket = async (event) => {
@@ -27,3 +29,24 @@ const raiseTicket = async (event) => {
   _oneTouchCreateTicket();
   return;
 };
+
+document.querySelector('body').addEventListener('click', (event) => {
+  const raiseTicket = event.target.getAttribute('id') === 'activateContract';
+  // const deleteContract = event.target.nodeName === 'DELETECONTRACT';
+
+  let id = event.target.getAttribute('id');
+
+  // if (goBackBtn) {
+  //   sessionStorage.removeItem('oneTouchBroadband');
+  //   const oneTouchContracts = document.querySelector('#oneTouchContracts');
+  //   const removeData = document.querySelector('#oneTouchContractInfo');
+  //   oneTouchContracts.classList.remove('hidden');
+  //   removeData.remove();
+  //   const endPoint = location.href.split('/').slice(-1)[0];
+  //   persistDOMData(endPoint);
+  // }
+
+  if (raiseTicket) {
+    raiseTicket(event);
+  }
+});
