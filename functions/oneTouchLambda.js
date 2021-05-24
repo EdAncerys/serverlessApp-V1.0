@@ -426,7 +426,7 @@ const deleteOrder = async (db, data) => {
 };
 // oneTouch freshDesk
 const allFreshDeskTickets = async (db, data) => {
-  let PATH = 'api/v2/tickets';
+  const PATH = 'api/v2/tickets';
   const FD_API_KEY = process.env.FD_API_KEY;
   const FD_ENDPOINT = process.env.FD_ENDPOINT;
   const URL = `https://${FD_ENDPOINT}.freshdesk.com/${PATH}`;
@@ -451,7 +451,7 @@ const allFreshDeskTickets = async (db, data) => {
     if (!response.ok) throw new Error(response.statusText);
 
     const data = await response.json();
-    console.log(data);
+    // console.log(data);
 
     const msg = `Successfully Fetched All Fresh Desk Tickets`;
     console.log(msg);
@@ -478,7 +478,7 @@ const allFreshDeskTickets = async (db, data) => {
   }
 };
 const oneTouchCreateTicket = async (db, data) => {
-  let PATH = 'api/v2/tickets';
+  const PATH = 'api/v2/tickets';
   const FD_API_KEY = process.env.FD_API_KEY;
   const FD_ENDPOINT = process.env.FD_ENDPOINT;
   const URL = `https://${FD_ENDPOINT}.freshdesk.com/${PATH}`;
@@ -491,6 +491,9 @@ const oneTouchCreateTicket = async (db, data) => {
     access_token: data.access_token,
   };
   console.log(createTicket);
+  console.log(FD_API_KEY);
+  console.log(FD_ENDPOINT);
+
   const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
   const authToken = await jwt.verify(
     createTicket.access_token,
@@ -1315,6 +1318,17 @@ const oneTouchPortalHTML = [
 
 module.exports.handler = async (event, context, callback) => {
   context.callbackWaitsForEmptyEventLoop = false;
+
+  if (event.httpMethod === 'GET') {
+    console.log(`Redirect - JWT not attached`);
+    console.log(path);
+    return {
+      statusCode: 301,
+      headers: {
+        Location: '/views/oneTouch/index.html',
+      },
+    };
+  }
 
   const db = await connectToDatabase(MONGODB_URI);
   const path = event.path;

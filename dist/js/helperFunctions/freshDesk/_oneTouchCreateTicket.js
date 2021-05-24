@@ -31,19 +31,19 @@ async function _oneTouchCreateTicket() {
     body: JSON.stringify(body),
   };
 
-  // try {
-  //   const response = await fetch(URL, config);
-  //   console.log(response);
-  //   const data = await response.json();
-  //   if (!response.ok) throw new Error(data.msg);
-  //   console.log(data);
+  try {
+    const response = await fetch(URL, config);
+    console.log(response);
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.msg);
+    console.log(data);
 
-  //   _spinner(false);
-  // } catch (err) {
-  //   console.log(err);
-  //   _spinner(false);
-  //   _errorMessage(err);
-  // }
+    _spinner(false);
+  } catch (err) {
+    console.log(err);
+    _spinner(false);
+    _errorMessage(err);
+  }
 }
 
 export { _oneTouchCreateTicket };
