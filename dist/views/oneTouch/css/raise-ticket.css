@@ -1,6 +1,15 @@
 .formContentContainer {
   width: min(95vw, 1000px);
 }
+#oneTouchFormContainer {
+  width: 100%;
+  max-height: 80vh;
+  padding: 10px;
+  overflow: auto;
+}
+#oneTouchTicketOverview {
+  padding-top: 10px;
+}
 .oneTouchFormContainer {
   -webkit-box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
   box-shadow: 0 4px 12px rgb(0 0 0 / 15%);

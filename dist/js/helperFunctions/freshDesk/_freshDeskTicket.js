@@ -42,15 +42,15 @@ async function _freshDeskTicket(id) {
                               Manage and overview tickets - anytime, anywhere
                             </div>
                             <div class="dataSummaryContainer textSilver fontH2">
-                              <div class="dataRowSummaryContainer justifyText">
+                              <div id="totalTickets" class="dataRowSummaryContainer justifyText">
                                 <div class="rowDisplayStart">Total Tickets</div>
                                 <div class="rowDisplayEnd">${totalTickets}</div>
                               </div>
-                              <div class="dataRowSummaryContainer justifyText bgSTOP">
+                              <div id="pendingTickets" class="dataRowSummaryContainer justifyText bgSTOP">
                                 <div class="rowDisplayStart">Waiting on Response</div>
                                 <div class="rowDisplayEnd">${pendingTickets}</div>
                               </div>
-                              <div class="dataRowSummaryContainer justifyText bgGO">
+                              <div id="resolvedTickets" class="dataRowSummaryContainer justifyText bgGO">
                                 <div class="rowDisplayStart">Resolved Tickets</div>
                                 <div class="rowDisplayEnd">${resolvedTickets}</div>
                               </div>
@@ -61,6 +61,7 @@ async function _freshDeskTicket(id) {
       '#oneTouchTicketOverview'
     );
     oneTouchTicketOverview.innerHTML = ticketOverview;
+    sessionStorage.setItem('oneTouchTickets', JSON.stringify(oneTouchTickets));
     const endPoint = location.href.split('/').slice(-1)[0];
     persistDOMData(endPoint);
     _spinner(false);

@@ -32,7 +32,7 @@ const raiseTicket = async (event) => {
 
 document.querySelector('body').addEventListener('click', (event) => {
   const raiseTicket = event.target.getAttribute('id') === 'activateContract';
-  // const deleteContract = event.target.nodeName === 'DELETECONTRACT';
+  const totalTickets = event.target.getAttribute('id') === 'totalTickets';
 
   let id = event.target.getAttribute('id');
 
@@ -46,7 +46,7 @@ document.querySelector('body').addEventListener('click', (event) => {
   //   persistDOMData(endPoint);
   // }
 
-  if (raiseTicket) {
-    raiseTicket(event);
+  if (totalTickets) {
+    _freshDeskTicket();
   }
 });
