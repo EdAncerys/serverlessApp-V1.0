@@ -12,7 +12,6 @@ async function _freshDeskTicket(id) {
     access_token,
     id,
   };
-  console.log(body);
   const config = {
     method: 'POST',
     body: JSON.stringify(body),
@@ -26,8 +25,8 @@ async function _freshDeskTicket(id) {
     const oneTouchTickets = data.data;
     console.log(data);
 
-    let totalTickets = oneTouchTickets.length;
-    if (!oneTouchTickets) totalTickets = `Information Not Awaitable`;
+    let allTickets = oneTouchTickets.length;
+    if (!oneTouchTickets) allTickets = `Information Not Awaitable`;
     let pendingTickets = oneTouchTickets.length;
     if (!oneTouchTickets) pendingTickets = `Information Not Awaitable`;
     let resolvedTickets = oneTouchTickets.length;
@@ -42,9 +41,9 @@ async function _freshDeskTicket(id) {
                               Manage and overview tickets - anytime, anywhere
                             </div>
                             <div class="dataSummaryContainer textSilver fontH2">
-                              <div id="totalTickets" class="dataRowSummaryContainer justifyText">
-                                <div class="rowDisplayStart">Total Tickets</div>
-                                <div class="rowDisplayEnd">${totalTickets}</div>
+                              <div class="dataRowSummaryContainer justifyText allTickets">
+                                <div class="rowDisplayStart allTickets">Total Tickets</div>
+                                <div class="rowDisplayEnd allTickets">${allTickets}</div>
                               </div>
                               <div id="pendingTickets" class="dataRowSummaryContainer justifyText bgSTOP">
                                 <div class="rowDisplayStart">Waiting on Response</div>

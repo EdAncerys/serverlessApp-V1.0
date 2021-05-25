@@ -1,4 +1,5 @@
 import { _freshDeskTicket } from './helperFunctions/freshDesk/_freshDeskTicket.js';
+import { _oneTouchRenderTickets } from './helperFunctions/freshDesk/_oneTouchRenderTickets.js';
 import { _oneTouchCreateTicket } from './helperFunctions/freshDesk/_oneTouchCreateTicket.js';
 import { _errorMessage } from './helperFunctions/_errorMessage.js';
 
@@ -32,9 +33,10 @@ const raiseTicket = async (event) => {
 
 document.querySelector('body').addEventListener('click', (event) => {
   const raiseTicket = event.target.getAttribute('id') === 'activateContract';
-  const totalTickets = event.target.getAttribute('id') === 'totalTickets';
+  const allTickets = event.target.getAttribute('class').includes('allTickets');
 
   let id = event.target.getAttribute('id');
+  let className = event.target.getAttribute('class');
 
   // if (goBackBtn) {
   //   sessionStorage.removeItem('oneTouchBroadband');
@@ -46,7 +48,7 @@ document.querySelector('body').addEventListener('click', (event) => {
   //   persistDOMData(endPoint);
   // }
 
-  if (totalTickets) {
-    _freshDeskTicket();
+  if (allTickets) {
+    _oneTouchRenderTickets();
   }
 });
