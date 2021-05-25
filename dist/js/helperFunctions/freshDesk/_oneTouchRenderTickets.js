@@ -8,24 +8,39 @@ async function _oneTouchRenderTickets(id) {
   const freshDeskTickets = await JSON.parse(
     sessionStorage.getItem('oneTouchTickets')
   );
-  let ticketData = '';
-  freshDeskTickets.map((ticket) => {
-    ticketData += `
-                  <searchRowComponent>
-                    <div class="rowContainer bgGradientSilver">
-                      <div class="rowComponent-3">
-                        <div class="cellComponent">
-                          <search>${ticket.id}</search>
-                          <search class="bottomDataRow">${ticket.reply_cc_emails}</search>
+
+  const goBackBtn = `
+                    <div class="features">
+                      <div class="flex-container-100">
+                        <div class="outer">
+                          <inner class="inner">
+                            <btnLabel>Back</btnLabel>
+                          </inner>
                         </div>
-                        <div class="cellComponent">
-                          <search>${ticket.thoroughfare_number}</search>
-                          <search class="bottomDataRow">${ticket.postcode}</search>
-                        </div>
-                        
                       </div>
-                    </div>
-                  </searchRowComponent>`;
+                    </div>`;
+
+  let ticketData = `${goBackBtn}`;
+
+  freshDeskTickets.map((ticket) => {
+    let ticketSubject = ticket.subject;
+    if (ticketSubject) ticketSubject = 'Information Not Available';
+
+    ticketData += `
+                    <searchRowComponent>
+                      <div class="rowContainer bgGradientSilver">
+                        <div class="rowComponent-2">
+                          <div class="cellComponent">
+                            <search>${ticketSubject}</search>
+                            <search class="bottomDataRow">${ticket.id}</search>
+                          </div>
+                          <div class="cellComponent">
+                            <search>${ticket.created_at}</search>
+                            <search class="bottomDataRow">${ticket.cc_emails}</search>
+                          </div>
+                        </div>
+                      </div>
+                    </searchRowComponent>`;
   });
 
   const oneTouchTickets = document.createElement('div');

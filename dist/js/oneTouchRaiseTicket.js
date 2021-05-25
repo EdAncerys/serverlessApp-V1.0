@@ -2,6 +2,7 @@ import { _freshDeskTicket } from './helperFunctions/freshDesk/_freshDeskTicket.j
 import { _oneTouchRenderTickets } from './helperFunctions/freshDesk/_oneTouchRenderTickets.js';
 import { _oneTouchCreateTicket } from './helperFunctions/freshDesk/_oneTouchCreateTicket.js';
 import { _errorMessage } from './helperFunctions/_errorMessage.js';
+import { persistDOMData } from './persistDOMData.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('raiseTicket').addEventListener('click', raiseTicket);
@@ -32,21 +33,27 @@ const raiseTicket = async (event) => {
 };
 
 document.querySelector('body').addEventListener('click', (event) => {
-  const raiseTicket = event.target.getAttribute('id') === 'activateContract';
-  const allTickets = event.target.getAttribute('class').includes('allTickets');
+  let className = event.target.getAttribute('class');
+  const activateContract =
+    event.target.getAttribute('id') === 'activateContract';
+  let allTickets;
+  if (className) allTickets = className.includes('allTickets');
+  const goBackBtn =
+    event.target.nodeName === 'BTNLABEL' || event.target.nodeName === 'INNER';
 
   let id = event.target.getAttribute('id');
-  let className = event.target.getAttribute('class');
 
-  // if (goBackBtn) {
-  //   sessionStorage.removeItem('oneTouchBroadband');
-  //   const oneTouchContracts = document.querySelector('#oneTouchContracts');
-  //   const removeData = document.querySelector('#oneTouchContractInfo');
-  //   oneTouchContracts.classList.remove('hidden');
-  //   removeData.remove();
-  //   const endPoint = location.href.split('/').slice(-1)[0];
-  //   persistDOMData(endPoint);
-  // }
+  if (goBackBtn) {
+    const oneTouchFormContainer = document.querySelector(
+      '#oneTouchFormContainer'
+    );
+    oneTouchFormContainer.classList.remove('hidden');
+    const removeData = document.querySelector('#oneTouchTickets');
+    removeData.remove();
+
+    const endPoint = location.href.split('/').slice(-1)[0];
+    persistDOMData(endPoint);
+  }
 
   if (allTickets) {
     _oneTouchRenderTickets();

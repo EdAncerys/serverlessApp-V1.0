@@ -15,6 +15,7 @@
   display: grid;
 }
 .rowComponent-1,
+.rowComponent-2,
 .rowComponent-3,
 .rowComponent-4 {
   display: grid;
@@ -23,6 +24,9 @@
 }
 .rowComponent-1 {
   grid-template-columns: 1fr;
+}
+.rowComponent-2 {
+  grid-template-columns: 1fr 1fr;
 }
 .rowComponent-3 {
   grid-template-columns: 1fr 1fr 1fr;
@@ -41,6 +45,7 @@
 .bottomDataRow {
   font-size: 10px;
   color: #8c8c8c;
+  overflow: auto;
 }
 .userRowNAU {
   display: grid;
