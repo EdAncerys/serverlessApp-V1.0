@@ -35,8 +35,7 @@ const raiseTicket = async (event) => {
 
 document.querySelector('body').addEventListener('click', (event) => {
   let className = event.target.getAttribute('class');
-  const activateContract =
-    event.target.getAttribute('id') === 'activateContract';
+
   let allTickets;
   if (className) allTickets = className.includes('allTickets');
   const goBackBtn =

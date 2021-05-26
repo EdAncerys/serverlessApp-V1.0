@@ -4,6 +4,12 @@
 #oneTouchTicketOverview {
   padding-top: 10px;
 }
+btnTicketComponent {
+  cursor: pointer;
+}
+btnTicketComponent > * {
+  pointer-events: none;
+}
 .oneTouchFormContainer {
   -webkit-box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
   box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
