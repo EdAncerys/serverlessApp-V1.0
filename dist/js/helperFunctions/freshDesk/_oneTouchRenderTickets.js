@@ -28,11 +28,11 @@ async function _oneTouchRenderTickets(id) {
     if (!ticketSubject) ticketSubject = 'Information Not Available';
 
     ticketData += `
-                    <searchRowComponent>
-                      <div id="${ticket.id}" class="ticketSummaryContainer textSilver fontH2">
-                        <div class="dataRowSummaryContainer justifyText allTickets">
-                          <search class="rowDisplayStart allTickets">${ticketSubject}</search>
-                          <search class="rowDisplayEnd allTickets">${ticket.created_at}</search>
+                    <searchRowComponent id="${ticket.id}" >
+                      <div class="ticketSummaryContainer textSilver fontH2">
+                        <div class="dataRowSummaryContainer justifyText">
+                          <search class="rowDisplayStart">${ticketSubject}</search>
+                          <search class="rowDisplayEnd">${ticket.created_at}</search>
                         </div>
                       </div>
                     </searchRowComponent>`;

@@ -2,6 +2,7 @@ import { _freshDeskTicket } from './helperFunctions/freshDesk/_freshDeskTicket.j
 import { _oneTouchRenderTickets } from './helperFunctions/freshDesk/_oneTouchRenderTickets.js';
 import { _oneTouchCreateTicket } from './helperFunctions/freshDesk/_oneTouchCreateTicket.js';
 import { _errorMessage } from './helperFunctions/_errorMessage.js';
+import { _searchBox } from './helperFunctions/_searchBox.js';
 import { persistDOMData } from './persistDOMData.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -43,7 +44,6 @@ document.querySelector('body').addEventListener('click', (event) => {
 
   let id = event.target.getAttribute('id');
   console.log(id);
-  console.log(className);
 
   if (goBackBtn) {
     const oneTouchFormContainer = document.querySelector(
@@ -63,24 +63,5 @@ document.querySelector('body').addEventListener('click', (event) => {
 });
 
 document.querySelector('body').addEventListener('keyup', (event) => {
-  const searchBox = document.querySelector('#searchBox');
-  const keyword = searchBox.value.toLowerCase();
-  console.log(`Search keyword: ` + keyword);
-  const searchRowComponent = document.querySelectorAll('searchRowComponent');
-
-  searchRowComponent.forEach((row) => {
-    let matchFound;
-
-    const search = row.getElementsByTagName('search');
-    Array.prototype.map.call(search, (list) => {
-      const nodeText = list.innerHTML.toLowerCase();
-      if (nodeText.includes(keyword)) matchFound = true;
-    });
-
-    if (matchFound) {
-      row.style.display = 'block';
-    } else {
-      row.style.display = 'none';
-    }
-  });
+  _searchBox();
 });
