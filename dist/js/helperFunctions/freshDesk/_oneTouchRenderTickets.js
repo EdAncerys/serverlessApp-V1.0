@@ -58,7 +58,7 @@ async function _oneTouchRenderTickets(id) {
                               <input
                                 type="text"
                                 id="searchBox"
-                                placeholder="Search for Contract..."
+                                placeholder="Search for Ticket..."
                               />
                             </div>
                             <div class="dataContainerWrapper">
