@@ -432,10 +432,15 @@ const freshDeskTicket = async (db, data) => {
   };
 
   let PATH = `api/v2/tickets`;
-  if (ticketData.id) PATH = `api/v2/tickets/${ticketData.id}`;
+  let CONVERSATION_PATH = ``;
+  if (ticketData.id) {
+    PATH = `api/v2/tickets/${ticketData.id}`;
+    CONVERSATION_PATH = `api/v2/tickets/${ticketData.id}/conversations`;
+  }
   const FD_API_KEY = process.env.FD_API_KEY;
   const FD_ENDPOINT = process.env.FD_ENDPOINT;
   const URL = `https://${FD_ENDPOINT}.freshdesk.com/${PATH}`;
+  const CONVERSATION_URL = `https://${FD_ENDPOINT}.freshdesk.com/${CONVERSATION_PATH}`;
   const ENCODING_METHOD = 'base64';
   const AUTHORIZATION_KEY =
     'Basic ' +
@@ -455,9 +460,15 @@ const freshDeskTicket = async (db, data) => {
   try {
     const response = await fetch(URL, config);
     if (!response.ok) throw new Error(response.statusText);
-
+    console.log(response);
     const data = await response.json();
-    console.log(data);
+
+    let conversation_data = [];
+    if (ticketData.id) {
+      const conversation_response = await fetch(CONVERSATION_URL, config);
+      if (!conversation_response.ok) throw new Error(response.statusText);
+      conversation_data = await conversation_response.json();
+    }
 
     const msg = `Successfully Fetched All Fresh Desk Tickets`;
     console.log(msg);
@@ -467,7 +478,7 @@ const freshDeskTicket = async (db, data) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ data, msg }),
+      body: JSON.stringify({ data, conversation_data, msg }),
     };
   } catch (error) {
     const msg = `Failed to Fetch Fresh Desk Tickets`;

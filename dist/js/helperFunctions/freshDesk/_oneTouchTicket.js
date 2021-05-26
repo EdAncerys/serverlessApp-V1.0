@@ -4,9 +4,18 @@ import { _spinner } from '../_spinner.js';
 
 async function _oneTouchTicket(data) {
   let freshDeskTicket = data.data;
-  console.log(freshDeskTicket);
+  let conversation_data = data.conversation_data;
+  let conversation = ``;
+
   console.log('Rendering User Ticket ID: ' + freshDeskTicket.id);
   _spinner(true, 'Loading Tickets...');
+
+  conversation_data.map((ticketResponse) => {
+    conversation += `
+                    <div class="oneTouchFormContainer dataSummaryContainer bgGradientSilver textSilver fontH2">
+                      ${ticketResponse.body}
+                    </div>`;
+  });
 
   const goBackBtn = `
                     <div class="features-no-margin">
@@ -26,8 +35,11 @@ async function _oneTouchTicket(data) {
                             <div class="fontH4">${freshDeskTicket.subject}</div>
                           </div>
                         
-                            <div class="dataContainerWrapper textSilver fontH2">
-                              ${freshDeskTicket.description}
+                            <div class="dataContainerWrapper textSilver">
+                              <div class="oneTouchFormContainer dataSummaryContainer bgGradientSilver textSilver fontH2">
+                                ${freshDeskTicket.description}
+                              </div>
+                              ${conversation}
                             </div>
                           </div>
                         </div>`;
