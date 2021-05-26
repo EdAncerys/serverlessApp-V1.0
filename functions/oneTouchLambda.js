@@ -426,7 +426,13 @@ const deleteOrder = async (db, data) => {
 };
 // oneTouch freshDesk
 const freshDeskTicket = async (db, data) => {
-  const PATH = 'api/v2/tickets';
+  console.log(data);
+  const ticketData = {
+    id: data.id,
+  };
+
+  let PATH = `api/v2/tickets`;
+  if (ticketData.id) PATH = `api/v2/tickets/${ticketData.id}`;
   const FD_API_KEY = process.env.FD_API_KEY;
   const FD_ENDPOINT = process.env.FD_ENDPOINT;
   const URL = `https://${FD_ENDPOINT}.freshdesk.com/${PATH}`;

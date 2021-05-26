@@ -2,12 +2,13 @@ import { persistDOMData } from '../../persistDOMData.js';
 import { _errorMessage } from '../_errorMessage.js';
 import { _spinner } from '../_spinner.js';
 
-async function _oneTouchRenderTickets(id) {
+async function _oneTouchAllTickets(id) {
   console.log('Rendering User Tickets...');
   _spinner(true, 'Loading Tickets...');
-  const freshDeskTickets = await JSON.parse(
-    sessionStorage.getItem('oneTouchTickets')
-  );
+  let freshDeskTickets = [];
+  const data = await JSON.parse(sessionStorage.getItem('oneTouchTickets'));
+  if (data) freshDeskTickets = data;
+  console.log(freshDeskTickets);
 
   const goBackBtn = `
                     <div class="features-no-margin">
@@ -76,6 +77,8 @@ async function _oneTouchRenderTickets(id) {
   // Removing customer previous data
   const removeData = document.querySelector('#oneTouchTickets');
   if (removeData) removeData.remove();
+  const removeData_2 = document.querySelector('#oneTouchTicket');
+  if (removeData_2) removeData_2.remove();
 
   const oneTouchTicketContainer = document.querySelector(
     '#oneTouchTicketContainer'
@@ -90,4 +93,4 @@ async function _oneTouchRenderTickets(id) {
   _spinner(false);
 }
 
-export { _oneTouchRenderTickets };
+export { _oneTouchAllTickets };

@@ -1,6 +1,7 @@
 import { persistDOMData } from '../../persistDOMData.js';
 import { _errorMessage } from '../_errorMessage.js';
 import { _spinner } from '../_spinner.js';
+import { _oneTouchTicket } from './_oneTouchTicket.js';
 
 async function _freshDeskTicket(id) {
   console.log('Fetching All User Tickets...');
@@ -59,8 +60,14 @@ async function _freshDeskTicket(id) {
     const oneTouchTicketOverview = document.querySelector(
       '#oneTouchTicketOverview'
     );
-    oneTouchTicketOverview.innerHTML = ticketOverview;
-    sessionStorage.setItem('oneTouchTickets', JSON.stringify(oneTouchTickets));
+    if (!id) {
+      oneTouchTicketOverview.innerHTML = ticketOverview;
+      sessionStorage.setItem(
+        'oneTouchTickets',
+        JSON.stringify(oneTouchTickets)
+      );
+    }
+    if (id) _oneTouchTicket(data);
     const endPoint = location.href.split('/').slice(-1)[0];
     persistDOMData(endPoint);
     _spinner(false);

@@ -1,5 +1,5 @@
 import { _freshDeskTicket } from './helperFunctions/freshDesk/_freshDeskTicket.js';
-import { _oneTouchRenderTickets } from './helperFunctions/freshDesk/_oneTouchRenderTickets.js';
+import { _oneTouchAllTickets } from './helperFunctions/freshDesk/_oneTouchAllTickets.js';
 import { _oneTouchCreateTicket } from './helperFunctions/freshDesk/_oneTouchCreateTicket.js';
 import { _errorMessage } from './helperFunctions/_errorMessage.js';
 import { _searchBox } from './helperFunctions/_searchBox.js';
@@ -35,14 +35,13 @@ const raiseTicket = async (event) => {
 
 document.querySelector('body').addEventListener('click', (event) => {
   let className = event.target.getAttribute('class');
+  let id = event.target.getAttribute('id');
 
   let allTickets;
   if (className) allTickets = className.includes('allTickets');
   const goBackBtn =
     event.target.nodeName === 'BTNLABEL' || event.target.nodeName === 'INNER';
-
-  let id = event.target.getAttribute('id');
-  console.log(id);
+  const btnTicketComponent = event.target.nodeName === 'BTNTICKETCOMPONENT';
 
   if (goBackBtn) {
     const oneTouchFormContainer = document.querySelector(
@@ -55,9 +54,11 @@ document.querySelector('body').addEventListener('click', (event) => {
     const endPoint = location.href.split('/').slice(-1)[0];
     persistDOMData(endPoint);
   }
-
+  if (btnTicketComponent) {
+    _freshDeskTicket(id);
+  }
   if (allTickets) {
-    _oneTouchRenderTickets();
+    _oneTouchAllTickets();
   }
 });
 
