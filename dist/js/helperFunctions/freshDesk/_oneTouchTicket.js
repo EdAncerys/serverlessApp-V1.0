@@ -12,9 +12,9 @@ async function _oneTouchTicket(data) {
                     <div class="features-no-margin">
                       <div class="flex-container-100">
                         <div class="outer">
-                          <inner class="inner">
-                            <btnLabel>Back</btnLabel>
-                          </inner>
+                          <innerNo2 class="inner">
+                            <btnLabelNo2>Back</btnLabelNo2>
+                          </innerNo2>
                         </div>
                       </div>
                     </div>`;

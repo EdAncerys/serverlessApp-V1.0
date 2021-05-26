@@ -41,6 +41,9 @@ document.querySelector('body').addEventListener('click', (event) => {
   if (className) allTickets = className.includes('allTickets');
   const goBackBtn =
     event.target.nodeName === 'BTNLABEL' || event.target.nodeName === 'INNER';
+  const goBackBtnNo2 =
+    event.target.nodeName === 'BTNLABELNO2' ||
+    event.target.nodeName === 'INNERNO2';
   const btnTicketComponent = event.target.nodeName === 'BTNTICKETCOMPONENT';
 
   if (goBackBtn) {
@@ -49,6 +52,15 @@ document.querySelector('body').addEventListener('click', (event) => {
     );
     oneTouchFormContainer.classList.remove('hidden');
     const removeData = document.querySelector('#oneTouchTickets');
+    removeData.remove();
+
+    const endPoint = location.href.split('/').slice(-1)[0];
+    persistDOMData(endPoint);
+  }
+  if (goBackBtnNo2) {
+    const oneTouchTickets = document.querySelector('#oneTouchTickets');
+    oneTouchTickets.classList.remove('hidden');
+    const removeData = document.querySelector('#oneTouchTicket');
     removeData.remove();
 
     const endPoint = location.href.split('/').slice(-1)[0];

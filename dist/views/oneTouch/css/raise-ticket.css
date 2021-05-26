@@ -1,9 +1,6 @@
 .formContentContainer {
   width: min(95vw, 1000px);
 }
-#oneTouchTicketOverview {
-  padding-top: 10px;
-}
 btnTicketComponent {
   cursor: pointer;
 }
