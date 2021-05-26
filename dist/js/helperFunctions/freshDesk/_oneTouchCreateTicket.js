@@ -5,7 +5,7 @@ import { _spinner } from '../_spinner.js';
 async function _oneTouchCreateTicket() {
   console.log('Creating oneTouch Ticket');
 
-  const URL = '/oneTouch/tickets/oneTouchCreateTicket';
+  const URL = '/oneTouch/tickets/freshDeskCreateTicket';
   const access_token = await sessionStorage.getItem('access_token');
 
   const contactReason = document.getElementById('contactReason').value;

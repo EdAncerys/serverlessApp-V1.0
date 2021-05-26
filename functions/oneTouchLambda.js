@@ -496,8 +496,7 @@ const freshDeskTicket = async (db, data) => {
 };
 const freshDeskCreateTicket = async (db, data) => {
   const PATH = 'api/v2/tickets';
-  // const FD_API_KEY = process.env.FD_API_KEY;
-  const FD_API_KEY = 'X40RG5GvUWvgFbuu2k';
+  const FD_API_KEY = process.env.FD_API_KEY;
   const FD_ENDPOINT = process.env.FD_ENDPOINT;
   const URL = `https://${FD_ENDPOINT}.freshdesk.com/${PATH}`;
   const ENCODING_METHOD = 'base64';
@@ -508,9 +507,6 @@ const freshDeskCreateTicket = async (db, data) => {
   const createTicket = {
     access_token: data.access_token,
   };
-  console.log(createTicket);
-  console.log(FD_API_KEY);
-  console.log(FD_ENDPOINT);
 
   const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
   const authToken = await jwt.verify(
@@ -546,6 +542,7 @@ const freshDeskCreateTicket = async (db, data) => {
     headers,
     body: JSON.stringify(body),
   };
+  console.log(config);
 
   try {
     const response = await fetch(URL, config);

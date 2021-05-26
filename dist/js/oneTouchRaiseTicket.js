@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   _freshDeskTicket();
 });
 
-const raiseTicket = async (event) => {
+const _raiseTicket = async (event) => {
   event.preventDefault();
   _oneTouchCreateTicket();
   return;
@@ -39,6 +39,7 @@ document.querySelector('body').addEventListener('click', (event) => {
 
   let allTickets;
   if (className) allTickets = className.includes('allTickets');
+  const raiseTicket = event.target.getAttribute('id') === 'raiseTicket';
   const goBackBtn =
     event.target.nodeName === 'BTNLABEL' || event.target.nodeName === 'INNER';
   const goBackBtnNo2 =
@@ -71,6 +72,9 @@ document.querySelector('body').addEventListener('click', (event) => {
   }
   if (allTickets) {
     _oneTouchAllTickets();
+  }
+  if (raiseTicket) {
+    _raiseTicket(event);
   }
 });
 
