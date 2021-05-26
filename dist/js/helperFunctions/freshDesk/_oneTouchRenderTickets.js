@@ -10,7 +10,7 @@ async function _oneTouchRenderTickets(id) {
   );
 
   const goBackBtn = `
-                    <div class="features">
+                    <div class="features-no-margin">
                       <div class="flex-container-100">
                         <div class="outer">
                           <inner class="inner">
@@ -20,32 +20,56 @@ async function _oneTouchRenderTickets(id) {
                       </div>
                     </div>`;
 
-  let ticketData = `${goBackBtn}`;
+  let ticketData = ``;
+  let ticketDataContainer = ``;
 
   freshDeskTickets.map((ticket) => {
     let ticketSubject = ticket.subject;
-    if (ticketSubject) ticketSubject = 'Information Not Available';
+    if (!ticketSubject) ticketSubject = 'Information Not Available';
 
     ticketData += `
                     <searchRowComponent>
-                      <div class="rowContainer bgGradientSilver">
-                        <div class="rowComponent-2">
-                          <div class="cellComponent">
-                            <search>${ticketSubject}</search>
-                            <search class="bottomDataRow">${ticket.id}</search>
-                          </div>
-                          <div class="cellComponent">
-                            <search>${ticket.created_at}</search>
-                            <search class="bottomDataRow">${ticket.cc_emails}</search>
-                          </div>
+                      <div id="${ticket.id}" class="ticketSummaryContainer textSilver fontH2">
+                        <div class="dataRowSummaryContainer justifyText allTickets">
+                          <search class="rowDisplayStart allTickets">${ticketSubject}</search>
+                          <search class="rowDisplayEnd allTickets">${ticket.created_at}</search>
                         </div>
                       </div>
                     </searchRowComponent>`;
   });
 
+  ticketDataContainer = `
+                        <div class="oneTouchFormContainer">
+                          ${goBackBtn}
+                          <div class="headerText">
+                            <div class="alignHorizontally fontH4">Manage All Raised Tickets</div>
+                            <div class="alignHorizontally textSilver fontH2">
+                              Manage all raised tickets in one place with a touch of a finger!
+                            </div>
+                          </div>
+                          <div id='dataWrapper' class='dataWrapper'>
+                            <div class="headerComponent">
+                              <div class="ticketRowComponent-2 boxContainer bgGray">
+                                <div class="cellComponent">Subject</div>
+                                <div class="cellComponent">Ticket Created</div>
+                              </div>
+                            </div>
+                            <div class='searchBox'>
+                              <input
+                                type="text"
+                                id="searchBox"
+                                placeholder="Search for Contract..."
+                              />
+                            </div>
+                            <div class="dataContainerWrapper">
+                              ${ticketData}
+                            </div>
+                          </div>
+                        </div>`;
+
   const oneTouchTickets = document.createElement('div');
   oneTouchTickets.id = 'oneTouchTickets';
-  oneTouchTickets.innerHTML = ticketData;
+  oneTouchTickets.innerHTML = ticketDataContainer;
 
   // Removing customer previous data
   const removeData = document.querySelector('#oneTouchTickets');

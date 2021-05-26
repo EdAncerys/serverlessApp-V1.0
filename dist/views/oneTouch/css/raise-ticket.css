@@ -1,12 +1,6 @@
 .formContentContainer {
   width: min(95vw, 1000px);
 }
-#oneTouchTicketContainer {
-  width: 100%;
-  max-height: 80vh;
-  padding: 10px;
-  overflow: auto;
-}
 #oneTouchTicketOverview {
   padding-top: 10px;
 }
@@ -24,10 +18,14 @@
   content: ' ';
   padding-top: 5px;
 }
-.dataSummaryContainer {
+.dataSummaryContainer,
+.ticketSummaryContainer {
   display: grid;
   gap: 5px;
   margin: 20px 0;
+}
+.ticketSummaryContainer {
+  margin: 5px 0;
 }
 .dataRowSummaryContainer {
   display: grid;
@@ -68,6 +66,7 @@
   background-image: url(../images/raise.png);
   background-size: contain;
 }
+
 /* Media Queries */
 @media only screen and (max-width: 800px) {
   .ndgLogoBanner {

@@ -42,6 +42,8 @@ document.querySelector('body').addEventListener('click', (event) => {
     event.target.nodeName === 'BTNLABEL' || event.target.nodeName === 'INNER';
 
   let id = event.target.getAttribute('id');
+  console.log(id);
+  console.log(className);
 
   if (goBackBtn) {
     const oneTouchFormContainer = document.querySelector(
