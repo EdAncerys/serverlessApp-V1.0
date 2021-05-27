@@ -47,8 +47,12 @@ async function _freshDeskTicket(id) {
                                 <div class="rowDisplayEnd allTickets">${allTickets}</div>
                               </div>
                               <div id="pendingTickets" class="dataRowSummaryContainer justifyText bgSTOP">
-                                <div class="rowDisplayStart">Waiting on Response</div>
+                                <div class="rowDisplayStart">Open Tickets</div>
                                 <div class="rowDisplayEnd">${pendingTickets}</div>
+                              </div>
+                              <div id="resolvedTickets" class="dataRowSummaryContainer justifyText bgSET">
+                                <div class="rowDisplayStart">Pending Tickets</div>
+                                <div class="rowDisplayEnd">${resolvedTickets}</div>
                               </div>
                               <div id="resolvedTickets" class="dataRowSummaryContainer justifyText bgGO">
                                 <div class="rowDisplayStart">Resolved Tickets</div>
