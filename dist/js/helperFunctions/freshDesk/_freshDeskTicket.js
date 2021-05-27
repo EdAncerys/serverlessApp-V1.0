@@ -26,12 +26,26 @@ async function _freshDeskTicket(id) {
     const oneTouchTickets = data.data;
     console.log(data);
 
-    let allTickets = oneTouchTickets.length;
-    if (!oneTouchTickets) allTickets = `Information Not Awaitable`;
-    let pendingTickets = oneTouchTickets.length;
-    if (!oneTouchTickets) pendingTickets = `Information Not Awaitable`;
-    let resolvedTickets = oneTouchTickets.length;
-    if (!oneTouchTickets) resolvedTickets = `Information Not Awaitable`;
+    let totalTickets = 0;
+    let openTickets = 0;
+    let pendingTickets = 0;
+    let closedTickets = 0;
+
+    if (oneTouchTickets) totalTickets = oneTouchTickets.length;
+    if (oneTouchTickets)
+      oneTouchTickets.map((ticket) => {
+        let status = ticket.status;
+        if (status === 2) openTickets += 1;
+        if (status === 3) pendingTickets += 1;
+        if (status === 4 || status === 5) closedTickets += 1;
+      });
+
+    if (!oneTouchTickets) {
+      totalTickets = `Information Not Awaitable`;
+      openTickets = `Information Not Awaitable`;
+      pendingTickets = `Information Not Awaitable`;
+      closedTickets = `Information Not Awaitable`;
+    }
 
     let ticketOverview = `
                           <div class="oneTouchFormContainer bgGradientSilver">
@@ -44,19 +58,19 @@ async function _freshDeskTicket(id) {
                             <div class="dataSummaryContainer textSilver fontH2">
                               <div class="dataRowSummaryContainer justifyText allTickets">
                                 <div class="rowDisplayStart allTickets">Total Tickets</div>
-                                <div class="rowDisplayEnd allTickets">${allTickets}</div>
+                                <div class="rowDisplayEnd allTickets">${totalTickets}</div>
                               </div>
                               <div id="pendingTickets" class="dataRowSummaryContainer justifyText bgSTOP">
                                 <div class="rowDisplayStart">Open Tickets</div>
-                                <div class="rowDisplayEnd">${pendingTickets}</div>
+                                <div class="rowDisplayEnd">${openTickets}</div>
                               </div>
                               <div id="resolvedTickets" class="dataRowSummaryContainer justifyText bgSET">
                                 <div class="rowDisplayStart">Pending Tickets</div>
-                                <div class="rowDisplayEnd">${resolvedTickets}</div>
+                                <div class="rowDisplayEnd">${pendingTickets}</div>
                               </div>
                               <div id="resolvedTickets" class="dataRowSummaryContainer justifyText bgGO">
-                                <div class="rowDisplayStart">Resolved Tickets</div>
-                                <div class="rowDisplayEnd">${resolvedTickets}</div>
+                                <div class="rowDisplayStart">Closed Tickets</div>
+                                <div class="rowDisplayEnd">${closedTickets}</div>
                               </div>
                             </div>
                           </div>`;
