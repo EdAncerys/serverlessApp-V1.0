@@ -506,6 +506,12 @@ const freshDeskCreateTicket = async (db, data) => {
 
   const createTicket = {
     access_token: data.access_token,
+    contactReason: data.contactReason,
+    priorityLevel: data.priorityLevel,
+    fullName: data.fullName,
+    phoneNumber: data.phoneNumber,
+    subject: data.subject,
+    description: data.description,
   };
 
   const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
@@ -524,14 +530,21 @@ const freshDeskCreateTicket = async (db, data) => {
   );
 
   const body = {
-    description: 'oneTouch Test Support Ticket...',
-    subject: 'oneTouch Support Needed...',
+    description: createTicket.description,
+    subject: createTicket.subject,
     email: `${authToken.email}`,
-    priority: 1,
+    priority: createTicket.priorityLevel,
     status: 2,
-    cc_emails: [`${authToken.email}`, 'user@cc.com'],
+    cc_emails: [`${authToken.email}`],
     tags: [`oneTouch Portal`],
+    custom_fields: {
+      contactReason: data.contactReason,
+      fullName: data.fullName,
+      phoneNumber: data.phoneNumber,
+    },
   };
+  console.log(body);
+
   const headers = {
     Authorization: AUTHORIZATION_KEY,
     'Content-Type': 'application/json',
@@ -542,7 +555,6 @@ const freshDeskCreateTicket = async (db, data) => {
     headers,
     body: JSON.stringify(body),
   };
-  console.log(config);
 
   try {
     const response = await fetch(URL, config);

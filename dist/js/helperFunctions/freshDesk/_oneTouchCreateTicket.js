@@ -15,6 +15,24 @@ async function _oneTouchCreateTicket() {
   const subject = document.getElementById('subject').value;
   const description = document.getElementById('description').value;
 
+  if (contactReason === 'contactReason') {
+    _errorMessage('Please select contact reason', 'warning');
+    return;
+  }
+  if (priorityLevel === 'priorityLevel') {
+    _errorMessage('Please select priority level', 'warning');
+    return;
+  }
+  if (
+    fullName === '' ||
+    phoneNumber === '' ||
+    subject === '' ||
+    description === ''
+  ) {
+    _errorMessage('Please fill in all required fields', 'warning');
+    return;
+  }
+
   const body = {
     access_token,
     contactReason,
