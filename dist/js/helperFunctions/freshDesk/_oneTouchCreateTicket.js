@@ -1,6 +1,7 @@
 import { persistDOMData } from '../../persistDOMData.js';
 import { _errorMessage } from '../_errorMessage.js';
 import { _spinner } from '../_spinner.js';
+import { _freshDeskTicket } from './_freshDeskTicket.js';
 
 async function _oneTouchCreateTicket() {
   console.log('Creating oneTouch Ticket');
@@ -9,7 +10,7 @@ async function _oneTouchCreateTicket() {
   const access_token = await sessionStorage.getItem('access_token');
 
   const contactReason = document.getElementById('contactReason').value;
-  const priorityLevel = document.getElementById('priorityLevel').value;
+  const priority = document.getElementById('priority').value;
   const fullName = document.getElementById('fullName').value;
   const phoneNumber = document.getElementById('phoneNumber').value;
   const subject = document.getElementById('subject').value;
@@ -19,7 +20,7 @@ async function _oneTouchCreateTicket() {
     _errorMessage('Please select contact reason', 'warning');
     return;
   }
-  if (priorityLevel === 'priorityLevel') {
+  if (priority === 'priority') {
     _errorMessage('Please select priority level', 'warning');
     return;
   }
@@ -35,12 +36,12 @@ async function _oneTouchCreateTicket() {
 
   const body = {
     access_token,
+    description,
+    subject,
+    priority,
     contactReason,
-    priorityLevel,
     fullName,
     phoneNumber,
-    subject,
-    description,
   };
   console.log(body);
 
@@ -56,6 +57,10 @@ async function _oneTouchCreateTicket() {
     if (!response.ok) throw new Error(data.msg);
     console.log(data);
 
+    clearFormData();
+    _freshDeskTicket();
+    const endPoint = location.href.split('/').slice(-1)[0];
+    persistDOMData(endPoint);
     _spinner(false);
   } catch (err) {
     console.log(err);
@@ -63,5 +68,14 @@ async function _oneTouchCreateTicket() {
     _errorMessage(err);
   }
 }
+
+const clearFormData = () => {
+  document.getElementById('contactReason').value = 'contactReason';
+  document.getElementById('priority').value = 'priority';
+  document.getElementById('fullName').value = '';
+  document.getElementById('phoneNumber').value = '';
+  document.getElementById('subject').value = '';
+  document.getElementById('description').value = '';
+};
 
 export { _oneTouchCreateTicket };

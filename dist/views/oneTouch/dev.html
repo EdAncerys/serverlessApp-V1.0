@@ -86,31 +86,29 @@
 
   async function freshDeskCreateTicket() {
     const PATH = `api/v2/tickets`;
-    const FD_API_KEY = 'jlPINkcvQ7DRkb6N9tZ';
-    const FD_ENDPOINT = 'ndgtechnologylimited';
-    // const URL = `https://${FD_ENDPOINT}.freshdesk.com/${PATH}`;
+    const FD_API_KEY = '0Q7mpFm5PkYeEbpKhag';
+    const FD_ENDPOINT = 'ndg';
+    const URL = `https://${FD_ENDPOINT}.freshdesk.com/${PATH}`;
     const ENCODING_METHOD = 'base64';
-    const AUTHORIZATION_KEY = 'Basic amxQSU5rY3ZRN0RSa2I2Tjl0WjpY';
+    const AUTHORIZATION_KEY = 'Basic MFE3bXBGbTVQa1llRWJwS2hhZzpY';
 
-    const URL = '/oneTouch/tickets/oneTouchCreateTicket';
     const access_token = await sessionStorage.getItem('access_token');
 
     console.log(FD_API_KEY, FD_ENDPOINT);
+    
     const headers = {
       Authorization: AUTHORIZATION_KEY,
       'Content-Type': 'application/json',
     };
-    console.log(headers);
 
     const body = {
-      access_token,
-      // description: 'oneTouch Test Support Ticket...',
-      // subject: 'oneTouch Support Needed...',
-      // email: `ed.ancerys@ndg-technology.com`,
-      // priority: 1,
-      // status: 2,
-      // cc_emails: [`ed.ancerys@ndg-technology.com`, 'user@cc.com'],
-      // tags: [`oneTouch Portal`],
+      description: 'oneTouch Test Support Ticket...',
+      subject: 'oneTouch Support Needed...',
+      email: `ed.ancerys@ndg-technology.com`,
+      priority: 1,
+      status: 2,
+      cc_emails: [`ed.ancerys@ndg-technology.com`, 'user@cc.com'],
+      tags: [`oneTouch Portal`],
     };
 
     const config = {

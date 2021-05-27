@@ -32,7 +32,7 @@ async function _freshDeskTicket(id) {
     let closedTickets = 0;
 
     if (oneTouchTickets) totalTickets = oneTouchTickets.length;
-    if (oneTouchTickets)
+    if (oneTouchTickets && !!oneTouchTickets.length)
       oneTouchTickets.map((ticket) => {
         let status = ticket.status;
         if (status === 2) openTickets += 1;

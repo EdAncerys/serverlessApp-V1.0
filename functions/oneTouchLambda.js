@@ -506,12 +506,12 @@ const freshDeskCreateTicket = async (db, data) => {
 
   const createTicket = {
     access_token: data.access_token,
+    description: data.description,
+    subject: data.subject,
+    priority: data.priority,
     contactReason: data.contactReason,
-    priorityLevel: data.priorityLevel,
     fullName: data.fullName,
     phoneNumber: data.phoneNumber,
-    subject: data.subject,
-    description: data.description,
   };
 
   const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
@@ -529,33 +529,48 @@ const freshDeskCreateTicket = async (db, data) => {
     }
   );
 
-  const body = {
-    description: createTicket.description,
-    subject: createTicket.subject,
-    email: `${authToken.email}`,
-    priority: createTicket.priorityLevel,
-    status: 2,
-    cc_emails: [`${authToken.email}`],
-    tags: [`oneTouch Portal`],
-    custom_fields: {
-      contactReason: data.contactReason,
-      fullName: data.fullName,
-      phoneNumber: data.phoneNumber,
-    },
-  };
-  console.log(body);
+  // const json = `{ "description": ${description},
+  //                 "subject": ${subject},
+  //                 "email": ${email},
+  //                 "priority": ${priority},
+  //                 "status": 2,
+  //                 "tags": ${tags},
+  //                 "cc_emails": [${email}, "user@cc.com"] }`;
 
   const headers = {
     Authorization: AUTHORIZATION_KEY,
     'Content-Type': 'application/json',
   };
 
-  const config = {
-    method: 'POST',
-    headers,
-    body: JSON.stringify(body),
+  const customData = {
+    contactReason: data.contactReason,
+    fullName: data.fullName,
+    phoneNumber: data.phoneNumber,
   };
 
+  let description = JSON.stringify(createTicket.description);
+  let subject = JSON.stringify(createTicket.subject);
+  let email = JSON.stringify(authToken.email);
+  let cc_emails = JSON.stringify([authToken.email, 'user@cc.com']);
+  let priority = createTicket.priority;
+  let tags = JSON.stringify(['oneTouch Portal']);
+  let custom_fields = JSON.stringify(customData);
+
+  const json = `{ "description": ${description}, 
+                  "subject": ${subject},  
+                  "email": ${email},  
+                  "priority": ${priority},  
+                  "status": 2, 
+                  "tags": ${tags},
+                  "cc_emails": ${cc_emails} 
+                }`;
+
+  const config = {
+    method: 'POST',
+    body: json,
+    headers,
+  };
+  console.log(config);
   try {
     const response = await fetch(URL, config);
     if (!response.ok) throw new Error(response.statusText);
