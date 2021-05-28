@@ -529,14 +529,6 @@ const freshDeskCreateTicket = async (db, data) => {
     }
   );
 
-  // const json = `{ "description": ${description},
-  //                 "subject": ${subject},
-  //                 "email": ${email},
-  //                 "priority": ${priority},
-  //                 "status": 2,
-  //                 "tags": ${tags},
-  //                 "cc_emails": [${email}, "user@cc.com"] }`;
-
   const headers = {
     Authorization: AUTHORIZATION_KEY,
     'Content-Type': 'application/json',
@@ -590,6 +582,90 @@ const freshDeskCreateTicket = async (db, data) => {
     };
   } catch (error) {
     const msg = `Failed to Create Ticket for User: ` + authToken.email;
+    console.log(msg);
+    console.log(error);
+
+    return {
+      statusCode: 402,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ msg, error }),
+    };
+  }
+};
+const freshDeskReplyToTicket = async (db, data) => {
+  const createTicket = {
+    access_token: data.access_token,
+    description: data.description,
+    id: data.id,
+  };
+
+  const PATH = `api/v2/tickets/${createTicket.id}/reply`;
+  const FD_API_KEY = process.env.FD_API_KEY;
+  const FD_ENDPOINT = process.env.FD_ENDPOINT;
+  const URL = `https://${FD_ENDPOINT}.freshdesk.com/${PATH}`;
+  const ENCODING_METHOD = 'base64';
+  const AUTHORIZATION_KEY =
+    'Basic ' +
+    new Buffer.from(FD_API_KEY + ':' + 'X').toString(ENCODING_METHOD);
+
+  const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
+  const authToken = await jwt.verify(
+    createTicket.access_token,
+    ACCESS_TOKEN_SECRET,
+    (error, authData) => {
+      if (error) {
+        console.log(error);
+        return false;
+      } else {
+        console.log(authData);
+        return authData;
+      }
+    }
+  );
+
+  const headers = {
+    Authorization: AUTHORIZATION_KEY,
+    'Content-Type': 'application/json',
+  };
+
+  let description = JSON.stringify(createTicket.description);
+  let email = JSON.stringify(authToken.email);
+  let cc_emails = JSON.stringify([authToken.email, 'user@cc.com']);
+
+  const json = `{ "description": ${description}, 
+                  "email": ${email},  
+                  "status": 2, 
+                  "cc_emails": ${cc_emails} 
+                }`;
+
+  const config = {
+    method: 'POST',
+    body: json,
+    headers,
+  };
+  console.log(config);
+
+  try {
+    const response = await fetch(URL, config);
+    if (!response.ok) throw new Error(response.statusText);
+
+    const data = await response.json();
+    console.log(data);
+
+    const msg = `Successfully Replied To a Ticket User: ` + authToken.email;
+    console.log(msg);
+
+    return {
+      statusCode: 201,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ data, msg }),
+    };
+  } catch (error) {
+    const msg = `Failed to Reply To a Ticket for User: ` + authToken.email;
     console.log(msg);
     console.log(error);
 
