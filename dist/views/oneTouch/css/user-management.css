@@ -8,21 +8,30 @@
   border-radius: 4px;
   padding: 5px;
   max-height: 55vh;
+  max-width: 590px;
   min-height: 30px;
   overflow: auto;
 }
 .dataWrapper {
   display: grid;
 }
+.ticketRowComponent-2,
 .rowComponent-1,
+.rowComponent-2,
 .rowComponent-3,
 .rowComponent-4 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   margin: 5px 0;
 }
+.ticketRowComponent-2 {
+  grid-template-columns: 3fr 1fr;
+}
 .rowComponent-1 {
   grid-template-columns: 1fr;
+}
+.rowComponent-2 {
+  grid-template-columns: 1fr 1fr;
 }
 .rowComponent-3 {
   grid-template-columns: 1fr 1fr 1fr;
@@ -41,6 +50,7 @@
 .bottomDataRow {
   font-size: 10px;
   color: #8c8c8c;
+  overflow: auto;
 }
 .userRowNAU {
   display: grid;

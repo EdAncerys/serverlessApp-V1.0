@@ -25,6 +25,7 @@
 }
 /* Banner component  */
 .features,
+.features-no-margin,
 .features-align-left,
 .features-flex-wrap {
   width: 100%;
@@ -33,6 +34,10 @@
   margin: 20px 0;
   padding: 10px 0;
   justify-content: space-evenly;
+}
+.features-no-margin {
+  margin: 0;
+  padding: 0;
 }
 .features-flex-wrap {
   flex-wrap: wrap;

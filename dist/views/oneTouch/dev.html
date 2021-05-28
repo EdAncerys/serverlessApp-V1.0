@@ -29,144 +29,41 @@
         <div style="width: min(95vw, 1000px); background: #f4f4f4">
           <!-- page content -->
 
-          <!-- <div class="outer">
-            <inner class="inner">
-              <btnLabel>Back</btnLabel>
-            </inner>
-          </div> -->
-
-          <div class="features">
-            <div class="flex-container-100">
-              <div class="outer">
-                <inner class="inner">
-                  <btnLabel>Back</btnLabel>
-                </inner>
-              </div>
+          <div class="oneTouchFormContainer bgGradientSilver">
+            <div class="alignHorizontally fontH3">Open Tickets Overview</div>
+            <div class="fontH2">
+              Manage and overview tickets - anytime, anywhere
             </div>
-          </div>
-          <div class="features">
-            <div class="flex-container-50">
-              <div class="oneTouchFormContainer">
-                <div class="fontH3">Company Information</div>
-                <div class="dataSummaryContainer textSilver fontH2">
-                  <div class="dataRowSummaryContainer justifyText">
-                    <div class="rowDisplayStart">Company Name</div>
-                    <div class="rowDisplayEnd">
-                      ${ customerInfo.companyName }
-                    </div>
-                  </div>
-                  <div class="dataRowSummaryContainer justifyText">
-                    <div class="rowDisplayStart">Product Type</div>
-                    <div class="rowDisplayEnd">
-                      ${ customerInfo.productType }
-                    </div>
-                  </div>
-
-                  <div class="dataRowSummaryContainer justifyText">
-                    <div class="rowDisplayStart">Company Email</div>
-                    <div class="rowDisplayEnd">
-                      ${ customerInfo.companyEmail }
-                    </div>
-                  </div>
-                  <div class="dataRowSummaryContainer justifyText">
-                    <div class="rowDisplayStart">Company Phone Number</div>
-                    <div class="rowDisplayEnd">
-                      ${ customerInfo.companyPhoneNumber }
-                    </div>
-                  </div>
-
-                  <div class="dataRowSummaryContainer justifyText">
-                    <div class="rowDisplayStart">Account Manager</div>
-                    <div class="rowDisplayEnd">
-                      ${ customerInfo.accountManager }
-                    </div>
-                  </div>
-                  <div class="dataRowSummaryContainer justifyText">
-                    <div class="rowDisplayStart">Company Registration</div>
-                    <div class="rowDisplayEnd">
-                      ${ customerInfo.companyRegistration }
-                    </div>
-                  </div>
-                </div>
+            <div class="dataSummaryContainer textSilver fontH2">
+              <div class="dataRowSummaryContainer justifyText">
+                <div class="rowDisplayStart">Total Tickets</div>
               </div>
-            </div>
-
-            <div class="flex-container-50">
-              <div class="oneTouchFormContainer">
-                <div class="fontH3">Customer Information</div>
-                <div class="dataSummaryContainer textSilver fontH2">
-                  <div class="dataRowSummaryContainer justifyText">
-                    <div class="rowDisplayStart">Full Name</div>
-                    <div class="rowDisplayEnd">
-                      ${ customerInfo.customerFullName }
-                    </div>
-                  </div>
-                  <div class="dataRowSummaryContainer justifyText">
-                    <div class="rowDisplayStart">Phone Number</div>
-                    <div class="rowDisplayEnd">
-                      ${ customerInfo.customerPhoneNumber }
-                    </div>
-                  </div>
-
-                  <div class="dataRowSummaryContainer justifyText">
-                    <div class="rowDisplayStart">Customer Email</div>
-                    <div class="rowDisplayEnd">
-                      ${ customerInfo.customerEmail }
-                    </div>
-                  </div>
-                  <div class="dataRowSummaryContainer justifyText">
-                    <div class="rowDisplayStart">
-                      Personal Notes: <br />
-                      ${customerInfo.customerNotes}
-                    </div>
-                  </div>
-                </div>
+              <div class="dataRowSummaryContainer justifyText bgSTOP">
+                <div class="rowDisplayStart">Waiting on Response</div>
+                <div class="rowDisplayEnd">0</div>
+              </div>
+              <div class="dataRowSummaryContainer justifyText bgGO">
+                <div class="rowDisplayStart">Resolved Tickets</div>
+                <div class="rowDisplayEnd">0</div>
               </div>
             </div>
           </div>
 
-          <div class="features">
-            <div class="flex-container-50">
-              <div class="oneTouchFormContainer">
-                <div class="fontH3">Site Installation Details</div>
-                <div class="dataSummaryContainer textSilver fontH2">
-                  <div class="dataRowSummaryContainer justifyText">
-                    <div class="rowDisplayStart">Contact Name</div>
-                    <div class="rowDisplayEnd">
-                      ${ customerInfo.contactName }
-                    </div>
-                  </div>
-                  <div class="dataRowSummaryContainer justifyText">
-                    <div class="rowDisplayStart">Contact Phone Number</div>
-                    <div class="rowDisplayEnd">
-                      ${ customerInfo.contactPhoneNumber }
-                    </div>
-                  </div>
+          <div id="container"></div>
 
-                  <div class="dataRowSummaryContainer justifyText">
-                    <div class="rowDisplayStart">Contact Email</div>
-                    <div class="rowDisplayEnd">
-                      ${ customerInfo.contactEmail }
-                    </div>
-                  </div>
-                  <div class="dataRowSummaryContainer justifyText">
-                    <div class="rowDisplayStart">
-                      Installation Address: <br />
-                      ${thoroughfare_number} ${premises_name} ${sub_premises}
-                      ${thoroughfare_name} ${county} ${postcode}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="flex-container-50">
-              <div class="oneTouchFormContainer">
-                <div class="fontH3">Extra Metrics</div>
-                <div class="dataSummaryContainer textSilver fontH2">
-                  <div class="dataRowSummaryContainer justifyText">
-                    <div class="rowDisplayStart">Extra Metrics</div>
-                    <div class="rowDisplayEnd">${'extra metrics'}</div>
+          <div style="position: absolute; bottom: 0">
+            <div class="features">
+              <div class="flex-container-30">
+                <div class="oneTouchFormContainer bgGradientSilver">
+                  <div class="dataSummaryContainer textSilver">
+                    <fetchAllTickets class="btnOneTouch"
+                      >Fetch All Tickets</fetchAllTickets
+                    >
+                    <fetchByID class="btnOneTouch">Fetch By ID</fetchByID>
+                    <input type="text" id="id" placeholder="ID" />
+                    <freshDeskCreateTicket class="btnOneTouch"
+                      >Create Ticket</freshDeskCreateTicket
+                    >
                   </div>
                 </div>
               </div>
@@ -187,16 +84,196 @@
     return;
   };
 
+  async function freshDeskCreateTicket() {
+    const PATH = `api/v2/tickets/32/reply`;
+    const FD_API_KEY = '0Q7mpFm5PkYeEbpKhag';
+    const FD_ENDPOINT = 'ndg';
+    const URL = `https://${FD_ENDPOINT}.freshdesk.com/${PATH}`;
+    const ENCODING_METHOD = 'base64';
+    const AUTHORIZATION_KEY = 'Basic MFE3bXBGbTVQa1llRWJwS2hhZzpY';
+
+    const access_token = await sessionStorage.getItem('access_token');
+
+    console.log(FD_API_KEY, FD_ENDPOINT);
+
+    const headers = {
+      Authorization: AUTHORIZATION_KEY,
+      'Content-Type': 'application/json',
+    };
+
+    const body = {
+      body: 'We are working on this issue. Will keep you posted.',
+      requester_id: 80022139290,
+    };
+
+    const config = {
+      method: 'POST',
+      body: JSON.stringify(body),
+      headers,
+    };
+
+    try {
+      const response = await fetch(URL, config);
+      console.log(response);
+      if (!response.ok) throw new Error(response.statusText);
+
+      const data = await response.json();
+      console.log(data);
+      console.log(data.tags);
+
+      const ticketData = data.description;
+      const container = document.querySelector('#container');
+      container.innerHTML = ticketData;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async function _allFreshDeskTickets() {
+    console.log('Fetching All User Tickets...');
+
+    const URL = '/oneTouch/tickets/allFreshDeskTickets';
+    const access_token = sessionStorage.getItem('access_token');
+
+    const body = {
+      access_token,
+    };
+    console.log(body);
+    const config = {
+      method: 'POST',
+      body: JSON.stringify(body),
+    };
+
+    try {
+      const response = await fetch(URL, config);
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.msg);
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async function freshDeskTickets() {
+    const PATH = 'api/v2/tickets';
+    const FD_API_KEY = '0Q7mpFm5PkYeEbpKhag';
+    const FD_ENDPOINT = 'ndg';
+    const URL = `https://${FD_ENDPOINT}.freshdesk.com/${PATH}`;
+    const ENCODING_METHOD = 'base64';
+    const AUTHORIZATION_KEY = 'Basic MFE3bXBGbTVQa1llRWJwS2hhZzpY';
+
+    console.log(FD_API_KEY, FD_ENDPOINT);
+    const headers = {
+      Authorization: AUTHORIZATION_KEY,
+      'Content-Type': 'application/json',
+    };
+    console.log(headers);
+
+    const config = {
+      headers,
+    };
+
+    try {
+      const response = await fetch(URL, config);
+      const data = await response.json();
+      if (!response.ok) throw new Error(response.statusText);
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async function freshDeskFindByID(id) {
+    let ID = id;
+
+    const PATH = `api/v2/tickets/${ID}`;
+    const FD_API_KEY = 'jlPINkcvQ7DRkb6N9tZ';
+    const FD_ENDPOINT = 'ndgtechnologylimited';
+    const URL = `https://${FD_ENDPOINT}.freshdesk.com/${PATH}`;
+    const ENCODING_METHOD = 'base64';
+    const AUTHORIZATION_KEY = 'Basic amxQSU5rY3ZRN0RSa2I2Tjl0WjpY';
+
+    console.log('Fetching ticket with ID ' + id);
+    const headers = {
+      Authorization: AUTHORIZATION_KEY,
+      'Content-Type': 'application/json',
+    };
+    console.log(headers);
+
+    const config = {
+      headers,
+    };
+
+    try {
+      const response = await fetch(URL, config);
+      const data = await response.json();
+      if (!response.ok) throw new Error(response.statusText);
+      console.log(data);
+      console.log(data.tags);
+
+      const ticketData = data.description;
+      const container = document.querySelector('#container');
+      container.innerHTML = ticketData;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async function freshDeskFindByEmail() {
+    const email = 350;
+    const query = `(cf_sector:%27finance%27%20OR%20cf_sector:%27marketing%27)%20AND%20cf_locked:true`;
+
+    const PATH = `api/v2/tickets?query="${query}"`;
+    const FD_API_KEY = 'jlPINkcvQ7DRkb6N9tZ';
+    const FD_ENDPOINT = 'ndgtechnologylimited';
+    const URL = `https://${FD_ENDPOINT}.freshdesk.com/${PATH}`;
+    const ENCODING_METHOD = 'base64';
+    const AUTHORIZATION_KEY = 'Basic amxQSU5rY3ZRN0RSa2I2Tjl0WjpY';
+
+    console.log(FD_API_KEY, FD_ENDPOINT);
+    const headers = {
+      Authorization: AUTHORIZATION_KEY,
+      'Content-Type': 'application/json',
+    };
+    console.log(headers);
+
+    const config = {
+      headers,
+    };
+
+    try {
+      const response = await fetch(URL, config);
+      const data = await response.json();
+      if (!response.ok) throw new Error(response.statusText);
+      console.log(data);
+
+      const ticketData = data.description;
+      const container = document.querySelector('#container');
+      container.innerHTML = ticketData;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   document.querySelector('body').addEventListener('click', (event) => {
-    const addContract = event.target.nodeName === 'SUBMITFORM';
+    const fetchAllTickets = event.target.nodeName === 'FETCHALLTICKETS';
+    const fetchByID = event.target.nodeName === 'FETCHBYID';
+    const createTicket = event.target.nodeName === 'FRESHDESKCREATETICKET';
 
     // console.log(event.target.getAttribute('id'), event.target.nodeName);
 
     let id;
     if (event.target.getAttribute('id')) id = event.target.getAttribute('id');
 
-    if (addContract) {
-      customFunction(event);
+    if (fetchAllTickets) {
+      freshDeskTickets(event);
+    }
+    if (fetchByID) {
+      const id = document.querySelector('#id').value;
+      freshDeskFindByID(id);
+    }
+    if (createTicket) {
+      freshDeskCreateTicket(event);
     }
   });
 </script>

@@ -2,6 +2,7 @@ import { persistDOMData } from './persistDOMData.js';
 
 import { _errorMessage } from './helperFunctions/_errorMessage.js';
 import { _spinner } from './helperFunctions/_spinner.js';
+import { _searchBox } from './helperFunctions/_searchBox.js';
 
 import { _orderPostcodeValidation } from './helperFunctions/icukBroadband/_orderPostcodeValidation.js';
 import { _placeBroadbandOrder } from './helperFunctions/icukBroadband/_placeBroadbandOrder.js';
@@ -173,24 +174,5 @@ document.querySelector('body').addEventListener('change', (event) => {
 });
 
 document.querySelector('body').addEventListener('keyup', (event) => {
-  const searchBox = document.querySelector('#searchBox');
-  const keyword = searchBox.value.toLowerCase();
-  console.log(`Search keyword: ` + keyword);
-  const searchRowComponent = document.querySelectorAll('searchRowComponent');
-
-  searchRowComponent.forEach((row) => {
-    let matchFound;
-
-    const search = row.getElementsByTagName('search');
-    Array.prototype.map.call(search, (list) => {
-      const nodeText = list.innerHTML.toLowerCase();
-      if (nodeText.includes(keyword)) matchFound = true;
-    });
-
-    if (matchFound) {
-      row.style.display = 'block';
-    } else {
-      row.style.display = 'none';
-    }
-  });
+  _searchBox()
 });

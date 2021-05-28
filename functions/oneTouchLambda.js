@@ -425,11 +425,22 @@ const deleteOrder = async (db, data) => {
   }
 };
 // oneTouch freshDesk
-const allFreshDeskTickets = async (db, data) => {
-  let PATH = 'api/v2/tickets';
+const freshDeskTicket = async (db, data) => {
+  console.log(data);
+  const ticketData = {
+    id: data.id,
+  };
+
+  let PATH = `api/v2/tickets`;
+  let CONVERSATION_PATH = ``;
+  if (ticketData.id) {
+    PATH = `api/v2/tickets/${ticketData.id}`;
+    CONVERSATION_PATH = `api/v2/tickets/${ticketData.id}/conversations`;
+  }
   const FD_API_KEY = process.env.FD_API_KEY;
   const FD_ENDPOINT = process.env.FD_ENDPOINT;
   const URL = `https://${FD_ENDPOINT}.freshdesk.com/${PATH}`;
+  const CONVERSATION_URL = `https://${FD_ENDPOINT}.freshdesk.com/${CONVERSATION_PATH}`;
   const ENCODING_METHOD = 'base64';
   const AUTHORIZATION_KEY =
     'Basic ' +
@@ -449,9 +460,15 @@ const allFreshDeskTickets = async (db, data) => {
   try {
     const response = await fetch(URL, config);
     if (!response.ok) throw new Error(response.statusText);
-
+    console.log(response);
     const data = await response.json();
-    console.log(data);
+
+    let conversation_data = [];
+    if (ticketData.id) {
+      const conversation_response = await fetch(CONVERSATION_URL, config);
+      if (!conversation_response.ok) throw new Error(response.statusText);
+      conversation_data = await conversation_response.json();
+    }
 
     const msg = `Successfully Fetched All Fresh Desk Tickets`;
     console.log(msg);
@@ -461,7 +478,7 @@ const allFreshDeskTickets = async (db, data) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ data, msg }),
+      body: JSON.stringify({ data, conversation_data, msg }),
     };
   } catch (error) {
     const msg = `Failed to Fetch Fresh Desk Tickets`;
@@ -477,8 +494,8 @@ const allFreshDeskTickets = async (db, data) => {
     };
   }
 };
-const oneTouchCreateTicket = async (db, data) => {
-  let PATH = 'api/v2/tickets';
+const freshDeskCreateTicket = async (db, data) => {
+  const PATH = 'api/v2/tickets';
   const FD_API_KEY = process.env.FD_API_KEY;
   const FD_ENDPOINT = process.env.FD_ENDPOINT;
   const URL = `https://${FD_ENDPOINT}.freshdesk.com/${PATH}`;
@@ -489,8 +506,14 @@ const oneTouchCreateTicket = async (db, data) => {
 
   const createTicket = {
     access_token: data.access_token,
+    description: data.description,
+    subject: data.subject,
+    priority: data.priority,
+    contactReason: data.contactReason,
+    fullName: data.fullName,
+    phoneNumber: data.phoneNumber,
   };
-  console.log(createTicket);
+
   const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
   const authToken = await jwt.verify(
     createTicket.access_token,
@@ -506,35 +529,42 @@ const oneTouchCreateTicket = async (db, data) => {
     }
   );
 
-  const body = {
-    description: 'oneTouch Test Support Ticket...',
-    subject: 'oneTouch Support Needed...',
-    email: `${authToken.email}`,
-    priority: 1,
-    status: 2,
-    cc_emails: `${authToken.email}`,
-  };
   const headers = {
     Authorization: AUTHORIZATION_KEY,
     'Content-Type': 'application/json',
   };
 
-  const config = {
-    method: 'POST',
-    headers,
-    body: JSON.stringify(body),
+  const customData = {
+    contactReason: data.contactReason,
+    fullName: data.fullName,
+    phoneNumber: data.phoneNumber,
   };
 
+  let description = JSON.stringify(createTicket.description);
+  let subject = JSON.stringify(createTicket.subject);
+  let email = JSON.stringify(authToken.email);
+  let cc_emails = JSON.stringify([authToken.email, 'user@cc.com']);
+  let priority = createTicket.priority;
+  let tags = JSON.stringify(['oneTouch Portal']);
+  let custom_fields = JSON.stringify(customData);
+
+  const json = `{ "description": ${description}, 
+                  "subject": ${subject},  
+                  "email": ${email},  
+                  "priority": ${priority},  
+                  "status": 2, 
+                  "tags": ${tags},
+                  "cc_emails": ${cc_emails} 
+                }`;
+
+  const config = {
+    method: 'POST',
+    body: json,
+    headers,
+  };
+  console.log(config);
   try {
-    // const response = await fetch(URL, config);
-    const response = await fetch(URL, {
-      body,
-      headers: {
-        Authorization: AUTHORIZATION_KEY,
-        'Content-Type': 'application/json',
-      },
-      method: 'POST',
-    });
+    const response = await fetch(URL, config);
     if (!response.ok) throw new Error(response.statusText);
 
     const data = await response.json();
@@ -552,6 +582,92 @@ const oneTouchCreateTicket = async (db, data) => {
     };
   } catch (error) {
     const msg = `Failed to Create Ticket for User: ` + authToken.email;
+    console.log(msg);
+    console.log(error);
+
+    return {
+      statusCode: 402,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ msg, error }),
+    };
+  }
+};
+const freshDeskReplyToTicket = async (db, data) => {
+  const createTicket = {
+    access_token: data.access_token,
+    description: data.descriptionResponse,
+    id: data.id,
+  };
+
+  const PATH = `api/v2/tickets/${createTicket.id}/reply`;
+  const FD_API_KEY = process.env.FD_API_KEY;
+  const FD_ENDPOINT = process.env.FD_ENDPOINT;
+  const URL = `https://${FD_ENDPOINT}.freshdesk.com/${PATH}`;
+  const ENCODING_METHOD = 'base64';
+  const AUTHORIZATION_KEY =
+    'Basic ' +
+    new Buffer.from(FD_API_KEY + ':' + 'X').toString(ENCODING_METHOD);
+
+  const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
+  const authToken = await jwt.verify(
+    createTicket.access_token,
+    ACCESS_TOKEN_SECRET,
+    (error, authData) => {
+      if (error) {
+        console.log(error);
+        return false;
+      } else {
+        console.log(authData);
+        return authData;
+      }
+    }
+  );
+
+  const headers = {
+    Authorization: AUTHORIZATION_KEY,
+    'Content-Type': 'application/json',
+  };
+
+  let description = JSON.stringify(createTicket.description);
+  let email = JSON.stringify(authToken.email);
+  let cc_emails = JSON.stringify([authToken.email, 'user@cc.com']);
+
+  // const json = `{ "description": ${description},
+  //                 "email": ${email},
+  //                 "status": 2,
+  //                 "cc_emails": ${cc_emails}
+  //               }`;
+
+  const json = `{ "description": ${description} }`;
+
+  const config = {
+    method: 'POST',
+    body: json,
+    headers,
+  };
+  console.log(config);
+
+  try {
+    const response = await fetch(URL, config);
+    if (!response.ok) throw new Error(response.statusText);
+
+    const data = await response.json();
+    console.log(data);
+
+    const msg = `Successfully Replied To a Ticket User: ` + authToken.email;
+    console.log(msg);
+
+    return {
+      statusCode: 201,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ data, msg }),
+    };
+  } catch (error) {
+    const msg = `Failed to Reply To a Ticket for User: ` + authToken.email;
     console.log(msg);
     console.log(error);
 
@@ -1316,6 +1432,17 @@ const oneTouchPortalHTML = [
 module.exports.handler = async (event, context, callback) => {
   context.callbackWaitsForEmptyEventLoop = false;
 
+  if (event.httpMethod === 'GET') {
+    console.log(`Redirect - JWT not attached`);
+    console.log(path);
+    return {
+      statusCode: 301,
+      headers: {
+        Location: '/views/oneTouch/index.html',
+      },
+    };
+  }
+
   const db = await connectToDatabase(MONGODB_URI);
   const path = event.path;
   if (event.httpMethod) console.log(path);
@@ -1355,10 +1482,12 @@ module.exports.handler = async (event, context, callback) => {
     case '/oneTouch/orders/deleteOrder':
       return deleteOrder(db, body);
     // oneTouch freshDesk endPoints
-    case '/oneTouch/tickets/allFreshDeskTickets':
-      return allFreshDeskTickets(db, body);
-    case '/oneTouch/tickets/oneTouchCreateTicket':
-      return oneTouchCreateTicket(db, body);
+    case '/oneTouch/tickets/freshDeskTicket':
+      return freshDeskTicket(db, body);
+    case '/oneTouch/tickets/freshDeskCreateTicket':
+      return freshDeskCreateTicket(db, body);
+    case '/oneTouch/tickets/freshDeskReplyToTicket':
+      return freshDeskReplyToTicket(db, body);
     // oneTouch customer endPoints
     case '/oneTouch/customer/addCustomer':
       return addCustomer(db, body);

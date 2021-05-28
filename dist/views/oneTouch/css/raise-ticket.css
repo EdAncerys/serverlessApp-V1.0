@@ -1,6 +1,12 @@
 .formContentContainer {
   width: min(95vw, 1000px);
 }
+btnTicketComponent {
+  cursor: pointer;
+}
+btnTicketComponent > * {
+  pointer-events: none;
+}
 .oneTouchFormContainer {
   -webkit-box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
   box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
@@ -15,10 +21,14 @@
   content: ' ';
   padding-top: 5px;
 }
-.dataSummaryContainer {
+.dataSummaryContainer,
+.ticketSummaryContainer {
   display: grid;
   gap: 5px;
   margin: 20px 0;
+}
+.ticketSummaryContainer {
+  margin: 5px 0;
 }
 .dataRowSummaryContainer {
   display: grid;
@@ -59,6 +69,7 @@
   background-image: url(../images/raise.png);
   background-size: contain;
 }
+
 /* Media Queries */
 @media only screen and (max-width: 800px) {
   .ndgLogoBanner {

@@ -30,28 +30,7 @@
         <div class="formContentContainer">
           <div class="features">
             <div class="flex-container-30">
-              <div class="oneTouchFormContainer bgGradientSilver">
-                <div class="alignHorizontally fontH3">
-                  Open Tickets Overview
-                </div>
-                <div class="fontH2">
-                  Manage and overview tickets - anytime, anywhere
-                </div>
-                <div class="dataSummaryContainer textSilver fontH2">
-                  <div class="dataRowSummaryContainer justifyText">
-                    <div class="rowDisplayStart">Total Tickets</div>
-                    <div class="rowDisplayEnd">0</div>
-                  </div>
-                  <div class="dataRowSummaryContainer justifyText bgSTOP">
-                    <div class="rowDisplayStart">Waiting on Response</div>
-                    <div class="rowDisplayEnd">0</div>
-                  </div>
-                  <div class="dataRowSummaryContainer justifyText bgGO">
-                    <div class="rowDisplayStart">Resolved Tickets</div>
-                    <div class="rowDisplayEnd">0</div>
-                  </div>
-                </div>
-              </div>
+              <div id="oneTouchTicketOverview"></div>
 
               <div class="ndgLogoBanner flex-container-30">
                 <div class="fontH2">
@@ -65,73 +44,75 @@
             </div>
 
             <div class="flex-container-60">
-              <div class="oneTouchFormContainer">
-                <div id="oneTouchIconContainer">
-                  <div class="oneTouchIcon"></div>
-                </div>
+              <div id="oneTouchTicketContainer">
+                <div id="oneTouchFormContainer" class="oneTouchFormContainer">
+                  <div id="oneTouchIconContainer">
+                    <div class="oneTouchIcon"></div>
+                  </div>
 
-                <form action="/">
-                  <label for="contactReason">Reason For Contacting</label>
-                  <select id="contactReason" name="contactReason">
-                    <option selected disabled hidden value="contactReason">
-                      Please Choose Your Reason
-                    </option>
-                    <option value="Query">Query</option>
-                    <option value="Faulty">Faulty</option>
-                  </select>
+                  <form action="/">
+                    <label for="contactReason">Reason For Contacting</label>
+                    <select id="contactReason" name="contactReason">
+                      <option selected disabled hidden value="contactReason">
+                        Please Choose Your Reason
+                      </option>
+                      <option value="Query">Query</option>
+                      <option value="Faulty">Faulty</option>
+                    </select>
 
-                  <label for="priorityLevel">Priority Level</label>
-                  <select id="priorityLevel" name="priorityLevel">
-                    <option selected disabled hidden value="priorityLevel">
-                      Please Choose Your Priority
-                    </option>
-                    <option value="1">Low</option>
-                    <option value="2">Medium</option>
-                    <option value="3">High</option>
-                    <option value="4">Urgent</option>
-                  </select>
+                    <label for="priority">Priority Level</label>
+                    <select id="priority" name="priority">
+                      <option selected disabled hidden value="priority">
+                        Please Choose Your Priority
+                      </option>
+                      <option value="1">Low</option>
+                      <option value="2">Medium</option>
+                      <option value="3">High</option>
+                      <option value="4">Urgent</option>
+                    </select>
 
-                  <label for="fullName">Full Name</label>
-                  <input
-                    type="text"
-                    id="fullName"
-                    name="name"
-                    placeholder="Your name..."
-                  />
-
-                  <label for="phoneNumber">Phone Number</label>
-                  <input
-                    type="number"
-                    id="phoneNumber"
-                    name="phoneNumber"
-                    placeholder="Your phone number..."
-                  />
-
-                  <label for="subject">Subject</label>
-                  <input
-                    type="text"
-                    id="subject"
-                    name="subject"
-                    placeholder="List Subject..."
-                  />
-
-                  <label for="description">Description</label>
-                  <textarea
-                    id="description"
-                    name="description"
-                    placeholder="Describe the issue..."
-                    style="height: 200px"
-                  ></textarea>
-
-                  <submitForm>
+                    <label for="fullName">Full Name</label>
                     <input
-                      id="raiseTicket"
-                      class="btnOneTouch"
-                      type="submit"
-                      value="Submit"
+                      type="text"
+                      id="fullName"
+                      name="name"
+                      placeholder="Your name..."
                     />
-                  </submitForm>
-                </form>
+
+                    <label for="phoneNumber">Phone Number</label>
+                    <input
+                      type="number"
+                      id="phoneNumber"
+                      name="phoneNumber"
+                      placeholder="Your phone number..."
+                    />
+
+                    <label for="subject">Subject</label>
+                    <input
+                      type="text"
+                      id="subject"
+                      name="subject"
+                      placeholder="List Subject..."
+                    />
+
+                    <label for="description">Description</label>
+                    <textarea
+                      id="description"
+                      name="description"
+                      placeholder="Describe the issue..."
+                      style="height: 100px"
+                    ></textarea>
+
+                    <submitForm>
+                      <input
+                        id="raiseTicket"
+                        class="btnOneTouch"
+                        type="submit"
+                        value="Submit"
+                      />
+                    </submitForm>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
