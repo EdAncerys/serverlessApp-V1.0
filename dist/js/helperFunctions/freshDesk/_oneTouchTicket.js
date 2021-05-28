@@ -28,22 +28,22 @@ async function _oneTouchTicket(data) {
                       </div>
                     </div>`;
 
-  const conversationResponse = `
-                                <div class="oneTouchFormContainer dataSummaryContainer textSilver fontH2">
-                                  <form>
-                                    <label for="conversationResponse">Reply To Ticket</label>
-                                    <textarea
-                                      type="text"
-                                      name="conversationResponse"
-                                      id="conversationResponse"
-                                      placeholder="Describe the issue..."
-                                      style="height: 100px"
-                                    ></textarea>
-                                  </form>
-                                  <conversationResponse id='${freshDeskTicket.id}' class="btnOneTouch" role="button">
-                                    Replay
-                                  </conversationResponse>
-                                </div>`;
+  const descriptionResponse = `
+                        <div class="oneTouchFormContainer dataSummaryContainer textSilver fontH2">
+                          <form>
+                            <label for="descriptionResponse">Reply To Ticket</label>
+                            <textarea
+                              type="text"
+                              name="descriptionResponse"
+                              id="descriptionResponse"
+                              placeholder="Describe the issue..."
+                              style="height: 100px"
+                            ></textarea>
+                          </form>
+                          <descriptionResponse id='${freshDeskTicket.id}' class="btnOneTouch" role="button">
+                            Replay
+                          </descriptionResponse>
+                        </div>`;
 
   let ticketDataContainer = `
                         <div class="oneTouchFormContainer">
@@ -57,7 +57,7 @@ async function _oneTouchTicket(data) {
                                 ${freshDeskTicket.description}
                               </div>
                               ${conversation}
-                              ${conversationResponse}
+                              ${descriptionResponse}
                             </div>
                           </div>
                         </div>`;

@@ -597,7 +597,7 @@ const freshDeskCreateTicket = async (db, data) => {
 const freshDeskReplyToTicket = async (db, data) => {
   const createTicket = {
     access_token: data.access_token,
-    description: data.description,
+    description: data.descriptionResponse,
     id: data.id,
   };
 
@@ -634,11 +634,13 @@ const freshDeskReplyToTicket = async (db, data) => {
   let email = JSON.stringify(authToken.email);
   let cc_emails = JSON.stringify([authToken.email, 'user@cc.com']);
 
-  const json = `{ "description": ${description}, 
-                  "email": ${email},  
-                  "status": 2, 
-                  "cc_emails": ${cc_emails} 
-                }`;
+  // const json = `{ "description": ${description},
+  //                 "email": ${email},
+  //                 "status": 2,
+  //                 "cc_emails": ${cc_emails}
+  //               }`;
+
+  const json = `{ "description": ${description} }`;
 
   const config = {
     method: 'POST',
@@ -1484,6 +1486,8 @@ module.exports.handler = async (event, context, callback) => {
       return freshDeskTicket(db, body);
     case '/oneTouch/tickets/freshDeskCreateTicket':
       return freshDeskCreateTicket(db, body);
+    case '/oneTouch/tickets/freshDeskReplyToTicket':
+      return freshDeskReplyToTicket(db, body);
     // oneTouch customer endPoints
     case '/oneTouch/customer/addCustomer':
       return addCustomer(db, body);

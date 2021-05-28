@@ -1,6 +1,7 @@
 import { _freshDeskTicket } from './helperFunctions/freshDesk/_freshDeskTicket.js';
 import { _oneTouchAllTickets } from './helperFunctions/freshDesk/_oneTouchAllTickets.js';
 import { _oneTouchCreateTicket } from './helperFunctions/freshDesk/_oneTouchCreateTicket.js';
+import { _oneTouchReplyToTicket } from './helperFunctions/freshDesk/_oneTouchReplyToTicket.js';
 import { _errorMessage } from './helperFunctions/_errorMessage.js';
 import { _searchBox } from './helperFunctions/_searchBox.js';
 import { persistDOMData } from './persistDOMData.js';
@@ -40,6 +41,7 @@ document.querySelector('body').addEventListener('click', (event) => {
   let allTickets;
   if (className) allTickets = className.includes('allTickets');
   const raiseTicket = event.target.getAttribute('id') === 'raiseTicket';
+  const descriptionResponse = event.target.nodeName === 'DESCRIPTIONRESPONSE';
   const goBackBtn =
     event.target.nodeName === 'BTNLABEL' || event.target.nodeName === 'INNER';
   const goBackBtnNo2 =
@@ -75,6 +77,10 @@ document.querySelector('body').addEventListener('click', (event) => {
   }
   if (raiseTicket) {
     _raiseTicket(event);
+  }
+  if (descriptionResponse) {
+    _errorMessage('Coming Soon', 'warning');
+    // _oneTouchReplyToTicket(id);
   }
 });
 
