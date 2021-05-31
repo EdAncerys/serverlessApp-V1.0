@@ -79,8 +79,7 @@ document.querySelector('body').addEventListener('click', (event) => {
     _raiseTicket(event);
   }
   if (descriptionResponse) {
-    _errorMessage('Coming Soon', 'warning');
-    // _oneTouchReplyToTicket(id);
+    _oneTouchReplyToTicket(id);
   }
 });
 

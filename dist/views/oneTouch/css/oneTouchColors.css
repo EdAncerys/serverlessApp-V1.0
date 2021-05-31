@@ -36,6 +36,9 @@
 .bgSTOP {
   background-color: rgb(217, 83, 79, 0.4);
 }
+.textSTOP {
+  color: rgb(217, 83, 79, 0.4);
+}
 .bgGO {
   background-color: rgb(103, 144, 88, 0.4);
 }

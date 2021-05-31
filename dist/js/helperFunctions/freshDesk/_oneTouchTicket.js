@@ -13,6 +13,7 @@ async function _oneTouchTicket(data) {
   conversation_data.map((ticketResponse) => {
     conversation += `
                     <div class="oneTouchFormContainer dataSummaryContainer bgGradientSilver textSilver fontH2">
+                      <div class="fontH2 textSTOP">${ticketResponse.from_email}</div>
                       ${ticketResponse.body}
                     </div>`;
   });

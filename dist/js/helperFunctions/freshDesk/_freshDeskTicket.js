@@ -89,6 +89,8 @@ async function _freshDeskTicket(id) {
     const endPoint = location.href.split('/').slice(-1)[0];
     persistDOMData(endPoint);
     _spinner(false);
+
+    return data;
   } catch (err) {
     console.log(err);
     _spinner(false);
