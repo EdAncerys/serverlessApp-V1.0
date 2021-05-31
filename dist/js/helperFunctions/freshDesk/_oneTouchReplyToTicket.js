@@ -1,6 +1,7 @@
 import { persistDOMData } from '../../persistDOMData.js';
 import { _errorMessage } from '../_errorMessage.js';
 import { _spinner } from '../_spinner.js';
+import { _freshDeskTicket } from './_freshDeskTicket.js';
 import { _oneTouchTicket } from './_oneTouchTicket.js';
 
 async function _oneTouchReplyToTicket(id) {
@@ -9,7 +10,9 @@ async function _oneTouchReplyToTicket(id) {
   const URL = '/oneTouch/tickets/freshDeskReplyToTicket';
   const access_token = await sessionStorage.getItem('access_token');
 
-  const descriptionResponse = document.getElementById('descriptionResponse').value;
+  const descriptionResponse = document.getElementById(
+    'descriptionResponse'
+  ).value;
 
   if (descriptionResponse === '') {
     _errorMessage('Please fill in all required fields', 'warning');
@@ -36,7 +39,9 @@ async function _oneTouchReplyToTicket(id) {
     console.log(data);
 
     clearFormData();
-    _oneTouchTicket();
+    const ticketData = await _freshDeskTicket(id);
+    _oneTouchTicket(ticketData);
+
     const endPoint = location.href.split('/').slice(-1)[0];
     persistDOMData(endPoint);
     _spinner(false);

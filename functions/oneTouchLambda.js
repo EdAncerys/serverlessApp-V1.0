@@ -23,6 +23,12 @@ const COLLECTION_ONE_TOUCH_BROADBAND = 'oneTouchBroadband';
 const COLLECTION_ONE_TOUCH_SUPER_USER = 'oneTouchSuperUser';
 const COLLECTION_ONE_TOUCH_CUSTOMER = 'oneTouchCustomer';
 
+const FD_API_KEY = process.env.FD_API_KEY;
+const FD_ENDPOINT = process.env.FD_ENDPOINT;
+const ENCODING_METHOD = 'base64';
+const AUTHORIZATION_KEY =
+  'Basic ' + new Buffer.from(FD_API_KEY + ':' + 'X').toString(ENCODING_METHOD);
+
 // lambda middleware
 let cachedAuthToken = null;
 const userAuthentication = async (body) => {
@@ -437,16 +443,9 @@ const freshDeskTicket = async (db, data) => {
     PATH = `api/v2/tickets/${ticketData.id}`;
     CONVERSATION_PATH = `api/v2/tickets/${ticketData.id}/conversations`;
   }
-  const FD_API_KEY = process.env.FD_API_KEY;
-  const FD_ENDPOINT = process.env.FD_ENDPOINT;
   const URL = `https://${FD_ENDPOINT}.freshdesk.com/${PATH}`;
   const CONVERSATION_URL = `https://${FD_ENDPOINT}.freshdesk.com/${CONVERSATION_PATH}`;
-  const ENCODING_METHOD = 'base64';
-  const AUTHORIZATION_KEY =
-    'Basic ' +
-    new Buffer.from(FD_API_KEY + ':' + 'X').toString(ENCODING_METHOD);
 
-  console.log(FD_API_KEY, FD_ENDPOINT);
   const headers = {
     Authorization: AUTHORIZATION_KEY,
     'Content-Type': 'application/json',
@@ -496,13 +495,7 @@ const freshDeskTicket = async (db, data) => {
 };
 const freshDeskCreateTicket = async (db, data) => {
   const PATH = 'api/v2/tickets';
-  const FD_API_KEY = process.env.FD_API_KEY;
-  const FD_ENDPOINT = process.env.FD_ENDPOINT;
   const URL = `https://${FD_ENDPOINT}.freshdesk.com/${PATH}`;
-  const ENCODING_METHOD = 'base64';
-  const AUTHORIZATION_KEY =
-    'Basic ' +
-    new Buffer.from(FD_API_KEY + ':' + 'X').toString(ENCODING_METHOD);
 
   const createTicket = {
     access_token: data.access_token,
@@ -602,13 +595,7 @@ const freshDeskReplyToTicket = async (db, data) => {
   };
 
   const PATH = `api/v2/tickets/${createTicket.id}/reply`;
-  const FD_API_KEY = process.env.FD_API_KEY;
-  const FD_ENDPOINT = process.env.FD_ENDPOINT;
   const URL = `https://${FD_ENDPOINT}.freshdesk.com/${PATH}`;
-  const ENCODING_METHOD = 'base64';
-  const AUTHORIZATION_KEY =
-    'Basic ' +
-    new Buffer.from(FD_API_KEY + ':' + 'X').toString(ENCODING_METHOD);
 
   const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
   const authToken = await jwt.verify(
@@ -636,11 +623,10 @@ const freshDeskReplyToTicket = async (db, data) => {
 
   // const json = `{ "description": ${description},
   //                 "email": ${email},
-  //                 "status": 2,
   //                 "cc_emails": ${cc_emails}
   //               }`;
 
-  const json = `{ "description": ${description} }`;
+  const json = `{ "body": ${description} }`;
 
   const config = {
     method: 'POST',
