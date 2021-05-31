@@ -32,7 +32,7 @@ const _saveAddressData = () => {
     .getElementById('selectedAddress')
     [value].getAttribute('nad_key');
 
-  const selectedAddress = {
+  const oneTouchCustomer = {
     county,
     district_id,
     locality,
@@ -46,8 +46,8 @@ const _saveAddressData = () => {
   };
 
   sessionStorage.setItem(
-    'selectedAddress',
-    JSON.stringify({ selectedAddress })
+    'oneTouchCustomer',
+    JSON.stringify({ oneTouchCustomer })
   );
 };
 
