@@ -619,14 +619,24 @@ const freshDeskReplyToTicket = async (db, data) => {
 
   let description = JSON.stringify(createTicket.description);
   let email = JSON.stringify(authToken.email);
-  let cc_emails = JSON.stringify([authToken.email, 'user@cc.com']);
 
-  // const json = `{ "description": ${description},
-  //                 "email": ${email},
-  //                 "cc_emails": ${cc_emails}
-  //               }`;
+  const json = `{ "body" : ${description},
+                  "cc_emails" : [${email}]
+                }`;
 
-  const json = `{ "body": ${description} }`;
+  let tbody = {
+    bulk_action: {
+      ids: [20, 21, 22],
+      properties: {
+        from_email: 'support@freshdesk.com',
+        status: 2,
+        group_id: 1234,
+        type: 'Question',
+        priority: 4,
+      },
+      reply: { body: 'Please check this ticket' },
+    },
+  };
 
   const config = {
     method: 'POST',
